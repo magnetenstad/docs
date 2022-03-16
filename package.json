@@ -1,0 +1,20 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node_modules/marktree/src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon marktree",
+    "build": "marktree"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "marktree": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
