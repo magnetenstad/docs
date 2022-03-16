@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>tdt4186.exercise.t4.md</title>
+  <link rel="icon" type="image/x-icon" href="../null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="../styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">notes</a></p>
+<h1>TDT4186 Theoretical 3</h1>
+<p>#exercise</p>
+<h2>Handout</h2>
+<p><img src="assets/tdt4186.exercise.t4.pdf" alt="tdt4186.exercise.t4"></p>
+<h2>Solutions</h2>
+<h3>4.1</h3>
+<p>Visualize as shown in <a href="tdt4186.lecture.10.html">tdt4186.lecture.10</a>.
+Example:
+<img src="../assets/tdt4186.lecture.10a.lru.png" alt=""></p>
+<p>Request sequence: <code><span class="hljs-attribute">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span></code></p>
+<h4>4 pages</h4>
+<h5>FIFO</h5>
+<table>
+<thead>
+<tr>
+<th>Access sequence</th>
+<th>1</th>
+<th>3</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+<th>5</th>
+<th>3</th>
+<th>5</th>
+<th>0</th>
+<th>4</th>
+<th>3</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>frame 1</td>
+<td><em>1</em></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td><em>3</em></td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td><em>5</em></td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td><em>1</em></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>frame 2</td>
+<td></td>
+<td><em>3</em></td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td><em>2</em></td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td><em>3</em></td>
+<td>3</td>
+<td>3</td>
+<td><em>4</em></td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td><em>5</em></td>
+</tr>
+<tr>
+<td>frame 3</td>
+<td></td>
+<td></td>
+<td><em>5</em></td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td><em>1</em></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td><em>3</em></td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>frame 4</td>
+<td></td>
+<td></td>
+<td></td>
+<td><em>4</em></td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td><em>0</em></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><em>2</em></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>This is wrong :(</p>
+<h5>Optimal</h5>
+<h5>LRU</h5>
+<h3>4.2</h3>
+<h3>4.3</h3>
+<h3>4.4</h3>
+
+
+</article>
+</body>
+</html>

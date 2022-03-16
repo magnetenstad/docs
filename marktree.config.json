@@ -1,6 +1,7 @@
 {
-  "source": "markdown",
+  "source": "vault",
   "dest": "docs",
+  "exclude": [".git", ".obsidian", "node_modules"],
   "htmlLayout": "layout.html",
   "cssStyles": "styles.css",
   "icon": "favicon.ico",

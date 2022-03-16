@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>home.index.md</title>
+  <link rel="icon" type="image/x-icon" href="null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<h1>vault</h1>
+<h3>Directories</h3>
+<ul>
+<li><a href="./assets/index.html">assets</a></li>
+<li><a href="./daily/index.html">daily</a></li>
+<li><a href="./notes/index.html">notes</a></li>
+<li><a href="./templates/index.html">templates</a>
+↩️ <a href="./index.html">vault</a></li>
+</ul>
+<h1>Welcome home 🏡🌱</h1>
+<h2>Links</h2>
+<p>📗 <a href="https://docs.google.com/spreadsheets/d/1hGTmeL-qxmJsZRQqon67YFuiF2W6JwE__xSQ_v9dh0o/edit#gid=1019370032">spreadsheets</a>
+👾 <a href="https://github.com/magnetenstad">github</a></p>
+<p>👨‍🎓 <a href="notes/courses.index.html">courses.index</a>
+📝 <a href="notes/notes.index.html">notes.index</a>
+📆 <a href="daily/daily.index.html">daily.index</a></p>
+<h2>Music</h2>
+<p>&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/9d4-OxBy16Y&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen&gt;&lt;/iframe&gt;</p>
+<h2>Activity</h2>
+<pre><code class="hljs language-dataviewjs">
+const colors = {
+	blue: [&quot;#8cb9ff&quot;,&quot;#69a3ff&quot;,&quot;#428bff&quot;,&quot;#1872ff&quot;,&quot;#0058e2&quot;],
+	green: [&quot;#c6e48b&quot;,&quot;#7bc96f&quot;,&quot;#49af5d&quot;,&quot;#2e8840&quot;,&quot;#196127&quot;],
+	red: [&quot;#ff9e82&quot;,&quot;#ff7b55&quot;,&quot;#ff4d1a&quot;,&quot;#e73400&quot;,&quot;#bd2a00&quot;],
+	orange: [&quot;#ffa244&quot;,&quot;#fd7f00&quot;,&quot;#dd6f00&quot;,&quot;#bf6000&quot;,&quot;#9b4e00&quot;],
+	pink: [&quot;#ff96cb&quot;,&quot;#ff70b8&quot;,&quot;#ff3a9d&quot;,&quot;#ee0077&quot;,&quot;#c30062&quot;],
+	orangeToRed: [&quot;#ffdf04&quot;,&quot;#ffbe04&quot;,&quot;#ff9a03&quot;,&quot;#ff6d02&quot;,&quot;#ff2c01&quot;],
+}
+
+const calendarData = {
+	entries: [],
+	colors: colors,
+}
+
+const pages = dv.pages()
+const notesEachDay = new Map()
+
+for (let page of pages) {
+	for (let key of [page.file.cday.toString(), page.file.htmlay.toString()]) {
+		const prev = notesEachDay.get(key) || 0
+		notesEachDay.set(key, prev + 1)
+	}
+}
+
+for (const [key, value] of notesEachDay.entries()) {
+	calendarData.entries.push({
+		date: key,
+		intensity: value,
+		color: &quot;green&quot;,
+		content: value,
+	})
+}
+
+renderHeatmapCalendar(this.container, calendarData)
+</code></pre>
+<p>&lt;br/&gt;</p>
+
+
+</article>
+</body>
+</html>

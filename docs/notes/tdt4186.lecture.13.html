@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>tdt4186.lecture.13.md</title>
+  <link rel="icon" type="image/x-icon" href="../null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="../styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">notes</a></p>
+<h2>Lecture 13: Real-time scheduling</h2>
+<p><a href="tdt4186.lecture.12.html">Previous lecture</a>
+<a href="notes/tdt4186.lecture.14.html">Next lecture</a></p>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/-aQe1JY4c3k&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<h3>Real-time computer systems</h3>
+<ul>
+<li>What’s this all about?</li>
+</ul>
+<blockquote>
+<p>A real-time computer system is a computer system in which the correctness of the system behavior depends not only on the logical results of the computations, but also on the physical instant at which these results are produced.</p>
+</blockquote>
+<h4>Example: inverted pendulum</h4>
+<p><img src="../assets/tdt4186.lecture.13.inverted_pendulum.png" alt=""></p>
+<h3>Deadlines</h3>
+<ul>
+<li>Often defined by the technical system to be controlled</li>
+<li>Deadline classification:
+<ul>
+<li>soft: the obtained result (the reaction of the system) is
+useful even if it was obtained after the deadline has passed</li>
+<li>firm: the result is useless after the deadline has passed</li>
+<li>hard: if the deadline passes without a system reaction, damage can occur</li>
+</ul>
+</li>
+<li>A real-time system is considered &quot;hard&quot; if at least one of its deadlines is hard. Otherwise, the system is &quot;soft&quot;</li>
+<li>For hard real-time systems, it has to be guaranteed that all deadlines are kept. This requires different development approaches and system structures.</li>
+</ul>
+<h3>How long does a program run?</h3>
+<ul>
+<li>Runtimes of programs vary due to:
+<ul>
+<li>different inputs</li>
+<li>hardware states when the program starts</li>
+<li>interrupts, process switching, power management, …</li>
+</ul>
+</li>
+<li>Especially relevant: Worst Case Execution Time (WCET)</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.13.execution_times.png" alt=""></p>
+<p>The estimated WCETEST has to be guaranteed larger or equal to the real WCET. However, the difference between the two should be as small as possible (&quot;tight bounds&quot;).</p>
+<h3>Trigger</h3>
+<p>… to initiate computation (&quot;task&quot;) can be realized in different ways:</p>
+<h4>Event-triggered real-time systems</h4>
+<ul>
+<li>A relevant change of the state of the controlled object (an event) was observed via sensor readings</li>
+<li>Scheduling of the tasks at runtime</li>
+<li>High overhead for tests under high load</li>
+<li>Behavior is difficult to predict → soft real-time systems</li>
+<li></li>
+</ul>
+<h4>Time-triggered real-time systems</h4>
+<ul>
+<li>Fixed points in time to execute calculations are planned in advance (offline scheduling). Their execution is periodic</li>
+<li>Resource utilization is higher than with event-triggered systems, since the calculation always has to consider the worst case execution time (WCET)</li>
+<li>High energy consumption since the system is permanently active</li>
+<li>Lower test effort required</li>
+<li>Guarantees are possible → hard real-time systems</li>
+</ul>
+<h3>Example: OSEKtime</h3>
+<p>Objectives of the OSEKtime OS [2]:</p>
+<ul>
+<li>Safe realization of &quot;x-by-wire&quot; applications, e.g. fly-by-wire, steer-by-wire, brake-by-wire, eGas
+<ul>
+<li>Guaranteed predictable behavior
+<ul>
+<li>support for time-triggered applications → OSEKtime operating system specification (version 1.0: 2001)</li>
+</ul>
+</li>
+<li>Global coordination of embedded control units (ECUs):
+<ul>
+<li>global time! → FTCom specification</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Compatibility with &quot;classical&quot; OSEK-OS tasks
+<ul>
+<li>Support for event-driven applications</li>
+</ul>
+</li>
+</ul>
+<h3>OSEKtime scheduler</h3>
+<ul>
+<li>Offline scheduling :
+<ul>
+<li>A dispatch table controls the periodic activation of tasks:</li>
+</ul>
+</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.13.osektime_scheduler.png" alt=""></p>
+<ul>
+<li>The dispatcher is invoked by a timer interrupt</li>
+<li>Only the dispatcher can activate tasks</li>
+<li>Safety mechanism: deadline monitoring</li>
+</ul>
+<h3>Offline scheduling</h3>
+<ul>
+<li>Tools support developers when scheduling tasks at design time</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.13.timecore.png" alt=""></p>
+<h3>Real-time scheduling</h3>
+<ul>
+<li>Objective: obtain guarantees that hard deadlines are kept</li>
+<li>Taxonomy of scheduling approaches [3, chapter 6]:</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.13.real_time_scheduling_graph.png" alt=""></p>
+<h3>Rate-monotonic scheduling (RM)</h3>
+<ul>
+<li>Rate-monotonic (RM) scheduling is a scheduling strategy for preemptive, periodic tasks with hard deadlines</li>
+<li>The scheduler works at runtime (using fixed priorities)</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.13.real_time_scheduling_graph_rm.png" alt=""></p>
+<h3>RM assumptions (Liu &amp; Layland 1973)</h3>
+<ul>
+<li>A1. All tasks are preemptible at any time
+<ul>
+<li>Preemption costs (duration) are negligible</li>
+</ul>
+</li>
+<li>A2. Only compute time is a relevant resource
+<ul>
+<li>The overhead for memory, I/O accesses and other resources is negligible</li>
+</ul>
+</li>
+<li>A3. All tasks are independent
+<ul>
+<li>There is no required order of execution between tasks</li>
+</ul>
+</li>
+<li>A4. All tasks are periodic</li>
+<li>A5. The relative deadline of a task is equal to its period</li>
+</ul>
+<h3>Example: car headlight controller</h3>
+<p>... everything is periodic!
+<img src="../assets/tdt4186.lecture.13.rm_example_car.png" alt=""></p>
+<h3>RM algorithm</h3>
+<ul>
+<li>The priority grows monotonously with the event rate (=frequency)</li>
+<li>Thus: short period → high priority</li>
+<li>Tasks with high priority preempt tasks with low priority</li>
+<li>Example:</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.13.rm_example_car_gantt.png" alt=""></p>
+<p>A practical implementation of RM scheduling requires only an operating system with a preemptive fixed priority scheduler</p>
+<h3>Schedulability analysis</h3>
+<ul>
+<li>Question: are the deadlines kept for all tasks?
+<ul>
+<li>The schedule can only be calculated if all tasks are completely time-triggered. In our example, the phases can have arbitrary values</li>
+</ul>
+</li>
+<li>Necessary condition: the utilization U of the system is less than or equal to 1:</li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>U</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><mfrac><msub><mi>C</mi><mi>i</mi></msub><msub><mi>T</mi><mi>i</mi></msub></mfrac><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">U = \sum_{i = 1}^{m} \frac{C_i}{T_i} \leq 1
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span></p>
+<p>U: system load, m: number of tasks
+But is this sufficient?</p>
+<h3>The &quot;70% rule&quot;</h3>
+<ul>
+<li>Rule: no deadline violations if the following condition holds:</li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>U</mi><mo>≤</mo><mi>m</mi><mo>⋅</mo><mrow><mo fence="true">(</mo><msup><mn>2</mn><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mi>m</mi></mrow></msup><mo>−</mo><mn>1</mn><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">U \leq m \cdot \left( 2^{1/m} - 1 \right)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.938em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">/</span><span class="mord mathnormal mtight">m</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span></span></span></span></span></p>
+<ul>
+<li>For large values of m, this converges against ln(2) ≈ 0,6931, i.e. ca. 70%</li>
+<li>Advantage: simple test, low overhead</li>
+<li>Example 1: U = 58.2%, m = 5
+<ul>
+<li>m·(21/m-1) = 74.35%, condition fulfilled → no deadline violation</li>
+</ul>
+</li>
+<li>Example 2: 𝜏1 = (2,5) instead of 𝜏1 = (1,5), thus U = 78.2%, m = 5
+<ul>
+<li>m·(21/m-1) = 74.35%, condition not fulfilled → possible deadline violation</li>
+</ul>
+</li>
+<li>Disadvantage: no conclusion if the condition is not fulfilled</li>
+</ul>
+<h3>Sufficient and necessary conditions</h3>
+<p><img src="../assets/tdt4186.lecture.13.sufficient_and_necessary_conditions.png" alt=""></p>
+<h3>Exact test: response time analysis</h3>
+<ul>
+<li>If the response time Ri for all tasks is less than or equal to the period Ti, all deadlines are kept</li>
+<li>Necessary and sufficient conditions:</li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">∀</mi><mtext> </mtext><mi>i</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>m</mi><mo stretchy="false">}</mo><mo>:</mo><msub><mi>R</mi><mi>i</mi></msub><mo>≤</mo><msub><mi>T</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\forall \: i \in \{ 1, \dots, m \} : R_i \leq T_i
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord">∀</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">m</span><span class="mclose">}</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>For the largest possible delay 𝜙i = 0: All higher prioritized tasks are ready at the start of the period</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.13.response_time_analysis.png" alt=""></p>
+<h3>Exact test: iterative solution</h3>
+<ul>
+<li>Calculate Ri using fixed point iteration:
+<ul>
+<li>Terminate if <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>R</mi><mi>i</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msubsup><mo>=</mo><msubsup><mi>R</mi><mi>i</mi><mi>n</mi></msubsup></mrow><annotation encoding="application/x-tex">R_i^{n + 1} = R_i^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.131103em;vertical-align:-0.276864em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.854239em;"><span style="top:-2.4231360000000004em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.1031310000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.276864em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.941994em;vertical-align:-0.258664em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-2.441336em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span></span></span></span> or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>R</mi><mi>i</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msubsup><mo>&gt;</mo><msub><mi>T</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">R_i^{n + 1} &gt; T_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.131103em;vertical-align:-0.276864em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.854239em;"><span style="top:-2.4231360000000004em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span><span style="top:-3.1031310000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.276864em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+</li>
+</ul>
+<p class='katex-block'><span class="katex-error" title="ParseError: KaTeX parse error: Can&#x27;t use function &#x27;<!-- insert:markdown -->#x27; in math mode at position 1: $̲
+R_i^{n + 1} = …" style="color: #cc0000">$
+R_i^{n + 1} = C_i + \sum_{j \in hp_i} \left\lceil \frac{R_i^n}{T_j} \right\rceil \cdot C_j
+$ (1)
+
+- Pseudo code of the tests for all tasks:
+```
+for (each task 𝜏i) {
+  I = 0
+  do {
+    R = I + Ci
+    if (R &gt; Ti) return false // deadline violation 
+    I = &lt;formula&gt;
+  } while (I + Ci &gt; R)
+}
+return true // all deadlines are kept
+```
+
+### Rate-monotonic scheduling is &quot;optimal&quot;
+- We need to show:
+  - RM is an optimal scheduling algorithm for fixed priorities. I.e., if any algorithmus can find a valid schedule, RM can also find one.
+- Proof by contradiction: we assume… algorithm A finds a valid schedule, but RM does not
+  - In schedule A: prio(𝜏i) = prio(𝜏j) + 1 and Ti &gt; Tj (different to RM)
+    Ci+Cj ≤ Tj holds since the schedule is valid and 𝜏i has a higher priority
+![](tdt4186.lecture.13.rm_optimal.png)
+
+What is the effect of swapping the priorities (only) of these two tasks? 𝜏j can be scheduled, since it now has higher priority. 𝜏i can also be scheduled since Ci + Cj ≤ Tj &lt; Ti.
+![](tdt4186.lecture.13.rm_optimal_2.png)
+
+We obtain an RM schedule by applying a finite number of these swaps. This is also a valid schedule → contradiction → RM is optimal!
+
+### RM scheduling: conclusion
+- RM is easy to apply and optimal for fixed priorities
+  - the OS only needs to provide a &quot;fixed priority&quot; scheduler
+- Response time analysis enables an exact schedulability test
+  - Important for hard real-time systems: mathematical guarantee!
+- In many cases, the 70% rule is sufficient
+- Attention:
+  - Assumptions A.1-5 must hold!
+    - uniprocessor, no task dependencies, …
+  - WCET estimation difficult for modern processors
+    - memory hierarchies, out-of-order execution, DRAM access times, ...
+  - In any case, the complete system has to be analyzed
+
+### Example: Earliest Deadline First
+- Earliest Deadline First (EDF) scheduling is a scheduling strategy for preemptive, periodic and aperiodic tasks with hard deadlines. The priorities are assigned dynamically (at runtime).
+![](tdt4186.lecture.13.edf_graph.png)
+
+### EDF algorithm
+- Tasks which are ready are sorted in order of their absolute deadlines
+- If the first task in the list has an earlier deadline than the currently running task, the running task is preempted immediately!
+![](tdt4186.lecture.13.edf_algorithm_example.png)
+
+### Optimality of EDF
+- EDF minimizes the maximum delay of tasks
+![](tdt4186.lecture.13.edf_optimality.png)
+- If a schedule exists which is able to keep all deadlines, then EDF also keeps all deadlines → EDF is optimal
+  - …for independent tasks with dynamic priorities
+- Especially for periodic tasks the following holds: If U ≤ 1, then EDF always finds a valid schedule (without missing deadlines!)
+
+### EDF-Scheduling: Conclusion
+- Simply optimal for periodic as well as aperiodic task sets
+  - Achieves a higher utilization than RM scheduling by using dynamic priorities
+- Attention:
+  - EDF is usually only implemented in special real-time operating systems
+  - No information about the number and duration of deadline misses can be obtained
+  - Less predictable than e.g. RM
+  - Response times can vary significantly: &quot;jitter&quot;
+  - In overload situations: &quot;domino effect&quot;
+
+### Outlook: Extending the strategies
+- Working with sporadic tasks
+  - Limited arrival rate, but no strict period
+- Consideration of task dependencies
+- Increase CPU utilization
+  - mixed-criticality systems
+  - restriction to &quot;harmonic tasks&quot;
+    - periods are integer multiples of each other
+- Modus changes
+  - e.g. indicator/stepper motor becomes active
+- Handle [temporary] overload
+- Adaptation to [heterogeneous] multiprocessor systems
+
+$</span></p>
+
+
+</article>
+</body>
+</html>

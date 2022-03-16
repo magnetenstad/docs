@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>Relasjonsdatabaser.md</title>
+  <link rel="icon" type="image/x-icon" href="../null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="../styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">notes</a></p>
+<h1>Relasjonsdatabaser</h1>
+<p>Relasjonersdatabaser er bygd opp av tabeller der kolonner angir attributter og rader angir entiteter eller relasjoner.</p>
+<h2>Mapping fra ER-modell</h2>
+<table>
+<thead>
+<tr>
+<th>Konsept</th>
+<th>Hvordan mappe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regulære entitetsklasser</td>
+<td>Entitetsklassen får egen tabell. Attributter blir kolonner. Sammensatte attributter splittes opp. Primærnøkkel fra ER-modell brukes.</td>
+</tr>
+<tr>
+<td>Svake entitetstyper</td>
+<td>Legger til primærnøkkel (fremmednøkkel) fra identifiserende entitetsklasser, sammen med klassens delvise nøkkel. Ellers likt.</td>
+</tr>
+<tr>
+<td>Binære 1:1 relasjoner</td>
+<td>Fremmednøkkel kan legges i en av entitetsklassetabellene, eller så kan relasjonen få egen tabell.</td>
+</tr>
+<tr>
+<td>Binære 1:N relasjoner</td>
+<td>Fremmednøkkel kan legges i entiteten med kardinalitet 1, eller så kan relasjonen få egen tabell.</td>
+</tr>
+<tr>
+<td>Binære N:N relasjoner</td>
+<td>Relasjonen får egen tabell.</td>
+</tr>
+<tr>
+<td>Flerverdiattributter</td>
+<td>Får egen tabell med fremmednøkkel mot entitetsklassen.</td>
+</tr>
+<tr>
+<td>N-ære relasjonsklasser (N &gt; 2)</td>
+<td>Får egen tabell med fremmednøkler mot alle tilhørende entitetsklasser.</td>
+</tr>
+</tbody>
+</table>
+<h2>Mapping fra EER-modell</h2>
+<table>
+<thead>
+<tr>
+<th>Konsept</th>
+<th>Hvordan mappe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spesialisering/generalisering</td>
+<td>A) Separate tabeller for superklasse og alle subklasser. Kommentar: Data om en entitet spredt over flere tabeller, må bruke join. B) Separate tabeller for subklasser som inkluderer attributter fra superklassen. Kommentar: Krever total og disjunkt spesialisering. C) En tabell som inkluderer attributter fra superklassen og alle subklasser. Kommentar: Ved disjunkt spesialisering kreves et type-attributt. Ved overlappende spesialisering kreves en boolsk type-vektor (en kolonne per type).</td>
+</tr>
+<tr>
+<td>Kategorier</td>
+<td>En tabell for kategori-entitetsklassen, med typeattributt. Superklassene har som regel ulike nøkler, i tillegg til en surrogat(fremmed)nøkkel mot kategorien.</td>
+</tr>
+</tbody>
+</table>
+
+
+</article>
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>tdt4186.lecture.9.md</title>
+  <link rel="icon" type="image/x-icon" href="../null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="../styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">notes</a></p>
+<h2>Lecture 9, part 1: Memory management</h2>
+<p><a href="tdt4186.lecture.8.html">Previous lecture</a>
+<a href="notes/tdt4186.lecture.10.html">Next lecture</a></p>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/kXop1DTa68U&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/X9FJf5zn3bc&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<h3>Resources (again)</h3>
+<ul>
+<li>Tasks of an operating system:
+<ul>
+<li>Administering the resources of a computer ^6134fb</li>
+<li>Creating abstractions that allow applications to easily and efficiently use these resources</li>
+</ul>
+</li>
+<li>So far: processes
+<ul>
+<li>Concept to abstract from a real CPU</li>
+</ul>
+</li>
+<li>Now: memory
+<ul>
+<li>Administration of main and background memory (RAM and secondary storage)</li>
+</ul>
+</li>
+</ul>
+<h3>Multiprogramming (again)</h3>
+<ul>
+<li>CPU load under the assumption of a given probability to wait for I/O</li>
+<li>Multiprogramming is essential to guarantee a high CPU utilization
+<ul>
+<li>When processes are started and terminated, memory has to be allocated and released dynamically!</li>
+</ul>
+</li>
+</ul>
+<h3>Memory management requirements</h3>
+<ul>
+<li>Multiple processes need main memory
+<ul>
+<li>Processes are located in different positions in main memory</li>
+<li>Protection requirements:
+<ul>
+<li>Protect the OS from processes</li>
+<li>Protect processes against accesses from other processes</li>
+</ul>
+</li>
+<li>Size of main memory may not suffice for all processes together</li>
+</ul>
+</li>
+<li>OS has to know about free memory areas, administer and allocate them
+<ul>
+<li>Swapping of processes</li>
+<li>Relocation of instructions in programs</li>
+<li>Use hardware support</li>
+</ul>
+</li>
+</ul>
+<h3>Basic policies and strategies</h3>
+<ul>
+<li>Placement policy
+<ul>
+<li>Which area of memory should be allocated?
+<ul>
+<li>The one with the largest/smallest fragmentation?</li>
+<li>Not that relevant, since fragmentation is secondary.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Fetch policy
+<ul>
+<li>When should we swap in memory contents?
+<ul>
+<li>On demand or predictive</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Replacement policy
+<ul>
+<li>Which memory contents should be swapped out if the system is running out of free memory?
+<ul>
+<li>The oldest, least used one</li>
+<li>The one that is used for the longest amound of time</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Memory allocation: problem</h3>
+<p>The available memory is used by</p>
+<ul>
+<li>User processes
+<ul>
+<li>Program code (text)</li>
+<li>Program data (data)</li>
+<li>Dynamic memory allocations (stack, heap)</li>
+</ul>
+</li>
+<li>Operating system
+<ul>
+<li>Operating system code and data</li>
+<li>Process control blocks</li>
+<li>Data buffers for I/O</li>
+<li>...</li>
+</ul>
+</li>
+<li>Memory allocation is necessary!</li>
+</ul>
+<h3>Static memory allocation</h3>
+<ul>
+<li>Idea: use fixed memory areas for the OS and for user processes</li>
+<li>Problems:
+<ul>
+<li>Limited degree of multiprogramming</li>
+<li>Limitation of other resources e.g. I/O bandwidth due to buffers that are too small</li>
+<li>Unused OS memory cannot be used by application processes (and vice versa)</li>
+</ul>
+</li>
+<li>Solution: use dynamic memory allocation</li>
+</ul>
+<h3>Dynamic memory allocation</h3>
+<ul>
+<li>Segments
+<ul>
+<li>contiguous area of memory</li>
+</ul>
+</li>
+<li>Allocation and release of segments</li>
+<li>All the segments that hre part of a program we have seen already:
+<ul>
+<li>text segment(s)</li>
+<li>data segment(s)</li>
+<li>stack segment(s) (local variables, parameters, return addresses, ...)</li>
+</ul>
+</li>
+<li>Search for suitable memory areas for allocation
+<ul>
+<li>especially when a program is started</li>
+</ul>
+</li>
+<li>Placement policies required
+<ul>
+<li>especially important: management of free memory</li>
+</ul>
+</li>
+</ul>
+<h3>Memory allocation: bit lists</h3>
+<ul>
+<li>Free (sometimes also allocated) segments of main memory have to be represented</li>
+<li>Simple approach: bit lists
+<ul>
+<li>Problems:
+<ul>
+<li>Bit lists can require lots of memory</li>
+<li>When releasing memory, the size of the memory block to be released has to be known or provided</li>
+<li>Linear search is slow</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Memory allocation: linked list</h3>
+<ul>
+<li>Representation of used and free segments</li>
+<li>Problem:
+<ul>
+<li>Memory required for the list has to be allocated (dynamically)</li>
+</ul>
+</li>
+</ul>
+<h4>Linked list in <em>free memory</em></h4>
+<ul>
+<li>A minimum gap size has to be guaranteed to store the length of and the pointer to the next free gap!</li>
+<li>Problem:
+<ul>
+<li>To increase efficieny, backwards links might be required in addition</li>
+<li>This representation is dependent on the allocation strategy</li>
+</ul>
+</li>
+</ul>
+<h4>Placement strategies</h4>
+<p>...based on different sorting policies for the list of gaps:</p>
+<ul>
+<li>First fit (sorted after memory address)
+<ul>
+<li>use the first fitting gap</li>
+</ul>
+</li>
+<li>Rotating First Fit / Next Fit
+<ul>
+<li>Like first fit, but start with the most recently allocated gap</li>
+<li>avoids the generation of a large number of small gaps at the beginning of the list</li>
+</ul>
+</li>
+<li>Best Fit (sorted after gap size - smallest first)
+<ul>
+<li>find the smallest fitting gap</li>
+</ul>
+</li>
+<li>Worst Fit (sorted after gap size - largest first)
+<ul>
+<li>find the largest fitting gap</li>
+</ul>
+</li>
+<li>Problems:
+<ul>
+<li>gaps that are too small, fragmentation</li>
+</ul>
+</li>
+</ul>
+<h3>Placement strategies (2)</h3>
+<ul>
+<li>Buddy method: split memory dynamically into areas of a size 2^n^</li>
+</ul>
+<h3>Discussion: fragmentation</h3>
+<ul>
+<li>External fragmentation
+<ul>
+<li>Allocations creates memory fragments outside of the allocated memory areas which cannot be used</li>
+<li>Problems with all list based strategies, e.g. first fit, best fit ...</li>
+</ul>
+</li>
+<li>Internal fragmentation
+<ul>
+<li>Unused memory inside of allocated memory areas</li>
+<li>Problem e.g. with the buddy allocator
+<ul>
+<li>since request sizes are rounded up to the next power of two</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Use of the different methods</h3>
+<ul>
+<li>In the operating system (kernel) itself
+<ul>
+<li>Management of system memory</li>
+<li>Allocation of memory to processes and the operating system itself</li>
+<li>e.g. Buddy allocator in Linux</li>
+</ul>
+</li>
+<li>Inside of processes
+<ul>
+<li>Management of heap memory</li>
+<li>Enables dynamic allocation of memory areas by the process (using the malloc und free libc functions)</li>
+<li>Typically using linked lists</li>
+</ul>
+</li>
+<li>Areas of secondary storage
+<ul>
+<li>Management of certain sections of secondary memory
+<ul>
+<li>e.g. the area used for process swapping (swap space)</li>
+</ul>
+</li>
+<li>Often using bitmaps</li>
+</ul>
+</li>
+</ul>
+<h2>Lecture 9, part 2: Memory management and MMU hardware support</h2>
+<h3>Multiprogramming: swapping</h3>
+<ul>
+<li>Segments of a process are swapped out to background memory and released in main memory
+<ul>
+<li>e.g. if I/O waiting times hinder a process from running</li>
+</ul>
+</li>
+<li>Segments are swapped in back into main memory when the waiting time ends</li>
+<li>Large amount of time required for swapping in and out
+<ul>
+<li>Latency of the disk (e.g. positioning og a read/write head of a hard disk, not a big problem with SSDs)</li>
+<li>Transfer time</li>
+</ul>
+</li>
+</ul>
+<h3>Swapping (2)</h3>
+<ul>
+<li>Addresses in processes are usually linked statically
+<ul>
+<li>Can only be swapped into the same location in main memory</li>
+<li>Collisions with new segments allocated in memory after the process was swapped out</li>
+</ul>
+</li>
+<li>Possible solution: partitioning of main memory
+<ul>
+<li>Only one process per partition</li>
+<li>Swapping in into the same partition as before</li>
+<li>Memory cannot be used optimally</li>
+</ul>
+</li>
+<li>Better approach: dynamic allocation and program relocation</li>
+</ul>
+<h3>Address linking and relocation</h3>
+<ul>
+<li>Problem: Machine instructions use addresses
+<ul>
+<li>e.g. a jump instruction that changes control flow into a function</li>
+<li>or a load instruction to read a variable value from the data segment</li>
+</ul>
+</li>
+<li>Different approaches to link the adrress used as the operand of an instuction:
+<ul>
+<li>Absolute linking (at compile/link time)
+<ul>
+<li>Addresses are fixed</li>
+<li>The program can only execute correctly at a certain location in memory</li>
+</ul>
+</li>
+<li>Static linking (at load time)
+<ul>
+<li>Absolute addresses are adapted (relocated) when a program is loaded (started)</li>
+<li>Relocation information has to be provided by the compiler/assembler</li>
+</ul>
+</li>
+<li>Dynamic linking (at execution time)
+<ul>
+<li>Code accesses operands only indirectly</li>
+<li>The program can be relocated in memory at any time</li>
+<li>Resulting programs are slightly larger and slower</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Address linking and relocation (2)</h3>
+<ul>
+<li>Translation process (creation of relocation information)</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.9b.translation.png" alt=""></p>
+<h3>Address linking and relocation (3)</h3>
+<p><img src="../assets/tdt4186.lecture.9b.linking_and_loading.png" alt=""></p>
+<h3>Address linking and relocation (4)</h3>
+<ul>
+<li>Relocation information in the linker module (object file)
+<ul>
+<li>allows the linking of modules into arbitrary programs</li>
+</ul>
+</li>
+<li>Relocation information in the loader module
+<ul>
+<li>allows loading of the program at arbitrary locations in memory</li>
+<li>absolute addresses are generated only at load time</li>
+</ul>
+</li>
+<li>Dynamic linking with compiler support
+<ul>
+<li>Program does not use absolute addresses and can thus always be loaded to arbitrary memory locations
+<ul>
+<li>position independent code (PIC)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dynamic linking with MMU support
+<ul>
+<li>What modern computers usually do</li>
+<li>Mapping from &quot;logical&quot; to &quot;physical&quot; addresses
+<ul>
+<li>Relocation at link time is sufficient (except for shared libraries)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Segmentation</h3>
+<ul>
+<li>Hardware support: map logical to physical addresses</li>
+<li>The segment in the logical address space can be located at an arbitrary position in the physical space</li>
+<li>The OS controls where a segment is located in physical memory</li>
+</ul>
+<h3>Segmentation (2)</h3>
+<ul>
+<li>Using a translation table (per process)</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.9b.segment_table.png" alt=""></p>
+<h3>Segmentation (3)</h3>
+<ul>
+<li>Hardware component translating addresse: MMU (Memory Management Unit)</li>
+<li>Protects against overstepping the segment limits
+<ul>
+<li>MMU checks read/write/execute permissions</li>
+<li>Trap indicates a violation (a process attempts to access non permitted memory location)</li>
+<li>Programs and operating system are protected against each other</li>
+</ul>
+</li>
+<li>Process switching by exchanging the segment base
+<ul>
+<li>each process has its own translation table</li>
+</ul>
+</li>
+<li>Easier swapping
+<ul>
+<li>after swapping a process into an arbitrary memory location, only the translation table has to be modified</li>
+</ul>
+</li>
+<li>Shared segments are possible
+<ul>
+<li>Instruction (text) segments</li>
+<li>Data segments (shared memory)</li>
+</ul>
+</li>
+</ul>
+<h3>Segmentation (4)</h3>
+<p>Problems...</p>
+<ul>
+<li>Fragmentation of main memory due to frequent swapping or starting/termination of processes
+<ul>
+<li>This results in small unusable gaps: external fragmentation</li>
+</ul>
+</li>
+<li>Compacting helps
+<ul>
+<li>Segments are moved to close gaps</li>
+<li>Segment table is modified accordingly</li>
+<li>Time consuming..</li>
+</ul>
+</li>
+<li>Long running I/O operations required for swapping
+<ul>
+<li>Not all parts of a segment are used with the same frequency</li>
+</ul>
+</li>
+</ul>
+<h3>Compaction</h3>
+<ul>
+<li>Moving of segments
+<ul>
+<li>Creates fewer but larger gaps</li>
+<li>Reduced fragmentation</li>
+<li>Operation with large overhead
+<ul>
+<li>Specific overhead depends on the size of the segments that are moved</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.9b.compaction.png" alt=""></p>
+<h3>Paging</h3>
+<ul>
+<li>Logical address space is split into pages of identical size
+<ul>
+<li>Pages can be located at arbitrary positions in the physical memory address space</li>
+<li>Solves the fragmentation problem</li>
+<li>No compaction necessary</li>
+<li>Simplified memory allocation and swapping</li>
+</ul>
+</li>
+</ul>
+<h3>MMU with page table</h3>
+<ul>
+<li>A table is used to translate page addresses into page frame addresses</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.9b.page_table.png" alt=""></p>
+<h3>MMU with page table (2)</h3>
+<ul>
+<li>Page-based addressing creates internal fragmentation
+<ul>
+<li>The last page is often not used completely</li>
+</ul>
+</li>
+<li>Page size
+<ul>
+<li>small pages reduce internal fragmentation, but increase the size of the page table (and vice versa)</li>
+<li>common page size: 512 bytes - 8192 bytes</li>
+</ul>
+</li>
+<li>Page tables are large and have to be kept in main memory</li>
+<li>Large number of implicit page accesses required to map an address</li>
+<li>Only one &quot;segment&quot; per context
+<ul>
+<li>Makes the &quot;appropriate&quot; use of memory difficult to control
+<ul>
+<li>e.g. ensuring push/pop only on &quot;stack&quot;, execution only of &quot;text&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>-&gt; Combine paging with segmentation</p>
+</blockquote>
+<h3>Segmentation and page addressing</h3>
+<p><img src="../assets/tdt4186.lecture.9b.segmentation_and_page_addressing.png" alt=""></p>
+<h3>Segmentation and page addressing (2)</h3>
+<ul>
+<li>This requires even more implicit memory accesses</li>
+<li>Large tables in main memory</li>
+<li>Mixup of the different concepts</li>
+<li>Still swapping of complete segments</li>
+</ul>
+<blockquote>
+<p>-&gt; Multi-level page addressing with paging</p>
+</blockquote>
+<h3>Paging</h3>
+<ul>
+<li>Swapping complete segments is not necessary
+<ul>
+<li>Single pages can now be swapped (paged)</li>
+</ul>
+</li>
+<li>Hardware support
+<ul>
+<li>If the presence bit is set, nothing changes</li>
+<li>If the presence bit is cleared, a trap is invoked (page fault)</li>
+<li>The trap handler (part of the OS) can now initiate the loading of the page from background storage (this requires hardware support in the CPU)</li>
+</ul>
+</li>
+</ul>
+<h3>Multi-level page addressing</h3>
+<ul>
+<li>Example: two-level page addressing</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.9b.multi-level_page_addressing.png" alt=""></p>
+<ul>
+<li>Presence bit also for all entries in higher levels
+<ul>
+<li>This enable the swapping of page tables</li>
+<li>Tables can be created at access time (on demand) - saves memory!</li>
+</ul>
+</li>
+<li>However: even more implicit memory addresses required</li>
+</ul>
+<h3>Translation lookaside buffer (TLB)</h3>
+<ul>
+<li>Fast cache which is consulted before a (possible) lookup in the page table</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.9b.tlb.png" alt=""></p>
+<h3>Translation lookaside buffer (2)</h3>
+<ul>
+<li>Fast access to page address mapping, if the information is contained in the (fully associative) TLB memory
+<ul>
+<li>No implicit page accesses required</li>
+</ul>
+</li>
+<li>TLB has to be flushed when the OS switches context</li>
+<li>If a page not contained in the TLB is accessed, the related access information is entered into the TLB
+<ul>
+<li>An old TLB entry has to be selected to be replaced by the new one</li>
+</ul>
+</li>
+<li>TLB sizes:
+<ul>
+<li>Intel Core i7: 512 entries, page size 4 kB</li>
+<li>UltraSPARC T2: data TLB = 128, Code TLB = 64, page size 8 kB</li>
+<li>Larger TLBs are currently not implemented due to timing and cost considerations</li>
+</ul>
+</li>
+</ul>
+<h3>Inverted page tables</h3>
+<ul>
+<li>For large logical address spaces (e.g. 64 bit addresses)
+<ul>
+<li>Classical page tables are very large or</li>
+<li>Large number of address translation levels</li>
+<li>Page tables are often only sparsely populated</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>-&gt; Inverted Page Tables</p>
+</blockquote>
+<p><img src="../assets/tdt4186.lecture.9b.inverted_page_table.png" alt=""></p>
+<h3>Inverted page tables (2)</h3>
+<ul>
+<li>Advantages
+<ul>
+<li>Required little memory space to store address mappings</li>
+<li>Table can always be kept in main memory</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>Sharing of page frames is difficult to implement</li>
+<li>Process-local data structures are used for pages that are swapped out</li>
+<li>Lookups in the page table have large overhead
+<ul>
+<li>Use of associative memories and hash functions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Despite these disadvantages, many 64 bit processors use this approach to address translation:
+<ul>
+<li>Sun UltraSparc, IBM PowerPC, intel Itanium (IA-64), (DEC Alpha), ...</li>
+<li>But these are not in much use today</li>
+</ul>
+</li>
+</ul>
+<h3>Conclusion</h3>
+<ul>
+<li>The OS has to work in close cooperation with the hardware to enable efficient memory management
+<ul>
+<li>Segmentation and/or page-based addressing</li>
+<li>The implicit indirection of memory accesses allows to arbitrarily move code and data of running processes under the control of the OS (at page size granularity)</li>
+</ul>
+</li>
+<li>Additional strategic decisions have to be taken
+<ul>
+<li>Placement strategy (first fit, best fit, buddy, ...)
+<ul>
+<li>These differ with regard to fragmentation and the required overhead from allocation and release</li>
+<li>Selection of an appropriate strategy depends on the expected application profile</li>
+</ul>
+</li>
+<li>When swapping segments or pages:
+<ul>
+<li>Loading strategy</li>
+<li>Replacement strategy</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+</body>
+</html>

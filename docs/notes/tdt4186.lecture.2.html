@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>tdt4186.lecture.2.md</title>
+  <link rel="icon" type="image/x-icon" href="../null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="../styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">notes</a></p>
+<h2>Lecture 2: Resources and computer architecture</h2>
+<p><a href="tdt4186.lecture.1.html">Previous lecture</a>
+<a href="notes/tdt4186.lecture.3.html">Next lecture</a></p>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/qON8v_tL2io&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<h3>Computers as they are no more</h3>
+<ul>
+<li>The typical von Neumann-style computer
+<ul>
+<li>Addressable unified memory for code and data</li>
+<li>I/O devices in the same or a different address range</li>
+<li>Optional: Interrupts notify CPU of the completion of an I/O operation</li>
+<li>Optional: I/O devices can use DMA (direct memory access) to transfer data to memory without CPU interaction</li>
+</ul>
+</li>
+</ul>
+<h4>Asynchronous execution: interrupts</h4>
+<ul>
+<li>Access to I/O devices is often slow
+<ul>
+<li>Polling sends a command and then waits until the device returns data</li>
+</ul>
+</li>
+<li>With interrupts, the device notifies the program when data is ready
+<ul>
+<li>This changes the control flow the CPU executes!</li>
+<li>More complex to develop software for</li>
+</ul>
+</li>
+</ul>
+<h4>Buses</h4>
+<ul>
+<li>Components of the computer are connected by buses
+<ul>
+<li>Address bus: indentifying component</li>
+<li>Data bus: transfer information</li>
+<li>Control bus: metainformation (read/write, interrupt)</li>
+</ul>
+</li>
+<li>CPU has control over the bus
+<ul>
+<li>Exception: DMA</li>
+</ul>
+</li>
+</ul>
+<h3>Getting a bit more real</h3>
+<ul>
+<li>Simple model of execution only works efficitently if the speed of memory is on par with the speed of the CPU
+<ul>
+<li>This was the case until ca. 1980</li>
+</ul>
+</li>
+<li>Today: 'memory gap':
+<ul>
+<li>CPU speed ~ 10 000x faster, but memory speed only ~ 10x faster</li>
+</ul>
+</li>
+</ul>
+<h4>Introdusing a memory hierarchy</h4>
+<ul>
+<li>Idea: introduse caches
+<ul>
+<li>Small, but fast intermediate levels of memory</li>
+</ul>
+</li>
+<li>Caches can only hold a partial copy of the whole memory
+<ul>
+<li>Unified caches vs. separate instruction and data caches</li>
+<li>Expensive to manufacture</li>
+<li>Later: introduction of multiple level of cache (L1, L2, L3..)
+<ul>
+<li>Each one bugger but slower than the previous one</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Caches work efficiently due to two locality principles:
+<ul>
+<li>Temporal locality: a program accessing some part of memory is likely to access the same memory soon thereafter</li>
+<li>Spatial locality: a program accessing some part of memory is likely to access nearby memory next</li>
+</ul>
+</li>
+<li>The further from the CPU:
+<ul>
+<li>Increasing size</li>
+<li>Decreasing speed</li>
+</ul>
+</li>
+</ul>
+<h4>Memory impact: non-functional properties</h4>
+<ul>
+<li>Memory has a large influence on non-functional properties of a system
+<ul>
+<li>Average, best and worst case performance, troughput and latencies</li>
+<li>Power and energy consumption</li>
+<li>Reliability and security</li>
+</ul>
+</li>
+<li>Non-functional properties depend on many parameters of memory, e.g.:
+<ul>
+<li>Cache architecture</li>
+<li>Memory type</li>
+<li>Alignment and aliasing of data</li>
+</ul>
+</li>
+</ul>
+<h3>When one processor is not enough</h3>
+<ul>
+<li>Moore's Law (1965)
+<ul>
+<li>Observation that the number of transistors in a dense integrated circuit (IC) doubles about every two years</li>
+<li>Accordingly, increase in CPU speed due to smaller semiconductor structures</li>
+</ul>
+</li>
+<li>This development is hitting physical limitations
+<ul>
+<li>CPU frequencies 'stuck' at ~3 GHz</li>
+<li>Energy consumption is additional limiting factor</li>
+</ul>
+</li>
+<li>What can we do with all these transistors?
+<ul>
+<li>Bigger caches - energy hungry and prone to faults!</li>
+<li>Put more processors on a chip!
+<ul>
+<li>Earlier high-end systems already used multiple separate processor chips</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Old as well as new problems (with multiple cores):
+<ul>
+<li>Memory throughput now has to satisfy demands of n processors</li>
+<li>Software now has to support execution on multiple processors</li>
+<li>Caches need to be coherent so they hold the same copies of main memory data</li>
+</ul>
+</li>
+</ul>
+<h4>More processors, more memories</h4>
+<ul>
+<li>Problem: Memory throughput now has to satisfy demands of n processors
+<ul>
+<li>Provide each processor with its own main memory!</li>
+<li>NUMA (non unified memory architecture)</li>
+</ul>
+</li>
+<li>And new problems show up:
+<ul>
+<li>How to access data in another CPU's memory?</li>
+<li>Who decides which CPU is allowed to use the bus?</li>
+<li>Is a commom bus still efficient?</li>
+</ul>
+</li>
+</ul>
+<h4>On-chip communication</h4>
+<ul>
+<li>Use high-speed networks instead of conventional buses
+<ul>
+<li>Using ideas from computer networking</li>
+<li>On-chip network can achieve high throughput and low latencies</li>
+</ul>
+</li>
+</ul>
+<h3>Heterogeneous systems: GPGPUs</h3>
+<ul>
+<li>In modern computers, not only CPUs can execute code</li>
+<li>GPGPUs (general purpose graphics processing units)
+<ul>
+<li>Massively parallel processors for typical parallel tasks</li>
+<li>3D graphics, signal processing, machine learning, bitcoin mining etc.</li>
+<li>Few features for protection, security</li>
+</ul>
+</li>
+<li>Traditionally, GPUs were accessible to a single program only for drawing</li>
+<li>In modern systems, multiple programs want direct access to the GPGPU
+<ul>
+<li>How can the OS multiplex the GPGPU safely and securely?</li>
+</ul>
+</li>
+</ul>
+<h3>Security</h3>
+<ul>
+<li>There's another important non-functional property!</li>
+<li>Multiple programs running simultaneously
+<ul>
+<li>e.g. an online banking application and a video player</li>
+</ul>
+</li>
+<li>How can we prevent the video player from accessing memory of the banking app?</li>
+<li>Restrict access to non permitted memory ranges
+<ul>
+<li>The MMU only makes memory visible to a running program 'belonging' to it</li>
+</ul>
+</li>
+</ul>
+<h3>The MMU</h3>
+<ul>
+<li>Idea: intercept 'virtual' addresses generated by the CPU
+<ul>
+<li>MMU checks for 'allowed' addresses</li>
+<li>Translates allowed addresses to 'physical' addresses in main memory using a translation table</li>
+</ul>
+</li>
+<li>Problem: translation table for each single address would be large
+<ul>
+<li>Split memory into pages of identical size (power of 2)</li>
+<li>Apply the same translation to all addresses in the page: page table</li>
+</ul>
+</li>
+<li>MMUs were originally separate ICs sitting between CPU and RAM, today they are fitted on the CPU</li>
+</ul>
+<h4>Page table structure</h4>
+<ul>
+<li>Find a compromise page size allowing both flexibility and efficiency</li>
+</ul>
+<h4>The memory translation process</h4>
+<ul>
+<li>The MMU splits the virtual address coming from the CPU into three parts:
+<ul>
+<li>10 bits (31-22) page directory entry (PDE) number</li>
+<li>10 bits (21-12) page table entry (PTE) number</li>
+<li>12 bits (11-0) page offset inside the refernces page (untranslated)</li>
+</ul>
+</li>
+<li>Translation process
+<ol>
+<li>Read PDE entry from directory -&gt; address of one page table</li>
+<li>Read PTE entry from table -&gt; physical base address of memory page</li>
+<li>Add offset from original virtual address to obtain the complete physical memory address</li>
+</ol>
+</li>
+</ul>
+<h4>Speeding up the translation</h4>
+<ul>
+<li>Where is the page table stored?
+<ul>
+<li>Can be several MB in size -&gt; doesn't fit on the CPU</li>
+<li>Page dir and page table are in main memory!</li>
+</ul>
+</li>
+<li>Using virtual memory address translation requires three main memory accesses!
+<ul>
+<li>Use cache!</li>
+</ul>
+</li>
+<li>The MMU uses a special cache on the CPU - the translation lookaside buffer (TLB)</li>
+</ul>
+<h4>What about the operating system?</h4>
+<ul>
+<li>New hardware capabilities have to be used efficiently</li>
+<li>The OS has to manage an multiplex the related resources
+<ul>
+<li>Has to provide code for all new capabilites</li>
+<li>These often interact with other parts of the system, making the overall OS more complex</li>
+</ul>
+</li>
+<li>A modern OS also has to ensure adherence to non-functional requirements (security, energy, real-time, etc.)
+<ul>
+<li>OS has to do more bookkeeping and statistics</li>
+<li>Some of the non-functional properties contradict each other</li>
+</ul>
+</li>
+<li>Finally, the OS itself has to be efficient!</li>
+</ul>
+
+
+</article>
+</body>
+</html>

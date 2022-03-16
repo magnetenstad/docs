@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>SQL.md</title>
+  <link rel="icon" type="image/x-icon" href="../null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="../styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">notes</a></p>
+<h1>SQL</h1>
+<p>Deklarativt spørrespråk (&quot;hva, ikke hvordan&quot;) - vi trenger ikke tenke på optimalisering. Ikke mengdeorientert som relasjonsalgebra, resultattabellene kan ha like rader - må be om at duplikater fjernes.</p>
+<h2>Opprette data</h2>
+<p>DDL - Data Definition Language</p>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-comment">/* opprette tabell */</span>
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-comment">/* endre tabell */</span>
+<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-comment">/* fjerne tabell */</span>
+</code></pre>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Person (
+    Pnr     <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,
+    Navn    <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">30</span>),
+    Alder   <span class="hljs-type">INTEGER</span>,
+    <span class="hljs-keyword">CONSTRAINT</span> Person_PK <span class="hljs-keyword">PRIMARY</span> KEY (Pnr));
+</code></pre>
+<h3>Fremmednøkkelrestriksjoner</h3>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">CONSTRAINT</span> RestriksjonsNavn <span class="hljs-keyword">FOREIGN</span> KEY (Attributt) <span class="hljs-keyword">REFERENCES</span> FremmedTabell(FremmedAttributt)
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-operator">&lt;&gt;</span>
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DELETE</span> <span class="hljs-operator">&lt;&gt;</span>);
+</code></pre>
+<p>Alternativer for <code><span class="hljs-section">&lt;&gt;</span></code>:</p>
+<ul>
+<li><code><span class="hljs-attribute">NO ACTION</span></code> (default) / <code><span class="hljs-attribute">RESTRICT</span></code>: stopper handlingen</li>
+<li><code><span class="hljs-built_in">SET</span> <span class="hljs-literal">NULL</span></code>: setter <code><span class="hljs-literal">NULL</span></code>-verdi</li>
+<li><code><span class="hljs-attribute">CASCADE</span></code>: oppdaterer/sletter tilsvarende</li>
+</ul>
+<h2>Manipulere data</h2>
+<p>DML - Data Manipulation Language</p>
+<h3>Sette inn data - <code><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span></code></h3>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Person <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Ola&#x27;</span>, <span class="hljs-number">24</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Person <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Kari&#x27;</span>, <span class="hljs-number">45</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Person <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Per&#x27;</span>, <span class="hljs-number">14</span>);
+</code></pre>
+<h3>Oppdatere data - <code><span class="hljs-attribute">UPDATE</span></code></h3>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">UPDATE</span> Person
+<span class="hljs-keyword">SET</span> Navn <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Karianne&#x27;</span>
+<span class="hljs-keyword">WHERE</span> Pnr <span class="hljs-operator">=</span> <span class="hljs-number">2</span>
+</code></pre>
+<h3>Slette data - <code><span class="hljs-attribute">DELETE</span></code></h3>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">WHERE</span> Navn <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Ola&#x27;</span>
+</code></pre>
+<h2>Spørringer - <code><span class="hljs-keyword">SELECT</span></code></h2>
+<p>Merk: <code><span class="hljs-keyword">SELECT</span> *</code> angir at vi ønsker alle attributter.</p>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">SELECT</span> attributt, ...
+<span class="hljs-keyword">FROM</span> tabell, ...
+<span class="hljs-keyword">WHERE</span> betingelse
+</code></pre>
+<p>Relasjonsalgebraekvivalent:
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Π</mi><mtext>attributt, ...</mtext></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mtext>betingelse</mtext></msub><mo stretchy="false">(</mo><mtext>tabell</mtext><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Pi_{\text{attributt, ...}}(\sigma_{\text{betingelse}}(\text{tabell}))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">attributt, ...</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">betingelse</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">tabell</span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></p>
+<h3>Spesifisere krav - <code><span class="hljs-attribute">WHERE</span></code></h3>
+<p>Følgende operator virker som forventet.</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><span class="hljs-attribute">AND</span></code>, <code><span class="hljs-attribute">OR</span></code></td>
+</tr>
+<tr>
+<td><code><span class="hljs-operator">=</span></code>, <code><span class="hljs-addition">!=</span></code>, <code>&lt;</code>, <code><span class="hljs-meta">&gt;</span></code>, <code>&lt;<span class="hljs-operator">=</span></code>, <code>&gt;<span class="hljs-operator">=</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Merk: <code><span class="hljs-section">&lt;&gt;</span></code> er det samme som <code><span class="hljs-addition">!=</span></code></p>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner personnummer og navn for personer over 20</span>
+<span class="hljs-keyword">SELECT</span> Pnr, Navn
+<span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">WHERE</span> Alder <span class="hljs-operator">&gt;</span> <span class="hljs-number">20</span>
+</code></pre>
+<h3>Fjerne duplikater - <code><span class="hljs-built_in">DISTINCT</span></code></h3>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> Navn
+<span class="hljs-keyword">FROM</span> Person
+</code></pre>
+<h3>Sortering - <code><span class="hljs-keyword">ORDER</span> <span class="hljs-title">BY</span></code></h3>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">SELECT</span> Navn
+<span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Alder <span class="hljs-keyword">ASC</span>
+</code></pre>
+<h3>Strengsammenlikning - <code><span class="hljs-attribute">LIKE</span></code></h3>
+<p><code><span class="hljs-comment">%</span></code> angir vilkårlig antall tegn. <code><span class="hljs-literal">_</span></code> angir ett tegn.</p>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner alle attributter for personer med navn som begynner på P</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+<span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">WHERE</span> Navn <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;P%&#x27;</span>
+</code></pre>
+<h3>Data fra flere tabeller: kartesisk produkt og ulike typer join</h3>
+<p>Plasseres i <code><span class="hljs-selector-tag">FROM</span></code>-delen. Gitt tabeller <code><span class="hljs-selector-tag">A</span></code> og <code><span class="hljs-selector-tag">B</span></code>:</p>
+<table>
+<thead>
+<tr>
+<th>Funksjon</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><span class="hljs-selector-tag">A</span>, <span class="hljs-selector-tag">B</span></code></td>
+<td>Kartesisk produkt</td>
+</tr>
+<tr>
+<td><code><span class="hljs-selector-tag">A</span> CROSS JOIN <span class="hljs-selector-tag">B</span></code></td>
+<td>Kartesisk produkt</td>
+</tr>
+<tr>
+<td><code><span class="hljs-selector-tag">A</span> NATURAL JOIN <span class="hljs-selector-tag">B</span></code></td>
+<td>Natural join</td>
+</tr>
+<tr>
+<td><code><span class="hljs-selector-tag">A</span> (INNER) JOIN <span class="hljs-selector-tag">B</span></code></td>
+<td>Indre join</td>
+</tr>
+<tr>
+<td><code><span class="hljs-selector-tag">A</span> <span class="hljs-attribute">LEFT</span> (OUTER) JOIN <span class="hljs-selector-tag">B</span></code></td>
+<td>Venstre ytre join</td>
+</tr>
+<tr>
+<td><code><span class="hljs-selector-tag">A</span> <span class="hljs-attribute">RIGHT</span> (OUTER) JOIN <span class="hljs-selector-tag">B</span></code></td>
+<td>Høyre ytre join</td>
+</tr>
+<tr>
+<td><code>A <span class="hljs-keyword">FULL</span> (<span class="hljs-keyword">OUTER</span>) <span class="hljs-keyword">JOIN</span> B</code></td>
+<td>Full ytre join</td>
+</tr>
+</tbody>
+</table>
+<p>Parenteser antyder frivillig spesifisering. Se <a href="#5-relasjonsalgebra">relasjonsalgebra</a> for nærmere forklaring av funksjonene.</p>
+<table>
+<thead>
+<tr>
+<th>Betingelse</th>
+<th>Beskrivelse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><span class="hljs-attribute">NATURAL</span></code></td>
+<td>Natural join</td>
+</tr>
+<tr>
+<td><code><span class="hljs-keyword">ON</span> betingelse</code></td>
+<td>Spesifiserer join-betingelsen</td>
+</tr>
+<tr>
+<td><code><span class="hljs-function"><span class="hljs-title">USING</span></span> (attributt, ...)</code></td>
+<td>Spesifiserer hvilke attributter som må være like i de to tabellene</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner navn på hund og eier for personer over 60 år</span>
+<span class="hljs-keyword">SELECT</span> Person.Navn, Hund.Navn
+<span class="hljs-keyword">FROM</span> Person <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Hund <span class="hljs-keyword">ON</span> Person.Pnr <span class="hljs-operator">=</span> Hund.EierPnr
+<span class="hljs-keyword">WHERE</span> Person.Alder <span class="hljs-operator">&gt;</span> <span class="hljs-number">60</span>
+</code></pre>
+<h3>Aggregering</h3>
+<p>Se <a href="#52-gruppering-og-aggregering">aggregering i relasjonsalgebra</a>.
+Funksjonene ignorerer <code><span class="hljs-literal">NULL</span></code>-verdier. Med <code><span class="hljs-built_in">DISTINCT</span></code> opererer funksjonene på unike verdier. <code><span class="hljs-keyword">AS</span></code> definerer et alias.</p>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner snittalderen av alle personer</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(Alder) <span class="hljs-keyword">AS</span> SnittAlder
+<span class="hljs-keyword">FROM</span> Person
+</code></pre>
+<h3>Gruppering - <code><span class="hljs-keyword">GROUP</span> <span class="hljs-title">BY</span></code></h3>
+<p>Definerer grupper (partisjoner) av rader. Må komme etter en eventuell <code><span class="hljs-attribute">WHERE</span></code>.</p>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner snittalderen for hvert navn</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(Alder) <span class="hljs-keyword">AS</span> SnittAlder
+<span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Navn
+</code></pre>
+<h4>Betingelse etter gruppering - <code><span class="hljs-attribute">HAVING</span></code></h4>
+<p>Som <code><span class="hljs-attribute">WHERE</span></code>, men <em>etter</em> gruppering.</p>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner snittalderen for hvert navn, men kun hvis snittet over 60</span>
+<span class="hljs-keyword">SELECT</span> Navn, <span class="hljs-built_in">AVG</span>(Alder) <span class="hljs-keyword">AS</span> SnittAlder
+<span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Navn
+<span class="hljs-keyword">HAVING</span> SnittAlder <span class="hljs-operator">&gt;</span> <span class="hljs-number">60</span>
+</code></pre>
+<h3>Nøstede spørringer</h3>
+<p>I <code><span class="hljs-attribute">WHERE</span></code>-delen kan vi sammenlikne med resultatet fra en spørring. I <code><span class="hljs-selector-tag">FROM</span></code>-delen kan vi gjøre en ny spørring på resultatet av en spørring.</p>
+<h4>Sammenlikningsoperatorer</h4>
+<p><code>=, !=, &lt;, &gt;, &lt;=, &gt;=</code> virker som forventet.</p>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner navnet til den eldste personen</span>
+<span class="hljs-keyword">SELECT</span> Navn
+<span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">WHERE</span> Alder <span class="hljs-operator">=</span> (<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MAX</span>(Alder) <span class="hljs-keyword">FROM</span> Person)
+</code></pre>
+<h4><code><span class="hljs-built_in">ANY</span></code>, <code><span class="hljs-keyword">ALL</span></code></h4>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner navnet til den eldste personen (alternativ måte)</span>
+<span class="hljs-keyword">SELECT</span> Navn
+<span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">WHERE</span> Alder <span class="hljs-operator">&gt;=</span> <span class="hljs-keyword">ALL</span> (<span class="hljs-keyword">SELECT</span> Alder <span class="hljs-keyword">FROM</span> Person)
+</code></pre>
+<h4><code><span class="hljs-attribute">IN</span></code>, <code><span class="hljs-attribute">NOT IN</span></code></h4>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner snittalderen til forfattere</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">AVG</span>(Alder)
+<span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">WHERE</span> Navn <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> Forfatter <span class="hljs-keyword">FROM</span> Bok)
+</code></pre>
+<h4><code><span class="hljs-keyword">EXISTS</span></code></h4>
+<p>Dette er en korrelert del-spørring, dvs. at den sender inn data. (Om Person-entiteter i dette tilfelle).</p>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner navn på personer som ikke jobber med noen andre personer</span>
+<span class="hljs-keyword">SELECT</span> Navn 
+<span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> (
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
+    <span class="hljs-keyword">FROM</span> JobberMed
+    <span class="hljs-keyword">WHERE</span> JobberMed.PnrA <span class="hljs-operator">=</span> Person.Pnr <span class="hljs-keyword">OR</span> JobberMed.PnrB <span class="hljs-operator">=</span> Person.Pnr
+)
+</code></pre>
+<h4>Union, snitt og differanse</h4>
+<p>Krever kompatible operandtabeller (like kolonnenavn).</p>
+<table>
+<thead>
+<tr>
+<th>Funksjon</th>
+<th>Forklaring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><span class="hljs-built_in">UNION</span></code></td>
+<td>Union</td>
+</tr>
+<tr>
+<td><code><span class="hljs-attribute">INTERSECT</span></code></td>
+<td>Snitt</td>
+</tr>
+<tr>
+<td><code><span class="hljs-keyword">EXCEPT</span></code></td>
+<td>Minus</td>
+</tr>
+<tr>
+<td><code><span class="hljs-built_in">UNION</span> <span class="hljs-built_in">ALL</span></code></td>
+<td>Union (beholder duplikater)</td>
+</tr>
+<tr>
+<td><code><span class="hljs-keyword">INTERSECT</span> <span class="hljs-keyword">ALL</span></code></td>
+<td>Snitt (beholder duplikater)</td>
+</tr>
+<tr>
+<td><code><span class="hljs-keyword">EXCEPT</span> <span class="hljs-keyword">ALL</span></code></td>
+<td>Minus (beholder duplikater)</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner navn som brukes på både personer og hunder</span>
+<span class="hljs-keyword">SELECT</span> Navn <span class="hljs-keyword">FROM</span> Person
+<span class="hljs-keyword">INTERSECT</span>
+<span class="hljs-keyword">SELECT</span> Navn <span class="hljs-keyword">FROM</span> Hund
+</code></pre>
+<h4>Nøstede spørringer i <code><span class="hljs-selector-tag">FROM</span></code>-delen</h4>
+<p>I <code><span class="hljs-selector-tag">FROM</span></code>-delen kan vi gjøre en ny spørring på resultatet av en spørring. Lager en midlertidig tabell.</p>
+<pre><code class="hljs language-sql"><span class="hljs-comment">-- Finner antall arbeidere for ingeniøryrker med under 1000 arbeidere</span>
+<span class="hljs-keyword">SELECT</span> Yrke AntallArbeidere
+<span class="hljs-keyword">FROM</span> (
+  <span class="hljs-keyword">SELECT</span> Yrke, <span class="hljs-built_in">COUNT</span>(Pnr) <span class="hljs-keyword">AS</span> AntallArbeidere
+  <span class="hljs-keyword">FROM</span> Person
+  <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Yrke
+)
+<span class="hljs-keyword">WHERE</span> Yrke <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%ingeniør&#x27;</span> <span class="hljs-keyword">AND</span> AntallArbeidere <span class="hljs-operator">&lt;</span> <span class="hljs-number">1000</span>
+</code></pre>
+<h3>Virtuelle tabeller - <code><span class="hljs-keyword">VIEW</span></code></h3>
+<p>Views er tabeller som er avledet ut fra tabeller som er lagret i databasen. Hvorfor: Spørreforenkling, sikkerhet og ytelse.</p>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> Forelder(ForelderPnr, ForelderNavn, BarnPnr, BarnNavn)
+<span class="hljs-keyword">AS</span> <span class="hljs-keyword">SELECT</span> F.Pnr, F.Navn, B.Pnr, B.Navn
+<span class="hljs-keyword">FROM</span> Person <span class="hljs-keyword">AS</span> F <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Person <span class="hljs-keyword">AS</span> B
+<span class="hljs-keyword">ON</span> (F.Pnr <span class="hljs-operator">=</span> B.MorPnr <span class="hljs-keyword">OR</span> F.Pnr <span class="hljs-operator">=</span> B.FarPnr)
+</code></pre>
+
+
+</article>
+</body>
+</html>

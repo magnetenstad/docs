@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>tdt4186.lecture.7.md</title>
+  <link rel="icon" type="image/x-icon" href="../null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="../styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">notes</a></p>
+<h2>Lecture 7: Concurrency: Deadlocks</h2>
+<p><a href="tdt4186.lecture.6.html">Previous lecture</a>
+<a href="notes/tdt4186.lecture.8.html">Next lecture</a></p>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/VSaop2ycn28&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<h3>Deadlocks</h3>
+<p><img src="../assets/tdt4186.lecture.7.deadlock_cars.png" alt=""></p>
+<h3>Why is this happening?</h3>
+<p><img src="../assets/tdt4186.lecture.7.deadlock_cars_2.png" alt=""></p>
+<h3>Deadlocking processes</h3>
+<p>The term <em>deadlock</em> (in computer science) means</p>
+<blockquote>
+<p>[...] A situation in which two or more processes are unable to process because each is waiting for one of the others to do something.</p>
+</blockquote>
+<ul>
+<li>Alternative 1: Deadlock
+<ul>
+<li>Passive waiting</li>
+<li>Process state is BLOCKED</li>
+</ul>
+</li>
+<li>Alternative 2: Livelock
+<ul>
+<li>Active waiting (busy waiting or &quot;lazy&quot; busy waiting)</li>
+<li>Arbitrary process state (including RUNNING) but none of the involved processes is able to proceed</li>
+</ul>
+</li>
+<li>Deadlocks are the &quot;lesser evil&quot;
+<ul>
+<li>This state is uniquely discoverable
+<ul>
+<li>Basis to &quot;resolve&quot; deadlocks are available</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Active waiting results in an extremely high system load</li>
+</ul>
+<h3>Conditions for deadlocks</h3>
+<p>All of the following three conditions must be fulfilled for a deadlock to occur:</p>
+<ol>
+<li>Exclusive allocation of resources <strong>(&quot;mutual exclusion&quot;)</strong></li>
+</ol>
+<ul>
+<li>Only one process may use a resource at a time. No process may access a</li>
+</ul>
+<p>resource unit that has been allocated to another process
+2. Allocation of additional resources <strong>(&quot;hold and wait&quot;)</strong></p>
+<ul>
+<li>A process may hold allocated resources while awaiting assignment of</li>
+</ul>
+<p>other resources
+3. No removing of resources <strong>(&quot;no preemption&quot;)</strong></p>
+<ul>
+<li>The OS is unable to forcibly remove a resource from a process once it is</li>
+</ul>
+<p>allocated
+4. Only if <strong>an additional condition occurs</strong> at runtime, we really have a deadlock:</p>
+<ul>
+<li>&quot;circular wait&quot; - A closed chain of processes exists, such that each process holds at least</li>
+</ul>
+<p>one resource needed by the next process in the chain</p>
+<h3>Resources...</h3>
+<p>are administered by the operating system and provided to the
+processes. There are two kinds of resources:</p>
+<ul>
+<li><strong>Reusable resources</strong>
+<ul>
+<li>Are allocated by processes for a certain time and released</li>
+</ul>
+</li>
+</ul>
+<p>again afterwards</p>
+<ul>
+<li>Examples: CPU, main and mass storage, I/O devices, system</li>
+</ul>
+<p>data structures such as files, process table entries, …</p>
+<ul>
+<li>Typical access synchronization: mutual exclusion</li>
+<li><strong>Consumable resources</strong>
+<ul>
+<li>Are generated (produced) and destroyed (consumed) while</li>
+</ul>
+</li>
+</ul>
+<p>the system is running</p>
+<ul>
+<li>Examples: Interrupt requests, signals, messages, data from</li>
+</ul>
+<p>input devices</p>
+<ul>
+<li>Typical access synchronization: one-sided synchronization</li>
+</ul>
+<h3>Reusable resources</h3>
+<ul>
+<li>A deadlock occurs if two processes each have allocated a</li>
+</ul>
+<p>reusable resource which is afterwards additionally
+requested by the respective other process</p>
+<ul>
+<li>Example: A computer has 200 GB of main memory.</li>
+</ul>
+<p>Two processes allocate the memory in steps. The
+allocation is blocking
+<img src="../assets/tdt4186.lecture.7.reusable_resources.png" alt=""></p>
+<h3>Consumable resources</h3>
+<ul>
+<li>A deadlock occurs if two processes each wait for a</li>
+</ul>
+<p>consumable resource which is produced by the respective
+other process</p>
+<ul>
+<li>Example: synchronization signals exchanged between the</li>
+</ul>
+<p>two processes using the semaphore operations wait and
+signal
+<img src="../assets/tdt4186.lecture.7.consumable_resources.png" alt=""></p>
+<h3>Resource allocation graphs</h3>
+<p>... are used to visualize and also automatically detect
+deadlock situations</p>
+<ul>
+<li>They describe the current system state</li>
+<li>The nodes are processes and resources</li>
+<li>The edges show an allocation or a request</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.7.resource_allocation_graphs.png" alt=""></p>
+<ul>
+<li>Question to consider:
+<ul>
+<li>Is there a state of circular waiting?</li>
+<li>Which processes and resources are part of it?</li>
+<li>Example: 7 processes A – G and 6 resources R – W</li>
+</ul>
+</li>
+<li>Current state:
+<ul>
+<li>A allocates R and requests S.</li>
+<li>B allocates nothing but requests T.</li>
+<li>C allocates nothing but requests S.</li>
+<li>D allocates U and S and requests T.</li>
+<li>E allocates T and requests V.</li>
+<li>F allocates W and requests S.</li>
+<li>G allocates V and requests U.</li>
+</ul>
+</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.7.resource_allocation_graphs_2.png" alt=""></p>
+<h3>Classic deadlock: dining philosophers</h3>
+<p>Five philosophers spend their life either thinking or eating. And they love eating spaghetti! [1] To eat, the philosophers sit around a round table. Thinking makes you hungry – every philosopher has to eat! To eat spaghetti, a philosopher needs both forks next to her or his plate!
+<img src="../assets/tdt4186.lecture.7.dining_philosophers.png" alt=""></p>
+<h4>Deadlocked philosophers?</h4>
+<p>Here, the three first necessary conditions are fulfilled:</p>
+<ul>
+<li>&quot;mutual exclusion&quot;
+<ul>
+<li>Philosophers need both forks in order to eat spaghetti.</li>
+</ul>
+</li>
+<li>&quot;hold and wait&quot;
+<ul>
+<li>The philosophers are so deep lost in thought before</li>
+</ul>
+</li>
+</ul>
+<p>they eat that they are neither able to take both forks at
+the same time nor have the idea to put back a single
+fork.</p>
+<ul>
+<li>&quot;no preemption&quot;
+<ul>
+<li>Of course, it is not appropriate to take another</li>
+</ul>
+</li>
+</ul>
+<p>philosopher’s fork while it is in use.</p>
+<ul>
+<li>But does this necessarily lead to a deadlock?</li>
+</ul>
+<h4>Dining philosophers: version 1</h4>
+<pre><code class="hljs language-cpp"><span class="hljs-comment">/* all philosophers are 
+ concurrent... */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">phil</span> <span class="hljs-params">(<span class="hljs-type">int</span> who)</span> </span>{
+  <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+    <span class="hljs-built_in">think</span>();
+    <span class="hljs-built_in">grab</span>(who);
+    <span class="hljs-built_in">eat</span>();
+    <span class="hljs-built_in">drop</span>(who);
+  }
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">think</span> <span class="hljs-params">()</span> </span>{ ... }
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">eat</span> <span class="hljs-params">()</span> </span>{ ... }
+</code></pre>
+<pre><code class="hljs language-cpp">semaphore fork[NPHIL] = {
+  {<span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>}, ...
+};
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">grab</span> <span class="hljs-params">(<span class="hljs-type">int</span> who)</span> </span>{
+  <span class="hljs-built_in">wait</span>(&amp;fork[who]);
+  <span class="hljs-built_in">wait</span>(&amp;fork[(who+<span class="hljs-number">1</span>)%NPHIL]);
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">drop</span> <span class="hljs-params">(<span class="hljs-type">int</span> who)</span> </span>{
+  <span class="hljs-built_in">signal</span>(&amp;fork[who]);
+  <span class="hljs-built_in">signal</span>(&amp;fork[(who+<span class="hljs-number">1</span>)%NPHIL]);
+}
+</code></pre>
+<p>Using a semaphore guarantees mutual exclusion when accessing the forks. By tradition, every philosopher first takes the right and then the left fork.
+<img src="../assets/tdt4186.lecture.7.philosophers_1_deadlock.png" alt="">
+<img src="../assets/tdt4186.lecture.7.philosophers_1_circular_wait.png" alt=""></p>
+<h4>Dining philosophers: version 2</h4>
+<p>The problem in version 1 was the consequence of a process  switch between the 1. und 2. wait – a critical section. Version 2 protects this critical section using mutual exclusion.</p>
+<pre><code class="hljs language-cpp">semaphore mutex = {<span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>};
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">grab</span> <span class="hljs-params">(<span class="hljs-type">int</span> who)</span> </span>{
+  <span class="hljs-built_in">wait</span>(&amp;mutex);
+  <span class="hljs-built_in">wait</span>(&amp;fork[who]);
+  <span class="hljs-built_in">wait</span>(&amp;fork[(who+<span class="hljs-number">1</span>)%NPHIL]);
+  <span class="hljs-built_in">signal</span>(&amp;mutex);
+}
+</code></pre>
+<ul>
+<li>Is this solution deadlock free? <em>Yes, …</em>
+<ul>
+<li>1 process maximum can wait for a fork (a cycle needs 2!)</li>
+<li>A process waiting for mutex has no fork</li>
+</ul>
+</li>
+<li>Is this a good solution? <em>No, …</em>
+<ul>
+<li>When philowho eats, philowho+1 blocks in the critical sections.
+All others then also block. Many spaghetti get cold.</li>
+<li>Low level of concurrency and inefficient resource use!</li>
+</ul>
+</li>
+</ul>
+<h4>Dining philosophers: version 3</h4>
+<pre><code class="hljs language-cpp"><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">5</span>; <span class="hljs-comment">/* Number of philosophers */</span>
+semaphore mutex = {<span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>}; <span class="hljs-comment">/* Mutual exclusion */</span>
+semaphore s[N] = {{<span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>},...}; <span class="hljs-comment">/* one semaphor per philos. */</span>
+<span class="hljs-keyword">enum</span> { THINKING, EATING, HUNGRY } status[N]; <span class="hljs-comment">/* Philos. state*/</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">left</span><span class="hljs-params">(i)</span> </span>{ <span class="hljs-keyword">return</span> (i+N<span class="hljs-number">-1</span>)%N; } <span class="hljs-comment">/* Index left neighbor */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">right</span><span class="hljs-params">(i)</span> </span>{ <span class="hljs-keyword">return</span> (i+<span class="hljs-number">1</span>)%N; } <span class="hljs-comment">/* Index right neighbor */</span>
+</code></pre>
+<pre><code class="hljs language-cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test</span> <span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>{
+  <span class="hljs-keyword">if</span> (state[i] == HUNGRY &amp;&amp; state[<span class="hljs-built_in">left</span>(i)] != EATING &amp;&amp;
+    state[<span class="hljs-built_in">right</span>(i)] != EATING) { <span class="hljs-comment">// Can only start eating if no neighbour is eating</span>
+    state[i] = EATING;
+    <span class="hljs-built_in">signal</span>(&amp;s[i]);
+  }
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">grab</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>{
+  <span class="hljs-built_in">wait</span>(&amp;mutex);
+  state[i] = HUNGRY;
+  <span class="hljs-built_in">test</span>(i);
+  <span class="hljs-built_in">signal</span>(&amp;mutex);
+  <span class="hljs-built_in">wait</span>(&amp;s[i]);
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">drop</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>{
+  <span class="hljs-built_in">wait</span>(&amp;mutex);
+  state[i] = THINKING;
+  <span class="hljs-built_in">test</span>(<span class="hljs-built_in">left</span>(i)); <span class="hljs-comment">// Signal to neighbours that they might be able to start eating</span>
+  <span class="hljs-built_in">test</span>(<span class="hljs-built_in">right</span>(i));
+  <span class="hljs-built_in">signal</span>(&amp;mutex);
+}
+</code></pre>
+<p>This solution is deadlock free and has the maximum degree of concurrency.</p>
+<h4>Discussion: dining philosophers</h4>
+<ul>
+<li>In particular: usually there are many different ways to</li>
+</ul>
+<p>ensure a system is deadlock free</p>
+<ul>
+<li>Solutions differ in the possible degree of concurrency</li>
+<li>A solution that is too restrictive implies that resources</li>
+</ul>
+<p>are unnecessary idle at least a part of the time</p>
+<ul>
+<li>In general: dining philosophers are a representative</li>
+</ul>
+<p>example for the administration of atomic resources</p>
+<ul>
+<li>Invented by E. Dijkstra (1965)</li>
+<li>Established standard scenario to evaluate and</li>
+</ul>
+<p>demonstrate operating system and language
+mechanisms for concurrent programming</p>
+<h3>Preventing deadlocks</h3>
+<ul>
+<li>Indirect methods invalidate one of the conditions 1–3
+<ol>
+<li>use non blocking approaches</li>
+<li>only allow atomic resource allocations</li>
+<li>enable the preemption of resources using virtualization
+<ul>
+<li>virtual memory, virtual devices, virtual processors</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Direct methods invalidate condition 4
+4. introduce a linear/total order of resource classes:
+<ul>
+<li>Resource Ri can only be successfully allocated</li>
+</ul>
+</li>
+</ul>
+<p>before Rj if i is ordered linear before j (i.e. i &lt; j)</p>
+<ul>
+<li>Rules that prevent deadlocks
+<ul>
+<li>Methods at design or implementation time</li>
+</ul>
+</li>
+</ul>
+<h4>Preventing deadlocks (2)</h4>
+<ul>
+<li>Preventing circular waiting (in a running system) using strategic</li>
+</ul>
+<p>approaches:</p>
+<ul>
+<li>none of the first three necessary conditions is invalidated</li>
+<li>continuous requirements analysis avoids circular waiting</li>
+<li>Resource request of processes have to be controlled:
+<ul>
+<li>always keep a &quot;safe state&quot;:
+<ul>
+<li>there is no process sequence in which all of the processes
+can obtain their maximum resource requirements</li>
+</ul>
+</li>
+<li>&quot;unsafe states&quot; are avoided:
+<ul>
+<li>request denies in case of non-satisfiable resource
+requirement</li>
+<li>requesting processes are not serviced or suspended early</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Problem: this approach has to know the maximum resource</li>
+</ul>
+<p>requirements in advance</p>
+<h3>Safe/unsafe states</h3>
+<p>(using the dining philosophers example)</p>
+<ul>
+<li>Starting point: five forks are available
+<ul>
+<li>each philosopher needs two forks to eat</li>
+</ul>
+</li>
+<li>Situation: P0, P1 and P2 have one fork each, two forks are free
+<ul>
+<li>P3 requests a fork → one fork is still free
+<ul>
+<li>safe state: one of three philosophers could eat</li>
+</ul>
+</li>
+<li>the request of P3 is allocated (accepted)</li>
+<li>P4 requests a fork → no more forks are free
+<ul>
+<li>unsafe state: none of the philosophers could eat</li>
+<li>the request of P4 has to wait</li>
+</ul>
+</li>
+<li>if four philosophers have one fork each, the fifth is blocked
+before taking the first fork</li>
+</ul>
+</li>
+</ul>
+<p><img src="../assets/tdt4186.lecture.7.detection_resource_allocation_graph.png" alt=""></p>
+<h4>Safe/unsafe states (2)</h4>
+<p>(using the example of multiple instances of resources)</p>
+<ul>
+<li>Starting point: a primitive Unix system with a maximum of 12</li>
+</ul>
+<p>shared memory segments</p>
+<ul>
+<li>Process P0 needs 10 segments max., P1 four and P2 nine</li>
+<li>Situation: P0 uses 6 segments, P1 and P2 each two;</li>
+</ul>
+<p>two segments are free</p>
+<ul>
+<li>P2 requests a segment, one remains free → unsafe state
+<ul>
+<li>request of P2 is denied, P2 has to wait</li>
+</ul>
+</li>
+<li>P0 requests two segments, none would be free → unsafe state
+<ul>
+<li>request of P0 is denied, P0 has to wait</li>
+</ul>
+</li>
+<li>safe process sequence: P1 → P0 → P2</li>
+</ul>
+<h3>Detection: Banker's algorithm</h3>
+<ul>
+<li>Administers process/resource matrices for the current maximum allocation</li>
+<li>Function to find a process sequence that guarantees that the system does not run out of resources even when all processes completely use their &quot;credit limit&quot;</li>
+<li>Predictive application of this function in case of resource allocations</li>
+</ul>
+<h3>Deadlock detection</h3>
+<ul>
+<li>Deadlocks are (silently) accepted (&quot;ostrich algorithm&quot;)...
+<ul>
+<li>Nothing in the system tries to avoid the
+occurrence of waiting cycles!</li>
+<li>None of our four conditions is invalidated</li>
+</ul>
+</li>
+<li>Approach: create waiting graph and search for cycles → O(n)
+<ul>
+<li>Checking too frequently wastes resource and compute time</li>
+<li>Checking too infrequently wastes unused resources</li>
+</ul>
+</li>
+<li>Cycle search take place in large time intervals only, if…
+<ul>
+<li>Resource requests take too much time</li>
+<li>The CPU load decreases even though the number of
+processes increases</li>
+<li>The CPU is already idle for a long time</li>
+</ul>
+</li>
+</ul>
+<h3>Deadlock resolution</h3>
+<p>Recovery phase after the detection phase</p>
+<ul>
+<li><strong>Terminate processes</strong> to release resources
+<ul>
+<li>Terminate deadlocked processes step by step (lots of effort)
+<ul>
+<li>Start with the &quot;most effective victim&quot; (?)</li>
+</ul>
+</li>
+<li>Terminate all deadlocked processes (large possible damage)</li>
+</ul>
+</li>
+<li><strong>Preempt resources</strong> and start with the &quot;most effective victim&quot; (?)
+<ul>
+<li>Roll back or restart the affected process
+<ul>
+<li>Use transactions, checkpointing/recovery (lots of effort)</li>
+</ul>
+</li>
+<li>A starvation of the rolled back processes has to be avoided</li>
+<li>Also: take care of livelocks!</li>
+</ul>
+</li>
+<li><strong>Balance</strong> between damage and effort:
+<ul>
+<li>Damages are unavoidable, so we need to consider what the consequence is</li>
+</ul>
+</li>
+</ul>
+<h3>Discussion of prevention methods</h3>
+<ul>
+<li>Methods to avoid/detect deadlocks have little practically</li>
+</ul>
+<p>relevance in the context of operating systems</p>
+<ul>
+<li>They are very difficult to implement, require too much</li>
+</ul>
+<p>overhead and are thus not useable</p>
+<ul>
+<li>Since sequential programming is still the predominant</li>
+</ul>
+<p>approach, avoidance and detection methods are rarely
+required</p>
+<ul>
+<li>The risk of deadlock can be solved by virtualizing resources
+<ul>
+<li>Processes only request/allocate logical resources</li>
+<li>Using virtualization, physical resources can be removed
+(preempted) from a process (without the process noticing) in
+critical moments</li>
+<li>Accordingly, the &quot;no preemption&quot; condition is invalidated</li>
+</ul>
+</li>
+</ul>
+<p>➙ Prevention methods more commonly used &amp; relevant in practice</p>
+<h3>Conclusion</h3>
+<ul>
+<li>Problems with deadlocks and livelocks
+<ul>
+<li>&quot;[...] a situation in which two or more processes are
+unable to proceed because each is waiting for one of the
+others to do something.&quot;</li>
+<li>livelocks are the bigger problem of the two</li>
+</ul>
+</li>
+<li>For a dead/lifelock to occur, four conditions have to occur</li>
+</ul>
+<p>simultaneously:</p>
+<ul>
+<li>Exclusive allocation, hold and wait, no preemption of</li>
+</ul>
+<p>resources</p>
+<ul>
+<li>Circular waiting of the processes requesting the resources</li>
+<li>Handling dead/lifelocks implies:
+<ul>
+<li>prevent, avoid, detect/resolve</li>
+<li>the discussed approaches can also be combined</li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+</body>
+</html>
