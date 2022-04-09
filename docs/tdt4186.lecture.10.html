@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>tdt4186.lecture.10.md</title>
+  <link rel="icon" type="image/x-icon" href="null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">vault/public</a></p>
+<h2>Lecture 10, part 1: Virtual memory and replacement strategies</h2>
+<p><a href="tdt4186.lecture.9.html">Previous lecture</a>
+<a href="tdt4186.lecture.11.html">Next lecture</a></p>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/J0aTQZhIqVY&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/vKWe089oydw&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<h3>Exam</h3>
+<p>Details on concepts and implementation of virtual memory</p>
+<p><strong>Important questions:</strong></p>
+<ul>
+<li>What is the locality principle in computers?
+<ul>
+<li>Which kinds of locality exist, can you describe their properties?</li>
+<li>How can locality be used to optimize performance?</li>
+</ul>
+</li>
+<li>What is the idea behind virtual memory, which abstraction/illusion is created by virtual memory?</li>
+<li>How does demand paging work?
+<ul>
+<li>What is a page fault and how is it handled?</li>
+<li>What are tasks of the OS and hardware when handling page faults?</li>
+</ul>
+</li>
+<li>Can you name different page replacement strategies and discuss their pros/cons? (FIFO, optimal, LRU, second chance)
+<ul>
+<li>Can you simulate different strategies given an access sequence?</li>
+</ul>
+</li>
+<li>Can you define thrashing and name causes and possible solutions?</li>
+<li>What is the working set of a process and how can you determine it?</li>
+</ul>
+<h3>Locality of memory accesses</h3>
+<ul>
+<li>The execution of single instructions only requires the presence of very few memory pages</li>
+<li>This strong locality also manifests itself over longer periods of time
+<ul>
+<li>e.g. instructions are usually executed one after the other (without jump or exceptions)</li>
+</ul>
+</li>
+<li>This locality can be exploited when the system is running out of available main memory
+<ul>
+<li>e.g. using overlays</li>
+</ul>
+</li>
+</ul>
+<h3>The idea of &quot;virtual memory&quot;</h3>
+<ul>
+<li>Decouple the memory requirements from the available amount of main memory
+<ul>
+<li>Processes do not access all memory locations with the same frequency
+<ul>
+<li>certain instructions are used (executed) only very infrequently or not at all (e.g. error handling code)</li>
+<li>certain data structures are not used to their full extent</li>
+</ul>
+</li>
+<li>Processes can use more memory than available as main memory</li>
+</ul>
+</li>
+<li>Idea:
+<ul>
+<li>Create the illusion of a large main memory</li>
+<li>Make currently used memory areas available in main memory</li>
+<li>Intercept accesses to areas currently not present i main memory</li>
+<li>Provide required areas on demand</li>
+<li>Swap or page out areas which are (currently) not used</li>
+</ul>
+</li>
+</ul>
+<h3>Demand paging</h3>
+<ul>
+<li>Providing pages on demand</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.10a.demand_paging.png" alt=""></p>
+<p><img src="assets/tdt4186.lecture.10a.page_fault.png" alt=""></p>
+<h3>Discussion: paging performance</h3>
+<ul>
+<li>Performance of demand paging
+<ul>
+<li>No page faults:
+<ul>
+<li>Effective access time ~10-200 ns</li>
+</ul>
+</li>
+<li>When a page fault occurs:
+<ul>
+<li>Let p be the probability of a page fault</li>
+<li>Assume that the time required to page in a page from background memory = 25 ms (8 ms latency, 15 ms positioning time, 1 ms transfer time)</li>
+<li>Assume a normal access time of 100 ns</li>
+<li>Effective access time: (1 - p) * 100 + p * 25 000 000</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>-&gt; Page fault rate has to be extremely low (p is close to 0)</p>
+</blockquote>
+<h3>Discussion: additional properties</h3>
+<ul>
+<li>Process creation
+<ul>
+<li>Copy on write
+<ul>
+<li>Easy to implement also using a paging MMU</li>
+<li>More fine grained compared to segmentation</li>
+</ul>
+</li>
+<li>Program execution and loading can be interleaved
+<ul>
+<li>Requrested pages are loaded on demand</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Locking the access to pages
+<ul>
+<li>Required for I/O operations</li>
+</ul>
+</li>
+</ul>
+<h3>Discussion: demand segmentation</h3>
+<ul>
+<li>In principle possible, but this comes with disadvantages
+<ul>
+<li>Coarse granularity
+<ul>
+<li>e.g. code, data, stack segment</li>
+</ul>
+</li>
+<li>Difficult main memory allocation
+<ul>
+<li>With paging, all free page frames are equally useful</li>
+<li>When swapping segments, the search for appropriate memory areas is more difficult</li>
+</ul>
+</li>
+<li>Background memory allocation is more difficult
+<ul>
+<li>The background memory is divided into blocks, similar to page frames (sizes = 2^n)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Demand paging has won in practice!</p>
+</blockquote>
+<h3>Page replacement</h3>
+<ul>
+<li>What if no free page fram is available when a request comes in?
+<ul>
+<li>One page has to be preempted to create space for the new page!</li>
+<li>Select pages with unchanged content (refer to the dirty bit in the page table entries)</li>
+<li>Preemption of a page implies paging it to disk if its contents were changed</li>
+</ul>
+</li>
+<li>Sequence of events:
+<ol>
+<li>page fault: trap into the OS</li>
+<li>page out a page frame, if no free page frame is available</li>
+<li>page in the requested page</li>
+<li>repeat the memory access</li>
+</ol>
+</li>
+<li>Problem: which page to choose to be paged out (the &quot;victim&quot;)?</li>
+</ul>
+<h3>Replacement strategies</h3>
+<ul>
+<li>We will discuss replacement strategies and their effect on access sequences (also: access or reference orders)</li>
+<li>Access sequence
+<ul>
+<li>Sequence of page numbers which represents the memory access behavior of a process</li>
+<li>Determine access sequences, e.g. by recording the addresses accessed by a process
+<ul>
+<li>Reduce the recorded sequence to only page numbers</li>
+<li>Conflate consecutive accesses to the same page to one</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Example access sequence:
+<ul>
+<li>1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5</li>
+</ul>
+</li>
+</ul>
+<h3>Least recently used (LRU)</h3>
+<ul>
+<li>Backward distance
+<ul>
+<li>Time since the last access to the page</li>
+</ul>
+</li>
+<li>LRU strategy (10 page ins)
+<ul>
+<li>&quot;Replace the page with the largest backward distance!&quot;</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.10a.lru.png" alt=""></p>
+<h3>Least recently used (LRU) (2)</h3>
+<ul>
+<li>No anomaly
+<ul>
+<li>In genreal: there exists a class of alorithms (stack algorithms) that do not show an anomaly:
+<ul>
+<li>For stack algorithms with k page frames, the following holds: At every point in time a subset of the pages is paged in that would also be paged in at the same time in a system with k+1 page frames!</li>
+<li>LRU: the most recently used k pages are paged in</li>
+<li>OPT: the k pages are pages in which will be accessed next</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Problem
+<ul>
+<li>Implementing LRU requires hardware support</li>
+<li>Every memory access has to be considered</li>
+</ul>
+</li>
+</ul>
+<h3>Least recently used (LRU) (3)</h3>
+<ul>
+<li>Naive idea: hardware support using counters
+<ul>
+<li>CPU implements a counter that is incremented with every memory access</li>
+<li>For every access, the current counter value is written into the respective page descriptor</li>
+<li>Select the page with the lowest counter value (search!)</li>
+</ul>
+</li>
+<li>large implementation overhead
+<ul>
+<li>Many additional memory accesses required</li>
+<li>Large amount of additional memory required</li>
+<li>Minimum search required in the page fault handler</li>
+</ul>
+</li>
+</ul>
+<h2>Lecture 10, part 2: Virtual memory and thrashing</h2>
+<h3>Second chance (clock) (1)</h3>
+<ul>
+<li>This approach works: use reference bits
+<ul>
+<li>Reference bit in the apge descriptor is set automatically by the hardware when a page is accessed</li>
+<li>easier to implement</li>
+<li>fewer additional memory accesses</li>
+</ul>
+</li>
+<li>Moden processors/MMUs support reference bits (e.g. called &quot;access&quot; bit on x86)</li>
+<li>Objective: approach LRU
+<ul>
+<li>the reference bit of a newly paged in page is initially set to 1</li>
+<li>when a &quot;victim&quot; page is needed, the reference bits are checked in order
+<ul>
+<li>if the reference bit = 1, set it to 0 (second chance)</li>
+<li>if the reference bit = 0, replace this page!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If all reference bits are = 1, then second chance is a FIFO</li>
+</ul>
+<h3>Second chance (clock) (2)</h3>
+<ul>
+<li>Second chance can also show the FIFO anomaly
+<ul>
+<li>If all reference bits are = 1, this is a FIFO order</li>
+</ul>
+</li>
+<li>In the common case, however, second chance is close to LRU</li>
+<li>Extension
+<ul>
+<li>Modification bit can be considered in addition (dirty bit)</li>
+<li>Three classes of (reference bit, modification bit):
+<ul>
+<li>(0, 0), (1, 0) and (1, 1)</li>
+</ul>
+</li>
+<li>Search for the &quot;lowest&quot; class (used in macOS)</li>
+</ul>
+</li>
+</ul>
+<h3>Discussion: free page buffer</h3>
+<p>...accelerates page fault handling</p>
+<ul>
+<li>Instead of replacing a page, a number of free pages is always kept in memory
+<ul>
+<li>Pageout take place &quot;in advance&quot;</li>
+<li>More efficient: time to replace a page is dominated by the time required for the page in (no need to find a victim and page it out)</li>
+</ul>
+</li>
+<li>Page-to-page frame relation is still valid after paging out
+<ul>
+<li>In case the page is used again before it would be replaced, it can be reused with high efficiency</li>
+<li>The page is no longer allocated to the free page buffer and is reallocated to its respective process</li>
+</ul>
+</li>
+</ul>
+<h3>Page frame assignment (1)</h3>
+<ul>
+<li>Problem: Distribution of page frames to processes
+<ul>
+<li>How many page frames should a single process use?
+<ul>
+<li>Maximum: limited by the number of page frames</li>
+<li>Minimum: depends on the processor architecture
+<ul>
+<li>At least the number of pages which is necessary to execute a machine instruction</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Identical share size
+<ul>
+<li>The number of frames allocated to a process depends on the number of processes</li>
+</ul>
+</li>
+<li>Program size dependent shares
+<ul>
+<li>Program size is considered when determining the number of page frames to allocate to it</li>
+</ul>
+</li>
+</ul>
+<h3>Page frame assignment (2)</h3>
+<ul>
+<li>Global and local page requests
+<ul>
+<li>Local: a process only replaces its own pages
+<ul>
+<li>Page fault behavior depends only on the behavior of the process</li>
+</ul>
+</li>
+<li>Global: a process can also replace pages of other processes
+<ul>
+<li>More efficient, since unused pages of other processes can be used</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Thrashing (1)</h3>
+<ul>
+<li>A page that was paged out is accessed immidiately after the page out happened
+<ul>
+<li>The process spends more time waiting to handle page faults than with its own execution</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.10b.thrashing.png" alt=""></p>
+<h3>Thrashing (2)</h3>
+<ul>
+<li>Causes
+<ul>
+<li>A process is close to its page maximum</li>
+<li>Too many processes in the system at the same time</li>
+<li>Suboptimal replacement strategy</li>
+</ul>
+</li>
+<li>Local page requests avoids thrashing between processes</li>
+<li>Allocating a sufficiently large number of page frames avoids thrashing within process pages
+<ul>
+<li>Limitation of the number of processes</li>
+</ul>
+</li>
+</ul>
+<h3>Solution 1: swapping of processes</h3>
+<ul>
+<li>Inactive processes do not require page frames
+<ul>
+<li>Page frames can be distributed among fewer processes</li>
+<li>Has to be combined with scheduling to
+<ul>
+<li>avoid starvation</li>
+<li>enable short answer (reaction) times</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.10b.swapping.png" alt=""></p>
+<h3>Solution 2: working set model</h3>
+<ul>
+<li>Set of pages really needed by a process (working set)
+<ul>
+<li>Can only be approximated, since this is usually not predictable</li>
+</ul>
+</li>
+<li>Approximation by looking at the more recently accessed <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span> pages
+<ul>
+<li>Appropriate selection of a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span>
+<ul>
+<li>too large: overlapping of local access patterns</li>
+<li>too small: working set does not contain all necessary pages</li>
+</ul>
+</li>
+<li>Notice: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>&gt;</mo><mi mathvariant="normal">∣</mi><mtext>working set</mtext><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">\Delta &gt; |\text{working set}|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord">Δ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord text"><span class="mord">working set</span></span><span class="mord">∣</span></span></span></span>, since a single page is usually accessed multiple times in a row</li>
+</ul>
+</li>
+</ul>
+<h3>Working set model</h3>
+<ul>
+<li>Approximate accesses by time values
+<ul>
+<li>A certain time interval is ~proportional to the number of memory accesses</li>
+</ul>
+</li>
+<li>Requires measuring the virtual time of the process
+<ul>
+<li>Only that time is relevant in which the process is in state RUNNING</li>
+<li>Each process has its own virtual clock</li>
+</ul>
+</li>
+</ul>
+<h3>Determining the working set and timers (1)</h3>
+<ul>
+<li>Naive idea: approximate the working set using:
+<ul>
+<li>A reference bit</li>
+<li>Age information per page (time interval in which the page was not used)</li>
+<li>Timer interrupt (using a system timer)</li>
+</ul>
+</li>
+<li>Algorithm
+<ul>
+<li>Periodic timer interrupts are used to update the age information using the reference bit
+<ul>
+<li>reference is set (page was used) -&gt; set page to zero</li>
+<li>else increase the age information</li>
+<li>only pages of the currently running process &quot;age&quot;</li>
+</ul>
+</li>
+<li>Pages with an age &gt; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span> are no longer considered to be part of the working set of the respective process</li>
+</ul>
+</li>
+</ul>
+<h3>Determining the working set and timers (2)</h3>
+<ul>
+<li>Imprecise
+<ul>
+<li>Reduce the time intervals: more overhead, but more precise measurement</li>
+<li>However, the system is not sensitive to this imprecision</li>
+</ul>
+</li>
+<li>Inefficient
+<ul>
+<li>A large number of pages has to be checked</li>
+</ul>
+</li>
+</ul>
+<h3>Determine the working set with WSclock</h3>
+<ul>
+<li>This is the real solution: WSClock algorithm (working set clock)
+<ul>
+<li>Works like the previous clock algorithm</li>
+<li>A page is only replaced if
+<ul>
+<li>it is not an element of the working set of its process</li>
+<li>or the process is deactivated</li>
+</ul>
+</li>
+<li>When resetting the reference bit, the current time of the respective process is noted
+<ul>
+<li>this time can be e.g. be kept and updated in the process control PCB</li>
+</ul>
+</li>
+<li>Determining the working set:
+<ul>
+<li>Calculate the difference between the virtual time of the process and the time stamp in the page frame</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Discussion: working set problems</h3>
+<ul>
+<li>Time stamps also need memory</li>
+<li>It is not always possible to ascribe a page to a specific process
+<ul>
+<li>shared memory pages are the rule rather than an exception in modern operating systems
+<ul>
+<li>shared libraries</li>
+<li>shared pages in the data segment (shared memory)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Solution 3: Thrashing can be avoided in an easier way by directly controlling the page fault rate
+<ul>
+<li>Measure per process
+<ul>
+<li>rate &lt; limit: reduce page frame set</li>
+<li>rate &gt; limit: enlarge page frame set</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Loading strategy</h3>
+<ul>
+<li>Load on demand
+<ul>
+<li>Safe approach</li>
+</ul>
+</li>
+<li>Prefetch
+<ul>
+<li>Difficult: Pages that are paged out are not used right now, only later</li>
+<li>Often, one machine instruction leads to multiple page faults
+<ul>
+<li>Prefetching of these pages can be realized by interpreting the machine instruction that causes the first page fault. This will avoid any additional page faults for this instruction.</li>
+</ul>
+</li>
+<li>Load the complete working set in advance when a process is swapped in</li>
+<li>Detect sequential access patterns and prefetch subsequent pages</li>
+</ul>
+</li>
+</ul>
+<h3>Conclusions</h3>
+<ul>
+<li>Virtual memory allows to use large logical address spaces even if the physical memory is small</li>
+<li>However, this involves some overhead
+<ul>
+<li>Hardware overhead</li>
+<li>Complex algorithms in the operating system</li>
+<li>&quot;Surprising&quot; effects (such as &quot;thrashing&quot;)</li>
+<li>Timing behavior not predictable</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Simple (special purpose) systems that do not necessarily need these features should better not implement them</p>
+</blockquote>
+
+
+</article>
+</body>
+</html>

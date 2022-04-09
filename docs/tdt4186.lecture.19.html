@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>tdt4186.lecture.19.md</title>
+  <link rel="icon" type="image/x-icon" href="null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">vault/public</a></p>
+<h2>Lecture 19, part 1: Embedded &amp; Real-time Operating Systems</h2>
+<p>NOTE: Not relevant for the exam.</p>
+<p><a href="tdt4186.lecture.18.html">Previous lecture</a>
+<a href="tdt4186.lecture.20.html">Next lecture</a></p>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/AmBNSZNZ3aU&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/pvGAenzlXxo&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<h3>Embedded operating systems - Characteristics: Configurability -</h3>
+<p>Configurability
+No overhead for unused functions tolerated,
+no single OS fits all needs, -&gt; configurability needed.</p>
+<ul>
+<li>Object-orientation could lead to a of derivation subclasses.</li>
+<li>Aspect-oriented programming</li>
+<li>Conditional compilation (using # if and # ifdef commands).</li>
+<li>Advanced compile-time evaluation useful.</li>
+<li>Linker-time optimization (removal of unused functions)</li>
+</ul>
+<p>Dynamic data might be replaced by static data.</p>
+<h3>Verification of derived OS?</h3>
+<p>Verification a potential problem of systems
+with a large number of derived OSs:</p>
+<ul>
+<li>Each derived OS must be tested thoroughly;</li>
+<li>Potential problem for eCos (open source RTOS from Red Hat), including 100 to 200 configuration points [Takada, 2001].</li>
+</ul>
+<h3>Embedded operating systems - Characteristics: Disk and network handled by tasks -</h3>
+<ul>
+<li>Effectively no device needs to be supported by all</li>
+</ul>
+<p>variants of the OS, except maybe the system timer.</p>
+<ul>
+<li>Many ES without disk, a keyboard, a screen or a mouse.</li>
+<li>Disk &amp; network handled by tasks instead of integrated</li>
+</ul>
+<p>drivers.</p>
+<p><img src="assets/Pasted%20image%2020220322104816.png" alt=""></p>
+<h3>Embedded operating systems - Characteristics: Protection is optional</h3>
+<p>Protection mechanisms not always necessary:
+ES typically designed for a single purpose,
+untested programs rarely loaded, SW considered reliable.
+Privileged I/O instructions not necessary and tasks can do their own I/O.
+Example: Let switch be the address of some switch
+Simply use</p>
+<pre><code class="hljs">load <span class="hljs-keyword">register</span>,<span class="hljs-keyword">switch</span>
+</code></pre>
+<p>instead of OS call.
+However, protection mechanisms may be needed for safety
+and security reasons.</p>
+<h3>Embedded operating systems - Characteristics: Interrupts not restricted to OS -</h3>
+<p>Interrupts can be employed by any process
+For standard OS: serious source of unreliability.
+Since</p>
+<ul>
+<li>embedded programs can be considered to be tested,</li>
+<li>since protection is not always necessary and</li>
+<li>since efficient control over a variety of devices is required,</li>
+<li>it is possible to let interrupts directly start or stop SW (by storing the start address in the interrupt table).</li>
+<li>More efficient than going through OS services.</li>
+<li>Reduced composability: if SW is connected to an interrupt,  it may be difficult to add more SW which also needs to be started by an event.</li>
+</ul>
+<h3>Embedded operating systems - Characteristics: Real-time capability</h3>
+<p>Many embedded systems are real-time (RT) systems and,  hence, the OSs used in these systems must be real-time operating systems (RTOSs).</p>
+<h3>RT operating systems - Definition and requirement 1: predictability -</h3>
+<p>Def.: (A) real-time operating system is an operating system that supports the construction of real-time systems.
+The following are the three key requirements</p>
+<ol>
+<li>The timing behavior of the OS must be predictable.
+<ul>
+<li>services of the OS: Upper bound on the execution time!
+RTOSs must be timing-predictable:</li>
+<li>short times during which interrupts are disabled,</li>
+<li>(for hard disks:) contiguous files to avoid unpredictable head movements. [Takada, 2001]</li>
+</ul>
+</li>
+<li>OS should manage the timing and scheduling
+<ul>
+<li>OS possibly has to be aware of task deadlines;
+(unless scheduling is done off-line).</li>
+<li>Frequently, the OS should provide precise time services with high resolution.</li>
+</ul>
+</li>
+<li>The OS must be fast
+<ul>
+<li>Practically important.</li>
+</ul>
+</li>
+</ol>
+<h3>Time</h3>
+<p>Time plays a central role in “real-time” systems
+Physical time: real numbers
+Computers: mostly discrete time</p>
+<ul>
+<li>Relative time: clock ticks in some resolution</li>
+<li>Absolute time: wall clock time</li>
+</ul>
+<p>• International atomic time TAI
+(french: temps atomic internationale)
+Free of any artifacts.
+• Universal Time Coordinated (UTC)
+UTC is defined by astronomical standards
+TAI and UTC identical on Jan. 1st, 1958.
+30 seconds had to be added since then.
+Not without problems: New Year may start twice per night.</p>
+<h3>Internal synchronization</h3>
+<ul>
+<li>Synchronization with one master clock</li>
+</ul>
+<p>• Typically used in startup-phases</p>
+<ul>
+<li>Distributed synchronization:</li>
+</ul>
+<ol>
+<li>Collect information from neighbors</li>
+<li>Compute correction value</li>
+<li>Set correction value.</li>
+</ol>
+<p>Precision of step 1 depends on how information is
+collected:
+• Application level: ~500 µs to 5 ms
+• Operation system kernel: 10 µs to 100 µs
+• Communication hardware: &lt; 10 µs</p>
+<h3>External synchronization</h3>
+<p>External synchronization guarantees consistency
+with actual physical time.
+Trend is to use GPS for ext. synchronization
+GPS offers TAI and UTC time information.
+Resolution is about 100 ns.</p>
+<h3>Problems with external synchronization</h3>
+<p>Problematic from the perspective of fault tolerance:
+Erroneous values are copied to all stations.
+Consequence: Accepting only small changes to local time.
+Many time formats too restricted;
+e.g.: NTP protocol includes only years up to 2036
+For time services and global synchronization of clocks see
+Kopetz, 1997.</p>
+<h3>RTOS-Kernels</h3>
+<p>Distinction between</p>
+<ul>
+<li>real-time kernels and modified kernels of standard OSes.</li>
+</ul>
+<p><img src="assets/Pasted%20image%2020220322105644.png" alt="">
+Distinction between</p>
+<ul>
+<li>general RTOSs and RTOSs for specific domains,</li>
+<li>standard APIs (e.g. POSIX RT-Extension of Unix,</li>
+</ul>
+<p>ITRON, OSEK) or proprietary APIs.</p>
+<h3>Functionality of RTOS-Kernels</h3>
+<p>Includes</p>
+<ul>
+<li>processor management,</li>
+<li>memory management,</li>
+<li>and timer management;</li>
+<li>task management (resume, wait etc),</li>
+<li>inter-task communication and synchronization.</li>
+</ul>
+<h3>Classes of RTOSes: 1. Fast proprietary kernels</h3>
+<p>For complex systems, these kernels are inadequate,
+because they are designed to be fast, rather than to be
+predictable in every respect
+[R. Gupta, UCI/UCSD]
+Examples include
+QNX, PDOS, VCOS, VTRX32, VxWORKS.</p>
+<h3>Classes of RTOSs: 2. RT extensions to standard OSs</h3>
+<p>Attempt to exploit comfortable main stream OS.
+RT-kernel running all RT-tasks.
+Standard-OS executed as one task.</p>
+<ul>
+<li>
+<p>Crash of standard-OS does not affect RT-tasks;</p>
+</li>
+<li>
+<p>RT-tasks cannot use Standard-OS services;</p>
+</li>
+</ul>
+<p>less comfortable than expected</p>
+<h4>Example: RT-Linux</h4>
+<p><img src="assets/Pasted%20image%2020220322105747.png" alt=""></p>
+<h4>Example (2):</h4>
+<p>RTAI – Real Time Application Interface
+<a href="https://www.rtai.org/">https://www.rtai.org/</a>
+Fixes to many of the sources for unpredictability in Linux
+Hardware abstraction layer in between hardware and Linux</p>
+<h4>Evaluation</h4>
+<p>According to Gupta, trying to use a version of a standard
+OS:
+not the correct approach because too many basic and
+inappropriate underlying assumptions still exist such as
+optimizing for the average case (rather than the worst case),
+... ignoring most if not all semantic information, and
+independent CPU scheduling and resource allocation.
+Dependences between tasks not frequent for most
+applications of std. OSs &amp; therefore frequently ignored.
+Situation different for ES since dependences between tasks
+are quite common.</p>
+<h3>Classes of RTOSs: 3. Research trying to avoid limitations</h3>
+<p>Research systems trying to avoid limitations.
+Include MARS, Spring, MARUTI, Arts, Hartos, DARK, and
+Melody
+Research issues [Takada, 2001]:</p>
+<ul>
+<li>low overhead memory protection,</li>
+<li>temporal protection of computing resources</li>
+<li>RTOSes for on-chip multiprocessors</li>
+<li>support for continuous media</li>
+<li>quality of service (QoS) control.</li>
+</ul>
+<h1>Lecture 19, part 2: Resource Access Protocols</h1>
+<h3>Resource access protocols</h3>
+<p>Critical sections: sections of code at which exclusive access
+to some resource must be guaranteed.
+Can be guaranteed with semaphores S or “mutexes”*.</p>
+<h3>Blocking due to mutual exclusion</h3>
+<h3>Blocking with &gt;2 tasks can exceed the length of any critical section</h3>
+<h3>The MARS Pathfinder problem</h3>
+<h3>Solutions</h3>
+<p>Disallow preemption during the execution of all critical
+sections. Simple, but creates unnecessary blocking as
+unrelated tasks may be blocked.</p>
+<h3>Remarks on priority inheritance protocol</h3>
+<p>Possibly large number of tasks with high priority.
+Possible deadlocks.
+Ongoing debate about problems with the protocol:
+Victor Yodaiken: Against Priority Inheritance, Sept. 2004,
+<a href="http://www.fsmlabs.com/resources/white_papers/priority-inheritance/">http://www.fsmlabs.com/resources/white_papers/priority-inheritance/</a>
+Finds application in ADA: During rendez-vous,
+task priority is set to the maximum.
+Protocol for fixed set of tasks: priority ceiling protocol.</p>
+<h3>Summary</h3>
+<ul>
+<li>General requirements for embedded</li>
+</ul>
+<p>operating systems
+• Configurability
+• I/O
+• Interrupts</p>
+<ul>
+<li>General properties of real-time operating systems
+• Predictability
+• Time services
+• Synchronization
+• Classes of RTOSs,
+• Device driver embedding</li>
+<li>Priority inversion
+• The problem
+• Priority inheritance</li>
+</ul>
+
+
+</article>
+</body>
+</html>

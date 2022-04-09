@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+  
+  <title>tdt4186.lecture.11.md</title>
+  <link rel="icon" type="image/x-icon" href="null">
+  
+<!-- Custom Styles -->
+<link rel="stylesheet" href="styles.css">
+
+
+</head>
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">vault/public</a></p>
+<h2>Lecture 11, part 1: Inter-process communication (IPC)</h2>
+<p><a href="tdt4186.lecture.10.html">Previous lecture</a>
+<a href="tdt4186.lecture.12.html">Next lecture</a></p>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/ZZWL3XSLDHk&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<p>&lt;iframe
+width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Mr8VkDn4yMg&quot;
+title=&quot;YouTube video player&quot;
+frameborder=&quot;0&quot;
+allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;
+allowfullscreen</p>
+<blockquote>
+<p>&lt;/iframe&gt;</p>
+</blockquote>
+<h3>Exam</h3>
+<p>Communication between processes</p>
+<p><strong>Important questions:</strong></p>
+<ul>
+<li>Which approaches to inter-process communication exist?
+<ul>
+<li>Can you give their pros/cons?</li>
+</ul>
+</li>
+<li>What are the primitives for message-based communication?
+<ul>
+<li>Which synchronization methods exist here?</li>
+<li>How can processes be addressed?</li>
+<li>Which message formats exist?</li>
+</ul>
+</li>
+<li>Which IPC methods exist in Unix?</li>
+<li>Can you describe the concepts and use (programming) of…
+<ul>
+<li>Signals, unnamed pipes, named pipes, Unix message queues, sockets</li>
+</ul>
+</li>
+<li>What is RPC and what is the fundamental difference to IPC?</li>
+</ul>
+<h3>Processes revisited</h3>
+<ul>
+<li>Processes can interact with each other
+<ul>
+<li>…wait for another (synchronization)</li>
+<li>…exchange data (communication)</li>
+</ul>
+</li>
+<li>Waiting mechanisms...
+<ul>
+<li>are required for controlled communication</li>
+<li>can lead to deadlocks</li>
+</ul>
+</li>
+<li>We did not take a close look at data exchange so far
+<ul>
+<li>light- and featherweight processes in the same address space</li>
+</ul>
+</li>
+</ul>
+<h3>Inter-process communication</h3>
+<ul>
+<li>Inter-Process Communication (IPC)
+<ul>
+<li>multiple processes cooperate on a task</li>
+<li>simultaneous use of information by multiple processes</li>
+<li>reduction of processing time due to parallelization</li>
+<li>hiding of processing times due to &quot;background execution&quot;</li>
+</ul>
+</li>
+<li>Communication using <strong>messages</strong>
+<ul>
+<li>messages are exchanged between processes</li>
+<li>no shared memory necessary</li>
+</ul>
+</li>
+<li>Communication using <strong>shared memory</strong>
+<ul>
+<li>exchange of data by concurrent writes into and reads out of a
+common memory area</li>
+<li>synchronisation is important here!</li>
+</ul>
+</li>
+</ul>
+<h3>Message-based communication</h3>
+<p>Based on two primitives:</p>
+<pre><code class="hljs language-cpp"><span class="hljs-built_in">send</span> (destination, message)
+<span class="hljs-built_in">receive</span> (source, message)
+</code></pre>
+<ul>
+<li>Implementations differ in
+<ul>
+<li>synchronization</li>
+<li>addressing</li>
+<li>and possibly other properties</li>
+</ul>
+</li>
+</ul>
+<h3>Synchronization</h3>
+<p>... for message oriented communication</p>
+<ul>
+<li>Synchronization when sending / receiving
+<ul>
+<li><strong>Synchronous message passing</strong> (also called &quot;rendezvous&quot;)
+<ul>
+<li>Receiver blocks until the message has arrived</li>
+<li>Sender blocks until the reception of the message is confirmed</li>
+</ul>
+</li>
+<li><strong>Asynchronous message passing</strong>
+<ul>
+<li>Sender hands the message to the OS and continues running</li>
+<li>Blocking is optional on both sides</li>
+<li>Always requires buffering</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Often implemented:
+<ul>
+<li>Asynchronous message passing with potentially blocking send and
+receive operations</li>
+</ul>
+</li>
+</ul>
+<h3>Addressing</h3>
+<p>... for message oriented communication</p>
+<ul>
+<li><strong>Direct addressing</strong>
+<ul>
+<li>process ID (signals)</li>
+<li>communication end point of a process (port, socket)</li>
+</ul>
+</li>
+<li><strong>Indirect addressing</strong>
+<ul>
+<li>channels (pipes)</li>
+<li>mailboxes, message queues</li>
+</ul>
+</li>
+<li>Additional dimension: <strong>group addressing</strong>
+<ul>
+<li>unicast – send to exactly one recipient</li>
+<li>multicast – send to a selection of possible recipients</li>
+<li>broadcast – send to all</li>
+</ul>
+</li>
+</ul>
+<h3>Additional properties</h3>
+<p>... for message oriented communication</p>
+<ul>
+<li><strong>Message format</strong>
+<ul>
+<li>stream oriented / message oriented</li>
+<li>fixed length / variable length</li>
+<li>typed / untyped</li>
+</ul>
+</li>
+<li><strong>Transmission</strong>
+<ul>
+<li>unidirectional / bidirectional (half duplex, full duplex)</li>
+<li>reliable / unreliable</li>
+<li>order is preserved / not preserved</li>
+</ul>
+</li>
+</ul>
+<h3>Local IPC: Unix signals</h3>
+<ul>
+<li>Signals are interrupts implemented in software
+<ul>
+<li>similar to hardware I/O interrupts from devices</li>
+<li>minimal form of inter process communication (only the signal number is transmitted)</li>
+</ul>
+</li>
+<li>Sender:
+<ul>
+<li>Processes: use the system call kill(2)</li>
+<li>Operating system: when certain events occur</li>
+</ul>
+</li>
+<li>The receiving process handles signals in one of these ways:
+<ul>
+<li>ignore,</li>
+<li>terminate the process or</li>
+<li>execution of a signal handler function
+<ul>
+<li>after handling the signal, the process can continue at the location where it was interrupted</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Signals</h3>
+<ul>
+<li>Using signals, processes can be informed about exceptional situations
+<ul>
+<li>similar to hardware interrupts</li>
+</ul>
+</li>
+<li>Examples:
+<ul>
+<li><code><span class="hljs-attribute">SIGINT</span></code> Terminate the process (ctrl-C)</li>
+<li><code><span class="hljs-attribute">SIGSTOP</span></code> Suspend process (Ctrl-Z)</li>
+<li><code><span class="hljs-attribute">SIGWINCH</span></code> Window size has changes</li>
+<li><code><span class="hljs-attribute">SIGCHLD</span></code> Child process terminated</li>
+<li><code><span class="hljs-attribute">SIGSEGV</span></code> Memory protection violation</li>
+<li><code><span class="hljs-attribute">SIGKILL</span></code> Process is killed</li>
+<li>...</li>
+</ul>
+</li>
+<li>Most signal have a default handler, e.g. termination or suspension
+<ul>
+<li>this can be redefined for most signals</li>
+<li>see the signal(2) man page</li>
+</ul>
+</li>
+</ul>
+<h3>Unix signals: logical view</h3>
+<ul>
+<li>Hollywood principle: &quot;don't call us, we'll call you.&quot;</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.11a.unix_signals.png" alt=""></p>
+<h3>Unix signals: implementation view</h3>
+<ul>
+<li>Signal handling always takes place when the execution returns from kernel to user mode (e.g. when a process returns from a system call)</li>
+<li>What happens, when a receiving process…
+<ul>
+<li>is running (state RUNNING)?
+<ul>
+<li>signals occur due to e.g. segmentation faults or bus error</li>
+<li>immediate start of the signal handler</li>
+</ul>
+</li>
+<li>is currently not running, but READY (e.g. kill syscall sent by other process)?
+<ul>
+<li>the signal is recorded in the receiver’s process control block</li>
+<li>when the process is allocated the CPU, the signal is handled</li>
+</ul>
+</li>
+<li>is waiting for I/O (state BLOCKED)?
+<ul>
+<li>the I/O syscall (e.g. read) is interrupted and eventually return with EINTR</li>
+<li>the process state is set to READY</li>
+<li>then continue as with READY above</li>
+<li>If required, the interrupted system call is executed again (SA_RESTART)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Unix signals: example</h3>
+<ul>
+<li>Which actions can be taken as a response to a signal?
+<ul>
+<li>Excerpt from the Apache HTTP server manual</li>
+</ul>
+</li>
+</ul>
+<h5>Stopping and Restarting Apache</h5>
+<p>To send a signal to the parent you should issue a command such as: <code><span class="hljs-built_in">kill</span> -TERM </code>cat /usr/local/apache/logs/httpd.pid``</p>
+<h5>TERM Signal: stop now</h5>
+<p>Sending the TERM signal to the parent causes it to immediately attempt to kill off all of its children. It may take it several seconds to complete killing off its children. Then the parent itself exits. Any requests in progress are terminated, and no further requests are served.</p>
+<h5>HUP Signal: restart now</h5>
+<p>Sending the HUP signal to the parent causes it to kill off its children like in TERM but the parent doesn't exit. It re-reads its configuration files, and re-opens any log files. Then it spawns a new set of children and continues serving hits.</p>
+<h5>USR1 Signal: graceful restart</h5>
+<p>The USR1 signal causes the parent process to advise the children to exit after their current request (or to exit immediately if they're not serving anything). The parent rereads its configuration files and re-opens its log files. As each child dies off the parent replaces it with a child from the new generation of the configuration, which begins serving new requests immediately.</p>
+<h3>Unix pipes</h3>
+<ul>
+<li>Channel between to communicating processes
+<ul>
+<li>unidirectional</li>
+<li>buffers (fixed buffer size)</li>
+<li>reliable transport</li>
+<li>stream oriented</li>
+</ul>
+</li>
+<li>Operations: read and write
+<ul>
+<li>order of sent characters is maintained (character stream)</li>
+<li>blocks when pipe is full (write) and empty (read)</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.11a.unix_pipes.png" alt=""></p>
+<h3>Programming Unix pipes</h3>
+<ul>
+<li>Unnamed pipes
+<ul>
+<li>creation using int pipe (int fdes[2])</li>
+<li>after successful invocation (return value == 0) you can...
+<ul>
+<li>read from the pipe using fdes[0] (system call read)</li>
+<li>write to the pipe using fdes[1] (system call write)</li>
+</ul>
+</li>
+<li>then you have to pass the one &quot;end&quot; of the pipe to another process
+<ul>
+<li>shown on the next slide</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Named pipes
+<ul>
+<li>pipes can also be created as a special file (file name passed in &quot;path&quot;
+parameter&quot;) in the file system:
+int mkfifo (const char *path, mode_t mode)</li>
+<li>after calling mkfifo, you can use standard functions to open, read,
+write and close that pipe</li>
+<li>the usual file access permissions control which processes are allowed
+to use the named pipe</li>
+</ul>
+</li>
+</ul>
+<pre><code class="hljs language-cpp"><span class="hljs-keyword">enum</span> { READ=<span class="hljs-number">0</span>, WRITE=<span class="hljs-number">1</span> }; <span class="hljs-comment">/* indexes in fd array */</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span> </span>{
+  <span class="hljs-type">int</span> res, fd[<span class="hljs-number">2</span>];
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">pipe</span> (fd) == <span class="hljs-number">0</span>) { <span class="hljs-comment">/* create the pipe */</span>
+    res = fork ();
+    <span class="hljs-keyword">if</span> (res &gt; <span class="hljs-number">0</span>) { <span class="hljs-comment">/* parent process */</span>
+      <span class="hljs-built_in">close</span> (fd[READ]); <span class="hljs-comment">/* close reading side */</span>
+      <span class="hljs-built_in">dup2</span> (fd[WRITE], <span class="hljs-number">1</span>); <span class="hljs-comment">/* redirect stdout to pipe */</span>
+      <span class="hljs-built_in">close</span> (fd[WRITE]); <span class="hljs-comment">/* release the descriptor */</span>
+      <span class="hljs-built_in">execlp</span> (argv[<span class="hljs-number">1</span>], argv[<span class="hljs-number">1</span>], <span class="hljs-literal">NULL</span>); <span class="hljs-comment">/* execute writer process */</span>
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (res == <span class="hljs-number">0</span>) { <span class="hljs-comment">/* child process */</span>
+      <span class="hljs-built_in">close</span> (fd[WRITE]); <span class="hljs-comment">/* close writing side */</span>
+      <span class="hljs-built_in">dup2</span> (fd[READ], <span class="hljs-number">0</span>); <span class="hljs-comment">/* redirect stdin from pipe */</span>
+      <span class="hljs-built_in">close</span> (fd[READ]); <span class="hljs-comment">/* release the descriptor */</span>
+      <span class="hljs-built_in">execlp</span> (argv[<span class="hljs-number">2</span>], argv[<span class="hljs-number">2</span>], <span class="hljs-literal">NULL</span>); <span class="hljs-comment">/* execute reader process */</span>
+    }
+  }
+  <span class="hljs-comment">/* …handle errors here… */</span>
+}
+</code></pre>
+<h3>Unix message queues</h3>
+<ul>
+<li>A &quot;key&quot; (unique address, per computer) is used for identification
+<ul>
+<li>access permissions are the same as for files</li>
+<li>a process local number (msqID – message queue ID) is required for
+all operations</li>
+</ul>
+</li>
+<li>Undirected M:N communication</li>
+<li>Buffered
+<ul>
+<li>buffer size configurable per queue</li>
+</ul>
+</li>
+<li>Messages have a type (long value)</li>
+<li>Operations to send and receive messages
+<ul>
+<li>blocking vs. non blocking (but not asynchronous)</li>
+<li>receive all messages vs. receive only one specified type</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.11a.unix_message_queue.png" alt=""></p>
+<h3>Programming Unix message queues</h3>
+<ul>
+<li>
+<p>Create a message queue and return a msqID int msgget (key_t key, int msgflg);</p>
+<ul>
+<li>all communicating processes need to know the key</li>
+<li>keys are unique in one (operating) system (instance)</li>
+<li>when a key has already been assigned, no message queue with the  same key can be created</li>
+</ul>
+</li>
+<li>
+<p>It is possible to create keyless message queues  (private queues, key = IPC_PRIVATE)</p>
+<ul>
+<li>non private message queues are persistent</li>
+<li>they have to be deleted explicitly (cmd = IPC_RMID) using: int msgctl (int msqid, int cmd, struct msqid_ds *buf);</li>
+</ul>
+</li>
+<li>
+<p>Send a message: <code><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">msgsnd</span> <span class="hljs-params">(<span class="hljs-type">int</span> msqid, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *msgp, <span class="hljs-type">size_t</span> msgsz, <span class="hljs-type">int</span> msgflg)</span></span>;</code></p>
+</li>
+<li>
+<p>Receive a message: <code><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">msgrcv</span> <span class="hljs-params">(<span class="hljs-type">int</span> msqid, <span class="hljs-type">void</span> *msgp, <span class="hljs-type">size_t</span> msgsz, <span class="hljs-type">long</span> msgtype, <span class="hljs-type">int</span> msgflg)</span></span>;</code></p>
+<ul>
+<li>msgtype = 0: first message</li>
+<li>msgtype &gt; 0: first message with the given type</li>
+<li>msgtype &lt; 0: message with the smallest type &lt;= |msgtype|</li>
+</ul>
+</li>
+</ul>
+<h3>Unix message queue commands</h3>
+<ul>
+<li>Display all message queues: <code>ipcs -<span class="hljs-selector-tag">q</span></code></li>
+<li>Manually delete message queues: <code>ipcrm -Q <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span></code></li>
+</ul>
+<p>Today, Unix message queues are rarely used, since – different to sockets (see the next section) – they are constrained to local communication. In addition, the related application code is less portable to other systems.</p>
+<h2>Lecture 11, part 2: IPC: Sockets and RPC</h2>
+<h3>Sockets</h3>
+<ul>
+<li>General communication endpoints in a computer network
+<ul>
+<li>bidirectional</li>
+<li>buffered</li>
+</ul>
+</li>
+<li>Abstract from details of the communication system
+<ul>
+<li>described by a domain (protocol family), a type and a protocol</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.11b.sockets.png" alt=""></p>
+<h3>Sockets: domains</h3>
+<ul>
+<li>
+<p>Unix domain</p>
+<ul>
+<li>Unix domain sockets work like bidirectional pipes</li>
+<li>can be created as special file in the file system</li>
+</ul>
+</li>
+<li>
+<p>Internet domain</p>
+<ul>
+<li>used for inter-computer communication using Internet protocols</li>
+</ul>
+</li>
+<li>
+<p>Appletalk domain, DECnet domain, …</p>
+<ul>
+<li>many alternative domains for (now) obsolete network protocols</li>
+</ul>
+</li>
+<li>
+<p>Domains determine the protocols that can be used</p>
+<ul>
+<li>e.g. internet domain: TCP/IP or UDP/IP</li>
+</ul>
+</li>
+<li>
+<p>Domains determine the address family</p>
+<ul>
+<li>e.g. internet domain: IP address and port number</li>
+</ul>
+</li>
+</ul>
+<h3>Sockets: type and protocol</h3>
+<ul>
+<li>The most important socket types:
+<ul>
+<li>stream oriented, connection oriented and reliable</li>
+<li>message oriented and unreliable</li>
+<li>message oriented and reliable</li>
+</ul>
+</li>
+<li>Protocols of the Internet domain:
+<ul>
+<li>TCP/IP protocol
+<ul>
+<li>stream- and connection oriented, reliable</li>
+</ul>
+</li>
+<li>UDP/IP protocol
+<ul>
+<li>message oriented, connectionless, unreliable</li>
+<li>messages can get lost or get duplicated (repeated)</li>
+<li>order can be garbled</li>
+<li>packet limits are maintained (datagram protocol)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Specification of a protocol ist often redundant</li>
+</ul>
+<h3>Socket programming</h3>
+<ul>
+<li>Creating a socket
+<ul>
+<li>generate a socket using <code><span class="hljs-type">int</span> socket (<span class="hljs-type">int</span> <span class="hljs-keyword">domain</span>, <span class="hljs-type">int</span> <span class="hljs-keyword">type</span>, <span class="hljs-type">int</span> proto);</code> (return value is a file descriptor)</li>
+</ul>
+</li>
+<li>Address assignment
+<ul>
+<li>sockets are generated without assigning an address</li>
+<li>addresses are assigned using:</li>
+</ul>
+</li>
+</ul>
+<pre><code class="hljs language-cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bind</span> <span class="hljs-params">(<span class="hljs-type">int</span> socket, 
+  <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> sockaddr *address, 
+  <span class="hljs-type">socklen_t</span> address_len)</span></span>;
+</code></pre>
+<ul>
+<li>struct sockaddr_in (for the Internet protocol family) contains:
+<ul>
+<li>sin_family: AF_INET</li>
+<li>sin_port: 16 bit port number</li>
+<li>sin_addr: structure with the IP address, e.g. 192.168.2.1</li>
+</ul>
+</li>
+</ul>
+<h4>Datagram sockets</h4>
+<ul>
+<li>no connection setup required</li>
+<li>send a datagram using</li>
+</ul>
+<pre><code class="hljs language-cpp"><span class="hljs-function"><span class="hljs-type">ssize_t</span> <span class="hljs-title">sendto</span> <span class="hljs-params">(<span class="hljs-type">int</span> socket, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *message, 
+  <span class="hljs-type">size_t</span> length, <span class="hljs-type">int</span> flags, 
+  <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> sockaddr *dest_addr, 
+  <span class="hljs-type">socklen_t</span> dest_len)</span></span>;
+</code></pre>
+<ul>
+<li>receive a datagram using</li>
+</ul>
+<pre><code class="hljs language-cpp"><span class="hljs-function"><span class="hljs-type">ssize_t</span> <span class="hljs-title">recvfrom</span> <span class="hljs-params">(<span class="hljs-type">int</span> socket, <span class="hljs-type">void</span> *buffer, 
+  <span class="hljs-type">size_t</span> length, <span class="hljs-type">int</span> flags, 
+  <span class="hljs-keyword">struct</span> sockaddr *address,
+  <span class="hljs-type">socklen_t</span> *address_len)</span></span>;
+</code></pre>
+<h4>Stream sockets</h4>
+<ul>
+<li>connection setup required</li>
+<li>clients (user processes) want to create a communication connection to a server (server process)</li>
+</ul>
+<h4>Client</h4>
+<ul>
+<li>connection setup for stream-oriented sockets</li>
+<li>connect the socket using</li>
+</ul>
+<pre><code class="hljs language-cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">connect</span> <span class="hljs-params">(<span class="hljs-type">int</span> socket,
+  <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> sockaddr *address,
+  <span class="hljs-type">socklen_t</span> address_len)</span></span>;
+</code></pre>
+<ul>
+<li>send and receive using write and read (or send and recv)</li>
+<li>connection termination using close (closes the socket)</li>
+</ul>
+<h4>Server</h4>
+<ul>
+<li>accepts requests</li>
+<li>binds a socket to an address (server not reachable otherwise)</li>
+<li>prepared the socket for connection requests using <code><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">listen</span> <span class="hljs-params">(<span class="hljs-type">int</span> s, <span class="hljs-type">int</span> queuelen)</span></span>;</code></li>
+<li>accepts a connection request using <code><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">accept</span> <span class="hljs-params">(<span class="hljs-type">int</span> s, <span class="hljs-keyword">struct</span> sockaddr *addr, <span class="hljs-type">socklen_t</span> *addrlen)</span></span>;</code>
+<ul>
+<li>returns a new socket which is connected to the client</li>
+<li>blocks if no current connection request</li>
+</ul>
+</li>
+<li>reads data using read and executes the respective service (e.g. web server)</li>
+<li>returns the result back to the sender (e.g. contents of a web page) of the request using write</li>
+<li>closes the new socket using close</li>
+</ul>
+<h3>Socket programming (2)</h3>
+<pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> PORT 6789</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXREQ (4096*1024)</span>
+<span class="hljs-type">char</span> buffer[MAXREQ], body[MAXREQ], msg[MAXREQ];
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">error</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *msg)</span> </span>{ <span class="hljs-built_in">perror</span>(msg); <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>); }
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-type">int</span> sockfd, newsockfd;
+  <span class="hljs-type">socklen_t</span> clilen;
+  <span class="hljs-keyword">struct</span> <span class="hljs-title class_">sockaddr_in</span> serv_addr, cli_addr;
+  <span class="hljs-type">int</span> n;
+  sockfd = <span class="hljs-built_in">socket</span>(PF_INET, SOCK_STREAM, <span class="hljs-number">0</span>); <span class="hljs-comment">// Creates the socket</span>
+  <span class="hljs-keyword">if</span> (sockfd &lt; <span class="hljs-number">0</span>) <span class="hljs-built_in">error</span>(<span class="hljs-string">&quot;ERROR opening socket&quot;</span>);
+  <span class="hljs-built_in">bzero</span>((<span class="hljs-type">char</span> *) &amp;serv_addr, <span class="hljs-built_in">sizeof</span>(serv_addr));
+  serv_addr.sin_family = AF_INET;
+  serv_addr.sin_addr.s_addr = INADDR_ANY;
+  serv_addr.sin_port = <span class="hljs-built_in">htons</span>(PORT);
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">bind</span>(sockfd, (<span class="hljs-keyword">struct</span> sockaddr *) &amp;serv_addr, 
+      <span class="hljs-built_in">sizeof</span>(serv_addr)) &lt; <span class="hljs-number">0</span>) { <span class="hljs-comment">// Binds the socket to an address</span>
+    <span class="hljs-built_in">error</span>(<span class="hljs-string">&quot;ERROR on binding&quot;</span>);
+  }
+  <span class="hljs-built_in">listen</span>(sockfd, <span class="hljs-number">5</span>);
+
+  <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) {
+    clilen = <span class="hljs-built_in">sizeof</span>(cli_addr);
+    newsockfd = <span class="hljs-built_in">accept</span> (sockfd, (<span class="hljs-keyword">struct</span> sockaddr *) &amp;cli_addr,
+        &amp;clilen); <span class="hljs-comment">// Accepts a new connection</span>
+    <span class="hljs-keyword">if</span> (newsockfd &lt; <span class="hljs-number">0</span>) <span class="hljs-built_in">error</span>(<span class="hljs-string">&quot;ERROR on accept&quot;</span>);
+    <span class="hljs-built_in">bzero</span>(buffer,<span class="hljs-built_in">sizeof</span>(buffer));
+    n = <span class="hljs-built_in">read</span> (newsockfd,buffer,<span class="hljs-built_in">sizeof</span>(buffer)<span class="hljs-number">-1</span>); <span class="hljs-comment">// Reads the HTTP request</span>
+    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">0</span>) <span class="hljs-built_in">error</span>(<span class="hljs-string">&quot;ERROR reading from socket&quot;</span>);
+    <span class="hljs-built_in">snprintf</span> (body, <span class="hljs-built_in">sizeof</span> (body),
+        <span class="hljs-string">&quot;&lt;html&gt;\n&lt;body&gt;\n&quot;</span>
+        <span class="hljs-string">&quot;&lt;h1&gt;Hello web browser&lt;/h1&gt;\nYour request was\n&quot;</span>
+        <span class="hljs-string">&quot;&lt;pre&gt;%s&lt;/pre&gt;\n&quot;</span>
+        <span class="hljs-string">&quot;&lt;/body&gt;\n&lt;/html&gt;\n&quot;</span>, buffer);
+    <span class="hljs-built_in">snprintf</span> (msg, <span class="hljs-built_in">sizeof</span> (msg),
+        <span class="hljs-string">&quot;HTTP/1.0 200 OK\n&quot;</span>
+        <span class="hljs-string">&quot;Content-Type: text/html\n&quot;</span>
+        <span class="hljs-string">&quot;Content-Length: %d\n\n%s&quot;</span>, <span class="hljs-built_in">strlen</span> (body), body);
+    <span class="hljs-comment">// ^ Generates response</span>
+    n = <span class="hljs-built_in">write</span> (newsockfd,msg,<span class="hljs-built_in">strlen</span>(msg)); <span class="hljs-comment">// Sends the response</span>
+    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">0</span>) <span class="hljs-built_in">error</span>(<span class="hljs-string">&quot;ERROR writing to socket&quot;</span>);
+    <span class="hljs-built_in">close</span> (newsockfd); <span class="hljs-comment">// Closes the connection</span>
+  }
+}
+</code></pre>
+<p><img src="assets/tdt4186.lecture.11b.hello_web_browser.png" alt=""></p>
+<h3>Remote procedure calls (RPC)</h3>
+<ul>
+<li>RPCs work like a function call between different processes
+<ul>
+<li>high grade of abstraction</li>
+<li>usually not directly offered by the OS
+<ul>
+<li>mapping to other communication forms required, e.g. messages</li>
+</ul>
+</li>
+<li>mapping to multiple messages
+<ul>
+<li>request message includes request to execute the remote function and the related parameters</li>
+<li>response message includes the result(s) of the remote call</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.11b.rpc.png" alt=""></p>
+<h3>Conclusions</h3>
+<p>Two general classes of inter process communication:</p>
+<ul>
+<li>message based
+<ul>
+<li>data is copied</li>
+<li>also between different computers</li>
+</ul>
+</li>
+<li>using shared memory
+<ul>
+<li>not discussed today</li>
+</ul>
+</li>
+<li>Unix systems offer different abstractions
+<ul>
+<li>signals, pipes, sockets, message queues</li>
+<li>sockets are in common use
+<ul>
+<li>standardized interface</li>
+<li>today, almost all (general purpose) operating systems implement sockets</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+</body>
+</html>

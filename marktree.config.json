@@ -1,7 +1,7 @@
 {
-  "source": "vault",
+  "source": "vault/public",
   "dest": "docs",
-  "exclude": [".git", ".obsidian", "node_modules"],
+  "exclude": [],
   "htmlLayout": "layout.html",
   "cssStyles": "styles.css",
   "icon": "favicon.ico",
