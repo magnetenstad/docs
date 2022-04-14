@@ -72,14 +72,14 @@ allowfullscreen</p>
 <ul>
 <li>According to the US National Institute of Standards and Technology, a Cloud has five properties:</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318124346.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318124346.png" alt=""></p>
 <h3>Hardware virtualization</h3>
 <ul>
 <li>…enables the creation of multiple virtual machines on one physical computer. Each virtual machine can have its own OS.</li>
 <li>Important foundation technology for Cloud computing and server consolidation</li>
 <li>Technical basis: hypervisor / virtual machine monitor Application processes of the host OS Application processes of the guest OS’s</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318125453.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318125453.png" alt=""></p>
 <h3>Cloud service models</h3>
 <ul>
 <li>SaaS – Software-as-a-Service
@@ -101,7 +101,7 @@ allowfullscreen</p>
 </ul>
 </li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318125754.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318125754.png" alt=""></p>
 <h3>Discussion: Cloud disadvantages</h3>
 <ul>
 <li>Cloud-Computing has a number of advantages, but can also cause problems that must not be ignored…
@@ -152,32 +152,32 @@ allowfullscreen</p>
 <ul>
 <li>Stallings: &quot;Operating Systems: Internals and Design Principles&quot;</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318130647.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318130647.png" alt=""></p>
 <h3>Application example / Requirements</h3>
-<p><img src="assets/Pasted%20image%2020220318130853.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318130853.png" alt=""></p>
 <h3>General architecture of a cloud OS</h3>
 <ul>
 <li>All resources are virtualized → IaaS is basis of all services</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318131153.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318131153.png" alt=""></p>
 <h3>Strategic decisions</h3>
 <ul>
 <li>Where to place the VMs? When should they be migrated?</li>
 <li>How to minimize SLA violations? How much overbooking?</li>
 <li>Does it make sense to release and switch off single computers? Different strategies are possible:</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318131408.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318131408.png" alt=""></p>
 <h3>Example: OpenStack</h3>
 <ul>
 <li>Open source cloud OS: <a href="http://www.openstack.org">www.openstack.org</a></li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318131619.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318131619.png" alt=""></p>
 <h3>Relevance and use of virtualization</h3>
 <ul>
 <li>Enforces strict adherence to a layer structure through control and intervention possibilities for resource accesses by a VM</li>
 <li>Basis for...</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318131751.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318131751.png" alt=""></p>
 <ul>
 <li>This construction principle can be replicated on different layers and for different resources</li>
 </ul>
@@ -192,7 +192,7 @@ allowfullscreen</p>
 <li>Resource partitioning, e.g. CPU time</li>
 <li>Efficient sharing, e.g. avoid duplication of files</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318132008.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318132008.png" alt=""></p>
 <h3>Example: Linux container support</h3>
 <ul>
 <li>Integrated in the Linux kernel
@@ -221,7 +221,7 @@ allowfullscreen</p>
 <ul>
 <li>A complete computer (CPU, memory, I/O devices) is virtualized:</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318133228.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318133228.png" alt=""></p>
 <h3>CPU virtualization (1)</h3>
 <ul>
 <li>Most simple approach: CPU emulation (+ multiplexing)</li>
@@ -230,7 +230,7 @@ allowfullscreen</p>
 <li>Imitates an arbitrary CPU Y with the help of a CPU X</li>
 <li>Problem: slow execution speed</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318133449.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318133449.png" alt=""></p>
 <p>FAST/SLOW: with/without code optimization</p>
 <pre><code class="hljs"><span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>{
  <span class="hljs-keyword">return</span>(i+<span class="hljs-number">1</span>);
@@ -265,7 +265,7 @@ allowfullscreen</p>
 <ul>
 <li>Problem: additional memory mapping layer</li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318134524.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318134524.png" alt=""></p>
 <p>Guest operating systems assume that they have complete control over the hardware. They use arbitrary page frames. Without the additional mapping layer, conflicts with other guest OSes could occur!</p>
 <h3>Memory virtualization (2)</h3>
 <ul>
@@ -290,7 +290,7 @@ allowfullscreen</p>
 </ul>
 </li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318134812.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318134812.png" alt=""></p>
 <p>Shadow page tables are expensive. Lower costs are possible using paravirtualization or hardware support</p>
 <h3>Memory virtualization (3)</h3>
 <ul>
@@ -309,8 +309,8 @@ allowfullscreen</p>
 </ul>
 </li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318134948.png" alt="">
-<img src="assets/Pasted%20image%2020220318135013.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318134948.png" alt="">
+<img src="assets/Pasted image 20220318135013.png" alt=""></p>
 <h3>Memory virtualization (4)</h3>
 <p>More approaches...</p>
 <ul>
@@ -401,7 +401,7 @@ allowfullscreen</p>
 </ul>
 </li>
 </ul>
-<p><img src="assets/Pasted%20image%2020220318135722.png" alt=""></p>
+<p><img src="assets/Pasted image 20220318135722.png" alt=""></p>
 <h3>Conclusion</h3>
 <ul>
 <li>Virtualization is an important architectural concept recurring in the system software stack
