@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Lagring.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">tdt4145</a></p>
+<h1>Lagring</h1>
+<h2>Databasearkitektur</h2>
+<p><img src="../../assets/Pasted image 20220329160407.png" alt=""></p>
+<p><strong>Låsemodul</strong> (Locks)</p>
+<ul>
+<li>Gjøre transaksjoner.</li>
+</ul>
+<p><strong>Log</strong></p>
+<ul>
+<li>Huske alt som foregår</li>
+<li>Rulle transaksjoner fram eller tilbake</li>
+</ul>
+<h2>Databaselagring</h2>
+<ul>
+<li>Databaser lagres i filer eller på «raw devices»
+<ul>
+<li>Mest vanlig med filer, Direkte I/O på filer</li>
+<li>«raw devices» unngår operativsystemets buffer</li>
+<li>Noen bruker MMAP-segmenter</li>
+</ul>
+</li>
+<li>Lagring av tabeller
+<ul>
+<li>Heapfil</li>
+<li>B+-trær</li>
+<li>Hashfil
+<ul>
+<li>Raskt finne tilbake data</li>
+</ul>
+</li>
+<li>LSM-trær
+<ul>
+<li>Effektive når du hele tiden får nye data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Lagring av indeksfiler (på attributter)
+<ul>
+<li>For å få rask tilgang til data i tabellene</li>
+<li>Eller tvinge gjennom PRIMARY KEY / UNIQUE-restriksjoner
+<ul>
+<li>Hashing</li>
+<li>B+-trær</li>
+<li>R-trær (flere dimensjoner)</li>
+</ul>
+</li>
+<li>For sortering av nøkler</li>
+</ul>
+</li>
+<li>Kan kombinere lagring og indekser: Clustered index.</li>
+</ul>
+<h2>Lagring av poster</h2>
+<ul>
+<li>En rad i en tabell er vanligvis lagret som en post (record) i en fil: tuppel vs. rad vs. post.</li>
+<li>En post har felter med navn og datatype
+<ul>
+<li>Integer, long integer, floating point (4 og 8 byte)</li>
+<li>String (fastlengde og variable lengde) (1 eller 2 byte per tegn)</li>
+<li>Date/time</li>
+<li>Blobs - lange felter</li>
+<li>JSON (tekst)</li>
+</ul>
+</li>
+<li>SQL-dictionary (Catalog) beskriver hvordan en tabell/post er lagret.
+<ul>
+<li>Lengde og datatyper</li>
+<li>
+<ul>
+<li>mye annet</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Postlayout</h2>
+<p><img src="../../assets/Pasted image 20220329162449.png" alt=""></p>
+<p>Alt 1: Krever sjekk i katalog.
+Alt 2: Feltvektor, vektor som peker på hvert attributt. Selvbeskrivende post.</p>
+<h2>Blocklayout</h2>
+<p><img src="../../assets/Pasted image 20220329162740.png" alt=""></p>
+<p>Tuppel i figuren er post.
+Struktur som vokser i to retninger.
+På slutten: vektor som peker på postene i sortert rekkefølge.</p>
+<h2>Buffer</h2>
+<ul>
+<li>Kopi i RAM av ofte brukte blokker fra databasen</li>
+<li>Databaser vil gjerne ha kontroll på dataene i RAM, så de «pinnes» slik at «virtual memory» ikke kaster de ut.</li>
+<li>Adaptive cache-algoritmer, med flere klasser av aksessmønstre</li>
+<li>Kan også støtte «pre-fetching» av blokker.</li>
+<li>Det brukes som regel en hashbasert inngang til buffer basert på BlockId.</li>
+<li>Blokker som tilhører samme hashinngang lenkes sammen i RAM.</li>
+<li>Blokker skrives til disk som en del av sjekkpunkting i forbindelse med logging og recovery</li>
+</ul>
+<h2>Heapfiler</h2>
+<ul>
+<li>«Rått» og usortert lager av poster</li>
+<li>Poster settes inn på slutten av filen. Kan være to lister.</li>
+</ul>
+<p><img src="../../assets/Pasted image 20220329163652.png" alt=""></p>
+<ul>
+<li>Aksesseres med en RecordId (BlockId, nr. innen blokk)</li>
+<li>Vanligvis har man indekser i tillegg til heapfiler</li>
+<li>
+<ul>
+<li>lett å sette inn posten</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>god til tabellscan</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>bra skriveytelse</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>dårlig til søk på attributter og rangesøk (verdiområdesøk)</li>
+</ul>
+</li>
+</ul>
+<h2>Quiz 1 A</h2>
+<ul>
+<li>Hva er en komponent i et databasesystem?
+<ul>
+<li>Optimalisator ✅</li>
+<li>Filsystem ❌</li>
+<li>L3 Cache ❌</li>
+<li>Logg ✅</li>
+</ul>
+</li>
+<li>Hvorfor har vi indekser?
+<ul>
+<li>For å få oversikt ❌</li>
+<li>For å tvinge gjennom UNIQUE ✅</li>
+<li>Holde orden på databasen ❌</li>
+<li>For å få queries til å gå raskere ✅</li>
+</ul>
+</li>
+</ul>
+<h2>Quiz 1 B</h2>
+<ul>
+<li>Hva er en SQL Dictionary?
+<ul>
+<li>Forklaring på Keywords i SQL ❌</li>
+<li>Oversetter SQL til algebra ❌</li>
+<li>Oversikt over tabeller og attributter ✅</li>
+<li>Cacher queryresultater ❌</li>
+</ul>
+</li>
+<li>Hvorfor bruker man Heapfiler?
+<ul>
+<li>Raske å sette inn poster ✅</li>
+<li>Gode til tabellscan ✅</li>
+<li>Raskt å finne igjen en post ❌</li>
+<li>Gode til å randomisere poster ❌</li>
+</ul>
+</li>
+</ul>
+<h2>Hashbaserte indekser</h2>
+<ul>
+<li>Bra for direkte aksess på søkenøkkel</li>
+<li>h(K) - hashfunksjon av søkenøkkel
+<ul>
+<li>Sprer postene bra utover slik at de lett kan gjenfinnes</li>
+</ul>
+</li>
+<li>F.eks. h(K) = K MOD M (restfunksjon)</li>
+<li>Mange mulige hashfunksjoner</li>
+<li>En god hashfunksjon har god spredning, men er avhengig av hva som skal spres</li>
+<li>Hvordan håndtere overflyt
+<ul>
+<li>Åpen adressering: lagre posten i første ledige etterfølgende blokk i fila</li>
+<li>Separat overløp: lenk sammen overløpsblokker</li>
+<li>Multippel hashing: bruk en ny hashfunksjon når det blir kollisjoner</li>
+</ul>
+</li>
+</ul>
+<h2>Statisk hashing (1)</h2>
+<p><img src="../../assets/Pasted image 20220329173724.png" alt=""></p>
+<h2>Statisk hashing (2)</h2>
+<ul>
+<li>Partition by key i MySQL</li>
+</ul>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> tm1 (
+s1 <span class="hljs-type">CHAR</span>(<span class="hljs-number">32</span>) <span class="hljs-keyword">PRIMARY</span> KEY
+)
+<span class="hljs-keyword">PARTITION</span> <span class="hljs-keyword">BY</span> KEY(s1)
+PARTITIONS <span class="hljs-number">10</span>;
+</code></pre>
+<ul>
+<li>Fast antall blokker/partisjoner i samme fil</li>
+<li>Må bruke overløp for dynamiske datamengder (ukjent antall poster)</li>
+<li>Lange overløp kan ødelegge ytelsen</li>
+</ul>
+<h2>Extendible hashing</h2>
+<ul>
+<li>Problem ved statisk hashing.
+<ul>
+<li>Utvidelse av filen, dvs. dobling av antall blokker</li>
+<li>Les alle blokker og skriv alle blokker på nytt.</li>
+</ul>
+</li>
+<li>Extendible hashing
+<ul>
+<li>Bruk katalog med pekere til blokker og doble katalogen ved
+behov</li>
+<li>Splitt (les og skriv) kun den blokken som ble full</li>
+<li>Lokal og global dybde</li>
+<li>Hvis en blokk er full og lokal dybde == global dybde: Directory doubling</li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+</body>
+
+</html>

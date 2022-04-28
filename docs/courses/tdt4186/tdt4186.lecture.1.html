@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>tdt4186.lecture.1.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">tdt4186</a></p>
+<h2>Lecture 1: Introduction to operating systems</h2>
+<p><a href="index.html">Index</a>
+<a href="tdt4186.lecture.2.html">Next lecture</a></p>
+<p><iframe
+width="560" height="315" src="https://www.youtube.com/embed/xqoiBVLpPFs"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe></p>
+<h3>Exam</h3>
+<p>Introduction to operating systems and their history</p>
+<p><strong>Important questions:</strong></p>
+<ul>
+<li>Why were operating systems developed initially?</li>
+<li>How did the features of operating systems evolve along with the development of the available hardware?</li>
+<li>How do we define the term "operating system" today?</li>
+</ul>
+<p>You do not need to know details about the historical computers and operating systems discussed in that lecture</p>
+<h3>Defining an OS</h3>
+<ul>
+<li>There are many definitions of the term 'operating system</li>
+<li>Common ideas are:
+<ul>
+<li>The OS serves the users and their programs, it is never an end to itself</li>
+<li>The OS has to know the hardware in detail and provides suitable abstractions to application programs</li>
+</ul>
+</li>
+<li>Hardware and application requirements determine the services provided by an OS
+<ul>
+<li>From this, its structure and functionality derives</li>
+</ul>
+</li>
+<li>To understand which hardware abstractions are provided by operating systems today, we take a look at their history of development along with advances in hardware and typical applications</li>
+</ul>
+<h3>In the beginning: Punched cards</h3>
+<ul>
+<li>Punched cards - paper cards with holes indicating a '1'</li>
+<li>Since 1725 used to control weaving looms</li>
+<li>Used by Hermann Hollerith for the 1890 US census
+<ul>
+<li>Hollerith and two other companies formed IBM later</li>
+</ul>
+</li>
+<li>Used until 1970s as versatile memory</li>
+</ul>
+<h3>The first Norwegian computer</h3>
+<ul>
+<li>NUSSE - 'Norsk Universell Siffermaskin Selvstyrt Elektronisk", developed at UiO</li>
+<li>Constructed between 1950-1955</li>
+<li>1000 vacuum tubes, 2 kB main memory, 40 kHz clock time</li>
+</ul>
+<h3>The first computer at NTNU (NTH)</h3>
+<ul>
+<li>GIER - 'Geodætisk Instituts Elektroniske Regnemaskine', from Denmark in 1962</li>
+<li>5 kB main memory</li>
+<li>Already provided:
+<ul>
+<li>Operating system</li>
+<li>Algol-60 compiler</li>
+<li>Runtime library with virtual memory management</li>
+</ul>
+</li>
+</ul>
+<h3>Serial processing</h3>
+<ul>
+<li>Non-interactive programming of computers
+<ul>
+<li>Input via punched card reader</li>
+<li>Output via printer</li>
+<li>Errors indicated using lamps</li>
+</ul>
+</li>
+<li>Minimal CPU utilisation
+<ul>
+<li>Because of slow I/O devices</li>
+</ul>
+</li>
+<li>First system software as reusable program libraries
+<ul>
+<li>Linker, loader, debugger, device drivers</li>
+</ul>
+</li>
+</ul>
+<h3>Simple batch systems (from 1955)</h3>
+<ul>
+<li>Reduced frequency op operator interactions</li>
+<li>First operating systems: 'resident monitors'
+<ul>
+<li>Interpretation of job control commands</li>
+<li>Loading and execution of programs</li>
+<li>Device control</li>
+</ul>
+</li>
+<li>The monitor stayed resident in memory and executed one application after the other</li>
+<li>Problems due to erroneous applications:
+<ul>
+<li>Program doesn't terminate</li>
+<li>Writes in the memory of the resident monitor</li>
+<li>Accesses card reader directly and interprets control commands as data</li>
+</ul>
+</li>
+<li>Solutions:
+<ul>
+<li>Addition of a timer circuit generating interrupts</li>
+<li>Traps for erroneous programs
+<ul>
+<li>Fence register to realise primitive memory protection</li>
+<li>Privileged operating mode of the CPU (supervisor mode)
+<ul>
+<li>Deactivates fence register</li>
+<li>Allows input and output</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Input/Output bottleneck</h3>
+<ul>
+<li>Problem: CPU is faster than card reader and printer
+<ul>
+<li>Valuable compute time is wasted by (active) waiting</li>
+</ul>
+</li>
+<li>Solution 1: off line processing
+<ul>
+<li>Enabled by magnetic tape dries</li>
+<li>Parallelisation of I/O using multiple satellite computers</li>
+</ul>
+</li>
+<li>Solution 2: spooling
+<ul>
+<li>Enabled by magnetic disk drives (random access) and direct memory access (DMA)</li>
+<li>Computation and I/O can now overlap</li>
+<li>Requires rules for processor allocation</li>
+</ul>
+</li>
+</ul>
+<h3>Multiprogramming (from 1965)</h3>
+<ul>
+<li>Despite spooling, a single program does not utlise the CPU efficiently
+<ul>
+<li>System operation alternates between CPU bursts and I/O bursts, during with the CPU has to wait</li>
+</ul>
+</li>
+<li>With multiprogramming, the CPU works on multiple jobs at the same time</li>
+<li>Consequence:
+<ul>
+<li>The operating system becomes increasingly more complex
+<ul>
+<li>Handling concurrent I/O activites</li>
+<li>Managing the main memory for multiple programs</li>
+<li>Internal management of pragrams in execution (processes)</li>
+<li>Processor scheduling</li>
+<li>Multi user operation: security and accounting</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Memory managmement
+<ul>
+<li>Programs to be started need an assigned memory range</li>
+</ul>
+</li>
+<li>Memory protection
+<ul>
+<li>Simple fence register is no longer sufficient to isolate processes from each other</li>
+<li>Solution: use a simple memory management unit (MMU)</li>
+</ul>
+</li>
+<li>Process management
+<ul>
+<li>Every 'program in execution' has its own context</li>
+<li>When switching between processes, the context has to be switched as well</li>
+</ul>
+</li>
+</ul>
+<h3>Dialog computing (from 1970)</h3>
+<ul>
+<li>New I/O devices enable interactive software
+<ul>
+<li>Keyboard, screen, later mouse</li>
+</ul>
+</li>
+<li>Time sharing operation
+<ul>
+<li>Enables acceptable response times for interactive users</li>
+<li>Timer interrupts ensure the preemption of processes which run (too) long</li>
+</ul>
+</li>
+<li>System programs enable interactive software development
+<ul>
+<li>Editor, shell, compiler, debugger</li>
+</ul>
+</li>
+<li>Disks and file systems allow to allow access to programs and data at any time</li>
+</ul>
+
+
+</article>
+</body>
+
+</html>

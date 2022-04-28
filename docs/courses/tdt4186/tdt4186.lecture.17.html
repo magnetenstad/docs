@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>tdt4186.lecture.17.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">tdt4186</a></p>
+<h2>Lecture 17: Virtual machines and microkernels</h2>
+<p><a href="tdt4186.lecture.16.html">Previous lecture</a>
+<a href="tdt4186.lecture.18.html">Next lecture</a></p>
+<p><iframe
+width="560" height="315" src="https://www.youtube.com/embed/ALj6BfEmafM"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe></p>
+<h3>Exam</h3>
+<p>Operating system architectures and abstractions</p>
+<p><strong>Important questions:</strong></p>
+<ul>
+<li>Can you define monolithic kernels, microkernels, hypervisors?
+<ul>
+<li>Differences between these, pros/cons?</li>
+</ul>
+</li>
+<li>What problem did first-generation microkernels have?
+<ul>
+<li>How was this solved in second-generation microkernels?</li>
+<li>What is an exokernel?</li>
+</ul>
+</li>
+<li>What is virtualization, can you define its functionality?
+<ul>
+<li>What is a virtual machine monitor or hypervisor?</li>
+<li>What are the differences between type 1 and 2 hypervisors?</li>
+<li>Which hardware support was introduced to support virtualization?</li>
+<li>What is paravirtualization and what are its pros/cons?</li>
+<li>What is a hypercall?</li>
+</ul>
+</li>
+</ul>
+<h3>Software architecture</h3>
+<ul>
+<li>Definition:</li>
+</ul>
+<p>The basic organization of a system, expressed through its components, their relations to each other and the environment as well as the principles which define the design and evolution of the system. Source: Gesellschaft für Informatik e.V. (<a href="https://gi.de/informatiklexikon/software-architektur">https://gi.de/informatiklexikon/software-architektur</a>)</p>
+<ul>
+<li>Intuitive view: "boxes and arrows"</li>
+<li>Does not describe the detailed design</li>
+<li>Focus on the relation between the requirements and the system that is to be constructed</li>
+</ul>
+<h3>Different operating system architectures</h3>
+<ul>
+<li>Isolation</li>
+<li>Interaction mechanisms</li>
+<li>Interrupt handling mechanisms</li>
+<li>Adaptability
+<ul>
+<li>Portability, modifications</li>
+</ul>
+</li>
+<li>Extensibility
+<ul>
+<li>New functions and services</li>
+</ul>
+</li>
+<li>Robustness
+<ul>
+<li>Behavior in the presence of errors</li>
+</ul>
+</li>
+<li>Performance</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.17.os_architectures.png" alt=""></p>
+<h3>Early operating systems</h3>
+<ul>
+<li>The first computers had no operating system at all
+<ul>
+<li>Every program had to control all hardware on its own</li>
+<li>Systems were running batch processing jobs controlled by an operator
+<ul>
+<li>Single tasking, punch card operated</li>
+</ul>
+</li>
+<li>Peripheral devices were rather simple
+<ul>
+<li>Tape drives, punch card readers/writers and printers connected over serial lines</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Replication of code to control devices in every application program
+<ul>
+<li>Waste of development and compile time as well as storage</li>
+<li>Error prone</li>
+</ul>
+</li>
+</ul>
+<h3>Library operating systems</h3>
+<ul>
+<li>Collect frequently used functions to control devices in software libraries which can be used by all programs
+<ul>
+<li>Call system functions like regular program functions</li>
+</ul>
+</li>
+<li>Library could remain in the computer’s main memory
+<ul>
+<li>Reduced program loading times, "Resident Monitor"</li>
+</ul>
+</li>
+<li>Library functions were documented and tested
+<ul>
+<li>Reduced development overhead for application programmers</li>
+</ul>
+</li>
+<li>Errors could be fixed centrally
+<ul>
+<li>Improved reliability</li>
+</ul>
+</li>
+</ul>
+<h3>Library operating systems</h3>
+<p><img src="assets/tdt4186.lecture.17.library_os.png" alt=""></p>
+<h3>Library OS: Evaluation</h3>
+<ul>
+<li>Isolation
+<ul>
+<li>Ideal – single tasking system – but high time overhead to switch tasks</li>
+</ul>
+</li>
+<li>Interaction mechanisms
+<ul>
+<li>Direct (function calls)</li>
+</ul>
+</li>
+<li>Interrupt handling mechanisms
+<ul>
+<li>Sometimes interrupts were not in use → polling</li>
+</ul>
+</li>
+<li>Adaptability
+<ul>
+<li>Separate libraries for each hardware architecture, no standards</li>
+</ul>
+</li>
+<li>Extensibility
+<ul>
+<li>Depends on the library structure: global structures, "spaghetti code"</li>
+</ul>
+</li>
+<li>Robustness
+<ul>
+<li>Direct control of all hardware: errors → system halt</li>
+</ul>
+</li>
+<li>Performance
+<ul>
+<li>Very high due to direct operations on the hardware without privilege mechanisms</li>
+</ul>
+</li>
+</ul>
+<h3>Library OS: Discussion</h3>
+<ul>
+<li>Expensive hardware could only be used "productive" for a small fraction of the time
+<ul>
+<li>High overhead to switch tasks</li>
+<li>Waiting for I/O unnecessarily wastes time, since only one "process" runs on the system</li>
+</ul>
+</li>
+<li>Results took a lot of time
+<ul>
+<li>Waiting queue, batch processing</li>
+</ul>
+</li>
+<li>No interactivity
+<ul>
+<li>System run by an operator, no direct access to the hardware</li>
+<li>Execution of a program could not be controlled at runtime</li>
+</ul>
+</li>
+</ul>
+<h3>Monolithic systems</h3>
+<ul>
+<li>Management system for computer hardware
+<ul>
+<li>Standardized accounting of system resources</li>
+</ul>
+</li>
+<li>Complete control of hard- and software
+<ul>
+<li>Applications run under system control now</li>
+<li>Systems with multiple processes are feasible now: multiprogramming</li>
+</ul>
+</li>
+<li>Introduction of a privilege system
+<ul>
+<li>System mode and application mode</li>
+<li>Distinction and switch between modes hardware-supported Direct hardware access only in system mode</li>
+</ul>
+</li>
+<li>System functions called using special mechanisms (software traps)
+<ul>
+<li>Requires context switching and saving</li>
+</ul>
+</li>
+</ul>
+<h3>Monolithic operating systems</h3>
+<p><img src="assets/tdt4186.lecture.17.monolithic_os.png" alt=""></p>
+<h3>Monolithic systems: OS/360</h3>
+<ul>
+<li>One of the first monolithic systems: IBM OS/360, 1966</li>
+<li>Objective: common batch processing OS for all IBM mainframes
+<ul>
+<li>Performance and memory differ by several orders of magnitude</li>
+</ul>
+</li>
+<li>System available in different configurations:
+<ul>
+<li>PCP (primary control program): single process, small systems</li>
+<li>MFT (multiprogramming with fixed number of tasks): mid-scale systems (256 kB RAM!), fixed partitioning of memory between processes, fixed number of tasks</li>
+<li>MVT (multiprogramming with variable number of tasks): high end systems, swapping, optional time sharing option (TSO) for interactive use</li>
+</ul>
+</li>
+<li>Innovative properties:
+<ul>
+<li>Hierarchical file system</li>
+<li>Processes can control sub-processes</li>
+<li>MFT and MVT are compatible (API and ABI)</li>
+</ul>
+</li>
+</ul>
+<h3>Monolithic systems: OS/360</h3>
+<ul>
+<li>Problems in the domain of operating system development
+<ul>
+<li>Fred Brooks’ "The Mythical Man-Month" described the problems that occurred during the development of OS/360</li>
+<li><strong>Conceptual integrity</strong>
+<ul>
+<li>Separation of architecture and implementation was difficult. Developers love to exploit all technical capabilities of a system → reduces comprehensibility and developer productivity</li>
+</ul>
+</li>
+<li><strong>"Second System Effect"</strong>
+<ul>
+<li>Developers wanted to fix all errors of the previous system and add all missing features → never finished</li>
+</ul>
+</li>
+<li><strong>Dependencies</strong> between components of the system were too complex
+<ul>
+<li>Starting with a certain size of the code, errors are unavoidable!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Developments in software technology were driven by developments in operating systems</li>
+</ul>
+<h3>Monolithic systems: Unix</h3>
+<ul>
+<li>Unix was developed for systems with rather limited resources (AT&amp;T Bell Labs)
+<ul>
+<li>Kernel size in 1979 (7th Edition Unix, PDP11): ca. 10,000 lines of code (straightforward, easy to handle!), compiled ca. 50 kB</li>
+<li>Originally implemented by 2-3 developers</li>
+</ul>
+</li>
+<li>Introduction of simple abstractions
+<ul>
+<li>Every object in the system can be represented as a file</li>
+<li>Files are simple unformatted streams of bytes</li>
+<li>Complex functionality can be realized by combining simple system programs (shell pipelines)</li>
+</ul>
+</li>
+<li>New objective of system development: portability
+<ul>
+<li>Simple adaptability of the system to different hardware</li>
+<li>Development of Unix in C – designed to be a domain specific language to develop operating systems</li>
+</ul>
+</li>
+</ul>
+<h3>Monolithic systems: Unix</h3>
+<ul>
+<li>Further development of Unix was not predictable
+<ul>
+<li>Systems with large address spaces (VAX, RISC systems)</li>
+<li>The Unix kernel also grew in size (System III, System V, BSD) – without significant structural changes</li>
+<li>Very complex subsystems were integrated along the way
+<ul>
+<li>TCP/IP was about as complex as the rest of the kernel</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Linux was modelled after the structure of System V Unix</li>
+<li>Impact in academia: "Open Source" policy of Bell Labs
+<ul>
+<li>Weaknesses of Unix lead to new research questions</li>
+<li>However, many projects (e.g. Mach) tried to remain compatible to Unix</li>
+</ul>
+</li>
+</ul>
+<h3>Monolithic systems: Evaluation</h3>
+<ul>
+<li>Isolation
+<ul>
+<li>No isolation of components in kernel mode, only between application processes</li>
+</ul>
+</li>
+<li>Interaction mechanisms
+<ul>
+<li>Direct function calls (in the kernel), Traps (application – kernel)</li>
+</ul>
+</li>
+<li>Interrupt handling mechanisms
+<ul>
+<li>Direct handling of hardware interrupts by IRQ handlers</li>
+</ul>
+</li>
+<li>Adaptability
+<ul>
+<li>Changes in one component influence other components</li>
+</ul>
+</li>
+<li>Extensibility
+<ul>
+<li>Originally: recompilation required; today: kernel module system</li>
+</ul>
+</li>
+<li>Robustness
+<ul>
+<li>Bad – an error in one component "kills" the complete system</li>
+</ul>
+</li>
+<li>Performance
+<ul>
+<li>High – few copy operations required, since all kernel components use the same address space. System calls require a trap, however</li>
+</ul>
+</li>
+</ul>
+<h3>Monolithic systems: Discussion</h3>
+<ul>
+<li>Complex monolithic kernels are difficult to work with
+<ul>
+<li>Adding or changing functionality often involves more modules than the developer intended</li>
+</ul>
+</li>
+<li>Shared address space
+<ul>
+<li>Security problems in one component (e.g. buffer overflows) compromise the complete system</li>
+<li>Many components unnecessarily run in system mode</li>
+</ul>
+</li>
+<li>Reduced number of options for synchronization
+<ul>
+<li>Often only a "Big Kernel Lock", i.e. only a single process, can run in kernel mode at a time, all others have to wait</li>
+<li>This is especially bad for the performance of multiprocessor systems</li>
+</ul>
+</li>
+</ul>
+<h3>Microkernel systems</h3>
+<ul>
+<li>Objective: reduction of the Trusted Computing Base (TCB) size
+<ul>
+<li>Minimize functionality running in the privileged mode of the CPU</li>
+<li>Isolate all other components against each other in non privileged mode</li>
+</ul>
+</li>
+<li>Principle of least privilege
+<ul>
+<li>System functions are only allowed to have the privileges required to complete their task</li>
+</ul>
+</li>
+<li>System calls and communication between processes using message passing (IPC – inter process communication)</li>
+<li>Reduced functionality in the microkernel
+<ul>
+<li>Lower code size (10,000 lines of C++ code in L4 vs. 5.5 million lines of C in Linux without device drivers)</li>
+<li>Allows for formal verification of the microkernel (seL4)</li>
+</ul>
+</li>
+</ul>
+<h3>First-generation microkernels</h3>
+<ul>
+<li>Example: CMU Mach</li>
+<li>Initial idea: Separation of the features of (BSD) Unix into features requiring execution in the privileged mode of a CPU and all other features</li>
+<li>Objective: Creation of an extremely portable system</li>
+<li>Improvements to Unix concepts
+<ul>
+<li>New communication mechanisms using IPC and ports
+<ul>
+<li>Ports are secure IPC communication channels</li>
+<li>IPC is optionally network transparent: support for distributed systems</li>
+</ul>
+</li>
+<li>Parallel activities inside of a single process address space
+<ul>
+<li>Support for threads → processes are now "containers" for threads</li>
+<li>Better support for multiprocessor systems</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>First-generation microkernels</h3>
+<p><img src="assets/tdt4186.lecture.17.first_gen_microkernels.png" alt=""></p>
+<h3>First-generation microkernels</h3>
+<ul>
+<li>Problems of Mach:
+<ul>
+<li>High overhead of IPC operations
+<ul>
+<li>System calls are a factor of 10 slower compared to a monolithic kernels</li>
+</ul>
+</li>
+<li>Sub-optimal decisions about which components should be implemented in the microkernel: large code base
+<ul>
+<li>Device drivers and permission management for IPC in the microkernel</li>
+</ul>
+</li>
+<li>Resulted in a bad reputation of microkernels in general
+<ul>
+<li>Practical usability was questioned</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The microkernel idea was dead in the mid 1990s</li>
+<li>Practical use of Mach mostly in hybrid systems
+<ul>
+<li>Separately developed components for microkernel and server</li>
+<li>Colocation of the components in one address space, replacing of inkernel IPC by function calls</li>
+<li>Apple macOS: Mach 3 microkernel base + FreeBSD components</li>
+</ul>
+</li>
+</ul>
+<h3>Second-generation microkernels</h3>
+<ul>
+<li>Objective: Remove disadvantages of first generation microkernels
+<ul>
+<li>Optimization of IPC operations</li>
+<li>Jochen Liedtke: L4 (1996)
+<ul>
+<li>A concept is tolerated inside of a microkernel only if moving it outside of the kernel would prevent the implementation of functionality required in the system</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Four basic mechanisms:
+<ul>
+<li>Abstraction of address spaces</li>
+<li>A model for threads</li>
+<li>Synchronous communication between threads</li>
+<li>Scheduling</li>
+</ul>
+</li>
+<li>Much of the functionality implemented in kernel mode in first generation microkernels now runs in user mode
+<ul>
+<li>e.g. checking of IPC communication permissions</li>
+</ul>
+</li>
+</ul>
+<h3>Second-generation microkernels</h3>
+<p><img src="assets/tdt4186.lecture.17.second_gen_microkernels.png" alt=""></p>
+<h3>Microkernel OS: Evaluation</h3>
+<ul>
+<li>Isolation
+<ul>
+<li>Very good – separate address spaces for all components</li>
+</ul>
+</li>
+<li>Interaction mechanisms
+<ul>
+<li>Synchronous IPC</li>
+</ul>
+</li>
+<li>Interrupt handling mechanisms
+<ul>
+<li>The microkernel translates interrupts into IPC messages</li>
+</ul>
+</li>
+<li>Adaptability
+<ul>
+<li>Originally hard to adapt – x86 assembler code, today in C/C++</li>
+</ul>
+</li>
+<li>Extensibility
+<ul>
+<li>Very good and simple as components in user mode</li>
+</ul>
+</li>
+<li>Robustness
+<ul>
+<li>Good – but dependent on the robustness of user mode components</li>
+</ul>
+</li>
+<li>Performance
+<ul>
+<li>In general depending on the IPC performance</li>
+</ul>
+</li>
+</ul>
+<h3>Exokernel OS: Even smaller…</h3>
+<ul>
+<li>Idea to simplify the OS even further:
+<ul>
+<li>The lowest system software layers does not implement strategies or abstractions and does also not virtualize resources</li>
+<li>One single task: resource partitioning
+<ul>
+<li>Every application is assigned its own set of resources</li>
+<li>The assignment is enforced by the exokernel</li>
+<li>Everything else is implemented according to demand using application-specific library operating systems inside of resource containers</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Problem: Library operating systems are specific to the respective exokernel</li>
+</ul>
+<h3>Virtualization</h3>
+<ul>
+<li>Objective: Isolation and multiplexing of resources below the operating system layer</li>
+<li>Simultaneous use of multiple guest operating systems</li>
+<li>Virtual machines (VMs) on system level virtualize hardware resources such as:</li>
+<li>Processor(s), main memory and mass storage resources, peripheral devices</li>
+<li>A virtual machine monitor (VMM) or hypervisor is the software component that provides the virtual machine abstraction</li>
+</ul>
+<h3>Virtualization: IBM VM</h3>
+<ul>
+<li>IBM S/360 mainframes: many different operating systems
+<ul>
+<li>DOS/360, MVS: batch processing library operating systems</li>
+<li>OS/360+TSO: Interactive multi user system</li>
+<li>Customer-specific extensions</li>
+</ul>
+</li>
+<li>Problem: How to use all systems simultaneously?
+<ul>
+<li>Hardware was expensive (millions of US$)</li>
+<li>OS expect to have control over the complete hardware → This illusion has to be maintained for every OS</li>
+</ul>
+</li>
+<li>Development of the first system virtualisation "VM" as a combination of emulation and hardware support
+<ul>
+<li>Enabled simultaneous operation of batch processing and interactive operating systems</li>
+</ul>
+</li>
+</ul>
+<h3>Virtualization with a type 1 hypervisor</h3>
+<p><img src="assets/tdt4186.lecture.17.virtualization_type_1_hypervisor.png" alt=""></p>
+<h3>Hardware-supported virtualization</h3>
+<ul>
+<li>Example x86: Privileged instructions in ring 0 can be caught
+<ul>
+<li>Intel "Vanderpool" (Intel VT-x), AMD "Pacifica" (AMD-V)</li>
+<li>Additional logical privilege mode: often called "ring -1"</li>
+</ul>
+</li>
+<li>Guest OS kernel runs in ring 0 as before</li>
+<li>"Critical" instructions in ring 0:
+<ul>
+<li>Trap to the hypervisor</li>
+<li>The hypervisor emulates critical instructions</li>
+<li>or stops the OS using them (if not permitted)</li>
+</ul>
+</li>
+<li>Allows to use multiple completely unchanged OS instances on a single hardware system at the same time
+<ul>
+<li>Peripheral devices of the respective VMs still have to be emulated, since the virtualized systems are not aware of the presence of the other OSes</li>
+</ul>
+</li>
+</ul>
+<h3>Paravirtualization</h3>
+<ul>
+<li>Applications of the virtualized OS run unchanged, but the virtualized OS itself requires a special kernel</li>
+<li>Guest kernel runs (on x86) in a protection ring &gt; 0 (e.g. ring 3)
+<ul>
+<li>not in system mode</li>
+</ul>
+</li>
+<li>Realization:
+<ul>
+<li>"critical" instructions (interrupt handling, memory management, etc.) in the guest kernel are replaced by hypercalls (explicit calls to the hypervisor)
+<ul>
+<li>VMware approach: kernel binary code is adapted when loading the guest OS</li>
+<li>Xen approach: modification of the OS source code</li>
+</ul>
+</li>
+<li>Performance improvement: Hypercalls also used to access peripherals and the network – no more slow hardware emulation required</li>
+</ul>
+</li>
+</ul>
+<h3>Virtualization: Evaluation</h3>
+<ul>
+<li>Isolation
+<ul>
+<li>Very good – but coarse granularity (between VMs)</li>
+</ul>
+</li>
+<li>Interaction mechanisms
+<ul>
+<li>Communication between VMs only via TCP/IP (virtual network cards!)</li>
+</ul>
+</li>
+<li>Interrupt handling mechanisms
+<ul>
+<li>Forwarding of IRQs to guest kernel inside of the VM (simulated hardware interrupts)</li>
+</ul>
+</li>
+<li>Adaptability
+<ul>
+<li>Specific adaptation for a CPU type required, paravirtualization has a lot of overhead</li>
+</ul>
+</li>
+<li>Extensibility
+<ul>
+<li>Difficult – not commonly available in VMMs</li>
+</ul>
+</li>
+<li>Robustness
+<ul>
+<li>Good – but coarse granularity (whole VMs affected by crashes)</li>
+</ul>
+</li>
+<li>Performance
+<ul>
+<li>Good – 5-10% lower compared to direct execution on the same hardware</li>
+</ul>
+</li>
+</ul>
+<h3>Libraries of OS functionality</h3>
+<ul>
+<li>"Unikernels" are used to efficiently execute a single application inside of a virtual machine
+<ul>
+<li>mirageOS, Mini-OS, Unikraft, …</li>
+</ul>
+</li>
+<li>Example: Utah OSKit
+<ul>
+<li>"best of" of different operating system components</li>
+<li>Interfaces adapted to conform to a single standard</li>
+<li>Language support (interface generator) enables easy integration of components</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/tdt4186.lecture.17.libraries_of_os_functionality.png" alt=""></p>
+<h3>OS architectures: Conclusion</h3>
+<ul>
+<li>OS architectures are still a current area of research
+<ul>
+<li>"old" technologies such as virtualization find new applications today, e.g. in cloud computing</li>
+<li>Hardware and applications change all the time, e.g.
+<ul>
+<li>Energy awareness (energy harvesting)</li>
+<li>Scalability (multi-/manycore processors)</li>
+<li>Heterogeneity (ARM big.LITTLE, GPUs, ...)</li>
+<li>Adaptability (mobile systems, resource constrained systems)</li>
+<li>Persistent main memories (TI FRAM, Intel DCPMMs)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Compatibility requirements and high development costs prevent the fast acceptance of new developments
+<ul>
+<li>Virtualization is used as compatibility layer</li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+</body>
+
+</html>

@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "marktree": "^1.1.1"
+    "marktree": "^1.1.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

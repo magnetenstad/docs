@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Indekser.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">tdt4145</a></p>
+<h2>Indekser</h2>
+<h3>Hvorfor bruke indekser?</h3>
+<ul>
+<li>For å gjøre queries raskere
+<ul>
+<li>Student (pnr, studnr, navn, adresse, epost)
+<ul>
+<li>SELECT navn, adresse FROM Student WHERE studnr=123456;</li>
+</ul>
+</li>
+<li>Film (id, fnavn, år, selskap, nasjonalitet, score)
+<ul>
+<li>SELECT fnavn, år FROM Film WHERE score &gt; 7.0;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>For å tvinge gjennom UNIQUE og PRIMARY KEY-restriksjoner
+<ul>
+<li>Ha indeks på det som er unikt</li>
+<li>Student (pnr, studnr, navn, adresse, epost)</li>
+</ul>
+</li>
+</ul>
+<h3>Begreper innen indeksering</h3>
+<ul>
+<li><strong>Indeksfelt</strong>: Felt / attributt av posten som indeksen bruker</li>
+<li><strong>Primærindeks</strong>: Indeks på primærnøkkelen</li>
+<li><strong>Clustered indeks</strong>: Indeks på en tabell hvor postene er fysisk lagret sammen med (i) indeksen
+<ul>
+<li>I MySQL får du clustered indeks automatisk</li>
+</ul>
+</li>
+<li><strong>Sekundærindeks</strong>: Ekstra indeks på et annet felt hvor det også finnes en primærindeks.
+<ul>
+<li>Sekundærindeksen kan være brukt for å tvinge gjennom UNIQUE, dvs. en unik verdi for hver post i tabellen
+<ul>
+<li>Student (pnr, studnr, navn, adresse, epost)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Lagrings- og indekseringsmuligheter (1)</h3>
+<ul>
+<li>Systemspesifikt, se dokumentasjon av «ditt» system</li>
+<li>Clustered B+-tree / clustered index
+<ul>
+<li>B+-tre på primærnøkkel</li>
+<li>Løvnivå av treet lagrer selve posten</li>
+<li>MySQL: InnoDB</li>
+<li>SQL Server: Clustered index når primærnøkkel er definert</li>
+</ul>
+</li>
+<li>Heapfil og B+-tre
+<ul>
+<li>Tabell lagret i heapfil</li>
+<li>B+-tre på primærnøkkel. Postene blir da (key, RecordID)</li>
+<li>Evt. annen indeks på et annet felt</li>
+<li>MySQL: MyISAM
+<ul>
+<li>Legacy</li>
+</ul>
+</li>
+<li>SQL Server: Heap + unclustered index</li>
+</ul>
+</li>
+</ul>
+<h3>Lagrings- og indekseringsmuligheter (2)</h3>
+<ul>
+<li>Heapfil
+<ul>
+<li>Postene lagres forløpende uten noen annen organisering</li>
+<li>SQL Server: Hvis primærnøkkel ikke er definert</li>
+</ul>
+</li>
+<li>Clustered hash index
+<ul>
+<li>Hashindeks på primærnøkkel</li>
+<li>Posten lagret i indeksen</li>
+<li>Oracle: Hash cluster</li>
+</ul>
+</li>
+<li>LSM-trees (log-structured merge trees)
+<ul>
+<li>Google: Big Table</li>
+<li>Moderne lagrings- og indekseringsmetode for Big Data
+<ul>
+<li>..som er stadig voksende.</li>
+</ul>
+</li>
+<li>«Cacher» de nyeste innsatte/oppdaterte postene.</li>
+<li>Høy skriveytelse, lav «write amplification», bedre komprimering</li>
+<li>Eldre poster flyttes over i «langtidslager» (flere nivåer)</li>
+<li>Sqlite3, NoSQL, RocksDB, MySQL/myRocks, Apache Hbase</li>
+</ul>
+</li>
+</ul>
+<h3>Lagrings- og indekseringsmuligheter (3)</h3>
+<ul>
+<li>Column stores
+<ul>
+<li>Tradisjonelt lagres tabellens rader i SQL-databaser</li>
+<li>Analyseapplikasjoner / datavarehus vil oppleve bedre ytelse med kolonnebasert lagring</li>
+<li>Leser mindre data ved queries og kan bruke komprimering</li>
+<li>Kan komprimere på flere måter</li>
+<li>SELECT MAX(score) FROM Film;</li>
+<li>SQL Server: Columnstore index + delta store for å samle nok oppdateringer til å flette sammen med kolonnen.</li>
+<li>Apache Kudu (Hadoop platform), C-store/VoltDB</li>
+</ul>
+</li>
+<li>AI-genererte indekser (f.eks. Recursive Model Indexes)
+<ul>
+<li>Indekser laget basert på maskinlæring</li>
+<li>Svært effektive på read-only data, men sliter med oppdateringer
+<ul>
+<li>Genererer indekser på eksisterende data, kan være problematisk ved innsetting</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>B+-trær</h3>
+<ul>
+<li>Den mest brukte indeksen</li>
+<li>Høydebalansert tre med blokker som noder</li>
+<li>Alle «brukerposter» er på løvnivå («nederst»)</li>
+<li>Typisk høyde: 2, 3 eller 4.
+<ul>
+<li><em>Ikke som i algdat! Høyden er antall nivåer.</em></li>
+</ul>
+</li>
+<li>Minimum 50 % fyllgrad i blokker</li>
+<li>Gjennomsnittlig 67 % fyllgrad i blokker</li>
+<li>Postene er sortert på nøkkelen, og treet støtter da
+<ul>
+<li>Likhetssøk (direktesøk)</li>
+<li>Verdiområdesøk</li>
+<li>Sekvensielle, sorterte skan</li>
+<li>Gode på det meste, også for dynamiske datamengder</li>
+</ul>
+</li>
+<li>Ikke så gode på innsetting av store mengder</li>
+</ul>
+<h3>B+-tre, eksempel</h3>
+<p><img src="assets/Pasted image 20220401085019.png" alt=""></p>
+<h3>B+-trær i praksis</h3>
+<ul>
+<li>Typisk fanout: 133</li>
+<li>Typisk fyllgrad: 67 %</li>
+<li>Typisk kapasistet (non-clustered B+-tree)
+<ul>
+<li>Høyde 3 : 1333 = 2 352 637 poster</li>
+<li>Høyde 4 : 1334 = 312 900 700 poster</li>
+</ul>
+</li>
+<li>Clustered B+-tre
+<ul>
+<li>Høyde 4: 133 * 133 * 133 * 20 = 47 millioner poster</li>
+</ul>
+</li>
+<li>I praksis er de øverste nivåene alltid i buffer (RAM)
+<ul>
+<li>Level 3 1 blokk 8 KB</li>
+<li>Level 2 133 blokker 1 MB</li>
+<li>Level 1 17 689 blokker 133 MB</li>
+<li>Level 0 2,3 mill blokker 18 GB</li>
+</ul>
+</li>
+</ul>
+<h3>Poster i B+-trær</h3>
+<ul>
+<li>Tabell: Student (pnr, studnr, navn, adresse, epost)</li>
+<li>Clustered B+-tree</li>
+<li>Løvnivå (level=0):
+<ul>
+<li>Hver post på løvnivå vil se slik (‘010195 12345’, 123456, ’Hans Hansen’, ’Revekroken 1’, ’<a href="mailto:hans@stud.ntnu.no">hans@stud.ntnu.no</a>’)</li>
+<li>Hver blokk på løvnivå kan inneholde ca. 150 poster (avhengig av blokkstørrelse)</li>
+</ul>
+</li>
+<li>Level &gt; 0 (indeksnivå):
+<ul>
+<li>(‘020194 23456’, BlockId)</li>
+<li>Hver blokk kan inneholde ca. 600 poster (antar indekspost er ¼ av en vanlig post)</li>
+</ul>
+</li>
+</ul>
+<h3>Quiz 1</h3>
+<ul>
+<li>Hvorfor brukes B+-trær?
+<ul>
+<li>De finnes overalt ✅</li>
+<li>Superraske til å søke på mobilnr</li>
+<li>Gode på det meste ✅</li>
+<li>Passer veldig bra til moderne cachearkitektur</li>
+</ul>
+</li>
+<li>Hvordan lagre: Det søkes etter primærnøkkel og hele posten trengs?
+<ul>
+<li>Heapfil</li>
+<li>Hashfil</li>
+<li>Clustered B+-tre ✅</li>
+<li>Clustered Hashfil ✅</li>
+</ul>
+</li>
+</ul>
+<h3>Quiz 2</h3>
+<ul>
+<li>Et B+-tre har kun ett nivå, hvor mangel blokker i treet?</li>
+<li>1 ✅</li>
+<li>10</li>
+<li>100</li>
+<li>1000</li>
+<li>Det søkes etter nøkkel 15. Hvor mange blokker aksesseres?</li>
+</ul>
+<p><img src="assets/Pasted image 20220401091756.png" alt=""></p>
+<ul>
+<li>0</li>
+<li>1</li>
+<li>2</li>
+<li>3 ✅</li>
+</ul>
+<h3>Blokksplitting i B+-tre</h3>
+<ul>
+<li>Splitting vanligvis ved midterste post</li>
+<li>Størrelsesmessig midterste post ved variabel lengde poster</li>
+<li>Maks poststørrelse kan være ½ blokk, men spesialløsninger for virkelig lange poster (BLOBs)</li>
+<li>Indeksposter (level &gt; 0) er små: nøkkel + BlockId</li>
+<li>Løvnodeposter kan være større. Hvorfor?</li>
+</ul>
+<h3>Indekser på sammensatte nøkler</h3>
+<ul>
+<li>Employee (ssn, dno, age, street, zip, salary, skill)</li>
+<li>SELECT * FROM Employee WHERE dno=4 and age&gt;50;</li>
+<li>Hvilke indekser kan hjelpe her?
+<ul>
+<li>Indeks på dno: finn alle poster med dno=4 og sjekk om age &gt; 50</li>
+<li>Indeks på age: scan indeksen fra 50 og finn alle poster med dno=4.</li>
+<li>Sammensatt indeks på
+<ul>
+<li>(age, dno)</li>
+<li>(dno, age)</li>
+<li>Bruk den som er mest selektiv først, altså den som gir færrest poster i resultatet</li>
+</ul>
+</li>
+<li>Indekspostene har leksikalsk sortering</li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+</body>
+
+</html>
