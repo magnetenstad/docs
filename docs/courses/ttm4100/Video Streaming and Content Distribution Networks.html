@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Video Streaming and Content Distribution Networks.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Video Streaming and Content Distribution Networks</h2>
+<h3>Internet Video</h3>
+<p>From a networking perspective, perhaps the most salient characteristic of video is its high bit rate. Compressed Internet video typically ranges from 100 kbps for low-quality video to over 4 Mbps for streaming high-definition movies; 4K streaming envisions a bitrate of more than 10 Mbps.</p>
+<p>We can also use compression to create multiple versions of the same video, each at a different quality level. For example, we can use compression to create, say, three versions of the same video, at rates of 300 kbps, 1 Mbps, and 3 Mbps. Users can then decide which version they want to watch as a function of their current available bandwidth.</p>
+<h3>HTTP Streaming and DASH</h3>
+<p>All clients receive the same encoding of the video, despite the large variations in the amount of bandwidth available to a client, both across different clients and also over time for the same client. This has led to the development of a new type of HTTP-based streaming, often referred to as Dynamic Adaptive Streaming over HTTP (DASH). In DASH, the video is encoded into several different versions, with each version having a different bit rate and, correspondingly, a different quality level. The client dynamically requests chunks of video segments of a few seconds in length.</p>
+<h3>Content Distribution Networks</h3>
+<p>In order to meet the challenge of distributing massive amounts of video data to users distributed around the world, almost all major video-streaming companies make use of Content Distribution Networks (CDNs).</p>
+<p>CDNs typically adopt one of two different server placement philosophies:</p>
+<ul>
+<li>Enter Deep. Into the access networks of Internet Service Providers, by deploying server clusters in access ISPs all over the world. Get close to end users. The task of maintaining and managing the clusters becomes challenging.</li>
+<li>Bring Home. Building large clusters at a smaller number (for example, tens) of sites. Typically results in lower maintenance and management overhead, possibly at the expense of higher delay and lower throughput to end users.</li>
+</ul>
+<h4>CDN Operation</h4>
+<p><img src="assets/2022-05-03-09-26-50.png" alt=""></p>
+
+
+</article>
+</body>
+
+</html>

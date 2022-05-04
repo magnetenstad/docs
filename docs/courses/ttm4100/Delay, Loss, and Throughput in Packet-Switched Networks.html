@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Delay, Loss, and Throughput in Packet-Switched Networks.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Delay, Loss, and Throughput in Packet-Switched Networks</h2>
+<h3>Overview of Delay in Packet-Switched Networks</h3>
+<p>The most important of these delays are the nodal processing delay, queuing delay, transmission delay, and propagation delay; together, these delays accumulate to give a total nodal delay.</p>
+<h4>Processing Delay</h4>
+<p>The time required to examine the packet’s header and determine where to direct the packet is part of the processing delay.</p>
+<h4>Queuing Delay</h4>
+<p>At the queue, the packet experiences a queuing delay as it waits to be transmitted onto the link.</p>
+<h4>Transmission Delay</h4>
+<p>Denote the length of the packet by L bits, and denote the transmission rate of the link from router A to router B by R bits/sec. The transmission delay is L/R. This is the amount of time required to push (that is, transmit) all of the packet’s bits into the link.</p>
+<h4>Propagation Delay</h4>
+<p>The time required to propagate from the beginning of the link to router B is the propagation delay. That is, the propagation delay is d/s, where d is the distance between router A and router B and s is the propagation speed of the link.</p>
+<h4>Nodal delay</h4>
+<p>The nodal delay is the sum of processing delay, queuing delay, transmission delaya and propogation delay.</p>
+<h3>Queuing Delay and Packet Loss</h3>
+<p>Let a denote the average rate at which packets arrive at the queue (a is in units of packets/sec). The ratio <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>a</mi><mi mathvariant="normal">/</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">La/R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">L</span><span class="mord mathnormal">a</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span>, called the traffic intensity, often plays an important role in estimating the extent of the queuing delay. If La/R &gt; 1, then the average rate at which bits arrive at the queue exceeds the rate at which the bits can be transmitted from the queue.</p>
+<h4>Packet Loss</h4>
+<p>A packet can arrive to find a full queue. With no place to store such a packet, a router will drop that packet.</p>
+<h3>End-to-End Delay</h3>
+<p>Suppose there are N - 1 routers between the source host and the destination host. The nodal delays accumulate and give an end-to-end delay $d_{end-end}=N(d_proc + d_trans + d_prop)$</p>
+<h3>Throughput in Computer Networks</h3>
+<p>The instantaneous throughput at any instant of time is the rate (in bits/sec) at which Host B is receiving the file. If the file consists of F bits and the transfer takes T seconds for Host B to receive all F bits, then the average throughput of the file transfer is F/T bits/sec.</p>
+<p>For this simple two-link network, the throughput is min{Rc, Rs}, that is, it is the transmission rate of the bottleneck link. The constraining factor for throughput in today’s Internet is typically the access network.</p>
+
+
+</article>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Principles of Network Applications.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h1>Principles of Network Applications</h1>
+<h3>Network Application Architectures</h3>
+<p>Two predominant architectural paradigms used in modern network applications: the client-server architecture or the peer-to-peer (P2P) architecture.</p>
+<p>One of the most compelling features of P2P architectures is their selfscalability. However, P2P applications face challenges of security, performance, and reliability due to their highly decentralized structure.</p>
+<h3>Processes Communicating</h3>
+<p>Processes on two different end systems communicate with each other by exchanging messages across the computer network.</p>
+<h4>Client and Server Processes</h4>
+<p>In the context of a communication session between a pair of processes, the process that initiates the communication (that is, initially contacts the other process at the beginning of the session) is labeled as the client. The process that waits to be contacted to begin the session is the server.</p>
+<h4>The Interface Between the Process and the Computer Network</h4>
+<p>A process sends messages into, and receives messages from, the network through a <em>software</em> interface called a socket.</p>
+<p>A socket is the interface between the application layer and the transport layer within a host. It is also referred to as the Application Programming Interface (API).</p>
+<h4>Addressing Processes</h4>
+<p>In the Internet, the host is identified by its IP address. The sending process must also identify the receiving process (more specifically, the receiving socket) running in the host. A destination port number serves this purpose.</p>
+<h3>Transport Services Available to Applications</h3>
+<p>When you develop an application, you must choose one of the available transport-layer protocols. We can broadly classify the possible services along four dimensions: reliable data transfer, throughput, timing, and security.</p>
+<h4>Reliable Data Transfer</h4>
+<p>If a protocol guarantees that the data sent by one end of the application is delivered correctly and completely to the other end of the application, it is said to provide reliable data transfer.</p>
+<h4>Throughput</h4>
+<p>With such a service, the application could request a guaranteed throughput of r bits/sec, and the transport protocol would then ensure that the available throughput is always at least r bits/sec.</p>
+<p>Applications that have throughput requirements are said to be bandwidth-sensitive applications. Elastic applications can make use of as much, or as little, throughput as happens to be available.</p>
+<h4>Timing</h4>
+<p>A transport-layer protocol can also provide timing guarantees.</p>
+<h4>Security</h4>
+<p>A transport protocol can provide security services such as confidentiality, data integrity and end-point authentication.</p>
+<h3>Transport Services Provided by the Internet</h3>
+<p>The Internet makes two transport protocols available to applications, UDP and TCP.</p>
+<h4>TCP Services</h4>
+<p>The TCP service model includes a connection-oriented service and a reliable data transfer service. TCP also includes a congestion-control mechanism, throttling a sending process (client or server) when the network is congested between sender and receiver.</p>
+<h4>UDP Services</h4>
+<p>UDP is a no-frills, lightweight transport protocol, providing minimal services. There is no handshaking or congestion-control mechanism.UDP is an unreliable data transfer service, with no guarantee that the message will ever reach the receiving process, and they may arrive out of order.</p>
+<h4>Services Not Provided by Internet Transport Protocols</h4>
+<p>Many firewalls are configured to block (most types of) UDP traffic, Internet telephony applications often are designed to use TCP as a backup if UDP communication fails.</p>
+<h3>Application-Layer Protocols</h3>
+<p>An application-layer protocol defines how an application’s processes, running on different end systems, pass messages to each other.</p>
+<ul>
+<li>The types of messages exchanged, for example, request messages and response messages</li>
+<li>The syntax of the various message types, such as the fields in the message and how the fields are delineated</li>
+<li>The semantics of the fields, that is, the meaning of the information in the fields</li>
+<li>Rules for determining when and how a process sends messages and responds to messages</li>
+</ul>
+
+
+</article>
+</body>
+
+</html>

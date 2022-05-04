@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Introduction to the Transport Layer and Transport Layer Services.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Introduction to the Transport Layer and Transport Layer Services</h2>
+<p>A transport-layer protocol provides for logical communication between application processes running on different hosts. By logical communication, we mean that from an application’s perspective, it is as if the hosts running the processes were directly connected.</p>
+<p>Terminology: Transport-layer segments</p>
+<h3>Relationship Between Transport and Network Layers</h3>
+<p><img src="assets/2022-05-04-17-26-43.png" alt=""></p>
+<h3>Overview of the Transport Layer in the Internet</h3>
+<p>UDP (User Datagram Protocol), which provides an unreliable, connectionless service to the invoking application.</p>
+<p>TCP (Transmission Control Protocol), which provides a reliable, connection-oriented service to the invoking application.</p>
+<p>The IP service model is a best-effort delivery service. This means that IP makes its “best effort” to deliver segments between communicating hosts, but it makes no guarantees. In particular, it does not guarantee segment delivery, it does not guarantee orderly delivery of segments, and it does not guarantee the integrity of the data in the segments. For these reasons, IP is said to be an unreliable service.</p>
+<p>Extending host-to-host delivery to process-to-process delivery is called transport-layer multiplexing and demultiplexing.</p>
+<p>TCP also provides congestion control.</p>
+
+
+</article>
+</body>
+
+</html>

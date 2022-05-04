@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Connectionless Transport UDP.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Connectionless Transport: UDP</h2>
+<p>Some applications are better suited for UDP for the following reasons:</p>
+<ul>
+<li>Finer application-level control over what data is sent, and when. (No congestion-control mechanism)</li>
+<li>No connection establishment.</li>
+<li>No connection state. A server devoted to a particular application can typically support many more active clients when the application runs over UDP rather than TCP.</li>
+<li>Small packet header overhead.</li>
+<li></li>
+</ul>
+<p>It it is possible for an application to have reliable data transfer when using UDP. This can be done if reliability is built into the application itself. QUIC protocol implements reliability in an application-layer protocol on top of UDP.</p>
+<h3>UDP Segment Structure</h3>
+<p><img src="assets/2022-05-04-17-51-30.png" alt=""></p>
+<h3>UDP Checksum</h3>
+<p>The UDP checksum provides for error detection.</p>
+
+
+</article>
+</body>
+
+</html>
