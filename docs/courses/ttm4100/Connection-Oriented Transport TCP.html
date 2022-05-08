@@ -53,6 +53,32 @@
 <p>TimeoutInterval = EstimatedRTT + 4 # DevRTT</p>
 <p>An initial TimeoutInterval value of 1 second is recommended.</p>
 <h3>Reliable Data Transfer</h3>
+<p>TCP creates a reliable data transfer service on top of IP’s unreliable best effort service.</p>
+<p>there are three major events related to data transmission and retransmission in the TCP sender: data received from application above; timer timeout; and ACK receipt.</p>
+<ol>
+<li>TCP receives data from the application, encapsulates the data in a segment, and passes the segment to IP.</li>
+<li>TCP responds to the timeout event by retransmitting the segment that caused the timeout. TCP then restarts the timer.</li>
+<li>TCP compares the ACK value y with its variable SendBase. SendBase–1 is the sequence number of the last byte that has been received correctly and in order at the receiver.</li>
+</ol>
+<h3>A Few Interesting Scenarios</h3>
+<h3>Doubling the Timeout Interval</h3>
+<p>Each time TCP retransmits, it sets the next timeout interval to twice the previous value, This modification provides a limited form of congestion control.</p>
+<h4>Fast Retransmit</h4>
+<p>When a segment is lost, this long timeout period forces the sender to delay resending the lost packet, thereby increasing the end-to-end delay. Fortunately, the sender can often detect packet loss well before the timeout event occurs by noting so-called duplicate ACKs.</p>
+<p>Since TCP does not use negative acknowledgments, the receiver cannot send an explicit negative acknowledgment back to the sender. Instead, it simply reacknowledges (that is, generates a duplicate ACK for) the last in-order byte of data it has received.</p>
+<p>If the TCP sender receives three duplicate ACKs for the same data, it takes this as an indication that the segment following the segment that has been ACKed three times has been lost. In the case that three duplicate ACKs are received, the TCP sender performs a fast retransmit, retransmitting the missing segment before that segment’s timer expires.</p>
+<p><img src="assets/2022-05-05-19-39-55.png" alt=""></p>
+<h4>Go-Back-N or Selective Repeat?</h4>
+<p>TCP’s error-recovery mechanism is probably best categorized as a hybrid of GBN and SR protocols.</p>
+<h3>Flow Control</h3>
+<p>TCP provides a flow-control service to its applications to eliminate the possibility of the sender overflowing the receiver’s buffer.</p>
+<p>TCP provides flow control by having the sender maintain a variable called the receive window. Informally, the receive window is used to give the sender an idea of how much free buffer space is available at the receiver.</p>
+<p>From time to time, the application process in Host B reads from the buffer. Host B tells Host A how much spare room it has in the connection buffer by placing its current value of rwnd in the receive window field of every segment it sends to A. Initially, Host B sets rwnd = RcvBuffer.</p>
+<p>The TCP specification requires Host A to continue to send segments with one data byte when B’s receive window is zero.</p>
+<h3>TCP Connection Management</h3>
+<p><img src="assets/2022-05-05-19-48-21.png" alt=""></p>
+<p><img src="assets/2022-05-05-19-48-36.png" alt=""></p>
+<p><img src="assets/2022-05-05-19-49-22.png" alt=""></p>
 
 
 </article>

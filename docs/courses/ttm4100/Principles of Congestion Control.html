@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Principles of Congestion Control.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Principles of Congestion Control</h2>
+<h3>The Causes and the Costs of Congestion</h3>
+<ol>
+<li>Large queuing delays are experienced as the packet-arrival rate nears the link capacity.</li>
+<li>Another cost of a congested network— the sender must perform retransmissions in order to compensate for dropped (lost) packets due to buffer overflow.</li>
+<li>Unneeded retransmissions by the sender in the face of large delays may cause a router to use its link bandwidth to forward unneeded copies of a packet.</li>
+<li>When a packet is dropped along a path, the transmission capacity that was used at each of the upstream links to forward that packet to the point at which it is dropped ends up having been wasted.</li>
+</ol>
+<h3>Approaches to Congestion Control</h3>
+<p>At the highest level, we can distinguish among congestion-control approaches by whether the network layer provides explicit assistance to the transport layer for congestion-control purposes:</p>
+<ol>
+<li>End-to-end congestion control. (TCP takes this approach)</li>
+<li>Network-assisted congestion control.</li>
+</ol>
+
+
+</article>
+</body>
+
+</html>

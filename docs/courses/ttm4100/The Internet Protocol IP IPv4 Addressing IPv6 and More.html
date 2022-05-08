@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>The Internet Protocol IP IPv4 Addressing IPv6 and More.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>The Internet Protocol (IP): IPv4, Addressing, IPv6, and More</h2>
+<h3>IPv4 Datagram Format</h3>
+<p>If the TTL field reaches 0, a router must drop that datagram.</p>
+<p>The protocol number is the glue that binds the network and transport layers together, whereas the port number is the glue that binds the transport and application layers together.</p>
+<p>Since some datagrams may require options processing and others may not, the amount of time needed to process an IP datagram at a router can vary greatly.</p>
+<p><img src="assets/2022-05-08-14-01-35.png" alt=""></p>
+<h3>IPv4 Addressing</h3>
+<p>A router thus has multiple interfaces, one for each of its links. Because every host and router is capable of sending and receiving IP datagrams, IP requires each host and router interface to have its own IP address. Thus, an IP address is technically associated with an interface, rather than with the host or router containing that interface.</p>
+<p>IP addressing assigns an address to this subnet:
+223.1.1.0/24, where the /24 (“slash-24”) notation, sometimes known as a subnet mask, indicates that the leftmost 24 bits of the 32-bit quantity define the subnet address.</p>
+<p>To determine the subnets, detach each interface from its host or router, creating islands of isolated networks, with interfaces terminating the end points of the isolated networks. Each of these isolated networks is called a subnet.</p>
+<p><img src="assets/2022-05-08-14-09-16.png" alt=""></p>
+<p>The x most significant bits of an address of the form a.b.c.d/x constitute the network portion of the IP address, and are often referred to as the prefix (or network prefix) of the address.</p>
+<p>These lower-order bits may (or may not) have an additional subnetting structure, such as that discussed above.</p>
+<h4>Obtaining a Block of Addresses</h4>
+<p>IP addresses are managed under the authority of the Internet Corporation for Assigned Names and Numbers (ICANN)</p>
+<h4>Obtaining a Host Address: The Dynamic Host Configuration Protocol</h4>
+<p>DHCP allows a host to obtain (be allocated) an IP address automatically.</p>
+<p>DHCP is a client-server protocol. A client is typically a newly arriving host wanting to obtain network configuration information, including an IP address for itself. In the simplest case, each subnet will have a DHCP server. If no server is present on the subnet, a DHCP relay agent (typically a router) that knows the address of a DHCP server for that network is needed.</p>
+<p>For a newly arriving host, the DHCP protocol is a four-step process.</p>
+<ul>
+<li>DHCP server discovery.</li>
+<li>DHCP server offer(s).</li>
+<li>DHCP request.</li>
+<li>DHCP ACK.</li>
+</ul>
+<p>Since a new IP address is obtained from DHCP each time a node connects to a new subnet, a TCP connection to a remote application cannot be maintained as a mobile node moves between subnets.</p>
+<p><img src="assets/2022-05-08-14-47-01.png" alt=""></p>
+<h3>Network Address Translation (NAT)</h3>
+<p>The NAT-enabled router does not look like a router to the outside world. Instead the NAT router behaves to the outside world as a single device with a single IP address.</p>
+<p><img src="assets/2022-05-08-14-47-49.png" alt=""></p>
+<p>The trick is to use a NAT translation table at the NAT router, and to include port numbers as well as IP addresses in the table entries.</p>
+<h3>IPv6</h3>
+<h4>IPv6 Datagram Format</h4>
+<p>The most important changes introduced in IPv6 are evident in the datagram format:</p>
+<ul>
+<li>Expanded addressing capabilities.</li>
+<li>A streamlined 40-byte header.</li>
+<li>Flow labeling.</li>
+</ul>
+<p><img src="assets/2022-05-08-14-49-40.png" alt=""></p>
+<p>several fields appearing in the IPv4 datagram are no longer present in the IPv6 datagram:</p>
+<ul>
+<li>Fragmentation/reassembly.</li>
+<li>Header checksum.</li>
+<li>Options.</li>
+</ul>
+<h4>Transitioning from IPv4 to IPv6</h4>
+<p>With tunneling, the IPv6 node on the sending side of the tunnel takes the entire IPv6 datagram and puts it in the data (payload) field of an IPv4 datagram.</p>
+
+
+</article>
+</body>
+
+</html>

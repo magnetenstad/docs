@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>TCP Congestion Control.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>TCP Congestion Control</h2>
+<h3>Classic TCP Congestion Control</h3>
+<p>The approach taken by TCP is to have each sender limit the rate at which it sends traffic into its connection as a function of perceived network congestion.</p>
+<p>The TCP congestion-control mechanism operating at the sender keeps track of an additional variable, the congestion window. cwnd imposes a constraint on the rate at which a TCP sender can send traffic into the network. The amount of unacknowledged data at a sender may not exceed the minimum of cwnd and rwnd,</p>
+<p>Because TCP uses acknowledgments to trigger (or clock) its increase in congestion window size, TCP is said to be self-clocking.</p>
+<p>TCP answers uses the following guiding principles:</p>
+<ul>
+<li>A lost segment implies congestion, and hence, the TCP sender’s rate should be decreased when a segment is lost.</li>
+<li>An acknowledged segment indicates that the network is delivering the sender’s segments to the receiver, and hence, the sender’s rate can be increased when an ACK arrives for a previously unacknowledged segment.</li>
+<li>Bandwidth probing.</li>
+</ul>
+<p>The TCP congestion-control algorithm has three major components: (1) slow start, (2) congestion avoidance, and (3) fast recovery.</p>
+<p><img src="assets/2022-05-06-08-18-49.png" alt=""></p>
+<h4>Slow Start</h4>
+<p>In the slow-start state, the value of cwnd begins at 1 MSS and increases by 1 MSS every time a transmitted segment is first acknowledged.</p>
+<p>If there is a loss event (i.e., congestion) indicated by a timeout, the TCP sender sets the value of cwnd to 1 and begins the slow start process anew.</p>
+<p>When the value of cwnd equals ssthresh, slow start ends and TCP transitions into congestion avoidance mode.</p>
+<h4>Congestion Avoidance</h4>
+<p>Rather than doubling the value of cwnd every RTT, TCP adopts a more conservative approach and increases the value of cwnd by just a single MSS every RTT.</p>
+<p>A loss event also can be triggered by a triple duplicate ACK event. TCP halves the value of cwnd (adding in 3 MSS for good measure to account for the triple duplicate ACKs received) and records the value of ssthresh to be half the value of cwnd when the triple duplicate ACKs were received. The fast-recovery state is then entered.</p>
+<h4>Fast Recovery</h4>
+<p>In fast recovery, the value of cwnd is increased by 1 MSS for every duplicate ACK received for the missing segment that caused TCP to enter the fast-recovery state.</p>
+<p>When an ACK arrives for the missing segment, TCP enters the congestion-avoidance state after deflating cwnd. If a timeout event occurs, fast recovery transitions to the slow-start state</p>
+<h4>TCP Congestion Control: Retrospective</h4>
+<p>TCP’s congestion control consists of linear (additive) increase in cwnd of 1 MSS per RTT and then a halving (multiplicative decrease) of cwnd on a triple duplicate-ACK event. For this reason, TCP congestion control is often referred to as an additive-increase, multiplicative-decrease (AIMD) form of congestion control.</p>
+<h4>TCP Cubic</h4>
+<p><img src="assets/2022-05-06-08-30-08.png" alt=""></p>
+<h4>Macroscopic Description of TCP Reno Throughput</h4>
+<p>During a particular round-trip interval, the rate at which TCP sends data is a function of the congestion window and the current RTT. Average throughput of a connection = 0.75 * W / RTT</p>
+<h3>Fairness</h3>
+<p>A congestion control mechanism is said to be fair if the average transmission rate of each connection is approximately R/K; that is, each connection gets an equal share of the link bandwidth.</p>
+<p>TCP congestion control converges to provide an equal share of a bottleneck link’s bandwidth among competing TCP connections.</p>
+<h4>Fairness and UDP</h4>
+<p>When running over UDP, applications can pump their audio and video into the network at a constant rate and occasionally lose packets, rather than reduce their rates to “fair” levels at times of congestion and not lose any packets. It is possible for UDP sources to crowd out TCP traffic.</p>
+<h4>Fairness and Parallel TCP Connections</h4>
+<p>When an application uses multiple parallel connections, it gets a larger fraction of the bandwidth in a congested link.</p>
+
+
+</article>
+</body>
+
+</html>

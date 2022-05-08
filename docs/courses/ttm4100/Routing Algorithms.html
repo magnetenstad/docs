@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Routing Algorithms.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Routing Algorithms</h2>
+<p>routing algorithms, whose goal is to determine good paths (equivalently, routes), from senders to receivers, through the network of routers.</p>
+<p>an edge’s cost may reflect the physical length of the corresponding link, the link speed, or the monetary cost associated with a link.</p>
+<p>Broadly, one way in which we can classify routing algorithms is according to whether they are centralized or decentralized.</p>
+<ul>
+<li>A centralized routing algorithm computes the least-cost path between a source and destination using complete, global knowledge about the network. Algorithms with global state information are often referred to as link-state (LS) algorithms, since the algorithm must be aware of the cost of each link in the network.</li>
+<li>In a decentralized routing algorithm, the calculation of the least-cost path is carried out in an iterative, distributed manner by the routers.</li>
+</ul>
+<p>A second broad way to classify routing algorithms is according to whether they are static or dynamic. In static routing algorithms, routes change very slowly over time, often as a result of human intervention. Dynamic routing algorithms change the routing paths as the network traffic loads or topology change.</p>
+<p>A third way to classify routing algorithms is according to whether they are load-sensitive or load-insensitive. In a load-sensitive algorithm, link costs vary dynamically to reflect the current level of congestion in the underlying link.</p>
+<h3>The Link-State (LS) Routing Algorithm (Ikke pensum!)</h3>
+<p>in a link-state algorithm, the network topology and all link costs are known</p>
+<p>In practice, this is accomplished by having each node broadcast link-state packets to all other nodes in the network, containing the identities and costs of its attached links.</p>
+<p>oscillations can occur in any algorithm, not just an LS algorithm, that uses a congestion or delay-based link metric. Solutions are</p>
+<ul>
+<li>to mandate that link costs not depend on the amount of traffic carried - an unacceptable solution since one goal of routing is to avoid highly congested links.</li>
+<li>to ensure that not all routers run the LS algorithm at the same time.</li>
+</ul>
+<h3>The Distance-Vector (DV) Routing Algorithm (Ikke pensum!)</h3>
+<p>the distance-vector (DV) algorithm is iterative, asynchronous, and distributed.</p>
+<p>the least costs are related by the celebrated Bellman-Ford equation, namely, dx(y) = minv{(x, v) + dv(y)} where the minv in the equation is taken over all of x’s neighbors.</p>
+<p>as long as all the nodes continue to exchange their distance vectors in an asynchronous fashion, each cost estimate Dx(y) converges to dx(y), the actual cost of the least-cost path from node x to node y</p>
+<p>The algorithm remains in the quiescent state until a link cost changes</p>
+
+
+</article>
+</body>
+
+</html>

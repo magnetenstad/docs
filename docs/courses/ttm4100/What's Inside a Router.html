@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>What's Inside a Router.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>What’s Inside a Router?</h2>
+<p>In a high-level view of a generic router architecture, four router components can be identified:</p>
+<ul>
+<li>Input ports.</li>
+<li>Switching fabric.</li>
+<li>Output ports.</li>
+<li>Routing processor. performs control-plane functions.</li>
+</ul>
+<p>We distinguish between</p>
+<ul>
+<li>Destination-based forwarding.</li>
+<li>Generalized forwarding.</li>
+</ul>
+<h3>Input Port Processing and Destination-Based Forwarding</h3>
+<p>With this style of forwarding table, the router matches a prefix of the packet’s destination address with the entries in the table.</p>
+<p>When there are multiple matches, the router uses the longest prefix matching rule; that is, it finds the longest matching entry in the table and forwards the packet to the link interface associated with the longest prefix match.</p>
+<p><img src="assets/2022-05-08-13-40-34.png" alt=""></p>
+<h3>Switching</h3>
+<p>Switching can be accomplished in a number of ways:</p>
+<ul>
+<li>Switching via memory.</li>
+<li>Switching via a bus.</li>
+<li>Switching via an interconnection network. A crossbar switch is non-blocking.</li>
+</ul>
+<p><img src="assets/2022-05-08-13-41-43.png" alt=""></p>
+<h3>Output Port Processing</h3>
+<p>Output port processing takes packets that have been stored in the output port’s memory and transmits them over the output link. This includes selecting (i.e., scheduling) and de-queueing packets for transmission, and performing the needed link-layer and physical-layer transmission functions.</p>
+<h3>Where Does Queuing Occur?</h3>
+<p>The location and extent of queueing (either at the input port queues or the output port queues) will depend on the traffic load, the relative speed of the switching fabric, and the line speed.</p>
+<p>the router’s memory can eventually be exhausted and packet loss will occur when no memory is available to store arriving packets.</p>
+<h4>Input Queueing</h4>
+<p>If the switch fabric is not fast enough to transfer all arriving packets through the fabric, packet queuing can occur at the input ports, as packets must join input port queues to wait their turn to be transferred through the switching fabric to the output port.</p>
+<p>head-of-the-line (HOL) blocking in an input-queued switch—a queued packet in an input queue must wait for transfer through the fabric (even though its output port is free) because it is blocked by another packet at the head of the line.</p>
+<p><img src="assets/2022-05-08-13-44-44.png" alt=""></p>
+<h4>Output Queueing</h4>
+<p>N more packets can possibly arrive at an output port in the time it takes to transmit just one of the N packets that had just previously been queued. Thus, packet queues can form at the output ports.</p>
+<p>When there is not enough memory to buffer an incoming packet, a decision must be made to either drop the arriving packet (a policy known as drop-tail) or remove one or more already-queued packets to make room for the newly arrived packet.</p>
+<p>a packet scheduler at the output port must choose one packet, among those queued, for transmission</p>
+<h4>How Much Buffering Is “Enough?”</h4>
+<p>Larger buffers decrease the router’s packet loss rate, but also mean potentially longer queueing delays (bufferbloat).</p>
+<p><img src="assets/2022-05-08-13-50-48.png" alt=""></p>
+<h3>Packet Scheduling</h3>
+<h4>First-in-First-Out (FIFO)</h4>
+<p>The FIFO (also known as first-come-first-served, or FCFS) scheduling discipline selects packets for link transmission in the same order in which they arrived at the output link queue.</p>
+<h4>Priority Queuing</h4>
+<p>Under priority queuing, packets arriving at the output link are classified into priority classes upon arrival at the queue.</p>
+<p>Under a non-preemptive priority queuing discipline, the transmission of a packet is not interrupted once it has begun.</p>
+<h4>Round Robin and Weighted Fair Queuing (WFQ)</h4>
+<p>A generalized form of round robin queuing that has been widely implemented in routers is the so-called weighted fair queuing (WFQ) discipline.</p>
+<p>WFQ differs from round robin in that each class may receive a differential amount of service in any interval of time.</p>
+
+
+</article>
+</body>
+
+</html>
