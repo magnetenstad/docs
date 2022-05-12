@@ -22,6 +22,98 @@
 <article class="markdown-body">
 
 <p>↩️ <a href="./index.html">tdt4145</a></p>
+<ul>
+<li><a href="#18-strategies-for-query-processing">18 Strategies for Query Processing</a>
+<ul>
+<li><a href="#algorithms-for-external-sorting">Algorithms for External Sorting</a></li>
+<li><a href="#algorithms-for-select-operation">Algorithms for SELECT Operation</a>
+<ul>
+<li><a href="#search-methods-for-conjunctive-selection">Search Methods for Conjunctive Selection</a></li>
+<li><a href="#search-methods-for-disjunctive-selection">Search Methods for Disjunctive Selection</a></li>
+<li><a href="#estimating-the-selectivity-of-a-condition">Estimating the Selectivity of a Condition</a></li>
+</ul>
+</li>
+<li><a href="#implementing-the-join-operation">Implementing the JOIN Operation</a>
+<ul>
+<li><a href="#methods-for-implementing-joins">Methods for Implementing Joins</a></li>
+<li><a href="#how-buffer-space-and-choice-of-outer-loop-file-affect-performance-of-nested-loop-join">How Buffer Space and Choice of Outer-Loop File Affect Performance of Nested-Loop Join</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#20-introduction-to-transaction-processing-concepts-and-theory">20 Introduction to Transaction Processing Concepts and Theory</a>
+<ul>
+<li><a href="#introduction-to-transaction-processing">Introduction to Transaction Processing</a>
+<ul>
+<li><a href="#single-user-versus-multiuser-systems">Single-User versus Multiuser Systems</a></li>
+<li><a href="#transactions-database-items-read-and-write-operations-and-dbms-buffers">Transactions, Database Items, Read and Write Operations, and DBMS Buffers</a></li>
+<li><a href="#why-concurrency-control-is-needed">Why Concurrency Control Is Needed</a></li>
+<li><a href="#why-recovery-is-needed">Why Recovery Is Needed</a></li>
+</ul>
+</li>
+<li><a href="#transaction-and-system-concepts">Transaction and System Concepts</a>
+<ul>
+<li><a href="#transaction-states-and-additional-operations">Transaction States and Additional Operations</a></li>
+<li><a href="#the-system-log">The System Log</a></li>
+<li><a href="#commit-point-of-a-transaction">Commit Point of a Transaction</a></li>
+<li><a href="#dbms-specific-buffer-replacement-policies">DBMS-Specific Buffer Replacement Policies</a></li>
+<li><a href="#desirable-properties-of-transactions">Desirable Properties of Transactions</a></li>
+</ul>
+</li>
+<li><a href="#characterizing-schedules-based-on-recoverability">Characterizing Schedules Based on Recoverability</a>
+<ul>
+<li><a href="#schedules-histories-of-transactions">Schedules (Histories) of Transactions</a></li>
+<li><a href="#characterizing-schedules-based-on-recoverability-1">Characterizing Schedules Based on Recoverability</a></li>
+</ul>
+</li>
+<li><a href="#characterizing-schedules-based-on-serializability">Characterizing Schedules Based on Serializability</a>
+<ul>
+<li><a href="#serial-nonserial-and-conflict-serializable-schedules">Serial, Nonserial, and Conflict-Serializable Schedules</a></li>
+<li><a href="#testing-for-serializability-of-a-schedule">Testing for Serializability of a Schedule</a></li>
+<li><a href="#how-serializability-is-used-for-concurrency-control">How Serializability Is Used for Concurrency Control</a></li>
+</ul>
+</li>
+<li><a href="#transaction-support-in-sql">Transaction Support in SQL</a>
+<ul>
+<li><a href="#snapshot-isolation">Snapshot Isolation.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#21-concurrency-control-techniques">21 Concurrency Control Techniques</a>
+<ul>
+<li><a href="#two-phase-locking-techniques-for-concurrency-control">Two-Phase Locking Techniques for Concurrency Control</a>
+<ul>
+<li><a href="#types-of-locks-and-system-lock-tables">Types of Locks and System Lock Tables</a></li>
+<li><a href="#guaranteeing-serializability-by-two-phase-locking">Guaranteeing Serializability by Two-Phase Locking</a>
+<ul>
+<li><a href="#basic-conservative-strict-and-rigorous-two-phase-locking">Basic, Conservative, Strict, and Rigorous Two-Phase Locking.</a></li>
+</ul>
+</li>
+<li><a href="#dealing-with-deadlock-and-starvation">Dealing with Deadlock and Starvation</a></li>
+<li><a href="#multiversion-concurrency-control-techniques">Multiversion Concurrency Control Techniques</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#22-database-recovery-techniques">22 Database Recovery Techniques</a>
+<ul>
+<li><a href="#recovery-concepts">Recovery Concepts</a>
+<ul>
+<li><a href="#recovery-outline-and-categorization-of-recovery-algorithms">Recovery Outline and Categorization of Recovery Algorithms</a></li>
+<li><a href="#caching-buffering-of-disk-blocks">Caching (Buffering) of Disk Blocks</a></li>
+<li><a href="#write-ahead-logging-stealno-steal-and-forceno-force">Write-Ahead Logging, Steal/No-Steal, and Force/No-Force</a></li>
+<li><a href="#checkpoints-in-the-system-log-and-fuzzy-checkpointing">Checkpoints in the System Log and Fuzzy Checkpointing</a></li>
+<li><a href="#transaction-rollback-and-cascading-rollback">Transaction Rollback and Cascading Rollback</a></li>
+</ul>
+</li>
+<li><a href="#no-undoredo-recovery-based-on-deferred-update">NO-UNDO/REDO Recovery Based on Deferred Update</a></li>
+<li><a href="#recovery-techniques-based-on-immediate-update">Recovery Techniques Based on Immediate Update</a></li>
+<li><a href="#shadow-paging">Shadow Paging</a></li>
+<li><a href="#the-aries-recovery-algorithm">The ARIES Recovery Algorithm</a></li>
+</ul>
+</li>
+</ul>
 <h1>18 Strategies for Query Processing</h1>
 <p>The scanner identifies the query tokens—such as SQL keywords, attribute names, and relation names. the parser checks the query syntax to determine whether it is formulated according to the syntax rules (rules of grammar) of the query language. the parser checks the query syntax to determine whether it is formulated according to the syntax rules (rules of grammar) of the query language. The parser checks the query syntax to determine whether it is formulated according to the syntax rules (rules of grammar) of the query language.</p>
 <p>The query optimizer module has the task of producing a good execution plan, and the code generator generates the code to execute that plan. The runtime database processor has the task of running (executing) the query code, whether in compiled or interpreted mode, to produce the query result.</p>
@@ -225,7 +317,7 @@ this length of tuple is referred to as R.</li>
 <p><img src="assets/2022-05-12-14-03-24.png" alt=""></p>
 <h4>Snapshot Isolation.</h4>
 <p>The basic definition of snapshot isolation is that a transaction sees the data items that it reads based on the committed values of the items in the database snapshot (or database state) when the transaction starts. Snapshot isolation will ensure that the phantom record problem does not occur, since the database transaction, or in some cases the database statement, will only see the records that were committed in the database at the time the transaction starts.</p>
-<h1>Concurrency Control Techniques</h1>
+<h1>21 Concurrency Control Techniques</h1>
 <h2>Two-Phase Locking Techniques for Concurrency Control</h2>
 <p>A lock is a variable associated with a data item that describes the status of the item with respect to possible operations that can be applied to it.</p>
 <h3>Types of Locks and System Lock Tables</h3>
@@ -260,7 +352,7 @@ this length of tuple is referred to as R.</li>
 <p>One reason for keeping multiple versions is that some read operations that would be rejected in other techniques can still be accepted by reading an older version of the item to maintain serializability.</p>
 <p>The extreme case is a temporal database which keeps track of all changes and the times at which they occurred.</p>
 <p>The snapshot isolation technique can also be implemented by keeping older versions of items in a temporary store.</p>
-<h1>Database Recovery Techniques</h1>
+<h1>22 Database Recovery Techniques</h1>
 <h2>Recovery Concepts</h2>
 <h3>Recovery Outline and Categorization of Recovery Algorithms</h3>
 <p>Recovery from transaction failures usually means that the database is restored to the most recent consistent state before the time of failure. To do this, the system must keep information about the changes that were applied to data items by the various transactions. This information is typically kept in the system log.</p>
@@ -298,7 +390,7 @@ this length of tuple is referred to as R.</li>
 <h3>Transaction Rollback and Cascading Rollback</h3>
 <p>f a transaction fails for whatever reason after updating the database, but before the transaction commits, it may be necessary to roll back the transaction. The undo-type log entries are used to restore the old values of data items that must be rolled back.</p>
 <p>If a transaction T is rolled back, any transaction S that has, in the interim, read the value of some data item X written by T must also be rolled back. This phenomenon is called cascading rollback, and it can occur when the recovery protocol ensures recoverable schedules but does not ensure strict or cascadeless schedules. almost all recovery mechanisms are designed so that cascading rollback is never required.</p>
-<h3>Transaction Actions That Do Not Affect the Database</h3>
+<p>&lt;!-- ### Transaction Actions That Do Not Affect the Database --&gt;</p>
 <h2>NO-UNDO/REDO Recovery Based on Deferred Update</h2>
 <p>The idea behind deferred update is to defer or postpone any actual updates to the database on disk until the transaction completes its execution successfully and reaches its commit point. deferred update can generally be characterized as a no-steal approach.</p>
 <p>During transaction execution, the updates are recorded only in the log and in the cache buffers.If a transaction fails before reaching its commit point, there is no need to undo any operations because the transaction has not affected the database on disk in any way. Therefore, only REDOtype log entries are needed in the log, which include the new value (AFIM).</p>
