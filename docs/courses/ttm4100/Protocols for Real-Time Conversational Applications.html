@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Protocols for Real-Time Conversational Applications.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Protocols for Real-Time Conversational Applications</h2>
+<h3>RTP</h3>
+<p>It is convenient to have a standardized packet structure that includes field for audio/video data, sequence number, and timestamp. RTP can be used for transporting common formats such as PCM, ACC and MP3 for sound and MPEG and H.263 for video. It can also be used for transporting proprietary sound and video formats.</p>
+<h4>RTP Basics</h4>
+<p>RTP typically runs on top of UDP. RTP does not provide any quality-of-service (QoS) guarantees.</p>
+<p>RTP multicast streams belonging together, such as audio and video streams emanating from multiple senders in a video conference application, belong to an RTP session.</p>
+<p><img src="assets/2022-05-10-10-24-19.png" alt=""></p>
+<p>SSRC identifies the source of the RTP stream.</p>
+
+
+</article>
+</body>
+
+</html>

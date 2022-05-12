@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Message Integrity and Digital Signatures.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Message Integrity and Digital Signatures</h2>
+<p>To authenticate a message, one needs to verify:</p>
+<ol>
+<li>The message indeed originated from Alice.</li>
+<li>The message was not tampered with on its way to Bob.</li>
+</ol>
+<h3>Cryptographic Hash Functions</h3>
+<p>a hash function takes an input, m, and computes a fixed-size string H(m) known as a hash. A cryptographic hash function is required to have the following additional property:</p>
+<ul>
+<li>It is computationally infeasible to find any two different messages x and y such that H(x) = H(y).</li>
+</ul>
+<p><img src="assets/2022-05-10-12-09-02.png" alt=""></p>
+<p>The MD5 hash algorithm and the Secure Hash Algorithm (SHA-1) are in wide use today.</p>
+<h3>Message Authentication Code</h3>
+<p>To perform message integrity, in addition to using cryptographic hash functions, Alice and Bob will need a shared secret s. This shared secret, which is nothing more than a string of bits, is called the authentication key. Hash(message + secret) is called the message authentication code (MAC).</p>
+<h3>Digital Signatures</h3>
+<p>digital signing should be done in a way that is verifiable and nonforgeable.</p>
+<p>To sign this document, Bob simply uses his private key.</p>
+<p><img src="assets/2022-05-10-12-14-09.png" alt=""></p>
+<p><img src="assets/2022-05-10-12-20-22.png" alt=""></p>
+<h4>Public Key Certification</h4>
+<p>An important application of digital signatures is public key certification, that is, certifying that a public key belongs to a specific entity.</p>
+<p>for public key cryptography to be useful, you need to be able to verify that you have the actual public key of the entity</p>
+<p>Binding a public key to a particular entity is typically done by a Certification Authority (CA), whose job is to validate identities and issue certificates. A CA has the following roles:</p>
+<ol>
+<li>A CA verifies that an entity (a person, a router, and so on) is who it says it is.</li>
+<li>Once the CA verifies the identity of the entity, the CA creates a certificate that binds the public key of the entity to the identity.</li>
+</ol>
+<p><img src="assets/2022-05-10-12-25-44.png" alt=""></p>
+
+
+</article>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>5G Cellular Networks.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Securing Wireless LANs and 4G/5G Cellular Networks</h2>
+<h3>Authentication and Key Agreement in 802.11 Wireless LANs</h3>
+<p>critical security concerns that we’ll want an 802.11 network to handle:</p>
+<ul>
+<li>Mutual authentication. Before a mobile device is allowed to fully attach to an access point, the network will typically want to authenticate the device. Similarly, the mobile device will want to authenticate the network to which it is attaching.</li>
+<li>Encryption. Symmetric key encryption is used in practice, since encryption and decryption must be performed at high speeds.</li>
+</ul>
+<p>We can identify four distinct phases to the process of mutual authentication and encryption-key derivation</p>
+<ol>
+<li>Discovery. the AP advertises its presence and the forms of authentication and encryption that can be provided to the mobile device. The mobile device then requests the specific forms of authentication and encryption that it desires</li>
+<li>Mutual authentication and shared symmetric key derivation. the device and the authentication server will use this shared secret along with nonces (to prevent relay attacks) and cryptographic hashing (to ensure message integrity) in authenticating each other.</li>
+<li>Shared symmetric session key distribution.</li>
+<li>Encrypted communication between mobile device and a remote host via the AP.</li>
+</ol>
+<h4>Mutual Authentication and Shared Symmetric Session Key Derivation</h4>
+<p>Wired Equivalent Privacy (WEP) contained a number of serious security flaws.</p>
+<p>At the heart of WPA is a four-way handshake protocol that performs both mutual authentication and shared symmetric session-key derivation.</p>
+<p><img src="assets/2022-05-10-14-15-39.png" alt=""></p>
+<h4>802.11 Security Messaging Protocols</h4>
+<p><img src="assets/2022-05-10-14-16-24.png" alt=""></p>
+<h3>Authentication and Key Agreement in 4G/5G Cellular Networks</h3>
+<p><img src="assets/2022-05-10-14-17-24.png" alt=""></p>
+<p>The 4G Authentication and Key Agreement (AKA) protocol consists of the following steps:</p>
+<ul>
+<li>Authentication request to HSS.</li>
+<li>Authentication response from HSS.</li>
+<li>Authentication response from mobile device.</li>
+<li>Mobile device authentication.</li>
+<li>Data plane and control plane key derivation.</li>
+</ul>
+
+
+</article>
+</body>
+
+</html>

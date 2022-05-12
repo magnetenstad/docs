@@ -43,10 +43,10 @@
 <p>DHCP is a client-server protocol. A client is typically a newly arriving host wanting to obtain network configuration information, including an IP address for itself. In the simplest case, each subnet will have a DHCP server. If no server is present on the subnet, a DHCP relay agent (typically a router) that knows the address of a DHCP server for that network is needed.</p>
 <p>For a newly arriving host, the DHCP protocol is a four-step process.</p>
 <ul>
-<li>DHCP server discovery.</li>
-<li>DHCP server offer(s).</li>
-<li>DHCP request.</li>
-<li>DHCP ACK.</li>
+<li>DHCP server discovery. The client broadcasts a DHCPDISCOVER message on the network subnet.</li>
+<li>DHCP server offer(s). The DHCP server reserves an IP address for the client and makes a lease offer by sending a DHCPOFFER message to the client.</li>
+<li>DHCP request. In response to the DHCP offer, the client replies with a DHCPREQUEST message, broadcast to the server, requesting the offered address.</li>
+<li>DHCP ACK. This packet includes the lease duration and any other configuration information that the client might have requested.</li>
 </ul>
 <p>Since a new IP address is obtained from DHCP each time a node connects to a new subnet, a TCP connection to a remote application cannot be maintained as a mobile node moves between subnets.</p>
 <p><img src="assets/2022-05-08-14-47-01.png" alt=""></p>

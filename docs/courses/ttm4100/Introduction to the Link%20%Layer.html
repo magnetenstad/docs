@@ -23,6 +23,18 @@
 
 <p>↩️ <a href="./index.html">ttm4100</a></p>
 <h2>Introduction to the Link Layer</h2>
+<h3>The Services Provided by the Link Layer</h3>
+<p>Possible services that can be offered by a link-layer protocol include:</p>
+<ul>
+<li>Framing. A frame consists of a data field, in which the network-layer datagram is inserted, and a number of header fields. The structure of the frame is specified by the link-layer protocol.</li>
+<li>Link access. A medium access control (MAC) protocol specifies the rules by which a frame is transmitted onto the link, and serves to coordinate the frame transmissions of the many nodes.</li>
+<li>Reliable delivery.</li>
+<li>Error detection and correction.</li>
+</ul>
+<h3>Where Is the Link Layer Implemented?</h3>
+<p>For the most part, the link layer is implemented on a chip called the network adapter, also sometimes known as a network interface controller (NIC).</p>
+<p>If the link layer performs error detection, then it is the sending controller that sets the error-detection bits in the frame header and it is the receiving controller that performs error detection.</p>
+<p><img src="assets/2022-05-08-16-14-03.png" alt=""></p>
 
 
 </article>

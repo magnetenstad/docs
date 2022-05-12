@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Principles of Cryptography.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Principles of Cryptography</h2>
+<p><img src="assets/2022-05-10-10-48-38.png" alt=""></p>
+<p>In symmetric key systems, Alice’s and Bob’s keys are identical and are secret. In public key systems, a pair of keys is used. One of the keys is known to both Bob and Alice (indeed, it is known to the whole world). The other key is known only by either Bob or Alice (but not both).</p>
+<h3>Symmetric Key Cryptography</h3>
+<p>one can distinguish three different scenarios, depending on what information the intruder has.</p>
+<ul>
+<li>Ciphertext-only attack.</li>
+<li>Known-plaintext attack.</li>
+<li>Chosen-plaintext attack.</li>
+</ul>
+<h4>Block Ciphers</h4>
+<p>In a block cipher, the message to be encrypted is processed in blocks of k bits.</p>
+<h4>Cipher-Block Chaining</h4>
+<p>block ciphers typically use a technique called Cipher Block Chaining (CBC). The basic idea is to send only one random value along with the very first message, and then have the sender and receiver use the computed coded blocks in place of the subsequent random number.</p>
+<h3>Public Key Encryption</h3>
+<p><img src="assets/2022-05-10-11-39-07.png" alt=""></p>
+<p>Suppose Alice wants to communicate with Bob. As shown in Figure 8.6, rather than Bob and Alice sharing a single secret key, Bob instead has two keys - a public key that is available to everyone in the world and a private key that is known only to Bob. Alice then encrypts her message, m, to Bob using Bob’s public key and a known encryption algorithm. Bob receives Alice’s encrypted message and uses his private key and a known decryption algorithm to decrypt Alice’s encrypted message.</p>
+<p>Since Bob’s encryption key is public, anyone can send an encrypted message to Bob, including Alice or someone pretending to be Alice.</p>
+
+
+</article>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>Operational Security Firewalls and Intrusion Detection Systems.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">ttm4100</a></p>
+<h2>Operational Security: Firewalls and Intrusion Detection Systems</h2>
+<h3>Firewalls</h3>
+<p>A firewall is a combination of hardware and software that isolates an organization’s internal network from the Internet at large, allowing some packets to pass and blocking others</p>
+<p><img src="assets/2022-05-10-14-20-32.png" alt=""></p>
+<p>A firewall has three goals:</p>
+<ul>
+<li>All traffic from outside to inside, and vice versa, passes through the firewall.</li>
+<li>Only authorized traffic, as defined by the local security policy, will be allowed to pass.</li>
+<li>The firewall itself is immune to penetration.</li>
+</ul>
+<p>Firewalls can be classified in three categories: traditional packet filters, stateful filters, and application gateways.</p>
+<h4>Traditional Packet Filters</h4>
+<p>A packet filter examines each datagram in isolation, determining whether the datagram should be allowed to pass or should be dropped based on administrator-specific rules. Filtering decisions are typically based on:</p>
+<ul>
+<li>IP source or destination address</li>
+<li>Protocol type in IP datagram field: TCP, UDP, ICMP, OSPF, and so on</li>
+<li>TCP or UDP source and destination port</li>
+<li>TCP flag bits: SYN, ACK, and so on</li>
+<li>ICMP message type</li>
+<li>Different rules for datagrams leaving and entering the network</li>
+<li>Different rules for the different router interfaces</li>
+</ul>
+<h4>Stateful Packet Filters</h4>
+<p>Stateful filters actually track TCP connections, and use this knowledge to make filtering decisions.</p>
+<h4>Application Gateway</h4>
+<p>what if the organization wants such privileged users to authenticate themselves first before being allowed to create Telnet sessions to the outside world? Such tasks are beyond the capabilities of traditional and stateful filters.</p>
+<p>An application gateway is an application-specific server through which all application data (inbound and outbound) must pass.</p>
+<p>Thus, the Telnet application gateway not only performs user authorization but also acts as a Telnet server and a Telnet client, relaying information between the user and the remote Telnet server.</p>
+<p>Application gateways do not come without their disadvantages. First, a different application gateway is needed for each application. Second, there is a performance penalty to be paid, since all data will be relayed via the gateway. Finally, the client software must know how to contact the gateway when the user makes a request, and must know how to tell the application gateway what external server to connect to.</p>
+<p><img src="assets/2022-05-10-14-23-08.png" alt=""></p>
+
+
+</article>
+</body>
+
+</html>
