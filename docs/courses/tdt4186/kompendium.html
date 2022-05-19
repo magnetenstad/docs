@@ -29,7 +29,7 @@
 <li>[x] lecture 2, 3</li>
 <li>[x] lecture 4, 5</li>
 <li>[x] lecture 6, 7</li>
-<li>[ ] lecture 9, 10</li>
+<li>[x] lecture 9, 10</li>
 <li>[x] lecture 11, 12</li>
 <li>[x] lecture 14</li>
 <li>[ ] lecture 15, 16</li>
@@ -60,9 +60,42 @@ main memory for multiple programs, programs in execution (processes), processor 
 <p>External fragmentation involves memory fragments outside of the allocated memory areas which cannot be used. This is a problem with all list based strategies, e.g. first fit, best fit. Internal fragmentation involves unused memory inside of allocated memory areas. This is a problem e.g. with the buddy allocator.</p>
 <p>The Linux kernel uses buddy allocation. Inside processes, heap memory enables dynamic allocation of memory with the <code><span class="hljs-attribute">malloc</span></code> and <code><span class="hljs-attribute">free</span></code> functions. Secondary storage sections are ofte managed using bitmaps.</p>
 <p>With multiprogramming, segments of a process may be swapped out to background memory and released in main memory, if the space is needed by another process. Swapping is slow.</p>
-<blockquote>
-<p>TODO</p>
-</blockquote>
+<p>With segmentation, a process is divided into variable-length segments. Segment details (Base, Limit (length)) are stored in the segmentation tagle. Segmentation cause fragmentation problems. Compaction reduces fragmentation, but is an operation with large overhead.</p>
+<p>With paging, a process is divided into fixed-length pages, solving the external fragmentation problem. However, page-based addressing creates internal fragmentation (the last page is often not used completely). Small pages reduce internal fragmentation, but increase the size of the page table (and vice versa). The page table maps logical base addresses (location) to physical base addresses (content).</p>
+<p>With multi-level paging, the table must not contain the whole address space. Subtables can be created at access time (on demand), which saves memory.</p>
+<p>The translation lookaside buffer (TLB) provides fast access to page address mapping. TLB has to be flushed when the OS switches context. If a page not contained in the TLB is accessed, the related access information is entered into the TLB and an old TLB entry has to be discarded.</p>
+<p>For large logical address spaces (e.g. 64 bit addresses), inverted page tables may be used. In an inverted page table, the logical address (along with process PID) is the <em>content</em> of the table, and the physical base address is represented by the location.</p>
+<p>With virtual memory, the illusion of a large (or "endless") main memory is created, by only keeping the currently used memory areas available in main memory. With demand paging, pages are loaded into main memory on demand. The new page may replace another page, which is to be decided by a replacement strategy. The performance of paging depends on the probability of page faults:</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>t</mi><mtext>hit</mtext></msub><mo>+</mo><mi>p</mi><mo>⋅</mo><msub><mi>t</mi><mtext>miss</mtext></msub></mrow><annotation encoding="application/x-tex">(1 - p) \cdot t_{\text{hit}} + p \cdot t_{\text{miss}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">hit</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.63889em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">miss</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<table>
+<thead>
+<tr>
+<th>Replacement Strategy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First-In First-Out (FIFO)</td>
+<td>Replace the page that was placed first.</td>
+</tr>
+<tr>
+<td>Least Recently Used (LRU)</td>
+<td>Replace the least recently used page. Requires control states (backwards distance)</td>
+</tr>
+<tr>
+<td>Second Chance (clock)</td>
+<td>A reference bit is set when the page is accessed. Pages are checked in FIFO order, ref: 1 -&gt; 0, 0 -&gt; replace. Possible to extend with a modification bit.</td>
+</tr>
+<tr>
+<td>Optimal (OPT)</td>
+<td>Replace the page that will be accessed farthest in the future.</td>
+</tr>
+</tbody>
+</table>
+<p>With a free page buffer, a number of free pages is always kept in memory. Pageouts take place "in advance".</p>
+<p>Thrashing happens when a page that was paged out is accessed immidiately after the page out happened. The process spends more time waiting to handle page faults than with its own execution. Causes of thrashing are 1) A process is close to its page maximum, 2) Too many processes in the system at the same time, 3) Suboptimal replacement strategy. Solutions to thrashing are 1) swapping of processes, 2) working set model.</p>
 <h2>Processes</h2>
 <p><a href="tdt4186.lecture.4.html">Link to lecture 4</a></p>
 <p>A process is a program in execution. They often consist of alternating sequences of "CPU bursts" and "I/O bursts". The process context consists of</p>
