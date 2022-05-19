@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>kompendium.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">tdt4186</a></p>
+<h1>TDT4186 Kompendium</h1>
+<p>TODOLIST</p>
+<ul>
+<li>[x] lecture 1</li>
+<li>[x] lecture 2, 3</li>
+<li>[x] lecture 4, 5</li>
+<li>[x] lecture 6, 7</li>
+<li>[ ] lecture 9, 10</li>
+<li>[x] lecture 11, 12</li>
+<li>[x] lecture 14</li>
+<li>[ ] lecture 15, 16</li>
+<li>[ ] lecture 17, 18</li>
+<li>[x] lecture 21</li>
+</ul>
+<h1>Notes</h1>
+<p>Operating systems know the hardware in detail and provides suitable abstractions, to serve the users and their application programs.</p>
+<h2>OS Development</h2>
+<p><a href="tdt4186.lecture.1.html">Link to lecture 1</a></p>
+<p>The first system softwares were reusable probram libraries: linkers, loaders, debuggers and device drivers. The first operating systems were "resident monitors"; they handled interpretation of job control commands, loading and execution of programs and device control.</p>
+<p>With multiprogramming, the CPU works on multiple jobs at the same time. In consequence, the OS must handle concurrent I/O activites,
+main memory for multiple programs, programs in execution (processes), processor scheduling and multi user operation (security and accounting).</p>
+<h2>Memory management</h2>
+<p><a href="tdt4186.lecture.9.html">Link to lecture 9</a></p>
+<p>Access to I/O devices is often slow ("memory gap", "I/O bottleneck"). Polling sends a command and then waits until the device returns data. With interrupts, the device notifies the program when data is ready.</p>
+<p>Caches work efficiently due to two locality principles:</p>
+<ul>
+<li>Temporal locality: a program accessing some part of memory is likely to access the same memory soon thereafter</li>
+<li>Spatial locality: a program accessing some part of memory is likely to access nearby memory next</li>
+</ul>
+<p>The MMU translates allowed ("virtual", "logical") addresses to "physical" addresses in main memory using a translation table. Enables security by separating process address spaces. The MMU uses a special cache on the CPU - the translation lookaside buffer (TLB).</p>
+<p>Memory management involves address mapping (logical to physical) and placement/replacement strategies.</p>
+<p>Available memory is used be user processes, as well as the OS itself.</p>
+<p>With static memory allocation, fixed memory areas are allocated to the OS and user processes. Disadvantages: 1) Limited degree of multiprogramming. 2) Limitation of other resources e.g. I/O bandwidth due to buffers that are too small. 3) Unused OS memory cannot be used by application processes (and vice versa). Dynamic memory allocation solves the problems of static memory allocation, but requires placement and replacement strategies.</p>
+<p>Free segments of main memory have to be represented. The bit list approach is simple, but have some disadvantages: 1) Bit lists can require lots of memory 2) When releasing memory, the size of the memory block to be released has to be known or provided 3) Linear search is slow. The linked list approach uses less (but dynamic!) memory and is faster. But it requires a minimum gap size, to store the length and the pointer to the next free gap.</p>
+<p>Placement strategies decide where to allocate memory. Some trivial placement strategies are First fit, Rotating First Fit / Next Fit, Best Fit, Worst Fit (best and worse are sorted after gap size). The buddy allocation method splits memory dynamically into areas of a size 2^n.</p>
+<p>External fragmentation involves memory fragments outside of the allocated memory areas which cannot be used. This is a problem with all list based strategies, e.g. first fit, best fit. Internal fragmentation involves unused memory inside of allocated memory areas. This is a problem e.g. with the buddy allocator.</p>
+<p>The Linux kernel uses buddy allocation. Inside processes, heap memory enables dynamic allocation of memory with the <code><span class="hljs-attribute">malloc</span></code> and <code><span class="hljs-attribute">free</span></code> functions. Secondary storage sections are ofte managed using bitmaps.</p>
+<p>With multiprogramming, segments of a process may be swapped out to background memory and released in main memory, if the space is needed by another process. Swapping is slow.</p>
+<blockquote>
+<p>TODO</p>
+</blockquote>
+<h2>Processes</h2>
+<p><a href="tdt4186.lecture.4.html">Link to lecture 4</a></p>
+<p>A process is a program in execution. They often consist of alternating sequences of "CPU bursts" and "I/O bursts". The process context consists of</p>
+<ul>
+<li>Memory: code, data, and stack segment (text, data, bss, stack, heap)</li>
+<li>Contents on processor registers (Instruction pointer, Stack pointer, General purpose registers)</li>
+<li>Process state (RUNNING, READY, BLOCKED, etc.)</li>
+<li>User ID (and group ID)</li>
+<li>Access permissions</li>
+<li>Currently used resources (Files, I/O devices, etc.)</li>
+</ul>
+<p>Scheduling enables the coordination of concurrent processes. Scheduling algorithms can be user oriented (short reaction times)or system oriented (optimal CPU utilization).</p>
+<p>Inter-process communication (IPC) enables the collaboration of multiple processes. Examples are shared memory and message passing.</p>
+<p>From the point of view of the application, calling an operating system service looks like a regular function call, e.g.: <code><span class="hljs-attribute">pid</span> <span class="hljs-operator">=</span> fork()<span class="hljs-comment">;</span></code> (the C library (libc) provides stubs (adapter functions) that call the actual syscall). However, arbitrarily calling code inside the OS kernel is dangerous. Many CPUs provide several execution modes: "user mode": only restricted functionality is allowed, and "kernel" or "supervisor mode": full access to all hardware resources.</p>
+<table>
+<thead>
+<tr>
+<th>Syscall</th>
+<th>Description</th>
+<th>Manual section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getpid</td>
+<td>returns PID of the calling process</td>
+<td>(2)</td>
+</tr>
+<tr>
+<td>getppid</td>
+<td>returns PID of the parent process</td>
+<td>(2)</td>
+</tr>
+<tr>
+<td>getuid</td>
+<td>return the UID of the calling process</td>
+<td>(2)</td>
+</tr>
+<tr>
+<td>fork</td>
+<td>creates a new child process</td>
+<td>(2)</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>terminates the calling process</td>
+<td>(3)</td>
+</tr>
+<tr>
+<td>_exit</td>
+<td>terminates the calling process</td>
+<td>(2)</td>
+</tr>
+<tr>
+<td>wait</td>
+<td>waits for the termination of a child process</td>
+<td>(2)</td>
+</tr>
+<tr>
+<td>execve</td>
+<td>loads and starts a program in the context of the calling process</td>
+<td>(2)</td>
+</tr>
+</tbody>
+</table>
+<p>Read Unix manual pages with <code>man <span class="hljs-tag">&lt;<span class="hljs-name">num</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">command</span>&gt;</span></code></p>
+<p>With <code><span class="hljs-function"><span class="hljs-type">pid_t</span> <span class="hljs-title">fork</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span></code>, the child's PID is returned to the parent process, and 0 is returned to the child process. The child process continues the program from the current line and inherits most parent process attributes (copy on write), but not the Process ID (PID), and parent process ID (PPID). Copy on write is a an optimization which only really copies the memory if it is updated (written to).</p>
+<p><code><span class="hljs-keyword">void</span> <span class="hljs-title function_">_exit</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></code> terminates the calling process and passes an integer argument as "exit status" to the parent process. It also releases the resources allocated by the process. In C, the library function <code><span class="hljs-keyword">exit</span>()</code> should be used, shich additionally releases resources used by the C library.</p>
+<p><code><span class="hljs-function"><span class="hljs-type">pid_t</span> <span class="hljs-title">wait</span><span class="hljs-params">(<span class="hljs-type">int</span> *)</span></span></code> blocks the calling process until one of its child processes terminates, or returns immediately if all child processes are already terminated. The return value is the terminated child's PID. Using the <code><span class="hljs-built_in">int</span> *</code> parameter, the caller is passed the child's "exit status".</p>
+<p>A terminated process is called a "zombie" until its exit status is requested using wait. The resources allocated to such processes can be released, but the OS project management still needs to know about them (i.e. exit status has to be saved).</p>
+<p>If a parent process terminates before a child, the child process is orphaned. The init process (PID 1) adopts all orphaned processes.</p>
+<p><code><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">execve</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *command, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *args[], <span class="hljs-type">const</span> <span class="hljs-type">char</span> *encp[])</span></span></code> loads and starts the command passed in, remaining in the same process. Alternatives: <code><span class="hljs-attribute">execl</span></code>, <code><span class="hljs-attribute">execv</span></code>, <code><span class="hljs-attribute">execlp</span></code>, <code><span class="hljs-attribute">execvp</span></code>.</p>
+<p>A more complete unix process state diagram:
+<img src="assets/2022-05-18-11-41-31.png" alt=""></p>
+<p>Traditional Unix process creation using fork is too heavyweight for some applications.</p>
+<h3>Threads and Fibers</h3>
+<p><a href="tdt4186.lecture.5.html">Link to lecture 5</a></p>
+<p>Threads are lightweight (usually kernel-level) processes and can share address space (code + data + bss + heap). Advantages: Faster context switching, complex operations can run in parallel of user I/O. Disadvantages: error-prone, shared access requires coordination, scheduling overhead.</p>
+<p>Fibers are also called user-level threads (or green threads, or featherweight processes). Implemented on application layer, unknown to the OS. Advantages: 1) Extremely fast context switch: only exchange processor registers. 2) No switch to kernel mode required to switch to different fiber 3) Every application can choose the fiber library best suited for it Disadvantages: 1) Blocking a single fiber leads to blocking the whole process (since the OS doesn't know about fibers). 2) No speed advantage from multiprocessor systems.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Processes</th>
+<th>Threads</th>
+<th>Fibers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Address space</td>
+<td>separate</td>
+<td>common</td>
+<td>common</td>
+</tr>
+<tr>
+<td>Kernel visibility</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Scheduling</td>
+<td>kernel level</td>
+<td>kernel level</td>
+<td>user space</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>separate per process</td>
+<td>separate per thread</td>
+<td>can be common</td>
+</tr>
+<tr>
+<td>Switching overhead</td>
+<td>very high</td>
+<td>high</td>
+<td>low</td>
+</tr>
+</tbody>
+</table>
+<p>Windows processes provide environment and address space for threads. Every thread has its own stack and CPU register set. User level threads (fibers) are possible, but unusual. Strategy: keep the number of threads low; Use overlapping (asynchronous) I/O.</p>
+<p>Linux implements POSIX threads using the pthreads library. All threads and processes are internally managed as tasks, which the scheduler does not differentiate between.</p>
+<h3>Synchronization</h3>
+<p><a href="tdt4186.lecture.6.html">Link to lecture 6</a></p>
+<p>A race condition is a situation in which multiple processes access shared data concurrently and at least one of the processes manipulates the data. To avoid race conditions, concurrent processes need to be synchronized (coordinated).</p>
+<p>Only a single process can be in a critical section at the same time. Solved by mutual exclusion, using the mutex (<a href="https://en.wikipedia.org/wiki/Lock_(computer_science)">lock</a>) abstraction. However, deadlocks must be considered.</p>
+<p>The bakery algorithm is a working solution for the problem of critical sections.</p>
+<p>Another idea to ensure that a process stays in the critical section is to suppress interrupts (because they cause context switches).</p>
+<p>Many CPUs support indivisible (atomic) read/modify/write cycles that can be used to implement lock algorithms.</p>
+<p>Semaphores are an operating system abstraction to exchange synchronization signals between concurrent processes. A semaphore is defined as a non-negative integer with two atomic operations: <code><span class="hljs-built_in">wait</span></code> (decrement) and <code><span class="hljs-keyword">signal</span><span class="hljs-string"></span></code> (increment).</p>
+<p>A monitor is an abstract data type with implicit synchronization properties. They are for example implemented in Java.</p>
+<p>An actively waiting process 1) is unable to change the condition it is waiting for on its own 2) unnecessarily impedes other processes which would be able to use the CPU for "useful" work. 3) harms itself: the longer a process holds the processor, the longer it has to wait for other processes to fulfill the condition it is waiting for.</p>
+<p>In the case of passive waiting, the process is entered into a waiting queue and is not unblocked until the event occurs.</p>
+<h3>Deadlocks</h3>
+<p><a href="tdt4186.lecture.7.html">Link to lecture 7</a></p>
+<p>A deadlock is a situation in which two or more processes are unable to process because each is waiting for one of the others to do something. A deadlock involves passive waiting, with a BLOCKED process state. The livelock alternative involves active waiting and an arbitrary process state. Deadlocks are the "lesser evil".</p>
+<p>Necessary conditions for a deadlock:</p>
+<ol>
+<li>Exclusive allocation of resources ("mutual exclusion")</li>
+<li>Allocation of additional resources ("hold and wait")</li>
+<li>No removing of resources ("no preemption")</li>
+<li>A closed chain of processes exists, such that each process holds at least one resource needed by the next process in the chain ("circular wait")</li>
+</ol>
+<p>Resources are administered by the operating system and provided to the processes. Resource allocation graphs are used to visualize and also automatically detect deadlock situations. They describe the current system state; The nodes are processes and resources, the edges show an allocation or a request.</p>
+<p>Reusable resources are allocated by processes for a certain time and released again afterwards (CPU, main and mass storage, I/O devices, system data structures such as files, process table entries, etc.). A deadlock occurs if two processes each have allocated a reusable resource which is afterwards additionally requested by the respective other process. Access is typically synchronized with mutual exclusion.</p>
+<p>Consumable resources are generated (produced) and destroyed (consumed) while the system is running (Interrupt requests, signals, messages, data from input devices, etc.). A deadlock occurs if two processes each wait for a consumable resource which is produced by the respective other process. Access is typically synchronized with one-sided synchronization.</p>
+<p>Indirect methods for preventing deadlocks are 1) use non blocking approaches 2) only allow atomic resource allocations 3) enable the preemption of resources using virtualization. Direct methods prevent circular waiting with continuous requirements analysis and avoidance of "unsafe states".</p>
+<p>Banker's algorithm is a deadlock avoidance algorithm which finds a process sequence that guarantees that the system does not run out of resources even when all processes completely use their "credit limit".</p>
+<p>Deadlocks can be accepted ("ostrich algorithm") or detected by creating a waiting graph and search for cycles (O(n)). In the recovery phase, deadlocked processes are terminated and resources are preempted. Methods to avoid/detect deadlocks are very difficult to implement, require too much overhead and are thus not useable. Prevention methods more commonly used and relevant in practice. The risk of deadlock can also be solved by virtualizing resources.</p>
+<h3>Inter-process communication (IPC)</h3>
+<p><a href="tdt4186.lecture.11.html">Link to lecture 11</a></p>
+<p>Inter-Process Communication (IPC) can involve 1) multiple processes cooperate on a task 2) simultaneous use of information by multiple processes 3) reduction of processing time due to parallelization 4) hiding of processing times due to "background execution".</p>
+<p>Processes can communicate by exchanging messages, or by using shared memory (exchange of data by concurrent writes into and reads out of a common memory area).</p>
+<p>Message-oriented communication can be synchronous (Receiver blocks until the message has arrived, Sender blocks until the reception of the message is confirmed) or asynchronous (Sender hands the message to the OS and continues running. Requires buffering.).</p>
+<p>Message addressing can be direct (using process ID, or port/socket) or indirect (using channels (pipes), mailboxes, message queues). Group addressing is another dimension, a message is either unicast (sent to exactly one recipient), multicast (sent to a selection of possible recipients), or broadcast (sent to all).</p>
+<p>Unix signals are interrupts implemented in software, and are a minimal form of IPC as only the signal number is transmitted. Examples: <code><span class="hljs-attribute">SIGINT</span></code>: Terminate the process (ctrl-C), <code><span class="hljs-attribute">SIGSTOP</span></code>: Suspend process (Ctrl-Z), <code><span class="hljs-attribute">SIGWINCH</span></code>: Window size has changes, <code><span class="hljs-attribute">SIGCHLD</span></code>: Child process terminated, <code><span class="hljs-attribute">SIGSEGV</span></code>: Memory protection violation, <code><span class="hljs-attribute">SIGKILL</span></code>: Process is killed.</p>
+<p>Unix shells (a "shell" around the operating system "core") are text based user interface to start commands (Unix programs). Every executed command is a separate child process.</p>
+<p>Standard I/O channels (stdin, stdout, stderr) are usually connected to the terminal in which the shell runs that started the process. The numerical file descriptors assigned to these channels are 0 to stdin, 1 to stdout and 2 to stderr. <code><span class="hljs-meta">&gt;</span></code> redirects standard output, <code>&lt;</code> redirects standard input and <code><span class="hljs-string">|</span></code> (pipe) symbol tells the shell to connect the standard output of the left process to the standard input of the right process.</p>
+<p>Unix pipes are channel between to communicating processes with the following properties: unidirectional, buffers (fixed buffer size), reliable transport, stream-oriented.</p>
+<p>Doug Mcllroy, the inventor of Unix pipes, described the <a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix philosophy</a>. It can be summarized as "Do one thing, do it well."</p>
+<p>Sockets are general (bidirectional and buffered) communication endpoints in a computer network. They are described by a domain (protocol family), a type and a protocol. Unix domain sockets work like bidirectional pipes and can be created as special file in the file system. Internet domain sockets are used for inter-computer communication using Internet protocols.</p>
+<p>Remote procedure calls (RPC) work like a function call between different processes. A request message includes request to execute the remote function and the related parameters. A response message includes the result(s) of the remote call.</p>
+<h3>Uniprocessor scheduling</h3>
+<p><a href="tdt4186.lecture.12.html">Link to lecture 12</a></p>
+<p>Depending on the scheduling level, every process is assigned a logical state representing its dispatch state at a given point in time: 1) short-term scheduling (µs-ms) (ready, running, blocked), 2) medium-term scheduling (ms-min) (swapped and ready, swapped and blocked), 3) long-term scheduling (min – hours) (created, terminated).</p>
+<p>A dispatcher performs various tasks, including context switching, setting up user registers and memory mapping. These are necessary for the process to execute and transfer CPU control to that process. When dispatching, the process changes from the ready state to the running state. The scheduler selects the process, the dispatcher takes the selected process to running state.</p>
+<p>In preemptive scheduling, a process can be forced to yield (release) the CPU. In non-preemptive scheduling, all processes run to completion.</p>
+<table>
+<thead>
+<tr>
+<th>Scheduling approach</th>
+<th>Description</th>
+<th>Preemptive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First-Come First-Served (FCFS)</td>
+<td>Queueing criterion is the arrival time of a process</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Round Robin (RR)</td>
+<td>The available processor time is split into time slices</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Virtual Round Robin (VRR)</td>
+<td>Processes can use the remaining run time they did not use in their previous time slice</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Shortest process next (SPN)</td>
+<td>Requires knowledge about the process run times</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Shortest Remaining Time First (SRTF)</td>
+<td>Extends SPN with preemption</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Highest Response Ratio Next – HRRN</td>
+<td>Extends SRTF, considers the aging of processes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Feedback (FB)</td>
+<td>Short processes obtain an advantage without having to estimate the relative lengths of processes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Multi-level scheduling combined multiple scheduling strategies.</p>
+<p>When evaluating scheduling algorithms, a number of objectives may be optimized for. User oriented: 1) Run time (time between start and termination of a process including the waiting time(s)), 2) Response time (time between user input and program response), 3) Tardiness (deadlines, real-time systems), 4) Predictability (processes are always processed identically independent of the load). System oriented: 1) Throughput (finish as many processes as possible per time unit), 2) CPU load (keep the CPU busy at all times), 3) Avoid overhead (scheduling decisions, context switches) 4) Fairness (no process should be disadavantaged (e.g. by starvation)) 5) Load balancing (I/O devices should also be utilized uniformly).</p>
+<h2>Input and Output</h2>
+<p><a href="tdt4186.lecture.14.html">Link to lecture 14</a></p>
+<p>Character devices (such as a keyboards, printers, modems, and mice) provide a sequential stream of information. Block devices (such as disks, CD-ROM, DVD, tape drives) provide blockwise random access. Some other devices which don't fit this scheme easily are (GP)GPUs, network cards and timers.</p>
+<p>Depending on the device, I/O can be performed via polling ("programmed I/O"), interrupts or DMA. Polling implies active waiting for an I/O device. Interrupts signal the software to become active, and are the source for asynchronous behavior. It implies that the CPU can be allocated to another process while waiting for a response from the device. Direct Memory Access (DMA) is used by complex controllers to transfer data from and to main memory independent of the CPU. DMA bypasses both the cache and MMU memory protection (application processes can never have direct access to program the DMA controller).</p>
+<p>In Unix, peripheral devices are realized as special files. Devices are uniquely identified by a tuple: device type (block or character device), major device number (selects one specific device driver), and minor device number (selects one of multiple devices controlled by the device driver identified by the major number)</p>
+<table>
+<thead>
+<tr>
+<th>Unix access primitives</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><span class="hljs-type">int</span> <span class="hljs-built_in">open</span>(<span class="hljs-keyword">const</span> <span class="hljs-type">char</span> *devname, <span class="hljs-type">int</span> flags)</code></td>
+<td>"opens" a device and returns a file descriptor</td>
+</tr>
+<tr>
+<td><code><span class="hljs-function"><span class="hljs-type">off_t</span> <span class="hljs-title">lseek</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">off_t</span> offset, <span class="hljs-type">int</span> whence)</span></span></code></td>
+<td>Positions the read/write pointer (relative to the start of the file) – only for random access files</td>
+</tr>
+<tr>
+<td><code><span class="hljs-function"><span class="hljs-type">ssize_t</span> <span class="hljs-title">read</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">void</span> *buf, <span class="hljs-type">size_t</span> count)</span></span></code></td>
+<td>Reads at most count bytes from descriptor fd into buffer buf</td>
+</tr>
+<tr>
+<td><code><span class="hljs-function"><span class="hljs-type">ssize_t</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *buf, <span class="hljs-type">size_t</span> count)</span></span></code></td>
+<td>Writes count bytes from buffer buf to file with descriptor fd</td>
+</tr>
+<tr>
+<td><code><span class="hljs-type">int</span> <span class="hljs-built_in">close</span>(<span class="hljs-type">int</span> fd)</code></td>
+<td>"closes" a device. The file descriptor fd can no longer be used after close</td>
+</tr>
+</tbody>
+</table>
+<p>Buffering enables the processes and devices to operate asynchroniously. Without data buffers 1) data which arrives before a corresponding read operation is executed (e.g. keyboard input) would be discarded. 2) if an output device is busy, write would either fail or block the process until the device is ready again. 3) a process executing an I/O operation cannot be swapped.</p>
+<p>With a single I/O buffer 1) The OS can accept data even if the reader process has not executed read yet 2) For block devices, a subsequent block can already be prefetched 3) he process can now be swapped, DMA writes to a buffer. 4) when writing, data is copied, the caller does not block. Data buffers in the user address space can immediately be reused.</p>
+<p>With a double I/O buffer 1) While data is transferred from the I/O device to one of the buffers, the contents of the other buffer can be copied into the user address space. 2) While data is transferred from one of the buffers to the I/O device, the contents of the other buffer can already be refilled with data from the process address space.</p>
+<p>I/O ring buffers are commonly used. Multiple data blocks can be buffered, even if the reading process does not call read fast enough. A writer process can execute multiple write calls without being blocked.</p>
+<p>I/O drivers usually queue multiple requests. Scheduling algorithms determine the order in which the requests will be handled. Some scheduling algorithms (used in mechanical disks) are First-In-First-Out (FIFO), Shortest Seek Time First (SSTF), and Elevator.</p>
+<h2>File Systems</h2>
+<p><a href="tdt4186.lecture.15.html">Link to lecture 15</a></p>
+<p>Unix principle: "everything is a file". More precisely: 1) Every resource in the system can be accessed using a name mapped into a directory hierarchy. 2) Access to resources uses standard Unix system calls for file access. 3) File permissions are used to control access to the resource.</p>
+<p>Files are identified by per process file descriptors (positive integer number) in the OS.</p>
+<table>
+<thead>
+<tr>
+<th>Unix file access API (+ virtual file system mounting)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><span class="hljs-type">int</span> <span class="hljs-built_in">open</span>(<span class="hljs-keyword">const</span> <span class="hljs-type">char</span> *path, <span class="hljs-type">int</span> oflag, ...)</code></td>
+<td>Attempts to open the file with the given path name and options for accessing (read only, read/write etc.). Returns a file descriptor <code><span class="hljs-attribute">fd</span></code> refering to the file on success.</td>
+</tr>
+<tr>
+<td><code><span class="hljs-function"><span class="hljs-type">ssize_t</span> <span class="hljs-title">read</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">void</span> *buf, <span class="hljs-type">size_t</span> nbyte)</span></span></code></td>
+<td>Read <code><span class="hljs-attribute">nbyte</span></code> bytes from file fd into the memory starting at user space memory address <code><span class="hljs-attribute">buf</span></code>.</td>
+</tr>
+<tr>
+<td><code><span class="hljs-function"><span class="hljs-type">ssize_t</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *buf, <span class="hljs-type">size_t</span> nbyte)</span></span></code></td>
+<td>Write <code><span class="hljs-attribute">nbyte</span></code> bytes to file fd from the memory starting at user space memory address <code><span class="hljs-attribute">buf</span></code>.</td>
+</tr>
+<tr>
+<td><code><span class="hljs-type">int</span> <span class="hljs-built_in">close</span>(<span class="hljs-type">int</span> fd)</code></td>
+<td>Closes the file: flushes buffers and invalidates file descriptor.</td>
+</tr>
+<tr>
+<td><code><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mount</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *source, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *target, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *filesystemtype, <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> mountflags, <span class="hljs-type">const</span> <span class="hljs-type">void</span> *data)</span></span></code></td>
+<td>Attaches ("mounts") a file system to the given directory in the global directory tree System Call.</td>
+</tr>
+<tr>
+<td><code><span class="hljs-keyword">int</span> umount(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *<span class="hljs-keyword">target</span>)</code></td>
+<td>Removes the attachment. Note: umount, not unmount</td>
+</tr>
+</tbody>
+</table>
+<p>In most cases, files require multiple blocks of storage on disk. We simply view a disk as a large array of blocks.</p>
+<p>With contigous storage, a file is stored in blocks with increasing block number. Advantages: 1) Access to all blocks with minimal delay due to disk arm positioning 2) Fast direct access to a given file offset position 3) Used for read-only file systems, e.g. CD-ROM/DVD. Disadvantages (problems): 1) Finding free space on the disk 2) Fragmentation 3) The size of new files is usually not known in advance.</p>
+<p>With linked list storage, blocks of a file are linked and files can be extended and shrunk.</p>
+<p>With indexed storage,</p>
+<p>With three sequential storage,</p>
+<blockquote>
+<p>TODO</p>
+</blockquote>
+<h2>Security</h2>
+<p><a href="tdt4186.lecture.21.html">Link to lecture 21</a></p>
+<p>Safety is protection against risks due to hardware and software errors or failures. Security is protection of users and computers against intended errors (attacks).</p>
+<p>Someone (differentiation of persons and groups) has to be deterred from doing (using technical and organizational methods) some unexpected things! 1) unauthorized reading of data (secrecy, confidentiality), 2) unauthorized writing of data (integrity), 3) working under a "false flag" (authenticity), 4) unauthorized use of resources (availability).</p>
+<p>Example: <a href="https://en.wikipedia.org/wiki/Login_spoofing">login spoofing</a>. A fake login screen may be used to access the user credentials. Solution: require the user to start the login sequence using a key combination that cannot be intercepted by a user program.</p>
+<p>Example: virus. Program code inserted into another program, start of the infected program results in virus reproduction. Sorts of viruses: 1) Boot sector virus: executed at system startup time. 2) Macro virus: in scriptable programs, e.g. Word, Excel (Reproduced through documents e.g. sent by email)! 3)
+Executable program as virus.</p>
+<p>Example: social engineering. Gain access to information by exploiting human errors. Phishing is to obtain data of an internet user by pretending to be someone else (with forged addresses). Pharming is manipulation of DNS requests by web browsers, redirecting accesses, e.g. to forged bank websites.</p>
+<p>Some real malware examples are the Unix Morris worm, the Michelangelo virus, the Sony BMG root kit and the Blue Pill.</p>
+<table>
+<thead>
+<tr>
+<th>Malware</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Viruses</td>
+<td>programs inadvertently distributed by a user</td>
+</tr>
+<tr>
+<td>Worms</td>
+<td>do not wait for user actions to propagate to another computer</td>
+</tr>
+<tr>
+<td>Trojan horses</td>
+<td>program disguised as useful application</td>
+</tr>
+<tr>
+<td>Root kit</td>
+<td>collection of software tools to disguise future logins of an attacker and hide processes and files, installed after a computer system is compromised</td>
+</tr>
+</tbody>
+</table>
+<p>Design principes of permission management are 1) Principle of least privilege (Allow a person or software component only those permissions that are required for the functionality to be realized) 2) Fail-safe defaults 3) Separation of duties.</p>
+<p>An access matrix consists of Subjects (persons/users, processes, Objects (data, devices, processes, memory) and Operations (read, write, delete, execute). It is used to determine if <code><span class="hljs-function"><span class="hljs-title">operation</span><span class="hljs-params">(subject, object)</span></span></code> is permitted.</p>
+<p>Some access matrix variants are 1) Access Control Lists (ACL / Coloumns): permissions are validated based on the identity of the requesting subject (user). 2) Capabilities (Rows): for every access to an object a property is validated which is owned by the subject and which can be passed to other subjects on demand. 3) Mandatory access control (Rule-based): rules are evaluated for every access.</p>
+<p>Unix uses simple Access Control Lists (ACL). Processes have a user ID and a group ID, files have an owner and a group. Permissions are related to the user (owner), group, and all others.</p>
+<p>The Memory Management Unit (MMU) provides hardware-based protection by 1) only mapping the exact set of required main memory pages into the virtual address space of a process, 2) isolation of the physical address spaces of different processes, 3) protection bits for each page, controlled at every access.</p>
+<p>Protection rings is a privilege concept where all code is executed in the context of a given ring, where the innermost ring (0) has access to all system resources. User programs usually run in ring 3.</p>
+<p>Software bugs such as exceeding a value range or a heap/buffer overflow are security issues, and can be exploited.</p>
+<h1>Questions</h1>
+<h2>An Introduction to Operating Systems</h2>
+<ul>
+<li>Why were operating systems developed initially?</li>
+<li>How did the features of operating systems evolve along with the development of the available hardware?</li>
+<li>How do we define the term "operating system" today?</li>
+<li>What are the building blocks of a computer system?
+<ul>
+<li>CPU, RAM, character and block I/O device, bus</li>
+</ul>
+</li>
+<li>Which resources are represented by these building blocks?
+<ul>
+<li>Disk is a block device</li>
+<li>Terminal and printer are character devices</li>
+</ul>
+</li>
+<li>How does code (in the OS) interact with hardware resources?
+<ul>
+<li>Device handling, device drivers</li>
+<li>Port and memory mapped I/O</li>
+<li>Interrupts (async notification)</li>
+<li>DMA</li>
+</ul>
+</li>
+<li>What are the most relevant developments in computer architecture of the last decades and which problems/benefits are related to these developments?</li>
+</ul>
+<h2>Challenges and Tasks of Operating Systems</h2>
+<ul>
+<li>Which abstractions does a modern OS provide?
+<ul>
+<li>CPUs, processes, memory, file systems, security, ...</li>
+</ul>
+</li>
+<li>What is a process?
+<ul>
+<li>How do processes interact with each other and the OS?
+<ul>
+<li>System calls</li>
+<li>Synchronization and deadlock fundamentals</li>
+</ul>
+</li>
+<li>What different view of processes exists and why?</li>
+<li>Which states can a process have and what characterizes the different states?
+<ul>
+<li>What transitions between states are legal?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Processes and Threads</h2>
+<ul>
+<li>What is the definition of a process and what is the difference to a program?</li>
+<li>What is a process hierarchy and why does it exist?
+<ul>
+<li>Parent/child processes, orphans, zombies and PID 1 (init)</li>
+</ul>
+</li>
+<li>How can processes perform I/O, how can it be (re)configured?
+<ul>
+<li>Relation of the I/O concept to the Unix philosophy?
+<ul>
+<li>Do one thing, and do it well</li>
+<li>Everything is a file</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>How do processes interact with the OS: system calls
+<ul>
+<li>"Gate to the kernel"</li>
+</ul>
+</li>
+<li>How can processes be created/controlled/terminated?
+<ul>
+<li>Which Unix syscalls are used for process management?
+<ul>
+<li>Fork, exec, kill etc.</li>
+</ul>
+</li>
+<li>Pros and cons of the Unix fork/exec model</li>
+</ul>
+</li>
+<li>Optimizations for process creation in Unix: copy-on-write</li>
+<li>What are details of the extended process state model?</li>
+<li>What is the overhead of Unix processes and their creation?</li>
+<li>What are the differences between address spaces for processes and threads?</li>
+<li>What are the thread models in Unix and Windows?</li>
+<li>What are fibers (user-level threads)?
+<ul>
+<li>Can you discuss pros and cons of threads vs. fibers?</li>
+</ul>
+</li>
+<li>Cooperative multithreading
+<ul>
+<li>Can you describe the ideas behind Duff’s device and protothreads? (you don’t have to know the details of their implementations)</li>
+<li>Difference between the cooperative and preemptive ways</li>
+</ul>
+</li>
+</ul>
+<h2>Concurrency: Mutual exclusion, Synchronisation, Deadlocks</h2>
+<ul>
+<li>What is shared data/memory communication, why is it problematic?
+<ul>
+<li>Can you give an example of a problematic situation?
+<ul>
+<li>e.g. a race condition</li>
+</ul>
+</li>
+<li>Can you understand multithreaded code using shared data?</li>
+</ul>
+</li>
+<li>What is a race condition (can you give examples)?
+<ul>
+<li>Why are race conditions hard to detect and debug?</li>
+</ul>
+</li>
+<li>What is synchronization used for, which options for synchronization exist?
+<ul>
+<li>Can you define the term "critical section"?</li>
+</ul>
+</li>
+<li>What are locks and how are they used?
+<ul>
+<li>Can you give details on lock implementations (atomic operations, suppressing interrupts, semaphores)?</li>
+</ul>
+</li>
+<li>What is a semaphore, which operations exists on semaphores?
+<ul>
+<li>Can you define the use and implementation of semaphores?</li>
+<li>Can you describe problems (e.g. reader/writer) solved using semaphores?</li>
+</ul>
+</li>
+<li>What are monitors and how to they differ from semaphore solutions?</li>
+<li>Can you define the terms "deadlock" and "livelock"?
+<ul>
+<li>Explain situations leading to both problems</li>
+</ul>
+</li>
+<li>What are the necessary conditions for deadlocks to occur?
+<ul>
+<li>What is the additional condition that is required for a deadlock to occur?</li>
+</ul>
+</li>
+<li>Which types of resources exists related to synchronization?</li>
+<li>What are the components of a resource allocation graph, how do you construct it?
+<ul>
+<li>How can you detect a deadlock in this graph?
+<ul>
+<li>Why is this not effective in practise?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What is the dining philosophers problem?
+<ul>
+<li>Why do deadlocks occur here?</li>
+<li>Can you describe a solution to solve the problem?</li>
+<li>Can you discuss the efficiency of different solutions?</li>
+</ul>
+</li>
+<li>How can deadlocks be prevented and what are safe/unsafe states?</li>
+<li>Which methods exist to resolve a deadlock and what are their pros/cons?</li>
+</ul>
+<h2>Memory management and Virtual Memory</h2>
+<ul>
+<li>Requirements for memory management for multiprogramming systems?</li>
+<li>Which policies and strategies are relevant for memory management?</li>
+<li>Can you describe the basic problem of memory allocation?</li>
+<li>How does dynamic memory allocation work?
+<ul>
+<li>Can you describe different approaches, describe pros/cons?</li>
+</ul>
+</li>
+<li>Can you name and describe different placement strategies?</li>
+<li>What is memory fragmentation?
+<ul>
+<li>Which kinds of fragmentation exist, what are their properties?
+<ul>
+<li>Internal and external fragmentation</li>
+</ul>
+</li>
+<li>Where are different allocation methods typically used?</li>
+</ul>
+</li>
+<li>Can you describe differences between swapping, segmentation, paging?
+<ul>
+<li>How does paging as an OS concept interact with the MMU (and TLB, and page tables)?</li>
+<li>How can paging be optimized using hardware or software approaches (like TLB)?</li>
+</ul>
+</li>
+<li>What is the locality principle in computers?
+<ul>
+<li>Which kinds of locality exist, can you describe their properties?</li>
+<li>How can locality be used to optimize performance?</li>
+</ul>
+</li>
+<li>What is the idea behind virtual memory, which abstraction/illusion is created by virtual memory?</li>
+<li>How does demand paging work?
+<ul>
+<li>What is a page fault and how is it handled?</li>
+<li>What are tasks of the OS and hardware when handling page faults?</li>
+</ul>
+</li>
+<li>Can you name different page replacement strategies and discuss their pros/cons? (FIFO, optimal, LRU, second chance)
+<ul>
+<li>Can you simulate different strategies given an access sequence?</li>
+</ul>
+</li>
+<li>Can you define thrashing and name causes and possible solutions?</li>
+<li>What is the working set of a process and how can you determine it?</li>
+</ul>
+<h2>Scheduling: Uni- and Multiprocessor</h2>
+<ul>
+<li>Which approaches to inter-process communication (IPC) exist?
+<ul>
+<li>Can you give their pros/cons?</li>
+</ul>
+</li>
+<li>What are the primitives for message-based communication?
+<ul>
+<li>Which synchronization methods exist here?</li>
+<li>How can processes be addressed?</li>
+<li>Which message formats exist?</li>
+</ul>
+</li>
+<li>Which IPC methods exist in Unix?</li>
+<li>Can you describe the concepts and use (programming) of…
+<ul>
+<li>Signals, unnamed pipes, named pipes, Unix message queues, sockets</li>
+</ul>
+</li>
+<li>What is RPC and what is the fundamental difference to IPC?</li>
+<li>Can you define the terms "dispatching" and "scheduling"?</li>
+<li>Which dispatch states exist, which level of scheduling are they related to?
+<ul>
+<li>Can you describe details of short/medium/long term scheduling?</li>
+<li>Which process state transitions are related to which scheduling level?</li>
+</ul>
+</li>
+<li>Can you explain preemptive scheduling and its advantages?
+<ul>
+<li>Can you give examples for scheduling strategies, explain how they work?</li>
+<li>Can you determine scheduling orders for a given strategy?</li>
+</ul>
+</li>
+<li>Can you discuss pros/cons of the different scheduling strategies?</li>
+<li>What is multi-level scheduling and how is this related to priorities?</li>
+<li>Can you give details of scheduling strategies in Unix and Windows?</li>
+</ul>
+<h2>I/O Management and Disk Scheduling</h2>
+<ul>
+<li>How do devices and the OS interact? Can you name different methods?</li>
+<li>Which classes of devices exist and what are their properties?
+<ul>
+<li>Character devices, block devices etc.</li>
+</ul>
+</li>
+<li>How do interrupts and DMA work and what are their pros/cons?</li>
+<li>How can I/O devices be addressed by the OS?</li>
+<li>What is a device driver, in which ways can it interact with the hardware?</li>
+<li>What are the various tasks of the OS related to devices?</li>
+<li>How are devices represented and abstracted in Unix?
+<ul>
+<li>Name properties of/differences between character/block/other devices</li>
+<li>How does the OS implement the relation device special file &lt;=&gt; device driver?</li>
+</ul>
+</li>
+<li>How can devices be used in user processes, what are related syscalls/libc functions?
+<ul>
+<li>Why is buffering important, can you discuss the pros/cons?</li>
+<li>How does a ring buffer work, where is it typically used?</li>
+</ul>
+</li>
+<li>How does I/O scheduling for disk drives work
+<ul>
+<li>What are the pros/cons of the different scheduling approaches?</li>
+</ul>
+</li>
+</ul>
+<h2>File Management</h2>
+<ul>
+<li>What is the file abstraction and why is it useful?</li>
+<li>What are the syscalls/libc functions in Unix to handle files?</li>
+<li>What is a virtual file system and how does this work?
+<ul>
+<li>What is mounting/unmounting, what is their effect on the directory tree of a Unix system?</li>
+</ul>
+</li>
+<li>Which methods exist to map a file to disk blocks?
+<ul>
+<li>Describe problems of the approaches/pros/cons</li>
+</ul>
+</li>
+<li>Which methods exist to manage free space?</li>
+<li>What are the directory and inode structures for typical file systems?
+<ul>
+<li>Unix System V, BSD FFS, Linux ext2/3/4</li>
+</ul>
+</li>
+<li>What are the challenges for file systems today?</li>
+<li>How can the reliability of disk storage be improved?</li>
+<li>How can the performance of disk storage be improved?</li>
+<li>What is the Unix block buffer cache and how does it work?</li>
+<li>What is logical volume management and why is it useful?</li>
+<li>What is RAID?
+<ul>
+<li>Which different RAID levels exist and how do they work?</li>
+<li>Can you discuss the pros/cons of the different levels?</li>
+</ul>
+</li>
+<li>What is a journaling/log structured file system?
+<ul>
+<li>How do they work, what are differences to traditional FS?</li>
+</ul>
+</li>
+</ul>
+<h2>Virtual Machines and Microkernels</h2>
+<ul>
+<li>Can you define monolithic kernels, microkernels, hypervisors?
+<ul>
+<li>Differences between these, pros/cons?</li>
+</ul>
+</li>
+<li>What problem did first-generation microkernels have?
+<ul>
+<li>How was this solved in second-generation microkernels?</li>
+<li>What is an exokernel?</li>
+</ul>
+</li>
+<li>What is virtualization, can you define its functionality?
+<ul>
+<li>What is a virtual machine monitor or hypervisor?</li>
+<li>What are the differences between type 1 and 2 hypervisors?</li>
+<li>Which hardware support was introduced to support virtualization?</li>
+<li>What is paravirtualization and what are its pros/cons?</li>
+<li>What is a hypercall?</li>
+</ul>
+</li>
+</ul>
+<h2>The Cloud, Unikernels and Single-Address Space OS's</h2>
+<ul>
+<li>Which service models exist for Cloud systems?
+<ul>
+<li>What are their properties, pros and cons?</li>
+<li>Which provisioning models exist?</li>
+</ul>
+</li>
+<li>What does the architecture for a Cloud OS look like?
+<ul>
+<li>What are differences to a "regular" OS?</li>
+<li>Which strategic decisions have to be taken by a Cloud OS?</li>
+</ul>
+</li>
+<li>What is a container and how are containers related to virtualization?
+<ul>
+<li>What is virtualized in containers?</li>
+</ul>
+</li>
+<li>How does virtual memory management interact with virtualization for the Cloud?
+<ul>
+<li>Which optimization approaches exist, can you describe them?</li>
+</ul>
+</li>
+<li>How can I/O be virtualized for the Cloud?
+<ul>
+<li>Which I/O virtualization approaches exist, can you name pros/cons?</li>
+</ul>
+</li>
+</ul>
+<h2>Operating System Security</h2>
+<ul>
+<li>Can you define safety and security?</li>
+<li>What is the task of OS security?</li>
+<li>Can you give examples for malware?</li>
+<li>What is the difference to social engineering?</li>
+<li>Which types of malware exist, can you define them?</li>
+<li>What is permission management and what are the related requirements?</li>
+<li>What is the principle of least privilege?</li>
+<li>Define the access matrix and describe the ways to use it</li>
+<li>File/process attributes in Unix</li>
+<li>ACLs, capabilities, mandatory access control</li>
+<li>How do the MMU and the CPU privilege levels contribute to security?</li>
+<li>What is software-based protection, can you give an example?</li>
+<li>Which typical software bugs contribute to security problems, can you give examples?
+<ul>
+<li>Buffer overflow</li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+</body>
+
+</html>
