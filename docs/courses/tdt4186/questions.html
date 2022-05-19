@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Katex -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <!-- GitHub Markdown Styles -->
+  <link rel="stylesheet" href=
+      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+  <title>questions.md</title>
+  <link rel="icon" type="image/x-icon" href="../../null">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  
+</head>
+
+<body>
+<article class="markdown-body">
+
+<p>↩️ <a href="./index.html">tdt4186</a></p>
+<h1>Questions</h1>
+<h2>An Introduction to Operating Systems</h2>
+<ul>
+<li>Why were operating systems developed initially?</li>
+<li>How did the features of operating systems evolve along with the development of the available hardware?</li>
+<li>How do we define the term "operating system" today?</li>
+<li>What are the building blocks of a computer system?
+<ul>
+<li>CPU, RAM, character and block I/O device, bus</li>
+</ul>
+</li>
+<li>Which resources are represented by these building blocks?
+<ul>
+<li>Disk is a block device</li>
+<li>Terminal and printer are character devices</li>
+</ul>
+</li>
+<li>How does code (in the OS) interact with hardware resources?
+<ul>
+<li>Device handling, device drivers</li>
+<li>Port and memory mapped I/O</li>
+<li>Interrupts (async notification)</li>
+<li>DMA</li>
+</ul>
+</li>
+<li>What are the most relevant developments in computer architecture of the last decades and which problems/benefits are related to these developments?</li>
+</ul>
+<h2>Challenges and Tasks of Operating Systems</h2>
+<ul>
+<li>Which abstractions does a modern OS provide?
+<ul>
+<li>CPUs, processes, memory, file systems, security, ...</li>
+</ul>
+</li>
+<li>What is a process?
+<ul>
+<li>How do processes interact with each other and the OS?
+<ul>
+<li>System calls</li>
+<li>Synchronization and deadlock fundamentals</li>
+</ul>
+</li>
+<li>What different view of processes exists and why?</li>
+<li>Which states can a process have and what characterizes the different states?
+<ul>
+<li>What transitions between states are legal?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Processes and Threads</h2>
+<ul>
+<li>What is the definition of a process and what is the difference to a program?</li>
+<li>What is a process hierarchy and why does it exist?
+<ul>
+<li>Parent/child processes, orphans, zombies and PID 1 (init)</li>
+</ul>
+</li>
+<li>How can processes perform I/O, how can it be (re)configured?
+<ul>
+<li>Relation of the I/O concept to the Unix philosophy?
+<ul>
+<li>Do one thing, and do it well</li>
+<li>Everything is a file</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>How do processes interact with the OS: system calls
+<ul>
+<li>"Gate to the kernel"</li>
+</ul>
+</li>
+<li>How can processes be created/controlled/terminated?
+<ul>
+<li>Which Unix syscalls are used for process management?
+<ul>
+<li>Fork, exec, kill etc.</li>
+</ul>
+</li>
+<li>Pros and cons of the Unix fork/exec model</li>
+</ul>
+</li>
+<li>Optimizations for process creation in Unix: copy-on-write</li>
+<li>What are details of the extended process state model?</li>
+<li>What is the overhead of Unix processes and their creation?</li>
+<li>What are the differences between address spaces for processes and threads?</li>
+<li>What are the thread models in Unix and Windows?</li>
+<li>What are fibers (user-level threads)?
+<ul>
+<li>Can you discuss pros and cons of threads vs. fibers?</li>
+</ul>
+</li>
+<li>Cooperative multithreading
+<ul>
+<li>Can you describe the ideas behind Duff’s device and protothreads? (you don’t have to know the details of their implementations)</li>
+<li>Difference between the cooperative and preemptive ways</li>
+</ul>
+</li>
+</ul>
+<h2>Concurrency: Mutual exclusion, Synchronisation, Deadlocks</h2>
+<ul>
+<li>What is shared data/memory communication, why is it problematic?
+<ul>
+<li>Can you give an example of a problematic situation?
+<ul>
+<li>e.g. a race condition</li>
+</ul>
+</li>
+<li>Can you understand multithreaded code using shared data?</li>
+</ul>
+</li>
+<li>What is a race condition (can you give examples)?
+<ul>
+<li>Why are race conditions hard to detect and debug?</li>
+</ul>
+</li>
+<li>What is synchronization used for, which options for synchronization exist?
+<ul>
+<li>Can you define the term "critical section"?</li>
+</ul>
+</li>
+<li>What are locks and how are they used?
+<ul>
+<li>Can you give details on lock implementations (atomic operations, suppressing interrupts, semaphores)?</li>
+</ul>
+</li>
+<li>What is a semaphore, which operations exists on semaphores?
+<ul>
+<li>Can you define the use and implementation of semaphores?</li>
+<li>Can you describe problems (e.g. reader/writer) solved using semaphores?</li>
+</ul>
+</li>
+<li>What are monitors and how to they differ from semaphore solutions?</li>
+<li>Can you define the terms "deadlock" and "livelock"?
+<ul>
+<li>Explain situations leading to both problems</li>
+</ul>
+</li>
+<li>What are the necessary conditions for deadlocks to occur?
+<ul>
+<li>What is the additional condition that is required for a deadlock to occur?</li>
+</ul>
+</li>
+<li>Which types of resources exists related to synchronization?</li>
+<li>What are the components of a resource allocation graph, how do you construct it?
+<ul>
+<li>How can you detect a deadlock in this graph?
+<ul>
+<li>Why is this not effective in practise?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What is the dining philosophers problem?
+<ul>
+<li>Why do deadlocks occur here?</li>
+<li>Can you describe a solution to solve the problem?</li>
+<li>Can you discuss the efficiency of different solutions?</li>
+</ul>
+</li>
+<li>How can deadlocks be prevented and what are safe/unsafe states?</li>
+<li>Which methods exist to resolve a deadlock and what are their pros/cons?</li>
+</ul>
+<h2>Memory management and Virtual Memory</h2>
+<ul>
+<li>Requirements for memory management for multiprogramming systems?</li>
+<li>Which policies and strategies are relevant for memory management?</li>
+<li>Can you describe the basic problem of memory allocation?</li>
+<li>How does dynamic memory allocation work?
+<ul>
+<li>Can you describe different approaches, describe pros/cons?</li>
+</ul>
+</li>
+<li>Can you name and describe different placement strategies?</li>
+<li>What is memory fragmentation?
+<ul>
+<li>Which kinds of fragmentation exist, what are their properties?
+<ul>
+<li>Internal and external fragmentation</li>
+</ul>
+</li>
+<li>Where are different allocation methods typically used?</li>
+</ul>
+</li>
+<li>Can you describe differences between swapping, segmentation, paging?
+<ul>
+<li>How does paging as an OS concept interact with the MMU (and TLB, and page tables)?</li>
+<li>How can paging be optimized using hardware or software approaches (like TLB)?</li>
+</ul>
+</li>
+<li>What is the locality principle in computers?
+<ul>
+<li>Which kinds of locality exist, can you describe their properties?</li>
+<li>How can locality be used to optimize performance?</li>
+</ul>
+</li>
+<li>What is the idea behind virtual memory, which abstraction/illusion is created by virtual memory?</li>
+<li>How does demand paging work?
+<ul>
+<li>What is a page fault and how is it handled?</li>
+<li>What are tasks of the OS and hardware when handling page faults?</li>
+</ul>
+</li>
+<li>Can you name different page replacement strategies and discuss their pros/cons? (FIFO, optimal, LRU, second chance)
+<ul>
+<li>Can you simulate different strategies given an access sequence?</li>
+</ul>
+</li>
+<li>Can you define thrashing and name causes and possible solutions?</li>
+<li>What is the working set of a process and how can you determine it?</li>
+</ul>
+<h2>Scheduling: Uni- and Multiprocessor</h2>
+<ul>
+<li>Which approaches to inter-process communication (IPC) exist?
+<ul>
+<li>Can you give their pros/cons?</li>
+</ul>
+</li>
+<li>What are the primitives for message-based communication?
+<ul>
+<li>Which synchronization methods exist here?</li>
+<li>How can processes be addressed?</li>
+<li>Which message formats exist?</li>
+</ul>
+</li>
+<li>Which IPC methods exist in Unix?</li>
+<li>Can you describe the concepts and use (programming) of…
+<ul>
+<li>Signals, unnamed pipes, named pipes, Unix message queues, sockets</li>
+</ul>
+</li>
+<li>What is RPC and what is the fundamental difference to IPC?</li>
+<li>Can you define the terms "dispatching" and "scheduling"?</li>
+<li>Which dispatch states exist, which level of scheduling are they related to?
+<ul>
+<li>Can you describe details of short/medium/long term scheduling?</li>
+<li>Which process state transitions are related to which scheduling level?</li>
+</ul>
+</li>
+<li>Can you explain preemptive scheduling and its advantages?
+<ul>
+<li>Can you give examples for scheduling strategies, explain how they work?</li>
+<li>Can you determine scheduling orders for a given strategy?</li>
+</ul>
+</li>
+<li>Can you discuss pros/cons of the different scheduling strategies?</li>
+<li>What is multi-level scheduling and how is this related to priorities?</li>
+<li>Can you give details of scheduling strategies in Unix and Windows?</li>
+</ul>
+<h2>I/O Management and Disk Scheduling</h2>
+<ul>
+<li>How do devices and the OS interact? Can you name different methods?</li>
+<li>Which classes of devices exist and what are their properties?
+<ul>
+<li>Character devices, block devices etc.</li>
+</ul>
+</li>
+<li>How do interrupts and DMA work and what are their pros/cons?</li>
+<li>How can I/O devices be addressed by the OS?</li>
+<li>What is a device driver, in which ways can it interact with the hardware?</li>
+<li>What are the various tasks of the OS related to devices?</li>
+<li>How are devices represented and abstracted in Unix?
+<ul>
+<li>Name properties of/differences between character/block/other devices</li>
+<li>How does the OS implement the relation device special file &lt;=&gt; device driver?</li>
+</ul>
+</li>
+<li>How can devices be used in user processes, what are related syscalls/libc functions?
+<ul>
+<li>Why is buffering important, can you discuss the pros/cons?</li>
+<li>How does a ring buffer work, where is it typically used?</li>
+</ul>
+</li>
+<li>How does I/O scheduling for disk drives work
+<ul>
+<li>What are the pros/cons of the different scheduling approaches?</li>
+</ul>
+</li>
+</ul>
+<h2>File Management</h2>
+<ul>
+<li>What is the file abstraction and why is it useful?</li>
+<li>What are the syscalls/libc functions in Unix to handle files?</li>
+<li>What is a virtual file system and how does this work?
+<ul>
+<li>What is mounting/unmounting, what is their effect on the directory tree of a Unix system?</li>
+</ul>
+</li>
+<li>Which methods exist to map a file to disk blocks?
+<ul>
+<li>Describe problems of the approaches/pros/cons</li>
+</ul>
+</li>
+<li>Which methods exist to manage free space?</li>
+<li>What are the directory and inode structures for typical file systems?
+<ul>
+<li>Unix System V, BSD FFS, Linux ext2/3/4</li>
+</ul>
+</li>
+<li>What are the challenges for file systems today?</li>
+<li>How can the reliability of disk storage be improved?</li>
+<li>How can the performance of disk storage be improved?</li>
+<li>What is the Unix block buffer cache and how does it work?</li>
+<li>What is logical volume management and why is it useful?</li>
+<li>What is RAID?
+<ul>
+<li>Which different RAID levels exist and how do they work?</li>
+<li>Can you discuss the pros/cons of the different levels?</li>
+</ul>
+</li>
+<li>What is a journaling/log structured file system?
+<ul>
+<li>How do they work, what are differences to traditional FS?</li>
+</ul>
+</li>
+</ul>
+<h2>Virtual Machines and Microkernels</h2>
+<ul>
+<li>Can you define monolithic kernels, microkernels, hypervisors?
+<ul>
+<li>Differences between these, pros/cons?</li>
+</ul>
+</li>
+<li>What problem did first-generation microkernels have?
+<ul>
+<li>How was this solved in second-generation microkernels?</li>
+<li>What is an exokernel?</li>
+</ul>
+</li>
+<li>What is virtualization, can you define its functionality?
+<ul>
+<li>What is a virtual machine monitor or hypervisor?</li>
+<li>What are the differences between type 1 and 2 hypervisors?</li>
+<li>Which hardware support was introduced to support virtualization?</li>
+<li>What is paravirtualization and what are its pros/cons?</li>
+<li>What is a hypercall?</li>
+</ul>
+</li>
+</ul>
+<h2>The Cloud, Unikernels and Single-Address Space OS's</h2>
+<ul>
+<li>Which service models exist for Cloud systems?
+<ul>
+<li>What are their properties, pros and cons?</li>
+<li>Which provisioning models exist?</li>
+</ul>
+</li>
+<li>What does the architecture for a Cloud OS look like?
+<ul>
+<li>What are differences to a "regular" OS?</li>
+<li>Which strategic decisions have to be taken by a Cloud OS?</li>
+</ul>
+</li>
+<li>What is a container and how are containers related to virtualization?
+<ul>
+<li>What is virtualized in containers?</li>
+</ul>
+</li>
+<li>How does virtual memory management interact with virtualization for the Cloud?
+<ul>
+<li>Which optimization approaches exist, can you describe them?</li>
+</ul>
+</li>
+<li>How can I/O be virtualized for the Cloud?
+<ul>
+<li>Which I/O virtualization approaches exist, can you name pros/cons?</li>
+</ul>
+</li>
+</ul>
+<h2>Operating System Security</h2>
+<ul>
+<li>Can you define safety and security?</li>
+<li>What is the task of OS security?</li>
+<li>Can you give examples for malware?</li>
+<li>What is the difference to social engineering?</li>
+<li>Which types of malware exist, can you define them?</li>
+<li>What is permission management and what are the related requirements?</li>
+<li>What is the principle of least privilege?</li>
+<li>Define the access matrix and describe the ways to use it</li>
+<li>File/process attributes in Unix</li>
+<li>ACLs, capabilities, mandatory access control</li>
+<li>How do the MMU and the CPU privilege levels contribute to security?</li>
+<li>What is software-based protection, can you give an example?</li>
+<li>Which typical software bugs contribute to security problems, can you give examples?
+<ul>
+<li>Buffer overflow</li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+</body>
+
+</html>

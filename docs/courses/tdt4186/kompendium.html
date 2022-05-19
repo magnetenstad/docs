@@ -23,76 +23,11 @@
 
 <p>↩️ <a href="./index.html">tdt4186</a></p>
 <h1>TDT4186 Kompendium</h1>
-<p>TODOLIST</p>
-<ul>
-<li>[x] lecture 1</li>
-<li>[x] lecture 2, 3</li>
-<li>[x] lecture 4, 5</li>
-<li>[x] lecture 6, 7</li>
-<li>[x] lecture 9, 10</li>
-<li>[x] lecture 11, 12</li>
-<li>[x] lecture 14</li>
-<li>[ ] lecture 15, 16</li>
-<li>[ ] lecture 17, 18</li>
-<li>[x] lecture 21</li>
-</ul>
-<h1>Notes</h1>
 <p>Operating systems know the hardware in detail and provides suitable abstractions, to serve the users and their application programs.</p>
 <h2>OS Development</h2>
 <p><a href="tdt4186.lecture.1.html">Link to lecture 1</a></p>
 <p>The first system softwares were reusable probram libraries: linkers, loaders, debuggers and device drivers. <strong>The first operating systems</strong> were "resident monitors"; they handled interpretation of job control commands, loading and execution of programs and device control.</p>
 <p>With multiprogramming, the CPU works on multiple jobs at the same time. In consequence, <strong>the OS must handle concurrent I/O activites, main memory for multiple programs, programs in execution (processes), processor scheduling and multi user operation (security and accounting)</strong>.</p>
-<h2>Memory management</h2>
-<p><a href="tdt4186.lecture.9.html">Link to lecture 9</a></p>
-<p>Access to I/O devices is often slow ("memory gap", "I/O bottleneck"). <strong>Polling</strong> sends a command and then waits until the device returns data. With <strong>interrupts</strong>, the device notifies the program when data is ready.</p>
-<p>Caches work efficiently due to two locality principles:</p>
-<ul>
-<li><strong>Temporal locality</strong>: a program accessing some part of memory is likely to access the same memory soon thereafter</li>
-<li><strong>Spatial locality</strong>: a program accessing some part of memory is likely to access nearby memory next</li>
-</ul>
-<p>The <strong>MMU</strong> translates allowed ("virtual", "logical") addresses to "physical" addresses in main memory using a translation table. Enables security by separating process address spaces. The MMU uses a special cache on the CPU - the translation lookaside buffer (TLB).</p>
-<p>With <strong>static memory allocation</strong>, fixed memory areas are allocated to the OS and user processes. Disadvantages: 1) Limited degree of multiprogramming. 2) Limitation of other resources e.g. I/O bandwidth due to buffers that are too small. 3) Unused OS memory cannot be used by application processes (and vice versa). Dynamic memory allocation solves the problems of static memory allocation, but requires placement and replacement strategies.</p>
-<p>Free segments of main memory have to be represented. <strong>The bit list approach</strong> is simple, but have some disadvantages: 1) Bit lists can require lots of memory 2) When releasing memory, the size of the memory block to be released has to be known or provided 3) Linear search is slow. <strong>The linked list approach</strong> uses less (but dynamic!) memory and is faster. But it requires a minimum gap size, to store the length and the pointer to the next free gap.</p>
-<p><strong>Placement strategies</strong> decide where to allocate memory. Some trivial placement strategies are First fit, Rotating First Fit / Next Fit, Best Fit, Worst Fit (best and worse are sorted after gap size). <strong>The buddy allocation method</strong> splits memory dynamically into areas of a size 2^n.</p>
-<p><strong>External fragmentation</strong> involves memory fragments outside of the allocated memory areas which cannot be used. This is a problem with all list based strategies, e.g. first fit, best fit. <strong>Internal fragmentation</strong> involves unused memory inside of allocated memory areas. This is a problem e.g. with the buddy allocator.</p>
-<p>The Linux kernel uses buddy allocation. Inside processes, heap memory enables dynamic allocation of memory with the <code><span class="hljs-attribute">malloc</span></code> and <code><span class="hljs-attribute">free</span></code> functions. Secondary storage sections are ofte managed using bitmaps.</p>
-<p>With <strong>multiprogramming</strong>, segments of a process may be swapped out to background memory and released in main memory, if the space is needed by another process. Swapping is slow.</p>
-<p>With <strong>segmentation</strong>, a process is divided into variable-length segments. Segment details (Base, Limit (length)) are stored in the segmentation tagle. Segmentation cause fragmentation problems. Compaction reduces fragmentation, but is an operation with large overhead.</p>
-<p>With <strong>paging</strong>, a process is divided into fixed-length pages, solving the external fragmentation problem. However, page-based addressing creates internal fragmentation (the last page is often not used completely). Small pages reduce internal fragmentation, but increase the size of the page table (and vice versa). The page table maps logical base addresses (location) to physical base addresses (content).</p>
-<p>With <strong>multi-level paging</strong>, the table must not contain the whole address space. Subtables can be created at access time (on demand), which saves memory.</p>
-<p>The <strong>translation lookaside buffer (TLB)</strong> provides fast access to page address mapping. TLB has to be flushed when the OS switches context. If a page not contained in the TLB is accessed, the related access information is entered into the TLB and an old TLB entry has to be discarded.</p>
-<p>For large logical address spaces (e.g. 64 bit addresses), <strong>inverted page tables</strong> may be used. In an inverted page table, the logical address (along with process PID) is the <em>content</em> of the table, and the physical base address is represented by the location.</p>
-<p>With <strong>virtual memory</strong>, the illusion of a large (or "endless") main memory is created, by only keeping the currently used memory areas available in main memory. With demand paging, pages are loaded into main memory on demand. The new page may replace another page, which is to be decided by a replacement strategy. The performance of paging depends on the probability of page faults:</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>t</mi><mtext>hit</mtext></msub><mo>+</mo><mi>p</mi><mo>⋅</mo><msub><mi>t</mi><mtext>miss</mtext></msub></mrow><annotation encoding="application/x-tex">(1 - p) \cdot t_{\text{hit}} + p \cdot t_{\text{miss}}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">hit</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.63889em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">miss</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<table>
-<thead>
-<tr>
-<th>Replacement Strategy</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>First-In First-Out (FIFO)</td>
-<td>Replace the page that was placed first.</td>
-</tr>
-<tr>
-<td>Least Recently Used (LRU)</td>
-<td>Replace the least recently used page. Requires control states (backwards distance)</td>
-</tr>
-<tr>
-<td>Second Chance (clock)</td>
-<td>A reference bit is set when the page is accessed. Pages are checked in FIFO order, ref: 1 -&gt; 0, 0 -&gt; replace. Possible to extend with a modification bit.</td>
-</tr>
-<tr>
-<td>Optimal (OPT)</td>
-<td>Replace the page that will be accessed farthest in the future.</td>
-</tr>
-</tbody>
-</table>
-<p>With a <strong>free page buffer</strong>, a number of free pages is always kept in memory. Pageouts take place "in advance".</p>
-<p><strong>Thrashing</strong> happens when a page that was paged out is accessed immidiately after the page out happened. The process spends more time waiting to handle page faults than with its own execution. Causes of thrashing are 1) A process is close to its page maximum, 2) Too many processes in the system at the same time, 3) Suboptimal replacement strategy. Solutions to thrashing are 1) swapping of processes, 2) working set model.</p>
 <h2>Processes</h2>
 <p><a href="tdt4186.lecture.4.html">Link to lecture 4</a></p>
 <p><strong>A process is a program in execution.</strong> They often consist of alternating sequences of "CPU bursts" and "I/O bursts". The <strong>process context</strong> consists of</p>
@@ -306,6 +241,57 @@
 </table>
 <p><strong>Multi-level scheduling</strong> combined multiple scheduling strategies.</p>
 <p>When <strong>evaluating scheduling algorithms</strong>, a number of objectives may be optimized for. <strong>User oriented</strong>: 1) Run time (time between start and termination of a process including the waiting time(s)), 2) Response time (time between user input and program response), 3) Tardiness (deadlines, real-time systems), 4) Predictability (processes are always processed identically independent of the load). <strong>System oriented</strong>: 1) Throughput (finish as many processes as possible per time unit), 2) CPU load (keep the CPU busy at all times), 3) Avoid overhead (scheduling decisions, context switches) 4) Fairness (no process should be disadavantaged (e.g. by starvation)) 5) Load balancing (I/O devices should also be utilized uniformly).</p>
+<h2>Memory management</h2>
+<p><a href="tdt4186.lecture.9.html">Link to lecture 9</a></p>
+<p>Access to I/O devices is often slow ("memory gap", "I/O bottleneck"). <strong>Polling</strong> sends a command and then waits until the device returns data. With <strong>interrupts</strong>, the device notifies the program when data is ready.</p>
+<p>Caches work efficiently due to two locality principles:</p>
+<ul>
+<li><strong>Temporal locality</strong>: a program accessing some part of memory is likely to access the same memory soon thereafter</li>
+<li><strong>Spatial locality</strong>: a program accessing some part of memory is likely to access nearby memory next</li>
+</ul>
+<p>The <strong>MMU</strong> translates allowed ("virtual", "logical") addresses to "physical" addresses in main memory using a translation table. Enables security by separating process address spaces. The MMU uses a special cache on the CPU - the translation lookaside buffer (TLB).</p>
+<p>With <strong>static memory allocation</strong>, fixed memory areas are allocated to the OS and user processes. Disadvantages: 1) Limited degree of multiprogramming. 2) Limitation of other resources e.g. I/O bandwidth due to buffers that are too small. 3) Unused OS memory cannot be used by application processes (and vice versa). Dynamic memory allocation solves the problems of static memory allocation, but requires placement and replacement strategies.</p>
+<p>Free segments of main memory have to be represented. <strong>The bit list approach</strong> is simple, but have some disadvantages: 1) Bit lists can require lots of memory 2) When releasing memory, the size of the memory block to be released has to be known or provided 3) Linear search is slow. <strong>The linked list approach</strong> uses less (but dynamic!) memory and is faster. But it requires a minimum gap size, to store the length and the pointer to the next free gap.</p>
+<p><strong>Placement strategies</strong> decide where to allocate memory. Some trivial placement strategies are First fit, Rotating First Fit / Next Fit, Best Fit, Worst Fit (best and worse are sorted after gap size). <strong>The buddy allocation method</strong> splits memory dynamically into areas of a size 2^n.</p>
+<p><strong>External fragmentation</strong> involves memory fragments outside of the allocated memory areas which cannot be used. This is a problem with all list based strategies, e.g. first fit, best fit. <strong>Internal fragmentation</strong> involves unused memory inside of allocated memory areas. This is a problem e.g. with the buddy allocator.</p>
+<p>The Linux kernel uses buddy allocation. Inside processes, heap memory enables dynamic allocation of memory with the <code><span class="hljs-attribute">malloc</span></code> and <code><span class="hljs-attribute">free</span></code> functions. Secondary storage sections are ofte managed using bitmaps.</p>
+<p>With <strong>multiprogramming</strong>, segments of a process may be swapped out to background memory and released in main memory, if the space is needed by another process. Swapping is slow.</p>
+<p>With <strong>segmentation</strong>, a process is divided into variable-length segments. Segment details (Base, Limit (length)) are stored in the segmentation tagle. Segmentation cause fragmentation problems. Compaction reduces fragmentation, but is an operation with large overhead.</p>
+<p>With <strong>paging</strong>, a process is divided into fixed-length pages, solving the external fragmentation problem. However, page-based addressing creates internal fragmentation (the last page is often not used completely). Small pages reduce internal fragmentation, but increase the size of the page table (and vice versa). The page table maps logical base addresses (location) to physical base addresses (content).</p>
+<p>With <strong>multi-level paging</strong>, the table must not contain the whole address space. Subtables can be created at access time (on demand), which saves memory.</p>
+<p>The <strong>translation lookaside buffer (TLB)</strong> provides fast access to page address mapping. TLB has to be flushed when the OS switches context. If a page not contained in the TLB is accessed, the related access information is entered into the TLB and an old TLB entry has to be discarded.</p>
+<p>For large logical address spaces (e.g. 64 bit addresses), <strong>inverted page tables</strong> may be used. In an inverted page table, the logical address (along with process PID) is the <em>content</em> of the table, and the physical base address is represented by the location.</p>
+<p>With <strong>virtual memory</strong>, the illusion of a large (or "endless") main memory is created, by only keeping the currently used memory areas available in main memory. With demand paging, pages are loaded into main memory on demand. The new page may replace another page, which is to be decided by a replacement strategy. The performance of paging depends on the probability of page faults:</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo><mo>⋅</mo><msub><mi>t</mi><mtext>hit</mtext></msub><mo>+</mo><mi>p</mi><mo>⋅</mo><msub><mi>t</mi><mtext>miss</mtext></msub></mrow><annotation encoding="application/x-tex">(1 - p) \cdot t_{\text{hit}} + p \cdot t_{\text{miss}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">hit</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.63889em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31750199999999995em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">miss</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<table>
+<thead>
+<tr>
+<th>Replacement Strategy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First-In First-Out (FIFO)</td>
+<td>Replace the page that was placed first.</td>
+</tr>
+<tr>
+<td>Least Recently Used (LRU)</td>
+<td>Replace the least recently used page. Requires control states (backwards distance)</td>
+</tr>
+<tr>
+<td>Second Chance (clock)</td>
+<td>A reference bit is set when the page is accessed. Pages are checked in FIFO order, ref: 1 -&gt; 0, 0 -&gt; replace. Possible to extend with a modification bit.</td>
+</tr>
+<tr>
+<td>Optimal (OPT)</td>
+<td>Replace the page that will be accessed farthest in the future.</td>
+</tr>
+</tbody>
+</table>
+<p>With a <strong>free page buffer</strong>, a number of free pages is always kept in memory. Pageouts take place "in advance".</p>
+<p><strong>Thrashing</strong> happens when a page that was paged out is accessed immidiately after the page out happened. The process spends more time waiting to handle page faults than with its own execution. Causes of thrashing are 1) A process is close to its page maximum, 2) Too many processes in the system at the same time, 3) Suboptimal replacement strategy. Solutions to thrashing are 1) swapping of processes, 2) working set model.</p>
 <h2>Input and Output</h2>
 <p><a href="tdt4186.lecture.14.html">Link to lecture 14</a></p>
 <p><strong>Character devices</strong> (such as a keyboards, printers, modems, and mice) provide a sequential stream of information. <strong>Block devices</strong> (such as disks, CD-ROM, DVD, tape drives) provide blockwise random access. Some other devices which don't fit this scheme easily are (GP)GPUs, network cards and timers.</p>
@@ -386,12 +372,186 @@
 </table>
 <p>In most cases, files require multiple blocks of storage on disk. We simply view a disk as a large array of blocks.</p>
 <p>With <strong>contigous storage</strong>, a file is stored in blocks with increasing block number. Advantages: 1) Access to all blocks with minimal delay due to disk arm positioning 2) Fast direct access to a given file offset position 3) Used for read-only file systems, e.g. CD-ROM/DVD. Disadvantages (problems): 1) Finding free space on the disk 2) Fragmentation 3) The size of new files is usually not known in advance.</p>
-<p>With <strong>linked list storage</strong>, blocks of a file are linked and files can be extended and shrunk.</p>
-<p>With <strong>indexed storage</strong>,</p>
-<p>With <strong>tree sequential storage</strong>,</p>
-<blockquote>
-<p>TODO</p>
-</blockquote>
+<p>With <strong>linked list storage</strong>, blocks of a file are linked and files can be extended and shrunk. Disadvantages are 1) Pointers take up storage space, 2) Error prone (file cannot be completely restored if the pointer information contains errors), 3) Direct access to arbitrary file positions is difficult, 4) Requires frequent positioning of the disk head.</p>
+<p>Linked list storage with <strong>file allocation table (FAT)</strong> involves storing links iin separate disk blocks. Advantages: 1) Complete content of data block is usable, 2) Redundant storage of the FAT is possible (useful in case of an error). Disadvantages: 1) Additional loading of at least one block required, 2) Unused information is loaded (FAT contains links for all files), 3) Search overhead (for the data block containing information at a given offset inside a file), 4) Frequent positioning (of the disk head when data blocks are scattered over the disk)</p>
+<p>With <strong>indexed storage</strong>, a special disk block contains block numbers of the data blocks of a file. A problem is that a fixed number of blocks that can be referenced in the index block. This results in fragmentation for small files and extensions required for large files.</p>
+<p>With <strong>Unix inodes</strong>, storage is indexed with multiple levels. This enables the addressing of large files and fragmentation is not a problem for small files.</p>
+<p><strong>Tree sequential storage</strong> (e.g. B+-tree) is used in databases to efficiently find records using a search key.</p>
+<p><strong>Free space management</strong> is similar to free main memory management.</p>
+<p>System crashes and defective disks are reliability challenges. The use of <strong>backups</strong> is a solution, but requires time and storage space overhead. <strong>Checksums</strong> is another, which also requires storage space overhead. Additionally, <strong>repair tools</strong> such as scandisk or fsck are able to repair (some) inconsistent metadata. However, there is a possible loss of data in the repair process, and long runtimes of the repair programs for large disks.</p>
+<p>Intelligent block device (drivers) handle reliability problems below the file system layer. Advantage: all file system implementations can benefit.</p>
+<p>The <strong>Unix Block Buffer Cache</strong> buffers disk blocks in main memory and uses algorithms similar to page frame handling. This enables read ahead, lazy write and free block management.</p>
+<p><strong>Redundant Arrays of Inexpensive Disks (RAID)</strong> saves costs by creating large logical disks out of inexpensive smaller disks. Additional features are 1) better utilization of the available data bandwidth by using parallel transfers, 2) ault tolerance using redundancy.</p>
+<table>
+<thead>
+<tr>
+<th>RAID Level</th>
+<th>Idea</th>
+<th>Effect</th>
+<th>Disadvantage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0, Disk striping</td>
+<td>Data of a large logical disk are stored in a round robin way distributed over N physical disks</td>
+<td>Increased bandwidth, since multiple disks are accessed in parallel</td>
+<td>Failure probability is multiplied by N</td>
+</tr>
+<tr>
+<td>1, Disk mirroring</td>
+<td>Data is stored redundantly on two disks at the same time</td>
+<td>Increased read bandwidth, somewhat lower write bandwidth, higher reliability by having a copy of the data</td>
+<td>Uses twice the disk space</td>
+</tr>
+<tr>
+<td>4, Additional parity disk</td>
+<td>Data is striped over multiple disks, one disk stores the related parity</td>
+<td>Errors (of a single disk) can be detected and fixed without a large storage overhead. Fast read operations</td>
+<td>Parity disk is bottleneck when writing</td>
+</tr>
+<tr>
+<td>5 and 6, Distributed parity data</td>
+<td>Distribute the parity block over all disks</td>
+<td>Additional write overhead to update the parity block when writing is distributed</td>
+<td>All data is protected with high overhead, even though a part of the data may be not critical</td>
+</tr>
+<tr>
+<td>x+y, Hierarchies</td>
+<td>Combine different RAID mechanisms in a hierarchy, e.g. RAID 1+0 (= RAID 10)</td>
+<td>Properties can be combined</td>
+<td>Requires a large number of disks</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to writing data and metadata (e.g. inodes), <strong>journaled file systems</strong> write a protocol of the changes. At boot time, the protocol file is compared to the latest changes, this avoids inconsistencies. The log file can also be used for recovery purposes (UNDO/REDO). Advantages: 1) a transaction is either committed (completed) in whole or not at all, 2) users can define transactions that span multiple file accesses, if these are also recorded in the log, 3) impossible to create inconsistent metadata, 4) booting a crashed system only requires a fast log file check. Disadvantages: 1) less efficient, since additional log file has to be written (thus usually only metadata journaling, no full journaling).</p>
+<p>With <strong>Log-structured file systems (LFS)</strong>, blocks are not overwritten, but only appended to the log. Changes are added in batches to the front, obsolete data fall out at the end. The disk bandwidth is utilized to a high degree when writing, but performance is reduced significantly if free memory is low.</p>
+<p><strong>Copy-on-Write file systems (CoW)</strong> takes the idea from LFS, but is more flexible when allocation free areas.</p>
+<h2>Operating system architectures</h2>
+<p><a href="tdt4186.lecture.17.html">Link to lecture 17</a></p>
+<p><strong>Software architecture</strong> is defined as the basic organization of a system, expressed through its components, their relations to each other and the environment as well as the principles which define the design and evolution of the system <a href="https://gi.de/informatiklexikon/software-architektur">Source</a>.</p>
+<p>A <strong>library OS</strong> is one in which the services are provided in the form of libraries and composed with the application and configuration code to construct a unikernel: a specialized, single address space <a href="https://en.wikipedia.org/wiki/Operating_system">Source</a>.</p>
+<p>A <strong>monolithic kernel</strong> is an operating system architecture where the entire operating system is working in kernel space <a href="https://en.wikipedia.org/wiki/Monolithic_kernel">Source</a>.</p>
+<p>A <strong>microkernel</strong> is the near-minimum amount of software that can provide the mechanisms needed to implement an OS <a href="https://en.wikipedia.org/wiki/Microkernel">Source</a>. <strong>First-generation microkernels</strong> had problems with high overhead of system calls and IPC operations, and sub-optimal decisions about which components should be implemented in the microkernel. The objective of <strong>second-generation microkernels</strong> was to remove disadvantages of first generation microkernels. "A concept is tolerated inside of a microkernel only if moving it outside of the kernel would prevent the implementation of functionality required in the system" (Jochen Liedtke: L4 (1996)).</p>
+<p>The idea behind <strong>exokernels</strong> is to force as few abstractions as possible on application developers, enabling them to make as many decisions as possible about hardware abstractions. Exokernels are tiny, since functionality is limited to ensuring protection and multiplexing of resources <a href="https://en.wikipedia.org/wiki/Exokernel">Source</a>.</p>
+<p>A <strong>virtual machine monitor (VMM)</strong> or <strong>hypervisor</strong> is the software component that provides the virtual machine abstraction. <strong>Hypercalls</strong> are explicit calls to the hypervisor. The objective of virtualization is isolation and multiplexing of resources below the operating system layer, and to enable simultaneous use of multiple guest operating systems.</p>
+<p><strong>Paravirtualization</strong> is a virtualization technique that presents a software interface to the virtual machines which is similar, yet not identical, to the underlying hardware–software interface. The intent of the modified interface is to reduce the portion of the guest's execution time spent performing operations which are substantially more difficult to run in a virtual environment compared to a non-virtualized environment <a href="https://en.wikipedia.org/wiki/Paravirtualization">Source</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Library OS</th>
+<th>Monolithic systems</th>
+<th>Microkernel systems</th>
+<th>Virtualization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Isolation</td>
+<td>Ideal – single tasking system – but high time overhead to switch tasks</td>
+<td>No isolation of components in kernel mode, only between application processes</td>
+<td>Very good – separate address spaces for all components</td>
+<td>Very good – but coarse granularity (between VMs)</td>
+</tr>
+<tr>
+<td>Interaction</td>
+<td>Direct (function calls)</td>
+<td>Direct function calls (in the kernel), Traps (application – kernel)</td>
+<td>Synchronous IPC</td>
+<td>Communication between VMs only via TCP/IP (virtual network cards!)</td>
+</tr>
+<tr>
+<td>Interrupts</td>
+<td>Sometimes interrupts were not in use → polling</td>
+<td>Direct handling of hardware interrupts by IRQ handlers</td>
+<td>The microkernel translates interrupts into IPC messages</td>
+<td>Forwarding of IRQs to guest kernel inside of the VM (simulated hardware interrupts)</td>
+</tr>
+<tr>
+<td>Adaptability</td>
+<td>Separate libraries for each hardware architecture, no standards</td>
+<td>Changes in one component influence other components</td>
+<td>Originally hard to adapt – x86 assembler code, today in C/C++</td>
+<td>Specific adaptation for a CPU type required, paravirtualization has a lot of overhead</td>
+</tr>
+<tr>
+<td>Extensibility</td>
+<td>Depends on the library structure: global structures, "spaghetti code"</td>
+<td>Originally: recompilation required; today: kernel module system</td>
+<td>Very good and simple as components in user mode</td>
+<td>Difficult – not commonly available in VMMs</td>
+</tr>
+<tr>
+<td>Robustness</td>
+<td>Direct control of all hardware: errors → system halt</td>
+<td>Bad – an error in one component "kills" the complete system</td>
+<td>Good – but dependent on the robustness of user mode components</td>
+<td>Good – but coarse granularity (whole VMs affected by crashes)</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Very high due to direct operations on the hardware without privilege mechanisms</td>
+<td>High – few copy operations required, since all kernel components use the same address space. System calls require a trap, however</td>
+<td>In general depending on the IPC performance</td>
+<td>Good – 5-10% lower compared to direct execution on the same hardware</td>
+</tr>
+</tbody>
+</table>
+<h3>Cloud operating systems</h3>
+<p><a href="tdt4186.lecture.18.html">Link to lecture 18</a></p>
+<p>Some <strong>cloud service models</strong> are Software-as-a-Service (SaaS), Platform-as-a-Service (PaaS), and Infrastructure-as-a-Service (IaaS).</p>
+<p>Cloud-Computing challenges are 1) Data protection and privacy, 2) Vendor lock-in, 3) Quality of service.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Private cloud</th>
+<th>Community cloud</th>
+<th>Public cloud</th>
+<th>Hybrid cloud</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scalability</td>
+<td>restricted</td>
+<td>restricted</td>
+<td>very high</td>
+<td>very high</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>most secure</td>
+<td>very secure</td>
+<td>moderately secure</td>
+<td>very secure</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>very good</td>
+<td>very good</td>
+<td>low to medium</td>
+<td>good</td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td>very high</td>
+<td>very high</td>
+<td>medium</td>
+<td>medium to high</td>
+</tr>
+<tr>
+<td>Costs</td>
+<td>high</td>
+<td>medium</td>
+<td>low</td>
+<td>medium</td>
+</tr>
+</tbody>
+</table>
+<p>With <strong>container-based virtualization</strong>, the OS kernel is virtualized and the containers share a kernel.</p>
+<p>With <strong>hardware virtualization</strong>, a complete computer (CPU, memory, I/O devices) is virtualized.</p>
 <h2>Security</h2>
 <p><a href="tdt4186.lecture.21.html">Link to lecture 21</a></p>
 <p><strong>Safety</strong> is protection against risks due to hardware and software errors or failures. <strong>Security</strong> is protection of users and computers against intended errors (attacks).</p>
@@ -434,397 +594,6 @@ Executable program as virus.</p>
 <p>The Memory Management Unit (MMU) provides <strong>hardware-based protection</strong> by 1) only mapping the exact set of required main memory pages into the virtual address space of a process, 2) isolation of the physical address spaces of different processes, 3) protection bits for each page, controlled at every access.</p>
 <p><strong>Protection rings</strong> is a privilege concept where all code is executed in the context of a given ring, where the innermost ring (0) has access to all system resources. User programs usually run in ring 3.</p>
 <p><strong>Software bugs</strong> such as exceeding a value range or a heap/buffer overflow are security issues, and can be exploited.</p>
-<h1>Questions</h1>
-<h2>An Introduction to Operating Systems</h2>
-<ul>
-<li>Why were operating systems developed initially?</li>
-<li>How did the features of operating systems evolve along with the development of the available hardware?</li>
-<li>How do we define the term "operating system" today?</li>
-<li>What are the building blocks of a computer system?
-<ul>
-<li>CPU, RAM, character and block I/O device, bus</li>
-</ul>
-</li>
-<li>Which resources are represented by these building blocks?
-<ul>
-<li>Disk is a block device</li>
-<li>Terminal and printer are character devices</li>
-</ul>
-</li>
-<li>How does code (in the OS) interact with hardware resources?
-<ul>
-<li>Device handling, device drivers</li>
-<li>Port and memory mapped I/O</li>
-<li>Interrupts (async notification)</li>
-<li>DMA</li>
-</ul>
-</li>
-<li>What are the most relevant developments in computer architecture of the last decades and which problems/benefits are related to these developments?</li>
-</ul>
-<h2>Challenges and Tasks of Operating Systems</h2>
-<ul>
-<li>Which abstractions does a modern OS provide?
-<ul>
-<li>CPUs, processes, memory, file systems, security, ...</li>
-</ul>
-</li>
-<li>What is a process?
-<ul>
-<li>How do processes interact with each other and the OS?
-<ul>
-<li>System calls</li>
-<li>Synchronization and deadlock fundamentals</li>
-</ul>
-</li>
-<li>What different view of processes exists and why?</li>
-<li>Which states can a process have and what characterizes the different states?
-<ul>
-<li>What transitions between states are legal?</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Processes and Threads</h2>
-<ul>
-<li>What is the definition of a process and what is the difference to a program?</li>
-<li>What is a process hierarchy and why does it exist?
-<ul>
-<li>Parent/child processes, orphans, zombies and PID 1 (init)</li>
-</ul>
-</li>
-<li>How can processes perform I/O, how can it be (re)configured?
-<ul>
-<li>Relation of the I/O concept to the Unix philosophy?
-<ul>
-<li>Do one thing, and do it well</li>
-<li>Everything is a file</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>How do processes interact with the OS: system calls
-<ul>
-<li>"Gate to the kernel"</li>
-</ul>
-</li>
-<li>How can processes be created/controlled/terminated?
-<ul>
-<li>Which Unix syscalls are used for process management?
-<ul>
-<li>Fork, exec, kill etc.</li>
-</ul>
-</li>
-<li>Pros and cons of the Unix fork/exec model</li>
-</ul>
-</li>
-<li>Optimizations for process creation in Unix: copy-on-write</li>
-<li>What are details of the extended process state model?</li>
-<li>What is the overhead of Unix processes and their creation?</li>
-<li>What are the differences between address spaces for processes and threads?</li>
-<li>What are the thread models in Unix and Windows?</li>
-<li>What are fibers (user-level threads)?
-<ul>
-<li>Can you discuss pros and cons of threads vs. fibers?</li>
-</ul>
-</li>
-<li>Cooperative multithreading
-<ul>
-<li>Can you describe the ideas behind Duff’s device and protothreads? (you don’t have to know the details of their implementations)</li>
-<li>Difference between the cooperative and preemptive ways</li>
-</ul>
-</li>
-</ul>
-<h2>Concurrency: Mutual exclusion, Synchronisation, Deadlocks</h2>
-<ul>
-<li>What is shared data/memory communication, why is it problematic?
-<ul>
-<li>Can you give an example of a problematic situation?
-<ul>
-<li>e.g. a race condition</li>
-</ul>
-</li>
-<li>Can you understand multithreaded code using shared data?</li>
-</ul>
-</li>
-<li>What is a race condition (can you give examples)?
-<ul>
-<li>Why are race conditions hard to detect and debug?</li>
-</ul>
-</li>
-<li>What is synchronization used for, which options for synchronization exist?
-<ul>
-<li>Can you define the term "critical section"?</li>
-</ul>
-</li>
-<li>What are locks and how are they used?
-<ul>
-<li>Can you give details on lock implementations (atomic operations, suppressing interrupts, semaphores)?</li>
-</ul>
-</li>
-<li>What is a semaphore, which operations exists on semaphores?
-<ul>
-<li>Can you define the use and implementation of semaphores?</li>
-<li>Can you describe problems (e.g. reader/writer) solved using semaphores?</li>
-</ul>
-</li>
-<li>What are monitors and how to they differ from semaphore solutions?</li>
-<li>Can you define the terms "deadlock" and "livelock"?
-<ul>
-<li>Explain situations leading to both problems</li>
-</ul>
-</li>
-<li>What are the necessary conditions for deadlocks to occur?
-<ul>
-<li>What is the additional condition that is required for a deadlock to occur?</li>
-</ul>
-</li>
-<li>Which types of resources exists related to synchronization?</li>
-<li>What are the components of a resource allocation graph, how do you construct it?
-<ul>
-<li>How can you detect a deadlock in this graph?
-<ul>
-<li>Why is this not effective in practise?</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>What is the dining philosophers problem?
-<ul>
-<li>Why do deadlocks occur here?</li>
-<li>Can you describe a solution to solve the problem?</li>
-<li>Can you discuss the efficiency of different solutions?</li>
-</ul>
-</li>
-<li>How can deadlocks be prevented and what are safe/unsafe states?</li>
-<li>Which methods exist to resolve a deadlock and what are their pros/cons?</li>
-</ul>
-<h2>Memory management and Virtual Memory</h2>
-<ul>
-<li>Requirements for memory management for multiprogramming systems?</li>
-<li>Which policies and strategies are relevant for memory management?</li>
-<li>Can you describe the basic problem of memory allocation?</li>
-<li>How does dynamic memory allocation work?
-<ul>
-<li>Can you describe different approaches, describe pros/cons?</li>
-</ul>
-</li>
-<li>Can you name and describe different placement strategies?</li>
-<li>What is memory fragmentation?
-<ul>
-<li>Which kinds of fragmentation exist, what are their properties?
-<ul>
-<li>Internal and external fragmentation</li>
-</ul>
-</li>
-<li>Where are different allocation methods typically used?</li>
-</ul>
-</li>
-<li>Can you describe differences between swapping, segmentation, paging?
-<ul>
-<li>How does paging as an OS concept interact with the MMU (and TLB, and page tables)?</li>
-<li>How can paging be optimized using hardware or software approaches (like TLB)?</li>
-</ul>
-</li>
-<li>What is the locality principle in computers?
-<ul>
-<li>Which kinds of locality exist, can you describe their properties?</li>
-<li>How can locality be used to optimize performance?</li>
-</ul>
-</li>
-<li>What is the idea behind virtual memory, which abstraction/illusion is created by virtual memory?</li>
-<li>How does demand paging work?
-<ul>
-<li>What is a page fault and how is it handled?</li>
-<li>What are tasks of the OS and hardware when handling page faults?</li>
-</ul>
-</li>
-<li>Can you name different page replacement strategies and discuss their pros/cons? (FIFO, optimal, LRU, second chance)
-<ul>
-<li>Can you simulate different strategies given an access sequence?</li>
-</ul>
-</li>
-<li>Can you define thrashing and name causes and possible solutions?</li>
-<li>What is the working set of a process and how can you determine it?</li>
-</ul>
-<h2>Scheduling: Uni- and Multiprocessor</h2>
-<ul>
-<li>Which approaches to inter-process communication (IPC) exist?
-<ul>
-<li>Can you give their pros/cons?</li>
-</ul>
-</li>
-<li>What are the primitives for message-based communication?
-<ul>
-<li>Which synchronization methods exist here?</li>
-<li>How can processes be addressed?</li>
-<li>Which message formats exist?</li>
-</ul>
-</li>
-<li>Which IPC methods exist in Unix?</li>
-<li>Can you describe the concepts and use (programming) of…
-<ul>
-<li>Signals, unnamed pipes, named pipes, Unix message queues, sockets</li>
-</ul>
-</li>
-<li>What is RPC and what is the fundamental difference to IPC?</li>
-<li>Can you define the terms "dispatching" and "scheduling"?</li>
-<li>Which dispatch states exist, which level of scheduling are they related to?
-<ul>
-<li>Can you describe details of short/medium/long term scheduling?</li>
-<li>Which process state transitions are related to which scheduling level?</li>
-</ul>
-</li>
-<li>Can you explain preemptive scheduling and its advantages?
-<ul>
-<li>Can you give examples for scheduling strategies, explain how they work?</li>
-<li>Can you determine scheduling orders for a given strategy?</li>
-</ul>
-</li>
-<li>Can you discuss pros/cons of the different scheduling strategies?</li>
-<li>What is multi-level scheduling and how is this related to priorities?</li>
-<li>Can you give details of scheduling strategies in Unix and Windows?</li>
-</ul>
-<h2>I/O Management and Disk Scheduling</h2>
-<ul>
-<li>How do devices and the OS interact? Can you name different methods?</li>
-<li>Which classes of devices exist and what are their properties?
-<ul>
-<li>Character devices, block devices etc.</li>
-</ul>
-</li>
-<li>How do interrupts and DMA work and what are their pros/cons?</li>
-<li>How can I/O devices be addressed by the OS?</li>
-<li>What is a device driver, in which ways can it interact with the hardware?</li>
-<li>What are the various tasks of the OS related to devices?</li>
-<li>How are devices represented and abstracted in Unix?
-<ul>
-<li>Name properties of/differences between character/block/other devices</li>
-<li>How does the OS implement the relation device special file &lt;=&gt; device driver?</li>
-</ul>
-</li>
-<li>How can devices be used in user processes, what are related syscalls/libc functions?
-<ul>
-<li>Why is buffering important, can you discuss the pros/cons?</li>
-<li>How does a ring buffer work, where is it typically used?</li>
-</ul>
-</li>
-<li>How does I/O scheduling for disk drives work
-<ul>
-<li>What are the pros/cons of the different scheduling approaches?</li>
-</ul>
-</li>
-</ul>
-<h2>File Management</h2>
-<ul>
-<li>What is the file abstraction and why is it useful?</li>
-<li>What are the syscalls/libc functions in Unix to handle files?</li>
-<li>What is a virtual file system and how does this work?
-<ul>
-<li>What is mounting/unmounting, what is their effect on the directory tree of a Unix system?</li>
-</ul>
-</li>
-<li>Which methods exist to map a file to disk blocks?
-<ul>
-<li>Describe problems of the approaches/pros/cons</li>
-</ul>
-</li>
-<li>Which methods exist to manage free space?</li>
-<li>What are the directory and inode structures for typical file systems?
-<ul>
-<li>Unix System V, BSD FFS, Linux ext2/3/4</li>
-</ul>
-</li>
-<li>What are the challenges for file systems today?</li>
-<li>How can the reliability of disk storage be improved?</li>
-<li>How can the performance of disk storage be improved?</li>
-<li>What is the Unix block buffer cache and how does it work?</li>
-<li>What is logical volume management and why is it useful?</li>
-<li>What is RAID?
-<ul>
-<li>Which different RAID levels exist and how do they work?</li>
-<li>Can you discuss the pros/cons of the different levels?</li>
-</ul>
-</li>
-<li>What is a journaling/log structured file system?
-<ul>
-<li>How do they work, what are differences to traditional FS?</li>
-</ul>
-</li>
-</ul>
-<h2>Virtual Machines and Microkernels</h2>
-<ul>
-<li>Can you define monolithic kernels, microkernels, hypervisors?
-<ul>
-<li>Differences between these, pros/cons?</li>
-</ul>
-</li>
-<li>What problem did first-generation microkernels have?
-<ul>
-<li>How was this solved in second-generation microkernels?</li>
-<li>What is an exokernel?</li>
-</ul>
-</li>
-<li>What is virtualization, can you define its functionality?
-<ul>
-<li>What is a virtual machine monitor or hypervisor?</li>
-<li>What are the differences between type 1 and 2 hypervisors?</li>
-<li>Which hardware support was introduced to support virtualization?</li>
-<li>What is paravirtualization and what are its pros/cons?</li>
-<li>What is a hypercall?</li>
-</ul>
-</li>
-</ul>
-<h2>The Cloud, Unikernels and Single-Address Space OS's</h2>
-<ul>
-<li>Which service models exist for Cloud systems?
-<ul>
-<li>What are their properties, pros and cons?</li>
-<li>Which provisioning models exist?</li>
-</ul>
-</li>
-<li>What does the architecture for a Cloud OS look like?
-<ul>
-<li>What are differences to a "regular" OS?</li>
-<li>Which strategic decisions have to be taken by a Cloud OS?</li>
-</ul>
-</li>
-<li>What is a container and how are containers related to virtualization?
-<ul>
-<li>What is virtualized in containers?</li>
-</ul>
-</li>
-<li>How does virtual memory management interact with virtualization for the Cloud?
-<ul>
-<li>Which optimization approaches exist, can you describe them?</li>
-</ul>
-</li>
-<li>How can I/O be virtualized for the Cloud?
-<ul>
-<li>Which I/O virtualization approaches exist, can you name pros/cons?</li>
-</ul>
-</li>
-</ul>
-<h2>Operating System Security</h2>
-<ul>
-<li>Can you define safety and security?</li>
-<li>What is the task of OS security?</li>
-<li>Can you give examples for malware?</li>
-<li>What is the difference to social engineering?</li>
-<li>Which types of malware exist, can you define them?</li>
-<li>What is permission management and what are the related requirements?</li>
-<li>What is the principle of least privilege?</li>
-<li>Define the access matrix and describe the ways to use it</li>
-<li>File/process attributes in Unix</li>
-<li>ACLs, capabilities, mandatory access control</li>
-<li>How do the MMU and the CPU privilege levels contribute to security?</li>
-<li>What is software-based protection, can you give an example?</li>
-<li>Which typical software bugs contribute to security problems, can you give examples?
-<ul>
-<li>Buffer overflow</li>
-</ul>
-</li>
-</ul>
 
 
 </article>
