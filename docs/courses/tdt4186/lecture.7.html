@@ -10,7 +10,7 @@
   <link rel="stylesheet" href=
       "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-  <title>tdt4186.lecture.7.md</title>
+  <title>lecture.7.md</title>
   <link rel="icon" type="image/x-icon" href="../../null">
 
   <!-- Custom Styles -->
@@ -18,13 +18,47 @@
   
 </head>
 
-<body>
-<article class="markdown-body">
+<body class="markdown-body">
+  <div class="sticky">
+    <div class="absolute">
+      <p>↩️ <a href="./index.html">tdt4186</a>
+↩️ <a href="../index.html">courses</a></p>
+<h3>tdt4186</h3>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="compendium.html">compendium.html</a></li>
+<li>📄 <a href="lecture.1.html">lecture.1.html</a></li>
+<li>📄 <a href="lecture.10.html">lecture.10.html</a></li>
+<li>📄 <a href="lecture.11.html">lecture.11.html</a></li>
+<li>📄 <a href="lecture.12.html">lecture.12.html</a></li>
+<li>📄 <a href="lecture.13.html">lecture.13.html</a></li>
+<li>📄 <a href="lecture.14.html">lecture.14.html</a></li>
+<li>📄 <a href="lecture.15.html">lecture.15.html</a></li>
+<li>📄 <a href="lecture.16.html">lecture.16.html</a></li>
+<li>📄 <a href="lecture.17.html">lecture.17.html</a></li>
+<li>📄 <a href="lecture.18.html">lecture.18.html</a></li>
+<li>📄 <a href="lecture.19.html">lecture.19.html</a></li>
+<li>📄 <a href="lecture.2.html">lecture.2.html</a></li>
+<li>📄 <a href="lecture.20.html">lecture.20.html</a></li>
+<li>📄 <a href="lecture.21.html">lecture.21.html</a></li>
+<li>📄 <a href="lecture.22.html">lecture.22.html</a></li>
+<li>📄 <a href="lecture.3.html">lecture.3.html</a></li>
+<li>📄 <a href="lecture.4.html">lecture.4.html</a></li>
+<li>📄 <a href="lecture.5.html">lecture.5.html</a></li>
+<li>📄 <a href="lecture.6.html">lecture.6.html</a></li>
+<li>📄 <a href="lecture.7.html">lecture.7.html</a></li>
+<li>📄 <a href="lecture.8.html">lecture.8.html</a></li>
+<li>📄 <a href="lecture.9.html">lecture.9.html</a></li>
+<li>📄 <a href="questions.html">questions.html</a>
+</li>
+</ul>
 
-<p>↩️ <a href="./index.html">tdt4186</a></p>
-<h2>Lecture 7: Concurrency: Deadlocks</h2>
-<p><a href="tdt4186.lecture.6.html">Previous lecture</a>
-<a href="tdt4186.lecture.8.html">Next lecture</a></p>
+    </div>
+  </div>
+  <article>
+    <h2>Lecture 7: Concurrency: Deadlocks</h2>
+<p><a href="lecture.6.html">Previous lecture</a>
+<a href="lecture.8.html">Next lecture</a></p>
 <p><iframe
 width="560" height="315" src="https://www.youtube.com/embed/VSaop2ycn28"
 title="YouTube video player"
@@ -63,9 +97,9 @@ allowfullscreen>
 <li>Which methods exist to resolve a deadlock and what are their pros/cons?</li>
 </ul>
 <h3>Deadlocks</h3>
-<p><img src="assets/tdt4186.lecture.7.deadlock_cars.png" alt=""></p>
+<p><img src="assets/lecture.7.deadlock_cars.png" alt=""></p>
 <h3>Why is this happening?</h3>
-<p><img src="assets/tdt4186.lecture.7.deadlock_cars_2.png" alt=""></p>
+<p><img src="assets/lecture.7.deadlock_cars_2.png" alt=""></p>
 <h3>Deadlocking processes</h3>
 <p>The term <em>deadlock</em> (in computer science) means</p>
 <blockquote>
@@ -140,13 +174,13 @@ processes. There are two kinds of resources:</p>
 <li>A deadlock occurs if two processes each have allocated a reusable resource which is afterwards additionally requested by the respective other process</li>
 <li>Example: A computer has 200 GB of main memory. Two processes allocate the memory in steps. The allocation is blocking</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.7.reusable_resources.png" alt=""></p>
+<p><img src="assets/lecture.7.reusable_resources.png" alt=""></p>
 <h3>Consumable resources</h3>
 <ul>
 <li>A deadlock occurs if two processes each wait for a consumable resource which is produced by the respective other process</li>
 <li>Example: synchronization signals exchanged between the two processes using the semaphore operations wait and signal</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.7.consumable_resources.png" alt=""></p>
+<p><img src="assets/lecture.7.consumable_resources.png" alt=""></p>
 <h3>Resource allocation graphs</h3>
 <p>... are used to visualize and also automatically detect
 deadlock situations</p>
@@ -155,7 +189,7 @@ deadlock situations</p>
 <li>The nodes are processes and resources</li>
 <li>The edges show an allocation or a request</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.7.resource_allocation_graphs.png" alt=""></p>
+<p><img src="assets/lecture.7.resource_allocation_graphs.png" alt=""></p>
 <ul>
 <li>Question to consider:
 <ul>
@@ -176,10 +210,10 @@ deadlock situations</p>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.7.resource_allocation_graphs_2.png" alt=""></p>
+<p><img src="assets/lecture.7.resource_allocation_graphs_2.png" alt=""></p>
 <h3>Classic deadlock: dining philosophers</h3>
 <p>Five philosophers spend their life either thinking or eating. And they love eating spaghetti! [1] To eat, the philosophers sit around a round table. Thinking makes you hungry – every philosopher has to eat! To eat spaghetti, a philosopher needs both forks next to her or his plate!
-<img src="assets/tdt4186.lecture.7.dining_philosophers.png" alt=""></p>
+<img src="assets/lecture.7.dining_philosophers.png" alt=""></p>
 <h4>Deadlocked philosophers?</h4>
 <p>Here, the three first necessary conditions are fulfilled:</p>
 <ul>
@@ -227,8 +261,8 @@ deadlock situations</p>
 }
 </code></pre>
 <p>Using a semaphore guarantees mutual exclusion when accessing the forks. By tradition, every philosopher first takes the right and then the left fork.
-<img src="assets/tdt4186.lecture.7.philosophers_1_deadlock.png" alt="">
-<img src="assets/tdt4186.lecture.7.philosophers_1_circular_wait.png" alt=""></p>
+<img src="assets/lecture.7.philosophers_1_deadlock.png" alt="">
+<img src="assets/lecture.7.philosophers_1_circular_wait.png" alt=""></p>
 <h4>Dining philosophers: version 2</h4>
 <p>The problem in version 1 was the consequence of a process switch between the 1. und 2. wait – a critical section. Version 2 protects this critical section using mutual exclusion.</p>
 <pre><code class="hljs language-cpp">semaphore mutex = {<span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>};
@@ -371,7 +405,7 @@ before taking the first fork</li>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.7.detection_resource_allocation_graph.png" alt=""></p>
+<p><img src="assets/lecture.7.detection_resource_allocation_graph.png" alt=""></p>
 <h4>Safe/unsafe states (2)</h4>
 <p>(using the example of multiple instances of resources)</p>
 <ul>
@@ -483,8 +517,7 @@ critical moments</li>
 </li>
 </ul>
 
-
-</article>
+  </article>
 </body>
 
 </html>

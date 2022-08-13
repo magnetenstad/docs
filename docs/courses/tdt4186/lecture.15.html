@@ -10,7 +10,7 @@
   <link rel="stylesheet" href=
       "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-  <title>tdt4186.lecture.15.md</title>
+  <title>lecture.15.md</title>
   <link rel="icon" type="image/x-icon" href="../../null">
 
   <!-- Custom Styles -->
@@ -18,13 +18,47 @@
   
 </head>
 
-<body>
-<article class="markdown-body">
+<body class="markdown-body">
+  <div class="sticky">
+    <div class="absolute">
+      <p>↩️ <a href="./index.html">tdt4186</a>
+↩️ <a href="../index.html">courses</a></p>
+<h3>tdt4186</h3>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="compendium.html">compendium.html</a></li>
+<li>📄 <a href="lecture.1.html">lecture.1.html</a></li>
+<li>📄 <a href="lecture.10.html">lecture.10.html</a></li>
+<li>📄 <a href="lecture.11.html">lecture.11.html</a></li>
+<li>📄 <a href="lecture.12.html">lecture.12.html</a></li>
+<li>📄 <a href="lecture.13.html">lecture.13.html</a></li>
+<li>📄 <a href="lecture.14.html">lecture.14.html</a></li>
+<li>📄 <a href="lecture.15.html">lecture.15.html</a></li>
+<li>📄 <a href="lecture.16.html">lecture.16.html</a></li>
+<li>📄 <a href="lecture.17.html">lecture.17.html</a></li>
+<li>📄 <a href="lecture.18.html">lecture.18.html</a></li>
+<li>📄 <a href="lecture.19.html">lecture.19.html</a></li>
+<li>📄 <a href="lecture.2.html">lecture.2.html</a></li>
+<li>📄 <a href="lecture.20.html">lecture.20.html</a></li>
+<li>📄 <a href="lecture.21.html">lecture.21.html</a></li>
+<li>📄 <a href="lecture.22.html">lecture.22.html</a></li>
+<li>📄 <a href="lecture.3.html">lecture.3.html</a></li>
+<li>📄 <a href="lecture.4.html">lecture.4.html</a></li>
+<li>📄 <a href="lecture.5.html">lecture.5.html</a></li>
+<li>📄 <a href="lecture.6.html">lecture.6.html</a></li>
+<li>📄 <a href="lecture.7.html">lecture.7.html</a></li>
+<li>📄 <a href="lecture.8.html">lecture.8.html</a></li>
+<li>📄 <a href="lecture.9.html">lecture.9.html</a></li>
+<li>📄 <a href="questions.html">questions.html</a>
+</li>
+</ul>
 
-<p>↩️ <a href="./index.html">tdt4186</a></p>
-<h2>Lecture 15: File systems</h2>
-<p><a href="tdt4186.lecture.14.html">Previous lecture</a>
-<a href="tdt4186.lecture.16.html">Next lecture</a></p>
+    </div>
+  </div>
+  <article>
+    <h2>Lecture 15: File systems</h2>
+<p><a href="lecture.14.html">Previous lecture</a>
+<a href="lecture.16.html">Next lecture</a></p>
 <p><iframe
 width="560" height="315" src="https://www.youtube.com/embed/Pn24WtXBnnk"
 title="YouTube video player"
@@ -56,7 +90,7 @@ allowfullscreen>
 </li>
 </ul>
 <h3>Background storage</h3>
-<p><img src="assets/tdt4186.lecture.15background_storage.png" alt=""></p>
+<p><img src="assets/lecture.15background_storage.png" alt=""></p>
 <h3>The file abstraction</h3>
 <ul>
 <li>Unix principle: "everything is a file"
@@ -110,7 +144,7 @@ allowfullscreen>
 <ul>
 <li>System-wide name space for files</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.vfs_switch.png" alt=""></p>
+<p><img src="assets/lecture.15.vfs_switch.png" alt=""></p>
 <h3>Virtual file system: mounting</h3>
 <p>System Call:</p>
 <pre><code class="hljs language-cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mount</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *source, <span class="hljs-type">const</span> <span class="hljs-type">char</span>
@@ -139,7 +173,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15file_storage_blocks.png" alt=""></p>
+<p><img src="assets/lecture.15file_storage_blocks.png" alt=""></p>
 <h3>Contigous storage</h3>
 <ul>
 <li>A file is stored in blocks with increasing block numbers
@@ -148,7 +182,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.file_storage_blocks_2.png" alt=""></p>
+<p><img src="assets/lecture.15.file_storage_blocks_2.png" alt=""></p>
 <ul>
 <li>Advantage:
 <ul>
@@ -182,7 +216,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <ul>
 <li>Blocks of a file are linked</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.linked_list.png" alt=""></p>
+<p><img src="assets/lecture.15.linked_list.png" alt=""></p>
 <ul>
 <li>e.g. used on Commodore disk drives (C64 etc.)
 <ul>
@@ -214,7 +248,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.linked_list_fat.png" alt=""></p>
+<p><img src="assets/lecture.15.linked_list_fat.png" alt=""></p>
 <ul>
 <li>Advantages:
 <ul>
@@ -272,7 +306,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <ul>
 <li>A special disk block contains block numbers of the data blocks of a file</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.indexed_storage.png" alt=""></p>
+<p><img src="assets/lecture.15.indexed_storage.png" alt=""></p>
 <ul>
 <li>Problem
 <ul>
@@ -286,7 +320,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </li>
 </ul>
 <h3>Indexed storage: Unix inodes</h3>
-<p><img src="assets/tdt4186.lecture.15.unix_inodes.png" alt=""></p>
+<p><img src="assets/lecture.15.unix_inodes.png" alt=""></p>
 <h3>Indexed storage: discussion</h3>
 <ul>
 <li>Use of multiple indexing levels
@@ -313,7 +347,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </li>
 <li>Can also be used to find chunks of files with a certain file offset, e.g. in NTFS, btrfs, IBM JFS2, Apple HFS+ (B+ tree)</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.tree_sequential_storage.png" alt=""></p>
+<p><img src="assets/lecture.15.tree_sequential_storage.png" alt=""></p>
 <h3>Free space management</h3>
 <p>Similar to free main memory management</p>
 <ul>
@@ -332,12 +366,12 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.free_space_management.png" alt=""></p>
+<p><img src="assets/lecture.15.free_space_management.png" alt=""></p>
 <h3>Directory management: lists</h3>
 <ul>
 <li>Entries of identical length stored one after the other in a list, e.g.</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15dir_man_lists.png" alt=""></p>
+<p><img src="assets/lecture.15dir_man_lists.png" alt=""></p>
 <ul>
 <li>Problems:
 <ul>
@@ -353,7 +387,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <li>no linear search required</li>
 <li>Simple (but bad…) example: ( ∑ character values ) mod N</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.hash.png" alt=""></p>
+<p><img src="assets/lecture.15.hash.png" alt=""></p>
 <ul>
 <li>Problems:
 <ul>
@@ -366,7 +400,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <ul>
 <li>Example: used in 4.2 BSD, System V Rel. 4, etc.</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.variable_length.png" alt=""></p>
+<p><img src="assets/lecture.15.variable_length.png" alt=""></p>
 <ul>
 <li>Problems:
 <ul>
@@ -379,7 +413,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <ul>
 <li>Block organization</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15.system_v.png" alt=""></p>
+<p><img src="assets/lecture.15.system_v.png" alt=""></p>
 <ul>
 <li><strong>Boot block</strong> contains information used to load the OS</li>
 <li><strong>Superblock</strong> contains management data for a file system:
@@ -394,7 +428,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <ul>
 <li>Block organization (used from 4.2 BSD Unix onwards)</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15berkeley.png" alt=""></p>
+<p><img src="assets/lecture.15berkeley.png" alt=""></p>
 <ul>
 <li>Copy of the superblock is stored in every cylinder group</li>
 <li>One file is stored inside a single cylinder group if possible</li>
@@ -405,7 +439,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <ul>
 <li>Block organization</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.15ext234.png" alt=""></p>
+<p><img src="assets/lecture.15ext234.png" alt=""></p>
 <ul>
 <li>Similar layout to BSD FFS</li>
 <li>Block groups are independent of cylinders</li>
@@ -433,8 +467,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </li>
 </ul>
 
-
-</article>
+  </article>
 </body>
 
 </html>

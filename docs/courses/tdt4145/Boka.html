@@ -18,11 +18,32 @@
   
 </head>
 
-<body>
-<article class="markdown-body">
-
-<p>↩️ <a href="./index.html">tdt4145</a></p>
+<body class="markdown-body">
+  <div class="sticky">
+    <div class="absolute">
+      <p>↩️ <a href="./index.html">tdt4145</a>
+↩️ <a href="../index.html">courses</a></p>
+<h3>tdt4145</h3>
 <ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="Boka.html">Boka.html</a></li>
+<li>📄 <a href="Datamodellering.html">Datamodellering.html</a></li>
+<li>📄 <a href="Del 2.html">Del 2.html</a></li>
+<li>📄 <a href="Indekser.html">Indekser.html</a></li>
+<li>📄 <a href="Lagring.html">Lagring.html</a></li>
+<li>📄 <a href="Normalisering.html">Normalisering.html</a></li>
+<li>📄 <a href="Queryutf%C3%B8ring.html">Queryutføring.html</a></li>
+<li>📄 <a href="Relasjonsalgebra.html">Relasjonsalgebra.html</a></li>
+<li>📄 <a href="Relasjonsdatabaser.html">Relasjonsdatabaser.html</a></li>
+<li>📄 <a href="SQL.html">SQL.html</a></li>
+<li>📄 <a href="Transaksjoner.html">Transaksjoner.html</a>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <article>
+    <ul>
 <li><a href="#18-strategies-for-query-processing">18 Strategies for Query Processing</a>
 <ul>
 <li><a href="#algorithms-for-external-sorting">Algorithms for External Sorting</a></li>
@@ -118,7 +139,7 @@
 <p>The scanner identifies the query tokens—such as SQL keywords, attribute names, and relation names. the parser checks the query syntax to determine whether it is formulated according to the syntax rules (rules of grammar) of the query language. the parser checks the query syntax to determine whether it is formulated according to the syntax rules (rules of grammar) of the query language. The parser checks the query syntax to determine whether it is formulated according to the syntax rules (rules of grammar) of the query language.</p>
 <p>The query optimizer module has the task of producing a good execution plan, and the code generator generates the code to execute that plan. The runtime database processor has the task of running (executing) the query code, whether in compiled or interpreted mode, to produce the query result.</p>
 <p><img src="assets/2022-05-06-21-21-40.png" alt=""></p>
-<p>&lt;!-- Translating SQL Queries into Relational Algebra and Other Operators --&gt;</p>
+<p></p>
 <h2>Algorithms for External Sorting</h2>
 <p>Note that sorting of a particular file may be avoided if an appropriate index— such as a primary or clustering index exists on the desired file attribute to allow ordered access to the records of the file.</p>
 <p>External sorting refers to sorting algorithms that are suitable for large files of records stored on disk that do not fit entirely in main memory. The typical external sorting algorithm uses a sort-merge strategy, which starts by sorting small subfiles—called runs—of the main file and then merges the sorted runs, creating larger sorted subfiles that are merged in turn.</p>
@@ -390,7 +411,7 @@ this length of tuple is referred to as R.</li>
 <h3>Transaction Rollback and Cascading Rollback</h3>
 <p>f a transaction fails for whatever reason after updating the database, but before the transaction commits, it may be necessary to roll back the transaction. The undo-type log entries are used to restore the old values of data items that must be rolled back.</p>
 <p>If a transaction T is rolled back, any transaction S that has, in the interim, read the value of some data item X written by T must also be rolled back. This phenomenon is called cascading rollback, and it can occur when the recovery protocol ensures recoverable schedules but does not ensure strict or cascadeless schedules. almost all recovery mechanisms are designed so that cascading rollback is never required.</p>
-<p>&lt;!-- ### Transaction Actions That Do Not Affect the Database --&gt;</p>
+<p></p>
 <h2>NO-UNDO/REDO Recovery Based on Deferred Update</h2>
 <p>The idea behind deferred update is to defer or postpone any actual updates to the database on disk until the transaction completes its execution successfully and reaches its commit point. deferred update can generally be characterized as a no-steal approach.</p>
 <p>During transaction execution, the updates are recorded only in the log and in the cache buffers.If a transaction fails before reaching its commit point, there is no need to undo any operations because the transaction has not affected the database on disk in any way. Therefore, only REDOtype log entries are needed in the log, which include the new value (AFIM).</p>
@@ -428,8 +449,7 @@ this length of tuple is referred to as R.</li>
 <p>For the REDO phase, the smallest LSN in the Dirty Page Table is 1. Hence the REDO will start at log record 1 and proceed with the REDO of updates. The LSNs {1, 2, 6, 7} corresponding to the updates for pages C, B, A, and C, respectively, are not less than the LSNs of those pages (as shown in the Dirty Page Table). So those data pages will be read again and the updates reapplied from the log</p>
 <p>UNDO is applied only to the active transaction T3. The UNDO phase starts at log entry 6 (the last update for T3) and proceeds backward in the log. The backward chain of updates for transaction T3 (only log record 6 in this example) is followed and undone.</p>
 
-
-</article>
+  </article>
 </body>
 
 </html>

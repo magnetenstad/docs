@@ -10,7 +10,7 @@
   <link rel="stylesheet" href=
       "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-  <title>tdt4186.lecture.14.md</title>
+  <title>lecture.14.md</title>
   <link rel="icon" type="image/x-icon" href="../../null">
 
   <!-- Custom Styles -->
@@ -18,13 +18,47 @@
   
 </head>
 
-<body>
-<article class="markdown-body">
+<body class="markdown-body">
+  <div class="sticky">
+    <div class="absolute">
+      <p>↩️ <a href="./index.html">tdt4186</a>
+↩️ <a href="../index.html">courses</a></p>
+<h3>tdt4186</h3>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="compendium.html">compendium.html</a></li>
+<li>📄 <a href="lecture.1.html">lecture.1.html</a></li>
+<li>📄 <a href="lecture.10.html">lecture.10.html</a></li>
+<li>📄 <a href="lecture.11.html">lecture.11.html</a></li>
+<li>📄 <a href="lecture.12.html">lecture.12.html</a></li>
+<li>📄 <a href="lecture.13.html">lecture.13.html</a></li>
+<li>📄 <a href="lecture.14.html">lecture.14.html</a></li>
+<li>📄 <a href="lecture.15.html">lecture.15.html</a></li>
+<li>📄 <a href="lecture.16.html">lecture.16.html</a></li>
+<li>📄 <a href="lecture.17.html">lecture.17.html</a></li>
+<li>📄 <a href="lecture.18.html">lecture.18.html</a></li>
+<li>📄 <a href="lecture.19.html">lecture.19.html</a></li>
+<li>📄 <a href="lecture.2.html">lecture.2.html</a></li>
+<li>📄 <a href="lecture.20.html">lecture.20.html</a></li>
+<li>📄 <a href="lecture.21.html">lecture.21.html</a></li>
+<li>📄 <a href="lecture.22.html">lecture.22.html</a></li>
+<li>📄 <a href="lecture.3.html">lecture.3.html</a></li>
+<li>📄 <a href="lecture.4.html">lecture.4.html</a></li>
+<li>📄 <a href="lecture.5.html">lecture.5.html</a></li>
+<li>📄 <a href="lecture.6.html">lecture.6.html</a></li>
+<li>📄 <a href="lecture.7.html">lecture.7.html</a></li>
+<li>📄 <a href="lecture.8.html">lecture.8.html</a></li>
+<li>📄 <a href="lecture.9.html">lecture.9.html</a></li>
+<li>📄 <a href="questions.html">questions.html</a>
+</li>
+</ul>
 
-<p>↩️ <a href="./index.html">tdt4186</a></p>
-<h2>Lecture 14, part 1: Input and output</h2>
-<p><a href="tdt4186.lecture.13.html">Previous lecture</a>
-<a href="tdt4186.lecture.15.html">Next lecture</a></p>
+    </div>
+  </div>
+  <article>
+    <h2>Lecture 14, part 1: Input and output</h2>
+<p><a href="lecture.13.html">Previous lecture</a>
+<a href="lecture.15.html">Next lecture</a></p>
 <p><iframe
 width="560" height="315" src="https://www.youtube.com/embed/W86X9XaN27E"
 title="YouTube video player"
@@ -82,9 +116,9 @@ allowfullscreen>
 </li>
 <li><strong>Today: I/O devices</strong></li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14a.computer.png" alt=""></p>
+<p><img src="assets/lecture.14a.computer.png" alt=""></p>
 <h3>I/O device interfacing</h3>
-<p><img src="assets/tdt4186.lecture.14a.computer_system_bus.png" alt=""></p>
+<p><img src="assets/lecture.14a.computer_system_bus.png" alt=""></p>
 <h3>Example: PC keyboard</h3>
 <ul>
 <li>Serial communication, character oriented
@@ -93,7 +127,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14a.keyboard.png" alt=""></p>
+<p><img src="assets/lecture.14a.keyboard.png" alt=""></p>
 <h3>Example: CGA video controller</h3>
 <ul>
 <li>Communication via video signal
@@ -103,7 +137,7 @@ allowfullscreen>
 </li>
 <li>Transformation of the contents of the frame buffer (screen memory) into a picture (e.g. 80x25 character matrix or bitmap)</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14a.cga_video_controller.png" alt=""></p>
+<p><img src="assets/lecture.14a.cga_video_controller.png" alt=""></p>
 <h3>Example: IDE disk controller</h3>
 <ul>
 <li>Communication via AT commands
@@ -112,7 +146,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14a.ide_disk_controller.png" alt=""></p>
+<p><img src="assets/lecture.14a.ide_disk_controller.png" alt=""></p>
 <h3>Example: Ethernet controller</h3>
 <ul>
 <li>Serial packet-based bus communication
@@ -121,7 +155,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14a.ethernet_controller.png" alt=""></p>
+<p><img src="assets/lecture.14a.ethernet_controller.png" alt=""></p>
 <h3>Device classes</h3>
 <ul>
 <li>Character devices
@@ -151,18 +185,18 @@ packet filtering, ...)</li>
 <li>... signal the software to become active</li>
 </ul>
 <h4>Interrupt processing sequence on hardware level</h4>
-<p><img src="assets/tdt4186.lecture.14a.interrupts.png" alt=""></p>
+<p><img src="assets/lecture.14a.interrupts.png" alt=""></p>
 <h3>Direct Memory Access (DMA)</h3>
 <ul>
 <li>... is used by complex controllers to transfer data from and to main memory independent of the CPU</li>
 </ul>
 <h4>DMA transfer sequence</h4>
-<p><img src="assets/tdt4186.lecture.14a.dma.png" alt=""></p>
+<p><img src="assets/lecture.14a.dma.png" alt=""></p>
 <h3>I/O addresss space</h3>
 <ul>
 <li>Acces to controller registers and controller memory depends on the system architecture</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14a.io_address_space.png" alt=""></p>
+<p><img src="assets/lecture.14a.io_address_space.png" alt=""></p>
 <h3>Device drivers</h3>
 <ul>
 <li>Depending on the device, I/O can be performed via
@@ -174,7 +208,7 @@ packet filtering, ...)</li>
 </li>
 <li>Example: Printing a page of text</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14a.device_drivers.png" alt=""></p>
+<p><img src="assets/lecture.14a.device_drivers.png" alt=""></p>
 <h3>Polling ("programmed I/O")</h3>
 <p>... implies active waiting for an I/O device</p>
 <p>Pseudo code of an operating system function to print text using polling:</p>
@@ -316,7 +350,7 @@ was waiting for the I/O operation to finish</li>
 <li>Support plug&amp;play</li>
 </ul>
 <h3>Layers of the I/O system</h3>
-<p><img src="assets/tdt4186.lecture.14a.io_system_layers.png" alt=""></p>
+<p><img src="assets/lecture.14a.io_system_layers.png" alt=""></p>
 <h2>Lecture 14, part 2: I/O in Unix and disk scheduling</h2>
 <h3>Unix device abstractions</h3>
 <ul>
@@ -365,7 +399,7 @@ was waiting for the I/O operation to finish</li>
 <li>Partial listing of the /dev directory that by convention holds the</li>
 </ul>
 <p>special files:
-<img src="assets/tdt4186.lecture.14b.unix_device_abstractions_3.png" alt=""></p>
+<img src="assets/lecture.14b.unix_device_abstractions_3.png" alt=""></p>
 <h3>Unix access primitives</h3>
 <p>A quick overview... (see the man pages for details...)</p>
 <ul>
@@ -460,7 +494,7 @@ SYNOPSIS
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14b.read_without_buffering.png" alt=""></p>
+<p><img src="assets/lecture.14b.read_without_buffering.png" alt=""></p>
 <h3>Single I/O buffers</h3>
 <ul>
 <li>Read
@@ -476,7 +510,7 @@ SYNOPSIS
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14b.read_single_buffering.png" alt=""></p>
+<p><img src="assets/lecture.14b.read_single_buffering.png" alt=""></p>
 <h4>Performance estimation</h4>
 <p>A simple back-of-the envelope calculation gives an indication of the
 performance increase when repeatedly reading blockwise with
@@ -504,7 +538,7 @@ For T ≈ C und M ≈ <span class="hljs-number">0</span>, B0 ≈ <span class="hl
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14b.read_double_buffering.png" alt=""></p>
+<p><img src="assets/lecture.14b.read_double_buffering.png" alt=""></p>
 <h4>Performance estimation</h4>
 <p>A double buffer enables to execute a read operation in parallel to a copy
 operation and processing</p>
@@ -527,7 +561,7 @@ operation and processing</p>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14b.read_ring_buffer.png" alt=""></p>
+<p><img src="assets/lecture.14b.read_ring_buffer.png" alt=""></p>
 <h3>Discussion: I/O buffers</h3>
 <ul>
 <li>I/O buffers decouple the I/O operations of user processes from the device driver
@@ -576,7 +610,7 @@ operation and processing</p>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14b.scheduling_fifo.png" alt=""></p>
+<p><img src="assets/lecture.14b.scheduling_fifo.png" alt=""></p>
 <ul>
 <li>Total number of track changes: 640</li>
 <li>Large movements of the disk arm: long average processing time!</li>
@@ -590,7 +624,7 @@ operation and processing</p>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14b.scheduling_sstf.png" alt=""></p>
+<p><img src="assets/lecture.14b.scheduling_sstf.png" alt=""></p>
 <ul>
 <li>Total number of track changes: 236</li>
 <li>Similar to SJF scheduling, SSTF can also lead to starvation!</li>
@@ -604,7 +638,7 @@ operation and processing</p>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.14b.scheduling_elevator.png" alt=""></p>
+<p><img src="assets/lecture.14b.scheduling_elevator.png" alt=""></p>
 <ul>
 <li>Total number of track changes: 208</li>
 <li>New requests executed without additional positioning time</li>
@@ -658,8 +692,7 @@ operation and processing</p>
 </li>
 </ul>
 
-
-</article>
+  </article>
 </body>
 
 </html>

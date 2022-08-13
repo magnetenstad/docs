@@ -10,7 +10,7 @@
   <link rel="stylesheet" href=
       "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-  <title>tdt4186.lecture.13.md</title>
+  <title>lecture.13.md</title>
   <link rel="icon" type="image/x-icon" href="../../null">
 
   <!-- Custom Styles -->
@@ -18,14 +18,48 @@
   
 </head>
 
-<body>
-<article class="markdown-body">
+<body class="markdown-body">
+  <div class="sticky">
+    <div class="absolute">
+      <p>↩️ <a href="./index.html">tdt4186</a>
+↩️ <a href="../index.html">courses</a></p>
+<h3>tdt4186</h3>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="compendium.html">compendium.html</a></li>
+<li>📄 <a href="lecture.1.html">lecture.1.html</a></li>
+<li>📄 <a href="lecture.10.html">lecture.10.html</a></li>
+<li>📄 <a href="lecture.11.html">lecture.11.html</a></li>
+<li>📄 <a href="lecture.12.html">lecture.12.html</a></li>
+<li>📄 <a href="lecture.13.html">lecture.13.html</a></li>
+<li>📄 <a href="lecture.14.html">lecture.14.html</a></li>
+<li>📄 <a href="lecture.15.html">lecture.15.html</a></li>
+<li>📄 <a href="lecture.16.html">lecture.16.html</a></li>
+<li>📄 <a href="lecture.17.html">lecture.17.html</a></li>
+<li>📄 <a href="lecture.18.html">lecture.18.html</a></li>
+<li>📄 <a href="lecture.19.html">lecture.19.html</a></li>
+<li>📄 <a href="lecture.2.html">lecture.2.html</a></li>
+<li>📄 <a href="lecture.20.html">lecture.20.html</a></li>
+<li>📄 <a href="lecture.21.html">lecture.21.html</a></li>
+<li>📄 <a href="lecture.22.html">lecture.22.html</a></li>
+<li>📄 <a href="lecture.3.html">lecture.3.html</a></li>
+<li>📄 <a href="lecture.4.html">lecture.4.html</a></li>
+<li>📄 <a href="lecture.5.html">lecture.5.html</a></li>
+<li>📄 <a href="lecture.6.html">lecture.6.html</a></li>
+<li>📄 <a href="lecture.7.html">lecture.7.html</a></li>
+<li>📄 <a href="lecture.8.html">lecture.8.html</a></li>
+<li>📄 <a href="lecture.9.html">lecture.9.html</a></li>
+<li>📄 <a href="questions.html">questions.html</a>
+</li>
+</ul>
 
-<p>↩️ <a href="./index.html">tdt4186</a></p>
-<h2>Lecture 13: Real-time scheduling</h2>
+    </div>
+  </div>
+  <article>
+    <h2>Lecture 13: Real-time scheduling</h2>
 <p>NOTE: Not relevant for the exam.</p>
-<p><a href="tdt4186.lecture.12.html">Previous lecture</a>
-<a href="tdt4186.lecture.14.html">Next lecture</a></p>
+<p><a href="lecture.12.html">Previous lecture</a>
+<a href="lecture.14.html">Next lecture</a></p>
 <p><iframe
 width="560" height="315" src="https://www.youtube.com/embed/-aQe1JY4c3k"
 title="YouTube video player"
@@ -41,7 +75,7 @@ allowfullscreen>
 <p>A real-time computer system is a computer system in which the correctness of the system behavior depends not only on the logical results of the computations, but also on the physical instant at which these results are produced.</p>
 </blockquote>
 <h4>Example: inverted pendulum</h4>
-<p><img src="assets/tdt4186.lecture.13.inverted_pendulum.png" alt=""></p>
+<p><img src="assets/lecture.13.inverted_pendulum.png" alt=""></p>
 <h3>Deadlines</h3>
 <ul>
 <li>Often defined by the technical system to be controlled</li>
@@ -67,7 +101,7 @@ useful even if it was obtained after the deadline has passed</li>
 </li>
 <li>Especially relevant: Worst Case Execution Time (WCET)</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.execution_times.png" alt=""></p>
+<p><img src="assets/lecture.13.execution_times.png" alt=""></p>
 <p>The estimated WCETEST has to be guaranteed larger or equal to the real WCET. However, the difference between the two should be as small as possible ("tight bounds").</p>
 <h3>Trigger</h3>
 <p>… to initiate computation ("task") can be realized in different ways:</p>
@@ -118,7 +152,7 @@ useful even if it was obtained after the deadline has passed</li>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.osektime_scheduler.png" alt=""></p>
+<p><img src="assets/lecture.13.osektime_scheduler.png" alt=""></p>
 <ul>
 <li>The dispatcher is invoked by a timer interrupt</li>
 <li>Only the dispatcher can activate tasks</li>
@@ -128,19 +162,19 @@ useful even if it was obtained after the deadline has passed</li>
 <ul>
 <li>Tools support developers when scheduling tasks at design time</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.timecore.png" alt=""></p>
+<p><img src="assets/lecture.13.timecore.png" alt=""></p>
 <h3>Real-time scheduling</h3>
 <ul>
 <li>Objective: obtain guarantees that hard deadlines are kept</li>
 <li>Taxonomy of scheduling approaches [3, chapter 6]:</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.real_time_scheduling_graph.png" alt=""></p>
+<p><img src="assets/lecture.13.real_time_scheduling_graph.png" alt=""></p>
 <h3>Rate-monotonic scheduling (RM)</h3>
 <ul>
 <li>Rate-monotonic (RM) scheduling is a scheduling strategy for preemptive, periodic tasks with hard deadlines</li>
 <li>The scheduler works at runtime (using fixed priorities)</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.real_time_scheduling_graph_rm.png" alt=""></p>
+<p><img src="assets/lecture.13.real_time_scheduling_graph_rm.png" alt=""></p>
 <h3>RM assumptions (Liu &amp; Layland 1973)</h3>
 <ul>
 <li>A1. All tasks are preemptible at any time
@@ -163,7 +197,7 @@ useful even if it was obtained after the deadline has passed</li>
 </ul>
 <h3>Example: car headlight controller</h3>
 <p>... everything is periodic!
-<img src="assets/tdt4186.lecture.13.rm_example_car.png" alt=""></p>
+<img src="assets/lecture.13.rm_example_car.png" alt=""></p>
 <h3>RM algorithm</h3>
 <ul>
 <li>The priority grows monotonously with the event rate (=frequency)</li>
@@ -171,7 +205,7 @@ useful even if it was obtained after the deadline has passed</li>
 <li>Tasks with high priority preempt tasks with low priority</li>
 <li>Example:</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.rm_example_car_gantt.png" alt=""></p>
+<p><img src="assets/lecture.13.rm_example_car_gantt.png" alt=""></p>
 <p>A practical implementation of RM scheduling requires only an operating system with a preemptive fixed priority scheduler</p>
 <h3>Schedulability analysis</h3>
 <ul>
@@ -208,7 +242,7 @@ But is this sufficient?</p>
 <li>Disadvantage: no conclusion if the condition is not fulfilled</li>
 </ul>
 <h3>Sufficient and necessary conditions</h3>
-<p><img src="assets/tdt4186.lecture.13.sufficient_and_necessary_conditions.png" alt=""></p>
+<p><img src="assets/lecture.13.sufficient_and_necessary_conditions.png" alt=""></p>
 <h3>Exact test: response time analysis</h3>
 <ul>
 <li>If the response time Ri for all tasks is less than or equal to the period Ti, all deadlines are kept</li>
@@ -219,7 +253,7 @@ But is this sufficient?</p>
 <ul>
 <li>For the largest possible delay 𝜙i = 0: All higher prioritized tasks are ready at the start of the period</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.response_time_analysis.png" alt=""></p>
+<p><img src="assets/lecture.13.response_time_analysis.png" alt=""></p>
 <h3>Exact test: iterative solution</h3>
 <ul>
 <li>Calculate Ri using fixed point iteration:
@@ -257,9 +291,9 @@ Ci+Cj ≤ Tj holds since the schedule is valid and 𝜏i has a higher priority</
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.rm_optimal.png" alt=""></p>
+<p><img src="assets/lecture.13.rm_optimal.png" alt=""></p>
 <p>What is the effect of swapping the priorities (only) of these two tasks? 𝜏j can be scheduled, since it now has higher priority. 𝜏i can also be scheduled since Ci + Cj ≤ Tj &lt; Ti.
-<img src="assets/tdt4186.lecture.13.rm_optimal_2.png" alt=""></p>
+<img src="assets/lecture.13.rm_optimal_2.png" alt=""></p>
 <p>We obtain an RM schedule by applying a finite number of these swaps. This is also a valid schedule → contradiction → RM is optimal!</p>
 <h3>RM scheduling: conclusion</h3>
 <ul>
@@ -294,18 +328,18 @@ Ci+Cj ≤ Tj holds since the schedule is valid and 𝜏i has a higher priority</
 <ul>
 <li>Earliest Deadline First (EDF) scheduling is a scheduling strategy for preemptive, periodic and aperiodic tasks with hard deadlines. The priorities are assigned dynamically (at runtime).</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.edf_graph.png" alt=""></p>
+<p><img src="assets/lecture.13.edf_graph.png" alt=""></p>
 <h3>EDF algorithm</h3>
 <ul>
 <li>Tasks which are ready are sorted in order of their absolute deadlines</li>
 <li>If the first task in the list has an earlier deadline than the currently running task, the running task is preempted immediately!</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.edf_algorithm_example.png" alt=""></p>
+<p><img src="assets/lecture.13.edf_algorithm_example.png" alt=""></p>
 <h3>Optimality of EDF</h3>
 <ul>
 <li>EDF minimizes the maximum delay of tasks</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.13.edf_optimality.png" alt=""></p>
+<p><img src="assets/lecture.13.edf_optimality.png" alt=""></p>
 <ul>
 <li>If a schedule exists which is able to keep all deadlines, then EDF also keeps all deadlines → EDF is optimal
 <ul>
@@ -358,8 +392,7 @@ Ci+Cj ≤ Tj holds since the schedule is valid and 𝜏i has a higher priority</
 <li>Adaptation to [heterogeneous] multiprocessor systems</li>
 </ul>
 
-
-</article>
+  </article>
 </body>
 
 </html>

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href=
       "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-  <title>tdt4186.lecture.9.md</title>
+  <title>lecture.9.md</title>
   <link rel="icon" type="image/x-icon" href="../../null">
 
   <!-- Custom Styles -->
@@ -18,13 +18,47 @@
   
 </head>
 
-<body>
-<article class="markdown-body">
+<body class="markdown-body">
+  <div class="sticky">
+    <div class="absolute">
+      <p>↩️ <a href="./index.html">tdt4186</a>
+↩️ <a href="../index.html">courses</a></p>
+<h3>tdt4186</h3>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="compendium.html">compendium.html</a></li>
+<li>📄 <a href="lecture.1.html">lecture.1.html</a></li>
+<li>📄 <a href="lecture.10.html">lecture.10.html</a></li>
+<li>📄 <a href="lecture.11.html">lecture.11.html</a></li>
+<li>📄 <a href="lecture.12.html">lecture.12.html</a></li>
+<li>📄 <a href="lecture.13.html">lecture.13.html</a></li>
+<li>📄 <a href="lecture.14.html">lecture.14.html</a></li>
+<li>📄 <a href="lecture.15.html">lecture.15.html</a></li>
+<li>📄 <a href="lecture.16.html">lecture.16.html</a></li>
+<li>📄 <a href="lecture.17.html">lecture.17.html</a></li>
+<li>📄 <a href="lecture.18.html">lecture.18.html</a></li>
+<li>📄 <a href="lecture.19.html">lecture.19.html</a></li>
+<li>📄 <a href="lecture.2.html">lecture.2.html</a></li>
+<li>📄 <a href="lecture.20.html">lecture.20.html</a></li>
+<li>📄 <a href="lecture.21.html">lecture.21.html</a></li>
+<li>📄 <a href="lecture.22.html">lecture.22.html</a></li>
+<li>📄 <a href="lecture.3.html">lecture.3.html</a></li>
+<li>📄 <a href="lecture.4.html">lecture.4.html</a></li>
+<li>📄 <a href="lecture.5.html">lecture.5.html</a></li>
+<li>📄 <a href="lecture.6.html">lecture.6.html</a></li>
+<li>📄 <a href="lecture.7.html">lecture.7.html</a></li>
+<li>📄 <a href="lecture.8.html">lecture.8.html</a></li>
+<li>📄 <a href="lecture.9.html">lecture.9.html</a></li>
+<li>📄 <a href="questions.html">questions.html</a>
+</li>
+</ul>
 
-<p>↩️ <a href="./index.html">tdt4186</a></p>
-<h2>Lecture 9, part 1: Memory management</h2>
-<p><a href="tdt4186.lecture.8.html">Previous lecture</a>
-<a href="tdt4186.lecture.10.html">Next lecture</a></p>
+    </div>
+  </div>
+  <article>
+    <h2>Lecture 9, part 1: Memory management</h2>
+<p><a href="lecture.8.html">Previous lecture</a>
+<a href="lecture.10.html">Next lecture</a></p>
 <p><iframe
 width="560" height="315" src="https://www.youtube.com/embed/kXop1DTa68U"
 title="YouTube video player"
@@ -389,9 +423,9 @@ allowfullscreen>
 <ul>
 <li>Translation process (creation of relocation information)</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.9b.translation.png" alt=""></p>
+<p><img src="assets/lecture.9b.translation.png" alt=""></p>
 <h3>Address linking and relocation (3)</h3>
-<p><img src="assets/tdt4186.lecture.9b.linking_and_loading.png" alt=""></p>
+<p><img src="assets/lecture.9b.linking_and_loading.png" alt=""></p>
 <h3>Address linking and relocation (4)</h3>
 <ul>
 <li>Relocation information in the linker module (object file)
@@ -435,7 +469,7 @@ allowfullscreen>
 <ul>
 <li>Using a translation table (per process)</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.9b.segment_table.png" alt=""></p>
+<p><img src="assets/lecture.9b.segment_table.png" alt=""></p>
 <h3>Segmentation (3)</h3>
 <ul>
 <li>Hardware component translating addresse: MMU (Memory Management Unit)</li>
@@ -498,7 +532,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<p><img src="assets/tdt4186.lecture.9b.compaction.png" alt=""></p>
+<p><img src="assets/lecture.9b.compaction.png" alt=""></p>
 <h3>Paging</h3>
 <ul>
 <li>Logical address space is split into pages of identical size
@@ -514,7 +548,7 @@ allowfullscreen>
 <ul>
 <li>A table is used to translate page addresses into page frame addresses</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.9b.page_table.png" alt=""></p>
+<p><img src="assets/lecture.9b.page_table.png" alt=""></p>
 <h3>MMU with page table (2)</h3>
 <ul>
 <li>Page-based addressing creates internal fragmentation
@@ -544,7 +578,7 @@ allowfullscreen>
 <p>-&gt; Combine paging with segmentation</p>
 </blockquote>
 <h3>Segmentation and page addressing</h3>
-<p><img src="assets/tdt4186.lecture.9b.segmentation_and_page_addressing.png" alt=""></p>
+<p><img src="assets/lecture.9b.segmentation_and_page_addressing.png" alt=""></p>
 <h3>Segmentation and page addressing (2)</h3>
 <ul>
 <li>This requires even more implicit memory accesses</li>
@@ -574,7 +608,7 @@ allowfullscreen>
 <ul>
 <li>Example: two-level page addressing</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.9b.multi-level_page_addressing.png" alt=""></p>
+<p><img src="assets/lecture.9b.multi-level_page_addressing.png" alt=""></p>
 <ul>
 <li>Presence bit also for all entries in higher levels
 <ul>
@@ -588,7 +622,7 @@ allowfullscreen>
 <ul>
 <li>Fast cache which is consulted before a (possible) lookup in the page table</li>
 </ul>
-<p><img src="assets/tdt4186.lecture.9b.tlb.png" alt=""></p>
+<p><img src="assets/lecture.9b.tlb.png" alt=""></p>
 <h3>Translation lookaside buffer (2)</h3>
 <ul>
 <li>Fast access to page address mapping, if the information is contained in the (fully associative) TLB memory
@@ -623,7 +657,7 @@ allowfullscreen>
 <blockquote>
 <p>-&gt; Inverted Page Tables</p>
 </blockquote>
-<p><img src="assets/tdt4186.lecture.9b.inverted_page_table.png" alt=""></p>
+<p><img src="assets/lecture.9b.inverted_page_table.png" alt=""></p>
 <h3>Inverted page tables (2)</h3>
 <ul>
 <li>Advantages
@@ -676,8 +710,7 @@ allowfullscreen>
 </li>
 </ul>
 
-
-</article>
+  </article>
 </body>
 
 </html>
