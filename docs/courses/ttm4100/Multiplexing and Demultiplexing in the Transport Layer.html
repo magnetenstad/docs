@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
-<head>
-  <!-- Katex -->
-  <link rel="stylesheet" href=
-      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-  <!-- GitHub Markdown Styles -->
-  <link rel="stylesheet" href=
-      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+    <title>Multiplexing and Demultiplexing in the Transport Layer.md</title>
+    <link rel="icon" type="image/x-icon" href="../../null">
 
-  <title>Multiplexing and Demultiplexing in the Transport Layer.md</title>
-  <link rel="icon" type="image/x-icon" href="../../null">
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="../../styles.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
   
-</head>
+  </head>
 
-<body class="markdown-body">
-  <div class="sticky">
-    <div class="absolute">
-      <p>↩️ <a href="./index.html">ttm4100</a>
-↩️ <a href="../index.html">courses</a></p>
-<h3>ttm4100</h3>
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="links">
+        <p></p>
+<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks.html</a></li>
@@ -48,7 +46,7 @@
 <li>📄 <a href="Multimedia Networking Applications.html">Multimedia Networking Applications.html</a></li>
 <li>📄 <a href="Multimedia Networking.html">Multimedia Networking.html</a></li>
 <li>📄 <a href="Multiple Access Links and Protocols.html">Multiple Access Links and Protocols.html</a></li>
-<li>📄 <a href="Multiplexing and Demultiplexing in the Transport Layer.html">Multiplexing and Demultiplexing in the Transport Layer.html</a></li>
+<li>📄 <a href="Multiplexing and Demultiplexing in the Transport Layer.html">Multiplexing and Demultiplexing in the Transport Layer.html ✨</a></li>
 <li>📄 <a href="Network-Layer Security IPsec and Virtual Private Networks.html">Network-Layer Security IPsec and Virtual Private Networks.html</a></li>
 <li>📄 <a href="Networks Under Attack.html">Networks Under Attack.html</a></li>
 <li>📄 <a href="Operational Security Firewalls and Intrusion Detection Systems.html">Operational Security Firewalls and Intrusion Detection Systems.html</a></li>
@@ -88,10 +86,9 @@
 </li>
 </ul>
 
-    </div>
-  </div>
-  <article>
-    <h1>Multiplexing and Demultiplexing</h1>
+      </div>
+      <article class="content">
+        <h1>Multiplexing and Demultiplexing</h1>
 <p>This job of delivering the data in a transport-layer segment to the correct socket is called demultiplexing. The job of gathering data chunks at the source host from different sockets, encapsulating each data chunk with header information (that will later be used in demultiplexing) to create segments, and passing the segments to the network layer is called multiplexing.</p>
 <p>Transport-layer multiplexing requires (1) that sockets have unique identifiers, and (2) that each segment have special fields that indicate the socket to which the segment is to be delivered. These special fields, illustrated in Figure 3.3, are the source port number field and the destination port number field.</p>
 <p>When we develop a new application, we must assign the application a port number.</p>
@@ -102,7 +99,7 @@
 <h4>Web Servers and TCP</h4>
 <p><img src="assets/2022-05-04-17-45-11.png" alt=""></p>
 
-  </article>
-</body>
-
+      </article>
+      </div>
+  </body>
 </html>

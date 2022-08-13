@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
-<head>
-  <!-- Katex -->
-  <link rel="stylesheet" href=
-      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-  <!-- GitHub Markdown Styles -->
-  <link rel="stylesheet" href=
-      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+    <title>Principles of Cryptography.md</title>
+    <link rel="icon" type="image/x-icon" href="../../null">
 
-  <title>Principles of Cryptography.md</title>
-  <link rel="icon" type="image/x-icon" href="../../null">
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="../../styles.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
   
-</head>
+  </head>
 
-<body class="markdown-body">
-  <div class="sticky">
-    <div class="absolute">
-      <p>↩️ <a href="./index.html">ttm4100</a>
-↩️ <a href="../index.html">courses</a></p>
-<h3>ttm4100</h3>
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="links">
+        <p></p>
+<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks.html</a></li>
@@ -55,7 +53,7 @@
 <li>📄 <a href="Overview of Network Layer.html">Overview of Network Layer.html</a></li>
 <li>📄 <a href="Peer-to-Peer File Distribution.html">Peer-to-Peer File Distribution.html</a></li>
 <li>📄 <a href="Principles of Congestion Control.html">Principles of Congestion Control.html</a></li>
-<li>📄 <a href="Principles of Cryptography.html">Principles of Cryptography.html</a></li>
+<li>📄 <a href="Principles of Cryptography.html">Principles of Cryptography.html ✨</a></li>
 <li>📄 <a href="Principles of Network Applications.html">Principles of Network Applications.html</a></li>
 <li>📄 <a href="Principles of Reliable Data Transfer.html">Principles of Reliable Data Transfer.html</a></li>
 <li>📄 <a href="Protocol Layers and Their Service Models.html">Protocol Layers and Their Service Models.html</a></li>
@@ -88,10 +86,9 @@
 </li>
 </ul>
 
-    </div>
-  </div>
-  <article>
-    <h2>Principles of Cryptography</h2>
+      </div>
+      <article class="content">
+        <h1>Principles of Cryptography.html## Principles of Cryptography</h1>
 <p><img src="assets/2022-05-10-10-48-38.png" alt=""></p>
 <p>In symmetric key systems, Alice’s and Bob’s keys are identical and are secret. In public key systems, a pair of keys is used. One of the keys is known to both Bob and Alice (indeed, it is known to the whole world). The other key is known only by either Bob or Alice (but not both).</p>
 <h3>Symmetric Key Cryptography</h3>
@@ -110,7 +107,7 @@
 <p>Suppose Alice wants to communicate with Bob. As shown in Figure 8.6, rather than Bob and Alice sharing a single secret key, Bob instead has two keys - a public key that is available to everyone in the world and a private key that is known only to Bob. Alice then encrypts her message, m, to Bob using Bob’s public key and a known encryption algorithm. Bob receives Alice’s encrypted message and uses his private key and a known decryption algorithm to decrypt Alice’s encrypted message.</p>
 <p>Since Bob’s encryption key is public, anyone can send an encrypted message to Bob, including Alice or someone pretending to be Alice.</p>
 
-  </article>
-</body>
-
+      </article>
+      </div>
+  </body>
 </html>

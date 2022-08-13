@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
-<head>
-  <!-- Katex -->
-  <link rel="stylesheet" href=
-      "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-  <!-- GitHub Markdown Styles -->
-  <link rel="stylesheet" href=
-      "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+    <title>compendium.md</title>
+    <link rel="icon" type="image/x-icon" href="../../null">
 
-  <title>compendium.md</title>
-  <link rel="icon" type="image/x-icon" href="../../null">
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="../../styles.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
   
-</head>
+  </head>
 
-<body class="markdown-body">
-  <div class="sticky">
-    <div class="absolute">
-      <p>↩️ <a href="./index.html">tdt4186</a>
-↩️ <a href="../index.html">courses</a></p>
-<h3>tdt4186</h3>
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="links">
+        <p></p>
+<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
-<li>📄 <a href="compendium.html">compendium.html</a></li>
+<li>📄 <a href="compendium.html">compendium.html ✨</a></li>
 <li>📄 <a href="lecture.1.html">lecture.1.html</a></li>
 <li>📄 <a href="lecture.10.html">lecture.10.html</a></li>
 <li>📄 <a href="lecture.11.html">lecture.11.html</a></li>
@@ -53,10 +51,9 @@
 </li>
 </ul>
 
-    </div>
-  </div>
-  <article>
-    <h1>TDT4186 Compendium</h1>
+      </div>
+      <article class="content">
+        <h1>TDT4186 Compendium</h1>
 <p>Operating systems know the hardware in detail and provides suitable abstractions, to serve the users and their application programs.</p>
 <h2>OS Development</h2>
 <p><a href="lecture.1.html">Link to lecture 1</a></p>
@@ -629,7 +626,7 @@ Executable program as virus.</p>
 <p><strong>Protection rings</strong> is a privilege concept where all code is executed in the context of a given ring, where the innermost ring (0) has access to all system resources. User programs usually run in ring 3.</p>
 <p><strong>Software bugs</strong> such as exceeding a value range or a heap/buffer overflow are security issues, and can be exploited.</p>
 
-  </article>
-</body>
-
+      </article>
+      </div>
+  </body>
 </html>
