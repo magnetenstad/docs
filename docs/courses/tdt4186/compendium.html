@@ -10,7 +10,7 @@
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>compendium.md</title>
-    <link rel="icon" type="image/x-icon" href="../../null">
+    <link rel="icon" type="image/x-icon" href="../../">
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -24,30 +24,30 @@
 <h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
-<li>📄 <a href="compendium.html">compendium.html ✨</a></li>
-<li>📄 <a href="lecture.1.html">lecture.1.html</a></li>
-<li>📄 <a href="lecture.10.html">lecture.10.html</a></li>
-<li>📄 <a href="lecture.11.html">lecture.11.html</a></li>
-<li>📄 <a href="lecture.12.html">lecture.12.html</a></li>
-<li>📄 <a href="lecture.13.html">lecture.13.html</a></li>
-<li>📄 <a href="lecture.14.html">lecture.14.html</a></li>
-<li>📄 <a href="lecture.15.html">lecture.15.html</a></li>
-<li>📄 <a href="lecture.16.html">lecture.16.html</a></li>
-<li>📄 <a href="lecture.17.html">lecture.17.html</a></li>
-<li>📄 <a href="lecture.18.html">lecture.18.html</a></li>
-<li>📄 <a href="lecture.19.html">lecture.19.html</a></li>
-<li>📄 <a href="lecture.2.html">lecture.2.html</a></li>
-<li>📄 <a href="lecture.20.html">lecture.20.html</a></li>
-<li>📄 <a href="lecture.21.html">lecture.21.html</a></li>
-<li>📄 <a href="lecture.22.html">lecture.22.html</a></li>
-<li>📄 <a href="lecture.3.html">lecture.3.html</a></li>
-<li>📄 <a href="lecture.4.html">lecture.4.html</a></li>
-<li>📄 <a href="lecture.5.html">lecture.5.html</a></li>
-<li>📄 <a href="lecture.6.html">lecture.6.html</a></li>
-<li>📄 <a href="lecture.7.html">lecture.7.html</a></li>
-<li>📄 <a href="lecture.8.html">lecture.8.html</a></li>
-<li>📄 <a href="lecture.9.html">lecture.9.html</a></li>
-<li>📄 <a href="questions.html">questions.html</a>
+<li>📄 <a href="compendium.html">compendium ✨</a></li>
+<li>📄 <a href="lecture.1.html">lecture.1</a></li>
+<li>📄 <a href="lecture.10.html">lecture.10</a></li>
+<li>📄 <a href="lecture.11.html">lecture.11</a></li>
+<li>📄 <a href="lecture.12.html">lecture.12</a></li>
+<li>📄 <a href="lecture.13.html">lecture.13</a></li>
+<li>📄 <a href="lecture.14.html">lecture.14</a></li>
+<li>📄 <a href="lecture.15.html">lecture.15</a></li>
+<li>📄 <a href="lecture.16.html">lecture.16</a></li>
+<li>📄 <a href="lecture.17.html">lecture.17</a></li>
+<li>📄 <a href="lecture.18.html">lecture.18</a></li>
+<li>📄 <a href="lecture.19.html">lecture.19</a></li>
+<li>📄 <a href="lecture.2.html">lecture.2</a></li>
+<li>📄 <a href="lecture.20.html">lecture.20</a></li>
+<li>📄 <a href="lecture.21.html">lecture.21</a></li>
+<li>📄 <a href="lecture.22.html">lecture.22</a></li>
+<li>📄 <a href="lecture.3.html">lecture.3</a></li>
+<li>📄 <a href="lecture.4.html">lecture.4</a></li>
+<li>📄 <a href="lecture.5.html">lecture.5</a></li>
+<li>📄 <a href="lecture.6.html">lecture.6</a></li>
+<li>📄 <a href="lecture.7.html">lecture.7</a></li>
+<li>📄 <a href="lecture.8.html">lecture.8</a></li>
+<li>📄 <a href="lecture.9.html">lecture.9</a></li>
+<li>📄 <a href="questions.html">questions</a>
 </li>
 </ul>
 
@@ -214,7 +214,7 @@
 <p>Message addressing can be <strong>direct</strong> (using process ID, or port/socket) or <strong>indirect</strong> (using channels (pipes), mailboxes, message queues). <strong>Group addressing</strong> is another dimension, a message is either unicast (sent to exactly one recipient), multicast (sent to a selection of possible recipients), or broadcast (sent to all).</p>
 <p>Unix signals are interrupts implemented in software, and are a minimal form of IPC as only the signal number is transmitted. Examples: <code><span class="hljs-attribute">SIGINT</span></code>: Terminate the process (ctrl-C), <code><span class="hljs-attribute">SIGSTOP</span></code>: Suspend process (Ctrl-Z), <code><span class="hljs-attribute">SIGWINCH</span></code>: Window size has changes, <code><span class="hljs-attribute">SIGCHLD</span></code>: Child process terminated, <code><span class="hljs-attribute">SIGSEGV</span></code>: Memory protection violation, <code><span class="hljs-attribute">SIGKILL</span></code>: Process is killed.</p>
 <p><strong>Unix shells</strong> (a "shell" around the operating system "core") are text based user interface to start commands (Unix programs). Every executed command is a separate child process.</p>
-<p><strong>Standard I/O channels</strong> (stdin, stdout, stderr) are usually connected to the terminal in which the shell runs that started the process. The numerical file descriptors assigned to these channels are 0 to stdin, 1 to stdout and 2 to stderr. <code><span class="hljs-meta">&gt;</span></code> redirects standard output, <code>&lt;</code> redirects standard input and <code><span class="hljs-string">|</span></code> (pipe) symbol tells the shell to connect the standard output of the left process to the standard input of the right process.</p>
+<p><strong>Standard I/O channels</strong> (stdin, stdout, stderr) are usually connected to the terminal in which the shell runs that started the process. The numerical file descriptors assigned to these channels are 0 to stdin, 1 to stdout and 2 to stderr. <code><span class="hljs-meta prompt_">&gt;</span></code> redirects standard output, <code>&lt;</code> redirects standard input and <code><span class="hljs-string">|</span></code> (pipe) symbol tells the shell to connect the standard output of the left process to the standard input of the right process.</p>
 <p><strong>Unix pipes</strong> are channel between to communicating processes with the following properties: unidirectional, buffers (fixed buffer size), reliable transport, stream-oriented.</p>
 <p>Doug Mcllroy, the inventor of Unix pipes, described the <a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix philosophy</a>. It can be summarized as "Do one thing, do it well."</p>
 <p><strong>Sockets</strong> are general (bidirectional and buffered) communication endpoints in a computer network. They are described by a domain (protocol family), a type and a protocol. Unix domain sockets work like bidirectional pipes and can be created as special file in the file system. Internet domain sockets are used for inter-computer communication using Internet protocols.</p>

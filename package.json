@@ -11,10 +11,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "marktree": "^1.1.5"
-  },
   "devDependencies": {
+    "marktree": "^1.2.5",
     "nodemon": "^2.0.15"
   }
 }
