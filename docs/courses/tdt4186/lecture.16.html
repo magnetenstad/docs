@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.16.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.16">lecture.16</a><ol><li><a href="#lecture-16%3A-modern-file-systems">Lecture 16: Modern file systems</a><ol><li><a href="#exam">Exam</a></li><li><a href="#what-do-we-know-about-storage-so-far%3F">What do we know about storage so far?</a></li><li><a href="#challenge%3A-reliability-(1)">Challenge: Reliability (1)</a></li><li><a href="#challenge%3A-reliability-(2)">Challenge: Reliability (2)</a></li><li><a href="#challenge%3A-performance-optimization">Challenge: Performance optimization</a></li><li><a href="#challenge%3A-disk-management">Challenge: Disk management</a></li><li><a href="#intelligent-block-device-(drivers)">Intelligent block device (drivers)</a></li><li><a href="#unix-block-buffer-cache">UNIX Block Buffer Cache</a></li><li><a href="#unix-block-buffer-cache-(2)">UNIX Block Buffer Cache (2)</a></li><li><a href="#unix-block-buffer-cache%3A-structure">UNIX Block Buffer Cache: Structure</a></li><li><a href="#unix-block-buffer-cache%3A-structure-(2)">UNIX Block Buffer Cache: Structure (2)</a></li><li><a href="#%5Blinux%5D-logical-volume-management">[Linux] Logical Volume Management</a></li><li><a href="#redundant-arrays-of-inexpensive-disks">Redundant Arrays of Inexpensive Disks</a></li><li><a href="#raid-0%3A-disk-striping">RAID 0: Disk striping</a></li><li><a href="#raid-1%3A-disk-mirroring">RAID 1: Disk mirroring</a></li><li><a href="#raid-4%3A-additional-parity-disk">RAID 4: Additional parity disk</a></li><li><a href="#raid-5-and-6%3A-distributed-parity-data">RAID 5 and 6: Distributed parity data</a></li><li><a href="#raid-x%2By-(%3D-raid-xy)%3A-hierarchies">RAID x+y (= RAID xy): Hierarchies</a></li><li><a href="#journaled-file-systems">Journaled File Systems</a></li><li><a href="#journaled-file-systems%3A-protocol">Journaled File Systems: Protocol</a></li><li><a href="#journaled-file-systems%3A-recovery">Journaled File Systems: Recovery</a></li><li><a href="#journaled-file-systems%3A-results">Journaled File Systems: Results</a></li><li><a href="#log-structured-file-systems-%5B1%5D">Log-structured file systems [1]</a></li><li><a href="#log-structured-file-systems-(2)">Log-structured file systems (2)</a></li><li><a href="#cow%3A-copy-on-write-file-systems">CoW: Copy-on-Write file systems</a></li><li><a href="#btrfs%3A-%E2%80%9Cbutter%E2%80%9D-fs-%5B2%5D">BTRFS: “butter” FS [2]</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.16" tabindex="-1">lecture.16</h1>
+      <article class="col content">
+        
+<h1 id="lecture.16" tabindex="-1">lecture.16</h1>
 <h2 id="lecture-16%3A-modern-file-systems" tabindex="-1">Lecture 16: Modern file systems</h2>
 <p><a href="lecture.15.html">Previous lecture</a>
 <a href="lecture.17.html">Next lecture</a></p>

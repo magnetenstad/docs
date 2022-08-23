@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.12.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.12">lecture.12</a><ol><li><a href="#lecture-12%3A-uniprocessor-scheduling">Lecture 12: Uniprocessor scheduling</a><ol><li><a href="#exam">Exam</a></li><li><a href="#processes-once-again%E2%80%A6">Processes once again…</a></li><li><a href="#dispatch-states">Dispatch states</a></li><li><a href="#short-term-scheduling">Short-term scheduling</a></li><li><a href="#medium-term-scheduling">Medium-term scheduling</a></li><li><a href="#long-term-scheduling">Long-term scheduling</a></li><li><a href="#state-transitions">State transitions</a></li><li><a href="#scheduling-points">Scheduling points</a></li><li><a href="#first-come-first-served-%E2%80%93-fcfs">First-Come First-Served – FCFS</a></li><li><a href="#discussion%3A-fcfs-%E2%80%93-%22convoi-effect%22">Discussion: FCFS – "convoi effect"</a></li><li><a href="#round-robin-(rr)">Round Robin (RR)</a></li><li><a href="#discussion%3A-rr-%E2%80%93-performance-problems">Discussion: RR – performance problems</a></li><li><a href="#virtual-round-robin-(vrr)">Virtual Round Robin (VRR)</a></li><li><a href="#shortest-process-next-(spn)">Shortest process next (SPN)</a></li><li><a href="#discussion%3A-spn-%E2%80%93-weighting-bursts">Discussion: SPN – weighting bursts</a></li><li><a href="#shortest-remaining-time-first-(srtf)">Shortest Remaining Time First (SRTF)</a></li><li><a href="#highest-response-ratio-next-%E2%80%93-hrrn">Highest Response Ratio Next – HRRN</a></li><li><a href="#feedback-(fb)">Feedback (FB)</a></li><li><a href="#discussion%3A-priorities">Discussion: Priorities</a></li><li><a href="#combination-%E2%80%93-multi-level-scheduling">Combination – Multi-level scheduling</a></li><li><a href="#objectives-for-evaluation">Objectives for evaluation</a></li><li><a href="#quantative-comparison">Quantative comparison</a></li><li><a href="#qualitative-comparison">Qualitative comparison</a></li><li><a href="#scheduling-in-unix">Scheduling in Unix</a></li><li><a href="#unix-%E2%80%93-4.3-bsd-(1)">UNIX – 4.3 BSD (1)</a></li><li><a href="#unix-%E2%80%93-4.3-bsd-(2)">UNIX – 4.3 BSD (2)</a></li><li><a href="#windows-nt-%E2%80%93-priority-classes">Windows NT – Priority classes</a></li><li><a href="#nt-%E2%80%93-adaptive-priorities">NT – Adaptive priorities</a></li><li><a href="#conclusions">Conclusions</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.12" tabindex="-1">lecture.12</h1>
+      <article class="col content">
+        
+<h1 id="lecture.12" tabindex="-1">lecture.12</h1>
 <h2 id="lecture-12%3A-uniprocessor-scheduling" tabindex="-1">Lecture 12: Uniprocessor scheduling</h2>
 <p><a href="lecture.11.html">Previous lecture</a>
 <a href="lecture.13.html">Next lecture</a></p>

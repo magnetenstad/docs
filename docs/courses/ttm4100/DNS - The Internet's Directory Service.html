@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>DNS - The Internet's Directory Service.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Fttm4100" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks</a></li>
@@ -82,13 +83,14 @@
 <li>📄 <a href="What's Inside a Router.html">What's Inside a Router</a></li>
 <li>📄 <a href="WiFi 802.11 Wireless LANs.html">WiFi 802.11 Wireless LANs</a></li>
 <li>📄 <a href="Wireless and Mobile Networks.html">Wireless and Mobile Networks</a></li>
-<li>📄 <a href="Wireless Links and Network Characteristics.html">Wireless Links and Network Characteristics</a>
-</li>
+<li>📄 <a href="Wireless Links and Network Characteristics.html">Wireless Links and Network Characteristics</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#dns---the-internet's-directory-service">DNS - The Internet&#39;s Directory Service</a><ol><li><a href="#dns---the-internet's-directory-service-1">DNS - The Internet&#39;s Directory Service</a><ol><li><a href="#services-provided-by-dns">Services Provided by DNS</a></li><li><a href="#overview-of-how-dns-works">Overview of How DNS Works</a><ol><li><a href="#a-centralized-design">A centralized design</a></li><li><a href="#a-distributed%2C-hierarchical-database">A Distributed, Hierarchical Database</a></li><li><a href="#dns-caching">DNS Caching</a></li></ol></li><li><a href="#dns-records-and-messages">DNS Records and Messages</a><ol><li><a href="#dns-messages">DNS Messages</a></li><li><a href="#inserting-records-into-the-dns-database">Inserting Records into the DNS Database</a></li></ol></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="dns---the-internet's-directory-service" tabindex="-1">DNS - The Internet's Directory Service</h1>
+      <article class="col content">
+        
+<h1 id="dns---the-internet's-directory-service" tabindex="-1">DNS - The Internet's Directory Service</h1>
 <h2 id="dns---the-internet's-directory-service-1" tabindex="-1">DNS - The Internet's Directory Service</h2>
 <p>One identifier for a host is its hostname.However, hostnames provide little, if any, information about the location within the Internet of the host. Furthermore, because hostnames can consist of variable-length alphanumeric characters, they would be difficult to process by routers. For these reasons, hosts are also identified by so-called IP addresses.</p>
 <p>An IP address looks like 121.7.106.83, where each period separates one of the bytes expressed in decimal notation from 0 to 255. An IP address is hierarchical because as we scan the address from left to right, we obtain more and more specific information about where the host is located in the Internet (that is, within which network, in the network of networks).</p>

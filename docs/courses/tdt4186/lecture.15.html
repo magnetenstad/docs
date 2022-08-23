@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.15.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.15">lecture.15</a><ol><li><a href="#lecture-15%3A-file-systems">Lecture 15: File systems</a><ol><li><a href="#exam">Exam</a></li><li><a href="#background-storage">Background storage</a></li><li><a href="#the-file-abstraction">The file abstraction</a></li><li><a href="#accessing-files">Accessing files</a></li><li><a href="#the-unix-virtual-file-system-(vfs)-switch">The Unix virtual file system (VFS) switch</a></li><li><a href="#virtual-file-system%3A-mounting">Virtual file system: mounting</a></li><li><a href="#file-storage">File storage</a></li><li><a href="#contigous-storage">Contigous storage</a></li><li><a href="#contiguous-storage-problems">Contiguous storage problems</a></li><li><a href="#linked-list-storage">Linked list storage</a></li><li><a href="#linked-list-storage-problems">Linked list storage problems</a></li><li><a href="#linked-list-storage%3A-fat">Linked list storage: FAT</a></li><li><a href="#linked-list-storage-problems-(2)">Linked list storage problems (2)</a></li><li><a href="#discussion%3A-chunks%2Fextents%2Fclusters">Discussion: chunks/extents/clusters</a></li><li><a href="#indexed-storage">Indexed storage</a></li><li><a href="#indexed-storage%3A-unix-inodes">Indexed storage: Unix inodes</a></li><li><a href="#indexed-storage%3A-discussion">Indexed storage: discussion</a></li><li><a href="#tree-sequential-storage">Tree sequential storage</a></li><li><a href="#free-space-management">Free space management</a></li><li><a href="#directory-management%3A-lists">Directory management: lists</a></li><li><a href="#using-hash-functions">Using hash functions</a></li><li><a href="#list-elements-with-variable-length">List elements with variable length</a></li><li><a href="#unix-example%3A-system-v-file-system">Unix example: System V file system</a></li><li><a href="#unix-example%3A-berkeley-fast-file-system">Unix example: Berkeley Fast File System</a></li><li><a href="#unix-example%3A-linux-ext2%2F3%2F4-file-system">Unix example: Linux ext2/3/4 file system</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.15" tabindex="-1">lecture.15</h1>
+      <article class="col content">
+        
+<h1 id="lecture.15" tabindex="-1">lecture.15</h1>
 <h2 id="lecture-15%3A-file-systems" tabindex="-1">Lecture 15: File systems</h2>
 <p><a href="lecture.14.html">Previous lecture</a>
 <a href="lecture.16.html">Next lecture</a></p>

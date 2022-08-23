@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.19.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture-19%2C-part-1%3A-embedded-%26-real-time-operating-systems">Lecture 19, part 1: Embedded &amp; Real-time Operating Systems</a><ol><li><a href="#embedded-operating-systems---characteristics%3A-configurability--">Embedded operating systems - Characteristics: Configurability -</a></li><li><a href="#verification-of-derived-os%3F">Verification of derived OS?</a></li><li><a href="#embedded-operating-systems---characteristics%3A-disk-and-network-handled-by-tasks--">Embedded operating systems - Characteristics: Disk and network handled by tasks -</a></li><li><a href="#embedded-operating-systems---characteristics%3A-protection-is-optional">Embedded operating systems - Characteristics: Protection is optional</a></li><li><a href="#embedded-operating-systems---characteristics%3A-interrupts-not-restricted-to-os--">Embedded operating systems - Characteristics: Interrupts not restricted to OS -</a></li><li><a href="#embedded-operating-systems---characteristics%3A-real-time-capability">Embedded operating systems - Characteristics: Real-time capability</a></li><li><a href="#rt-operating-systems---definition-and-requirement-1%3A-predictability--">RT operating systems - Definition and requirement 1: predictability -</a></li><li><a href="#time">Time</a></li><li><a href="#internal-synchronization">Internal synchronization</a></li><li><a href="#external-synchronization">External synchronization</a></li><li><a href="#problems-with-external-synchronization">Problems with external synchronization</a></li><li><a href="#rtos-kernels">RTOS-Kernels</a></li><li><a href="#functionality-of-rtos-kernels">Functionality of RTOS-Kernels</a></li><li><a href="#classes-of-rtoses%3A-1.-fast-proprietary-kernels">Classes of RTOSes: 1. Fast proprietary kernels</a></li><li><a href="#classes-of-rtoss%3A-2.-rt-extensions-to-standard-oss">Classes of RTOSs: 2. RT extensions to standard OSs</a><ol><li><a href="#example%3A-rt-linux">Example: RT-Linux</a></li><li><a href="#example-(2)%3A">Example (2):</a></li><li><a href="#evaluation">Evaluation</a></li></ol></li><li><a href="#classes-of-rtoss%3A-3.-research-trying-to-avoid-limitations">Classes of RTOSs: 3. Research trying to avoid limitations</a></li></ol></li><li><a href="#lecture-19%2C-part-2%3A-resource-access-protocols">Lecture 19, part 2: Resource Access Protocols</a><ol><li><a href="#resource-access-protocols">Resource access protocols</a></li><li><a href="#blocking-due-to-mutual-exclusion">Blocking due to mutual exclusion</a></li><li><a href="#blocking-with-%3E2-tasks-can-exceed-the-length-of-any-critical-section">Blocking with &gt;2 tasks can exceed the length of any critical section</a></li><li><a href="#the-mars-pathfinder-problem">The MARS Pathfinder problem</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#remarks-on-priority-inheritance-protocol">Remarks on priority inheritance protocol</a></li><li><a href="#summary">Summary</a></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h2 id="lecture-19%2C-part-1%3A-embedded-%26-real-time-operating-systems" tabindex="-1">Lecture 19, part 1: Embedded &amp; Real-time Operating Systems</h2>
+      <article class="col content">
+        
+<h2 id="lecture-19%2C-part-1%3A-embedded-%26-real-time-operating-systems" tabindex="-1">Lecture 19, part 1: Embedded &amp; Real-time Operating Systems</h2>
 <p>NOTE: Not relevant for the exam.</p>
 <p><a href="lecture.18.html">Previous lecture</a>
 <a href="lecture.20.html">Next lecture</a></p>

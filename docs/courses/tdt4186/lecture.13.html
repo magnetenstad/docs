@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.13.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.13">lecture.13</a><ol><li><a href="#lecture-13%3A-real-time-scheduling">Lecture 13: Real-time scheduling</a><ol><li><a href="#real-time-computer-systems">Real-time computer systems</a><ol><li><a href="#example%3A-inverted-pendulum">Example: inverted pendulum</a></li></ol></li><li><a href="#deadlines">Deadlines</a></li><li><a href="#how-long-does-a-program-run%3F">How long does a program run?</a></li><li><a href="#trigger">Trigger</a><ol><li><a href="#event-triggered-real-time-systems">Event-triggered real-time systems</a></li><li><a href="#time-triggered-real-time-systems">Time-triggered real-time systems</a></li></ol></li><li><a href="#example%3A-osektime">Example: OSEKtime</a></li><li><a href="#osektime-scheduler">OSEKtime scheduler</a></li><li><a href="#offline-scheduling">Offline scheduling</a></li><li><a href="#real-time-scheduling">Real-time scheduling</a></li><li><a href="#rate-monotonic-scheduling-(rm)">Rate-monotonic scheduling (RM)</a></li><li><a href="#rm-assumptions-(liu-%26-layland-1973)">RM assumptions (Liu &amp; Layland 1973)</a></li><li><a href="#example%3A-car-headlight-controller">Example: car headlight controller</a></li><li><a href="#rm-algorithm">RM algorithm</a></li><li><a href="#schedulability-analysis">Schedulability analysis</a></li><li><a href="#the-%2270%25-rule%22">The "70% rule"</a></li><li><a href="#sufficient-and-necessary-conditions">Sufficient and necessary conditions</a></li><li><a href="#exact-test%3A-response-time-analysis">Exact test: response time analysis</a></li><li><a href="#exact-test%3A-iterative-solution">Exact test: iterative solution</a></li><li><a href="#rate-monotonic-scheduling-is-%22optimal%22">Rate-monotonic scheduling is "optimal"</a></li><li><a href="#rm-scheduling%3A-conclusion">RM scheduling: conclusion</a></li><li><a href="#example%3A-earliest-deadline-first">Example: Earliest Deadline First</a></li><li><a href="#edf-algorithm">EDF algorithm</a></li><li><a href="#optimality-of-edf">Optimality of EDF</a></li><li><a href="#edf-scheduling%3A-conclusion">EDF-Scheduling: Conclusion</a></li><li><a href="#outlook%3A-extending-the-strategies">Outlook: Extending the strategies</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.13" tabindex="-1">lecture.13</h1>
+      <article class="col content">
+        
+<h1 id="lecture.13" tabindex="-1">lecture.13</h1>
 <h2 id="lecture-13%3A-real-time-scheduling" tabindex="-1">Lecture 13: Real-time scheduling</h2>
 <p>NOTE: Not relevant for the exam.</p>
 <p><a href="lecture.12.html">Previous lecture</a>

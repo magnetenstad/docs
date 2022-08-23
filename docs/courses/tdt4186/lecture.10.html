@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.10.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.10">lecture.10</a><ol><li><a href="#lecture-10%2C-part-1%3A-virtual-memory-and-replacement-strategies">Lecture 10, part 1: Virtual memory and replacement strategies</a><ol><li><a href="#exam">Exam</a></li><li><a href="#locality-of-memory-accesses">Locality of memory accesses</a></li><li><a href="#the-idea-of-%22virtual-memory%22">The idea of "virtual memory"</a></li><li><a href="#demand-paging">Demand paging</a></li><li><a href="#discussion%3A-paging-performance">Discussion: paging performance</a></li><li><a href="#discussion%3A-additional-properties">Discussion: additional properties</a></li><li><a href="#discussion%3A-demand-segmentation">Discussion: demand segmentation</a></li><li><a href="#page-replacement">Page replacement</a></li><li><a href="#replacement-strategies">Replacement strategies</a></li><li><a href="#least-recently-used-(lru)">Least recently used (LRU)</a></li><li><a href="#least-recently-used-(lru)-(2)">Least recently used (LRU) (2)</a></li><li><a href="#least-recently-used-(lru)-(3)">Least recently used (LRU) (3)</a></li></ol></li><li><a href="#lecture-10%2C-part-2%3A-virtual-memory-and-thrashing">Lecture 10, part 2: Virtual memory and thrashing</a><ol><li><a href="#second-chance-(clock)-(1)">Second chance (clock) (1)</a></li><li><a href="#second-chance-(clock)-(2)">Second chance (clock) (2)</a></li><li><a href="#discussion%3A-free-page-buffer">Discussion: free page buffer</a></li><li><a href="#page-frame-assignment-(1)">Page frame assignment (1)</a></li><li><a href="#page-frame-assignment-(2)">Page frame assignment (2)</a></li><li><a href="#thrashing-(1)">Thrashing (1)</a></li><li><a href="#thrashing-(2)">Thrashing (2)</a></li><li><a href="#solution-1%3A-swapping-of-processes">Solution 1: swapping of processes</a></li><li><a href="#solution-2%3A-working-set-model">Solution 2: working set model</a></li><li><a href="#working-set-model">Working set model</a></li><li><a href="#determining-the-working-set-and-timers-(1)">Determining the working set and timers (1)</a></li><li><a href="#determining-the-working-set-and-timers-(2)">Determining the working set and timers (2)</a></li><li><a href="#determine-the-working-set-with-wsclock">Determine the working set with WSclock</a></li><li><a href="#discussion%3A-working-set-problems">Discussion: working set problems</a></li><li><a href="#loading-strategy">Loading strategy</a></li><li><a href="#conclusions">Conclusions</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.10" tabindex="-1">lecture.10</h1>
+      <article class="col content">
+        
+<h1 id="lecture.10" tabindex="-1">lecture.10</h1>
 <h2 id="lecture-10%2C-part-1%3A-virtual-memory-and-replacement-strategies" tabindex="-1">Lecture 10, part 1: Virtual memory and replacement strategies</h2>
 <p><a href="lecture.9.html">Previous lecture</a>
 <a href="lecture.11.html">Next lecture</a></p>

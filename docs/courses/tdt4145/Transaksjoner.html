@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>Transaksjoner.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4145" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="Boka.html">Boka</a></li>
@@ -34,13 +35,14 @@
 <li>📄 <a href="Relasjonsalgebra.html">Relasjonsalgebra</a></li>
 <li>📄 <a href="Relasjonsdatabaser.html">Relasjonsdatabaser</a></li>
 <li>📄 <a href="SQL.html">SQL</a></li>
-<li>📄 <a href="Transaksjoner.html">Transaksjoner ✨</a>
-</li>
+<li>📄 <a href="Transaksjoner.html">Transaksjoner ✨</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#transaksjoner">Transaksjoner</a><ol><li><a href="#transaksjoner-1">Transaksjoner</a><ol><li><a href="#innhold">Innhold</a></li><li><a href="#hvorfor-transaksjoner%3F">Hvorfor transaksjoner?</a></li><li><a href="#databaseoperasjoner-(20.1.2)">Databaseoperasjoner (20.1.2)</a></li><li><a href="#samtidighetsproblemer%2C-eksempel-(20.1.3)">Samtidighetsproblemer, eksempel (20.1.3)</a></li><li><a href="#samtidighetsproblemer-(2)">Samtidighetsproblemer (2)</a></li><li><a href="#samtidighetsproblemer%2C-klasser-(20.1.3)">Samtidighetsproblemer, klasser (20.1.3)</a></li><li><a href="#incorrect-summary">Incorrect summary</a></li><li><a href="#oppgave">Oppgave</a></li><li><a href="#hvorfor-trenger-vi-recovery%3F">Hvorfor trenger vi recovery?</a></li><li><a href="#acid---egenskaper-ved-en-transaksjon">ACID - egenskaper ved en transaksjon</a></li><li><a href="#eksempler-p%C3%A5-transaksjoner">Eksempler på transaksjoner</a></li><li><a href="#commit%2Fabort-(20.2.2%2F20.2.3)">Commit/Abort (20.2.2/20.2.3)</a></li><li><a href="#commit%2Fabort-(2)">Commit/abort (2)</a></li><li><a href="#sqls-isolasjonsniv%C3%A5">SQLs isolasjonsnivå</a></li><li><a href="#sqls-isolasjonsniv%C3%A5-(2)">SQLs isolasjonsnivå (2)</a></li><li><a href="#quiz-1">Quiz 1</a></li><li><a href="#read-committed">READ COMMITTED</a></li><li><a href="#repeatable-read">Repeatable Read</a></li><li><a href="#transaksjonshistorie-(20.4.1)">Transaksjonshistorie (20.4.1)</a></li><li><a href="#transaksjonshistorie---konflikt">Transaksjonshistorie - konflikt</a></li><li><a href="#transaksjoner-og-gjenopprettbarhet-(20.4.2)">Transaksjoner og gjenopprettbarhet (20.4.2)</a></li><li><a href="#oppgaver">Oppgaver</a></li><li><a href="#historier-og-serialiserbarhet-(20.5.1)">Historier og serialiserbarhet (20.5.1)</a></li><li><a href="#historier-og-serialiserbarhet-(2)">Historier og serialiserbarhet (2)</a></li><li><a href="#konfliktserialiserbarhet-(20.5.1)">Konfliktserialiserbarhet (20.5.1)</a></li><li><a href="#konfliktserialiserbarhet">Konfliktserialiserbarhet</a></li><li><a href="#presedensgraf-(20.5.2)">Presedensgraf (20.5.2)</a></li><li><a href="#serialiserbarhet-ved-l%C3%A5sing-(21.1.1)">Serialiserbarhet ved låsing (21.1.1)</a></li><li><a href="#implementasjon-av-l%C3%A5ser-(21.1.1)">Implementasjon av låser (21.1.1)</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="transaksjoner" tabindex="-1">Transaksjoner</h1>
+      <article class="col content">
+        
+<h1 id="transaksjoner" tabindex="-1">Transaksjoner</h1>
 <h2 id="transaksjoner-1" tabindex="-1">Transaksjoner</h2>
 <p>Transaksjoner, kap. 20-22
 Svein Erik Bratsberg, IDI/NTNU

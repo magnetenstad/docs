@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.14.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.14">lecture.14</a><ol><li><a href="#lecture-14%2C-part-1%3A-input-and-output">Lecture 14, part 1: Input and output</a><ol><li><a href="#exam">Exam</a></li><li><a href="#resources">Resources</a></li><li><a href="#i%2Fo-device-interfacing">I/O device interfacing</a></li><li><a href="#example%3A-pc-keyboard">Example: PC keyboard</a></li><li><a href="#example%3A-cga-video-controller">Example: CGA video controller</a></li><li><a href="#example%3A-ide-disk-controller">Example: IDE disk controller</a></li><li><a href="#example%3A-ethernet-controller">Example: Ethernet controller</a></li><li><a href="#device-classes">Device classes</a></li><li><a href="#interrupts">Interrupts</a><ol><li><a href="#interrupt-processing-sequence-on-hardware-level">Interrupt processing sequence on hardware level</a></li></ol></li><li><a href="#direct-memory-access-(dma)">Direct Memory Access (DMA)</a><ol><li><a href="#dma-transfer-sequence">DMA transfer sequence</a></li></ol></li><li><a href="#i%2Fo-addresss-space">I/O addresss space</a></li><li><a href="#device-drivers">Device drivers</a></li><li><a href="#polling-(%22programmed-i%2Fo%22)">Polling ("programmed I/O")</a></li><li><a href="#interrupt-driven-i%2Fo">Interrupt-driven I/O</a></li><li><a href="#discussion%3A-interrupts">Discussion: Interrupts</a></li><li><a href="#discussion%3A-interrupts-(2)">Discussion: Interrupts (2)</a></li><li><a href="#discussion%3A-direct-memory-access">Discussion: Direct Memory Access</a></li><li><a href="#tasks-of-the-os">Tasks of the OS</a></li><li><a href="#layers-of-the-i%2Fo-system">Layers of the I/O system</a></li></ol></li><li><a href="#lecture-14%2C-part-2%3A-i%2Fo-in-unix-and-disk-scheduling">Lecture 14, part 2: I/O in Unix and disk scheduling</a><ol><li><a href="#unix-device-abstractions">Unix device abstractions</a></li><li><a href="#unix-device-abstractions-(2)">Unix device abstractions (2)</a></li><li><a href="#unix-device-abstractions-(3)">Unix device abstractions (3)</a></li><li><a href="#unix-access-primitives">Unix access primitives</a></li><li><a href="#unix-device-specific-functions">Unix device specific functions</a></li><li><a href="#unix%3A-waiting-for-multiple-devices">Unix: waiting for multiple devices</a></li><li><a href="#unix%3A-waiting-for-multiple-devices-(2)">Unix: waiting for multiple devices (2)</a></li><li><a href="#buffering-of-i%2Fo-operations">Buffering of I/O operations</a></li><li><a href="#single-i%2Fo-buffers">Single I/O buffers</a><ol><li><a href="#performance-estimation">Performance estimation</a></li></ol></li><li><a href="#double-i%2Fo-buffering">Double I/O buffering</a><ol><li><a href="#performance-estimation-1">Performance estimation</a></li></ol></li><li><a href="#i%2Fo-ring-buffers">I/O ring buffers</a></li><li><a href="#discussion%3A-i%2Fo-buffers">Discussion: I/O buffers</a></li><li><a href="#device-control-example%3A-disk">Device control example: disk</a></li><li><a href="#i%2Fo-scheduling%3A-fifo">I/O scheduling: FIFO</a></li><li><a href="#i%2Fo-scheduling%3A-sstf">I/O scheduling: SSTF</a></li><li><a href="#i%2Fo-scheduling%3A-elevator">I/O scheduling: Elevator</a></li><li><a href="#discussion%3A-i%2Fo-scheduling-today">Discussion: I/O scheduling today</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.14" tabindex="-1">lecture.14</h1>
+      <article class="col content">
+        
+<h1 id="lecture.14" tabindex="-1">lecture.14</h1>
 <h2 id="lecture-14%2C-part-1%3A-input-and-output" tabindex="-1">Lecture 14, part 1: Input and output</h2>
 <p><a href="lecture.13.html">Previous lecture</a>
 <a href="lecture.15.html">Next lecture</a></p>

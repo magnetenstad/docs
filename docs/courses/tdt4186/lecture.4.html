@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.4.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.4">lecture.4</a><ol><li><a href="#lecture-4%2C-part-1%3A-processes">Lecture 4, part 1: Processes</a><ol><li><a href="#exam">Exam</a></li><li><a href="#review%3A-processes..">Review: processes..</a></li><li><a href="#unix-(thompson-and-ritche-1968)">Unix (Thompson and Ritche 1968)</a></li><li><a href="#unix-variants">Unix variants</a></li><li><a href="#unix-processes">Unix processes</a></li><li><a href="#unix-shells">Unix shells</a></li><li><a href="#unix-shells%3A-job-control">Unix shells: job control</a></li><li><a href="#standard-i%2Fo-channels">Standard I/O channels</a></li><li><a href="#redirecting-standard-i%2Fo">Redirecting standard I/O</a></li><li><a href="#the-unix-philosophy">The Unix philosophy</a></li></ol></li><li><a href="#lecture-4%2C-part-2%3A-processes">Lecture 4, part 2: Processes</a><ol><li><a href="#process-os-interaction-in-unix-(1)">Process-OS interaction in Unix (1)</a></li><li><a href="#process-os-interaction-in-unix-(2)">Process-OS interaction in Unix (2)</a></li><li><a href="#process-os-interaction-in-unix-(3)">Process-OS interaction in Unix (3)</a></li><li><a href="#unix-process-control%3A-syscalls">Unix process control: syscalls</a></li><li><a href="#unix-processes-in-detail%3A-fork()">Unix processes in detail: fork()</a></li><li><a href="#use-of-fork()">Use of fork()</a></li><li><a href="#discussion%3A-fast-process-creation">Discussion: fast process creation</a></li><li><a href="#unix-processes-in-detail%3A-_exit()">Unix processes in detail: _exit()</a></li><li><a href="#discussion%3A-orphaned-process">Discussion: orphaned process</a></li><li><a href="#unix-processes-in-detail%3A-wait()">Unix processes in detail: wait()</a></li><li><a href="#use-of-wait()">Use of wait()</a></li><li><a href="#discussion%3A-zombies">Discussion: zombies</a></li><li><a href="#unix-processes-in-detail%3A-execve()">Unix processes in detail: execve()</a></li><li><a href="#use-of-exec()">Use of exec()</a></li><li><a href="#discussion%3A-why-no-forkexec()%3F">Discussion: why no forkexec()?</a></li><li><a href="#unix-process-states">Unix process states</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.4" tabindex="-1">lecture.4</h1>
+      <article class="col content">
+        
+<h1 id="lecture.4" tabindex="-1">lecture.4</h1>
 <h2 id="lecture-4%2C-part-1%3A-processes" tabindex="-1">Lecture 4, part 1: Processes</h2>
 <p><a href="lecture.3.html">Previous lecture</a>
 <a href="lecture.5.html">Next lecture</a></p>

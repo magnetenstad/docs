@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>Normalisering.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4145" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="Boka.html">Boka</a></li>
@@ -34,13 +35,14 @@
 <li>📄 <a href="Relasjonsalgebra.html">Relasjonsalgebra</a></li>
 <li>📄 <a href="Relasjonsdatabaser.html">Relasjonsdatabaser</a></li>
 <li>📄 <a href="SQL.html">SQL</a></li>
-<li>📄 <a href="Transaksjoner.html">Transaksjoner</a>
-</li>
+<li>📄 <a href="Transaksjoner.html">Transaksjoner</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#normalisering">Normalisering</a><ol><li><a href="#restriksjoner">Restriksjoner</a></li><li><a href="#funksjonelle-avhengigheter">Funksjonelle avhengigheter</a><ol><li><a href="#utledningsregler">Utledningsregler</a></li><li><a href="#full-funksjonell-avhengighet">Full funksjonell avhengighet</a></li><li><a href="#fler-verdi-avhengigheter---mvd">Fler-verdi-avhengigheter - MVD</a><ol><li><a href="#trivielle-fler-verdi-avhengigheter">Trivielle fler-verdi-avhengigheter</a></li></ol></li></ol></li><li><a href="#tillukning">Tillukning</a></li><li><a href="#n%C3%B8kler">Nøkler</a></li><li><a href="#normalformer">Normalformer</a><ol><li><a href="#f%C3%B8rste-normalform---1nf">Første normalform - 1NF</a></li><li><a href="#andre-normalform---2nf">Andre normalform - 2NF</a></li><li><a href="#tredje-normalform---3nf">Tredje normalform - 3NF</a></li><li><a href="#boyce-codd-normalform---bcnf">Boyce-Codd normalform - BCNF</a></li><li><a href="#fjerde-normalform---4nf">Fjerde normalform - 4NF</a></li></ol></li><li><a href="#dekomponeringskriterier">Dekomponeringskriterier</a><ol><li><a href="#regler-for-tapsl%C3%B8s-join">Regler for tapsløs join</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="normalisering" tabindex="-1">Normalisering</h1>
+      <article class="col content">
+        
+<h1 id="normalisering" tabindex="-1">Normalisering</h1>
 <p>Vi ønsker å unngå redundans (lagring av samme informasjon flere ganger) og innsettings-, oppdaterings- og slettings-anomalier.</p>
 <h2 id="restriksjoner" tabindex="-1">Restriksjoner</h2>
 <table>

@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.6.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.6">lecture.6</a><ol><li><a href="#lecture-6%2C-part-1%3A-syncronization-and-active-waiting">Lecture 6, part 1: Syncronization and active waiting</a><ol><li><a href="#exam">Exam</a></li><li><a href="#example%3A-shared-data">Example: Shared data</a></li><li><a href="#where-does-this-problem-occur%3F">Where does this problem occur?</a></li><li><a href="#the-problem%3A-race-conditions">The problem: race conditions</a></li><li><a href="#synchronization">Synchronization</a></li><li><a href="#critical-section">Critical section</a></li><li><a href="#solution%3A-lock-variables">Solution: lock variables</a></li><li><a href="#implementing-locks%3A-the-incorrect-way">Implementing locks: the incorrect way</a></li><li><a href="#a-working-solution%3A-%22bakery%22-algorithm">A working solution: "bakery" algorithm</a></li><li><a href="#discussion%3A-bakery-algorithm">Discussion: bakery algorithm</a></li><li><a href="#locks-with-atomic-operations">Locks with atomic operations</a></li><li><a href="#discussion%3A-active-waiting">Discussion: active waiting</a></li><li><a href="#suppressing-interrupts">Suppressing interrupts</a></li></ol></li><li><a href="#lecture-6%2C-part-2%3A-passive-waiting-and-monitors">Lecture 6, part 2: Passive waiting and monitors</a><ol><li><a href="#alternative%3A-passive-waiting">Alternative: passive waiting</a></li><li><a href="#semaphores">Semaphores</a></li><li><a href="#example-semaphore-implementation">Example semaphore implementation</a></li><li><a href="#using-semaphores">Using semaphores</a></li><li><a href="#semaphores%3A-simple-interactions">Semaphores: simple interactions</a></li><li><a href="#semaphores%3A-complex-interactions">Semaphores: complex interactions</a></li><li><a href="#semaphores%3A-discussion">Semaphores: discussion</a></li><li><a href="#language-suppoert%3A-monitors">Language suppoert: monitors</a></li><li><a href="#monitors%3A-example-code">Monitors: example code</a></li><li><a href="#signaling-semantics-in-monitors">Signaling semantics in monitors</a></li><li><a href="#monitors-in-java">Monitors in Java</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.6" tabindex="-1">lecture.6</h1>
+      <article class="col content">
+        
+<h1 id="lecture.6" tabindex="-1">lecture.6</h1>
 <h2 id="lecture-6%2C-part-1%3A-syncronization-and-active-waiting" tabindex="-1">Lecture 6, part 1: Syncronization and active waiting</h2>
 <p><a href="lecture.5.html">Previous lecture</a>
 <a href="lecture.7.html">Next lecture</a></p>

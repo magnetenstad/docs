@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.21.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.21">lecture.21</a><ol><li><a href="#lecture-21%3A-os-security-1">Lecture 21: OS Security 1</a><ol><li><a href="#exam">Exam</a></li><li><a href="#overview">Overview</a></li><li><a href="#security-problems">Security problems</a></li><li><a href="#operating-system-security">Operating system security</a></li><li><a href="#example%3A-fake-login-screen">Example: fake login screen</a></li><li><a href="#malware-example%3A-viruses">Malware example: viruses</a></li><li><a href="#example%3A-social-engineering">Example: social engineering</a></li><li><a href="#types-of-malware">Types of malware</a></li><li><a href="#permission-management%3A-objectives">Permission management: objectives</a></li><li><a href="#permission-management%3A-requirements">Permission management: requirements</a></li><li><a href="#permission-management%3A-design-principles">Permission management: design principles</a></li><li><a href="#access-matrix">Access matrix</a></li><li><a href="#basic-model%3A-file%2Fprocess-attributes">Basic model: file/process attributes</a></li><li><a href="#access-matrix-variants">Access matrix variants</a><ol><li><a href="#acls">ACLs</a></li></ol></li><li><a href="#unix-access-permissions">Unix access permissions</a></li><li><a href="#problem%3A-permission-extensions">Problem: permission extensions</a></li><li><a href="#unix%3A-users-and-processes">Unix: users and processes</a></li><li><a href="#unix-solution%3A-setuid-mechanism">Unix solution: setuid mechanism</a></li><li><a href="#example%3A-high-score-list">Example: high score list</a></li><li><a href="#example%3A-high-score-list-(2)">Example: high score list (2)</a></li><li><a href="#example%3A-high-score-list-(3)">Example: high score list (3)</a></li><li><a href="#setuid-problems">setuid problems</a></li><li><a href="#capabilities">Capabilities</a></li><li><a href="#example">Example</a></li><li><a href="#rule-based-access-matrix">Rule-based access matrix</a></li><li><a href="#system-software-and-security">System software and security</a></li><li><a href="#hardware-based-protection%3A-mmu">Hardware-based protection: MMU</a></li><li><a href="#protection-rings">Protection rings</a></li><li><a href="#software-based-protection">Software-based protection</a></li><li><a href="#software-based-protection-(2)">Software-based protection (2)</a></li><li><a href="#software-based-protection-(3)">Software-based protection (3)</a></li><li><a href="#software-bugs">Software bugs</a></li><li><a href="#value-ranges">Value ranges</a></li><li><a href="#value-ranges-(2)">Value ranges (2)</a></li><li><a href="#heap-overflow">Heap overflow</a></li><li><a href="#heap-overflow-(2)">Heap overflow (2)</a></li><li><a href="#result%E2%80%A6">Result…</a></li><li><a href="#unix-morris-worm-(sendmail)">Unix Morris worm (sendmail)</a></li><li><a href="#michelangelo-virus">Michelangelo virus</a></li><li><a href="#sony-bmg-root-kit">Sony BMG root kit</a></li><li><a href="#blue-pill-%E2%80%93-vm-based-root-kit">Blue Pill – VM-based root kit</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.21" tabindex="-1">lecture.21</h1>
+      <article class="col content">
+        
+<h1 id="lecture.21" tabindex="-1">lecture.21</h1>
 <h2 id="lecture-21%3A-os-security-1" tabindex="-1">Lecture 21: OS Security 1</h2>
 <p><a href="lecture.20.html">Previous lecture</a>
 <a href="lecture.22.html">Next lecture</a></p>

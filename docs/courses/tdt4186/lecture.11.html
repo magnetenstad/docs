@@ -3,14 +3,14 @@
   <head>
     <!-- Katex -->
     <link rel="stylesheet" href=
-        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
 
     <!-- GitHub Markdown Styles -->
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
     <title>lecture.11.md</title>
-    <link rel="icon" type="image/x-icon" href="../../">
+    <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../../styles.css">
@@ -19,9 +19,10 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="links">
-        <p></p>
-<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a>
+</h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -47,13 +48,14 @@
 <li>📄 <a href="lecture.7.html">lecture.7</a></li>
 <li>📄 <a href="lecture.8.html">lecture.8</a></li>
 <li>📄 <a href="lecture.9.html">lecture.9</a></li>
-<li>📄 <a href="questions.html">questions</a>
-</li>
+<li>📄 <a href="questions.html">questions</a></li>
 </ul>
-
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture.11">lecture.11</a><ol><li><a href="#lecture-11%2C-part-1%3A-inter-process-communication-(ipc)">Lecture 11, part 1: Inter-process communication (IPC)</a><ol><li><a href="#exam">Exam</a></li><li><a href="#processes-revisited">Processes revisited</a></li><li><a href="#inter-process-communication">Inter-process communication</a></li><li><a href="#message-based-communication">Message-based communication</a></li><li><a href="#synchronization">Synchronization</a></li><li><a href="#addressing">Addressing</a></li><li><a href="#additional-properties">Additional properties</a></li><li><a href="#local-ipc%3A-unix-signals">Local IPC: Unix signals</a></li><li><a href="#signals">Signals</a></li><li><a href="#unix-signals%3A-logical-view">Unix signals: logical view</a></li><li><a href="#unix-signals%3A-implementation-view">Unix signals: implementation view</a></li><li><a href="#unix-signals%3A-example">Unix signals: example</a><ol><li><a href="#stopping-and-restarting-apache">Stopping and Restarting Apache</a></li><li><a href="#term-signal%3A-stop-now">TERM Signal: stop now</a></li><li><a href="#hup-signal%3A-restart-now">HUP Signal: restart now</a></li><li><a href="#usr1-signal%3A-graceful-restart">USR1 Signal: graceful restart</a></li></ol></li><li><a href="#unix-pipes">Unix pipes</a></li><li><a href="#programming-unix-pipes">Programming Unix pipes</a></li><li><a href="#unix-message-queues">Unix message queues</a></li><li><a href="#programming-unix-message-queues">Programming Unix message queues</a></li><li><a href="#unix-message-queue-commands">Unix message queue commands</a></li></ol></li><li><a href="#lecture-11%2C-part-2%3A-ipc%3A-sockets-and-rpc">Lecture 11, part 2: IPC: Sockets and RPC</a><ol><li><a href="#sockets">Sockets</a></li><li><a href="#sockets%3A-domains">Sockets: domains</a></li><li><a href="#sockets%3A-type-and-protocol">Sockets: type and protocol</a></li><li><a href="#socket-programming">Socket programming</a><ol><li><a href="#datagram-sockets">Datagram sockets</a></li><li><a href="#stream-sockets">Stream sockets</a></li><li><a href="#client">Client</a></li><li><a href="#server">Server</a></li></ol></li><li><a href="#socket-programming-(2)">Socket programming (2)</a></li><li><a href="#remote-procedure-calls-(rpc)">Remote procedure calls (RPC)</a></li><li><a href="#conclusions">Conclusions</a></li></ol></li></ol></li></ol></nav>
       </div>
-      <article class="content">
-        <h1 id="lecture.11" tabindex="-1">lecture.11</h1>
+      <article class="col content">
+        
+<h1 id="lecture.11" tabindex="-1">lecture.11</h1>
 <h2 id="lecture-11%2C-part-1%3A-inter-process-communication-(ipc)" tabindex="-1">Lecture 11, part 1: Inter-process communication (IPC)</h2>
 <p><a href="lecture.10.html">Previous lecture</a>
 <a href="lecture.12.html">Next lecture</a></p>
