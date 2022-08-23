@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.6</h1>
-<h2>Lecture 6, part 1: Syncronization and active waiting</h2>
+        <h1 id="lecture.6" tabindex="-1">lecture.6</h1>
+<h2 id="lecture-6%2C-part-1%3A-syncronization-and-active-waiting" tabindex="-1">Lecture 6, part 1: Syncronization and active waiting</h2>
 <p><a href="lecture.5.html">Previous lecture</a>
 <a href="lecture.7.html">Next lecture</a></p>
 <p><iframe
@@ -71,7 +71,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Exam</h3>
+<h3 id="exam" tabindex="-1">Exam</h3>
 <p>Interaction of parallel activities, the resulting problems and solutions</p>
 <p><strong>Important questions:</strong></p>
 <ul>
@@ -104,7 +104,7 @@ allowfullscreen>
 </li>
 <li>What are monitors and how to they differ from semaphore solutions?</li>
 </ul>
-<h3>Example: Shared data</h3>
+<h3 id="example%3A-shared-data" tabindex="-1">Example: Shared data</h3>
 <p>A simple linked list implementation in C:</p>
 <pre><code class="hljs language-cpp"><span class="hljs-comment">/* Data type for list elements */</span>
 <span class="hljs-keyword">struct</span> <span class="hljs-title class_">element</span> {
@@ -126,7 +126,7 @@ allowfullscreen>
 <p><img src="assets/lecture.6a.linked_list.png" alt=""></p>
 <p><img src="assets/lecture.6a.linked_list_1.png" alt=""></p>
 <p><img src="assets/lecture.6a.linked_list_2.png" alt=""></p>
-<h3>Where does this problem occur?</h3>
+<h3 id="where-does-this-problem-occur%3F" tabindex="-1">Where does this problem occur?</h3>
 <ul>
 <li><strong>Shared memory</strong> used to communicate between processes
 <ul>
@@ -150,7 +150,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>The problem: race conditions</h3>
+<h3 id="the-problem%3A-race-conditions" tabindex="-1">The problem: race conditions</h3>
 <ul>
 <li>A race condition is a situation in which multiple processes access shared data concurrently and at least one of the processes manipulates the data.
 <ul>
@@ -160,7 +160,7 @@ allowfullscreen>
 </li>
 <li>To avoid race conditions, concurrent processes need to be synchronized</li>
 </ul>
-<h3>Synchronization</h3>
+<h3 id="synchronization" tabindex="-1">Synchronization</h3>
 <ul>
 <li>The coordination of processes is called synchronization
 <ul>
@@ -169,7 +169,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Critical section</h3>
+<h3 id="critical-section" tabindex="-1">Critical section</h3>
 <ul>
 <li>In the case of race condition, N processes compete for the access to shared data</li>
 <li>The code fragments accessing the critical data are called critical sections</li>
@@ -179,9 +179,9 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Solution: lock variables</h3>
+<h3 id="solution%3A-lock-variables" tabindex="-1">Solution: lock variables</h3>
 <p><img src="assets/lecture.6a.lock.png" alt=""></p>
-<h3>Implementing locks: the incorrect way</h3>
+<h3 id="implementing-locks%3A-the-incorrect-way" tabindex="-1">Implementing locks: the incorrect way</h3>
 <pre><code class="hljs language-cpp"><span class="hljs-comment">/* Lock variable (initial value is 0) */</span>
 <span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> Lock;
 <span class="hljs-comment">/* enter the critical section */</span>
@@ -203,7 +203,7 @@ allowfullscreen>
 </li>
 <li>If the current process is preempted between the two lines of code, another process sees the critical section as free and would also enter!</li>
 </ul>
-<h3>A working solution: "bakery" algorithm</h3>
+<h3 id="a-working-solution%3A-%22bakery%22-algorithm" tabindex="-1">A working solution: "bakery" algorithm</h3>
 <ul>
 <li>A process takes a waiting number (ticket) before it is allowed to enter the critical section</li>
 <li>Admission in order of the waiting numbers
@@ -240,14 +240,14 @@ allowfullscreen>
   <span class="hljs-type">int</span> i = <span class="hljs-built_in">pid</span>(); lock-&gt;number[i] = <span class="hljs-number">0</span>;
 }
 </code></pre>
-<h3>Discussion: bakery algorithm</h3>
+<h3 id="discussion%3A-bakery-algorithm" tabindex="-1">Discussion: bakery algorithm</h3>
 <p>The bakery alogrithm is a provably correct solution for the problem of critical sections, but:</p>
 <ul>
 <li>in most cases, it is not known beforehand how many processes will compete to enter a critical section</li>
 <li>process IDs are not necessarily in a range 0..N-1</li>
 <li>the <code><span class="hljs-attribute">aquire</span></code> function has a long runtime even in case where the critical section is already free O(N)</li>
 </ul>
-<h3>Locks with atomic operations</h3>
+<h3 id="locks-with-atomic-operations" tabindex="-1">Locks with atomic operations</h3>
 <p>Many CPUs support indivisible (atomic) read/modify/write cycles that can be used to implement lock algorithms</p>
 <ul>
 <li>We have to use special machine instructions for atomic operations, e.g.:
@@ -290,7 +290,7 @@ acquire   LDREX r0, [LockAddr]
           CMPEQ r0, #0
           BNE acquire
 </code></pre>
-<h3>Discussion: active waiting</h3>
+<h3 id="discussion%3A-active-waiting" tabindex="-1">Discussion: active waiting</h3>
 <p>So far, our lock algorithms have a significant drawback. The actively waiting process</p>
 <ul>
 <li>is unable to change the condition it is waiting for on its own</li>
@@ -302,7 +302,7 @@ acquire   LDREX r0, [LockAddr]
 </ul>
 </li>
 </ul>
-<h3>Suppressing interrupts</h3>
+<h3 id="suppressing-interrupts" tabindex="-1">Suppressing interrupts</h3>
 <p>What is the reason for a process switch inside a critical section?</p>
 <ul>
 <li>The operating system interferes (e.g. due to a process using too much CPU time) and moves another process to the RUNNING state</li>
@@ -323,8 +323,8 @@ acquire   LDREX r0, [LockAddr]
 }
 </code></pre>
 <p><code><span class="hljs-keyword">cli</span></code> and <code><span class="hljs-attribute">sti</span></code> are used in Intel x86 processors to disable and enable the handling of interrupts.</p>
-<h2>Lecture 6, part 2: Passive waiting and monitors</h2>
-<h3>Alternative: passive waiting</h3>
+<h2 id="lecture-6%2C-part-2%3A-passive-waiting-and-monitors" tabindex="-1">Lecture 6, part 2: Passive waiting and monitors</h2>
+<h3 id="alternative%3A-passive-waiting" tabindex="-1">Alternative: passive waiting</h3>
 <ul>
 <li>Idea: processes release the CPU while they wait for events
 <ul>
@@ -345,7 +345,7 @@ acquire   LDREX r0, [LockAddr]
 </li>
 <li>with the start of the blocking phase of a process, its CPU burst ends</li>
 </ul>
-<h3>Semaphores</h3>
+<h3 id="semaphores" tabindex="-1">Semaphores</h3>
 <ul>
 <li>A semaphore is defined as a non-negative integer with two atomic operations:
 <ul>
@@ -365,7 +365,7 @@ acquire   LDREX r0, [LockAddr]
 </li>
 <li>Semaphores are an operating system abstraction to exchange synchronization signals between concurrent processes</li>
 </ul>
-<h3>Example semaphore implementation</h3>
+<h3 id="example-semaphore-implementation" tabindex="-1">Example semaphore implementation</h3>
 <pre><code class="hljs language-cpp"><span class="hljs-comment">/* C++ implementation taken from the teaching OS OO-StuBS */</span>
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Semaphore</span> : <span class="hljs-keyword">public</span> WaitingRoom {
   <span class="hljs-type">int</span> counter;
@@ -389,7 +389,7 @@ acquire   LDREX r0, [LockAddr]
   }
 };
 </code></pre>
-<h3>Using semaphores</h3>
+<h3 id="using-semaphores" tabindex="-1">Using semaphores</h3>
 <pre><code class="hljs language-cpp">Semaphore lock; <span class="hljs-comment">/* = 1: use semaphore as lock variable */</span>
 <span class="hljs-comment">/* Example code: enqueue */</span>
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">enqueue</span> <span class="hljs-params">(<span class="hljs-keyword">struct</span> list *list, <span class="hljs-keyword">struct</span> element *item)</span> </span>{
@@ -400,7 +400,7 @@ acquire   LDREX r0, [LockAddr]
   <span class="hljs-built_in">signal</span> (&amp;lock);
 }
 </code></pre>
-<h3>Semaphores: simple interactions</h3>
+<h3 id="semaphores%3A-simple-interactions" tabindex="-1">Semaphores: simple interactions</h3>
 <ul>
 <li>One sided synchronization</li>
 </ul>
@@ -437,7 +437,7 @@ resource = N; <span class="hljs-comment">/* N &gt; 1 */</span>
 <span class="hljs-comment">/* the rest: same as with
 mutual exclusion */</span>
 </code></pre>
-<h3>Semaphores: complex interactions</h3>
+<h3 id="semaphores%3A-complex-interactions" tabindex="-1">Semaphores: complex interactions</h3>
 <ul>
 <li>Example: the first reader/writer problem
 <ul>
@@ -479,7 +479,7 @@ readcount--;
   <span class="hljs-built_in">signal</span>(&amp;wrt);
 <span class="hljs-built_in">signal</span>(&amp;mutex);
 </code></pre>
-<h3>Semaphores: discussion</h3>
+<h3 id="semaphores%3A-discussion" tabindex="-1">Semaphores: discussion</h3>
 <ul>
 <li>Semaphore extensions and variants
 <ul>
@@ -503,7 +503,7 @@ readcount--;
 </li>
 <li>Support in programming languages</li>
 </ul>
-<h3>Language suppoert: monitors</h3>
+<h3 id="language-suppoert%3A-monitors" tabindex="-1">Language suppoert: monitors</h3>
 <ul>
 <li>A monitor is an abstract data type with implicit synchronization properties:
 <ul>
@@ -526,7 +526,7 @@ readcount--;
 </ul>
 </li>
 </ul>
-<h3>Monitors: example code</h3>
+<h3 id="monitors%3A-example-code" tabindex="-1">Monitors: example code</h3>
 <pre><code class="hljs language-cpp"><span class="hljs-comment">/* A synchronized queue */</span>
 monitor SyncQueue {
   Queue queue;
@@ -545,7 +545,7 @@ monitor SyncQueue {
   }
 };
 </code></pre>
-<h3>Signaling semantics in monitors</h3>
+<h3 id="signaling-semantics-in-monitors" tabindex="-1">Signaling semantics in monitors</h3>
 <ul>
 <li>In the case of waiting processes, a monitor has to fulfill the following requirements:
 <ul>
@@ -572,7 +572,7 @@ monitor SyncQueue {
 </ul>
 </li>
 </ul>
-<h3>Monitors in Java</h3>
+<h3 id="monitors-in-java" tabindex="-1">Monitors in Java</h3>
 <ul>
 <li><code><span class="hljs-keyword">synchronized</span></code> is a keyword indication mutual exclusion</li>
 <li>One implicit condition variable
@@ -596,7 +596,7 @@ monitor SyncQueue {
   }
 };
 </code></pre>
-<h3>Conclusion</h3>
+<h3 id="conclusion" tabindex="-1">Conclusion</h3>
 <ul>
 <li>Uncontrolled concurrent data access can lead to errors
 <ul>

@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.10</h1>
-<h2>Lecture 10, part 1: Virtual memory and replacement strategies</h2>
+        <h1 id="lecture.10" tabindex="-1">lecture.10</h1>
+<h2 id="lecture-10%2C-part-1%3A-virtual-memory-and-replacement-strategies" tabindex="-1">Lecture 10, part 1: Virtual memory and replacement strategies</h2>
 <p><a href="lecture.9.html">Previous lecture</a>
 <a href="lecture.11.html">Next lecture</a></p>
 <p><iframe
@@ -71,7 +71,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Exam</h3>
+<h3 id="exam" tabindex="-1">Exam</h3>
 <p>Details on concepts and implementation of virtual memory</p>
 <p><strong>Important questions:</strong></p>
 <ul>
@@ -96,7 +96,7 @@ allowfullscreen>
 <li>Can you define thrashing and name causes and possible solutions?</li>
 <li>What is the working set of a process and how can you determine it?</li>
 </ul>
-<h3>Locality of memory accesses</h3>
+<h3 id="locality-of-memory-accesses" tabindex="-1">Locality of memory accesses</h3>
 <ul>
 <li>The execution of single instructions only requires the presence of very few memory pages</li>
 <li>This strong locality also manifests itself over longer periods of time
@@ -110,7 +110,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>The idea of "virtual memory"</h3>
+<h3 id="the-idea-of-%22virtual-memory%22" tabindex="-1">The idea of "virtual memory"</h3>
 <ul>
 <li>Decouple the memory requirements from the available amount of main memory
 <ul>
@@ -133,13 +133,13 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Demand paging</h3>
+<h3 id="demand-paging" tabindex="-1">Demand paging</h3>
 <ul>
 <li>Providing pages on demand</li>
 </ul>
 <p><img src="assets/lecture.10a.demand_paging.png" alt=""></p>
 <p><img src="assets/lecture.10a.page_fault.png" alt=""></p>
-<h3>Discussion: paging performance</h3>
+<h3 id="discussion%3A-paging-performance" tabindex="-1">Discussion: paging performance</h3>
 <ul>
 <li>Performance of demand paging
 <ul>
@@ -162,7 +162,7 @@ allowfullscreen>
 <blockquote>
 <p>-&gt; Page fault rate has to be extremely low (p is close to 0)</p>
 </blockquote>
-<h3>Discussion: additional properties</h3>
+<h3 id="discussion%3A-additional-properties" tabindex="-1">Discussion: additional properties</h3>
 <ul>
 <li>Process creation
 <ul>
@@ -185,7 +185,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Discussion: demand segmentation</h3>
+<h3 id="discussion%3A-demand-segmentation" tabindex="-1">Discussion: demand segmentation</h3>
 <ul>
 <li>In principle possible, but this comes with disadvantages
 <ul>
@@ -211,7 +211,7 @@ allowfullscreen>
 <blockquote>
 <p>Demand paging has won in practice!</p>
 </blockquote>
-<h3>Page replacement</h3>
+<h3 id="page-replacement" tabindex="-1">Page replacement</h3>
 <ul>
 <li>What if no free page fram is available when a request comes in?
 <ul>
@@ -230,7 +230,7 @@ allowfullscreen>
 </li>
 <li>Problem: which page to choose to be paged out (the "victim")?</li>
 </ul>
-<h3>Replacement strategies</h3>
+<h3 id="replacement-strategies" tabindex="-1">Replacement strategies</h3>
 <ul>
 <li>We will discuss replacement strategies and their effect on access sequences (also: access or reference orders)</li>
 <li>Access sequence
@@ -250,7 +250,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Least recently used (LRU)</h3>
+<h3 id="least-recently-used-(lru)" tabindex="-1">Least recently used (LRU)</h3>
 <ul>
 <li>Backward distance
 <ul>
@@ -264,7 +264,7 @@ allowfullscreen>
 </li>
 </ul>
 <p><img src="assets/lecture.10a.lru.png" alt=""></p>
-<h3>Least recently used (LRU) (2)</h3>
+<h3 id="least-recently-used-(lru)-(2)" tabindex="-1">Least recently used (LRU) (2)</h3>
 <ul>
 <li>No anomaly
 <ul>
@@ -284,7 +284,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Least recently used (LRU) (3)</h3>
+<h3 id="least-recently-used-(lru)-(3)" tabindex="-1">Least recently used (LRU) (3)</h3>
 <ul>
 <li>Naive idea: hardware support using counters
 <ul>
@@ -301,8 +301,8 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h2>Lecture 10, part 2: Virtual memory and thrashing</h2>
-<h3>Second chance (clock) (1)</h3>
+<h2 id="lecture-10%2C-part-2%3A-virtual-memory-and-thrashing" tabindex="-1">Lecture 10, part 2: Virtual memory and thrashing</h2>
+<h3 id="second-chance-(clock)-(1)" tabindex="-1">Second chance (clock) (1)</h3>
 <ul>
 <li>This approach works: use reference bits
 <ul>
@@ -325,7 +325,7 @@ allowfullscreen>
 </li>
 <li>If all reference bits are = 1, then second chance is a FIFO</li>
 </ul>
-<h3>Second chance (clock) (2)</h3>
+<h3 id="second-chance-(clock)-(2)" tabindex="-1">Second chance (clock) (2)</h3>
 <ul>
 <li>Second chance can also show the FIFO anomaly
 <ul>
@@ -345,7 +345,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Discussion: free page buffer</h3>
+<h3 id="discussion%3A-free-page-buffer" tabindex="-1">Discussion: free page buffer</h3>
 <p>...accelerates page fault handling</p>
 <ul>
 <li>Instead of replacing a page, a number of free pages is always kept in memory
@@ -361,7 +361,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Page frame assignment (1)</h3>
+<h3 id="page-frame-assignment-(1)" tabindex="-1">Page frame assignment (1)</h3>
 <ul>
 <li>Problem: Distribution of page frames to processes
 <ul>
@@ -388,7 +388,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Page frame assignment (2)</h3>
+<h3 id="page-frame-assignment-(2)" tabindex="-1">Page frame assignment (2)</h3>
 <ul>
 <li>Global and local page requests
 <ul>
@@ -405,7 +405,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Thrashing (1)</h3>
+<h3 id="thrashing-(1)" tabindex="-1">Thrashing (1)</h3>
 <ul>
 <li>A page that was paged out is accessed immidiately after the page out happened
 <ul>
@@ -414,7 +414,7 @@ allowfullscreen>
 </li>
 </ul>
 <p><img src="assets/lecture.10b.thrashing.png" alt=""></p>
-<h3>Thrashing (2)</h3>
+<h3 id="thrashing-(2)" tabindex="-1">Thrashing (2)</h3>
 <ul>
 <li>Causes
 <ul>
@@ -430,7 +430,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Solution 1: swapping of processes</h3>
+<h3 id="solution-1%3A-swapping-of-processes" tabindex="-1">Solution 1: swapping of processes</h3>
 <ul>
 <li>Inactive processes do not require page frames
 <ul>
@@ -445,7 +445,7 @@ allowfullscreen>
 </li>
 </ul>
 <p><img src="assets/lecture.10b.swapping.png" alt=""></p>
-<h3>Solution 2: working set model</h3>
+<h3 id="solution-2%3A-working-set-model" tabindex="-1">Solution 2: working set model</h3>
 <ul>
 <li>Set of pages really needed by a process (working set)
 <ul>
@@ -464,7 +464,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Working set model</h3>
+<h3 id="working-set-model" tabindex="-1">Working set model</h3>
 <ul>
 <li>Approximate accesses by time values
 <ul>
@@ -478,7 +478,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Determining the working set and timers (1)</h3>
+<h3 id="determining-the-working-set-and-timers-(1)" tabindex="-1">Determining the working set and timers (1)</h3>
 <ul>
 <li>Naive idea: approximate the working set using:
 <ul>
@@ -500,7 +500,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Determining the working set and timers (2)</h3>
+<h3 id="determining-the-working-set-and-timers-(2)" tabindex="-1">Determining the working set and timers (2)</h3>
 <ul>
 <li>Imprecise
 <ul>
@@ -514,7 +514,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Determine the working set with WSclock</h3>
+<h3 id="determine-the-working-set-with-wsclock" tabindex="-1">Determine the working set with WSclock</h3>
 <ul>
 <li>This is the real solution: WSClock algorithm (working set clock)
 <ul>
@@ -538,7 +538,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Discussion: working set problems</h3>
+<h3 id="discussion%3A-working-set-problems" tabindex="-1">Discussion: working set problems</h3>
 <ul>
 <li>Time stamps also need memory</li>
 <li>It is not always possible to ascribe a page to a specific process
@@ -562,7 +562,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Loading strategy</h3>
+<h3 id="loading-strategy" tabindex="-1">Loading strategy</h3>
 <ul>
 <li>Load on demand
 <ul>
@@ -582,7 +582,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Conclusions</h3>
+<h3 id="conclusions" tabindex="-1">Conclusions</h3>
 <ul>
 <li>Virtual memory allows to use large logical address spaces even if the physical memory is small</li>
 <li>However, this involves some overhead

@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
+<h4 id="courses%2Fttm4100" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks</a></li>
@@ -88,8 +88,8 @@
 
       </div>
       <article class="content">
-        <h1>Multiple Access Links and Protocols</h1>
-<h2>Multiple Access Links and Protocols</h2>
+        <h1 id="multiple-access-links-and-protocols" tabindex="-1">Multiple Access Links and Protocols</h1>
+<h2 id="multiple-access-links-and-protocols-1" tabindex="-1">Multiple Access Links and Protocols</h2>
 <p>A point-to-point link consists of a single sender at one end of the link and a single receiver at the other end of the link. a broadcast link, can have multiple sending and receiving nodes all connected to the same, single, shared broadcast channel.</p>
 <p>a problem of central importance to the link layer: how to coordinate the access of multiple sending and receiving nodes to a shared broadcast channel—the multiple access problem.</p>
 <p>traditional television is a one-way broadcast (simplex). nodes on a computer network broadcast channel can both send and receive (duplex).</p>
@@ -103,15 +103,15 @@
 <li>The protocol is decentralized; that is, there is no master node that represents a single point of failure for the network.</li>
 <li>The protocol is simple, so that it is inexpensive to implement.</li>
 </ol>
-<h3>Channel Partitioning Protocols</h3>
+<h3 id="channel-partitioning-protocols" tabindex="-1">Channel Partitioning Protocols</h3>
 <p>time-division multiplexing (TDM) and frequency-division multiplexing (FDM) are two techniques that can be used to partition a broadcast channel’s bandwidth among all nodes sharing that channel.</p>
 <p><img src="assets/2022-05-08-16-54-30.png" alt=""></p>
 <p>TDM is appealing because it eliminates collisions and is perfectly fair: Each node gets a dedicated transmission rate of R/N bps during each frame time. However, it has two major drawbacks. First, a node is limited to an average rate of R/N bps even when it is the only node with packets to send. A second drawback is that a node must always wait for its turn in the transmission sequence—again, even when it is the only node with a frame to send.</p>
 <p>FDM divides the R bps channel into different frequencies (each with a bandwidth of R/N) and assigns each frequency to one of the N nodes. FDM shares both the advantages and drawbacks of TDM.</p>
 <p>A third channel partitioning protocol is code division multiple access (CDMA). CDMA assigns a different code to each node. Each node then uses its unique code to encode the data bits it sends. CDMA networks have the wonderful property that different nodes can transmit simultaneously and yet have their respective receivers correctly receive a sender’s encoded data bits (assuming the receiver knows the sender’s code) in spite of interfering transmissions by other nodes.</p>
-<h3>Random Access Protocols</h3>
+<h3 id="random-access-protocols" tabindex="-1">Random Access Protocols</h3>
 <p>In a random access protocol, a transmitting node always transmits at the full rate of the channel, namely, R bps. When there is a collision, each node involved in the collision repeatedly retransmits its frame (that is, packet) until its frame gets through without a collision. But when a node experiences a collision, it doesn’t necessarily retransmit the frame right away. Instead it waits a random delay before retransmitting the frame.</p>
-<h4>Slotted ALOHA</h4>
+<h4 id="slotted-aloha" tabindex="-1">Slotted ALOHA</h4>
 <p>The operation of slotted ALOHA in each node is simple:</p>
 <ul>
 <li>When the node has a fresh frame to send, it waits until the beginning of the next slot and transmits the entire frame in the slot.</li>
@@ -123,10 +123,10 @@
 <p>Then the probability that a given slot is a successful slot is the probability that one of the nodes transmits and that the remaining N - 1 nodes do not transmit.</p>
 <p>Because there are N nodes, the probability that any one of the N nodes has a success is Np(1 - p)^(N-1).</p>
 <p>And to obtain the maximum efficiency for a large number of active nodes, we take the limit of Np'(1 - p')^(N-1) as N approaches infinity.</p>
-<h4>ALOHA</h4>
+<h4 id="aloha" tabindex="-1">ALOHA</h4>
 <p>If a transmitted frame experiences a collision with one or more other transmissions, the node will then immediately (after completely transmitting its collided frame) retransmit the frame with probability p. Otherwise, the node waits for a frame transmission time. After this wait, it then transmits the frame with probability p.</p>
 <p>Thus, the probability that a given node has a successful transmission is p(1 - p)^(2(N-1)). the maximum efficiency of the pure ALOHA protocol is only 1/(2e)—exactly half that of slotted ALOHA.</p>
-<h4>Carrier Sense Multiple Access (CSMA)</h4>
+<h4 id="carrier-sense-multiple-access-(csma)" tabindex="-1">Carrier Sense Multiple Access (CSMA)</h4>
 <p>There are two important rules for polite human conversation:</p>
 <ul>
 <li>Listen before speaking. In the networking world, this is called carrier sensing</li>
@@ -134,7 +134,7 @@
 </ul>
 <p>These two rules are embodied in the family of carrier sense multiple access (CSMA) and CSMA with collision detection (CSMA/CD)</p>
 <p>it is evident that the end-to-end channel propagation delay of a broadcast channel—the time it takes for a signal to propagate from one of the nodes to another—will play a crucial role in determining its performance. The longer this propagation delay, the larger the chance that a carrier-sensing node is not yet able to sense a transmission that has already begun at another node in the network.</p>
-<h4>Carrier Sense Multiple Access with Collision Detection (CSMA/CD)</h4>
+<h4 id="carrier-sense-multiple-access-with-collision-detection-(csma%2Fcd)" tabindex="-1">Carrier Sense Multiple Access with Collision Detection (CSMA/CD)</h4>
 <p>When a node performs collision detection, it ceases transmission as soon as it detects a collision.</p>
 <p>summarize CSMA/CD protocol operation from the perspective of an adapter (in a node) attached to a broadcast channel:</p>
 <ol>
@@ -145,12 +145,12 @@
 <li>After aborting, the adapter waits a random amount of time and then returns to step 2.</li>
 </ol>
 <p>What we’d like is an interval that is short when the number of colliding nodes is small, and long when the number of colliding nodes is large. The binary exponential backoff algorithm elegantly solves this problem. a frame that has already experienced n collisions, a node chooses the value of K at random from {0, 1, 2, .... 2^n-1}</p>
-<h4>CSMA/CD Efficiency</h4>
+<h4 id="csma%2Fcd-efficiency" tabindex="-1">CSMA/CD Efficiency</h4>
 <p>Here we simply state the following approximation: Efficiency = 1 / (1 + 5dprop/dtrans)</p>
-<h3>Taking-Turns Protocols</h3>
+<h3 id="taking-turns-protocols" tabindex="-1">Taking-Turns Protocols</h3>
 <p>The polling protocol requires one of the nodes to be designated as a master node. The master node polls each of the nodes in a round-robin fashion. The polling protocol eliminates the collisions and empty slots that plague random access protocols. This allows polling to achieve a much higher efficiency. Drawbacks: 1) the protocol introduces a polling delay 2) if the master node fails, the entire channel becomes inoperative.</p>
 <p>token-passing protocol: no master node. A small, special-purpose frame known as a token is exchanged among the nodes in some fixed order. When a node receives a token, it holds onto the token only if it has some frames to transmit; otherwise, it immediately forwards the token to the next node. Token passing is decentralized and highly efficient. the failure of one node can crash the entire channel. Or if a node accidentally neglects to release the token, then some recovery procedure must be invoked to get the token back in circulation.</p>
-<h3>DOCSIS: The Link-Layer Protocol for Cable Internet Access</h3>
+<h3 id="docsis%3A-the-link-layer-protocol-for-cable-internet-access" tabindex="-1">DOCSIS: The Link-Layer Protocol for Cable Internet Access</h3>
 <p>abbr: Data-Over-Cable Service Interface Specifications</p>
 <p>we’ll find aspects of each of these three classes of multiple access protocols with the cable access network. FDM, TDM, random access, and centrally allocated time slots all within one network!</p>
 <p>a cable access network typically connects several thousand residential cable modems to a cable modem termination system (CMTS)</p>

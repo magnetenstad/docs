@@ -2,7 +2,7 @@
   "name": "template",
   "version": "1.0.0",
   "description": "",
-  "main": "node_modules/marktree/src/index.js",
+  "main": "node_modules/marktree/lib/index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon marktree",
@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "marktree": "^1.2.5",
+    "marktree": "^1.2.6",
     "nodemon": "^2.0.15"
   }
 }

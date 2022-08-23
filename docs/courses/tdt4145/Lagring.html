@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a></h4>
+<h4 id="courses%2Ftdt4145" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="Boka.html">Boka</a></li>
@@ -40,8 +40,8 @@
 
       </div>
       <article class="content">
-        <h1>Lagring</h1>
-<h2>Databasearkitektur</h2>
+        <h1 id="lagring" tabindex="-1">Lagring</h1>
+<h2 id="databasearkitektur" tabindex="-1">Databasearkitektur</h2>
 <p><img src="assets/Pasted image 20220329160407.png" alt=""></p>
 <p><strong>Låsemodul</strong> (Locks)</p>
 <ul>
@@ -52,7 +52,7 @@
 <li>Huske alt som foregår</li>
 <li>Rulle transaksjoner fram eller tilbake</li>
 </ul>
-<h2>Databaselagring</h2>
+<h2 id="databaselagring" tabindex="-1">Databaselagring</h2>
 <ul>
 <li>Databaser lagres i filer eller på «raw devices»
 <ul>
@@ -92,7 +92,7 @@
 </li>
 <li>Kan kombinere lagring og indekser: Clustered index.</li>
 </ul>
-<h2>Lagring av poster</h2>
+<h2 id="lagring-av-poster" tabindex="-1">Lagring av poster</h2>
 <ul>
 <li>En rad i en tabell er vanligvis lagret som en post (record) i en fil: tuppel vs. rad vs. post.</li>
 <li>En post har felter med navn og datatype
@@ -115,16 +115,16 @@
 </ul>
 </li>
 </ul>
-<h2>Postlayout</h2>
+<h2 id="postlayout" tabindex="-1">Postlayout</h2>
 <p><img src="assets/Pasted image 20220329162449.png" alt=""></p>
 <p>Alt 1: Krever sjekk i katalog.
 Alt 2: Feltvektor, vektor som peker på hvert attributt. Selvbeskrivende post.</p>
-<h2>Blocklayout</h2>
+<h2 id="blocklayout" tabindex="-1">Blocklayout</h2>
 <p><img src="assets/Pasted image 20220329162740.png" alt=""></p>
 <p>Tuppel i figuren er post.
 Struktur som vokser i to retninger.
 På slutten: vektor som peker på postene i sortert rekkefølge.</p>
-<h2>Buffer</h2>
+<h2 id="buffer" tabindex="-1">Buffer</h2>
 <ul>
 <li>Kopi i RAM av ofte brukte blokker fra databasen</li>
 <li>Databaser vil gjerne ha kontroll på dataene i RAM, så de «pinnes» slik at «virtual memory» ikke kaster de ut.</li>
@@ -134,7 +134,7 @@ På slutten: vektor som peker på postene i sortert rekkefølge.</p>
 <li>Blokker som tilhører samme hashinngang lenkes sammen i RAM.</li>
 <li>Blokker skrives til disk som en del av sjekkpunkting i forbindelse med logging og recovery</li>
 </ul>
-<h2>Heapfiler</h2>
+<h2 id="heapfiler" tabindex="-1">Heapfiler</h2>
 <ul>
 <li>«Rått» og usortert lager av poster</li>
 <li>Poster settes inn på slutten av filen. Kan være to lister.</li>
@@ -164,7 +164,7 @@ På slutten: vektor som peker på postene i sortert rekkefølge.</p>
 </ul>
 </li>
 </ul>
-<h2>Quiz 1 A</h2>
+<h2 id="quiz-1-a" tabindex="-1">Quiz 1 A</h2>
 <ul>
 <li>Hva er en komponent i et databasesystem?
 <ul>
@@ -183,7 +183,7 @@ På slutten: vektor som peker på postene i sortert rekkefølge.</p>
 </ul>
 </li>
 </ul>
-<h2>Quiz 1 B</h2>
+<h2 id="quiz-1-b" tabindex="-1">Quiz 1 B</h2>
 <ul>
 <li>Hva er en SQL Dictionary?
 <ul>
@@ -202,7 +202,7 @@ På slutten: vektor som peker på postene i sortert rekkefølge.</p>
 </ul>
 </li>
 </ul>
-<h2>Hashbaserte indekser</h2>
+<h2 id="hashbaserte-indekser" tabindex="-1">Hashbaserte indekser</h2>
 <ul>
 <li>Bra for direkte aksess på søkenøkkel</li>
 <li>h(K) - hashfunksjon av søkenøkkel
@@ -221,9 +221,9 @@ På slutten: vektor som peker på postene i sortert rekkefølge.</p>
 </ul>
 </li>
 </ul>
-<h2>Statisk hashing (1)</h2>
+<h2 id="statisk-hashing-(1)" tabindex="-1">Statisk hashing (1)</h2>
 <p><img src="assets/Pasted image 20220329173724.png" alt=""></p>
-<h2>Statisk hashing (2)</h2>
+<h2 id="statisk-hashing-(2)" tabindex="-1">Statisk hashing (2)</h2>
 <ul>
 <li>Partition by key i MySQL</li>
 </ul>
@@ -238,7 +238,7 @@ PARTITIONS <span class="hljs-number">10</span>;
 <li>Må bruke overløp for dynamiske datamengder (ukjent antall poster)</li>
 <li>Lange overløp kan ødelegge ytelsen</li>
 </ul>
-<h2>Extendible hashing</h2>
+<h2 id="extendible-hashing" tabindex="-1">Extendible hashing</h2>
 <ul>
 <li>Problem ved statisk hashing.
 <ul>

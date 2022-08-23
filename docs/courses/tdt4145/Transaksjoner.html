@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a></h4>
+<h4 id="courses%2Ftdt4145" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="Boka.html">Boka</a></li>
@@ -40,12 +40,12 @@
 
       </div>
       <article class="content">
-        <h1>Transaksjoner</h1>
-<h2>Transaksjoner</h2>
+        <h1 id="transaksjoner" tabindex="-1">Transaksjoner</h1>
+<h2 id="transaksjoner-1" tabindex="-1">Transaksjoner</h2>
 <p>Transaksjoner, kap. 20-22
 Svein Erik Bratsberg, IDI/NTNU
 Versjon 21.april 2022</p>
-<h3>Innhold</h3>
+<h3 id="innhold" tabindex="-1">Innhold</h3>
 <ul>
 <li>Kap. 20
 <ul>
@@ -70,7 +70,7 @@ Versjon 21.april 2022</p>
 </ul>
 </li>
 </ul>
-<h3>Hvorfor transaksjoner?</h3>
+<h3 id="hvorfor-transaksjoner%3F" tabindex="-1">Hvorfor transaksjoner?</h3>
 <ul>
 <li>Støtter deling og samtidig aksess av data
 <ul>
@@ -83,7 +83,7 @@ Versjon 21.april 2022</p>
 </ul>
 </li>
 </ul>
-<h3>Databaseoperasjoner (20.1.2)</h3>
+<h3 id="databaseoperasjoner-(20.1.2)" tabindex="-1">Databaseoperasjoner (20.1.2)</h3>
 <ul>
 <li>X - databaseobjekt: post eller blokk
 <ul>
@@ -102,17 +102,17 @@ Versjon 21.april 2022</p>
 </ul>
 </li>
 </ul>
-<h3>Samtidighetsproblemer, eksempel (20.1.3)</h3>
+<h3 id="samtidighetsproblemer%2C-eksempel-(20.1.3)" tabindex="-1">Samtidighetsproblemer, eksempel (20.1.3)</h3>
 <ul>
 <li>To transaksjoner</li>
 </ul>
 <p><img src="assets/Pasted image 20220425144950.png" alt=""></p>
-<h3>Samtidighetsproblemer (2)</h3>
+<h3 id="samtidighetsproblemer-(2)" tabindex="-1">Samtidighetsproblemer (2)</h3>
 <p><img src="assets/Pasted image 20220425145005.png" alt=""></p>
 <ul>
 <li>r1(A); w1(A); r2(A); w2(A); r2(B); w2(B); r1(B); w1(B);</li>
 </ul>
-<h3>Samtidighetsproblemer, klasser (20.1.3)</h3>
+<h3 id="samtidighetsproblemer%2C-klasser-(20.1.3)" tabindex="-1">Samtidighetsproblemer, klasser (20.1.3)</h3>
 <ul>
 <li>Dirty read (Lese data som er skrevet til men ikke committet)</li>
 </ul>
@@ -141,9 +141,9 @@ Versjon 21.april 2022</p>
 </ul>
 </li>
 </ul>
-<h3>Incorrect summary</h3>
+<h3 id="incorrect-summary" tabindex="-1">Incorrect summary</h3>
 <p><img src="assets/Pasted image 20220425150817.png" alt=""></p>
-<h3>Oppgave</h3>
+<h3 id="oppgave" tabindex="-1">Oppgave</h3>
 <ul>
 <li>Se på følgende historier:
 <ul>
@@ -159,7 +159,7 @@ Versjon 21.april 2022</p>
 </ul>
 </li>
 </ul>
-<h3>Hvorfor trenger vi recovery?</h3>
+<h3 id="hvorfor-trenger-vi-recovery%3F" tabindex="-1">Hvorfor trenger vi recovery?</h3>
 <ul>
 <li>To typer recovery (gjenoppretting)</li>
 <li>En transaksjon ruller tilbake (rollback, abortering)
@@ -176,7 +176,7 @@ Versjon 21.april 2022</p>
 </ul>
 </li>
 </ul>
-<h3>ACID - egenskaper ved en transaksjon</h3>
+<h3 id="acid---egenskaper-ved-en-transaksjon" tabindex="-1">ACID - egenskaper ved en transaksjon</h3>
 <p>Transaksjon: en gruppering av operasjoner mot databasen
 som er</p>
 <ul>
@@ -187,7 +187,7 @@ som er</p>
 </ul>
 <p>En transaksjon er vanligvis en logisk operasjon eller
 oppgave</p>
-<h3>Eksempler på transaksjoner</h3>
+<h3 id="eksempler-p%C3%A5-transaksjoner" tabindex="-1">Eksempler på transaksjoner</h3>
 <ul>
 <li>En gruppering av operasjoner mot databasen</li>
 <li>Banktransaksjon</li>
@@ -197,14 +197,14 @@ oppgave</p>
 <li>Setter inn poster som har indekselementer som også må oppdateres</li>
 <li>…..</li>
 </ul>
-<h3>Commit/Abort (20.2.2/20.2.3)</h3>
+<h3 id="commit%2Fabort-(20.2.2%2F20.2.3)" tabindex="-1">Commit/Abort (20.2.2/20.2.3)</h3>
 <ul>
 <li>En transaksjon slutter med</li>
 <li><strong>COMMIT</strong>: Alt gikk bra og endringene fra transaksjonen finnes i databasen. Connection.commit();</li>
 <li><strong>ROLLBACK</strong> (abort): Transaksjonen rulles tilbake (aborteres) og ingen endringer fra transaksjonen finnes i databasen. Connection.rollback();</li>
 <li><strong>Autocommit</strong>: Hver SQL-setning er en egen transaksjon. Kan skrus på. Default av i Python/SQLite3-API. Settes via isolation_level i connection-objektet.</li>
 </ul>
-<h3>Commit/abort (2)</h3>
+<h3 id="commit%2Fabort-(2)" tabindex="-1">Commit/abort (2)</h3>
 <pre><code class="hljs"><span class="hljs-built_in">SET</span> <span class="hljs-attribute">AUTOCOMMIT</span>=0;
 UPDATE Account <span class="hljs-built_in">SET</span> b = b - 1000 WHERE <span class="hljs-attribute">id</span>=123123;
 UPDATE Account <span class="hljs-built_in">SET</span> b = b + 1000 WHERE <span class="hljs-attribute">id</span>=234234;
@@ -219,7 +219,7 @@ COMMIT;
 <span class="hljs-keyword">WHERE</span> brikkenr<span class="hljs-operator">=</span><span class="hljs-number">123123</span>;
 <span class="hljs-keyword">COMMIT</span>;
 </code></pre>
-<h3>SQLs isolasjonsnivå</h3>
+<h3 id="sqls-isolasjonsniv%C3%A5" tabindex="-1">SQLs isolasjonsnivå</h3>
 <pre><code class="hljs"><span class="hljs-keyword">SET</span> <span class="hljs-keyword">TRANSACTION</span> <span class="hljs-keyword">ISOLATION</span> <span class="hljs-keyword">LEVEL</span>
 	<span class="hljs-keyword">READ</span> <span class="hljs-keyword">UNCOMMITTED</span>
 	<span class="hljs-keyword">READ</span> <span class="hljs-keyword">COMMITTED</span>
@@ -237,9 +237,9 @@ COMMIT;
 </ul>
 </li>
 </ul>
-<h3>SQLs isolasjonsnivå (2)</h3>
+<h3 id="sqls-isolasjonsniv%C3%A5-(2)" tabindex="-1">SQLs isolasjonsnivå (2)</h3>
 <p><img src="assets/Pasted image 20220425161438.png" alt=""></p>
-<h3>Quiz 1</h3>
+<h3 id="quiz-1" tabindex="-1">Quiz 1</h3>
 <ul>
 <li>Hvorfor må en transaksjon rulles tilbake?</li>
 </ul>
@@ -276,7 +276,7 @@ COMMIT;
 <li>Svak isolasjon ❌</li>
 <li>Vanskelig å få til DURABILITY ❌</li>
 </ol>
-<h3>READ COMMITTED</h3>
+<h3 id="read-committed" tabindex="-1">READ COMMITTED</h3>
 <ol>
 <li>When reading from the database, you will only see data that has been committed (no dirty reads).</li>
 <li>When writing to the database, you will only overwrite data that has been committed (no dirty writes).</li>
@@ -287,13 +287,13 @@ There are two ways used to support this.</p>
 <li><em>Locking</em>. The transaction sets write locks before writing a data item. Release of this lock is done at commit of the transaction. Before reading an item, the transaction sets a read lock on the item, but this read lock is released after the read is done.</li>
 <li><em>Snapshot isolation</em>. Most databases prevent dirty reads by keeping old values for writes until the transactions commit. Read transactions may read the old value. Only when the new value is committed do transactions switch over to reading the new value. To keep single record locks would cost too much, since one writer may cause multiple readers to wait. This is also called multi-version concurrency control.</li>
 </ol>
-<h3>Repeatable Read</h3>
+<h3 id="repeatable-read" tabindex="-1">Repeatable Read</h3>
 <ul>
 <li>Solve the problems of re-reading some items</li>
 <li>Usually supported by snapshot isolation (as previously)</li>
 <li>Real confusion in commercial databases on the use of the terms SERIALIZABLE and REPEATABLE READ</li>
 </ul>
-<h3>Transaksjonshistorie (20.4.1)</h3>
+<h3 id="transaksjonshistorie-(20.4.1)" tabindex="-1">Transaksjonshistorie (20.4.1)</h3>
 <ul>
 <li>Historie (schedule)
 <ul>
@@ -305,7 +305,7 @@ There are two ways used to support this.</p>
 <pre><code class="hljs">Ha: <span class="hljs-built_in">r1</span>(X);<span class="hljs-built_in">r2</span>(X);<span class="hljs-built_in">w1</span>(X);<span class="hljs-built_in">r1</span>(Y);<span class="hljs-built_in">w2</span>(X);<span class="hljs-built_in">w1</span>(Y);
 Hb: <span class="hljs-built_in">r1</span>(X);<span class="hljs-built_in">w1</span>(X);<span class="hljs-built_in">r2</span>(X);<span class="hljs-built_in">w2</span>(X),<span class="hljs-built_in">r1</span>(Y);a1;
 </code></pre>
-<h3>Transaksjonshistorie - konflikt</h3>
+<h3 id="transaksjonshistorie---konflikt" tabindex="-1">Transaksjonshistorie - konflikt</h3>
 <ul>
 <li>To operasjoner fra en historie er i konflikt hvis
 <ul>
@@ -323,7 +323,7 @@ Hb: <span class="hljs-built_in">r1</span>(X);<span class="hljs-built_in">w1</spa
 </li>
 <li>To operasjoner er i konflikt hvis endring av rekkefølgen endrer resultatet på databasen</li>
 </ul>
-<h3>Transaksjoner og gjenopprettbarhet (20.4.2)</h3>
+<h3 id="transaksjoner-og-gjenopprettbarhet-(20.4.2)" tabindex="-1">Transaksjoner og gjenopprettbarhet (20.4.2)</h3>
 <ul>
 <li><strong>Gjenopprettbar historie</strong> (recoverable schedule): Hver transaksjon committer etter at transaksjoner de har lest fra har committet.
 <ul>
@@ -348,9 +348,9 @@ Hb: <span class="hljs-built_in">r1</span>(X);<span class="hljs-built_in">w1</spa
 </ul>
 </li>
 </ul>
-<h3>Oppgaver</h3>
+<h3 id="oppgaver" tabindex="-1">Oppgaver</h3>
 <p><img src="assets/Pasted image 20220425163923.png" alt=""></p>
-<h3>Historier og serialiserbarhet (20.5.1)</h3>
+<h3 id="historier-og-serialiserbarhet-(20.5.1)" tabindex="-1">Historier og serialiserbarhet (20.5.1)</h3>
 <ul>
 <li>Seriell historie
 <ul>
@@ -364,7 +364,7 @@ Hb: <span class="hljs-built_in">r1</span>(X);<span class="hljs-built_in">w1</spa
 </li>
 <li>Figur 20.5</li>
 </ul>
-<h3>Historier og serialiserbarhet (2)</h3>
+<h3 id="historier-og-serialiserbarhet-(2)" tabindex="-1">Historier og serialiserbarhet (2)</h3>
 <ul>
 <li>Vi ønsker serialiserbare og ikke kreve serielle historier fordi vi ønsker samtidighet</li>
 </ul>
@@ -372,7 +372,7 @@ Hb: <span class="hljs-built_in">r1</span>(X);<span class="hljs-built_in">w1</spa
 <li>Parallelle tråder</li>
 <li>Diskaksess - andre tråder kan jobbe så lenge</li>
 </ol>
-<h3>Konfliktserialiserbarhet (20.5.1)</h3>
+<h3 id="konfliktserialiserbarhet-(20.5.1)" tabindex="-1">Konfliktserialiserbarhet (20.5.1)</h3>
 <ul>
 <li>Konflikt mellom to operasjoner
 <ul>
@@ -386,9 +386,9 @@ Hb: <span class="hljs-built_in">r1</span>(X);<span class="hljs-built_in">w1</spa
 <li>Konfliktserialiserbarhet impliserer serialiserbarhet, men ikke nødvendigvis motsatt</li>
 <li>Figur 20.5 c) og d)</li>
 </ul>
-<h3>Konfliktserialiserbarhet</h3>
+<h3 id="konfliktserialiserbarhet" tabindex="-1">Konfliktserialiserbarhet</h3>
 <p><img src="assets/Pasted image 20220425164503.png" alt=""></p>
-<h3>Presedensgraf (20.5.2)</h3>
+<h3 id="presedensgraf-(20.5.2)" tabindex="-1">Presedensgraf (20.5.2)</h3>
 <ul>
 <li>Rettet graf</li>
 <li>Noder: transaksjoner i historie H</li>
@@ -397,7 +397,7 @@ Hb: <span class="hljs-built_in">r1</span>(X);<span class="hljs-built_in">w1</spa
 <li>H1: r2(A); r1(B); w2(A); r3(A); w1(B); w3(A); r2(B); w2(B);</li>
 <li>H2: r2(A); r1(B); w2(A); r2(B); r3(A); w1(B); w3(A); w2(B);</li>
 </ul>
-<h3>Serialiserbarhet ved låsing (21.1.1)</h3>
+<h3 id="serialiserbarhet-ved-l%C3%A5sing-(21.1.1)" tabindex="-1">Serialiserbarhet ved låsing (21.1.1)</h3>
 <ul>
 <li>Bruker låser av dataelement (poster eller blokker) for å garantere konfliktserialiserbarhet
 <ul>
@@ -414,7 +414,7 @@ Hb: <span class="hljs-built_in">r1</span>(X);<span class="hljs-built_in">w1</spa
 </ul>
 </li>
 </ul>
-<h3>Implementasjon av låser (21.1.1)</h3>
+<h3 id="implementasjon-av-l%C3%A5ser-(21.1.1)" tabindex="-1">Implementasjon av låser (21.1.1)</h3>
 <ul>
 <li>Låsetabell i minne</li>
 <li>Postlåser</li>

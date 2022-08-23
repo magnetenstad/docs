@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
+<h4 id="courses%2Fttm4100" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks</a></li>
@@ -88,42 +88,42 @@
 
       </div>
       <article class="content">
-        <h1>The Web and HTTP</h1>
-<h2>The Web and HTTP</h2>
-<h3>Overview of HTTP</h3>
+        <h1 id="the-web-and-http" tabindex="-1">The Web and HTTP</h1>
+<h2 id="the-web-and-http-1" tabindex="-1">The Web and HTTP</h2>
+<h3 id="overview-of-http" tabindex="-1">Overview of HTTP</h3>
 <p>The HyperText Transfer Protocol (HTTP), the Web’s application-layer protocol, is at the heart of the Web. HTTP has a request-response behavior. HTTP uses TCP as its underlying transport protocol. Because an HTTP server maintains no information about the clients, HTTP is said to be a stateless protocol.</p>
-<h3>Non-Persistent and Persistent Connections</h3>
+<h3 id="non-persistent-and-persistent-connections" tabindex="-1">Non-Persistent and Persistent Connections</h3>
 <p>Should each request/response pair be sent over a separate TCP connection, or should all of the requests and their corresponding responses be sent over the same TCP connection? In the former approach, the application is said to use <em>non-persistent connections</em>; and in the latter approach, <em>persistent connections</em>.</p>
-<h4>HTTP with Non-Persistent Connections</h4>
+<h4 id="http-with-non-persistent-connections" tabindex="-1">HTTP with Non-Persistent Connections</h4>
 <p>We define the round-trip time (RTT), which is the time it takes for a small packet to travel from client to server and then back to the client. The RTT includes packet-propagation delays, packet queuing delays in intermediate routers and switches, and packet-processing delays.</p>
 <p>The browser initiates a TCP connection between the browser and the Web server; this involves a "three-way handshake" - the client sends a small TCP segment to the server, the server acknowledges and responds with a small TCP segment, and, finally, the client acknowledges back to the server.</p>
 <p>A brand-new connection must be established and maintained for each requested object. For each of these connections, TCP buffers must be allocated and TCP variables must be kept in both the client and server. Each object suffers a delivery delay of two RTTs—one RTT to establish the TCP connection and one RTT to request and receive an object.</p>
-<h4>HTTP with Persistent Connections</h4>
+<h4 id="http-with-persistent-connections" tabindex="-1">HTTP with Persistent Connections</h4>
 <p>With HTTP/1.1 persistent connections, the server leaves the TCP connection open after sending a response. Subsequent requests and responses between the same client and server can be sent over the same connection.</p>
-<h3>HTTP Message Format</h3>
+<h3 id="http-message-format" tabindex="-1">HTTP Message Format</h3>
 <p>The first line of an HTTP request message is called the request line; the subsequent lines are called the header lines. The request line has three fields: the method field, the URL field, and the HTTP version field. After the header lines (and the additional carriage return and line feed) there is an "entity body." The entity body is empty with the GET method, but is used with the POST method. HTML forms often use the GET method and include the inputted data (in the form fields) in the requested URL.</p>
-<h3>HTTP Response Message</h3>
+<h3 id="http-response-message" tabindex="-1">HTTP Response Message</h3>
 <p>It has three sections: an initial status line (200 OK, 400 Bad Request, 404 Not Found, etc.), six header lines, and then the entity body.</p>
-<h3>User-Server Interaction: Cookies</h3>
+<h3 id="user-server-interaction%3A-cookies" tabindex="-1">User-Server Interaction: Cookies</h3>
 <p>It is often desirable for a Web site to identify users, either because the server wishes to restrict user access or because it wants to serve content as a function of the user identity. For these purposes, HTTP uses cookies.</p>
 <p>Cookie technology has four components: (1) a cookie header line in the HTTP response message; (2) a cookie header line in the HTTP request message; (3) a cookie file kept on the user’s end system and managed by the user’s browser; and (4) a back-end database at the Web site.</p>
-<h3>Web Caching</h3>
+<h3 id="web-caching" tabindex="-1">Web Caching</h3>
 <p>A Web cache—also called a proxy server—is a network entity that satisfies HTTP requests on the behalf of an origin Web server. Note that a cache is both a server and a client at the same time.</p>
 <p>Hit rates - the fraction of requests that are satisfied by a cache - typically range from 0.2 to 0.7 in practice.</p>
 <p>Average delay: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>h</mi></msub><mi>i</mi><mi>t</mi><mo>∗</mo><msub><mi>t</mi><mi>h</mi></msub><mi>i</mi><mi>t</mi><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>h</mi></msub><mi>i</mi><mi>t</mi><mo stretchy="false">)</mo><mo>∗</mo><msub><mi>t</mi><mi>m</mi></msub><mi>i</mi><mi>s</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">p_hit * t_hit + (1 - p_hit) * t_miss</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">s</span></span></span></span></p>
 <p>Through the use of Content Distribution Networks (CDNs), Web caches are increasingly playing an important role in the Internet.</p>
-<h5>The Conditional GET</h5>
+<h5 id="the-conditional-get" tabindex="-1">The Conditional GET</h5>
 <p>Although caching can reduce user-perceived response times, it introduces a new problem—the copy of an object residing in the cache may be stale.</p>
 <p>An HTTP request message is a so-called conditional GET message if (1) the request message uses the GET method and (2) the request message includes an If-Modified-Since: header line.</p>
 <p>In response to the conditional GET, the Web server can respond with a 304 Not Modified in the status line, which tells the cache that it can go ahead and forward its (the proxy cache's) cached copy of the object to the requesting browser.</p>
-<h3>HTTP/2</h3>
+<h3 id="http%2F2" tabindex="-1">HTTP/2</h3>
 <p>Sending all the objects in a Web page over a single TCP connection (like in HTTP/1.1) has a Head of Line (HOL) blocking problem.</p>
 <p>One of the primary goals of HTTP/2 is to get rid of (or at least reduce the number of) parallel TCP connections for transporting a single Web page.</p>
-<h4>HTTP/2 Framing</h4>
+<h4 id="http%2F2-framing" tabindex="-1">HTTP/2 Framing</h4>
 <p>The HTTP/2 solution for HOL blocking is to break each message into small frames, and interleave the request and response messages on the same TCP connection. The framing sublayer also binary encodes the frames. Binary protocols are more efficient to parse, lead to slightly smaller frames, and are less error-prone.</p>
-<h4>Response Message Prioritization and Server Pushing</h4>
+<h4 id="response-message-prioritization-and-server-pushing" tabindex="-1">Response Message Prioritization and Server Pushing</h4>
 <p>Another feature of HTTP/2 is the ability for a server to send multiple responses for a single client request.</p>
-<h4>HTTP/3</h4>
+<h4 id="http%2F3" tabindex="-1">HTTP/3</h4>
 <p>QUIC is a new "transport" protocol that is implemented in the application layer over the bare-bones UDP protocol. QUIC has several features that are desirable for HTTP, such as message multiplexing (interleaving), per-stream flow control, and low-latency connection establishment. HTTP/3 is yet a new HTTP protocol that is designed to operate over QUIC. As of 2020, HTTP/3 has not yet been fully standardized.</p>
 
       </article>

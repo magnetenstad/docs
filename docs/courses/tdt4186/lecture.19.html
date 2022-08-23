@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,7 +53,7 @@
 
       </div>
       <article class="content">
-        <h2>Lecture 19, part 1: Embedded &amp; Real-time Operating Systems</h2>
+        <h2 id="lecture-19%2C-part-1%3A-embedded-%26-real-time-operating-systems" tabindex="-1">Lecture 19, part 1: Embedded &amp; Real-time Operating Systems</h2>
 <p>NOTE: Not relevant for the exam.</p>
 <p><a href="lecture.18.html">Previous lecture</a>
 <a href="lecture.20.html">Next lecture</a></p>
@@ -71,7 +71,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Embedded operating systems - Characteristics: Configurability -</h3>
+<h3 id="embedded-operating-systems---characteristics%3A-configurability--" tabindex="-1">Embedded operating systems - Characteristics: Configurability -</h3>
 <p>Configurability
 No overhead for unused functions tolerated,
 no single OS fits all needs, -&gt; configurability needed.</p>
@@ -83,14 +83,14 @@ no single OS fits all needs, -&gt; configurability needed.</p>
 <li>Linker-time optimization (removal of unused functions)</li>
 </ul>
 <p>Dynamic data might be replaced by static data.</p>
-<h3>Verification of derived OS?</h3>
+<h3 id="verification-of-derived-os%3F" tabindex="-1">Verification of derived OS?</h3>
 <p>Verification a potential problem of systems
 with a large number of derived OSs:</p>
 <ul>
 <li>Each derived OS must be tested thoroughly;</li>
 <li>Potential problem for eCos (open source RTOS from Red Hat), including 100 to 200 configuration points [Takada, 2001].</li>
 </ul>
-<h3>Embedded operating systems - Characteristics: Disk and network handled by tasks -</h3>
+<h3 id="embedded-operating-systems---characteristics%3A-disk-and-network-handled-by-tasks--" tabindex="-1">Embedded operating systems - Characteristics: Disk and network handled by tasks -</h3>
 <ul>
 <li>Effectively no device needs to be supported by all</li>
 </ul>
@@ -101,7 +101,7 @@ with a large number of derived OSs:</p>
 </ul>
 <p>drivers.</p>
 <p><img src="assets/Pasted image 20220322104816.png" alt=""></p>
-<h3>Embedded operating systems - Characteristics: Protection is optional</h3>
+<h3 id="embedded-operating-systems---characteristics%3A-protection-is-optional" tabindex="-1">Embedded operating systems - Characteristics: Protection is optional</h3>
 <p>Protection mechanisms not always necessary:
 ES typically designed for a single purpose,
 untested programs rarely loaded, SW considered reliable.
@@ -113,7 +113,7 @@ Simply use</p>
 <p>instead of OS call.
 However, protection mechanisms may be needed for safety
 and security reasons.</p>
-<h3>Embedded operating systems - Characteristics: Interrupts not restricted to OS -</h3>
+<h3 id="embedded-operating-systems---characteristics%3A-interrupts-not-restricted-to-os--" tabindex="-1">Embedded operating systems - Characteristics: Interrupts not restricted to OS -</h3>
 <p>Interrupts can be employed by any process
 For standard OS: serious source of unreliability.
 Since</p>
@@ -125,9 +125,9 @@ Since</p>
 <li>More efficient than going through OS services.</li>
 <li>Reduced composability: if SW is connected to an interrupt, it may be difficult to add more SW which also needs to be started by an event.</li>
 </ul>
-<h3>Embedded operating systems - Characteristics: Real-time capability</h3>
+<h3 id="embedded-operating-systems---characteristics%3A-real-time-capability" tabindex="-1">Embedded operating systems - Characteristics: Real-time capability</h3>
 <p>Many embedded systems are real-time (RT) systems and, hence, the OSs used in these systems must be real-time operating systems (RTOSs).</p>
-<h3>RT operating systems - Definition and requirement 1: predictability -</h3>
+<h3 id="rt-operating-systems---definition-and-requirement-1%3A-predictability--" tabindex="-1">RT operating systems - Definition and requirement 1: predictability -</h3>
 <p>Def.: (A) real-time operating system is an operating system that supports the construction of real-time systems.
 The following are the three key requirements</p>
 <ol>
@@ -152,7 +152,7 @@ RTOSs must be timing-predictable:</li>
 </ul>
 </li>
 </ol>
-<h3>Time</h3>
+<h3 id="time" tabindex="-1">Time</h3>
 <p>Time plays a central role in “real-time” systems
 Physical time: real numbers
 Computers: mostly discrete time</p>
@@ -168,7 +168,7 @@ UTC is defined by astronomical standards
 TAI and UTC identical on Jan. 1st, 1958.
 30 seconds had to be added since then.
 Not without problems: New Year may start twice per night.</p>
-<h3>Internal synchronization</h3>
+<h3 id="internal-synchronization" tabindex="-1">Internal synchronization</h3>
 <ul>
 <li>Synchronization with one master clock</li>
 </ul>
@@ -186,13 +186,13 @@ collected:
 • Application level: ~500 µs to 5 ms
 • Operation system kernel: 10 µs to 100 µs
 • Communication hardware: &lt; 10 µs</p>
-<h3>External synchronization</h3>
+<h3 id="external-synchronization" tabindex="-1">External synchronization</h3>
 <p>External synchronization guarantees consistency
 with actual physical time.
 Trend is to use GPS for ext. synchronization
 GPS offers TAI and UTC time information.
 Resolution is about 100 ns.</p>
-<h3>Problems with external synchronization</h3>
+<h3 id="problems-with-external-synchronization" tabindex="-1">Problems with external synchronization</h3>
 <p>Problematic from the perspective of fault tolerance:
 Erroneous values are copied to all stations.
 Consequence: Accepting only small changes to local time.
@@ -200,7 +200,7 @@ Many time formats too restricted;
 e.g.: NTP protocol includes only years up to 2036
 For time services and global synchronization of clocks see
 Kopetz, 1997.</p>
-<h3>RTOS-Kernels</h3>
+<h3 id="rtos-kernels" tabindex="-1">RTOS-Kernels</h3>
 <p>Distinction between</p>
 <ul>
 <li>real-time kernels and modified kernels of standard OSes.</li>
@@ -212,7 +212,7 @@ Distinction between</p>
 <li>standard APIs (e.g. POSIX RT-Extension of Unix,</li>
 </ul>
 <p>ITRON, OSEK) or proprietary APIs.</p>
-<h3>Functionality of RTOS-Kernels</h3>
+<h3 id="functionality-of-rtos-kernels" tabindex="-1">Functionality of RTOS-Kernels</h3>
 <p>Includes</p>
 <ul>
 <li>processor management,</li>
@@ -221,14 +221,14 @@ Distinction between</p>
 <li>task management (resume, wait etc),</li>
 <li>inter-task communication and synchronization.</li>
 </ul>
-<h3>Classes of RTOSes: 1. Fast proprietary kernels</h3>
+<h3 id="classes-of-rtoses%3A-1.-fast-proprietary-kernels" tabindex="-1">Classes of RTOSes: 1. Fast proprietary kernels</h3>
 <p>For complex systems, these kernels are inadequate,
 because they are designed to be fast, rather than to be
 predictable in every respect
 [R. Gupta, UCI/UCSD]
 Examples include
 QNX, PDOS, VCOS, VTRX32, VxWORKS.</p>
-<h3>Classes of RTOSs: 2. RT extensions to standard OSs</h3>
+<h3 id="classes-of-rtoss%3A-2.-rt-extensions-to-standard-oss" tabindex="-1">Classes of RTOSs: 2. RT extensions to standard OSs</h3>
 <p>Attempt to exploit comfortable main stream OS.
 RT-kernel running all RT-tasks.
 Standard-OS executed as one task.</p>
@@ -241,14 +241,14 @@ Standard-OS executed as one task.</p>
 </li>
 </ul>
 <p>less comfortable than expected</p>
-<h4>Example: RT-Linux</h4>
+<h4 id="example%3A-rt-linux" tabindex="-1">Example: RT-Linux</h4>
 <p><img src="assets/Pasted image 20220322105747.png" alt=""></p>
-<h4>Example (2):</h4>
+<h4 id="example-(2)%3A" tabindex="-1">Example (2):</h4>
 <p>RTAI – Real Time Application Interface
 <a href="https://www.rtai.org/">https://www.rtai.org/</a>
 Fixes to many of the sources for unpredictability in Linux
 Hardware abstraction layer in between hardware and Linux</p>
-<h4>Evaluation</h4>
+<h4 id="evaluation" tabindex="-1">Evaluation</h4>
 <p>According to Gupta, trying to use a version of a standard
 OS:
 not the correct approach because too many basic and
@@ -260,7 +260,7 @@ Dependences between tasks not frequent for most
 applications of std. OSs &amp; therefore frequently ignored.
 Situation different for ES since dependences between tasks
 are quite common.</p>
-<h3>Classes of RTOSs: 3. Research trying to avoid limitations</h3>
+<h3 id="classes-of-rtoss%3A-3.-research-trying-to-avoid-limitations" tabindex="-1">Classes of RTOSs: 3. Research trying to avoid limitations</h3>
 <p>Research systems trying to avoid limitations.
 Include MARS, Spring, MARUTI, Arts, Hartos, DARK, and
 Melody
@@ -272,19 +272,19 @@ Research issues [Takada, 2001]:</p>
 <li>support for continuous media</li>
 <li>quality of service (QoS) control.</li>
 </ul>
-<h1>Lecture 19, part 2: Resource Access Protocols</h1>
-<h3>Resource access protocols</h3>
+<h1 id="lecture-19%2C-part-2%3A-resource-access-protocols" tabindex="-1">Lecture 19, part 2: Resource Access Protocols</h1>
+<h3 id="resource-access-protocols" tabindex="-1">Resource access protocols</h3>
 <p>Critical sections: sections of code at which exclusive access
 to some resource must be guaranteed.
 Can be guaranteed with semaphores S or “mutexes”*.</p>
-<h3>Blocking due to mutual exclusion</h3>
-<h3>Blocking with &gt;2 tasks can exceed the length of any critical section</h3>
-<h3>The MARS Pathfinder problem</h3>
-<h3>Solutions</h3>
+<h3 id="blocking-due-to-mutual-exclusion" tabindex="-1">Blocking due to mutual exclusion</h3>
+<h3 id="blocking-with-%3E2-tasks-can-exceed-the-length-of-any-critical-section" tabindex="-1">Blocking with &gt;2 tasks can exceed the length of any critical section</h3>
+<h3 id="the-mars-pathfinder-problem" tabindex="-1">The MARS Pathfinder problem</h3>
+<h3 id="solutions" tabindex="-1">Solutions</h3>
 <p>Disallow preemption during the execution of all critical
 sections. Simple, but creates unnecessary blocking as
 unrelated tasks may be blocked.</p>
-<h3>Remarks on priority inheritance protocol</h3>
+<h3 id="remarks-on-priority-inheritance-protocol" tabindex="-1">Remarks on priority inheritance protocol</h3>
 <p>Possibly large number of tasks with high priority.
 Possible deadlocks.
 Ongoing debate about problems with the protocol:
@@ -293,7 +293,7 @@ Victor Yodaiken: Against Priority Inheritance, Sept. 2004,
 Finds application in ADA: During rendez-vous,
 task priority is set to the maximum.
 Protocol for fixed set of tasks: priority ceiling protocol.</p>
-<h3>Summary</h3>
+<h3 id="summary" tabindex="-1">Summary</h3>
 <ul>
 <li>General requirements for embedded</li>
 </ul>

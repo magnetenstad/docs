@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
+<h4 id="courses%2Fttm4100" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks</a></li>
@@ -88,14 +88,14 @@
 
       </div>
       <article class="content">
-        <h1>The Internet Protocol IP IPv4 Addressing IPv6 and More</h1>
-<h2>The Internet Protocol (IP): IPv4, Addressing, IPv6, and More</h2>
-<h3>IPv4 Datagram Format</h3>
+        <h1 id="the-internet-protocol-ip-ipv4-addressing-ipv6-and-more" tabindex="-1">The Internet Protocol IP IPv4 Addressing IPv6 and More</h1>
+<h2 id="the-internet-protocol-(ip)%3A-ipv4%2C-addressing%2C-ipv6%2C-and-more" tabindex="-1">The Internet Protocol (IP): IPv4, Addressing, IPv6, and More</h2>
+<h3 id="ipv4-datagram-format" tabindex="-1">IPv4 Datagram Format</h3>
 <p>If the TTL field reaches 0, a router must drop that datagram.</p>
 <p>The protocol number is the glue that binds the network and transport layers together, whereas the port number is the glue that binds the transport and application layers together.</p>
 <p>Since some datagrams may require options processing and others may not, the amount of time needed to process an IP datagram at a router can vary greatly.</p>
 <p><img src="assets/2022-05-08-14-01-35.png" alt=""></p>
-<h3>IPv4 Addressing</h3>
+<h3 id="ipv4-addressing" tabindex="-1">IPv4 Addressing</h3>
 <p>A router thus has multiple interfaces, one for each of its links. Because every host and router is capable of sending and receiving IP datagrams, IP requires each host and router interface to have its own IP address. Thus, an IP address is technically associated with an interface, rather than with the host or router containing that interface.</p>
 <p>IP addressing assigns an address to this subnet:
 223.1.1.0/24, where the /24 (“slash-24”) notation, sometimes known as a subnet mask, indicates that the leftmost 24 bits of the 32-bit quantity define the subnet address.</p>
@@ -103,9 +103,9 @@
 <p><img src="assets/2022-05-08-14-09-16.png" alt=""></p>
 <p>The x most significant bits of an address of the form a.b.c.d/x constitute the network portion of the IP address, and are often referred to as the prefix (or network prefix) of the address.</p>
 <p>These lower-order bits may (or may not) have an additional subnetting structure, such as that discussed above.</p>
-<h4>Obtaining a Block of Addresses</h4>
+<h4 id="obtaining-a-block-of-addresses" tabindex="-1">Obtaining a Block of Addresses</h4>
 <p>IP addresses are managed under the authority of the Internet Corporation for Assigned Names and Numbers (ICANN)</p>
-<h4>Obtaining a Host Address: The Dynamic Host Configuration Protocol</h4>
+<h4 id="obtaining-a-host-address%3A-the-dynamic-host-configuration-protocol" tabindex="-1">Obtaining a Host Address: The Dynamic Host Configuration Protocol</h4>
 <p>DHCP allows a host to obtain (be allocated) an IP address automatically.</p>
 <p>DHCP is a client-server protocol. A client is typically a newly arriving host wanting to obtain network configuration information, including an IP address for itself. In the simplest case, each subnet will have a DHCP server. If no server is present on the subnet, a DHCP relay agent (typically a router) that knows the address of a DHCP server for that network is needed.</p>
 <p>For a newly arriving host, the DHCP protocol is a four-step process.</p>
@@ -117,12 +117,12 @@
 </ul>
 <p>Since a new IP address is obtained from DHCP each time a node connects to a new subnet, a TCP connection to a remote application cannot be maintained as a mobile node moves between subnets.</p>
 <p><img src="assets/2022-05-08-14-47-01.png" alt=""></p>
-<h3>Network Address Translation (NAT)</h3>
+<h3 id="network-address-translation-(nat)" tabindex="-1">Network Address Translation (NAT)</h3>
 <p>The NAT-enabled router does not look like a router to the outside world. Instead the NAT router behaves to the outside world as a single device with a single IP address.</p>
 <p><img src="assets/2022-05-08-14-47-49.png" alt=""></p>
 <p>The trick is to use a NAT translation table at the NAT router, and to include port numbers as well as IP addresses in the table entries.</p>
-<h3>IPv6</h3>
-<h4>IPv6 Datagram Format</h4>
+<h3 id="ipv6" tabindex="-1">IPv6</h3>
+<h4 id="ipv6-datagram-format" tabindex="-1">IPv6 Datagram Format</h4>
 <p>The most important changes introduced in IPv6 are evident in the datagram format:</p>
 <ul>
 <li>Expanded addressing capabilities.</li>
@@ -136,7 +136,7 @@
 <li>Header checksum.</li>
 <li>Options.</li>
 </ul>
-<h4>Transitioning from IPv4 to IPv6</h4>
+<h4 id="transitioning-from-ipv4-to-ipv6" tabindex="-1">Transitioning from IPv4 to IPv6</h4>
 <p>With tunneling, the IPv6 node on the sending side of the tunnel takes the entire IPv6 datagram and puts it in the data (payload) field of an IPv4 datagram.</p>
 
       </article>

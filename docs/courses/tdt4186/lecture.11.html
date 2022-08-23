@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.11</h1>
-<h2>Lecture 11, part 1: Inter-process communication (IPC)</h2>
+        <h1 id="lecture.11" tabindex="-1">lecture.11</h1>
+<h2 id="lecture-11%2C-part-1%3A-inter-process-communication-(ipc)" tabindex="-1">Lecture 11, part 1: Inter-process communication (IPC)</h2>
 <p><a href="lecture.10.html">Previous lecture</a>
 <a href="lecture.12.html">Next lecture</a></p>
 <p><iframe
@@ -71,7 +71,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Exam</h3>
+<h3 id="exam" tabindex="-1">Exam</h3>
 <p>Communication between processes</p>
 <p><strong>Important questions:</strong></p>
 <ul>
@@ -95,7 +95,7 @@ allowfullscreen>
 </li>
 <li>What is RPC and what is the fundamental difference to IPC?</li>
 </ul>
-<h3>Processes revisited</h3>
+<h3 id="processes-revisited" tabindex="-1">Processes revisited</h3>
 <ul>
 <li>Processes can interact with each other
 <ul>
@@ -115,7 +115,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Inter-process communication</h3>
+<h3 id="inter-process-communication" tabindex="-1">Inter-process communication</h3>
 <ul>
 <li>Inter-Process Communication (IPC)
 <ul>
@@ -139,7 +139,7 @@ common memory area</li>
 </ul>
 </li>
 </ul>
-<h3>Message-based communication</h3>
+<h3 id="message-based-communication" tabindex="-1">Message-based communication</h3>
 <p>Based on two primitives:</p>
 <pre><code class="hljs language-cpp"><span class="hljs-built_in">send</span> (destination, message)
 <span class="hljs-built_in">receive</span> (source, message)
@@ -153,7 +153,7 @@ common memory area</li>
 </ul>
 </li>
 </ul>
-<h3>Synchronization</h3>
+<h3 id="synchronization" tabindex="-1">Synchronization</h3>
 <p>... for message oriented communication</p>
 <ul>
 <li>Synchronization when sending / receiving
@@ -180,7 +180,7 @@ receive operations</li>
 </ul>
 </li>
 </ul>
-<h3>Addressing</h3>
+<h3 id="addressing" tabindex="-1">Addressing</h3>
 <p>... for message oriented communication</p>
 <ul>
 <li><strong>Direct addressing</strong>
@@ -203,7 +203,7 @@ receive operations</li>
 </ul>
 </li>
 </ul>
-<h3>Additional properties</h3>
+<h3 id="additional-properties" tabindex="-1">Additional properties</h3>
 <p>... for message oriented communication</p>
 <ul>
 <li><strong>Message format</strong>
@@ -221,7 +221,7 @@ receive operations</li>
 </ul>
 </li>
 </ul>
-<h3>Local IPC: Unix signals</h3>
+<h3 id="local-ipc%3A-unix-signals" tabindex="-1">Local IPC: Unix signals</h3>
 <ul>
 <li>Signals are interrupts implemented in software
 <ul>
@@ -247,7 +247,7 @@ receive operations</li>
 </ul>
 </li>
 </ul>
-<h3>Signals</h3>
+<h3 id="signals" tabindex="-1">Signals</h3>
 <ul>
 <li>Using signals, processes can be informed about exceptional situations
 <ul>
@@ -272,12 +272,12 @@ receive operations</li>
 </ul>
 </li>
 </ul>
-<h3>Unix signals: logical view</h3>
+<h3 id="unix-signals%3A-logical-view" tabindex="-1">Unix signals: logical view</h3>
 <ul>
 <li>Hollywood principle: "don't call us, we'll call you."</li>
 </ul>
 <p><img src="assets/lecture.11a.unix_signals.png" alt=""></p>
-<h3>Unix signals: implementation view</h3>
+<h3 id="unix-signals%3A-implementation-view" tabindex="-1">Unix signals: implementation view</h3>
 <ul>
 <li>Signal handling always takes place when the execution returns from kernel to user mode (e.g. when a process returns from a system call)</li>
 <li>What happens, when a receiving process…
@@ -305,7 +305,7 @@ receive operations</li>
 </ul>
 </li>
 </ul>
-<h3>Unix signals: example</h3>
+<h3 id="unix-signals%3A-example" tabindex="-1">Unix signals: example</h3>
 <ul>
 <li>Which actions can be taken as a response to a signal?
 <ul>
@@ -313,15 +313,15 @@ receive operations</li>
 </ul>
 </li>
 </ul>
-<h5>Stopping and Restarting Apache</h5>
+<h5 id="stopping-and-restarting-apache" tabindex="-1">Stopping and Restarting Apache</h5>
 <p>To send a signal to the parent you should issue a command such as: <code><span class="hljs-built_in">kill</span> -TERM </code>cat /usr/local/apache/logs/httpd.pid``</p>
-<h5>TERM Signal: stop now</h5>
+<h5 id="term-signal%3A-stop-now" tabindex="-1">TERM Signal: stop now</h5>
 <p>Sending the TERM signal to the parent causes it to immediately attempt to kill off all of its children. It may take it several seconds to complete killing off its children. Then the parent itself exits. Any requests in progress are terminated, and no further requests are served.</p>
-<h5>HUP Signal: restart now</h5>
+<h5 id="hup-signal%3A-restart-now" tabindex="-1">HUP Signal: restart now</h5>
 <p>Sending the HUP signal to the parent causes it to kill off its children like in TERM but the parent doesn't exit. It re-reads its configuration files, and re-opens any log files. Then it spawns a new set of children and continues serving hits.</p>
-<h5>USR1 Signal: graceful restart</h5>
+<h5 id="usr1-signal%3A-graceful-restart" tabindex="-1">USR1 Signal: graceful restart</h5>
 <p>The USR1 signal causes the parent process to advise the children to exit after their current request (or to exit immediately if they're not serving anything). The parent rereads its configuration files and re-opens its log files. As each child dies off the parent replaces it with a child from the new generation of the configuration, which begins serving new requests immediately.</p>
-<h3>Unix pipes</h3>
+<h3 id="unix-pipes" tabindex="-1">Unix pipes</h3>
 <ul>
 <li>Channel between to communicating processes
 <ul>
@@ -339,7 +339,7 @@ receive operations</li>
 </li>
 </ul>
 <p><img src="assets/lecture.11a.unix_pipes.png" alt=""></p>
-<h3>Programming Unix pipes</h3>
+<h3 id="programming-unix-pipes" tabindex="-1">Programming Unix pipes</h3>
 <ul>
 <li>Unnamed pipes
 <ul>
@@ -390,7 +390,7 @@ to use the named pipe</li>
   <span class="hljs-comment">/* …handle errors here… */</span>
 }
 </code></pre>
-<h3>Unix message queues</h3>
+<h3 id="unix-message-queues" tabindex="-1">Unix message queues</h3>
 <ul>
 <li>A "key" (unique address, per computer) is used for identification
 <ul>
@@ -414,7 +414,7 @@ all operations</li>
 </li>
 </ul>
 <p><img src="assets/lecture.11a.unix_message_queue.png" alt=""></p>
-<h3>Programming Unix message queues</h3>
+<h3 id="programming-unix-message-queues" tabindex="-1">Programming Unix message queues</h3>
 <ul>
 <li>
 <p>Create a message queue and return a msqID int msgget (key_t key, int msgflg);</p>
@@ -443,14 +443,14 @@ all operations</li>
 </ul>
 </li>
 </ul>
-<h3>Unix message queue commands</h3>
+<h3 id="unix-message-queue-commands" tabindex="-1">Unix message queue commands</h3>
 <ul>
 <li>Display all message queues: <code>ipcs -<span class="hljs-selector-tag">q</span></code></li>
 <li>Manually delete message queues: <code>ipcrm -Q <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span></code></li>
 </ul>
 <p>Today, Unix message queues are rarely used, since – different to sockets (see the next section) – they are constrained to local communication. In addition, the related application code is less portable to other systems.</p>
-<h2>Lecture 11, part 2: IPC: Sockets and RPC</h2>
-<h3>Sockets</h3>
+<h2 id="lecture-11%2C-part-2%3A-ipc%3A-sockets-and-rpc" tabindex="-1">Lecture 11, part 2: IPC: Sockets and RPC</h2>
+<h3 id="sockets" tabindex="-1">Sockets</h3>
 <ul>
 <li>General communication endpoints in a computer network
 <ul>
@@ -465,7 +465,7 @@ all operations</li>
 </li>
 </ul>
 <p><img src="assets/lecture.11b.sockets.png" alt=""></p>
-<h3>Sockets: domains</h3>
+<h3 id="sockets%3A-domains" tabindex="-1">Sockets: domains</h3>
 <ul>
 <li>
 <p>Unix domain</p>
@@ -499,7 +499,7 @@ all operations</li>
 </ul>
 </li>
 </ul>
-<h3>Sockets: type and protocol</h3>
+<h3 id="sockets%3A-type-and-protocol" tabindex="-1">Sockets: type and protocol</h3>
 <ul>
 <li>The most important socket types:
 <ul>
@@ -527,7 +527,7 @@ all operations</li>
 </li>
 <li>Specification of a protocol ist often redundant</li>
 </ul>
-<h3>Socket programming</h3>
+<h3 id="socket-programming" tabindex="-1">Socket programming</h3>
 <ul>
 <li>Creating a socket
 <ul>
@@ -554,7 +554,7 @@ all operations</li>
 </ul>
 </li>
 </ul>
-<h4>Datagram sockets</h4>
+<h4 id="datagram-sockets" tabindex="-1">Datagram sockets</h4>
 <ul>
 <li>no connection setup required</li>
 <li>send a datagram using</li>
@@ -572,12 +572,12 @@ all operations</li>
   <span class="hljs-keyword">struct</span> sockaddr *address,
   <span class="hljs-type">socklen_t</span> *address_len)</span></span>;
 </code></pre>
-<h4>Stream sockets</h4>
+<h4 id="stream-sockets" tabindex="-1">Stream sockets</h4>
 <ul>
 <li>connection setup required</li>
 <li>clients (user processes) want to create a communication connection to a server (server process)</li>
 </ul>
-<h4>Client</h4>
+<h4 id="client" tabindex="-1">Client</h4>
 <ul>
 <li>connection setup for stream-oriented sockets</li>
 <li>connect the socket using</li>
@@ -590,7 +590,7 @@ all operations</li>
 <li>send and receive using write and read (or send and recv)</li>
 <li>connection termination using close (closes the socket)</li>
 </ul>
-<h4>Server</h4>
+<h4 id="server" tabindex="-1">Server</h4>
 <ul>
 <li>accepts requests</li>
 <li>binds a socket to an address (server not reachable otherwise)</li>
@@ -605,7 +605,7 @@ all operations</li>
 <li>returns the result back to the sender (e.g. contents of a web page) of the request using write</li>
 <li>closes the new socket using close</li>
 </ul>
-<h3>Socket programming (2)</h3>
+<h3 id="socket-programming-(2)" tabindex="-1">Socket programming (2)</h3>
 <pre><code class="hljs language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> PORT 6789</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> MAXREQ (4096*1024)</span>
 <span class="hljs-type">char</span> buffer[MAXREQ], body[MAXREQ], msg[MAXREQ];
@@ -653,7 +653,7 @@ all operations</li>
 }
 </code></pre>
 <p><img src="assets/lecture.11b.hello_web_browser.png" alt=""></p>
-<h3>Remote procedure calls (RPC)</h3>
+<h3 id="remote-procedure-calls-(rpc)" tabindex="-1">Remote procedure calls (RPC)</h3>
 <ul>
 <li>RPCs work like a function call between different processes
 <ul>
@@ -673,7 +673,7 @@ all operations</li>
 </li>
 </ul>
 <p><img src="assets/lecture.11b.rpc.png" alt=""></p>
-<h3>Conclusions</h3>
+<h3 id="conclusions" tabindex="-1">Conclusions</h3>
 <p>Two general classes of inter process communication:</p>
 <ul>
 <li>message based

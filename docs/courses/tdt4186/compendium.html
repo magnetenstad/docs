@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium ✨</a></li>
@@ -53,13 +53,13 @@
 
       </div>
       <article class="content">
-        <h1>TDT4186 Compendium</h1>
+        <h1 id="tdt4186-compendium" tabindex="-1">TDT4186 Compendium</h1>
 <p>Operating systems know the hardware in detail and provides suitable abstractions, to serve the users and their application programs.</p>
-<h2>OS Development</h2>
+<h2 id="os-development" tabindex="-1">OS Development</h2>
 <p><a href="lecture.1.html">Link to lecture 1</a></p>
 <p>The first system softwares were reusable probram libraries: linkers, loaders, debuggers and device drivers. <strong>The first operating systems</strong> were "resident monitors"; they handled interpretation of job control commands, loading and execution of programs and device control.</p>
 <p>With multiprogramming, the CPU works on multiple jobs at the same time. In consequence, <strong>the OS must handle concurrent I/O activites, main memory for multiple programs, programs in execution (processes), processor scheduling and multi user operation (security and accounting)</strong>.</p>
-<h2>Processes</h2>
+<h2 id="processes" tabindex="-1">Processes</h2>
 <p><a href="lecture.4.html">Link to lecture 4</a></p>
 <p><strong>A process is a program in execution.</strong> They often consist of alternating sequences of "CPU bursts" and "I/O bursts". The <strong>process context</strong> consists of</p>
 <ul>
@@ -133,7 +133,7 @@
 <p>A more complete unix process state diagram:
 <img src="assets/2022-05-18-11-41-31.png" alt=""></p>
 <p>Traditional Unix process creation using fork is too heavyweight for some applications.</p>
-<h3>Threads and Fibers</h3>
+<h3 id="threads-and-fibers" tabindex="-1">Threads and Fibers</h3>
 <p><a href="lecture.5.html">Link to lecture 5</a></p>
 <p><strong>Threads</strong> are lightweight (usually kernel-level) processes and can share address space (code + data + bss + heap). Advantages: Faster context switching, complex operations can run in parallel of user I/O. Disadvantages: error-prone, shared access requires coordination, scheduling overhead.</p>
 <p><strong>Fibers</strong> are also called user-level threads (or green threads, or featherweight processes). Implemented on application layer, unknown to the OS. Advantages: 1) Extremely fast context switch: only exchange processor registers. 2) No switch to kernel mode required to switch to different fiber 3) Every application can choose the fiber library best suited for it Disadvantages: 1) Blocking a single fiber leads to blocking the whole process (since the OS doesn't know about fibers). 2) No speed advantage from multiprocessor systems.</p>
@@ -181,7 +181,7 @@
 </table>
 <p>Windows processes provide environment and address space for threads. Every thread has its own stack and CPU register set. User level threads (fibers) are possible, but unusual. Strategy: keep the number of threads low; Use overlapping (asynchronous) I/O.</p>
 <p>Linux implements POSIX threads using the pthreads library. All threads and processes are internally managed as tasks, which the scheduler does not differentiate between.</p>
-<h3>Synchronization</h3>
+<h3 id="synchronization" tabindex="-1">Synchronization</h3>
 <p><a href="lecture.6.html">Link to lecture 6</a></p>
 <p>A <strong>race condition</strong> is a situation in which multiple processes access shared data concurrently and at least one of the processes manipulates the data. To avoid race conditions, concurrent processes need to be synchronized (coordinated).</p>
 <p>Only a single process can be in a <strong>critical section</strong> at the same time. Solved by mutual exclusion, using the mutex (<a href="https://en.wikipedia.org/wiki/Lock_(computer_science)">lock</a>) abstraction. However, deadlocks must be considered.</p>
@@ -190,7 +190,7 @@
 <p>A <strong>monitor</strong> is an abstract data type with implicit synchronization properties. They are for example implemented in Java.</p>
 <p>An <strong>actively waiting</strong> process 1) is unable to change the condition it is waiting for on its own 2) unnecessarily impedes other processes which would be able to use the CPU for "useful" work. 3) harms itself: the longer a process holds the processor, the longer it has to wait for other processes to fulfill the condition it is waiting for.</p>
 <p>In the case of <strong>passive waiting</strong>, the process is entered into a waiting queue and is not unblocked until the event occurs.</p>
-<h3>Deadlocks</h3>
+<h3 id="deadlocks" tabindex="-1">Deadlocks</h3>
 <p><a href="lecture.7.html">Link to lecture 7</a></p>
 <p>A <strong>deadlock</strong> is a situation in which two or more processes are unable to process because each is waiting for one of the others to do something. A deadlock involves passive waiting, with a BLOCKED process state. The <strong>livelock</strong> alternative involves active waiting and an arbitrary process state. Deadlocks are the "lesser evil".</p>
 <p>Necessary conditions for a deadlock:</p>
@@ -206,7 +206,7 @@
 <p><strong>Indirect methods for preventing deadlocks</strong> are 1) use non blocking approaches 2) only allow atomic resource allocations 3) enable the preemption of resources using virtualization. <strong>Direct methods</strong> prevent circular waiting with continuous requirements analysis and avoidance of "unsafe states".</p>
 <p><strong>Banker's algorithm</strong> is a deadlock avoidance algorithm which finds a process sequence that guarantees that the system does not run out of resources even when all processes completely use their "credit limit".</p>
 <p>Deadlocks can be accepted ("ostrich algorithm") or detected by creating a waiting graph and search for cycles (O(n)). In the recovery phase, deadlocked processes are terminated and resources are preempted. Methods to avoid/detect deadlocks are very difficult to implement, require too much overhead and are thus not useable. Prevention methods more commonly used and relevant in practice. The risk of deadlock can also be solved by virtualizing resources.</p>
-<h3>Inter-process communication (IPC)</h3>
+<h3 id="inter-process-communication-(ipc)" tabindex="-1">Inter-process communication (IPC)</h3>
 <p><a href="lecture.11.html">Link to lecture 11</a></p>
 <p><strong>Inter-Process Communication (IPC)</strong> can involve 1) multiple processes cooperate on a task 2) simultaneous use of information by multiple processes 3) reduction of processing time due to parallelization 4) hiding of processing times due to "background execution".</p>
 <p>Processes can communicate by exchanging messages, or by using shared memory (exchange of data by concurrent writes into and reads out of a common memory area).</p>
@@ -219,7 +219,7 @@
 <p>Doug Mcllroy, the inventor of Unix pipes, described the <a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix philosophy</a>. It can be summarized as "Do one thing, do it well."</p>
 <p><strong>Sockets</strong> are general (bidirectional and buffered) communication endpoints in a computer network. They are described by a domain (protocol family), a type and a protocol. Unix domain sockets work like bidirectional pipes and can be created as special file in the file system. Internet domain sockets are used for inter-computer communication using Internet protocols.</p>
 <p><strong>Remote procedure calls (RPC)</strong> work like a function call between different processes. A request message includes request to execute the remote function and the related parameters. A response message includes the result(s) of the remote call.</p>
-<h3>Uniprocessor scheduling</h3>
+<h3 id="uniprocessor-scheduling" tabindex="-1">Uniprocessor scheduling</h3>
 <p><a href="lecture.12.html">Link to lecture 12</a></p>
 <p>Depending on the scheduling level, every process is assigned a logical state representing its dispatch state at a given point in time: 1) short-term scheduling (µs-ms) (ready, running, blocked), 2) medium-term scheduling (ms-min) (swapped and ready, swapped and blocked), 3) long-term scheduling (min – hours) (created, terminated).</p>
 <p>A <strong>dispatcher</strong> performs various tasks, including context switching, setting up user registers and memory mapping. These are necessary for the process to execute and transfer CPU control to that process. When dispatching, the process changes from the ready state to the running state. The scheduler selects the process, the dispatcher takes the selected process to running state.</p>
@@ -272,7 +272,7 @@
 </table>
 <p><strong>Multi-level scheduling</strong> combined multiple scheduling strategies.</p>
 <p>When <strong>evaluating scheduling algorithms</strong>, a number of objectives may be optimized for. <strong>User oriented</strong>: 1) Run time (time between start and termination of a process including the waiting time(s)), 2) Response time (time between user input and program response), 3) Tardiness (deadlines, real-time systems), 4) Predictability (processes are always processed identically independent of the load). <strong>System oriented</strong>: 1) Throughput (finish as many processes as possible per time unit), 2) CPU load (keep the CPU busy at all times), 3) Avoid overhead (scheduling decisions, context switches) 4) Fairness (no process should be disadavantaged (e.g. by starvation)) 5) Load balancing (I/O devices should also be utilized uniformly).</p>
-<h2>Memory management</h2>
+<h2 id="memory-management" tabindex="-1">Memory management</h2>
 <p><a href="lecture.9.html">Link to lecture 9</a></p>
 <p>Access to I/O devices is often slow ("memory gap", "I/O bottleneck"). <strong>Polling</strong> sends a command and then waits until the device returns data. With <strong>interrupts</strong>, the device notifies the program when data is ready.</p>
 <p>Caches work efficiently due to two locality principles:</p>
@@ -323,7 +323,7 @@
 </table>
 <p>With a <strong>free page buffer</strong>, a number of free pages is always kept in memory. Pageouts take place "in advance".</p>
 <p><strong>Thrashing</strong> happens when a page that was paged out is accessed immidiately after the page out happened. The process spends more time waiting to handle page faults than with its own execution. Causes of thrashing are 1) A process is close to its page maximum, 2) Too many processes in the system at the same time, 3) Suboptimal replacement strategy. Solutions to thrashing are 1) swapping of processes, 2) working set model.</p>
-<h2>Input and Output</h2>
+<h2 id="input-and-output" tabindex="-1">Input and Output</h2>
 <p><a href="lecture.14.html">Link to lecture 14</a></p>
 <p><strong>Character devices</strong> (such as a keyboards, printers, modems, and mice) provide a sequential stream of information. <strong>Block devices</strong> (such as disks, CD-ROM, DVD, tape drives) provide blockwise random access. Some other devices which don't fit this scheme easily are (GP)GPUs, network cards and timers.</p>
 <p>Depending on the device, I/O can be performed via polling ("programmed I/O"), interrupts or DMA. <strong>Polling</strong> implies active waiting for an I/O device. <strong>Interrupts</strong> signal the software to become active, and are the source for asynchronous behavior. It implies that the CPU can be allocated to another process while waiting for a response from the device. <strong>Direct Memory Access (DMA)</strong> is used by complex controllers to transfer data from and to main memory independent of the CPU. DMA bypasses both the cache and MMU memory protection (application processes can never have direct access to program the DMA controller).</p>
@@ -363,7 +363,7 @@
 <p>With a <strong>double I/O buffer</strong> 1) While data is transferred from the I/O device to one of the buffers, the contents of the other buffer can be copied into the user address space. 2) While data is transferred from one of the buffers to the I/O device, the contents of the other buffer can already be refilled with data from the process address space.</p>
 <p><strong>I/O ring buffers</strong> are commonly used. Multiple data blocks can be buffered, even if the reading process does not call read fast enough. A writer process can execute multiple write calls without being blocked.</p>
 <p>I/O drivers usually queue multiple requests. Scheduling algorithms determine the order in which the requests will be handled. Some scheduling algorithms (used in mechanical disks) are First-In-First-Out (FIFO), Shortest Seek Time First (SSTF), and Elevator.</p>
-<h2>File Systems</h2>
+<h2 id="file-systems" tabindex="-1">File Systems</h2>
 <p><a href="lecture.15.html">Link to lecture 15</a></p>
 <p><strong>Unix principle: "everything is a file".</strong> More precisely: 1) Every resource in the system can be accessed using a name mapped into a directory hierarchy. 2) Access to resources uses standard Unix system calls for file access. 3) File permissions are used to control access to the resource.</p>
 <p>Files are identified by per process <strong>file descriptors</strong> (positive integer number) in the OS.</p>
@@ -458,7 +458,7 @@
 <p>In addition to writing data and metadata (e.g. inodes), <strong>journaled file systems</strong> write a protocol of the changes. At boot time, the protocol file is compared to the latest changes, this avoids inconsistencies. The log file can also be used for recovery purposes (UNDO/REDO). Advantages: 1) a transaction is either committed (completed) in whole or not at all, 2) users can define transactions that span multiple file accesses, if these are also recorded in the log, 3) impossible to create inconsistent metadata, 4) booting a crashed system only requires a fast log file check. Disadvantages: 1) less efficient, since additional log file has to be written (thus usually only metadata journaling, no full journaling).</p>
 <p>With <strong>Log-structured file systems (LFS)</strong>, blocks are not overwritten, but only appended to the log. Changes are added in batches to the front, obsolete data fall out at the end. The disk bandwidth is utilized to a high degree when writing, but performance is reduced significantly if free memory is low.</p>
 <p><strong>Copy-on-Write file systems (CoW)</strong> takes the idea from LFS, but is more flexible when allocation free areas.</p>
-<h2>Operating system architectures</h2>
+<h2 id="operating-system-architectures" tabindex="-1">Operating system architectures</h2>
 <p><a href="lecture.17.html">Link to lecture 17</a></p>
 <p><strong>Software architecture</strong> is defined as the basic organization of a system, expressed through its components, their relations to each other and the environment as well as the principles which define the design and evolution of the system <a href="https://gi.de/informatiklexikon/software-architektur">Source</a>.</p>
 <p>A <strong>library OS</strong> is one in which the services are provided in the form of libraries and composed with the application and configuration code to construct a unikernel: a specialized, single address space <a href="https://en.wikipedia.org/wiki/Operating_system">Source</a>.</p>
@@ -529,7 +529,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Cloud operating systems</h3>
+<h3 id="cloud-operating-systems" tabindex="-1">Cloud operating systems</h3>
 <p><a href="lecture.18.html">Link to lecture 18</a></p>
 <p>Some <strong>cloud service models</strong> are Software-as-a-Service (SaaS), Platform-as-a-Service (PaaS), and Infrastructure-as-a-Service (IaaS).</p>
 <p>Cloud-Computing challenges are 1) Data protection and privacy, 2) Vendor lock-in, 3) Quality of service.</p>
@@ -583,7 +583,7 @@
 </table>
 <p>With <strong>container-based virtualization</strong>, the OS kernel is virtualized and the containers share a kernel.</p>
 <p>With <strong>hardware virtualization</strong>, a complete computer (CPU, memory, I/O devices) is virtualized.</p>
-<h2>Security</h2>
+<h2 id="security" tabindex="-1">Security</h2>
 <p><a href="lecture.21.html">Link to lecture 21</a></p>
 <p><strong>Safety</strong> is protection against risks due to hardware and software errors or failures. <strong>Security</strong> is protection of users and computers against intended errors (attacks).</p>
 <p>Someone (differentiation of persons and groups) has to be deterred from doing (using technical and organizational methods) some unexpected things! 1) unauthorized reading of data (secrecy, confidentiality), 2) unauthorized writing of data (integrity), 3) working under a "false flag" (authenticity), 4) unauthorized use of resources (availability).</p>

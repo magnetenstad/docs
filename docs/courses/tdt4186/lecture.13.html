@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.13</h1>
-<h2>Lecture 13: Real-time scheduling</h2>
+        <h1 id="lecture.13" tabindex="-1">lecture.13</h1>
+<h2 id="lecture-13%3A-real-time-scheduling" tabindex="-1">Lecture 13: Real-time scheduling</h2>
 <p>NOTE: Not relevant for the exam.</p>
 <p><a href="lecture.12.html">Previous lecture</a>
 <a href="lecture.14.html">Next lecture</a></p>
@@ -65,16 +65,16 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Real-time computer systems</h3>
+<h3 id="real-time-computer-systems" tabindex="-1">Real-time computer systems</h3>
 <ul>
 <li>What’s this all about?</li>
 </ul>
 <blockquote>
 <p>A real-time computer system is a computer system in which the correctness of the system behavior depends not only on the logical results of the computations, but also on the physical instant at which these results are produced.</p>
 </blockquote>
-<h4>Example: inverted pendulum</h4>
+<h4 id="example%3A-inverted-pendulum" tabindex="-1">Example: inverted pendulum</h4>
 <p><img src="assets/lecture.13.inverted_pendulum.png" alt=""></p>
-<h3>Deadlines</h3>
+<h3 id="deadlines" tabindex="-1">Deadlines</h3>
 <ul>
 <li>Often defined by the technical system to be controlled</li>
 <li>Deadline classification:
@@ -88,7 +88,7 @@ useful even if it was obtained after the deadline has passed</li>
 <li>A real-time system is considered "hard" if at least one of its deadlines is hard. Otherwise, the system is "soft"</li>
 <li>For hard real-time systems, it has to be guaranteed that all deadlines are kept. This requires different development approaches and system structures.</li>
 </ul>
-<h3>How long does a program run?</h3>
+<h3 id="how-long-does-a-program-run%3F" tabindex="-1">How long does a program run?</h3>
 <ul>
 <li>Runtimes of programs vary due to:
 <ul>
@@ -101,9 +101,9 @@ useful even if it was obtained after the deadline has passed</li>
 </ul>
 <p><img src="assets/lecture.13.execution_times.png" alt=""></p>
 <p>The estimated WCETEST has to be guaranteed larger or equal to the real WCET. However, the difference between the two should be as small as possible ("tight bounds").</p>
-<h3>Trigger</h3>
+<h3 id="trigger" tabindex="-1">Trigger</h3>
 <p>… to initiate computation ("task") can be realized in different ways:</p>
-<h4>Event-triggered real-time systems</h4>
+<h4 id="event-triggered-real-time-systems" tabindex="-1">Event-triggered real-time systems</h4>
 <ul>
 <li>A relevant change of the state of the controlled object (an event) was observed via sensor readings</li>
 <li>Scheduling of the tasks at runtime</li>
@@ -111,7 +111,7 @@ useful even if it was obtained after the deadline has passed</li>
 <li>Behavior is difficult to predict → soft real-time systems</li>
 <li></li>
 </ul>
-<h4>Time-triggered real-time systems</h4>
+<h4 id="time-triggered-real-time-systems" tabindex="-1">Time-triggered real-time systems</h4>
 <ul>
 <li>Fixed points in time to execute calculations are planned in advance (offline scheduling). Their execution is periodic</li>
 <li>Resource utilization is higher than with event-triggered systems, since the calculation always has to consider the worst case execution time (WCET)</li>
@@ -119,7 +119,7 @@ useful even if it was obtained after the deadline has passed</li>
 <li>Lower test effort required</li>
 <li>Guarantees are possible → hard real-time systems</li>
 </ul>
-<h3>Example: OSEKtime</h3>
+<h3 id="example%3A-osektime" tabindex="-1">Example: OSEKtime</h3>
 <p>Objectives of the OSEKtime OS [2]:</p>
 <ul>
 <li>Safe realization of "x-by-wire" applications, e.g. fly-by-wire, steer-by-wire, brake-by-wire, eGas
@@ -142,7 +142,7 @@ useful even if it was obtained after the deadline has passed</li>
 </ul>
 </li>
 </ul>
-<h3>OSEKtime scheduler</h3>
+<h3 id="osektime-scheduler" tabindex="-1">OSEKtime scheduler</h3>
 <ul>
 <li>Offline scheduling :
 <ul>
@@ -156,24 +156,24 @@ useful even if it was obtained after the deadline has passed</li>
 <li>Only the dispatcher can activate tasks</li>
 <li>Safety mechanism: deadline monitoring</li>
 </ul>
-<h3>Offline scheduling</h3>
+<h3 id="offline-scheduling" tabindex="-1">Offline scheduling</h3>
 <ul>
 <li>Tools support developers when scheduling tasks at design time</li>
 </ul>
 <p><img src="assets/lecture.13.timecore.png" alt=""></p>
-<h3>Real-time scheduling</h3>
+<h3 id="real-time-scheduling" tabindex="-1">Real-time scheduling</h3>
 <ul>
 <li>Objective: obtain guarantees that hard deadlines are kept</li>
 <li>Taxonomy of scheduling approaches [3, chapter 6]:</li>
 </ul>
 <p><img src="assets/lecture.13.real_time_scheduling_graph.png" alt=""></p>
-<h3>Rate-monotonic scheduling (RM)</h3>
+<h3 id="rate-monotonic-scheduling-(rm)" tabindex="-1">Rate-monotonic scheduling (RM)</h3>
 <ul>
 <li>Rate-monotonic (RM) scheduling is a scheduling strategy for preemptive, periodic tasks with hard deadlines</li>
 <li>The scheduler works at runtime (using fixed priorities)</li>
 </ul>
 <p><img src="assets/lecture.13.real_time_scheduling_graph_rm.png" alt=""></p>
-<h3>RM assumptions (Liu &amp; Layland 1973)</h3>
+<h3 id="rm-assumptions-(liu-%26-layland-1973)" tabindex="-1">RM assumptions (Liu &amp; Layland 1973)</h3>
 <ul>
 <li>A1. All tasks are preemptible at any time
 <ul>
@@ -193,10 +193,10 @@ useful even if it was obtained after the deadline has passed</li>
 <li>A4. All tasks are periodic</li>
 <li>A5. The relative deadline of a task is equal to its period</li>
 </ul>
-<h3>Example: car headlight controller</h3>
+<h3 id="example%3A-car-headlight-controller" tabindex="-1">Example: car headlight controller</h3>
 <p>... everything is periodic!
 <img src="assets/lecture.13.rm_example_car.png" alt=""></p>
-<h3>RM algorithm</h3>
+<h3 id="rm-algorithm" tabindex="-1">RM algorithm</h3>
 <ul>
 <li>The priority grows monotonously with the event rate (=frequency)</li>
 <li>Thus: short period → high priority</li>
@@ -205,7 +205,7 @@ useful even if it was obtained after the deadline has passed</li>
 </ul>
 <p><img src="assets/lecture.13.rm_example_car_gantt.png" alt=""></p>
 <p>A practical implementation of RM scheduling requires only an operating system with a preemptive fixed priority scheduler</p>
-<h3>Schedulability analysis</h3>
+<h3 id="schedulability-analysis" tabindex="-1">Schedulability analysis</h3>
 <ul>
 <li>Question: are the deadlines kept for all tasks?
 <ul>
@@ -218,7 +218,7 @@ useful even if it was obtained after the deadline has passed</li>
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span></p>
 <p>U: system load, m: number of tasks
 But is this sufficient?</p>
-<h3>The "70% rule"</h3>
+<h3 id="the-%2270%25-rule%22" tabindex="-1">The "70% rule"</h3>
 <ul>
 <li>Rule: no deadline violations if the following condition holds:</li>
 </ul>
@@ -239,9 +239,9 @@ But is this sufficient?</p>
 </li>
 <li>Disadvantage: no conclusion if the condition is not fulfilled</li>
 </ul>
-<h3>Sufficient and necessary conditions</h3>
+<h3 id="sufficient-and-necessary-conditions" tabindex="-1">Sufficient and necessary conditions</h3>
 <p><img src="assets/lecture.13.sufficient_and_necessary_conditions.png" alt=""></p>
-<h3>Exact test: response time analysis</h3>
+<h3 id="exact-test%3A-response-time-analysis" tabindex="-1">Exact test: response time analysis</h3>
 <ul>
 <li>If the response time Ri for all tasks is less than or equal to the period Ti, all deadlines are kept</li>
 <li>Necessary and sufficient conditions:</li>
@@ -252,7 +252,7 @@ But is this sufficient?</p>
 <li>For the largest possible delay 𝜙i = 0: All higher prioritized tasks are ready at the start of the period</li>
 </ul>
 <p><img src="assets/lecture.13.response_time_analysis.png" alt=""></p>
-<h3>Exact test: iterative solution</h3>
+<h3 id="exact-test%3A-iterative-solution" tabindex="-1">Exact test: iterative solution</h3>
 <ul>
 <li>Calculate Ri using fixed point iteration:
 <ul>
@@ -275,7 +275,7 @@ But is this sufficient?</p>
 }
 <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span> <span class="hljs-comment">// all deadlines are kept</span>
 </code></pre>
-<h3>Rate-monotonic scheduling is "optimal"</h3>
+<h3 id="rate-monotonic-scheduling-is-%22optimal%22" tabindex="-1">Rate-monotonic scheduling is "optimal"</h3>
 <ul>
 <li>We need to show:
 <ul>
@@ -293,7 +293,7 @@ Ci+Cj ≤ Tj holds since the schedule is valid and 𝜏i has a higher priority</
 <p>What is the effect of swapping the priorities (only) of these two tasks? 𝜏j can be scheduled, since it now has higher priority. 𝜏i can also be scheduled since Ci + Cj ≤ Tj &lt; Ti.
 <img src="assets/lecture.13.rm_optimal_2.png" alt=""></p>
 <p>We obtain an RM schedule by applying a finite number of these swaps. This is also a valid schedule → contradiction → RM is optimal!</p>
-<h3>RM scheduling: conclusion</h3>
+<h3 id="rm-scheduling%3A-conclusion" tabindex="-1">RM scheduling: conclusion</h3>
 <ul>
 <li>RM is easy to apply and optimal for fixed priorities
 <ul>
@@ -322,18 +322,18 @@ Ci+Cj ≤ Tj holds since the schedule is valid and 𝜏i has a higher priority</
 </ul>
 </li>
 </ul>
-<h3>Example: Earliest Deadline First</h3>
+<h3 id="example%3A-earliest-deadline-first" tabindex="-1">Example: Earliest Deadline First</h3>
 <ul>
 <li>Earliest Deadline First (EDF) scheduling is a scheduling strategy for preemptive, periodic and aperiodic tasks with hard deadlines. The priorities are assigned dynamically (at runtime).</li>
 </ul>
 <p><img src="assets/lecture.13.edf_graph.png" alt=""></p>
-<h3>EDF algorithm</h3>
+<h3 id="edf-algorithm" tabindex="-1">EDF algorithm</h3>
 <ul>
 <li>Tasks which are ready are sorted in order of their absolute deadlines</li>
 <li>If the first task in the list has an earlier deadline than the currently running task, the running task is preempted immediately!</li>
 </ul>
 <p><img src="assets/lecture.13.edf_algorithm_example.png" alt=""></p>
-<h3>Optimality of EDF</h3>
+<h3 id="optimality-of-edf" tabindex="-1">Optimality of EDF</h3>
 <ul>
 <li>EDF minimizes the maximum delay of tasks</li>
 </ul>
@@ -346,7 +346,7 @@ Ci+Cj ≤ Tj holds since the schedule is valid and 𝜏i has a higher priority</
 </li>
 <li>Especially for periodic tasks the following holds: If U ≤ 1, then EDF always finds a valid schedule (without missing deadlines!)</li>
 </ul>
-<h3>EDF-Scheduling: Conclusion</h3>
+<h3 id="edf-scheduling%3A-conclusion" tabindex="-1">EDF-Scheduling: Conclusion</h3>
 <ul>
 <li>Simply optimal for periodic as well as aperiodic task sets
 <ul>
@@ -363,7 +363,7 @@ Ci+Cj ≤ Tj holds since the schedule is valid and 𝜏i has a higher priority</
 </ul>
 </li>
 </ul>
-<h3>Outlook: Extending the strategies</h3>
+<h3 id="outlook%3A-extending-the-strategies" tabindex="-1">Outlook: Extending the strategies</h3>
 <ul>
 <li>Working with sporadic tasks
 <ul>

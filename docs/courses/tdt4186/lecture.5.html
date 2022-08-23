@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.5</h1>
-<h2>Lecture 5: Threads</h2>
+        <h1 id="lecture.5" tabindex="-1">lecture.5</h1>
+<h2 id="lecture-5%3A-threads" tabindex="-1">Lecture 5: Threads</h2>
 <p><a href="lecture.4.html">Previous lecture</a>
 <a href="lecture.6.html">Next lecture</a></p>
 <p><iframe
@@ -64,7 +64,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Exam</h3>
+<h3 id="exam" tabindex="-1">Exam</h3>
 <p>Threads as a lightweight abstraction and process alternative</p>
 <p><strong>Important questions:</strong></p>
 <ul>
@@ -82,7 +82,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Lightweight processes - threads</h3>
+<h3 id="lightweight-processes---threads" tabindex="-1">Lightweight processes - threads</h3>
 <ul>
 <li>With processes, there is a 1:1 relation between control flow and address space
 <ul>
@@ -107,7 +107,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Threads example</h3>
+<h3 id="threads-example" tabindex="-1">Threads example</h3>
 <ul>
 <li>Typical use case for threads: web server</li>
 <li>Programs consisting of independent control flows can immediately benefit from multiprocessor systems</li>
@@ -124,9 +124,9 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Threads in Windows</h3>
+<h3 id="threads-in-windows" tabindex="-1">Threads in Windows</h3>
 <p><img src="assets/lecture.5.threads_in_windows.png" alt=""></p>
-<h3>Threads in Windows (2)</h3>
+<h3 id="threads-in-windows-(2)" tabindex="-1">Threads in Windows (2)</h3>
 <ul>
 <li>Process: provides environment and address space for threads
 <ul>
@@ -151,7 +151,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Threads in Linux</h3>
+<h3 id="threads-in-linux" tabindex="-1">Threads in Linux</h3>
 <ul>
 <li>Linux implements POSIX threads using the pthreads library</li>
 <li>pthreads on Linux use a Linux-specific system call:</li>
@@ -191,12 +191,12 @@ Universal function, parameterized using the flags parameter:</p>
 </ul>
 </li>
 </ul>
-<h3>Threads in Linux (2)</h3>
+<h3 id="threads-in-linux-(2)" tabindex="-1">Threads in Linux (2)</h3>
 <ul>
 <li>Originally, threads of a process showed up as individual processes in the <code><span class="hljs-attribute">ps</span></code> output</li>
 <li>More recent Linux systems (from kernel 2.4) still behave like this, but no longer show separate processes when using <code><span class="hljs-attribute">CLONE_THREAD</span></code></li>
 </ul>
-<h3>Fibers</h3>
+<h3 id="fibers" tabindex="-1">Fibers</h3>
 <ul>
 <li>Also called user-level threads, green threads or featherweight processes</li>
 <li>Implemented on application level only (inside of a process)
@@ -220,7 +220,7 @@ Universal function, parameterized using the flags parameter:</p>
 </ul>
 </li>
 </ul>
-<h2>Inspiration: Duff's device</h2>
+<h2 id="inspiration%3A-duff's-device" tabindex="-1">Inspiration: Duff's device</h2>
 <ul>
 <li>Problem: copying 16-bit unsigned integers ("short"s) from an array into a memory-mapped output register is slow (loop overhead):</li>
 </ul>
@@ -273,7 +273,7 @@ Universal function, parameterized using the flags parameter:</p>
   } <span class="hljs-keyword">while</span> (--n &gt; <span class="hljs-number">0</span>);
 } <span class="hljs-comment">// Please do not write code like this..</span>
 </code></pre>
-<h3>Fibers example: Protothreads</h3>
+<h3 id="fibers-example%3A-protothreads" tabindex="-1">Fibers example: Protothreads</h3>
 <ul>
 <li>Stackless, lightweight threads, or coroutines
 <ul>
@@ -306,7 +306,7 @@ Universal function, parameterized using the flags parameter:</p>
   }
 }
 </code></pre>
-<h3>Processes vs. threads. vs. fibers</h3>
+<h3 id="processes-vs.-threads.-vs.-fibers" tabindex="-1">Processes vs. threads. vs. fibers</h3>
 <table>
 <thead>
 <tr>
@@ -349,7 +349,7 @@ Universal function, parameterized using the flags parameter:</p>
 </tr>
 </tbody>
 </table>
-<h3>Conclusion</h3>
+<h3 id="conclusion" tabindex="-1">Conclusion</h3>
 <ul>
 <li>Traditional Unix process creation using <code><span class="hljs-attribute">fork</span></code> is too heavyweight for some applications
 <ul>

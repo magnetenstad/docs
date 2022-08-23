@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a></h4>
+<h4 id="courses%2Ftdt4145" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="Boka.html">Boka</a></li>
@@ -40,9 +40,9 @@
 
       </div>
       <article class="content">
-        <h1>Indekser</h1>
-<h2>Indekser</h2>
-<h3>Hvorfor bruke indekser?</h3>
+        <h1 id="indekser" tabindex="-1">Indekser</h1>
+<h2 id="indekser-1" tabindex="-1">Indekser</h2>
+<h3 id="hvorfor-bruke-indekser%3F" tabindex="-1">Hvorfor bruke indekser?</h3>
 <ul>
 <li>For å gjøre queries raskere
 <ul>
@@ -65,7 +65,7 @@
 </ul>
 </li>
 </ul>
-<h3>Begreper innen indeksering</h3>
+<h3 id="begreper-innen-indeksering" tabindex="-1">Begreper innen indeksering</h3>
 <ul>
 <li><strong>Indeksfelt</strong>: Felt / attributt av posten som indeksen bruker</li>
 <li><strong>Primærindeks</strong>: Indeks på primærnøkkelen</li>
@@ -84,7 +84,7 @@
 </ul>
 </li>
 </ul>
-<h3>Lagrings- og indekseringsmuligheter (1)</h3>
+<h3 id="lagrings--og-indekseringsmuligheter-(1)" tabindex="-1">Lagrings- og indekseringsmuligheter (1)</h3>
 <ul>
 <li>Systemspesifikt, se dokumentasjon av «ditt» system</li>
 <li>Clustered B+-tree / clustered index
@@ -109,7 +109,7 @@
 </ul>
 </li>
 </ul>
-<h3>Lagrings- og indekseringsmuligheter (2)</h3>
+<h3 id="lagrings--og-indekseringsmuligheter-(2)" tabindex="-1">Lagrings- og indekseringsmuligheter (2)</h3>
 <ul>
 <li>Heapfil
 <ul>
@@ -139,7 +139,7 @@
 </ul>
 </li>
 </ul>
-<h3>Lagrings- og indekseringsmuligheter (3)</h3>
+<h3 id="lagrings--og-indekseringsmuligheter-(3)" tabindex="-1">Lagrings- og indekseringsmuligheter (3)</h3>
 <ul>
 <li>Column stores
 <ul>
@@ -163,7 +163,7 @@
 </ul>
 </li>
 </ul>
-<h3>B+-trær</h3>
+<h3 id="b%2B-tr%C3%A6r" tabindex="-1">B+-trær</h3>
 <ul>
 <li>Den mest brukte indeksen</li>
 <li>Høydebalansert tre med blokker som noder</li>
@@ -185,9 +185,9 @@
 </li>
 <li>Ikke så gode på innsetting av store mengder</li>
 </ul>
-<h3>B+-tre, eksempel</h3>
+<h3 id="b%2B-tre%2C-eksempel" tabindex="-1">B+-tre, eksempel</h3>
 <p><img src="assets/Pasted image 20220401085019.png" alt=""></p>
-<h3>B+-trær i praksis</h3>
+<h3 id="b%2B-tr%C3%A6r-i-praksis" tabindex="-1">B+-trær i praksis</h3>
 <ul>
 <li>Typisk fanout: 133</li>
 <li>Typisk fyllgrad: 67 %</li>
@@ -211,7 +211,7 @@
 </ul>
 </li>
 </ul>
-<h3>Poster i B+-trær</h3>
+<h3 id="poster-i-b%2B-tr%C3%A6r" tabindex="-1">Poster i B+-trær</h3>
 <ul>
 <li>Tabell: Student (pnr, studnr, navn, adresse, epost)</li>
 <li>Clustered B+-tree</li>
@@ -228,7 +228,7 @@
 </ul>
 </li>
 </ul>
-<h3>Quiz 1</h3>
+<h3 id="quiz-1" tabindex="-1">Quiz 1</h3>
 <ul>
 <li>Hvorfor brukes B+-trær?
 <ul>
@@ -247,7 +247,7 @@
 </ul>
 </li>
 </ul>
-<h3>Quiz 2</h3>
+<h3 id="quiz-2" tabindex="-1">Quiz 2</h3>
 <ul>
 <li>Et B+-tre har kun ett nivå, hvor mangel blokker i treet?</li>
 <li>1 ✅</li>
@@ -263,7 +263,7 @@
 <li>2</li>
 <li>3 ✅</li>
 </ul>
-<h3>Blokksplitting i B+-tre</h3>
+<h3 id="blokksplitting-i-b%2B-tre" tabindex="-1">Blokksplitting i B+-tre</h3>
 <ul>
 <li>Splitting vanligvis ved midterste post</li>
 <li>Størrelsesmessig midterste post ved variabel lengde poster</li>
@@ -271,7 +271,7 @@
 <li>Indeksposter (level &gt; 0) er små: nøkkel + BlockId</li>
 <li>Løvnodeposter kan være større. Hvorfor?</li>
 </ul>
-<h3>Indekser på sammensatte nøkler</h3>
+<h3 id="indekser-p%C3%A5-sammensatte-n%C3%B8kler" tabindex="-1">Indekser på sammensatte nøkler</h3>
 <ul>
 <li>Employee (ssn, dno, age, street, zip, salary, skill)</li>
 <li>SELECT * FROM Employee WHERE dno=4 and age&gt;50;</li>

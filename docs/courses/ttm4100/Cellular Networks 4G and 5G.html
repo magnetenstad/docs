@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
+<h4 id="courses%2Fttm4100" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks</a></li>
@@ -88,10 +88,10 @@
 
       </div>
       <article class="content">
-        <h1>Cellular Networks 4G and 5G</h1>
-<h2>Cellular Networks: 4G and 5G</h2>
+        <h1 id="cellular-networks-4g-and-5g" tabindex="-1">Cellular Networks 4G and 5G</h1>
+<h2 id="cellular-networks%3A-4g-and-5g" tabindex="-1">Cellular Networks: 4G and 5G</h2>
 <p>The term cellular refers to the fact that the region covered by a cellular network is partitioned into a number of geographic coverage areas, known as cells. Each cell contains a base station that transmits signals to, and receives signals from, the mobile devices currently in its cell.</p>
-<h3>4G LTE Cellular Networks: Architecture and Elements</h3>
+<h3 id="4g-lte-cellular-networks%3A-architecture-and-elements" tabindex="-1">4G LTE Cellular Networks: Architecture and Elements</h3>
 <p>All network elements communicate with each other using the IP protocol.</p>
 <p>How the various elements of a 4G LTE network interact with each other in both the data and the control planes:</p>
 <ul>
@@ -102,7 +102,7 @@
 <li>Mobility Management Entity (MME). The MME is also a control-plane element, Along with the HSS, it plays an important role in authenticating a device wanting to connect into its network. It also sets up the tunnels on the data path from/to the device and the PDN Internet gateway router, and maintains information about an active mobile device’s cell location within the carrier’s cellular network.</li>
 <li>Cell location tracking. As the device moves between cells, the base stations will update the MME on the device’s location.</li>
 </ul>
-<h3>LTE Protocols Stacks</h3>
+<h3 id="lte-protocols-stacks" tabindex="-1">LTE Protocols Stacks</h3>
 <p>The 4G LTE architecture is an all-IP architecture. the new LTE protocols that we’ll focus on here are primarily at the link and physical layers, and in mobility management.</p>
 <p>LTE divides the mobile device’s link layer into three sublayers:</p>
 <ul>
@@ -111,25 +111,25 @@
 <li>The Medium Access Control (MAC) layer performs transmission scheduling, that is, the requesting and use of the radio transmission slots. r also performs additional error detection/ correction functions, including the use of redundant bit transmission as a forward error-correction technique.</li>
 </ul>
 <p><img src="assets/2022-05-09-20-11-19.png" alt=""></p>
-<h3>LTE Radio Access Network</h3>
+<h3 id="lte-radio-access-network" tabindex="-1">LTE Radio Access Network</h3>
 <p>LTE uses a combination of frequency division multiplexing and time division multiplexing on the downstream channel, known as orthogonal frequency division multiplexing (OFDM)</p>
-<h3>Additional LTE Functions: Network Attachment and Power Management</h3>
+<h3 id="additional-lte-functions%3A-network-attachment-and-power-management" tabindex="-1">Additional LTE Functions: Network Attachment and Power Management</h3>
 <p>two additional important LTE functions: (i) the process with which a mobile device first attaches to the network and (ii) the techniques used by the mobile device, in conjunction with core network elements, to manage its power use.</p>
-<h4>Network Attachment</h4>
+<h4 id="network-attachment" tabindex="-1">Network Attachment</h4>
 <p>The process by which a mobile device attaches to the cellular carrier’s network divides broadly into three phases:</p>
 <ul>
 <li>Attachment to a Base Station.</li>
 <li>Mutual Authentication. the base station contacts the local MME to perform mutual authentication</li>
 <li>Mobile-device-to-PDN-gateway Data Path Configuration. The MME contacts the PDN gateway (which also provides a NAT address for the mobile device), the Serving gateway, and the base station to establish the two tunnels shown in Figure 7.21. Once this phase is complete, the mobile device is able to send/receive IP datagrams via the base station through these tunnels to and from the Internet!</li>
 </ul>
-<h4>Power Management: Sleep Modes</h4>
+<h4 id="power-management%3A-sleep-modes" tabindex="-1">Power Management: Sleep Modes</h4>
 <p>In 4G LTE, a sleeping mobile device can be in one of two different sleep states.</p>
 <p>In the discontinuous reception state, the mobile device and the base station will schedule periodic times in advance at which the mobile device will wake up and actively monitor the channel for downstream transmissions.</p>
 <p>the Idle state the mobile device’s radio wakes up and monitors the channel even less frequently. if the mobile device moves into a new cell in the carrier’s network while sleeping, it need not inform the base station with which it was previous associated. Thus, when waking up periodically from this deep sleep, the mobile device will need to re-establish an association with a (potentially new) base station in order to check for paging messages broadcast by the MME to base stations nearby the base station with which the mobile was last associated.</p>
-<h3>The Global Cellular Network: A Network of Networks</h3>
+<h3 id="the-global-cellular-network%3A-a-network-of-networks" tabindex="-1">The Global Cellular Network: A Network of Networks</h3>
 <p>Figure 7.23 shows a user’s mobile smartphone connected via a 4G base station into its home network. The user’s home mobile network is operated by a cellular carrier such as Verizon, AT&amp;T, T-Mobile, or Sprint in the United States</p>
 <p><img src="assets/2022-05-09-20-23-04.png" alt=""></p>
-<h3>5G Cellular Networks</h3>
+<h3 id="5g-cellular-networks" tabindex="-1">5G Cellular Networks</h3>
 <p>The ultimate wide-area data service would be one with ubiquitous gigabit connection speeds, extremely low latency, and unrestricted limitations on the number of users and devices that could be supported in any region.</p>
 <p>It is predicted that 5G will provide roughly a
 10x increase in peak bitrate, a 10x decrease in latency, and a 100x increase in traffic capacity over 4G</p>
@@ -145,7 +145,7 @@
 <li>URLLC (Ultra Reliable Low-Latency Communications). targeted towards applications that are highly latency-sensitive,</li>
 <li>mMTC (Massive Machine Type Communications). a narrowband access type for sensing, metering, and monitoring applications. reducing power requirements</li>
 </ul>
-<h4>5G and Millimeter Wave Frequencies</h4>
+<h4 id="5g-and-millimeter-wave-frequencies" tabindex="-1">5G and Millimeter Wave Frequencies</h4>
 <p>Many 5G innovations will be a direct result of working in the millimeter wave frequencies in the 24 GHz–52 GHz band. For example, these frequencies offer the potential of achieving 100x increase in capacity over 4G. To get some insight into this, capacity can be defined as the product of three terms</p>
 <p>capacity = cell density x available spectrum x spectral efficiency</p>
 <p>where cell density is in units of cells/km2, available spectrum is in units of Hertz, and spectral efficiency is a measure of how efficiently each base station can communicate with users and is in units of bps/Hz/cell.</p>
@@ -157,7 +157,7 @@
 </ul>
 <p>By increasing all three terms in the capacity equation, 5G is expected to provide a 100x increase in capacity in urban areas.</p>
 <p>Small cell stations are needed to fill in coverage gaps between base stations and users. In a highly populous region, the distance between two small cells could vary from 10 to 100 meters.</p>
-<h4>5G Core Network</h4>
+<h4 id="5g-core-network" tabindex="-1">5G Core Network</h4>
 <p>The 5G Core network is the data network that manages all of the 5G mobile voice, data and Internet connections.</p>
 <p>5G core relays data traffic from end devices, authenticates devices, and manages device mobility. The 5G core also contains all of the network elements that we encountered - the mobile devices, the cells, the base stations, and the Mobility Management Entity (now divided into two sub-elements, as discussed below), the HSS, and the Serving and PDN gateways.</p>
 <p>Some of the new 5G core network functions include:</p>

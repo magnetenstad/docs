@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.9</h1>
-<h2>Lecture 9, part 1: Memory management</h2>
+        <h1 id="lecture.9" tabindex="-1">lecture.9</h1>
+<h2 id="lecture-9%2C-part-1%3A-memory-management" tabindex="-1">Lecture 9, part 1: Memory management</h2>
 <p><a href="lecture.8.html">Previous lecture</a>
 <a href="lecture.10.html">Next lecture</a></p>
 <p><iframe
@@ -71,7 +71,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Exam</h3>
+<h3 id="exam" tabindex="-1">Exam</h3>
 <p>Main memory as a resource and its management</p>
 <p><strong>Important questions:</strong></p>
 <ul>
@@ -97,7 +97,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Resources (again)</h3>
+<h3 id="resources-(again)" tabindex="-1">Resources (again)</h3>
 <ul>
 <li>Tasks of an operating system:
 <ul>
@@ -116,7 +116,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Multiprogramming (again)</h3>
+<h3 id="multiprogramming-(again)" tabindex="-1">Multiprogramming (again)</h3>
 <ul>
 <li>CPU load under the assumption of a given probability to wait for I/O</li>
 <li>Multiprogramming is essential to guarantee a high CPU utilization
@@ -125,7 +125,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Memory management requirements</h3>
+<h3 id="memory-management-requirements" tabindex="-1">Memory management requirements</h3>
 <ul>
 <li>Multiple processes need main memory
 <ul>
@@ -147,7 +147,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Basic policies and strategies</h3>
+<h3 id="basic-policies-and-strategies" tabindex="-1">Basic policies and strategies</h3>
 <ul>
 <li>Placement policy
 <ul>
@@ -179,7 +179,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Memory allocation: problem</h3>
+<h3 id="memory-allocation%3A-problem" tabindex="-1">Memory allocation: problem</h3>
 <p>The available memory is used by</p>
 <ul>
 <li>User processes
@@ -199,7 +199,7 @@ allowfullscreen>
 </li>
 <li>Memory allocation is necessary!</li>
 </ul>
-<h3>Static memory allocation</h3>
+<h3 id="static-memory-allocation" tabindex="-1">Static memory allocation</h3>
 <ul>
 <li>Idea: use fixed memory areas for the OS and for user processes</li>
 <li>Problems:
@@ -211,7 +211,7 @@ allowfullscreen>
 </li>
 <li>Solution: use dynamic memory allocation</li>
 </ul>
-<h3>Dynamic memory allocation</h3>
+<h3 id="dynamic-memory-allocation" tabindex="-1">Dynamic memory allocation</h3>
 <ul>
 <li>Segments
 <ul>
@@ -237,7 +237,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Memory allocation: bit lists</h3>
+<h3 id="memory-allocation%3A-bit-lists" tabindex="-1">Memory allocation: bit lists</h3>
 <ul>
 <li>Free (sometimes also allocated) segments of main memory have to be represented</li>
 <li>Simple approach: bit lists
@@ -252,7 +252,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Memory allocation: linked list</h3>
+<h3 id="memory-allocation%3A-linked-list" tabindex="-1">Memory allocation: linked list</h3>
 <ul>
 <li>Representation of used and free segments</li>
 <li>Problem:
@@ -261,7 +261,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h4>Linked list in <em>free memory</em></h4>
+<h4 id="linked-list-in-free-memory" tabindex="-1">Linked list in <em>free memory</em></h4>
 <ul>
 <li>A minimum gap size has to be guaranteed to store the length of and the pointer to the next free gap!</li>
 <li>Problem:
@@ -271,7 +271,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h4>Placement strategies</h4>
+<h4 id="placement-strategies" tabindex="-1">Placement strategies</h4>
 <p>...based on different sorting policies for the list of gaps:</p>
 <ul>
 <li>First fit (sorted after memory address)
@@ -301,12 +301,12 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Placement strategies (2)</h3>
+<h3 id="placement-strategies-(2)" tabindex="-1">Placement strategies (2)</h3>
 <ul>
 <li>Buddy method: split memory dynamically into areas of a size 2^n^</li>
 </ul>
 <p><img src="assets/2022-05-02-10-25-51.png" alt=""></p>
-<h3>Discussion: fragmentation</h3>
+<h3 id="discussion%3A-fragmentation" tabindex="-1">Discussion: fragmentation</h3>
 <ul>
 <li>External fragmentation
 <ul>
@@ -325,7 +325,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Use of the different methods</h3>
+<h3 id="use-of-the-different-methods" tabindex="-1">Use of the different methods</h3>
 <ul>
 <li>In the operating system (kernel) itself
 <ul>
@@ -352,8 +352,8 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h2>Lecture 9, part 2: Memory management and MMU hardware support</h2>
-<h3>Multiprogramming: swapping</h3>
+<h2 id="lecture-9%2C-part-2%3A-memory-management-and-mmu-hardware-support" tabindex="-1">Lecture 9, part 2: Memory management and MMU hardware support</h2>
+<h3 id="multiprogramming%3A-swapping" tabindex="-1">Multiprogramming: swapping</h3>
 <ul>
 <li>Segments of a process are swapped out to background memory and released in main memory
 <ul>
@@ -368,7 +368,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Swapping (2)</h3>
+<h3 id="swapping-(2)" tabindex="-1">Swapping (2)</h3>
 <ul>
 <li>Addresses in processes are usually linked statically
 <ul>
@@ -385,7 +385,7 @@ allowfullscreen>
 </li>
 <li>Better approach: dynamic allocation and program relocation</li>
 </ul>
-<h3>Address linking and relocation</h3>
+<h3 id="address-linking-and-relocation" tabindex="-1">Address linking and relocation</h3>
 <ul>
 <li>Problem: Machine instructions use addresses
 <ul>
@@ -417,14 +417,14 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Address linking and relocation (2)</h3>
+<h3 id="address-linking-and-relocation-(2)" tabindex="-1">Address linking and relocation (2)</h3>
 <ul>
 <li>Translation process (creation of relocation information)</li>
 </ul>
 <p><img src="assets/lecture.9b.translation.png" alt=""></p>
-<h3>Address linking and relocation (3)</h3>
+<h3 id="address-linking-and-relocation-(3)" tabindex="-1">Address linking and relocation (3)</h3>
 <p><img src="assets/lecture.9b.linking_and_loading.png" alt=""></p>
-<h3>Address linking and relocation (4)</h3>
+<h3 id="address-linking-and-relocation-(4)" tabindex="-1">Address linking and relocation (4)</h3>
 <ul>
 <li>Relocation information in the linker module (object file)
 <ul>
@@ -457,18 +457,18 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Segmentation</h3>
+<h3 id="segmentation" tabindex="-1">Segmentation</h3>
 <ul>
 <li>Hardware support: map logical to physical addresses</li>
 <li>The segment in the logical address space can be located at an arbitrary position in the physical space</li>
 <li>The OS controls where a segment is located in physical memory</li>
 </ul>
-<h3>Segmentation (2)</h3>
+<h3 id="segmentation-(2)" tabindex="-1">Segmentation (2)</h3>
 <ul>
 <li>Using a translation table (per process)</li>
 </ul>
 <p><img src="assets/lecture.9b.segment_table.png" alt=""></p>
-<h3>Segmentation (3)</h3>
+<h3 id="segmentation-(3)" tabindex="-1">Segmentation (3)</h3>
 <ul>
 <li>Hardware component translating addresse: MMU (Memory Management Unit)</li>
 <li>Protects against overstepping the segment limits
@@ -495,7 +495,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Segmentation (4)</h3>
+<h3 id="segmentation-(4)" tabindex="-1">Segmentation (4)</h3>
 <p>Problems...</p>
 <ul>
 <li>Fragmentation of main memory due to frequent swapping or starting/termination of processes
@@ -516,7 +516,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Compaction</h3>
+<h3 id="compaction" tabindex="-1">Compaction</h3>
 <ul>
 <li>Moving of segments
 <ul>
@@ -531,7 +531,7 @@ allowfullscreen>
 </li>
 </ul>
 <p><img src="assets/lecture.9b.compaction.png" alt=""></p>
-<h3>Paging</h3>
+<h3 id="paging" tabindex="-1">Paging</h3>
 <ul>
 <li>Logical address space is split into pages of identical size
 <ul>
@@ -542,12 +542,12 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>MMU with page table</h3>
+<h3 id="mmu-with-page-table" tabindex="-1">MMU with page table</h3>
 <ul>
 <li>A table is used to translate page addresses into page frame addresses</li>
 </ul>
 <p><img src="assets/lecture.9b.page_table.png" alt=""></p>
-<h3>MMU with page table (2)</h3>
+<h3 id="mmu-with-page-table-(2)" tabindex="-1">MMU with page table (2)</h3>
 <ul>
 <li>Page-based addressing creates internal fragmentation
 <ul>
@@ -575,9 +575,9 @@ allowfullscreen>
 <blockquote>
 <p>-&gt; Combine paging with segmentation</p>
 </blockquote>
-<h3>Segmentation and page addressing</h3>
+<h3 id="segmentation-and-page-addressing" tabindex="-1">Segmentation and page addressing</h3>
 <p><img src="assets/lecture.9b.segmentation_and_page_addressing.png" alt=""></p>
-<h3>Segmentation and page addressing (2)</h3>
+<h3 id="segmentation-and-page-addressing-(2)" tabindex="-1">Segmentation and page addressing (2)</h3>
 <ul>
 <li>This requires even more implicit memory accesses</li>
 <li>Large tables in main memory</li>
@@ -587,7 +587,7 @@ allowfullscreen>
 <blockquote>
 <p>-&gt; Multi-level page addressing with paging</p>
 </blockquote>
-<h3>Paging</h3>
+<h3 id="paging-1" tabindex="-1">Paging</h3>
 <ul>
 <li>Swapping complete segments is not necessary
 <ul>
@@ -602,7 +602,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Multi-level page addressing</h3>
+<h3 id="multi-level-page-addressing" tabindex="-1">Multi-level page addressing</h3>
 <ul>
 <li>Example: two-level page addressing</li>
 </ul>
@@ -616,12 +616,12 @@ allowfullscreen>
 </li>
 <li>However: even more implicit memory addresses required</li>
 </ul>
-<h3>Translation lookaside buffer (TLB)</h3>
+<h3 id="translation-lookaside-buffer-(tlb)" tabindex="-1">Translation lookaside buffer (TLB)</h3>
 <ul>
 <li>Fast cache which is consulted before a (possible) lookup in the page table</li>
 </ul>
 <p><img src="assets/lecture.9b.tlb.png" alt=""></p>
-<h3>Translation lookaside buffer (2)</h3>
+<h3 id="translation-lookaside-buffer-(2)" tabindex="-1">Translation lookaside buffer (2)</h3>
 <ul>
 <li>Fast access to page address mapping, if the information is contained in the (fully associative) TLB memory
 <ul>
@@ -642,7 +642,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Inverted page tables</h3>
+<h3 id="inverted-page-tables" tabindex="-1">Inverted page tables</h3>
 <ul>
 <li>For large logical address spaces (e.g. 64 bit addresses)
 <ul>
@@ -656,7 +656,7 @@ allowfullscreen>
 <p>-&gt; Inverted Page Tables</p>
 </blockquote>
 <p><img src="assets/lecture.9b.inverted_page_table.png" alt=""></p>
-<h3>Inverted page tables (2)</h3>
+<h3 id="inverted-page-tables-(2)" tabindex="-1">Inverted page tables (2)</h3>
 <ul>
 <li>Advantages
 <ul>
@@ -682,7 +682,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Conclusion</h3>
+<h3 id="conclusion" tabindex="-1">Conclusion</h3>
 <ul>
 <li>The OS has to work in close cooperation with the hardware to enable efficient memory management
 <ul>

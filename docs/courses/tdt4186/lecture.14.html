@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.14</h1>
-<h2>Lecture 14, part 1: Input and output</h2>
+        <h1 id="lecture.14" tabindex="-1">lecture.14</h1>
+<h2 id="lecture-14%2C-part-1%3A-input-and-output" tabindex="-1">Lecture 14, part 1: Input and output</h2>
 <p><a href="lecture.13.html">Previous lecture</a>
 <a href="lecture.15.html">Next lecture</a></p>
 <p><iframe
@@ -71,7 +71,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Exam</h3>
+<h3 id="exam" tabindex="-1">Exam</h3>
 <p>I/O devices as resources and their management</p>
 <p><strong>Important questions:</strong></p>
 <ul>
@@ -99,7 +99,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Resources</h3>
+<h3 id="resources" tabindex="-1">Resources</h3>
 <ul>
 <li>So far we considered:
 <ul>
@@ -115,9 +115,9 @@ allowfullscreen>
 <li><strong>Today: I/O devices</strong></li>
 </ul>
 <p><img src="assets/lecture.14a.computer.png" alt=""></p>
-<h3>I/O device interfacing</h3>
+<h3 id="i%2Fo-device-interfacing" tabindex="-1">I/O device interfacing</h3>
 <p><img src="assets/lecture.14a.computer_system_bus.png" alt=""></p>
-<h3>Example: PC keyboard</h3>
+<h3 id="example%3A-pc-keyboard" tabindex="-1">Example: PC keyboard</h3>
 <ul>
 <li>Serial communication, character oriented
 <ul>
@@ -126,7 +126,7 @@ allowfullscreen>
 </li>
 </ul>
 <p><img src="assets/lecture.14a.keyboard.png" alt=""></p>
-<h3>Example: CGA video controller</h3>
+<h3 id="example%3A-cga-video-controller" tabindex="-1">Example: CGA video controller</h3>
 <ul>
 <li>Communication via video signal
 <ul>
@@ -136,7 +136,7 @@ allowfullscreen>
 <li>Transformation of the contents of the frame buffer (screen memory) into a picture (e.g. 80x25 character matrix or bitmap)</li>
 </ul>
 <p><img src="assets/lecture.14a.cga_video_controller.png" alt=""></p>
-<h3>Example: IDE disk controller</h3>
+<h3 id="example%3A-ide-disk-controller" tabindex="-1">Example: IDE disk controller</h3>
 <ul>
 <li>Communication via AT commands
 <ul>
@@ -145,7 +145,7 @@ allowfullscreen>
 </li>
 </ul>
 <p><img src="assets/lecture.14a.ide_disk_controller.png" alt=""></p>
-<h3>Example: Ethernet controller</h3>
+<h3 id="example%3A-ethernet-controller" tabindex="-1">Example: Ethernet controller</h3>
 <ul>
 <li>Serial packet-based bus communication
 <ul>
@@ -154,7 +154,7 @@ allowfullscreen>
 </li>
 </ul>
 <p><img src="assets/lecture.14a.ethernet_controller.png" alt=""></p>
-<h3>Device classes</h3>
+<h3 id="device-classes" tabindex="-1">Device classes</h3>
 <ul>
 <li>Character devices
 <ul>
@@ -178,24 +178,24 @@ packet filtering, ...)</li>
 </ul>
 </li>
 </ul>
-<h3>Interrupts</h3>
+<h3 id="interrupts" tabindex="-1">Interrupts</h3>
 <ul>
 <li>... signal the software to become active</li>
 </ul>
-<h4>Interrupt processing sequence on hardware level</h4>
+<h4 id="interrupt-processing-sequence-on-hardware-level" tabindex="-1">Interrupt processing sequence on hardware level</h4>
 <p><img src="assets/lecture.14a.interrupts.png" alt=""></p>
-<h3>Direct Memory Access (DMA)</h3>
+<h3 id="direct-memory-access-(dma)" tabindex="-1">Direct Memory Access (DMA)</h3>
 <ul>
 <li>... is used by complex controllers to transfer data from and to main memory independent of the CPU</li>
 </ul>
-<h4>DMA transfer sequence</h4>
+<h4 id="dma-transfer-sequence" tabindex="-1">DMA transfer sequence</h4>
 <p><img src="assets/lecture.14a.dma.png" alt=""></p>
-<h3>I/O addresss space</h3>
+<h3 id="i%2Fo-addresss-space" tabindex="-1">I/O addresss space</h3>
 <ul>
 <li>Acces to controller registers and controller memory depends on the system architecture</li>
 </ul>
 <p><img src="assets/lecture.14a.io_address_space.png" alt=""></p>
-<h3>Device drivers</h3>
+<h3 id="device-drivers" tabindex="-1">Device drivers</h3>
 <ul>
 <li>Depending on the device, I/O can be performed via
 <ul>
@@ -207,7 +207,7 @@ packet filtering, ...)</li>
 <li>Example: Printing a page of text</li>
 </ul>
 <p><img src="assets/lecture.14a.device_drivers.png" alt=""></p>
-<h3>Polling ("programmed I/O")</h3>
+<h3 id="polling-(%22programmed-i%2Fo%22)" tabindex="-1">Polling ("programmed I/O")</h3>
 <p>... implies active waiting for an I/O device</p>
 <p>Pseudo code of an operating system function to print text using polling:</p>
 <pre><code class="hljs language-cpp"><span class="hljs-comment">/* Copy character into kernel buffer p */</span>
@@ -221,7 +221,7 @@ packet filtering, ...)</li>
 }
 <span class="hljs-built_in">return_to_user</span> ();
 </code></pre>
-<h3>Interrupt-driven I/O</h3>
+<h3 id="interrupt-driven-i%2Fo" tabindex="-1">Interrupt-driven I/O</h3>
 <p>... implies that the CPU can be allocated to another process while
 waiting for a response from the device</p>
 <p>Code to initiate the I/O operation:</p>
@@ -246,7 +246,7 @@ waiting for a response from the device</p>
 <span class="hljs-built_in">acknowledge_interrupt</span> ();
 <span class="hljs-built_in">return_from_interrupt</span> ();
 </code></pre>
-<h3>Discussion: Interrupts</h3>
+<h3 id="discussion%3A-interrupts" tabindex="-1">Discussion: Interrupts</h3>
 <ul>
 <li>Saving the process context
 <ul>
@@ -271,7 +271,7 @@ was waiting for the I/O operation to finish</li>
 </ul>
 </li>
 </ul>
-<h3>Discussion: Interrupts (2)</h3>
+<h3 id="discussion%3A-interrupts-(2)" tabindex="-1">Discussion: Interrupts (2)</h3>
 <ul>
 <li>Interrupts are the source for asynchronous behavior
 <ul>
@@ -296,7 +296,7 @@ was waiting for the I/O operation to finish</li>
 </ul>
 </li>
 </ul>
-<h3>Discussion: Direct Memory Access</h3>
+<h3 id="discussion%3A-direct-memory-access" tabindex="-1">Discussion: Direct Memory Access</h3>
 <ul>
 <li>Caches
 <ul>
@@ -316,7 +316,7 @@ was waiting for the I/O operation to finish</li>
 </ul>
 </li>
 </ul>
-<h3>Tasks of the OS</h3>
+<h3 id="tasks-of-the-os" tabindex="-1">Tasks of the OS</h3>
 <ul>
 <li>Create device abstrations
 <ul>
@@ -347,10 +347,10 @@ was waiting for the I/O operation to finish</li>
 <li>Manage power saving modes</li>
 <li>Support plug&amp;play</li>
 </ul>
-<h3>Layers of the I/O system</h3>
+<h3 id="layers-of-the-i%2Fo-system" tabindex="-1">Layers of the I/O system</h3>
 <p><img src="assets/lecture.14a.io_system_layers.png" alt=""></p>
-<h2>Lecture 14, part 2: I/O in Unix and disk scheduling</h2>
-<h3>Unix device abstractions</h3>
+<h2 id="lecture-14%2C-part-2%3A-i%2Fo-in-unix-and-disk-scheduling" tabindex="-1">Lecture 14, part 2: I/O in Unix and disk scheduling</h2>
+<h3 id="unix-device-abstractions" tabindex="-1">Unix device abstractions</h3>
 <ul>
 <li>Peripheral devices are realized as special files
 <ul>
@@ -370,7 +370,7 @@ was waiting for the I/O operation to finish</li>
 </ul>
 </li>
 </ul>
-<h3>Unix device abstractions (2)</h3>
+<h3 id="unix-device-abstractions-(2)" tabindex="-1">Unix device abstractions (2)</h3>
 <ul>
 <li>Devices are uniquely identified by a tuple:
 <ul>
@@ -392,13 +392,13 @@ was waiting for the I/O operation to finish</li>
 </ul>
 </li>
 </ul>
-<h3>Unix device abstractions (3)</h3>
+<h3 id="unix-device-abstractions-(3)" tabindex="-1">Unix device abstractions (3)</h3>
 <ul>
 <li>Partial listing of the /dev directory that by convention holds the</li>
 </ul>
 <p>special files:
 <img src="assets/lecture.14b.unix_device_abstractions_3.png" alt=""></p>
-<h3>Unix access primitives</h3>
+<h3 id="unix-access-primitives" tabindex="-1">Unix access primitives</h3>
 <p>A quick overview... (see the man pages for details...)</p>
 <ul>
 <li><code><span class="hljs-type">int</span> <span class="hljs-built_in">open</span>(<span class="hljs-keyword">const</span> <span class="hljs-type">char</span> *devname, <span class="hljs-type">int</span> flags)</code>
@@ -427,7 +427,7 @@ was waiting for the I/O operation to finish</li>
 </ul>
 </li>
 </ul>
-<h3>Unix device specific functions</h3>
+<h3 id="unix-device-specific-functions" tabindex="-1">Unix device specific functions</h3>
 <ul>
 <li>Special properties of a devices are controlled via ioctl:</li>
 </ul>
@@ -448,7 +448,7 @@ SYNOPSIS
   don<span class="hljs-comment">&#x27;t cleanly fit the Unix stream I/O model). The ioctl</span>
   <span class="hljs-keyword">function</span> <span class="hljs-keyword">call</span> appeared <span class="hljs-keyword">in</span> Version <span class="hljs-number">7</span> AT&amp;T Unix.
 </code></pre>
-<h3>Unix: waiting for multiple devices</h3>
+<h3 id="unix%3A-waiting-for-multiple-devices" tabindex="-1">Unix: waiting for multiple devices</h3>
 <ul>
 <li>So far, we have encountered blocking read and write calls
 <ul>
@@ -463,7 +463,7 @@ SYNOPSIS
 </ul>
 </li>
 </ul>
-<h3>Unix: waiting for multiple devices (2)</h3>
+<h3 id="unix%3A-waiting-for-multiple-devices-(2)" tabindex="-1">Unix: waiting for multiple devices (2)</h3>
 <ul>
 <li>Alternative 2: blocking wait for multiple file descriptors
 <ul>
@@ -482,7 +482,7 @@ SYNOPSIS
 </ul>
 </li>
 </ul>
-<h3>Buffering of I/O operations</h3>
+<h3 id="buffering-of-i%2Fo-operations" tabindex="-1">Buffering of I/O operations</h3>
 <ul>
 <li><strong>Problem</strong> if an operating system does not provide data buffers:
 <ul>
@@ -493,7 +493,7 @@ SYNOPSIS
 </li>
 </ul>
 <p><img src="assets/lecture.14b.read_without_buffering.png" alt=""></p>
-<h3>Single I/O buffers</h3>
+<h3 id="single-i%2Fo-buffers" tabindex="-1">Single I/O buffers</h3>
 <ul>
 <li>Read
 <ul>
@@ -509,7 +509,7 @@ SYNOPSIS
 </li>
 </ul>
 <p><img src="assets/lecture.14b.read_single_buffering.png" alt=""></p>
-<h4>Performance estimation</h4>
+<h4 id="performance-estimation" tabindex="-1">Performance estimation</h4>
 <p>A simple back-of-the envelope calculation gives an indication of the
 performance increase when repeatedly reading blockwise with
 subsequent processing:</p>
@@ -523,7 +523,7 @@ With buffer: BE = <span class="hljs-built_in">max</span> (T, C) + M
 
 For T ≈ C und M ≈ <span class="hljs-number">0</span>, B0 ≈ <span class="hljs-number">2</span>·BE. Unfortunately, M &gt; <span class="hljs-number">0</span>
 </code></pre>
-<h3>Double I/O buffering</h3>
+<h3 id="double-i%2Fo-buffering" tabindex="-1">Double I/O buffering</h3>
 <ul>
 <li>Read
 <ul>
@@ -537,7 +537,7 @@ For T ≈ C und M ≈ <span class="hljs-number">0</span>, B0 ≈ <span class="hl
 </li>
 </ul>
 <p><img src="assets/lecture.14b.read_double_buffering.png" alt=""></p>
-<h4>Performance estimation</h4>
+<h4 id="performance-estimation-1" tabindex="-1">Performance estimation</h4>
 <p>A double buffer enables to execute a read operation in parallel to a copy
 operation and processing</p>
 <pre><code class="hljs"><span class="hljs-variable">Without</span> <span class="hljs-variable">buffer</span><span class="hljs-operator">:</span> <span class="hljs-variable">B0</span> <span class="hljs-operator">=</span> <span class="hljs-variable">T</span> <span class="hljs-operator">+</span> <span class="hljs-built_in">C</span>
@@ -545,7 +545,7 @@ operation and processing</p>
 <span class="hljs-built_in">With</span> <span class="hljs-variable">double</span> <span class="hljs-variable">buffer</span><span class="hljs-operator">:</span> <span class="hljs-variable">BE</span> <span class="hljs-operator">=</span> <span class="hljs-variable">max</span> <span class="hljs-punctuation">(</span><span class="hljs-variable">T</span><span class="hljs-operator">,</span> <span class="hljs-built_in">C</span> <span class="hljs-operator">+</span> <span class="hljs-variable">M</span><span class="hljs-punctuation">)</span>
 <span class="hljs-built_in">If</span> <span class="hljs-built_in">C</span> <span class="hljs-operator">+</span> <span class="hljs-variable">M</span> <span class="hljs-operator">&lt;</span> <span class="hljs-variable">T</span><span class="hljs-operator">,</span> <span class="hljs-variable">the</span> <span class="hljs-variable">device</span> <span class="hljs-variable">could</span> <span class="hljs-variable">be</span> <span class="hljs-variable">utilized</span> <span class="hljs-variable">to</span> <span class="hljs-number">100</span><span class="hljs-operator">%</span>
 </code></pre>
-<h3>I/O ring buffers</h3>
+<h3 id="i%2Fo-ring-buffers" tabindex="-1">I/O ring buffers</h3>
 <p>Is what is commonly used.</p>
 <ul>
 <li>Read
@@ -560,7 +560,7 @@ operation and processing</p>
 </li>
 </ul>
 <p><img src="assets/lecture.14b.read_ring_buffer.png" alt=""></p>
-<h3>Discussion: I/O buffers</h3>
+<h3 id="discussion%3A-i%2Fo-buffers" tabindex="-1">Discussion: I/O buffers</h3>
 <ul>
 <li>I/O buffers decouple the I/O operations of user processes from the device driver
 <ul>
@@ -582,7 +582,7 @@ operation and processing</p>
 </ul>
 </li>
 </ul>
-<h3>Device control example: disk</h3>
+<h3 id="device-control-example%3A-disk" tabindex="-1">Device control example: disk</h3>
 <ul>
 <li>Driver has to consider mechanical properties!</li>
 <li>Disk drivers usually queue multiple requests
@@ -599,7 +599,7 @@ operation and processing</p>
 </li>
 <li>Optimization criterium: positioning time</li>
 </ul>
-<h3>I/O scheduling: FIFO</h3>
+<h3 id="i%2Fo-scheduling%3A-fifo" tabindex="-1">I/O scheduling: FIFO</h3>
 <ul>
 <li>Process requests in order of their arrival (first in first out)
 <ul>
@@ -613,7 +613,7 @@ operation and processing</p>
 <li>Total number of track changes: 640</li>
 <li>Large movements of the disk arm: long average processing time!</li>
 </ul>
-<h3>I/O scheduling: SSTF</h3>
+<h3 id="i%2Fo-scheduling%3A-sstf" tabindex="-1">I/O scheduling: SSTF</h3>
 <ul>
 <li>The request with the shortest processing time is prioritized (shortest seek time first)
 <ul>
@@ -628,7 +628,7 @@ operation and processing</p>
 <li>Similar to SJF scheduling, SSTF can also lead to starvation!</li>
 <li>Still not optimal</li>
 </ul>
-<h3>I/O scheduling: Elevator</h3>
+<h3 id="i%2Fo-scheduling%3A-elevator" tabindex="-1">I/O scheduling: Elevator</h3>
 <ul>
 <li>Move the disk arm in one direction until no more requests are available (elevator scheduling)
 <ul>
@@ -643,7 +643,7 @@ operation and processing</p>
 <li>No starvation, but long waiting times are possible</li>
 <li>Used in many operating systems</li>
 </ul>
-<h3>Discussion: I/O scheduling today</h3>
+<h3 id="discussion%3A-i%2Fo-scheduling-today" tabindex="-1">Discussion: I/O scheduling today</h3>
 <ul>
 <li>Disks are "intelligent" devices
 <ul>
@@ -669,7 +669,7 @@ operation and processing</p>
 </ul>
 </li>
 </ul>
-<h3>Conclusion</h3>
+<h3 id="conclusion" tabindex="-1">Conclusion</h3>
 <ul>
 <li>I/O hardware comes in very many different variants
 <ul>

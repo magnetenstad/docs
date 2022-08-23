@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
+<h4 id="courses%2Fttm4100" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks</a></li>
@@ -88,9 +88,9 @@
 
       </div>
       <article class="content">
-        <h1>Overview of Network Layer</h1>
-<h2>Overview of Network Layer</h2>
-<h3>Forwarding and Routing: The Data and Control Planes</h3>
+        <h1 id="overview-of-network-layer" tabindex="-1">Overview of Network Layer</h1>
+<h2 id="overview-of-network-layer-1" tabindex="-1">Overview of Network Layer</h2>
+<h3 id="forwarding-and-routing%3A-the-data-and-control-planes" tabindex="-1">Forwarding and Routing: The Data and Control Planes</h3>
 <p>two important network-layer functions can be identified:</p>
 <ul>
 <li>Forwarding.</li>
@@ -99,12 +99,12 @@
 <p>Forwarding refers to the router-local action of transferring a packet from an input link interface to the appropriate output link interface. Routing refers to the network-wide process that determines the end-to-end paths that packets take from source to destination.</p>
 <p>We can think of forwarding as the process of getting through a single interchange. We can think of routing as the process of planning the trip from Pennsylvania to Florida.</p>
 <p>Forwarding table: A router forwards a packet by examining the value of one or more fields in the arriving packet’s header, and then using these header values to index into its forwarding table. The value stored in the forwarding table entry for those values indicates the outgoing link interface at that router to which that packet is to be forwarded.</p>
-<h4>Control Plane: The Traditional Approach</h4>
+<h4 id="control-plane%3A-the-traditional-approach" tabindex="-1">Control Plane: The Traditional Approach</h4>
 <p>In this example, a routing algorithm runs in each and every router and both forwarding and routing functions are contained within a router. the routing algorithm function in one router communicates with the routing algorithm function in other routers to compute the values for its forwarding table.</p>
-<h4>Control Plane: The SDN Approach</h4>
+<h4 id="control-plane%3A-the-sdn-approach" tabindex="-1">Control Plane: The SDN Approach</h4>
 <p>an alternative approach in which a physically separate, remote controller computes and distributes the forwarding tables to be used by each and every router.</p>
 <p>Software-defined networking (SDN), where the network is “software-defined” because the controller that computes forwarding tables and interacts with routers is implemented in software.</p>
-<h3>Network Service Model</h3>
+<h3 id="network-service-model" tabindex="-1">Network Service Model</h3>
 <p>The network service model defines the characteristics of end-to-end delivery of packets between sending and receiving hosts. These services could include:</p>
 <ul>
 <li>Guaranteed delivery.</li>
@@ -114,7 +114,7 @@
 <li>Security.</li>
 </ul>
 <p>The Internet’s network layer provides a single service, known as best-effort service.</p>
-<h4>An Overview of Chapter 4</h4>
+<h4 id="an-overview-of-chapter-4" tabindex="-1">An Overview of Chapter 4</h4>
 <p>Some packet switches, called link-layer switches, base their forwarding decision on values in the fields of the link-layer frame; switches are thus referred to as link-layer (layer 2) devices. Other packet switches, called routers, base their forwarding decision on header field values in the network-layer datagram. Routers are thus network-layer (layer 3) devices.</p>
 
       </article>

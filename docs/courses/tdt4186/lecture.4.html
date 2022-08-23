@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.4</h1>
-<h2>Lecture 4, part 1: Processes</h2>
+        <h1 id="lecture.4" tabindex="-1">lecture.4</h1>
+<h2 id="lecture-4%2C-part-1%3A-processes" tabindex="-1">Lecture 4, part 1: Processes</h2>
 <p><a href="lecture.3.html">Previous lecture</a>
 <a href="lecture.5.html">Next lecture</a></p>
 <p><iframe
@@ -71,7 +71,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Exam</h3>
+<h3 id="exam" tabindex="-1">Exam</h3>
 <p>Details about the process abstraction and its use in Unix</p>
 <p><strong>Important questions:</strong></p>
 <ul>
@@ -96,7 +96,7 @@ allowfullscreen>
 <li>Optimizations for process creation in Unix: copy-on-write</li>
 <li>What are details of the extended process state model?</li>
 </ul>
-<h3>Review: processes..</h3>
+<h3 id="review%3A-processes.." tabindex="-1">Review: processes..</h3>
 <ul>
 <li>are "programs in execution"
 <ul>
@@ -117,7 +117,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Unix (Thompson and Ritche 1968)</h3>
+<h3 id="unix-(thompson-and-ritche-1968)" tabindex="-1">Unix (Thompson and Ritche 1968)</h3>
 <ul>
 <li>A system with a long (hi)story</li>
 <li>Origin: AT&amp;T Bell Labs
@@ -137,9 +137,9 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Unix variants</h3>
+<h3 id="unix-variants" tabindex="-1">Unix variants</h3>
 <p><img src="assets/lecture.4a.unix_variants.png" alt=""></p>
-<h3>Unix processes</h3>
+<h3 id="unix-processes" tabindex="-1">Unix processes</h3>
 <ul>
 <li>Are the primary way to structure activities
 <ul>
@@ -153,7 +153,7 @@ allowfullscreen>
 </li>
 <li>Form a process hierarchy</li>
 </ul>
-<h3>Unix shells</h3>
+<h3 id="unix-shells" tabindex="-1">Unix shells</h3>
 <ul>
 <li>A "shell" around the operating system "core"</li>
 <li>Text based user interface to start commands (Unix programs)
@@ -167,8 +167,8 @@ allowfullscreen>
 <li>Typically, the shell blocks (waits) until the last command has terminated</li>
 <li>It is possible to suspend, continue and terminate commands (job control) and to have commands executing in the background</li>
 </ul>
-<h3>Unix shells: job control</h3>
-<h3>Standard I/O channels</h3>
+<h3 id="unix-shells%3A-job-control" tabindex="-1">Unix shells: job control</h3>
+<h3 id="standard-i%2Fo-channels" tabindex="-1">Standard I/O channels</h3>
 <ul>
 <li>Usually connected to the terminal in which the shell runs that started the process
 <ul>
@@ -180,13 +180,13 @@ allowfullscreen>
 <li>Almost all Unix commands also accept files as input or output channels (instead of the terminal)</li>
 <li>Shells provide a simple syntax to redirect the standard I/O channels</li>
 </ul>
-<h3>Redirecting standard I/O</h3>
+<h3 id="redirecting-standard-i%2Fo" tabindex="-1">Redirecting standard I/O</h3>
 <ul>
 <li><code><span class="hljs-meta prompt_">&gt;</span></code> redirects standard output</li>
 <li><code>&lt;</code> redirects standard input</li>
 <li><code><span class="hljs-string">|</span></code> (pipe) symbol tells the shell to connect the standard output of the left process to the standard input of the right process</li>
 </ul>
-<h3>The Unix philosophy</h3>
+<h3 id="the-unix-philosophy" tabindex="-1">The Unix philosophy</h3>
 <ul>
 <li>
 <p>Doug Mcllroy, the inventor of Unix pipes, summarized the Unix philosophy as follows:</p>
@@ -199,8 +199,8 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </li>
 </ul>
 <p>This is commonly expressed in a shorter way: "Do one thing, do it well."</p>
-<h2>Lecture 4, part 2: Processes</h2>
-<h3>Process-OS interaction in Unix (1)</h3>
+<h2 id="lecture-4%2C-part-2%3A-processes" tabindex="-1">Lecture 4, part 2: Processes</h2>
+<h3 id="process-os-interaction-in-unix-(1)" tabindex="-1">Process-OS interaction in Unix (1)</h3>
 <ul>
 <li>How does an application program request a service from the operating system?</li>
 <li>From the point of view of the application, calling an operating system service looks like a regular function call, e.g.: <code><span class="hljs-attribute">pid</span> <span class="hljs-operator">=</span> fork()<span class="hljs-comment">;</span></code></li>
@@ -216,7 +216,7 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </li>
 <li>The transition from code ecevuting in an application to code running in the kernel needs to be protected!</li>
 </ul>
-<h3>Process-OS interaction in Unix (2)</h3>
+<h3 id="process-os-interaction-in-unix-(2)" tabindex="-1">Process-OS interaction in Unix (2)</h3>
 <ul>
 <li>Many CPUs provide several execution modes:
 <ul>
@@ -232,7 +232,7 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </li>
 <li>Executing such an instruction causes the CPU to change its current execution mode to kernel mode and jump to an address predetermined by the processor hardware: system call</li>
 </ul>
-<h3>Process-OS interaction in Unix (3)</h3>
+<h3 id="process-os-interaction-in-unix-(3)" tabindex="-1">Process-OS interaction in Unix (3)</h3>
 <ul>
 <li>Applications can execute a syscall instruction directly, but
 <ul>
@@ -245,7 +245,7 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </ul>
 </li>
 </ul>
-<h3>Unix process control: syscalls</h3>
+<h3 id="unix-process-control%3A-syscalls" tabindex="-1">Unix process control: syscalls</h3>
 <p>A first overview of process related system calls (syscalls)</p>
 <table>
 <thead>
@@ -299,7 +299,7 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </tbody>
 </table>
 <p>Read Unix manual pages with <code>man <span class="hljs-tag">&lt;<span class="hljs-name">num</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">command</span>&gt;</span></code></p>
-<h3>Unix processes in detail: fork()</h3>
+<h3 id="unix-processes-in-detail%3A-fork()" tabindex="-1">Unix processes in detail: fork()</h3>
 <p>System call: <code><span class="hljs-function"><span class="hljs-type">pid_t</span> <span class="hljs-title">fork</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span></code></p>
 <ul>
 <li>Duplicates the calling process (the standard way to create new processes in Unix!)</li>
@@ -320,9 +320,9 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </li>
 <li>One process calls fork, but two processes return 🤔</li>
 </ul>
-<h3>Use of fork()</h3>
+<h3 id="use-of-fork()" tabindex="-1">Use of fork()</h3>
 <p><img src="assets/lecture.4b.fork.png" alt=""></p>
-<h3>Discussion: fast process creation</h3>
+<h3 id="discussion%3A-fast-process-creation" tabindex="-1">Discussion: fast process creation</h3>
 <ul>
 <li>Copying the address space takes a lot of time
 <ul>
@@ -349,7 +349,7 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </ul>
 </li>
 </ul>
-<h3>Unix processes in detail: _exit()</h3>
+<h3 id="unix-processes-in-detail%3A-_exit()" tabindex="-1">Unix processes in detail: _exit()</h3>
 <p>System call: <code><span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></code></p>
 <ul>
 <li>Terminates the calling process and passes an integer argument as "exit status" to the parent process</li>
@@ -366,7 +366,7 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </li>
 <li>Normal processes should use <code><span class="hljs-keyword">exit</span></code>, not <code><span class="hljs-variable">_exit</span></code></li>
 </ul>
-<h3>Discussion: orphaned process</h3>
+<h3 id="discussion%3A-orphaned-process" tabindex="-1">Discussion: orphaned process</h3>
 <ul>
 <li>A Unix process is orphaned when its parent process terminates</li>
 <li>What happens to our process hierarchy?
@@ -375,7 +375,7 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </ul>
 </li>
 </ul>
-<h3>Unix processes in detail: wait()</h3>
+<h3 id="unix-processes-in-detail%3A-wait()" tabindex="-1">Unix processes in detail: wait()</h3>
 <p>System call: <code><span class="hljs-function"><span class="hljs-type">pid_t</span> <span class="hljs-title">wait</span><span class="hljs-params">(<span class="hljs-type">int</span> *)</span></span></code></p>
 <ul>
 <li>Blocks the calling process until one of its child processes terminates</li>
@@ -383,16 +383,16 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 <li>Using the <code><span class="hljs-built_in">int</span> *</code> parameter, the caller is passed the child's "exit status" (and more)</li>
 <li><code><span class="hljs-built_in">wait</span></code> returns immediately if all child processes are already terminated</li>
 </ul>
-<h3>Use of wait()</h3>
+<h3 id="use-of-wait()" tabindex="-1">Use of wait()</h3>
 <p><img src="assets/lecture.4b.wait.png" alt=""></p>
-<h3>Discussion: zombies</h3>
+<h3 id="discussion%3A-zombies" tabindex="-1">Discussion: zombies</h3>
 <ul>
 <li>A terminated process is called a "zombie" until its exit status is requested using <code><span class="hljs-built_in">wait</span></code></li>
 <li>The resources allocated to such processes can be released, but the OS project management still needs to know about them</li>
 <li>Especially the exit status has to be saved</li>
 <li>Zombies are annoted by <code><span class="hljs-attribute">ps</span></code> by <code><span class="hljs-section">&lt;defunct&gt;</span></code></li>
 </ul>
-<h3>Unix processes in detail: execve()</h3>
+<h3 id="unix-processes-in-detail%3A-execve()" tabindex="-1">Unix processes in detail: execve()</h3>
 <p>System call: <code><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">execve</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *command, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *args[], <span class="hljs-type">const</span> <span class="hljs-type">char</span> *encp[])</span></span></code></p>
 <ul>
 <li>Loads and starts the command passed in the "command" parameter</li>
@@ -409,9 +409,9 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </li>
 <li>The C library provides some comfortable support functions that internally call <code><span class="hljs-attribute">execve</span></code>: <code><span class="hljs-attribute">execl</span></code>, <code><span class="hljs-attribute">execv</span></code>, <code><span class="hljs-attribute">execlp</span></code>, <code><span class="hljs-attribute">execvp</span></code>, ..</li>
 </ul>
-<h3>Use of exec()</h3>
+<h3 id="use-of-exec()" tabindex="-1">Use of exec()</h3>
 <p><img src="assets/lecture.4b.exec.png" alt=""></p>
-<h3>Discussion: why no forkexec()?</h3>
+<h3 id="discussion%3A-why-no-forkexec()%3F" tabindex="-1">Discussion: why no forkexec()?</h3>
 <ul>
 <li>The parent process has more control if we separate the calls to <code><span class="hljs-attribute">fork</span></code> and <code><span class="hljs-attribute">execve</span></code>:
 <ul>
@@ -426,9 +426,9 @@ because that <span class="hljs-keyword">is</span> a universal <span class="hljs-
 </ul>
 </li>
 </ul>
-<h3>Unix process states</h3>
+<h3 id="unix-process-states" tabindex="-1">Unix process states</h3>
 <p><img src="assets/lecture.4b.unix_process_states.png" alt=""></p>
-<h3>Conclusion</h3>
+<h3 id="conclusion" tabindex="-1">Conclusion</h3>
 <ul>
 <li>Process management is an important part of any OS
 <ul>

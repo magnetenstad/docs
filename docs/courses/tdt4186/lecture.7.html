@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.7</h1>
-<h2>Lecture 7: Concurrency: Deadlocks</h2>
+        <h1 id="lecture.7" tabindex="-1">lecture.7</h1>
+<h2 id="lecture-7%3A-concurrency%3A-deadlocks" tabindex="-1">Lecture 7: Concurrency: Deadlocks</h2>
 <p><a href="lecture.6.html">Previous lecture</a>
 <a href="lecture.8.html">Next lecture</a></p>
 <p><iframe
@@ -64,7 +64,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Exam</h3>
+<h3 id="exam" tabindex="-1">Exam</h3>
 <p>Problems using synchronization and possible solutions</p>
 <p><strong>Important questions:</strong></p>
 <ul>
@@ -94,11 +94,11 @@ allowfullscreen>
 <li>How can deadlocks be prevented and what are safe/unsafe states?</li>
 <li>Which methods exist to resolve a deadlock and what are their pros/cons?</li>
 </ul>
-<h3>Deadlocks</h3>
+<h3 id="deadlocks" tabindex="-1">Deadlocks</h3>
 <p><img src="assets/lecture.7.deadlock_cars.png" alt=""></p>
-<h3>Why is this happening?</h3>
+<h3 id="why-is-this-happening%3F" tabindex="-1">Why is this happening?</h3>
 <p><img src="assets/lecture.7.deadlock_cars_2.png" alt=""></p>
-<h3>Deadlocking processes</h3>
+<h3 id="deadlocking-processes" tabindex="-1">Deadlocking processes</h3>
 <p>The term <em>deadlock</em> (in computer science) means</p>
 <blockquote>
 <p>[...] A situation in which two or more processes are unable to process because each is waiting for one of the others to do something.</p>
@@ -127,7 +127,7 @@ allowfullscreen>
 </li>
 <li>Active waiting results in an extremely high system load</li>
 </ul>
-<h3>Conditions for deadlocks</h3>
+<h3 id="conditions-for-deadlocks" tabindex="-1">Conditions for deadlocks</h3>
 <p>All of the following three conditions must be fulfilled for a deadlock to occur:</p>
 <ol>
 <li>Exclusive allocation of resources <strong>("mutual exclusion")</strong></li>
@@ -148,7 +148,7 @@ allowfullscreen>
 <li>"circular wait" - A closed chain of processes exists, such that each process holds at least</li>
 </ul>
 <p>one resource needed by the next process in the chain</p>
-<h3>Resources...</h3>
+<h3 id="resources..." tabindex="-1">Resources...</h3>
 <p>are administered by the operating system and provided to the
 processes. There are two kinds of resources:</p>
 <ul>
@@ -167,19 +167,19 @@ processes. There are two kinds of resources:</p>
 <li>Examples: Interrupt requests, signals, messages, data from input devices</li>
 <li>Typical access synchronization: one-sided synchronization</li>
 </ul>
-<h3>Reusable resources</h3>
+<h3 id="reusable-resources" tabindex="-1">Reusable resources</h3>
 <ul>
 <li>A deadlock occurs if two processes each have allocated a reusable resource which is afterwards additionally requested by the respective other process</li>
 <li>Example: A computer has 200 GB of main memory. Two processes allocate the memory in steps. The allocation is blocking</li>
 </ul>
 <p><img src="assets/lecture.7.reusable_resources.png" alt=""></p>
-<h3>Consumable resources</h3>
+<h3 id="consumable-resources" tabindex="-1">Consumable resources</h3>
 <ul>
 <li>A deadlock occurs if two processes each wait for a consumable resource which is produced by the respective other process</li>
 <li>Example: synchronization signals exchanged between the two processes using the semaphore operations wait and signal</li>
 </ul>
 <p><img src="assets/lecture.7.consumable_resources.png" alt=""></p>
-<h3>Resource allocation graphs</h3>
+<h3 id="resource-allocation-graphs" tabindex="-1">Resource allocation graphs</h3>
 <p>... are used to visualize and also automatically detect
 deadlock situations</p>
 <ul>
@@ -209,10 +209,10 @@ deadlock situations</p>
 </li>
 </ul>
 <p><img src="assets/lecture.7.resource_allocation_graphs_2.png" alt=""></p>
-<h3>Classic deadlock: dining philosophers</h3>
+<h3 id="classic-deadlock%3A-dining-philosophers" tabindex="-1">Classic deadlock: dining philosophers</h3>
 <p>Five philosophers spend their life either thinking or eating. And they love eating spaghetti! [1] To eat, the philosophers sit around a round table. Thinking makes you hungry – every philosopher has to eat! To eat spaghetti, a philosopher needs both forks next to her or his plate!
 <img src="assets/lecture.7.dining_philosophers.png" alt=""></p>
-<h4>Deadlocked philosophers?</h4>
+<h4 id="deadlocked-philosophers%3F" tabindex="-1">Deadlocked philosophers?</h4>
 <p>Here, the three first necessary conditions are fulfilled:</p>
 <ul>
 <li>"mutual exclusion"
@@ -232,7 +232,7 @@ deadlock situations</p>
 </li>
 <li>But does this necessarily lead to a deadlock?</li>
 </ul>
-<h4>Dining philosophers: version 1</h4>
+<h4 id="dining-philosophers%3A-version-1" tabindex="-1">Dining philosophers: version 1</h4>
 <pre><code class="hljs language-cpp"><span class="hljs-comment">/* all philosophers are
  concurrent... */</span>
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">phil</span> <span class="hljs-params">(<span class="hljs-type">int</span> who)</span> </span>{
@@ -261,7 +261,7 @@ deadlock situations</p>
 <p>Using a semaphore guarantees mutual exclusion when accessing the forks. By tradition, every philosopher first takes the right and then the left fork.
 <img src="assets/lecture.7.philosophers_1_deadlock.png" alt="">
 <img src="assets/lecture.7.philosophers_1_circular_wait.png" alt=""></p>
-<h4>Dining philosophers: version 2</h4>
+<h4 id="dining-philosophers%3A-version-2" tabindex="-1">Dining philosophers: version 2</h4>
 <p>The problem in version 1 was the consequence of a process switch between the 1. und 2. wait – a critical section. Version 2 protects this critical section using mutual exclusion.</p>
 <pre><code class="hljs language-cpp">semaphore mutex = {<span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>};
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">grab</span> <span class="hljs-params">(<span class="hljs-type">int</span> who)</span> </span>{
@@ -285,7 +285,7 @@ deadlock situations</p>
 </ul>
 </li>
 </ul>
-<h4>Dining philosophers: version 3</h4>
+<h4 id="dining-philosophers%3A-version-3" tabindex="-1">Dining philosophers: version 3</h4>
 <pre><code class="hljs language-cpp"><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">5</span>; <span class="hljs-comment">/* Number of philosophers */</span>
 semaphore mutex = {<span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>}; <span class="hljs-comment">/* Mutual exclusion */</span>
 semaphore s[N] = {{<span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>},...}; <span class="hljs-comment">/* one semaphor per philos. */</span>
@@ -316,7 +316,7 @@ semaphore s[N] = {{<span class="hljs-number">0</span>, <span class="hljs-literal
 }
 </code></pre>
 <p>This solution is deadlock free and has the maximum degree of concurrency.</p>
-<h4>Discussion: dining philosophers</h4>
+<h4 id="discussion%3A-dining-philosophers" tabindex="-1">Discussion: dining philosophers</h4>
 <ul>
 <li>In particular: usually there are many different ways to ensure a system is deadlock free</li>
 <li>Solutions differ in the possible degree of concurrency</li>
@@ -325,7 +325,7 @@ semaphore s[N] = {{<span class="hljs-number">0</span>, <span class="hljs-literal
 <li>Invented by E. Dijkstra (1965)</li>
 <li>Established standard scenario to evaluate and demonstrate operating system and language mechanisms for concurrent programming</li>
 </ul>
-<h3>Preventing deadlocks</h3>
+<h3 id="preventing-deadlocks" tabindex="-1">Preventing deadlocks</h3>
 <ul>
 <li>Indirect methods invalidate one of the conditions 1–3
 <ol>
@@ -349,7 +349,7 @@ semaphore s[N] = {{<span class="hljs-number">0</span>, <span class="hljs-literal
 </ul>
 </li>
 </ul>
-<h4>Preventing deadlocks (2)</h4>
+<h4 id="preventing-deadlocks-(2)" tabindex="-1">Preventing deadlocks (2)</h4>
 <ul>
 <li>Preventing circular waiting (in a running system) using strategic</li>
 </ul>
@@ -376,7 +376,7 @@ requirement</li>
 </li>
 <li>Problem: this approach has to know the maximum resource requirements in advance</li>
 </ul>
-<h3>Safe/unsafe states</h3>
+<h3 id="safe%2Funsafe-states" tabindex="-1">Safe/unsafe states</h3>
 <p>(using the dining philosophers example)</p>
 <ul>
 <li>Starting point: five forks are available
@@ -404,7 +404,7 @@ before taking the first fork</li>
 </li>
 </ul>
 <p><img src="assets/lecture.7.detection_resource_allocation_graph.png" alt=""></p>
-<h4>Safe/unsafe states (2)</h4>
+<h4 id="safe%2Funsafe-states-(2)" tabindex="-1">Safe/unsafe states (2)</h4>
 <p>(using the example of multiple instances of resources)</p>
 <ul>
 <li>Starting point: a primitive Unix system with a maximum of 12 shared memory segments</li>
@@ -422,13 +422,13 @@ before taking the first fork</li>
 </li>
 <li>safe process sequence: P1 → P0 → P2</li>
 </ul>
-<h3>Detection: Banker's algorithm</h3>
+<h3 id="detection%3A-banker's-algorithm" tabindex="-1">Detection: Banker's algorithm</h3>
 <ul>
 <li>Administers process/resource matrices for the current maximum allocation</li>
 <li>Function to find a process sequence that guarantees that the system does not run out of resources even when all processes completely use their "credit limit"</li>
 <li>Predictive application of this function in case of resource allocations</li>
 </ul>
-<h3>Deadlock detection</h3>
+<h3 id="deadlock-detection" tabindex="-1">Deadlock detection</h3>
 <ul>
 <li>Deadlocks are (silently) accepted ("ostrich algorithm")...
 <ul>
@@ -450,7 +450,7 @@ before taking the first fork</li>
 </ul>
 </li>
 </ul>
-<h3>Deadlock resolution</h3>
+<h3 id="deadlock-resolution" tabindex="-1">Deadlock resolution</h3>
 <p>Recovery phase after the detection phase</p>
 <ul>
 <li><strong>Terminate processes</strong> to release resources
@@ -480,7 +480,7 @@ before taking the first fork</li>
 </ul>
 </li>
 </ul>
-<h3>Discussion of prevention methods</h3>
+<h3 id="discussion-of-prevention-methods" tabindex="-1">Discussion of prevention methods</h3>
 <ul>
 <li>Methods to avoid/detect deadlocks have little practically relevance in the context of operating systems</li>
 <li>They are very difficult to implement, require too much overhead and are thus not useable</li>
@@ -496,7 +496,7 @@ critical moments</li>
 </li>
 </ul>
 <p>➙ Prevention methods more commonly used &amp; relevant in practice</p>
-<h3>Conclusion</h3>
+<h3 id="conclusion" tabindex="-1">Conclusion</h3>
 <ul>
 <li>Problems with deadlocks and livelocks
 <ul>

@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
+<h4 id="courses%2Ftdt4186" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">tdt4186</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
@@ -53,8 +53,8 @@
 
       </div>
       <article class="content">
-        <h1>lecture.15</h1>
-<h2>Lecture 15: File systems</h2>
+        <h1 id="lecture.15" tabindex="-1">lecture.15</h1>
+<h2 id="lecture-15%3A-file-systems" tabindex="-1">Lecture 15: File systems</h2>
 <p><a href="lecture.14.html">Previous lecture</a>
 <a href="lecture.16.html">Next lecture</a></p>
 <p><iframe
@@ -64,7 +64,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen>
 </iframe></p>
-<h3>Exam</h3>
+<h3 id="exam" tabindex="-1">Exam</h3>
 <p>Files as an abstraction of disk space and their management</p>
 <p><strong>Important questions:</strong></p>
 <ul>
@@ -87,9 +87,9 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Background storage</h3>
+<h3 id="background-storage" tabindex="-1">Background storage</h3>
 <p><img src="assets/lecture.15background_storage.png" alt=""></p>
-<h3>The file abstraction</h3>
+<h3 id="the-file-abstraction" tabindex="-1">The file abstraction</h3>
 <ul>
 <li>Unix principle: "everything is a file"
 <ul>
@@ -112,7 +112,7 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>Accessing files</h3>
+<h3 id="accessing-files" tabindex="-1">Accessing files</h3>
 <ul>
 <li>Files are identified by per process file descriptors in the OS
 <ul>
@@ -138,12 +138,12 @@ allowfullscreen>
 </ul>
 </li>
 </ul>
-<h3>The Unix virtual file system (VFS) switch</h3>
+<h3 id="the-unix-virtual-file-system-(vfs)-switch" tabindex="-1">The Unix virtual file system (VFS) switch</h3>
 <ul>
 <li>System-wide name space for files</li>
 </ul>
 <p><img src="assets/lecture.15.vfs_switch.png" alt=""></p>
-<h3>Virtual file system: mounting</h3>
+<h3 id="virtual-file-system%3A-mounting" tabindex="-1">Virtual file system: mounting</h3>
 <p>System Call:</p>
 <pre><code class="hljs language-cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mount</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *source, <span class="hljs-type">const</span> <span class="hljs-type">char</span>
   *target, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *filesystemtype,
@@ -157,7 +157,7 @@ System Call:</p>
 <p>Removes the attachment. Note: umount, not unmount!
 Using both system calls requires system administrator privileges!
 When the system is booted, all filesystems listed in /etc/fstab are automatically mounted.</p>
-<h3>File storage</h3>
+<h3 id="file-storage" tabindex="-1">File storage</h3>
 <ul>
 <li>In most cases, files require multiple blocks of storage on disk
 <ul>
@@ -172,7 +172,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </li>
 </ul>
 <p><img src="assets/lecture.15file_storage_blocks.png" alt=""></p>
-<h3>Contigous storage</h3>
+<h3 id="contigous-storage" tabindex="-1">Contigous storage</h3>
 <ul>
 <li>A file is stored in blocks with increasing block numbers
 <ul>
@@ -190,7 +190,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<h3>Contiguous storage problems</h3>
+<h3 id="contiguous-storage-problems" tabindex="-1">Contiguous storage problems</h3>
 <ul>
 <li><strong>Finding free space</strong> on the disk
 <ul>
@@ -210,7 +210,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<h3>Linked list storage</h3>
+<h3 id="linked-list-storage" tabindex="-1">Linked list storage</h3>
 <ul>
 <li>Blocks of a file are linked</li>
 </ul>
@@ -226,7 +226,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </li>
 <li>Files can be extended and shrunk</li>
 </ul>
-<h3>Linked list storage problems</h3>
+<h3 id="linked-list-storage-problems" tabindex="-1">Linked list storage problems</h3>
 <ul>
 <li>Available storage is reduced by amount of <strong>memory used for pointers</strong>
 <ul>
@@ -238,7 +238,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <li><strong>Direct access</strong> to arbitrary file positions is difficult</li>
 <li>Requires <strong>frequent positioning</strong> of the disk head when the data blocks are spread over the disk</li>
 </ul>
-<h3>Linked list storage: FAT</h3>
+<h3 id="linked-list-storage%3A-fat" tabindex="-1">Linked list storage: FAT</h3>
 <ul>
 <li>Links are stored in separate disk blocks
 <ul>
@@ -259,7 +259,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<h3>Linked list storage problems (2)</h3>
+<h3 id="linked-list-storage-problems-(2)" tabindex="-1">Linked list storage problems (2)</h3>
 <ul>
 <li><strong>Additional loading</strong> of at least one block required
 <ul>
@@ -274,7 +274,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <li><strong>Search overhead</strong> for the data block containing information at a given offset inside a file</li>
 <li><strong>Frequent positioning</strong> of the disk head when data blocks are scattered over the disk</li>
 </ul>
-<h3>Discussion: chunks/extents/clusters</h3>
+<h3 id="discussion%3A-chunks%2Fextents%2Fclusters" tabindex="-1">Discussion: chunks/extents/clusters</h3>
 <ul>
 <li>Variation
 <ul>
@@ -300,7 +300,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </li>
 <li>Is used in practice, but does not have significant advantages</li>
 </ul>
-<h3>Indexed storage</h3>
+<h3 id="indexed-storage" tabindex="-1">Indexed storage</h3>
 <ul>
 <li>A special disk block contains block numbers of the data blocks of a file</li>
 </ul>
@@ -317,9 +317,9 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<h3>Indexed storage: Unix inodes</h3>
+<h3 id="indexed-storage%3A-unix-inodes" tabindex="-1">Indexed storage: Unix inodes</h3>
 <p><img src="assets/lecture.15.unix_inodes.png" alt=""></p>
-<h3>Indexed storage: discussion</h3>
+<h3 id="indexed-storage%3A-discussion" tabindex="-1">Indexed storage: discussion</h3>
 <ul>
 <li>Use of multiple indexing levels
 <ul>
@@ -336,7 +336,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<h3>Tree sequential storage</h3>
+<h3 id="tree-sequential-storage" tabindex="-1">Tree sequential storage</h3>
 <ul>
 <li>Used in databases to efficiently find records using a search key
 <ul>
@@ -346,7 +346,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <li>Can also be used to find chunks of files with a certain file offset, e.g. in NTFS, btrfs, IBM JFS2, Apple HFS+ (B+ tree)</li>
 </ul>
 <p><img src="assets/lecture.15.tree_sequential_storage.png" alt=""></p>
-<h3>Free space management</h3>
+<h3 id="free-space-management" tabindex="-1">Free space management</h3>
 <p>Similar to free main memory management</p>
 <ul>
 <li><strong>Bit vectors</strong> indicate for each block if it is used or not</li>
@@ -365,7 +365,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </li>
 </ul>
 <p><img src="assets/lecture.15.free_space_management.png" alt=""></p>
-<h3>Directory management: lists</h3>
+<h3 id="directory-management%3A-lists" tabindex="-1">Directory management: lists</h3>
 <ul>
 <li>Entries of identical length stored one after the other in a list, e.g.</li>
 </ul>
@@ -378,7 +378,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<h3>Using hash functions</h3>
+<h3 id="using-hash-functions" tabindex="-1">Using hash functions</h3>
 <ul>
 <li>Function maps file name to index in directory list</li>
 <li>Enables faster access to the entry</li>
@@ -394,7 +394,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<h3>List elements with variable length</h3>
+<h3 id="list-elements-with-variable-length" tabindex="-1">List elements with variable length</h3>
 <ul>
 <li>Example: used in 4.2 BSD, System V Rel. 4, etc.</li>
 </ul>
@@ -407,7 +407,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<h3>Unix example: System V file system</h3>
+<h3 id="unix-example%3A-system-v-file-system" tabindex="-1">Unix example: System V file system</h3>
 <ul>
 <li>Block organization</li>
 </ul>
@@ -422,7 +422,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 </ul>
 </li>
 </ul>
-<h3>Unix example: Berkeley Fast File System</h3>
+<h3 id="unix-example%3A-berkeley-fast-file-system" tabindex="-1">Unix example: Berkeley Fast File System</h3>
 <ul>
 <li>Block organization (used from 4.2 BSD Unix onwards)</li>
 </ul>
@@ -433,7 +433,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <li>Directories are distributed, files of a directory are stored together</li>
 <li>Advantage: reduced positioning time</li>
 </ul>
-<h3>Unix example: Linux ext2/3/4 file system</h3>
+<h3 id="unix-example%3A-linux-ext2%2F3%2F4-file-system" tabindex="-1">Unix example: Linux ext2/3/4 file system</h3>
 <ul>
 <li>Block organization</li>
 </ul>
@@ -442,7 +442,7 @@ When the system is booted, all filesystems listed in /etc/fstab are automaticall
 <li>Similar layout to BSD FFS</li>
 <li>Block groups are independent of cylinders</li>
 </ul>
-<h3>Conclusion</h3>
+<h3 id="conclusion" tabindex="-1">Conclusion</h3>
 <p>File systems are an operating system abstraction</p>
 <ul>
 <li>Logically related information is represented and stored as a file</li>

@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
+<h4 id="courses%2Fttm4100" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks</a></li>
@@ -88,11 +88,11 @@
 
       </div>
       <article class="content">
-        <h1>DNS - The Internet's Directory Service</h1>
-<h2>DNS - The Internet's Directory Service</h2>
+        <h1 id="dns---the-internet's-directory-service" tabindex="-1">DNS - The Internet's Directory Service</h1>
+<h2 id="dns---the-internet's-directory-service-1" tabindex="-1">DNS - The Internet's Directory Service</h2>
 <p>One identifier for a host is its hostname.However, hostnames provide little, if any, information about the location within the Internet of the host. Furthermore, because hostnames can consist of variable-length alphanumeric characters, they would be difficult to process by routers. For these reasons, hosts are also identified by so-called IP addresses.</p>
 <p>An IP address looks like 121.7.106.83, where each period separates one of the bytes expressed in decimal notation from 0 to 255. An IP address is hierarchical because as we scan the address from left to right, we obtain more and more specific information about where the host is located in the Internet (that is, within which network, in the network of networks).</p>
-<h3>Services Provided by DNS</h3>
+<h3 id="services-provided-by-dns" tabindex="-1">Services Provided by DNS</h3>
 <p>We need a directory service that translates hostnames to IP addresses. This is the main task of the Internet’s domain name system (DNS).</p>
 <p>The desired IP address is often cached in a “nearby” DNS server.</p>
 <p>DNS provides a few other important services in addition to translating hostnames to IP addresses:</p>
@@ -101,8 +101,8 @@
 <li>Mail server aliasing</li>
 <li>Load distribution. For replicated Web servers, a set of IP addresses is associated with one alias hostname. When clients make a DNS query for a name mapped to a set of addresses, the server responds with the entire set of IP addresses, but rotates the ordering of the addresses within each reply.</li>
 </ul>
-<h3>Overview of How DNS Works</h3>
-<h4>A centralized design</h4>
+<h3 id="overview-of-how-dns-works" tabindex="-1">Overview of How DNS Works</h3>
+<h4 id="a-centralized-design" tabindex="-1">A centralized design</h4>
 <p>A simple design for DNS would have one DNS server that contains all the mappings.</p>
 <p>The problems with a centralized design include:</p>
 <ul>
@@ -112,20 +112,20 @@
 <li>Maintenance.</li>
 </ul>
 <p>A centralized database in a single DNS server simply doesn’t scale.</p>
-<h4>A Distributed, Hierarchical Database</h4>
+<h4 id="a-distributed%2C-hierarchical-database" tabindex="-1">A Distributed, Hierarchical Database</h4>
 <p>DNS uses a large number of servers, organized in a hierarchical fashion and distributed around the world. No single DNS server has all of the mappings for all of the hosts in the Internet.</p>
 <p>The client first contacts one of the <em>root servers</em>, which returns IP addresses for <em>TLD servers</em> for the top-level domain com. The client then contacts one of these TLD servers, which returns the IP address of an <em>authoritative server</em> for amazon.com. Finally, the client contacts one of the authoritative servers for amazon.com, which returns the IP address for the hostname www.amazon.com.</p>
 <p>Each ISP has a local DNS server (also called a default name server). DNS caching reduces query traffic.</p>
-<h4>DNS Caching</h4>
+<h4 id="dns-caching" tabindex="-1">DNS Caching</h4>
 <p>In a query chain, when a DNS server receives a DNS reply (containing, for example, a mapping from a hostname to an IP address), it can cache the mapping in its local memory.</p>
 <p>Because hosts and mappings between hostnames and IP addresses are by no means permanent, DNS servers discard cached information after a period of time (often set to two days).</p>
-<h3>DNS Records and Messages</h3>
+<h3 id="dns-records-and-messages" tabindex="-1">DNS Records and Messages</h3>
 <p>A resource record is a four-tuple that contains the following fields: (Name, Value, Type, TTL)</p>
 <p>TTL is the time to live of the resource record; it determines when a resource should be removed from a cache. The meaning of Name and Value depend on Type (A, NS, CNAME, MX).</p>
-<h4>DNS Messages</h4>
+<h4 id="dns-messages" tabindex="-1">DNS Messages</h4>
 <p>Both query and reply messages have the same format.</p>
 <p><img src="assets/2022-05-03-08-56-23.png" alt=""></p>
-<h4>Inserting Records into the DNS Database</h4>
+<h4 id="inserting-records-into-the-dns-database" tabindex="-1">Inserting Records into the DNS Database</h4>
 <p>A registrar is a commercial entity that verifies the uniqueness of the domain name, enters the domain name into the DNS database (as discussed below), and collects a small fee from you for its services.</p>
 
       </article>

@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
+<h4 id="courses%2Fttm4100" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks</a></li>
@@ -88,16 +88,16 @@
 
       </div>
       <article class="content">
-        <h1>Securing TCP Connections TLS</h1>
-<h2>Securing TCP Connections: TLS</h2>
+        <h1 id="securing-tcp-connections-tls" tabindex="-1">Securing TCP Connections TLS</h1>
+<h2 id="securing-tcp-connections%3A-tls" tabindex="-1">Securing TCP Connections: TLS</h2>
 <p>You can identify that TLS is being used by your browser when the URL begins with https: rather than http.</p>
 <p>TLS addresses these issues by enhancing TCP with confidentiality, data integrity, server authentication, and client authentication.</p>
 <p>TLS is often used to provide security to transactions that take place over HTTP. However, because TLS secures TCP, it can be employed by any application that runs over TCP. TLS provides a simple Application Programmer Interface (API) with sockets, which is similar and analogous to TCP’s API.</p>
-<h3>The Big Picture</h3>
+<h3 id="the-big-picture" tabindex="-1">The Big Picture</h3>
 <p>Almost-TLS (and TLS) has three phases: handshake, key derivation, and data transfer.</p>
-<h4>Handshake</h4>
+<h4 id="handshake" tabindex="-1">Handshake</h4>
 <p><img src="assets/2022-05-10-13-39-12.png" alt=""></p>
-<h4>Key Derivation</h4>
+<h4 id="key-derivation" tabindex="-1">Key Derivation</h4>
 <p>In principle, the master key (MS), now shared by Bob and Alice, could be used as the symmetric session key for all subsequent encryption and data integrity checking. It is, however, generally considered safer for Alice and Bob to each use different cryptographic keys, and also to use different keys for encryption and integrity checking. Thus, both Alice and Bob use the MS to generate four keys:</p>
 <ul>
 <li>EB = session encryption key for data sent from Bob to Alice</li>
@@ -105,13 +105,13 @@
 <li>EA = session encryption key for data sent from Alice to Bob</li>
 <li>MA = session HMAC key for data sent from Alice to Bo</li>
 </ul>
-<h4>Data Transfer</h4>
+<h4 id="data-transfer" tabindex="-1">Data Transfer</h4>
 <p>The HMAC is now a hash of the data plus the HMAC key MB plus the current sequence number.</p>
 <p>Alice tracks Bob’s sequence numbers, allowing her to verify the data integrity of a record by including the appropriate sequence number in the HMAC calculation. This use of TLS sequence numbers prevents Trudy from carrying out a woman-in-the-middle attack, such as reordering or replaying segments.</p>
-<h4>TLS Record</h4>
+<h4 id="tls-record" tabindex="-1">TLS Record</h4>
 <p><img src="assets/2022-05-10-13-43-59.png" alt=""></p>
-<h3>A More Complete Picture</h3>
-<h4>TLS Handshake</h4>
+<h3 id="a-more-complete-picture" tabindex="-1">A More Complete Picture</h3>
+<h4 id="tls-handshake" tabindex="-1">TLS Handshake</h4>
 <p>TLS allows Alice and Bob to agree on the cryptographic algorithms at the beginning of the TLS session, during the handshake phase. Additionally, during the handshake phase, Alice and Bob send nonces to each other, which are used in the creation of the session keys (EB, MB, EA, and MA). The steps of the real TLS handshake are as follows:</p>
 <ol>
 <li>The client sends a list of cryptographic algorithms it supports, along with a client nonce.</li>
@@ -123,7 +123,7 @@
 </ol>
 <p>The server can compare this HMAC with the HMAC of the handshake messages it received and sent. If there is an inconsistency, the server can terminate the connection.</p>
 <p>in TLS, nonces are used to defend against the “connection replay attack” and sequence numbers are used to defend against replaying individual packets during an ongoing session.</p>
-<h4>Connection Closure</h4>
+<h4 id="connection-closure" tabindex="-1">Connection Closure</h4>
 <p>having Bob send a TCP FIN segment to Alice. But such a naive design sets the stage for the truncation attack whereby Trudy once again gets in the middle of an ongoing TLS session and ends the session early with a TCP FIN.</p>
 <p>The solution to this problem is to indicate in the type field whether the record serves to terminate the TLS session.</p>
 

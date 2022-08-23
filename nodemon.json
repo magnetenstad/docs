@@ -1,4 +1,4 @@
 {
-  "watch": ["src/", "markdown/"],
+  "watch": ["vault/public"],
   "ext": "md, js"
 }

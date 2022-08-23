@@ -21,7 +21,7 @@
     <div class="page flex-row">
       <div class="links">
         <p></p>
-<h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
+<h4 id="courses%2Fttm4100" tabindex="-1"><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a></h4>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="5G Cellular Networks.html">5G Cellular Networks</a></li>
@@ -88,24 +88,24 @@
 
       </div>
       <article class="content">
-        <h1>The Network Core</h1>
-<h2>1.3 The network core</h2>
-<h3>Packet switching</h3>
-<h4>Store-and-forward Transmission</h4>
+        <h1 id="the-network-core" tabindex="-1">The Network Core</h1>
+<h2 id="1.3-the-network-core" tabindex="-1">1.3 The network core</h2>
+<h3 id="packet-switching" tabindex="-1">Packet switching</h3>
+<h4 id="store-and-forward-transmission" tabindex="-1">Store-and-forward Transmission</h4>
 <p>Most packet switches use store-and-forward transmission at the inputs to the links. Store-and-forward transmission means that the packet switch must receive the entire packet before it can begin to transmit the first bit of the packet onto the outbound link.</p>
 <p>End-to-end delay $d_{end-to-end} = N \frac{L}{R}$</p>
 <p><img src="assets/2022-05-02-07-56-15.png" alt=""></p>
-<h4>Queuing Delays and Packet Loss</h4>
+<h4 id="queuing-delays-and-packet-loss" tabindex="-1">Queuing Delays and Packet Loss</h4>
 <p>For each attached link, the packet switch has an output buffer. If an arriving packet needs to be transmitted onto a link but finds the link busy with the transmission of another packet, the arriving packet must wait in the output buffer.</p>
 <p>If the buffer is completely full, packet loss will occur - either the arriving packet or one of the already-queued packets will be dropped.</p>
-<h4>Forwarding Tables and Routing Protocols</h4>
+<h4 id="forwarding-tables-and-routing-protocols" tabindex="-1">Forwarding Tables and Routing Protocols</h4>
 <p>When a source end system wants to send a packet to a destination end system, the source includes the destination’s IP address in the packet’s header. Each router has a forwarding table that maps destination addresses (or portions of the destination addresses) to that router’s outbound links. Routing protocols that are used to automatically set the forwarding tables.</p>
-<h3>Circuit Switching</h3>
+<h3 id="circuit-switching" tabindex="-1">Circuit Switching</h3>
 <p>In circuit-switched networks, the resources needed along a path (buffers, link transmission rate) to provide for communication between the end systems are reserved for the duration of the communication session between the end systems.</p>
-<h4>Multiplexing in Circuit-Switched Networks</h4>
+<h4 id="multiplexing-in-circuit-switched-networks" tabindex="-1">Multiplexing in Circuit-Switched Networks</h4>
 <p>A circuit in a link is implemented with either frequency-division multiplexing (FDM) or time-division multiplexing (TDM). With FDM, the frequency spectrum of a link is divided up among the connections established across the link. For a TDM link, time is divided into frames of fixed duration, and each frame is divided into a fixed number of time slots.</p>
 <p><img src="assets/2022-05-02-07-52-54.png" alt=""></p>
-<h3>A Network of Networks</h3>
+<h3 id="a-network-of-networks" tabindex="-1">A Network of Networks</h3>
 <p>Our first network structure, <em>Network Structure 1</em>, interconnects all of the access ISPs with a single global transit ISP. The access ISP is said to be a customer and the global transit ISP is said to be a provider.</p>
 <p>This leads to <em>Network Structure 2</em>, which consists of the hundreds of thousands of access ISPs and multiple global transit ISPs. A two-tier hierarchy with global transit providers residing at the top tier and access ISPs at the bottom tier.</p>
 <p>In any given region, there may be a regional ISP to which the access ISPs in the region connect. Each regional ISP then connects to tier-1 ISPs. There is customer-provider relationship at each level of the hierarchy. We refer to this multi-tier hierarchy, which is still only a crude approximation of today’s Internet, as <em>Network Structure 3</em>.</p>
