@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>index.md</title>
+    <link rel="icon" type="image/x-icon" href="../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4100 ✨</a>
+</h4></p>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#objektorientert-programmering">Objektorientert Programmering</a><ol><li><a href="#huskeliste">Huskeliste</a></li><li><a href="#java-grensesnitt">Java Grensesnitt</a><ol><li><a href="#collection-og-list">Collection og List</a></li><li><a href="#iterator-og-iterable">Iterator og Iterable</a><ol><li><a href="#metoder">Metoder</a></li><li><a href="#iterasjon">Iterasjon</a></li></ol></li></ol></li><li><a href="#java-funksjonelle-grensesnitt">Java Funksjonelle Grensesnitt</a><ol><li><a href="#predicate">Predicate</a></li><li><a href="#comparator-og-comparable">Comparator og Comparable</a></li></ol></li><li><a href="#java-klasser">Java Klasser</a><ol><li><a href="#scanner">Scanner</a><ol><li><a href="#lese-fra-fil">Lese fra fil</a></li><li><a href="#lese-fra-stream-(og-user-input)">Lese fra stream (og user input)</a></li></ol></li><li><a href="#string">String</a><ol><li><a href="#strengmanipulasjon">Strengmanipulasjon</a></li></ol></li><li><a href="#random">Random</a><ol><li><a href="#math.random()">Math.random()</a></li><li><a href="#random-double">Random double </a></li><li><a href="#random-int">Random int </a></li></ol></li><li><a href="#stream">Stream</a><ol><li><a href="#collect---fra-liste-til-stream-og-tilbake">collect - fra liste til stream og tilbake</a></li><li><a href="#filter---bestemme-et-kriterium">filter - bestemme et kriterium</a></li><li><a href="#findany---hente-ut-et-element">findAny - hente ut et element</a></li><li><a href="#count---telle-antall-i-streamen">count - telle antall i streamen</a></li><li><a href="#sorted---sortere-en-stream">sorted - sortere en stream</a></li><li><a href="#anymatch">anyMatch</a></li></ol></li></ol></li><li><a href="#teknikker">Teknikker</a><ol><li><a href="#observerat%C3%B8r-og-observert">Observeratør og observert</a></li></ol></li><li><a href="#junit-5---tester">JUnit 5 - Tester</a><ol><li><a href="#metoder-1">Metoder</a></li><li><a href="#annotasjoner">Annotasjoner</a></li></ol></li><li><a href="#fxml">FXML</a><ol><li><a href="#gettere-og-settere">Gettere og settere</a></li><li><a href="#rullegardin">Rullegardin</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="objektorientert-programmering" tabindex="-1">Objektorientert Programmering</h1>
+<h2 id="huskeliste" tabindex="-1">Huskeliste</h2>
+<p>Etter å ha skrevet en klasse er det nyttig å sjekke at man har:</p>
+<ul>
+<li>Arvet og/eller implementert riktige superklasser/grensesnitt.</li>
+<li>Valgt riktig av class, abstract class og interface.</li>
+<li>Gjort felter private (eller protected ved arv).</li>
+<li>Gjort felter som ikke skal endres final.</li>
+<li>Initialisert felter som ikke skal være null, enten ved deklarasjon eller i konstruktør.</li>
+<li>For hver metode:
+<ul>
+<li>Gjort private dersom den bare brukes internt, public ellers.</li>
+<li>Validert argumentene.</li>
+<li>Kastet hensiktsmessige exceptions.</li>
+<li>Innkapsling: returnere <em>kopi av</em> f.eks. liste</li>
+<li>Gjort static dersom den er helt uavhengig av objektets tilstand.</li>
+<li>Skrevet @Override dersom den overskriver.</li>
+<li>Gjort abstract dersom den ikke er implementert og klassen er abstract.</li>
+</ul>
+</li>
+<li>Fikset alle error (rød strek).</li>
+<li>Testet metodene vha. en main-metode.</li>
+<li>Importert riktig og fjernet ubrukte importeringer.</li>
+</ul>
+<h2 id="java-grensesnitt" tabindex="-1">Java Grensesnitt</h2>
+<h3 id="collection-og-list" tabindex="-1">Collection og List</h3>
+<h3 id="iterator-og-iterable" tabindex="-1">Iterator og Iterable</h3>
+<h4 id="metoder" tabindex="-1">Metoder</h4>
+<p>Iterator-grensesnittet har metodene</p>
+<ul>
+<li>boolean hasNext();</li>
+<li>T next();</li>
+</ul>
+<p>Iterable-grensesnittet har metoden</p>
+<ul>
+<li>Iterator<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo></mrow><annotation encoding="application/x-tex">&lt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span></span></span></span>T<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo></mrow><annotation encoding="application/x-tex">&gt;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span></span></span></span> iterator();</li>
+</ul>
+<p>Man kan altså alltid får en Iterator fra en Iterable.</p>
+<h4 id="iterasjon" tabindex="-1">Iterasjon</h4>
+<p>Å iterere gjennom en iterator</p>
+<pre><code class="hljs language-java">Iterator&lt;T&gt; iterator;
+<span class="hljs-keyword">while</span> (iterator.hasNext()) {
+  <span class="hljs-type">T</span> <span class="hljs-variable">element</span> <span class="hljs-operator">=</span> iterator.next();
+}
+</code></pre>
+<p>Å iterere gjennom en iterable</p>
+<pre><code class="hljs language-java">Iterable&lt;T&gt; iterable;
+<span class="hljs-keyword">for</span> (T element : iterable) {
+}
+</code></pre>
+<p>2</p>
+<h2 id="java-funksjonelle-grensesnitt" tabindex="-1">Java Funksjonelle Grensesnitt</h2>
+<h3 id="predicate" tabindex="-1">Predicate</h3>
+<p>// TODO</p>
+<h3 id="comparator-og-comparable" tabindex="-1">Comparator og Comparable</h3>
+<p>Klasser som implementerer Comparator-grensesnittet har en metode int compare().\Eksempel:</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Person o1, Person o2)</span> {
+  <span class="hljs-keyword">return</span> o1.getAge()- o2.getAge()
+}
+</code></pre>
+<p>Man kan også definere en Comparator som en funksjon:</p>
+<pre><code class="hljs language-java">Comparator&lt;Book&gt; comparator = (book1, book2) -&gt;
+  book1.getName().compareTo(book2.getName());
+</code></pre>
+<p>Klasser som implementerer Comparable har en metode compareTo(). En Collection med objekter som er Comparable kan sorteres ved Collections.sort(collection). String og Integer er eksempler på klasser som er Comparable.</p>
+<h2 id="java-klasser" tabindex="-1">Java Klasser</h2>
+<h3 id="scanner" tabindex="-1">Scanner</h3>
+<h4 id="lese-fra-fil" tabindex="-1">Lese fra fil</h4>
+<pre><code class="hljs language-java"><span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(filename);
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(file);
+  <span class="hljs-keyword">while</span>(scanner.hasNextLine()) {
+    <span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> scanner.nextLine();
+    <span class="hljs-comment">// Do something with the line</span>
+  }
+  scanner.close();
+} <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+  e.printStackTrace();
+}
+</code></pre>
+<h4 id="lese-fra-stream-(og-user-input)" tabindex="-1">Lese fra stream (og user input)</h4>
+<pre><code class="hljs language-java"><span class="hljs-type">Stream</span> <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> System.in; <span class="hljs-comment">// For user input</span>
+<span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(stream);
+<span class="hljs-keyword">while</span>(scanner.hasNextLine()) {
+  <span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> scanner.nextLine();
+  <span class="hljs-comment">// Do something with the line</span>
+}
+</code></pre>
+<h3 id="string" tabindex="-1">String</h3>
+<h4 id="strengmanipulasjon" tabindex="-1">Strengmanipulasjon</h4>
+<p>Man kan dele opp strenger ved bruk av s.substring(pos).</p>
+<ul>
+<li>String s.substring(pos)</li>
+<li>boolean s.endsWith("]")</li>
+<li>boolean s.startsWith("[")</li>
+<li>String[] s.split(",")</li>
+</ul>
+<p>Skal man samle sammen strenger bruk StringBuilder. Her kan man ta builder.append(s)</p>
+<h3 id="random" tabindex="-1">Random</h3>
+<h4 id="math.random()" tabindex="-1">Math.random()</h4>
+<p>Math.random() returnerer en tilfeldig double mellom 0 og 1.</p>
+<h4 id="random-double" tabindex="-1">Random double <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∈</mo><mo stretchy="false">[</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo separator="true">,</mo><mtext> </mtext><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\in [min,\,max]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">m</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">m</span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mclose">]</span></span></span></span></h4>
+<pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">double</span> <span class="hljs-title function_">random_range</span><span class="hljs-params">(<span class="hljs-type">double</span> min, <span class="hljs-type">double</span> max)</span> {
+  <span class="hljs-keyword">return</span> Math.random() _ (max - min + <span class="hljs-number">1</span>) + min;
+}
+</code></pre>
+<h4 id="random-int" tabindex="-1">Random int <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∈</mo><mo stretchy="false">[</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo separator="true">,</mo><mtext> </mtext><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\in [min,\,max]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">m</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">m</span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mclose">]</span></span></span></span></h4>
+<pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">random_range</span><span class="hljs-params">(<span class="hljs-type">int</span> min, <span class="hljs-type">int</span> max)</span> {
+  <span class="hljs-keyword">return</span> (<span class="hljs-type">int</span>) (Math.random() _ (max - min + <span class="hljs-number">1</span>)) + min;
+}
+</code></pre>
+<h3 id="stream" tabindex="-1">Stream</h3>
+<p>Ved hjelp av streams kan man forenkle en rekke problemer som har å gjøre med sett av objekter.\
+Stream fra Collection:</p>
+<pre><code class="hljs language-java">Collection&lt;Object&gt; objects;
+objects.stream()...
+</code></pre>
+<p>Stream fra array:</p>
+<pre><code class="hljs language-java">Object[] objects;
+Arrays.stream(objects)...
+</code></pre>
+<h4 id="collect---fra-liste-til-stream-og-tilbake" tabindex="-1">collect - fra liste til stream og tilbake</h4>
+<pre><code class="hljs language-java">books = books.stream()
+  .collect(Collectors.toList());
+</code></pre>
+<h4 id="filter---bestemme-et-kriterium" tabindex="-1">filter - bestemme et kriterium</h4>
+<pre><code class="hljs language-java">List&lt;Book&gt; longBooks;
+longBooks = books.stream()
+  .filter(book -&gt; book.getPages() &gt; <span class="hljs-number">500</span>)
+  .collect(Collectors.toList());
+</code></pre>
+<h4 id="findany---hente-ut-et-element" tabindex="-1">findAny - hente ut et element</h4>
+<pre><code class="hljs language-java">Book myBook;
+Person me;
+myBook = books.stream()
+  .filter(book -&gt; book.getOwner() == me)
+  .findAny()
+  .orElse(<span class="hljs-literal">null</span>);
+</code></pre>
+<h4 id="count---telle-antall-i-streamen" tabindex="-1">count - telle antall i streamen</h4>
+<pre><code class="hljs language-java"><span class="hljs-type">int</span> numberOfBooksIOwn;
+Person me;
+numberOfBooksIOwn = (<span class="hljs-type">int</span>) books.stream()
+  .filter(book -&gt; book.getOwner() == me)
+  .count();
+</code></pre>
+<h4 id="sorted---sortere-en-stream" tabindex="-1">sorted - sortere en stream</h4>
+<pre><code class="hljs language-java">Comparator&lt;Book&gt; comparator = (book1, book2) -&gt; {
+<span class="hljs-keyword">return</span> book1.getName().compareTo(book2.getName());
+};
+List&lt;Book&gt; sortedBooks;
+sortedBooks = books.stream()
+  .sorted(comparator)
+  .collect(Collectors.toList());
+</code></pre>
+<h4 id="anymatch" tabindex="-1">anyMatch</h4>
+<pre><code class="hljs language-java"><span class="hljs-type">boolean</span> doesHarryPotterExist;
+doesHarryPotterExist = books.stream()
+  .anyMatch(book -&gt; book.getName().equals(<span class="hljs-string">"Harry Potter"</span>));
+</code></pre>
+<h2 id="teknikker" tabindex="-1">Teknikker</h2>
+<h3 id="observerat%C3%B8r-og-observert" tabindex="-1">Observeratør og observert</h3>
+<p>Denne teknikken sørger for at informasjon oppdateres i nødvendige objekter slik at den er konsistent. Man lager gjerne en interface for observatøren. Merk: <em>Observer</em> og <em>listener</em> omtaler det samme.
+Nyttige metoder i observert:</p>
+<ul>
+<li>addListener</li>
+<li>removeListener</li>
+<li>notifyListeners</li>
+</ul>
+<p>Nyttige metoder i observatør:</p>
+<ul>
+<li>receiveUpdate</li>
+</ul>
+<h2 id="junit-5---tester" tabindex="-1">JUnit 5 - Tester</h2>
+<p>Importering av junit skal gjerne være på formen:</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.junit.jupiter.api.Assertions._;
+<span class="hljs-keyword">import</span> org.junit.jupiter.api._;
+</code></pre>
+<h3 id="metoder-1" tabindex="-1">Metoder</h3>
+<ul>
+<li>assertTrue</li>
+<li>assertFalse</li>
+<li>assertEquals</li>
+<li>assertNotEquals</li>
+<li>assertThrows</li>
+<li>assertNull</li>
+<li>fail</li>
+</ul>
+<h3 id="annotasjoner" tabindex="-1">Annotasjoner</h3>
+<ul>
+<li>@BeforeAll</li>
+<li>@BeforeEach</li>
+<li>@Test</li>
+<li>@AfterEach</li>
+<li>@AfterAll</li>
+</ul>
+<h2 id="fxml" tabindex="-1">FXML</h2>
+<h3 id="gettere-og-settere" tabindex="-1">Gettere og settere</h3>
+<p>For de fleste klasser i JavaFX gjelder det at en henter verdi/tekst ved .getValue()/.getText() og setter verdi/tekst ved .setValue()/.setText().</p>
+<h3 id="rullegardin" tabindex="-1">Rullegardin</h3>
+<p>Hvis det er flere valgmuligheter så må man bruke en metode for å hente den</p>
+<p>Eksempel</p>
+<pre><code class="hljs language-java"><span class="hljs-type">char</span> <span class="hljs-variable">item</span> <span class="hljs-operator">=</span> typeSelector.getSelectionModel().getSelectedItem();
+</code></pre>
+
+      </article>
+      </div>
+  </body>
+</html>
