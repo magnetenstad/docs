@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Evolution of Transport-Layer Functionality.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">ttm4100/</a><a href="./index.html">Transport Layer</a>
+</h4></p>
+<ul>
+<li>📄 <a href="Connection-Oriented Transport TCP.html">Connection-Oriented Transport TCP</a></li>
+<li>📄 <a href="Connectionless Transport UDP.html">Connectionless Transport UDP</a></li>
+<li>📄 <a href="Evolution of Transport-Layer Functionality.html">Evolution of Transport-Layer Functionality ✨</a></li>
+<li>📄 <a href="Introduction to the Transport Layer and Transport Layer Services.html">Introduction to the Transport Layer and Transport Layer Services</a></li>
+<li>📄 <a href="Multiplexing and Demultiplexing in the Transport Layer.html">Multiplexing and Demultiplexing in the Transport Layer</a></li>
+<li>📄 <a href="Principles of Congestion Control.html">Principles of Congestion Control</a></li>
+<li>📄 <a href="Principles of Reliable Data Transfer.html">Principles of Reliable Data Transfer</a></li>
+<li>📄 <a href="TCP Congestion Control.html">TCP Congestion Control</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#evolution-of-transport-layer-functionality">Evolution of Transport-Layer Functionality</a><ol><li><a href="#evolution-of-transport-layer-functionality-1">Evolution of Transport-Layer Functionality</a><ol><li><a href="#quic%3A-quick-udp-internet-connections">QUIC: Quick UDP Internet Connections</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="evolution-of-transport-layer-functionality" tabindex="-1">Evolution of Transport-Layer Functionality</h1>
+<h2 id="evolution-of-transport-layer-functionality-1" tabindex="-1">Evolution of Transport-Layer Functionality</h2>
+<p>We’ve seen a rich evolution in the use of TCP over the past decade. In addition to “classic” versions of TCP such as TCP Tahoe and Reno, there are now several newer versions of TCP that have been developed, implemented, deployed, and are in significant use today. These include TCP CUBIC, DCTCP, CTCP, BBR, and more.</p>
+<p>Perhaps the only common features of these protocols is that they use the TCP segment format and that they should compete “fairly” amongst themselves in the face of network congestion!</p>
+<h4 id="quic%3A-quick-udp-internet-connections" tabindex="-1">QUIC: Quick UDP Internet Connections</h4>
+<p>QUIC is a new application-layer protocol designed from the ground up to improve the performance of transport-layer services for secure HTTP.</p>
+<p>QUIC is an application-layer protocol, using UDP as its underlying transport-layer protocol, and is designed to interface above specifically to a simplified but evolved version of HTTP/2.</p>
+<p>Some of QUIC’s major features include:</p>
+<ul>
+<li>Connection-Oriented and Secure.</li>
+<li>Streams. QUIC allows several different application-level “streams” to be multiplexed through a single QUIC connection.</li>
+<li>Reliable, TCP-friendly congestion-controlled data transfer.</li>
+</ul>
+
+      </article>
+      </div>
+  </body>
+</html>

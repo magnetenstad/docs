@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Streaming Stored Video.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">ttm4100/</a><a href="./index.html">Multimedia Networking</a>
+</h4></p>
+<ul>
+<li>📄 <a href="Multimedia Networking Applications.html">Multimedia Networking Applications</a></li>
+<li>📄 <a href="Protocols for Real-Time Conversational Applications.html">Protocols for Real-Time Conversational Applications</a></li>
+<li>📄 <a href="Streaming Stored Video.html">Streaming Stored Video ✨</a></li>
+<li>📄 <a href="Voice-over-IP.html">Voice-over-IP</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#streaming-stored-video">Streaming Stored Video</a><ol><li><a href="#streaming-stored-video-1">Streaming Stored Video</a><ol><li><a href="#udp-streaming">UDP Streaming</a></li><li><a href="#http-streaming">HTTP Streaming</a><ol><li><a href="#prefetching-video">Prefetching Video</a></li><li><a href="#client-application-buffer-and-tcp-buffers">Client Application Buffer and TCP Buffers</a></li><li><a href="#analysis-of-video-streaming">Analysis of Video Streaming</a></li><li><a href="#early-termination-and-repositioning-the-video">Early Termination and Repositioning the Video</a></li></ol></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="streaming-stored-video" tabindex="-1">Streaming Stored Video</h1>
+<h2 id="streaming-stored-video-1" tabindex="-1">Streaming Stored Video</h2>
+<p>Streaming video systems can be classified into three categores: UDP streaming, HTTP streaming and adaptive HTTP streaming.</p>
+<p>Common characteristic: extensive use of client-side application buffering to mitigate the effects of varying end-to-end delay.</p>
+<p><img src="../assets/2022-05-09-21-57-47.png" alt=""></p>
+<h3 id="udp-streaming" tabindex="-1">UDP Streaming</h3>
+<p>Because UDP does not employ a congestion-control mechanism, the server can push packets into the network at the consumption rate of the video without the rate-control restrictions of TCP.</p>
+<p>However, due to varying amount of bandwidth, constant-rate UDP streaming can fail to provide continous playout. It also requires a media control server, such as an RTSP server to process interactivity requests and to track client state.</p>
+<p>Many firewalls are configured to block UDP traffic.</p>
+<h3 id="http-streaming" tabindex="-1">HTTP Streaming</h3>
+<p>The client establishes a TCP connection and issues an HTTP GET request for the video url.</p>
+<p>Buffering and prefetching mitagate the delays of TCP's congestion control mechanisms.</p>
+<h4 id="prefetching-video" tabindex="-1">Prefetching Video</h4>
+<p>The client can attempt to download the video at a rate higher than the consumption rate, thereby prefetching video frames.</p>
+<h4 id="client-application-buffer-and-tcp-buffers" tabindex="-1">Client Application Buffer and TCP Buffers</h4>
+<p><img src="../assets/2022-05-10-09-18-55.png" alt=""></p>
+<p>When the user pauses the video, bits are not removed from the client application buffer, event though bits continue to enter the buffer from the server - and may become full. This causes the TCP buffers to become full, forcing the server to reduce its rate. A full client application buffer indireclty imposes a limit on the rate that video can be sent from server to client when streaming over HTTP.</p>
+<h4 id="analysis-of-video-streaming" tabindex="-1">Analysis of Video Streaming</h4>
+<p><img src="../assets/2022-05-10-09-22-30.png" alt=""></p>
+<p>The initial buffering delay <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>p</mi></msub><mo>=</mo><mi>Q</mi><mi mathvariant="normal">/</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">t_p = Q/x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">Q</span><span class="mord">/</span><span class="mord mathnormal">x</span></span></span></span>.</p>
+<p>When the available rate in the network is less than the video rate, playout will alternate between periods of continous playout and periods of freezing.</p>
+<h4 id="early-termination-and-repositioning-the-video" tabindex="-1">Early Termination and Repositioning the Video</h4>
+<p>The HTTP byte-range header in the HTTP GET request message specifies the range of bytes the client currently wants to retrieve from the desired video. This is useful for user repositioning.</p>
+<p>There is significant wasted bandwidth in the Internet due to early termination, which can be quite costly.</p>
+
+      </article>
+      </div>
+  </body>
+</html>

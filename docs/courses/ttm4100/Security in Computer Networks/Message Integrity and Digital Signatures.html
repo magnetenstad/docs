@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Message Integrity and Digital Signatures.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">ttm4100/</a><a href="./index.html">Security in Computer Networks</a>
+</h4></p>
+<ul>
+<li>📄 <a href="Message Integrity and Digital Signatures.html">Message Integrity and Digital Signatures ✨</a></li>
+<li>📄 <a href="Network-Layer Security IPsec and Virtual Private Networks.html">Network-Layer Security IPsec and Virtual Private Networks</a></li>
+<li>📄 <a href="Operational Security Firewalls and Intrusion Detection Systems.html">Operational Security Firewalls and Intrusion Detection Systems</a></li>
+<li>📄 <a href="Principles of Cryptography.html">Principles of Cryptography</a></li>
+<li>📄 <a href="Securing E-mail.html">Securing E-mail</a></li>
+<li>📄 <a href="Securing TCP Connections TLS.html">Securing TCP Connections TLS</a></li>
+<li>📄 <a href="Securing Wireless LANs and 4G5G Cellular Networks.html">Securing Wireless LANs and 4G5G Cellular Networks</a></li>
+<li>📄 <a href="What is Network Security.html">What is Network Security</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#message-integrity-and-digital-signatures">Message Integrity and Digital Signatures</a><ol><li><a href="#message-integrity-and-digital-signatures-1">Message Integrity and Digital Signatures</a><ol><li><a href="#cryptographic-hash-functions">Cryptographic Hash Functions</a></li><li><a href="#message-authentication-code">Message Authentication Code</a></li><li><a href="#digital-signatures">Digital Signatures</a><ol><li><a href="#public-key-certification">Public Key Certification</a></li></ol></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="message-integrity-and-digital-signatures" tabindex="-1">Message Integrity and Digital Signatures</h1>
+<h2 id="message-integrity-and-digital-signatures-1" tabindex="-1">Message Integrity and Digital Signatures</h2>
+<p>To authenticate a message, one needs to verify:</p>
+<ol>
+<li>The message indeed originated from Alice.</li>
+<li>The message was not tampered with on its way to Bob.</li>
+</ol>
+<h3 id="cryptographic-hash-functions" tabindex="-1">Cryptographic Hash Functions</h3>
+<p>a hash function takes an input, m, and computes a fixed-size string H(m) known as a hash. A cryptographic hash function is required to have the following additional property:</p>
+<ul>
+<li>It is computationally infeasible to find any two different messages x and y such that H(x) = H(y).</li>
+</ul>
+<p><img src="../assets/2022-05-10-12-09-02.png" alt=""></p>
+<p>The MD5 hash algorithm and the Secure Hash Algorithm (SHA-1) are in wide use today.</p>
+<h3 id="message-authentication-code" tabindex="-1">Message Authentication Code</h3>
+<p>To perform message integrity, in addition to using cryptographic hash functions, Alice and Bob will need a shared secret s. This shared secret, which is nothing more than a string of bits, is called the authentication key. Hash(message + secret) is called the message authentication code (MAC).</p>
+<h3 id="digital-signatures" tabindex="-1">Digital Signatures</h3>
+<p>digital signing should be done in a way that is verifiable and nonforgeable.</p>
+<p>To sign this document, Bob simply uses his private key.</p>
+<p><img src="../assets/2022-05-10-12-14-09.png" alt=""></p>
+<p><img src="../assets/2022-05-10-12-20-22.png" alt=""></p>
+<h4 id="public-key-certification" tabindex="-1">Public Key Certification</h4>
+<p>An important application of digital signatures is public key certification, that is, certifying that a public key belongs to a specific entity.</p>
+<p>for public key cryptography to be useful, you need to be able to verify that you have the actual public key of the entity</p>
+<p>Binding a public key to a particular entity is typically done by a Certification Authority (CA), whose job is to validate identities and issue certificates. A CA has the following roles:</p>
+<ol>
+<li>A CA verifies that an entity (a person, a router, and so on) is who it says it is.</li>
+<li>Once the CA verifies the identity of the entity, the CA creates a certificate that binds the public key of the entity to the identity.</li>
+</ol>
+<p><img src="../assets/2022-05-10-12-25-44.png" alt=""></p>
+
+      </article>
+      </div>
+  </body>
+</html>

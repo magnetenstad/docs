@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Electronic Mail in the Internet.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">ttm4100/</a><a href="./index.html">Application Layer</a>
+</h4></p>
+<ul>
+<li>📄 <a href="DNS - The Internet's Directory Service.html">DNS - The Internet's Directory Service</a></li>
+<li>📄 <a href="Electronic Mail in the Internet.html">Electronic Mail in the Internet ✨</a></li>
+<li>📄 <a href="Peer-to-Peer File Distribution.html">Peer-to-Peer File Distribution</a></li>
+<li>📄 <a href="Principles of Network Applications.html">Principles of Network Applications</a></li>
+<li>📄 <a href="Socket Programming Creating Network Applications.html">Socket Programming Creating Network Applications</a></li>
+<li>📄 <a href="The Web and HTTP.html">The Web and HTTP</a></li>
+<li>📄 <a href="Video Streaming and Content Distribution Networks.html">Video Streaming and Content Distribution Networks</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#electronic-mail-in-the-internet">Electronic Mail in the Internet</a><ol><li><a href="#electronic-mail-in-the-internet-1">Electronic Mail in the Internet</a><ol><li><a href="#smtp">SMTP</a></li><li><a href="#mail-message-formats">Mail Message Formats</a></li><li><a href="#mail-access-protocols">Mail Access Protocols</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="electronic-mail-in-the-internet" tabindex="-1">Electronic Mail in the Internet</h1>
+<h2 id="electronic-mail-in-the-internet-1" tabindex="-1">Electronic Mail in the Internet</h2>
+<p>The Internet mail system has three major components: user agents, mail servers, and the Simple Mail Transfer Protocol (SMTP).</p>
+<p>SMTP is the principal application-layer protocol for Internet electronic mail. It uses the reliable data transfer service of TCP to transfer mail from the sender’s mail server to the recipient’s mail server.</p>
+<h3 id="smtp" tabindex="-1">SMTP</h3>
+<p>SMTP is a push protocol.</p>
+<p><img src="../assets/2022-05-02-18-22-52.png" alt=""></p>
+<h3 id="mail-message-formats" tabindex="-1">Mail Message Formats</h3>
+<p>Every header must have a From: header line and a To: header line; a header may include a Subject: header line as well as other optional header lines. After the message header, a blank line follows; then the message body (in ASCII) follows.</p>
+<h3 id="mail-access-protocols" tabindex="-1">Mail Access Protocols</h3>
+<p>Today, there are two common ways to retrieve his e-mail from a mail server. Both the HTTP and IMAP approaches allows to manage folders, maintained in Bob’s mail server. Bob can move messages into the folders he creates, delete messages, mark messages as important, and so on.</p>
+
+      </article>
+      </div>
+  </body>
+</html>

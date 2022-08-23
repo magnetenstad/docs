@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Multiplexing and Demultiplexing in the Transport Layer.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">ttm4100/</a><a href="./index.html">Transport Layer</a>
+</h4></p>
+<ul>
+<li>📄 <a href="Connection-Oriented Transport TCP.html">Connection-Oriented Transport TCP</a></li>
+<li>📄 <a href="Connectionless Transport UDP.html">Connectionless Transport UDP</a></li>
+<li>📄 <a href="Evolution of Transport-Layer Functionality.html">Evolution of Transport-Layer Functionality</a></li>
+<li>📄 <a href="Introduction to the Transport Layer and Transport Layer Services.html">Introduction to the Transport Layer and Transport Layer Services</a></li>
+<li>📄 <a href="Multiplexing and Demultiplexing in the Transport Layer.html">Multiplexing and Demultiplexing in the Transport Layer ✨</a></li>
+<li>📄 <a href="Principles of Congestion Control.html">Principles of Congestion Control</a></li>
+<li>📄 <a href="Principles of Reliable Data Transfer.html">Principles of Reliable Data Transfer</a></li>
+<li>📄 <a href="TCP Congestion Control.html">TCP Congestion Control</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#multiplexing-and-demultiplexing">Multiplexing and Demultiplexing</a><ol><li><a href="#connectionless-multiplexing-and-demultiplexing">Connectionless Multiplexing and Demultiplexing</a></li><li><a href="#connection-oriented-multiplexing-and-demultiplexing">Connection-Oriented Multiplexing and Demultiplexing</a></li><li><a href="#web-servers-and-tcp">Web Servers and TCP</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="multiplexing-and-demultiplexing" tabindex="-1">Multiplexing and Demultiplexing</h1>
+<p>This job of delivering the data in a transport-layer segment to the correct socket is called demultiplexing. The job of gathering data chunks at the source host from different sockets, encapsulating each data chunk with header information (that will later be used in demultiplexing) to create segments, and passing the segments to the network layer is called multiplexing.</p>
+<p>Transport-layer multiplexing requires (1) that sockets have unique identifiers, and (2) that each segment have special fields that indicate the socket to which the segment is to be delivered. These special fields, illustrated in Figure 3.3, are the source port number field and the destination port number field.</p>
+<p>When we develop a new application, we must assign the application a port number.</p>
+<h4 id="connectionless-multiplexing-and-demultiplexing" tabindex="-1">Connectionless Multiplexing and Demultiplexing</h4>
+<p>It is important to note that a UDP socket is fully identified by a two-tuple consisting of a destination IP address and a destination port number. As a consequence, if two UDP segments have different source IP addresses and/or source port numbers, but have the same destination IP address and destination port number, then the two segments will be directed to the same destination process via the same destination socket.</p>
+<h4 id="connection-oriented-multiplexing-and-demultiplexing" tabindex="-1">Connection-Oriented Multiplexing and Demultiplexing</h4>
+<p>One subtle difference between a TCP socket and a UDP socket is that a TCP socket is identified by a four-tuple: (source IP address, source port number, destination IP address, destination port number).</p>
+<h4 id="web-servers-and-tcp" tabindex="-1">Web Servers and TCP</h4>
+<p><img src="../assets/2022-05-04-17-45-11.png" alt=""></p>
+
+      </article>
+      </div>
+  </body>
+</html>

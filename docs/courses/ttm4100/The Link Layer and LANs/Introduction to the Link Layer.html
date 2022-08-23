@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Introduction to the Link Layer.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">ttm4100/</a><a href="./index.html">The Link Layer and LANs</a>
+</h4></p>
+<ul>
+<li>📄 <a href="Error-Detection and -Correction Techniques.html">Error-Detection and -Correction Techniques</a></li>
+<li>📄 <a href="Introduction to the Link Layer.html">Introduction to the Link Layer ✨</a></li>
+<li>📄 <a href="Multiple Access Links and Protocols.html">Multiple Access Links and Protocols</a></li>
+<li>📄 <a href="Switched Local Area Networks.html">Switched Local Area Networks</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#introduction-to-the-link-layer">Introduction to the Link Layer</a><ol><li><a href="#introduction-to-the-link-layer-1">Introduction to the Link Layer</a><ol><li><a href="#the-services-provided-by-the-link-layer">The Services Provided by the Link Layer</a></li><li><a href="#where-is-the-link-layer-implemented%3F">Where Is the Link Layer Implemented?</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="introduction-to-the-link-layer" tabindex="-1">Introduction to the Link Layer</h1>
+<h2 id="introduction-to-the-link-layer-1" tabindex="-1">Introduction to the Link Layer</h2>
+<h3 id="the-services-provided-by-the-link-layer" tabindex="-1">The Services Provided by the Link Layer</h3>
+<p>Possible services that can be offered by a link-layer protocol include:</p>
+<ul>
+<li>Framing. A frame consists of a data field, in which the network-layer datagram is inserted, and a number of header fields. The structure of the frame is specified by the link-layer protocol.</li>
+<li>Link access. A medium access control (MAC) protocol specifies the rules by which a frame is transmitted onto the link, and serves to coordinate the frame transmissions of the many nodes.</li>
+<li>Reliable delivery.</li>
+<li>Error detection and correction.</li>
+</ul>
+<h3 id="where-is-the-link-layer-implemented%3F" tabindex="-1">Where Is the Link Layer Implemented?</h3>
+<p>For the most part, the link layer is implemented on a chip called the network adapter, also sometimes known as a network interface controller (NIC).</p>
+<p>If the link layer performs error detection, then it is the sending controller that sets the error-detection bits in the frame header and it is the receiving controller that performs error detection.</p>
+<p><img src="../assets/2022-05-08-16-14-03.png" alt=""></p>
+
+      </article>
+      </div>
+  </body>
+</html>

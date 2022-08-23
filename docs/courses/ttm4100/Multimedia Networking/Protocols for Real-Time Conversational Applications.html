@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Protocols for Real-Time Conversational Applications.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">ttm4100/</a><a href="./index.html">Multimedia Networking</a>
+</h4></p>
+<ul>
+<li>📄 <a href="Multimedia Networking Applications.html">Multimedia Networking Applications</a></li>
+<li>📄 <a href="Protocols for Real-Time Conversational Applications.html">Protocols for Real-Time Conversational Applications ✨</a></li>
+<li>📄 <a href="Streaming Stored Video.html">Streaming Stored Video</a></li>
+<li>📄 <a href="Voice-over-IP.html">Voice-over-IP</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#protocols-for-real-time-conversational-applications">Protocols for Real-Time Conversational Applications</a><ol><li><a href="#protocols-for-real-time-conversational-applications-1">Protocols for Real-Time Conversational Applications</a><ol><li><a href="#rtp">RTP</a><ol><li><a href="#rtp-basics">RTP Basics</a></li></ol></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="protocols-for-real-time-conversational-applications" tabindex="-1">Protocols for Real-Time Conversational Applications</h1>
+<h2 id="protocols-for-real-time-conversational-applications-1" tabindex="-1">Protocols for Real-Time Conversational Applications</h2>
+<h3 id="rtp" tabindex="-1">RTP</h3>
+<p>It is convenient to have a standardized packet structure that includes field for audio/video data, sequence number, and timestamp. RTP can be used for transporting common formats such as PCM, ACC and MP3 for sound and MPEG and H.263 for video. It can also be used for transporting proprietary sound and video formats.</p>
+<h4 id="rtp-basics" tabindex="-1">RTP Basics</h4>
+<p>RTP typically runs on top of UDP. RTP does not provide any quality-of-service (QoS) guarantees.</p>
+<p>RTP multicast streams belonging together, such as audio and video streams emanating from multiple senders in a video conference application, belong to an RTP session.</p>
+<p><img src="../assets/2022-05-10-10-24-19.png" alt=""></p>
+<p>SSRC identifies the source of the RTP stream.</p>
+
+      </article>
+      </div>
+  </body>
+</html>

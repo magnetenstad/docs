@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Introduction to the Transport Layer and Transport Layer Services.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">ttm4100/</a><a href="./index.html">Transport Layer</a>
+</h4></p>
+<ul>
+<li>📄 <a href="Connection-Oriented Transport TCP.html">Connection-Oriented Transport TCP</a></li>
+<li>📄 <a href="Connectionless Transport UDP.html">Connectionless Transport UDP</a></li>
+<li>📄 <a href="Evolution of Transport-Layer Functionality.html">Evolution of Transport-Layer Functionality</a></li>
+<li>📄 <a href="Introduction to the Transport Layer and Transport Layer Services.html">Introduction to the Transport Layer and Transport Layer Services ✨</a></li>
+<li>📄 <a href="Multiplexing and Demultiplexing in the Transport Layer.html">Multiplexing and Demultiplexing in the Transport Layer</a></li>
+<li>📄 <a href="Principles of Congestion Control.html">Principles of Congestion Control</a></li>
+<li>📄 <a href="Principles of Reliable Data Transfer.html">Principles of Reliable Data Transfer</a></li>
+<li>📄 <a href="TCP Congestion Control.html">TCP Congestion Control</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#introduction-to-the-transport-layer-and-transport-layer-services">Introduction to the Transport Layer and Transport Layer Services</a><ol><li><a href="#introduction-to-the-transport-layer-and-transport-layer-services-1">Introduction to the Transport Layer and Transport Layer Services</a><ol><li><a href="#relationship-between-transport-and-network-layers">Relationship Between Transport and Network Layers</a></li><li><a href="#overview-of-the-transport-layer-in-the-internet">Overview of the Transport Layer in the Internet</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="introduction-to-the-transport-layer-and-transport-layer-services" tabindex="-1">Introduction to the Transport Layer and Transport Layer Services</h1>
+<h2 id="introduction-to-the-transport-layer-and-transport-layer-services-1" tabindex="-1">Introduction to the Transport Layer and Transport Layer Services</h2>
+<p>A transport-layer protocol provides for logical communication between application processes running on different hosts. By logical communication, we mean that from an application’s perspective, it is as if the hosts running the processes were directly connected.</p>
+<p>Terminology: Transport-layer segments</p>
+<h3 id="relationship-between-transport-and-network-layers" tabindex="-1">Relationship Between Transport and Network Layers</h3>
+<p><img src="../assets/2022-05-04-17-26-43.png" alt=""></p>
+<h3 id="overview-of-the-transport-layer-in-the-internet" tabindex="-1">Overview of the Transport Layer in the Internet</h3>
+<p>UDP (User Datagram Protocol), which provides an unreliable, connectionless service to the invoking application.</p>
+<p>TCP (Transmission Control Protocol), which provides a reliable, connection-oriented service to the invoking application.</p>
+<p>The IP service model is a best-effort delivery service. This means that IP makes its “best effort” to deliver segments between communicating hosts, but it makes no guarantees. In particular, it does not guarantee segment delivery, it does not guarantee orderly delivery of segments, and it does not guarantee the integrity of the data in the segments. For these reasons, IP is said to be an unreliable service.</p>
+<p>Extending host-to-host delivery to process-to-process delivery is called transport-layer multiplexing and demultiplexing.</p>
+<p>TCP also provides congestion control.</p>
+
+      </article>
+      </div>
+  </body>
+</html>

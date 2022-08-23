@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Connection-Oriented Transport TCP.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">ttm4100/</a><a href="./index.html">Transport Layer</a>
+</h4></p>
+<ul>
+<li>📄 <a href="Connection-Oriented Transport TCP.html">Connection-Oriented Transport TCP ✨</a></li>
+<li>📄 <a href="Connectionless Transport UDP.html">Connectionless Transport UDP</a></li>
+<li>📄 <a href="Evolution of Transport-Layer Functionality.html">Evolution of Transport-Layer Functionality</a></li>
+<li>📄 <a href="Introduction to the Transport Layer and Transport Layer Services.html">Introduction to the Transport Layer and Transport Layer Services</a></li>
+<li>📄 <a href="Multiplexing and Demultiplexing in the Transport Layer.html">Multiplexing and Demultiplexing in the Transport Layer</a></li>
+<li>📄 <a href="Principles of Congestion Control.html">Principles of Congestion Control</a></li>
+<li>📄 <a href="Principles of Reliable Data Transfer.html">Principles of Reliable Data Transfer</a></li>
+<li>📄 <a href="TCP Congestion Control.html">TCP Congestion Control</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#connection-oriented-transport-tcp">Connection-Oriented Transport TCP</a><ol><li><a href="#connection-oriented-transport%3A-tcp">Connection-Oriented Transport: TCP</a><ol><li><a href="#the-tcp-connection">The TCP Connection</a></li><li><a href="#tcp-segment-structure">TCP Segment Structure</a><ol><li><a href="#sequence-numbers-and-acknowledgment-numbers">Sequence Numbers and Acknowledgment Numbers</a></li><li><a href="#telnet%3A-a-case-study-for-sequence-and-acknowledgment-numbers">Telnet: A Case Study for Sequence and Acknowledgment Numbers</a></li></ol></li><li><a href="#round-trip-time-estimation-and-timeout">Round-Trip Time Estimation and Timeout</a><ol><li><a href="#estimating-the-round-trip-time">Estimating the Round-Trip Time</a></li><li><a href="#setting-and-managing-the-retransmission-timeout-interval">Setting and Managing the Retransmission Timeout Interval</a></li></ol></li><li><a href="#reliable-data-transfer">Reliable Data Transfer</a></li><li><a href="#a-few-interesting-scenarios">A Few Interesting Scenarios</a></li><li><a href="#doubling-the-timeout-interval">Doubling the Timeout Interval</a><ol><li><a href="#fast-retransmit">Fast Retransmit</a></li><li><a href="#go-back-n-or-selective-repeat%3F">Go-Back-N or Selective Repeat?</a></li></ol></li><li><a href="#flow-control">Flow Control</a></li><li><a href="#tcp-connection-management">TCP Connection Management</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="connection-oriented-transport-tcp" tabindex="-1">Connection-Oriented Transport TCP</h1>
+<h2 id="connection-oriented-transport%3A-tcp" tabindex="-1">Connection-Oriented Transport: TCP</h2>
+<p>In order to provide reliable data transfer, TCP relies on many of the underlying principles discussed in the previous section, including error detection, retransmissions, cumulative acknowledgments, timers, and header fields for sequence and acknowledgment numbers</p>
+<h3 id="the-tcp-connection" tabindex="-1">The TCP Connection</h3>
+<p>TCP is said to be connection-oriented because before one application process can begin to send data to another, the two processes must first "handshake" with each other.</p>
+<p>TCP protocol runs only in the end systems and not in the intermediate network elements (routers and link-layer switches), the intermediate network elements do not maintain TCP connection state.</p>
+<p>A TCP connection provides a full-duplex service: If there is a TCP connection between Process A on one host and Process B on another host, then application-layer data can flow from Process A to Process B at the same time as application-layer data flows from Process B to Process A.</p>
+<p>A TCP connection is also always point-to-point, that is, between a single sender and a single receiver. So-called "multicasting" - the transfer of data from one sender to many receivers in a single send operation - is not possible with TCP.</p>
+<p>The process that is initiating the connection is called the client process, while the other process is called the server process.</p>
+<p>TCP directs this data to the connection’s send buffer, which is one of the buffers that is set aside during the initial three-way handshake. From time to time, TCP will grab chunks of data from the send buffer and pass the data to the network layer.</p>
+<p>The maximum amount of data that can be grabbed and placed in a segment is limited by the maximum segment size (MSS). The MSS is typically set by first determining the length of the largest link-layer frame that can be sent by the local sending host (the so-called maximum transmission unit, MTU), and then setting the MSS to ensure that a TCP segment (when encapsulated in an IP datagram) plus the TCP/IP header length (typically 40 bytes) will fit into a single link-layer frame.</p>
+<p><img src="../assets/2022-05-04-18-52-37.png" alt=""></p>
+<h3 id="tcp-segment-structure" tabindex="-1">TCP Segment Structure</h3>
+<p><img src="../assets/2022-05-04-18-53-23.png" alt=""></p>
+<h4 id="sequence-numbers-and-acknowledgment-numbers" tabindex="-1">Sequence Numbers and Acknowledgment Numbers</h4>
+<p>The sequence number for a segment is the byte-stream number of the first byte in the segment.</p>
+<p>The acknowledgment number that Host A puts in its segment is the sequence number of the next byte Host A is expecting from Host B.</p>
+<p>Because TCP only acknowledges bytes up to the first missing byte in the stream, TCP is said to provide cumulative acknowledgments.</p>
+<h4 id="telnet%3A-a-case-study-for-sequence-and-acknowledgment-numbers" tabindex="-1">Telnet: A Case Study for Sequence and Acknowledgment Numbers</h4>
+<p>Note that the acknowledgment for client-to-server data is carried in a segment carrying server-to-client data; this acknowledgment is said to be piggybacked on the server-to-client data segment</p>
+<h3 id="round-trip-time-estimation-and-timeout" tabindex="-1">Round-Trip Time Estimation and Timeout</h3>
+<h4 id="estimating-the-round-trip-time" tabindex="-1">Estimating the Round-Trip Time</h4>
+<p>SampleRTT, for a segment is the amount of time between when the segment is sent (that is, passed to IP) and when an acknowledgment for the segment is received. EstimatedRTT is a weighted average of the SampleRTT values:</p>
+<p>EstimatedRTT = (1 – α) * EstimatedRTT + α * SampleRTT</p>
+<p>The recommended value of α is α = 0.125. In addition to having an estimate of the RTT, it is also valuable to have a measure of the variability of the RTT. DevRTT is an estimate of how much SampleRTT typically deviates from EstimatedRTT:</p>
+<p>DevRTT = (1 – β) * DevRTT + β * | SampleRTT – EstimatedRTT |</p>
+<p>The recommended value of β is 0.25.</p>
+<h4 id="setting-and-managing-the-retransmission-timeout-interval" tabindex="-1">Setting and Managing the Retransmission Timeout Interval</h4>
+<p>TCP’s method for determining the retransmission timeout interval:</p>
+<p>TimeoutInterval = EstimatedRTT + 4 # DevRTT</p>
+<p>An initial TimeoutInterval value of 1 second is recommended.</p>
+<h3 id="reliable-data-transfer" tabindex="-1">Reliable Data Transfer</h3>
+<p>TCP creates a reliable data transfer service on top of IP’s unreliable best effort service.</p>
+<p>there are three major events related to data transmission and retransmission in the TCP sender: data received from application above; timer timeout; and ACK receipt.</p>
+<ol>
+<li>TCP receives data from the application, encapsulates the data in a segment, and passes the segment to IP.</li>
+<li>TCP responds to the timeout event by retransmitting the segment that caused the timeout. TCP then restarts the timer.</li>
+<li>TCP compares the ACK value y with its variable SendBase. SendBase–1 is the sequence number of the last byte that has been received correctly and in order at the receiver.</li>
+</ol>
+<h3 id="a-few-interesting-scenarios" tabindex="-1">A Few Interesting Scenarios</h3>
+<h3 id="doubling-the-timeout-interval" tabindex="-1">Doubling the Timeout Interval</h3>
+<p>Each time TCP retransmits, it sets the next timeout interval to twice the previous value, This modification provides a limited form of congestion control.</p>
+<h4 id="fast-retransmit" tabindex="-1">Fast Retransmit</h4>
+<p>When a segment is lost, this long timeout period forces the sender to delay resending the lost packet, thereby increasing the end-to-end delay. Fortunately, the sender can often detect packet loss well before the timeout event occurs by noting so-called duplicate ACKs.</p>
+<p>Since TCP does not use negative acknowledgments, the receiver cannot send an explicit negative acknowledgment back to the sender. Instead, it simply reacknowledges (that is, generates a duplicate ACK for) the last in-order byte of data it has received.</p>
+<p>If the TCP sender receives three duplicate ACKs for the same data, it takes this as an indication that the segment following the segment that has been ACKed three times has been lost. In the case that three duplicate ACKs are received, the TCP sender performs a fast retransmit, retransmitting the missing segment before that segment’s timer expires.</p>
+<p><img src="../assets/2022-05-05-19-39-55.png" alt=""></p>
+<h4 id="go-back-n-or-selective-repeat%3F" tabindex="-1">Go-Back-N or Selective Repeat?</h4>
+<p>TCP’s error-recovery mechanism is probably best categorized as a hybrid of GBN and SR protocols.</p>
+<h3 id="flow-control" tabindex="-1">Flow Control</h3>
+<p>TCP provides a flow-control service to its applications to eliminate the possibility of the sender overflowing the receiver’s buffer.</p>
+<p>TCP provides flow control by having the sender maintain a variable called the receive window. Informally, the receive window is used to give the sender an idea of how much free buffer space is available at the receiver.</p>
+<p>From time to time, the application process in Host B reads from the buffer. Host B tells Host A how much spare room it has in the connection buffer by placing its current value of rwnd in the receive window field of every segment it sends to A. Initially, Host B sets rwnd = RcvBuffer.</p>
+<p>The TCP specification requires Host A to continue to send segments with one data byte when B’s receive window is zero.</p>
+<h3 id="tcp-connection-management" tabindex="-1">TCP Connection Management</h3>
+<p><img src="../assets/2022-05-05-19-48-21.png" alt=""></p>
+<p><img src="../assets/2022-05-05-19-48-36.png" alt=""></p>
+<p><img src="../assets/2022-05-05-19-49-22.png" alt=""></p>
+
+      </article>
+      </div>
+  </body>
+</html>
