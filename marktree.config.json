@@ -1,5 +1,5 @@
 {
   "source": "vault/public",
   "dest": "docs",
-  "exclude": [".pynb", ".ipynb"]
+  "exclude": [".pynb", ".ipynb", "__private__"]
 }
