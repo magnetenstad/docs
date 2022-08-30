@@ -26,7 +26,15 @@
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium ✨</a></li>
-<li>📄 <a href="lecture.1.html">lecture.1</a></li>
+<li>📄 <a href="lecture.01.html">lecture.01</a></li>
+<li>📄 <a href="lecture.02.html">lecture.02</a></li>
+<li>📄 <a href="lecture.03.html">lecture.03</a></li>
+<li>📄 <a href="lecture.04.html">lecture.04</a></li>
+<li>📄 <a href="lecture.05.html">lecture.05</a></li>
+<li>📄 <a href="lecture.06.html">lecture.06</a></li>
+<li>📄 <a href="lecture.07.html">lecture.07</a></li>
+<li>📄 <a href="lecture.08.html">lecture.08</a></li>
+<li>📄 <a href="lecture.09.html">lecture.09</a></li>
 <li>📄 <a href="lecture.10.html">lecture.10</a></li>
 <li>📄 <a href="lecture.11.html">lecture.11</a></li>
 <li>📄 <a href="lecture.12.html">lecture.12</a></li>
@@ -37,17 +45,9 @@
 <li>📄 <a href="lecture.17.html">lecture.17</a></li>
 <li>📄 <a href="lecture.18.html">lecture.18</a></li>
 <li>📄 <a href="lecture.19.html">lecture.19</a></li>
-<li>📄 <a href="lecture.2.html">lecture.2</a></li>
 <li>📄 <a href="lecture.20.html">lecture.20</a></li>
 <li>📄 <a href="lecture.21.html">lecture.21</a></li>
 <li>📄 <a href="lecture.22.html">lecture.22</a></li>
-<li>📄 <a href="lecture.3.html">lecture.3</a></li>
-<li>📄 <a href="lecture.4.html">lecture.4</a></li>
-<li>📄 <a href="lecture.5.html">lecture.5</a></li>
-<li>📄 <a href="lecture.6.html">lecture.6</a></li>
-<li>📄 <a href="lecture.7.html">lecture.7</a></li>
-<li>📄 <a href="lecture.8.html">lecture.8</a></li>
-<li>📄 <a href="lecture.9.html">lecture.9</a></li>
 <li>📄 <a href="questions.html">questions</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
@@ -58,11 +58,11 @@
 <h1 id="tdt4186-compendium" tabindex="-1">TDT4186 Compendium</h1>
 <p>Operating systems know the hardware in detail and provides suitable abstractions, to serve the users and their application programs.</p>
 <h2 id="os-development" tabindex="-1">OS Development</h2>
-<p><a href="lecture.1.html">Link to lecture 1</a></p>
+<p><a href="lecture.01.html">Link to lecture 1</a></p>
 <p>The first system softwares were reusable probram libraries: linkers, loaders, debuggers and device drivers. <strong>The first operating systems</strong> were "resident monitors"; they handled interpretation of job control commands, loading and execution of programs and device control.</p>
 <p>With multiprogramming, the CPU works on multiple jobs at the same time. In consequence, <strong>the OS must handle concurrent I/O activites, main memory for multiple programs, programs in execution (processes), processor scheduling and multi user operation (security and accounting)</strong>.</p>
 <h2 id="processes" tabindex="-1">Processes</h2>
-<p><a href="lecture.4.html">Link to lecture 4</a></p>
+<p><a href="lecture.04.html">Link to lecture 4</a></p>
 <p><strong>A process is a program in execution.</strong> They often consist of alternating sequences of "CPU bursts" and "I/O bursts". The <strong>process context</strong> consists of</p>
 <ul>
 <li>Memory: code, data, and stack segment (text, data, bss, stack, heap)</li>
@@ -136,7 +136,7 @@
 <img src="assets/2022-05-18-11-41-31.png" alt=""></p>
 <p>Traditional Unix process creation using fork is too heavyweight for some applications.</p>
 <h3 id="threads-and-fibers" tabindex="-1">Threads and Fibers</h3>
-<p><a href="lecture.5.html">Link to lecture 5</a></p>
+<p><a href="lecture.05.html">Link to lecture 5</a></p>
 <p><strong>Threads</strong> are lightweight (usually kernel-level) processes and can share address space (code + data + bss + heap). Advantages: Faster context switching, complex operations can run in parallel of user I/O. Disadvantages: error-prone, shared access requires coordination, scheduling overhead.</p>
 <p><strong>Fibers</strong> are also called user-level threads (or green threads, or featherweight processes). Implemented on application layer, unknown to the OS. Advantages: 1) Extremely fast context switch: only exchange processor registers. 2) No switch to kernel mode required to switch to different fiber 3) Every application can choose the fiber library best suited for it Disadvantages: 1) Blocking a single fiber leads to blocking the whole process (since the OS doesn't know about fibers). 2) No speed advantage from multiprocessor systems.</p>
 <table>
@@ -184,7 +184,7 @@
 <p>Windows processes provide environment and address space for threads. Every thread has its own stack and CPU register set. User level threads (fibers) are possible, but unusual. Strategy: keep the number of threads low; Use overlapping (asynchronous) I/O.</p>
 <p>Linux implements POSIX threads using the pthreads library. All threads and processes are internally managed as tasks, which the scheduler does not differentiate between.</p>
 <h3 id="synchronization" tabindex="-1">Synchronization</h3>
-<p><a href="lecture.6.html">Link to lecture 6</a></p>
+<p><a href="lecture.06.html">Link to lecture 6</a></p>
 <p>A <strong>race condition</strong> is a situation in which multiple processes access shared data concurrently and at least one of the processes manipulates the data. To avoid race conditions, concurrent processes need to be synchronized (coordinated).</p>
 <p>Only a single process can be in a <strong>critical section</strong> at the same time. Solved by mutual exclusion, using the mutex (<a href="https://en.wikipedia.org/wiki/Lock_(computer_science)">lock</a>) abstraction. However, deadlocks must be considered.</p>
 <p><strong>The bakery algorithm</strong> is a working solution for the problem of critical sections. Another idea to ensure that a process stays in the critical section is to <strong>suppress interrupts</strong> (because they cause context switches). Many CPUs support <strong>indivisible (atomic) read/modify/write</strong> cycles that can be used to implement lock algorithms.</p>
@@ -193,7 +193,7 @@
 <p>An <strong>actively waiting</strong> process 1) is unable to change the condition it is waiting for on its own 2) unnecessarily impedes other processes which would be able to use the CPU for "useful" work. 3) harms itself: the longer a process holds the processor, the longer it has to wait for other processes to fulfill the condition it is waiting for.</p>
 <p>In the case of <strong>passive waiting</strong>, the process is entered into a waiting queue and is not unblocked until the event occurs.</p>
 <h3 id="deadlocks" tabindex="-1">Deadlocks</h3>
-<p><a href="lecture.7.html">Link to lecture 7</a></p>
+<p><a href="lecture.07.html">Link to lecture 7</a></p>
 <p>A <strong>deadlock</strong> is a situation in which two or more processes are unable to process because each is waiting for one of the others to do something. A deadlock involves passive waiting, with a BLOCKED process state. The <strong>livelock</strong> alternative involves active waiting and an arbitrary process state. Deadlocks are the "lesser evil".</p>
 <p>Necessary conditions for a deadlock:</p>
 <ol>
@@ -275,7 +275,7 @@
 <p><strong>Multi-level scheduling</strong> combined multiple scheduling strategies.</p>
 <p>When <strong>evaluating scheduling algorithms</strong>, a number of objectives may be optimized for. <strong>User oriented</strong>: 1) Run time (time between start and termination of a process including the waiting time(s)), 2) Response time (time between user input and program response), 3) Tardiness (deadlines, real-time systems), 4) Predictability (processes are always processed identically independent of the load). <strong>System oriented</strong>: 1) Throughput (finish as many processes as possible per time unit), 2) CPU load (keep the CPU busy at all times), 3) Avoid overhead (scheduling decisions, context switches) 4) Fairness (no process should be disadavantaged (e.g. by starvation)) 5) Load balancing (I/O devices should also be utilized uniformly).</p>
 <h2 id="memory-management" tabindex="-1">Memory management</h2>
-<p><a href="lecture.9.html">Link to lecture 9</a></p>
+<p><a href="lecture.09.html">Link to lecture 9</a></p>
 <p>Access to I/O devices is often slow ("memory gap", "I/O bottleneck"). <strong>Polling</strong> sends a command and then waits until the device returns data. With <strong>interrupts</strong>, the device notifies the program when data is ready.</p>
 <p>Caches work efficiently due to two locality principles:</p>
 <ul>

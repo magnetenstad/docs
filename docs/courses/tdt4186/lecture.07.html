@@ -9,7 +9,7 @@
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-    <title>lecture.7.md</title>
+    <title>lecture.07.md</title>
     <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
@@ -26,7 +26,15 @@
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
-<li>📄 <a href="lecture.1.html">lecture.1</a></li>
+<li>📄 <a href="lecture.01.html">lecture.01</a></li>
+<li>📄 <a href="lecture.02.html">lecture.02</a></li>
+<li>📄 <a href="lecture.03.html">lecture.03</a></li>
+<li>📄 <a href="lecture.04.html">lecture.04</a></li>
+<li>📄 <a href="lecture.05.html">lecture.05</a></li>
+<li>📄 <a href="lecture.06.html">lecture.06</a></li>
+<li>📄 <a href="lecture.07.html">lecture.07 ✨</a></li>
+<li>📄 <a href="lecture.08.html">lecture.08</a></li>
+<li>📄 <a href="lecture.09.html">lecture.09</a></li>
 <li>📄 <a href="lecture.10.html">lecture.10</a></li>
 <li>📄 <a href="lecture.11.html">lecture.11</a></li>
 <li>📄 <a href="lecture.12.html">lecture.12</a></li>
@@ -37,28 +45,20 @@
 <li>📄 <a href="lecture.17.html">lecture.17</a></li>
 <li>📄 <a href="lecture.18.html">lecture.18</a></li>
 <li>📄 <a href="lecture.19.html">lecture.19</a></li>
-<li>📄 <a href="lecture.2.html">lecture.2</a></li>
 <li>📄 <a href="lecture.20.html">lecture.20</a></li>
 <li>📄 <a href="lecture.21.html">lecture.21</a></li>
 <li>📄 <a href="lecture.22.html">lecture.22</a></li>
-<li>📄 <a href="lecture.3.html">lecture.3</a></li>
-<li>📄 <a href="lecture.4.html">lecture.4</a></li>
-<li>📄 <a href="lecture.5.html">lecture.5</a></li>
-<li>📄 <a href="lecture.6.html">lecture.6</a></li>
-<li>📄 <a href="lecture.7.html">lecture.7 ✨</a></li>
-<li>📄 <a href="lecture.8.html">lecture.8</a></li>
-<li>📄 <a href="lecture.9.html">lecture.9</a></li>
 <li>📄 <a href="questions.html">questions</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#lecture.7">lecture.7</a><ol><li><a href="#lecture-7%3A-concurrency%3A-deadlocks">Lecture 7: Concurrency: Deadlocks</a><ol><li><a href="#exam">Exam</a></li><li><a href="#deadlocks">Deadlocks</a></li><li><a href="#why-is-this-happening%3F">Why is this happening?</a></li><li><a href="#deadlocking-processes">Deadlocking processes</a></li><li><a href="#conditions-for-deadlocks">Conditions for deadlocks</a></li><li><a href="#resources...">Resources...</a></li><li><a href="#reusable-resources">Reusable resources</a></li><li><a href="#consumable-resources">Consumable resources</a></li><li><a href="#resource-allocation-graphs">Resource allocation graphs</a></li><li><a href="#classic-deadlock%3A-dining-philosophers">Classic deadlock: dining philosophers</a><ol><li><a href="#deadlocked-philosophers%3F">Deadlocked philosophers?</a></li><li><a href="#dining-philosophers%3A-version-1">Dining philosophers: version 1</a></li><li><a href="#dining-philosophers%3A-version-2">Dining philosophers: version 2</a></li><li><a href="#dining-philosophers%3A-version-3">Dining philosophers: version 3</a></li><li><a href="#discussion%3A-dining-philosophers">Discussion: dining philosophers</a></li></ol></li><li><a href="#preventing-deadlocks">Preventing deadlocks</a><ol><li><a href="#preventing-deadlocks-(2)">Preventing deadlocks (2)</a></li></ol></li><li><a href="#safe%2Funsafe-states">Safe/unsafe states</a><ol><li><a href="#safe%2Funsafe-states-(2)">Safe/unsafe states (2)</a></li></ol></li><li><a href="#detection%3A-banker's-algorithm">Detection: Banker&#39;s algorithm</a></li><li><a href="#deadlock-detection">Deadlock detection</a></li><li><a href="#deadlock-resolution">Deadlock resolution</a></li><li><a href="#discussion-of-prevention-methods">Discussion of prevention methods</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#lecture.07">lecture.07</a><ol><li><a href="#lecture-7%3A-concurrency%3A-deadlocks">Lecture 7: Concurrency: Deadlocks</a><ol><li><a href="#exam">Exam</a></li><li><a href="#deadlocks">Deadlocks</a></li><li><a href="#why-is-this-happening%3F">Why is this happening?</a></li><li><a href="#deadlocking-processes">Deadlocking processes</a></li><li><a href="#conditions-for-deadlocks">Conditions for deadlocks</a></li><li><a href="#resources...">Resources...</a></li><li><a href="#reusable-resources">Reusable resources</a></li><li><a href="#consumable-resources">Consumable resources</a></li><li><a href="#resource-allocation-graphs">Resource allocation graphs</a></li><li><a href="#classic-deadlock%3A-dining-philosophers">Classic deadlock: dining philosophers</a><ol><li><a href="#deadlocked-philosophers%3F">Deadlocked philosophers?</a></li><li><a href="#dining-philosophers%3A-version-1">Dining philosophers: version 1</a></li><li><a href="#dining-philosophers%3A-version-2">Dining philosophers: version 2</a></li><li><a href="#dining-philosophers%3A-version-3">Dining philosophers: version 3</a></li><li><a href="#discussion%3A-dining-philosophers">Discussion: dining philosophers</a></li></ol></li><li><a href="#preventing-deadlocks">Preventing deadlocks</a><ol><li><a href="#preventing-deadlocks-(2)">Preventing deadlocks (2)</a></li></ol></li><li><a href="#safe%2Funsafe-states">Safe/unsafe states</a><ol><li><a href="#safe%2Funsafe-states-(2)">Safe/unsafe states (2)</a></li></ol></li><li><a href="#detection%3A-banker's-algorithm">Detection: Banker&#39;s algorithm</a></li><li><a href="#deadlock-detection">Deadlock detection</a></li><li><a href="#deadlock-resolution">Deadlock resolution</a></li><li><a href="#discussion-of-prevention-methods">Discussion of prevention methods</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
-<h1 id="lecture.7" tabindex="-1">lecture.7</h1>
+<h1 id="lecture.07" tabindex="-1">lecture.07</h1>
 <h2 id="lecture-7%3A-concurrency%3A-deadlocks" tabindex="-1">Lecture 7: Concurrency: Deadlocks</h2>
-<p><a href="lecture.6.html">Previous lecture</a>
-<a href="lecture.8.html">Next lecture</a></p>
+<p><a href="lecture.06.html">Previous lecture</a>
+<a href="lecture.08.html">Next lecture</a></p>
 <p><iframe
 width="560" height="315" src="https://www.youtube.com/embed/VSaop2ycn28"
 title="YouTube video player"

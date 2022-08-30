@@ -9,7 +9,7 @@
     <link rel="stylesheet" href=
         "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
 
-    <title>lecture.9.md</title>
+    <title>lecture.09.md</title>
     <link rel="icon" type="image/x-icon" href="../../"/>
 
     <!-- Custom Styles -->
@@ -26,7 +26,15 @@
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📄 <a href="compendium.html">compendium</a></li>
-<li>📄 <a href="lecture.1.html">lecture.1</a></li>
+<li>📄 <a href="lecture.01.html">lecture.01</a></li>
+<li>📄 <a href="lecture.02.html">lecture.02</a></li>
+<li>📄 <a href="lecture.03.html">lecture.03</a></li>
+<li>📄 <a href="lecture.04.html">lecture.04</a></li>
+<li>📄 <a href="lecture.05.html">lecture.05</a></li>
+<li>📄 <a href="lecture.06.html">lecture.06</a></li>
+<li>📄 <a href="lecture.07.html">lecture.07</a></li>
+<li>📄 <a href="lecture.08.html">lecture.08</a></li>
+<li>📄 <a href="lecture.09.html">lecture.09 ✨</a></li>
 <li>📄 <a href="lecture.10.html">lecture.10</a></li>
 <li>📄 <a href="lecture.11.html">lecture.11</a></li>
 <li>📄 <a href="lecture.12.html">lecture.12</a></li>
@@ -37,27 +45,19 @@
 <li>📄 <a href="lecture.17.html">lecture.17</a></li>
 <li>📄 <a href="lecture.18.html">lecture.18</a></li>
 <li>📄 <a href="lecture.19.html">lecture.19</a></li>
-<li>📄 <a href="lecture.2.html">lecture.2</a></li>
 <li>📄 <a href="lecture.20.html">lecture.20</a></li>
 <li>📄 <a href="lecture.21.html">lecture.21</a></li>
 <li>📄 <a href="lecture.22.html">lecture.22</a></li>
-<li>📄 <a href="lecture.3.html">lecture.3</a></li>
-<li>📄 <a href="lecture.4.html">lecture.4</a></li>
-<li>📄 <a href="lecture.5.html">lecture.5</a></li>
-<li>📄 <a href="lecture.6.html">lecture.6</a></li>
-<li>📄 <a href="lecture.7.html">lecture.7</a></li>
-<li>📄 <a href="lecture.8.html">lecture.8</a></li>
-<li>📄 <a href="lecture.9.html">lecture.9 ✨</a></li>
 <li>📄 <a href="questions.html">questions</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#lecture.9">lecture.9</a><ol><li><a href="#lecture-9%2C-part-1%3A-memory-management">Lecture 9, part 1: Memory management</a><ol><li><a href="#exam">Exam</a></li><li><a href="#resources-(again)">Resources (again)</a></li><li><a href="#multiprogramming-(again)">Multiprogramming (again)</a></li><li><a href="#memory-management-requirements">Memory management requirements</a></li><li><a href="#basic-policies-and-strategies">Basic policies and strategies</a></li><li><a href="#memory-allocation%3A-problem">Memory allocation: problem</a></li><li><a href="#static-memory-allocation">Static memory allocation</a></li><li><a href="#dynamic-memory-allocation">Dynamic memory allocation</a></li><li><a href="#memory-allocation%3A-bit-lists">Memory allocation: bit lists</a></li><li><a href="#memory-allocation%3A-linked-list">Memory allocation: linked list</a><ol><li><a href="#linked-list-in-free-memory">Linked list in free memory</a></li><li><a href="#placement-strategies">Placement strategies</a></li></ol></li><li><a href="#placement-strategies-(2)">Placement strategies (2)</a></li><li><a href="#discussion%3A-fragmentation">Discussion: fragmentation</a></li><li><a href="#use-of-the-different-methods">Use of the different methods</a></li></ol></li><li><a href="#lecture-9%2C-part-2%3A-memory-management-and-mmu-hardware-support">Lecture 9, part 2: Memory management and MMU hardware support</a><ol><li><a href="#multiprogramming%3A-swapping">Multiprogramming: swapping</a></li><li><a href="#swapping-(2)">Swapping (2)</a></li><li><a href="#address-linking-and-relocation">Address linking and relocation</a></li><li><a href="#address-linking-and-relocation-(2)">Address linking and relocation (2)</a></li><li><a href="#address-linking-and-relocation-(3)">Address linking and relocation (3)</a></li><li><a href="#address-linking-and-relocation-(4)">Address linking and relocation (4)</a></li><li><a href="#segmentation">Segmentation</a></li><li><a href="#segmentation-(2)">Segmentation (2)</a></li><li><a href="#segmentation-(3)">Segmentation (3)</a></li><li><a href="#segmentation-(4)">Segmentation (4)</a></li><li><a href="#compaction">Compaction</a></li><li><a href="#paging">Paging</a></li><li><a href="#mmu-with-page-table">MMU with page table</a></li><li><a href="#mmu-with-page-table-(2)">MMU with page table (2)</a></li><li><a href="#segmentation-and-page-addressing">Segmentation and page addressing</a></li><li><a href="#segmentation-and-page-addressing-(2)">Segmentation and page addressing (2)</a></li><li><a href="#paging-1">Paging</a></li><li><a href="#multi-level-page-addressing">Multi-level page addressing</a></li><li><a href="#translation-lookaside-buffer-(tlb)">Translation lookaside buffer (TLB)</a></li><li><a href="#translation-lookaside-buffer-(2)">Translation lookaside buffer (2)</a></li><li><a href="#inverted-page-tables">Inverted page tables</a></li><li><a href="#inverted-page-tables-(2)">Inverted page tables (2)</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#lecture.09">lecture.09</a><ol><li><a href="#lecture-9%2C-part-1%3A-memory-management">Lecture 9, part 1: Memory management</a><ol><li><a href="#exam">Exam</a></li><li><a href="#resources-(again)">Resources (again)</a></li><li><a href="#multiprogramming-(again)">Multiprogramming (again)</a></li><li><a href="#memory-management-requirements">Memory management requirements</a></li><li><a href="#basic-policies-and-strategies">Basic policies and strategies</a></li><li><a href="#memory-allocation%3A-problem">Memory allocation: problem</a></li><li><a href="#static-memory-allocation">Static memory allocation</a></li><li><a href="#dynamic-memory-allocation">Dynamic memory allocation</a></li><li><a href="#memory-allocation%3A-bit-lists">Memory allocation: bit lists</a></li><li><a href="#memory-allocation%3A-linked-list">Memory allocation: linked list</a><ol><li><a href="#linked-list-in-free-memory">Linked list in free memory</a></li><li><a href="#placement-strategies">Placement strategies</a></li></ol></li><li><a href="#placement-strategies-(2)">Placement strategies (2)</a></li><li><a href="#discussion%3A-fragmentation">Discussion: fragmentation</a></li><li><a href="#use-of-the-different-methods">Use of the different methods</a></li></ol></li><li><a href="#lecture-9%2C-part-2%3A-memory-management-and-mmu-hardware-support">Lecture 9, part 2: Memory management and MMU hardware support</a><ol><li><a href="#multiprogramming%3A-swapping">Multiprogramming: swapping</a></li><li><a href="#swapping-(2)">Swapping (2)</a></li><li><a href="#address-linking-and-relocation">Address linking and relocation</a></li><li><a href="#address-linking-and-relocation-(2)">Address linking and relocation (2)</a></li><li><a href="#address-linking-and-relocation-(3)">Address linking and relocation (3)</a></li><li><a href="#address-linking-and-relocation-(4)">Address linking and relocation (4)</a></li><li><a href="#segmentation">Segmentation</a></li><li><a href="#segmentation-(2)">Segmentation (2)</a></li><li><a href="#segmentation-(3)">Segmentation (3)</a></li><li><a href="#segmentation-(4)">Segmentation (4)</a></li><li><a href="#compaction">Compaction</a></li><li><a href="#paging">Paging</a></li><li><a href="#mmu-with-page-table">MMU with page table</a></li><li><a href="#mmu-with-page-table-(2)">MMU with page table (2)</a></li><li><a href="#segmentation-and-page-addressing">Segmentation and page addressing</a></li><li><a href="#segmentation-and-page-addressing-(2)">Segmentation and page addressing (2)</a></li><li><a href="#paging-1">Paging</a></li><li><a href="#multi-level-page-addressing">Multi-level page addressing</a></li><li><a href="#translation-lookaside-buffer-(tlb)">Translation lookaside buffer (TLB)</a></li><li><a href="#translation-lookaside-buffer-(2)">Translation lookaside buffer (2)</a></li><li><a href="#inverted-page-tables">Inverted page tables</a></li><li><a href="#inverted-page-tables-(2)">Inverted page tables (2)</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
-<h1 id="lecture.9" tabindex="-1">lecture.9</h1>
+<h1 id="lecture.09" tabindex="-1">lecture.09</h1>
 <h2 id="lecture-9%2C-part-1%3A-memory-management" tabindex="-1">Lecture 9, part 1: Memory management</h2>
-<p><a href="lecture.8.html">Previous lecture</a>
+<p><a href="lecture.08.html">Previous lecture</a>
 <a href="lecture.10.html">Next lecture</a></p>
 <p><iframe
 width="560" height="315" src="https://www.youtube.com/embed/kXop1DTa68U"

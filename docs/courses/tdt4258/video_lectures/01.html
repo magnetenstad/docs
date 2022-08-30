@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>01.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">tdt4258/</a><a href="./index.html">video_lectures</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="01.html">01 ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#embedded-system-basics">Embedded System Basics</a><ol><li><a href="#definition">Definition</a></li><li><a href="#design-objectives">Design objectives</a></li><li><a href="#embedded-vs-general-purpose-system">Embedded vs General Purpose System</a></li></ol></li><li><a href="#embedded-system-design">Embedded System Design</a><ol><li><a href="#embedded-system-design-flow">Embedded system design flow</a><ol><li><a href="#requirements">Requirements</a></li><li><a href="#specification">Specification</a></li><li><a href="#architecture">Architecture</a></li><li><a href="#components">Components</a></li><li><a href="#integration">Integration</a></li></ol></li><li><a href="#embedded-system%3A-programming-the-hardware">Embedded System: Programming the hardware</a></li></ol></li><li><a href="#assembly-programming-introduction">Assembly Programming Introduction</a><ol><li><a href="#instruction-set-architecture-(isa)">Instruction Set Architecture (ISA)</a></li><li><a href="#machine-and-assembly-instructions">Machine and assembly instructions</a></li><li><a href="#assembly-code-example">Assembly code example</a></li><li><a href="#arm-architecture-(isa)">ARM architecture (ISA)</a></li><li><a href="#registers">Registers</a></li><li><a href="#thumb-2-instruction-categories">Thumb-2 Instruction Categories</a></li></ol></li><li><a href="#writing-your-first-assembly-program">Writing your first assembly program</a><ol><li><a href="#preparing-to-write-an-assembly-program">Preparing to write an assembly program</a></li><li><a href="#writing-an-assembly-program">Writing an assembly program</a></li><li><a href="#memory-addressing%3A-endianness">Memory addressing: Endianness</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="embedded-system-basics" tabindex="-1">Embedded System Basics</h1>
+<h2 id="definition" tabindex="-1">Definition</h2>
+<p><strong>Embedded System</strong>: Any device that includes a <em>programmable computer</em> but is <strong>not</strong> itself a <em>general purpose computer</em>.</p>
+<p>An alternate definition: A computing system, specialized for only a few applications with none (or minimum) end user programmability, <em>embedded</em> into a larger product.</p>
+<blockquote>
+<p>The main purpose of the product is not computing.</p>
+</blockquote>
+<p><img src="assets/2022-08-30-16-42-11.png" alt=""></p>
+<p><img src="assets/2022-08-30-16-44-29.png" alt=""></p>
+<h2 id="design-objectives" tabindex="-1">Design objectives</h2>
+<ul>
+<li><strong>Predictability</strong>
+<ul>
+<li>"It is essential to predict how a CPS (cyber-physical system) is going to behave under any circumstances [...] before it is deployed" (Maj, 14)</li>
+</ul>
+</li>
+<li><strong>Dependability</strong>
+<ul>
+<li>"CPS must operate dependably, safely, securely, efficiently and in real-time." (Raj, 10)</li>
+</ul>
+</li>
+<li>"<strong>Efficiency</strong>
+<ul>
+<li>Energy and run-time efficient</li>
+<li>Weight and cost efficient</li>
+</ul>
+</li>
+<li><strong>Reactive</strong>
+<ul>
+<li>Must react to stimuli from environment</li>
+<li>"A reactive system is one which is in continual interaction with its environment and executes at a pace determined by that environment." (Bergé, 1995)</li>
+</ul>
+</li>
+<li><strong>Time constrained</strong>
+<ul>
+<li>Must meet real-time constraints</li>
+<li>For hard real-time systems, right answers arriving late are wrong.</li>
+<li>"A real-time constraint is called hard, if not meeting that constraint could result in a catastrophe" (Kopetz, 1997)</li>
+</ul>
+</li>
+<li><strong>Specialized</strong>
+<ul>
+<li>Specialized towards few applications or domains</li>
+<li>Domain knowledge helps optimize the design e.g. minimize resource usage, maximize predictability, etc.</li>
+</ul>
+</li>
+</ul>
+<h2 id="embedded-vs-general-purpose-system" tabindex="-1">Embedded vs General Purpose System</h2>
+<table>
+<thead>
+<tr>
+<th>_</th>
+<th>Embedded Systems</th>
+<th>General Purpose Systems</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number of applications</td>
+<td>Few (known at design time)</td>
+<td>Broad range of applications</td>
+</tr>
+<tr>
+<td>Programmable by end user?</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Performance requirements</td>
+<td>Fixed (additional performance not useful)</td>
+<td>Higher performance is useful (enables new applications)</td>
+</tr>
+<tr>
+<td>Design criteria</td>
+<td>Cost, Power consumption, Worst case speed, Size and weight, Dependability</td>
+<td>Cost, Power consumption, Average speed</td>
+</tr>
+</tbody>
+</table>
+<h1 id="embedded-system-design" tabindex="-1">Embedded System Design</h1>
+<h2 id="embedded-system-design-flow" tabindex="-1">Embedded system design flow</h2>
+<p><img src="assets/2022-08-30-16-57-53.png" alt=""></p>
+<h3 id="requirements" tabindex="-1">Requirements</h3>
+<p>Informal description of the system in layman's language.</p>
+<ul>
+<li><strong>Functional</strong>: Answers the question - "What should the system do?"
+<ul>
+<li>E.g.: A GPS Moving Map should display the map of terrain around user's current position.</li>
+</ul>
+</li>
+<li><strong>Non-functional</strong>: Requirements not related to the functionality - such as cost, size, power, etc.
+<ul>
+<li>E.g.: A GPS Moving Map should cost under 1000 NOK, fit in the palm of a hand, and run for atleast 8 hours on two batteries.</li>
+</ul>
+</li>
+</ul>
+<h3 id="specification" tabindex="-1">Specification</h3>
+<p>An unambigous technical description derived from Requirements. Detailed enough to design the system architecture.</p>
+<h3 id="architecture" tabindex="-1">Architecture</h3>
+<p>A high level overview of system structure in terms of components needed and their interaction.</p>
+<p><img src="assets/2022-08-30-17-04-22.png" alt=""></p>
+<p><strong>Key challenge</strong>: How to distribute the functionality among hardware and software to meet the competing requirements: cost, performance, power, etc.</p>
+<h3 id="components" tabindex="-1">Components</h3>
+<p>Choose or build the components to implement the Architecture and meet the Specifications.</p>
+<ul>
+<li>Standard components: CPUs, memory, software libraries, etc.
+<ul>
+<li>E.g.: GPS receiver and topographic database</li>
+</ul>
+</li>
+<li>Custom components: Printed circuit boards, software modules, etc.
+<ul>
+<li>User interface</li>
+</ul>
+</li>
+</ul>
+<h3 id="integration" tabindex="-1">Integration</h3>
+<p>Put the components together and make the system work!</p>
+<p><strong>Key challenge</strong>: Unforeseen bugs may appear during integration.</p>
+<ul>
+<li>Requires debugging</li>
+<li>Careful component designing can help a lot.</li>
+</ul>
+<h2 id="embedded-system%3A-programming-the-hardware" tabindex="-1">Embedded System: Programming the hardware</h2>
+<p><img src="assets/2022-08-30-17-10-27.png" alt=""></p>
+<h1 id="assembly-programming-introduction" tabindex="-1">Assembly Programming Introduction</h1>
+<p>In this course, we will examine ARM ISA (Instruction Set Architecture) to learn assembly.</p>
+<h2 id="instruction-set-architecture-(isa)" tabindex="-1">Instruction Set Architecture (ISA)</h2>
+<ul>
+<li>Programmer's view of hardware</li>
+<li>Interface between hardware and software
+<ul>
+<li>Defines processor recognizable machine instructions</li>
+<li>Defines architecture state, memory management, etc.</li>
+</ul>
+</li>
+<li>Why is it useful?
+<ul>
+<li>Abstracts away hardware implementation details</li>
+<li>Software can be developed (somewhat) independent of hardware implementation</li>
+<li>Enables multiple implementations (called Microarchitectures) of the same ISA</li>
+</ul>
+</li>
+</ul>
+<h2 id="machine-and-assembly-instructions" tabindex="-1">Machine and assembly instructions</h2>
+<ul>
+<li>Machine instructions
+<ul>
+<li>Strings of binary numbers</li>
+<li>Example: 01001011010100101011010010001010</li>
+<li>Processor works with machine instructions but they are difficult for humans to understand</li>
+</ul>
+</li>
+<li>Assembly instructions
+<ul>
+<li>Symbolic representation of machine instructions</li>
+<li>Easier for humans to understand</li>
+<li>Strict one-to-one mapping between machine and assembly instructions</li>
+</ul>
+</li>
+</ul>
+<h2 id="assembly-code-example" tabindex="-1">Assembly code example</h2>
+<p>Hight level language (c/Java)</p>
+<pre><code class="hljs language-c">a[<span class="hljs-number">0</span>] = b[<span class="hljs-number">0</span>] + <span class="hljs-number">5</span>;
+</code></pre>
+<p>Assembly code:</p>
+<pre><code class="hljs language-assembly">ldr r3, [r1]  ; get the value to b[0] from memory to r3
+add r4, r3, 5 ; add 5 to b[0] and store in r4
+str r4, [r2]  ; save r4 to a[0]
+</code></pre>
+<p>Things to notice:</p>
+<ul>
+<li>Data needs to be brought to registers from memory to operate on it</li>
+<li>Separate instructions to access data (from memory) and operate on it
+<ul>
+<li>Called load-store architecture</li>
+<li>An alternative architecture: register memory architecture</li>
+</ul>
+</li>
+</ul>
+<h2 id="arm-architecture-(isa)" tabindex="-1">ARM architecture (ISA)</h2>
+<ul>
+<li>ARM is a load-store architecture</li>
+<li>Offers several variants
+<ul>
+<li>ARMv8: 64-bit architecture</li>
+<li>ARMv7: 32-bit architecture
+<ul>
+<li>All instructions are also 32-bit</li>
+</ul>
+</li>
+<li>Thumb architecture
+<ul>
+<li>16-bit instructions to reduce code size</li>
+</ul>
+</li>
+<li>Thumb-2 architecture
+<ul>
+<li>Supports both 16-bit and 32-bit instructions</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The Thumb-2 architecture will be used in the labs of this course.</p>
+<h2 id="registers" tabindex="-1">Registers</h2>
+<ul>
+<li>Registers are storage locations inside the processor that hold program variables and control state</li>
+<li>Thumb-2 provides 16 general-purpose registers (r0-r15) and a current program status register (CPSR). Each register is 32-bit wide</li>
+</ul>
+<p><img src="assets/2022-08-30-17-36-45.png" alt=""></p>
+<h2 id="thumb-2-instruction-categories" tabindex="-1">Thumb-2 Instruction Categories</h2>
+<ul>
+<li>Memory access instructions
+<ul>
+<li>To transfer data between registers and memory</li>
+<li>Only instructions that can access memory</li>
+<li>Examples: ldr, str, etc.</li>
+</ul>
+</li>
+<li>Arithmetic/logic instructions
+<ul>
+<li>Perform the desired operation like: add, subtract, shift, or, and</li>
+<li>Operate only on registers</li>
+</ul>
+</li>
+<li>Control transfer (a.k.a. branch) instructions
+<ul>
+<li>Control the flow of program execution</li>
+<li>Jumps, loops, etc.</li>
+</ul>
+</li>
+</ul>
+<p>More details in the text book and Thumb-2 manuals!</p>
+<h1 id="writing-your-first-assembly-program" tabindex="-1">Writing your first assembly program</h1>
+<h2 id="preparing-to-write-an-assembly-program" tabindex="-1">Preparing to write an assembly program</h2>
+<p>High level language statement:</p>
+<pre><code class="hljs language-c">g = A[<span class="hljs-number">1</span>] + <span class="hljs-number">5</span>
+</code></pre>
+<pre><code class="hljs language-assembly">; offset in number of bytes, for int32: 4 bytes
+ldr r3, [r2, #4] ; r3 = r2[1]
+add r4, r3, #5   ; r4 = r3 + 5
+</code></pre>
+<h2 id="writing-an-assembly-program" tabindex="-1">Writing an assembly program</h2>
+<p>High level language program:</p>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> a[<span class="hljs-number">2</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>};
+<span class="hljs-type">int</span> x;
+x = a[<span class="hljs-number">0</span>] + a[<span class="hljs-number">1</span>];
+</code></pre>
+<pre><code class="hljs language-assembly">.section .text
+  ldr r1, =a ; ldr is a pseudo-op here, loading the address of a
+  ldr r2, [r1]
+  ldr r3, [r1, #4]
+  add r4, r2, r3
+  ldr r1, =x
+  str r4, [r1]
+
+.section .data
+a:
+  .word 10 ; a[0]
+  .word 20 ; a[1]
+x:
+  .word 0 ; x
+</code></pre>
+<h2 id="memory-addressing%3A-endianness" tabindex="-1">Memory addressing: Endianness</h2>
+<ul>
+<li>Given a memory address, Endianness tells where to find the first byte of a word.</li>
+<li>ARM supports both little and big endianness</li>
+</ul>
+<p><img src="assets/2022-08-30-18-21-59.png" alt=""></p>
+
+      </article>
+      </div>
+  </body>
+</html>
