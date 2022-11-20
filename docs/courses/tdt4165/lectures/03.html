@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>03.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">tdt4165/</a><a href="./index.html">lectures</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="02.html">02</a></li>
+<li>📄 <a href="03.html">03 ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture-3%3A-grammars%2C-derivations%2C-parse-trees%2C-scanning%2C-introduction-to-oz">Lecture 3: Grammars, Derivations, Parse Trees, Scanning, Introduction to Oz</a><ol><li><a href="#syntactiv-analysis-of-programs">Syntactiv Analysis of Programs</a><ol><li><a href="#how-are-programs-processed%3F">How are programs processed?</a></li><li><a href="#derivations">Derivations</a><ol><li><a href="#rightmost-and-leftmost-derivations">Rightmost and leftmost derivations</a></li></ol></li><li><a href="#syntax-trees">Syntax Trees</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="lecture-3%3A-grammars%2C-derivations%2C-parse-trees%2C-scanning%2C-introduction-to-oz" tabindex="-1">Lecture 3: Grammars, Derivations, Parse Trees, Scanning, Introduction to Oz</h1>
+<h2 id="syntactiv-analysis-of-programs" tabindex="-1">Syntactiv Analysis of Programs</h2>
+<h3 id="how-are-programs-processed%3F" tabindex="-1">How are programs processed?</h3>
+<ul>
+<li>The initial input is linear—it is a sequence of symbols from the alphabet of characters.</li>
+<li>A lexical analyzer (scanner, lexer, tokenizer) reads the sequence of characters and outputs a sequence of tokens.</li>
+<li>A parser reads a sequence of tokens and outputs a structured (typically non-linear) internal representation of the program—a syntax tree (parse tree).</li>
+<li>The syntax tree is further processed, e.g., by an interpreter or by a compiler.</li>
+</ul>
+<p>We have seen some of these steps implemented in the <a href="./02.html#mdc-the-micro-dc">mdc interpreter</a>.</p>
+<pre><code class="hljs language-txt">Program: if X == 1 then ...
+Input: ‘i’ ‘f’ ‘ ’ ‘X’ ‘ ’ ‘=’ ‘=’ ‘ ’ ‘1’ ‘ ’ ‘t’ ‘h’ ‘e’ ‘n’ ...
+Lexemization: ‘if’ ‘X’ ‘==’ ‘1’ ‘then’ ...
+Tokenization: key(‘if’) var(‘X’) op(‘==’) int(1) key(‘then’) ...
+Parsing: program(ifthenelse(eq(var(‘X’)
+                            int(1))
+                        ...
+                        ...)
+                ...)
+Interpretation: execution according to language semantics
+Compilation: code generation according to language semantics
+</code></pre>
+<h3 id="derivations" tabindex="-1">Derivations</h3>
+<p>Following the recipe for using a grammar explained earlier, we can derive sentences in the language <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Γ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(\Gamma)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">L</span><span class="mopen">(</span><span class="mord">Γ</span><span class="mclose">)</span></span></span></span> specified by a grammar <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Γ</span></span></span></span> in a sequence of steps.</p>
+<ul>
+<li>In each step we transform one sentential form (a sequence of terminals and/or non-terminals) into another sentential form by replacing one non-terminal with the right-hand side of a matching rule.</li>
+<li>The first sentential form is the start variable vs alone.</li>
+<li>The last sentential form is a valid sentence, composed only of terminals.</li>
+</ul>
+<h4 id="rightmost-and-leftmost-derivations" tabindex="-1">Rightmost and leftmost derivations</h4>
+<p>A derivation is a sequence of sentential forms beginning with a single
+nonterminal and ending with a (valid) sequence of terminals.</p>
+<ul>
+<li>A derivation such that in each step it is the leftmost non-terminal that is replaced is called a ‘leftmost derivation’.</li>
+<li>A derivation such that in each step it is the rightmost non-terminal that is replaced is called a ‘rightmost derivation’.</li>
+<li>There can be derivations that are neither leftmost nor rightmost.</li>
+</ul>
+<h3 id="syntax-trees" tabindex="-1">Syntax Trees</h3>
+<p>A parse tree (a syntax tree) is a structured representation of a program.</p>
+<ul>
+<li>Parse trees are generated in the process of parsing programs.</li>
+<li>A parser is a function (a program) that takes as input a sequence of tokens and returns a nested data structure corresponding to a parse tree.</li>
+</ul>
+<p>The data structure returned by the parser is an internal (intermediate) representation of the program. A parse tree can be used to:</p>
+<ul>
+<li>interpret the program (in interpreted languages);</li>
+<li>generate target code (in compiled languages);</li>
+<li>optimize the intermediate code (in both interpreted and compiled languages);</li>
+<li>analyze the intermediate code, e.g., perform static analysis or compute code metrics (in both interpreted and compiled languages).</li>
+</ul>
+
+      </article>
+      </div>
+  </body>
+</html>

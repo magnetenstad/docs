@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>02.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">tdt4258/</a><a href="./index.html">lectures</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="01.html">01</a></li>
+<li>📄 <a href="02.html">02 ✨</a></li>
+<li>📄 <a href="03.html">03</a></li>
+<li>📄 <a href="04.html">04</a></li>
+<li>📄 <a href="05.html">05</a></li>
+<li>📄 <a href="06.html">06</a></li>
+<li>📄 <a href="07.html">07</a></li>
+<li>📄 <a href="08.html">08</a></li>
+<li>📄 <a href="09.html">09</a></li>
+<li>📄 <a href="10.html">10</a></li>
+<li>📄 <a href="11.html">11</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#arm-assembly-and-input%2Foutput">ARM Assembly and Input/Output</a><ol><li><a href="#conditionals-in-assembly">Conditionals in Assembly</a><ol><li><a href="#moving-imediate-values-to-registers">Moving imediate values to registers</a></li><li><a href="#conditionals-in-assembly-1">Conditionals in assembly</a></li><li><a href="#loops-in-assembly">Loops in assembly</a><ol><li><a href="#basic-example">Basic example</a></li><li><a href="#another-example">Another example</a></li></ol></li></ol></li><li><a href="#function-calls-in-assembly">Function Calls in Assembly</a><ol><li><a href="#function%2Fprocedure%2Fmethod-calls">Function/procedure/method calls</a></li><li><a href="#arm-support-for-function-calls">ARM support for function calls</a></li><li><a href="#example-of-function-call-in-assembly">Example of function call in assembly</a></li><li><a href="#arm-register-convention-on-function-calls">ARM register convention on function calls</a></li></ol></li><li><a href="#nested-function-calls-in-assembly">Nested Function Calls in Assembly</a></li><li><a href="#risc-vs-cisc">RISC vs CISC</a></li><li><a href="#input%2Foutput-devices">Input/Output Devices</a></li><li><a href="#accessing-i%2Fo-device">Accessing I/O Device</a></li><li><a href="#exceptions-and-traps">Exceptions and Traps</a></li><li><a href="#cpu-buses">CPU Buses</a></li><li><a href="#direct-memory-access">Direct Memory Access</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="arm-assembly-and-input%2Foutput" tabindex="-1">ARM Assembly and Input/Output</h1>
+<h2 id="conditionals-in-assembly" tabindex="-1">Conditionals in Assembly</h2>
+<h3 id="moving-imediate-values-to-registers" tabindex="-1">Moving imediate values to registers</h3>
+<ul>
+<li>For small immediate (8-bits):</li>
+</ul>
+<pre><code class="hljs language-asm">mov r3, #val ;val can be 0 to 255
+mvn r3, #val ;val can be -256 to -1
+</code></pre>
+<ul>
+<li>For larger values</li>
+</ul>
+<pre><code class="hljs language-asm">ldr r3, =val ;val can be any 32-bit value
+</code></pre>
+<blockquote>
+<p><code><span class="hljs-attribute">ldr</span></code> is a pseudo-op!</p>
+</blockquote>
+<h3 id="conditionals-in-assembly-1" tabindex="-1">Conditionals in assembly</h3>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> a = <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span> b = <span class="hljs-number">2</span>;
+<span class="hljs-type">int</span> x;
+
+<span class="hljs-keyword">if</span> (a &lt; b) {
+  x = <span class="hljs-number">1</span>;
+} <span class="hljs-keyword">else</span> {
+  x = <span class="hljs-number">2</span>;
+}
+</code></pre>
+<pre><code class="hljs language-asm">.section .text
+  ldr r0, =vars
+  ldr r1, [r0]
+  ldr r2, [r0, #4]
+  cmp r1, r2
+  bge else
+  mov r2, #1
+  b endif
+else:
+  mov r2, #2
+endif:
+  str r2, [r0, #8]
+
+.section .data
+vars:
+  .word 1 ;a
+  .word 2 ;b
+  .word 0 ;x
+</code></pre>
+<h3 id="loops-in-assembly" tabindex="-1">Loops in assembly</h3>
+<h4 id="basic-example" tabindex="-1">Basic example</h4>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> a = <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span> b = <span class="hljs-number">2</span>;
+
+<span class="hljs-keyword">while</span> (a != b) {
+  <span class="hljs-comment">// loop body</span>
+}
+</code></pre>
+<pre><code class="hljs language-asm">.section .text
+  ldr r0, =vars
+  ldr r1, [r0]
+  ldr r2, [r0, #4]
+loop:
+  cmp r1, r2
+  beq end
+  ; loop body
+  b loop
+end:
+
+.section -data
+vars:
+  .word 1 ;a
+  .word 2 ;b
+</code></pre>
+<h4 id="another-example" tabindex="-1">Another example</h4>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> a = <span class="hljs-number">1</span>;
+<span class="hljs-type">int</span> b = <span class="hljs-number">2</span>;
+
+<span class="hljs-keyword">while</span> (a &amp;&amp; b) {
+  <span class="hljs-comment">// loop body</span>
+}
+</code></pre>
+<pre><code class="hljs language-asm">.section .text
+  ldr r0, =vars
+  ldr r1, [r0]
+  ldr r2, [r0, #4]
+loop:
+  cmp r1, #0
+  beq end
+  cmp r2, #0
+  beq end
+  ; loop body
+  b loop
+end:
+
+.section -data
+vars:
+  .word 1 ;a
+  .word 2 ;b
+</code></pre>
+<h2 id="function-calls-in-assembly" tabindex="-1">Function Calls in Assembly</h2>
+<h3 id="function%2Fprocedure%2Fmethod-calls" tabindex="-1">Function/procedure/method calls</h3>
+<ul>
+<li>Essential even for a small program</li>
+<li>Most ISAs provide som suppoert for such calls</li>
+</ul>
+<h3 id="arm-support-for-function-calls" tabindex="-1">ARM support for function calls</h3>
+<ul>
+<li>Jumping to a function: <code><span class="hljs-keyword">bl</span> label</code>
+<ul>
+<li><code><span class="hljs-attribute">bl</span></code> is "branch and link"
+<ul>
+<li>set <code><span class="hljs-built_in">r14</span></code> (Link Register) to <code><span class="hljs-attribute">PC</span> + <span class="hljs-number">4</span></code></li>
+<li>set <code><span class="hljs-attribute">PC</span></code> to <code><span class="hljs-selector-tag">label</span></code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Returning from a function:
+<ul>
+<li>Needs to move <code><span class="hljs-attribute">LR</span></code> to <code><span class="hljs-attribute">PC</span></code>
+<ul>
+<li>E.g. <code><span class="hljs-keyword">mov</span> <span class="hljs-built_in">r15</span>, <span class="hljs-built_in">r14</span></code></li>
+</ul>
+</li>
+<li>No special instruction
+<ul>
+<li>(<code><span class="hljs-keyword">bx</span> <span class="hljs-built_in">lr</span></code> ??)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="example-of-function-call-in-assembly" tabindex="-1">Example of function call in assembly</h3>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+  <span class="hljs-keyword">return</span> a + b;
+}
+
+main() {
+  <span class="hljs-type">int</span> x = <span class="hljs-number">5</span>; y = <span class="hljs-number">10</span>;
+  add(x, y);
+}
+</code></pre>
+<pre><code class="hljs language-asm">add:
+  add r0, r0, r1
+  mov r15, r14
+
+main:
+  mov r0, #5
+  mov r1, #10
+  bl add
+</code></pre>
+<ul>
+<li>But wait!
+<ul>
+<li>We never passed the parameters to the callee!</li>
+<li>Neither did the callee return the result.</li>
+</ul>
+</li>
+</ul>
+<h3 id="arm-register-convention-on-function-calls" tabindex="-1">ARM register convention on function calls</h3>
+<ul>
+<li>Parameters are passed:
+<ul>
+<li>In registers r0 to r3</li>
+<li>Additional parameters are passed via <code>stack</code></li>
+</ul>
+</li>
+<li>Values are returned in <code><span class="hljs-built_in">r0</span></code> and <code><span class="hljs-built_in">r1</span></code></li>
+<li>Caller saved registers: <code><span class="hljs-built_in">r0</span></code>-<code><span class="hljs-built_in">r3</span></code></li>
+<li>Callee saved registers: <code><span class="hljs-built_in">r4</span></code>-<code><span class="hljs-built_in">r14</span></code></li>
+<li><code><span class="hljs-built_in">r9</span></code> and <code><span class="hljs-built_in">r12</span></code> are special purpose registers, where specifics depend on implementation</li>
+</ul>
+<h2 id="nested-function-calls-in-assembly" tabindex="-1">Nested Function Calls in Assembly</h2>
+<h2 id="risc-vs-cisc" tabindex="-1">RISC vs CISC</h2>
+<h2 id="input%2Foutput-devices" tabindex="-1">Input/Output Devices</h2>
+<h2 id="accessing-i%2Fo-device" tabindex="-1">Accessing I/O Device</h2>
+<h2 id="exceptions-and-traps" tabindex="-1">Exceptions and Traps</h2>
+<h2 id="cpu-buses" tabindex="-1">CPU Buses</h2>
+<h2 id="direct-memory-access" tabindex="-1">Direct Memory Access</h2>
+
+      </article>
+      </div>
+  </body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>02.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">tdt4165/</a><a href="./index.html">lectures</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="02.html">02 ✨</a></li>
+<li>📄 <a href="03.html">03</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture-2%3A-syntax">Lecture 2: Syntax</a><ol><li><a href="#paradigms-of-programming">Paradigms of Programming</a><ol><li><a href="#imperative-programming">Imperative Programming</a></li><li><a href="#object-oriented-programming">Object-oriented Programming</a></li><li><a href="#functional-programming">Functional Programming</a></li><li><a href="#logic-programming">Logic Programming</a></li></ol></li><li><a href="#the-ctmcp*-approach">The CTMCP* Approach</a><ol><li><a href="#the-kernel-language-approach">The kernel language approach</a></li><li><a href="#some-of-the-features-discussed-in-ctmcp">Some of the features discussed in CTMCP</a></li></ol></li><li><a href="#mdc%2C-the-micro-dc">mdc, The Micro dc</a><ol><li><a href="#a-specification">A Specification</a></li><li><a href="#steps-in-executing-an-mdc-program">Steps in executing an mdc program</a></li></ol></li><li><a href="#specifying-a-programming-language">Specifying a Programming Language</a><ol><li><a href="#formal-language">Formal Language</a></li><li><a href="#formal-grammars">Formal Grammars</a></li><li><a href="#backus-naur-form">Backus-Naur Form</a><ol><li><a href="#bnf-notation">BNF Notation</a></li><li><a href="#elements-of-bnf">Elements of BNF</a></li><li><a href="#derivations">Derivations</a></li><li><a href="#further-extensions">Further extensions</a></li></ol></li><li><a href="#classification-of-grammars">Classification of Grammars</a><ol><li><a href="#chomsky's-hierarchy-of-languages">Chomsky&#39;s Hierarchy of Languages</a></li><li><a href="#regular-languages">Regular Languages</a></li><li><a href="#context-free-languages">Context-free Languages</a></li><li><a href="#context-sensitive-languages">Context-sensitive Languages</a></li><li><a href="#recursively-enumerable-(unrestricted)-languages">Recursively Enumerable (Unrestricted) Languages</a></li><li><a href="#why-do-we-care%3F">Why do we care?</a></li></ol></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="lecture-2%3A-syntax" tabindex="-1">Lecture 2: Syntax</h1>
+<h2 id="paradigms-of-programming" tabindex="-1">Paradigms of Programming</h2>
+<p><strong>What is a programming paradigm?</strong></p>
+<ul>
+<li>Style of programming, the way in which solutions to problems are implemented in a programming language.</li>
+<li>Involves extensive use of some constructs of a language and discourages or prohibits the use of others.</li>
+</ul>
+<h3 id="imperative-programming" tabindex="-1">Imperative Programming</h3>
+<ul>
+<li>A program is a sequence of statements.</li>
+<li>Statements update the state of variables etc.</li>
+<li>Closely related to the language of the underlying hardware — usually some version of von Neumann/register machine.</li>
+</ul>
+<blockquote>
+<p>Examples: Fortran, Algol, Cobol, Pascal, C, ...</p>
+</blockquote>
+<h3 id="object-oriented-programming" tabindex="-1">Object-oriented Programming</h3>
+<ul>
+<li>A program defines a set of objects that are encapsulations of data and operations (methods).</li>
+<li>Models of entities in real world?</li>
+<li>Separation of class and instance.</li>
+<li>Separation of state (attributes/properties) and behaviour (methods/features).</li>
+<li>Objects send messages to (call methods on) each other.</li>
+<li>Objects execute operations when they receive messages.</li>
+</ul>
+<blockquote>
+<p>Examples: Simula, Java, C++, C#, Ruby, Smalltalk, ...</p>
+</blockquote>
+<h3 id="functional-programming" tabindex="-1">Functional Programming</h3>
+<ul>
+<li>A program defines a set of functions.</li>
+<li>Functions, when called with appropriate arguments, compute values based on the input.</li>
+<li>Functions are first-class objects: they can be both arguments to and return values from calls to other functions.</li>
+<li>In pure functional programming there are no side-effects—variables are not mutable variables, there is no I/O.</li>
+</ul>
+<blockquote>
+<p>Examples: Haskell, Lisp, Scheme, ...</p>
+</blockquote>
+<h3 id="logic-programming" tabindex="-1">Logic Programming</h3>
+<ul>
+<li>A program is a set of logical assertions: facts and rules.</li>
+<li>A program may be read as a logical expression or as a set of operations to be executed.</li>
+<li>An execution of a program follows an inference pattern to prove or disprove a query.</li>
+</ul>
+<blockquote>
+<p>Examples: Prolog, Datalog (deductive databases), Mercury, OWL, Semantic Web languages, ...</p>
+</blockquote>
+<h2 id="the-ctmcp*-approach" tabindex="-1">The CTMCP* Approach</h2>
+<p>*Concepts, Techniques, and Models of Computer Programming — the book</p>
+<h3 id="the-kernel-language-approach" tabindex="-1">The kernel language approach</h3>
+<ul>
+<li>Start with a simple model of computation, a kernel language (KL).</li>
+<li>The KL has a simple syntax and intuitive, virtual machine-based
+semantics.</li>
+<li>Incrementally extend the KL with new features to add support for further paradigms.</li>
+<li>At each step, assess the benefits and drawbacks of the extensions.</li>
+</ul>
+<h3 id="some-of-the-features-discussed-in-ctmcp" tabindex="-1">Some of the features discussed in CTMCP</h3>
+<ul>
+<li>Functions, procedures</li>
+<li>Higher-order</li>
+<li>Dataflow</li>
+<li>Lists</li>
+<li>Records</li>
+<li>Pattern matching</li>
+<li>Declarativity</li>
+<li>Concurrency</li>
+<li>Lazy evaluation</li>
+<li>Streams</li>
+<li>Explicit state</li>
+<li>Encapsulation</li>
+<li>Inheritance</li>
+<li>Non-determinism</li>
+</ul>
+<h2 id="mdc%2C-the-micro-dc" tabindex="-1">mdc, The Micro dc</h2>
+<h3 id="a-specification" tabindex="-1">A Specification</h3>
+<p>Programs in mdc may include any number of:</p>
+<ul>
+<li>arbitrary positive integer numerals;</li>
+<li>arithmetic operators—any of +, -, *, and /;</li>
+<li>stack display commands—any of p and f.</li>
+</ul>
+<p>... but nothing else.</p>
+<p>Unlike dc, our mdc has just one stack, the main stack. mdc works as follows:</p>
+<ul>
+<li>It takes elements from the program one at a time.</li>
+<li>If the current element is a numeral, it is pushed onto the stack.</li>
+<li>If the current element is an arithmetic operator,</li>
+<li>two values are popped from the stack,</li>
+<li>the appropriate arithmetic operation is applied, and</li>
+<li>the result is pushed onto the stack.</li>
+<li>If the current element is the p or the f command, the topmost element or all elements (in a top-down order) are displayed, respectively.</li>
+</ul>
+<blockquote>
+<p>This is an informal specification of the semantics of mdc. We shall use this sort of specification throughout the course, and discuss other options at one of the last lectures.</p>
+</blockquote>
+<h3 id="steps-in-executing-an-mdc-program" tabindex="-1">Steps in executing an mdc program</h3>
+<ol>
+<li>Reading the input. The input is a sequence of characters provided as an argument to mdc or read from a file or from the console (stdin).</li>
+<li>Parsing the input. The sequence of characters is processed in order to identify and classify syntactic elements, and an internal representation of the input is built.</li>
+<li>Interpreting the input. The internal representation of the program is processed, i.e., the actions specified by the syntactic elements are performed.</li>
+</ol>
+<h2 id="specifying-a-programming-language" tabindex="-1">Specifying a Programming Language</h2>
+<p>The definition of a programming language involves (at least) a specification of
+its syntax and semantics.</p>
+<p><strong>Syntax</strong>: Definition of the form of programs in a language.
+Specifies which sequences of symbols are valid (are
+programs), and which are not.</p>
+<p><strong>Semantics</strong>: Definition of the meaning of programs in a language.
+Specifies what the computer has to do during an execution of
+a program.</p>
+<h3 id="formal-language" tabindex="-1">Formal Language</h3>
+<p>A formal language <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">L</span></span></span></span> is a set of strings (sequences) of symbols from a finite alphabet <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span>:</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>s</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">A = \{ s_1, s_2, \dots, s_n \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mo stretchy="false">{</mo><msup><mi>s</mi><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msup><mo separator="true">,</mo><msup><mi>s</mi><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></msup><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msup><mi>s</mi><mrow><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></msup><mi mathvariant="normal">∣</mi><mi>m</mi><mo>≥</mo><mn>0</mn><mo separator="true">,</mo><msup><mi>s</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo>∈</mo><mi>A</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">L = \{ s^{(1)}, s^{(2)}, \dots, s^{(m)} | m \geq 0, s^{(i)} \in A \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.138em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">2</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">m</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0824399999999998em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">A</span><span class="mclose">}</span></span></span></span></li>
+</ul>
+<p>Example (Formal language)</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>=</mo><mo stretchy="false">{</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">A_1 = \{a, b\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mclose">}</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub><mo>=</mo><mo stretchy="false">{</mo><mi>ϵ</mi><mo separator="true">,</mo><mi>a</mi><mo separator="true">,</mo><mi>a</mi><mi>b</mi><mo separator="true">,</mo><mi>a</mi><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mi>a</mi><mo separator="true">,</mo><mi>a</mi><mi>b</mi><mi>a</mi><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">L_1 = \{\epsilon, a, ab, aa, ba, aba, . . . \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">ϵ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">b</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mclose">}</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">ϵ</span></span></span></span> is the empty string (the string of no symbols)</li>
+<li>The sequence abc is not a valid <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">L_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> sentence <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>c</mi><mo mathvariant="normal">∉</mo><msub><mi>A</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(c \notin A_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord vbox"><span class="thinbox"><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<h3 id="formal-grammars" tabindex="-1">Formal Grammars</h3>
+<p>How can we specify syntax formally?</p>
+<ul>
+<li>We can use a formal grammar.</li>
+<li>A formal grammar specifies how to construct (derive, generate) a string that is syntactically valid (i.e., a string that belongs to the language defined by the grammar).</li>
+<li>If a particular string cannot be generated from a grammar, it is not a valid sentence in the formal language defined by the grammar.</li>
+</ul>
+<p><strong>Definition (Formal grammar)</strong>
+A formal grammar <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Γ</span></span></span></span> is a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span>-tuple <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>S</mi><mo separator="true">,</mo><mi>R</mi><mo separator="true">,</mo><msub><mi>v</mi><mi>s</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(V, S, R, v_s)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, where:</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>v</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>v</mi><msub><mi>n</mi><mi>V</mi></msub></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">V = \{v_1, v_2, \dots , v_{n_V}\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.000305em;vertical-align:-0.250305em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139199999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.250305em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span> is a finite set of variables (non-terminals)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>s</mi><msub><mi>n</mi><mi>S</mi></msub></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">S = \{s_1, s_2, \dots, s_{n_S}\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.000305em;vertical-align:-0.250305em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139199999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.250305em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span> is a finite set of symbols (terminals)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><mi>v</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mi>t</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo>…</mo><mi>t</mi><mo stretchy="false">(</mo><mi>m</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mi>v</mi><mo>∈</mo><mi>V</mi><mo separator="true">,</mo><mi>m</mi><mo>&gt;</mo><mn>0</mn><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>∈</mo><mi>V</mi><mo>∪</mo><mi>S</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">R = \{(v, t(1) t(2) \dots t(m)) | v \in V, m &gt; 0, t(i) \in V \cup S\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mclose">)</span><span class="mclose">)</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">}</span></span></span></span> is a finite set of rules (productions)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>s</mi></msub><mo>∈</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">v_s \in V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> is the start variable (root, top)</li>
+</ul>
+<h3 id="backus-naur-form" tabindex="-1">Backus-Naur Form</h3>
+<h4 id="bnf-notation" tabindex="-1">BNF Notation</h4>
+<ul>
+<li>Grammars are usually written using a special notation: the Backus-Naur Form (BNF).</li>
+<li>BNF is often extended with convenience symbols to shorten the notation: the Extended BNF (EBNF).</li>
+<li>BNF (and EBNF) is a metalanguage, a language for talking about languages.</li>
+<li>We will use EBNF extensively during the course.</li>
+</ul>
+<h4 id="elements-of-bnf" tabindex="-1">Elements of BNF</h4>
+<ul>
+<li>Terminals are distinguished from non-terminals by some typographical convention, for example:</li>
+<li>non-terminals are written in italics, using angle brackets, etc.;</li>
+<li>terminals are written in a monotype font, enclosed in quotation marks, etc.</li>
+<li>Rules are written as strings which contain:</li>
+<li>a non-terminal,</li>
+<li>a special symbol (typically, '::='),</li>
+<li>a sequence of terminals and non-terminals, or the symbol 'ϵ'.</li>
+<li>The terminals and non-terminals of the defined grammar are those explicit in the rules (except for 'ϵ' and other special symbols).</li>
+<li>The start variable is the left-hand side of the top-most rule in the grammar.</li>
+</ul>
+<h4 id="derivations" tabindex="-1">Derivations</h4>
+<ul>
+<li>Following the rules of using a grammar explained earlier, we can derive strings given a grammar in a sequence of steps (a derivation).</li>
+<li>In each step we derive a new sentential form — a sequence of terminals and non-terminals.</li>
+<li>The first sentential form is the start variable alone.</li>
+<li>The last sentential form is a valid sentence, composed only of terminals.</li>
+</ul>
+<h4 id="further-extensions" tabindex="-1">Further extensions</h4>
+<ul>
+<li>The special symbol '|' has the meaning of 'or'.</li>
+<li>Use the special symbols '[' and ']' to enclose a subsequence that appears in the string at most once.</li>
+<li>Use the special symbols '{' and '}' to enclose a subsequence that appears in the string any number of times.</li>
+<li>Alternatively, use only the symbols '{' and '}' and a superscript to specify the number of occurences. Typically, '+' means at least one occurence, and '*' means any number of occurences.</li>
+</ul>
+<h3 id="classification-of-grammars" tabindex="-1">Classification of Grammars</h3>
+<h4 id="chomsky's-hierarchy-of-languages" tabindex="-1">Chomsky's Hierarchy of Languages</h4>
+<p><img src="assets/2022-09-02-12-31-53.png" alt=""></p>
+<h4 id="regular-languages" tabindex="-1">Regular Languages</h4>
+<p>What is a regular language?</p>
+<ul>
+<li>
+<p>A language generated by a regular grammar.</p>
+</li>
+<li>
+<p>In a regular grammar, all rules are of one of the forms:</p>
+<pre><code class="hljs language-txt">v ::= s w
+v ::= s
+v ::= ϵ
+</code></pre>
+<p>where v, w are any variables in V and s is any symbol in S.
+(These are right-regular grammars; in left-regular grammars the
+right-hand side of the first rule has inverse order.)</p>
+</li>
+</ul>
+<h4 id="context-free-languages" tabindex="-1">Context-free Languages</h4>
+<p>What is a context-free language?</p>
+<ul>
+<li>
+<p>A language generated by a context-free grammar.</p>
+</li>
+<li>
+<p>In a context-free grammar, all rules are of the form:</p>
+<pre><code class="hljs language-txt">v ::= γ
+</code></pre>
+<p>where v is a variable in V and γ is any sequence of variables and symbols
+from V ∪ S.</p>
+</li>
+</ul>
+<h4 id="context-sensitive-languages" tabindex="-1">Context-sensitive Languages</h4>
+<p>What is a context-sensitive language?</p>
+<ul>
+<li>
+<p>A language generated by a context-sensitive grammar.</p>
+</li>
+<li>
+<p>In a context-sensitive grammar, all rules are of the form:</p>
+<pre><code class="hljs language-txt">αvβ ::= αγβ
+</code></pre>
+<p>where v is any variable from V, and α, β and γ are any sequences of variables and symbols from V ∪ S.</p>
+</li>
+</ul>
+<h4 id="recursively-enumerable-(unrestricted)-languages" tabindex="-1">Recursively Enumerable (Unrestricted) Languages</h4>
+<p>What is a recursively enumerable language?</p>
+<ul>
+<li>
+<p>A language generated by an unrestricted grammar.</p>
+</li>
+<li>
+<p>In an unrestricted grammar, all rules are of the form:</p>
+<pre><code class="hljs language-txt">α ::= β
+</code></pre>
+<p>where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span> are any sequences of variables and symbols from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi><mo>∪</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">V \cup S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> is non-empty).</p>
+</li>
+</ul>
+<h4 id="why-do-we-care%3F" tabindex="-1">Why do we care?</h4>
+<ul>
+<li>Different grammars have different computational complexity: unrestricted <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≻</mo></mrow><annotation encoding="application/x-tex">\succ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≻</span></span></span></span> context-sensitive <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≻</mo></mrow><annotation encoding="application/x-tex">\succ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≻</span></span></span></span> context-free <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≻</mo></mrow><annotation encoding="application/x-tex">\succ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">≻</span></span></span></span> regular</li>
+<li>Regular grammars are used to define the lexemes of a programming language, i.e., sequences of symbols from the alphabet of individual characters.</li>
+<li>Context-free grammars are used to define programs, i.e., sequences of symbols from the alphabet of individual lexemes in a programming language.</li>
+<li>Additional constraints may be needed to further define the language, e.g., by specifying that variable identifiers can be used only after they have been declared, etc.</li>
+</ul>
+
+      </article>
+      </div>
+  </body>
+</html>
