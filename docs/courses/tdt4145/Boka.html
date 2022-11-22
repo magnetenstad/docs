@@ -19,7 +19,7 @@
 
   <body class="markdown-body">
     <div class="page flex-row">
-      <div class="col">
+      <div class="col links">
         
 <p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4145</a>
 </h4></p>
@@ -356,6 +356,7 @@ this length of tuple is referred to as R.</li>
 <p>For the REDO phase, the smallest LSN in the Dirty Page Table is 1. Hence the REDO will start at log record 1 and proceed with the REDO of updates. The LSNs {1, 2, 6, 7} corresponding to the updates for pages C, B, A, and C, respectively, are not less than the LSNs of those pages (as shown in the Dirty Page Table). So those data pages will be read again and the updates reapplied from the log</p>
 <p>UNDO is applied only to the active transaction T3. The UNDO phase starts at log entry 6 (the last update for T3) and proceeds backward in the log. The backward chain of updates for transaction T3 (only log record 6 in this example) is followed and undone.</p>
 
+        <div style="height: 100vh;"></div>
       </article>
       </div>
   </body>
