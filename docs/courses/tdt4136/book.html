@@ -24,28 +24,374 @@
 <p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4136</a>
 </h4></p>
 <ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
 <li>📂 <a href="./lectures/index.html">lectures</a></li>
 <li>📄 <a href="analysis_of_prev_exams.html">analysis_of_prev_exams</a></li>
 <li>📄 <a href="book.html">book ✨</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#artificial-intelligence---a-modern-approach-(4th-edition)">Artificial Intelligence - A Modern Approach (4th edition)</a><ol><li><a href="#1-introduction">1 Introduction</a><ol><li><a href="#2.1-what-is-ai%3F">2.1 What is AI?</a></li><li><a href="#2.2-the-foundations-of-artificial-intelligence">2.2 The Foundations of Artificial Intelligence</a></li><li><a href="#2.3-the-history-of-artififial-intelligence">2.3 The History of Artififial Intelligence</a></li><li><a href="#2.4-the-state-of-the-art">2.4 The State of the Art</a></li><li><a href="#2.5-risks-and-benefits-of-ai">2.5 Risks and Benefits of AI</a></li></ol></li><li><a href="#2-intelligent-agents">2 Intelligent Agents</a><ol><li><a href="#2.1-agents-and-environments">2.1 Agents and Environments</a></li><li><a href="#2.2-good-behavior%3A-the-concept-of-rationality">2.2 Good Behavior: The Concept of Rationality</a></li><li><a href="#2.3-the-nature-of-environments">2.3 The Nature of Environments</a></li><li><a href="#2.4-the-structure-of-agents">2.4 The Structure of Agents</a></li></ol></li><li><a href="#3-solving-problems-by-searching">3 Solving Problems by Searching</a><ol><li><a href="#3.1-problem-solving-agents">3.1 Problem-Solving Agents</a></li><li><a href="#3.2-example-problems">3.2 Example Problems</a></li><li><a href="#3.3-search-algorithms">3.3 Search Algorithms</a></li><li><a href="#3.4-uninformed-search-strategies">3.4 Uninformed Search Strategies</a></li><li><a href="#3.5-informed-(heuristic)-search-strategies">3.5 Informed (Heuristic) Search Strategies</a></li><li><a href="#3.6-heuristic-functions">3.6 Heuristic Functions</a></li></ol></li><li><a href="#4-search-in-complex-environments">4 Search in Complex Environments</a><ol><li><a href="#4.1-local-search-and-optimization-problems">4.1 Local Search and Optimization Problems</a></li><li><a href="#4.3-search-with-nondeterministic-actions">4.3 Search with Nondeterministic Actions</a></li><li><a href="#4.4-search-in-partially-observable-environments">4.4 Search in Partially Observable Environments</a></li></ol></li><li><a href="#5-constraint-satisfaction-problems">5 Constraint Satisfaction Problems</a><ol><li><a href="#5.1-defining-constraint-satisfaction-problems">5.1 Defining Constraint Satisfaction Problems</a></li><li><a href="#5.2-constraint-propagation%3A-inference-in-csps">5.2 Constraint Propagation: Inference in CSPs</a></li><li><a href="#5.3-backtracking-search-for-csps">5.3 Backtracking Search for CSPs</a></li><li><a href="#5.4-local-search-for-csps">5.4 Local Search for CSPs</a></li><li><a href="#5.5-the-structure-of-problems">5.5 The Structure of Problems</a></li></ol></li><li><a href="#6-adversarial-search-and-games">6 Adversarial Search and Games</a><ol><li><a href="#6.1-game-theory">6.1 Game Theory</a></li><li><a href="#6.2-optimal-decisions-in-games">6.2 Optimal Decisions in Games</a></li><li><a href="#6.3-heuristic-alpha-beta-tree-search">6.3 Heuristic Alpha-Beta Tree Search</a></li><li><a href="#6.4-monte-carlo-tree-search">6.4 Monte Carlo Tree search</a></li><li><a href="#6.5-stochastic-games">6.5 Stochastic Games</a></li><li><a href="#6.6-partially-observable-games">6.6 Partially Observable Games</a></li><li><a href="#6.7-limitations-of-game-search-algorithms">6.7 Limitations of Game Search Algorithms</a></li></ol></li><li><a href="#7-logical-agents">7 Logical Agents</a><ol><li><a href="#7.1-knowledge-based-agents">7.1 Knowledge-Based Agents</a></li><li><a href="#7.2-the-wumpus-world">7.2 The Wumpus World</a></li><li><a href="#7.3-logic">7.3 Logic</a></li><li><a href="#7.4-propositional-logic%3A-a-very-simple-logic">7.4 Propositional Logic: A Very Simple Logic</a></li><li><a href="#7.5-propositional-theorem-proving">7.5 Propositional Theorem Proving</a></li><li><a href="#7.6-effective-propositional-model-checking">7.6 Effective Propositional Model Checking</a></li><li><a href="#7.7-agents-based-on-propositional-logic">7.7 Agents Based on Propositional Logic</a></li></ol></li><li><a href="#8-first-order-logic">8 First-Order Logic</a><ol><li><a href="#8.1-representation-revisited">8.1 Representation Revisited</a></li><li><a href="#8.2-syntax-and-semantics-of-first-order-logic">8.2 Syntax and Semantics of First-Order Logic</a></li><li><a href="#8.3-using-first-order-logic">8.3 Using First-Order Logic</a></li><li><a href="#8.4-knowledge-engineering-in-first-order-logic">8.4 Knowledge Engineering in First-Order Logic</a></li></ol></li><li><a href="#9-inference-in-first-order-logic">9 Inference in First-Order Logic</a><ol><li><a href="#9.1-propositional-vs.-first-order-inference">9.1 Propositional vs. First-Order Inference</a></li><li><a href="#9.2-unification-and-first-order-inference">9.2 Unification and First-order Inference</a></li><li><a href="#9.3-forward-chaining">9.3 Forward Chaining</a></li><li><a href="#9.4-backward-chaining-(except-9.4.2-9.4.5)">9.4 Backward Chaining (Except 9.4.2-9.4.5)</a></li><li><a href="#9.5-resolution-(except-9.5.4-9.5.5)">9.5 Resolution (Except 9.5.4-9.5.5)</a></li></ol></li><li><a href="#10-knowledge-representation">10 Knowledge Representation</a><ol><li><a href="#10.1-ontological-engineering">10.1 Ontological Engineering</a></li><li><a href="#10.2-categories-and-objects">10.2 Categories and Objects</a></li><li><a href="#10.3-events">10.3 Events</a></li><li><a href="#10.4-mental-objects-and-modal-logic">10.4 Mental Objects and Modal Logic</a></li><li><a href="#10.5-reasoning-systems-for-categories">10.5 Reasoning Systems for Categories</a></li><li><a href="#10.6-reasoning-with-default-information">10.6 Reasoning with Default Information</a></li></ol></li><li><a href="#11-automated-planning">11 Automated Planning</a><ol><li><a href="#11.1-definition-of-classical-planning">11.1 Definition of Classical Planning</a></li><li><a href="#11.2-algorithms-for-classical-planning">11.2 Algorithms for Classical Planning</a></li><li><a href="#11.3-heuristics-for-planning">11.3 Heuristics for Planning</a></li><li><a href="#11.4-hierachical-planning">11.4 Hierachical Planning</a></li><li><a href="#11.5-planning-and-acting-in-nondeterminsitic-domains">11.5 Planning and Acting in Nondeterminsitic Domains</a></li><li><a href="#11.6-time%2C-schedules%2C-and-resources">11.6 Time, Schedules, and Resources</a></li><li><a href="#11.7-analysis-of-planning-approaches">11.7 Analysis of Planning Approaches</a></li></ol></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#artificial-intelligence---a-modern-approach-(4th-edition)">Artificial Intelligence - A Modern Approach (4th edition)</a><ol><li><a href="#1-introduction">1 Introduction</a><ol><li><a href="#2.1-what-is-ai%3F">2.1 What is AI?</a><ol><li><a href="#human-vs-rational%2C-thought-vs-behavior">Human vs Rational, Thought vs Behavior</a></li></ol></li><li><a href="#1.2-the-foundations-of-artificial-intelligence">1.2 The Foundations of Artificial Intelligence</a><ol><li><a href="#1.2.1-philosophy">1.2.1 Philosophy</a></li><li><a href="#1.2.2-mathematics">1.2.2 Mathematics</a></li><li><a href="#1.2.3-economics">1.2.3 Economics</a></li><li><a href="#1.2.4-neuroscience">1.2.4 Neuroscience</a></li><li><a href="#1.2.5-psychology">1.2.5 Psychology</a><ol><li><a href="#a-knowledge-based-agent">A knowledge-based agent</a></li></ol></li><li><a href="#1.2.6-control-theory-and-cybernetics">1.2.6 Control theory and cybernetics</a></li></ol></li><li><a href="#1.3-the-history-of-artififial-intelligence">1.3 The History of Artififial Intelligence</a><ol><li><a href="#1.3.1-the-inception-of-artificial-intelligence-(1943-1956)">1.3.1 The inception of artificial intelligence (1943-1956)</a></li></ol></li><li><a href="#1.4-the-state-of-the-art">1.4 The State of the Art</a></li><li><a href="#1.5-risks-and-benefits-of-ai">1.5 Risks and Benefits of AI</a></li></ol></li><li><a href="#2-intelligent-agents">2 Intelligent Agents</a><ol><li><a href="#2.1-agents-and-environments">2.1 Agents and Environments</a></li><li><a href="#2.2-good-behavior%3A-the-concept-of-rationality">2.2 Good Behavior: The Concept of Rationality</a></li><li><a href="#2.3-the-nature-of-environments">2.3 The Nature of Environments</a><ol><li><a href="#2.3.2-properties-of-task-environments">2.3.2 Properties of task environments</a></li></ol></li><li><a href="#2.4-the-structure-of-agents">2.4 The Structure of Agents</a><ol><li><a href="#how-the-components-of-agents-programs-work">How the components of agents programs work</a></li></ol></li></ol></li><li><a href="#3-solving-problems-by-searching">3 Solving Problems by Searching</a><ol><li><a href="#3.1-problem-solving-agents">3.1 Problem-Solving Agents</a></li><li><a href="#3.2-example-problems">3.2 Example Problems</a></li><li><a href="#3.3-search-algorithms">3.3 Search Algorithms</a></li><li><a href="#3.4-uninformed-search-strategies">3.4 Uninformed Search Strategies</a></li><li><a href="#3.5-informed-(heuristic)-search-strategies">3.5 Informed (Heuristic) Search Strategies</a></li><li><a href="#3.6-heuristic-functions">3.6 Heuristic Functions</a></li></ol></li><li><a href="#4-search-in-complex-environments">4 Search in Complex Environments</a><ol><li><a href="#4.1-local-search-and-optimization-problems">4.1 Local Search and Optimization Problems</a></li><li><a href="#4.3-search-with-nondeterministic-actions">4.3 Search with Nondeterministic Actions</a></li><li><a href="#4.4-search-in-partially-observable-environments">4.4 Search in Partially Observable Environments</a></li></ol></li><li><a href="#5-constraint-satisfaction-problems">5 Constraint Satisfaction Problems</a><ol><li><a href="#5.1-defining-constraint-satisfaction-problems">5.1 Defining Constraint Satisfaction Problems</a></li><li><a href="#5.2-constraint-propagation%3A-inference-in-csps">5.2 Constraint Propagation: Inference in CSPs</a></li><li><a href="#5.3-backtracking-search-for-csps">5.3 Backtracking Search for CSPs</a></li><li><a href="#5.4-local-search-for-csps">5.4 Local Search for CSPs</a></li><li><a href="#5.5-the-structure-of-problems">5.5 The Structure of Problems</a></li></ol></li><li><a href="#6-adversarial-search-and-games">6 Adversarial Search and Games</a><ol><li><a href="#6.1-game-theory">6.1 Game Theory</a></li><li><a href="#6.2-optimal-decisions-in-games">6.2 Optimal Decisions in Games</a></li><li><a href="#6.3-heuristic-alpha-beta-tree-search">6.3 Heuristic Alpha-Beta Tree Search</a></li><li><a href="#6.4-monte-carlo-tree-search">6.4 Monte Carlo Tree search</a></li><li><a href="#6.5-stochastic-games">6.5 Stochastic Games</a></li><li><a href="#6.6-partially-observable-games">6.6 Partially Observable Games</a></li><li><a href="#6.7-limitations-of-game-search-algorithms">6.7 Limitations of Game Search Algorithms</a></li></ol></li><li><a href="#7-logical-agents">7 Logical Agents</a><ol><li><a href="#7.1-knowledge-based-agents">7.1 Knowledge-Based Agents</a></li><li><a href="#7.2-the-wumpus-world">7.2 The Wumpus World</a></li><li><a href="#7.3-logic">7.3 Logic</a></li><li><a href="#7.4-propositional-logic%3A-a-very-simple-logic">7.4 Propositional Logic: A Very Simple Logic</a></li><li><a href="#7.5-propositional-theorem-proving">7.5 Propositional Theorem Proving</a></li><li><a href="#7.6-effective-propositional-model-checking">7.6 Effective Propositional Model Checking</a></li><li><a href="#7.7-agents-based-on-propositional-logic">7.7 Agents Based on Propositional Logic</a></li></ol></li><li><a href="#8-first-order-logic">8 First-Order Logic</a><ol><li><a href="#8.1-representation-revisited">8.1 Representation Revisited</a></li><li><a href="#8.2-syntax-and-semantics-of-first-order-logic">8.2 Syntax and Semantics of First-Order Logic</a></li><li><a href="#8.3-using-first-order-logic">8.3 Using First-Order Logic</a></li><li><a href="#8.4-knowledge-engineering-in-first-order-logic">8.4 Knowledge Engineering in First-Order Logic</a></li></ol></li><li><a href="#9-inference-in-first-order-logic">9 Inference in First-Order Logic</a><ol><li><a href="#9.1-propositional-vs.-first-order-inference">9.1 Propositional vs. First-Order Inference</a></li><li><a href="#9.2-unification-and-first-order-inference">9.2 Unification and First-order Inference</a></li><li><a href="#9.3-forward-chaining">9.3 Forward Chaining</a></li><li><a href="#9.4-backward-chaining-(except-9.4.2-9.4.5)">9.4 Backward Chaining (Except 9.4.2-9.4.5)</a></li><li><a href="#9.5-resolution-(except-9.5.4-9.5.5)">9.5 Resolution (Except 9.5.4-9.5.5)</a></li></ol></li><li><a href="#10-knowledge-representation">10 Knowledge Representation</a><ol><li><a href="#10.1-ontological-engineering">10.1 Ontological Engineering</a></li><li><a href="#10.2-categories-and-objects">10.2 Categories and Objects</a></li><li><a href="#10.3-events">10.3 Events</a></li><li><a href="#10.4-mental-objects-and-modal-logic">10.4 Mental Objects and Modal Logic</a></li><li><a href="#10.5-reasoning-systems-for-categories">10.5 Reasoning Systems for Categories</a></li><li><a href="#10.6-reasoning-with-default-information">10.6 Reasoning with Default Information</a></li></ol></li><li><a href="#11-automated-planning">11 Automated Planning</a><ol><li><a href="#11.1-definition-of-classical-planning">11.1 Definition of Classical Planning</a></li><li><a href="#11.2-algorithms-for-classical-planning">11.2 Algorithms for Classical Planning</a></li><li><a href="#11.3-heuristics-for-planning">11.3 Heuristics for Planning</a></li><li><a href="#11.4-hierachical-planning">11.4 Hierachical Planning</a></li><li><a href="#11.5-planning-and-acting-in-nondeterminsitic-domains">11.5 Planning and Acting in Nondeterminsitic Domains</a></li><li><a href="#11.6-time%2C-schedules%2C-and-resources">11.6 Time, Schedules, and Resources</a></li><li><a href="#11.7-analysis-of-planning-approaches">11.7 Analysis of Planning Approaches</a></li></ol></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
 <h1 id="artificial-intelligence---a-modern-approach-(4th-edition)" tabindex="-1">Artificial Intelligence - A Modern Approach (4th edition)</h1>
 <h2 id="1-introduction" tabindex="-1">1 Introduction</h2>
+<blockquote>
+<p>In which we try to explain why we consider artificial intelligence to be a subject most worthy of study, and in which we try to decide what exactly it is, this being a good thing to decide before embarking.</p>
+</blockquote>
 <h3 id="2.1-what-is-ai%3F" tabindex="-1">2.1 What is AI?</h3>
-<h3 id="2.2-the-foundations-of-artificial-intelligence" tabindex="-1">2.2 The Foundations of Artificial Intelligence</h3>
-<h3 id="2.3-the-history-of-artififial-intelligence" tabindex="-1">2.3 The History of Artififial Intelligence</h3>
-<h3 id="2.4-the-state-of-the-art" tabindex="-1">2.4 The State of the Art</h3>
-<h3 id="2.5-risks-and-benefits-of-ai" tabindex="-1">2.5 Risks and Benefits of AI</h3>
+<h4 id="human-vs-rational%2C-thought-vs-behavior" tabindex="-1">Human vs Rational, Thought vs Behavior</h4>
+<ul>
+<li>Acting humanly: The Turing test approach</li>
+<li>Thinking humanly: The cognitive modeling approach</li>
+<li>Thinking rationally: The "laws of thought" approach</li>
+<li>Acting rationally: The rational agent approach</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rational agent</td>
+<td>One that acts so as to achieve the best outcome or, when there is uncertainty, the best expected outcome.</td>
+</tr>
+<tr>
+<td>Standard model</td>
+<td>The study and construction of agents that do the right thing. What counts as right is defined by the objective that we provide to the agent.</td>
+</tr>
+<tr>
+<td>Limited rationality</td>
+<td>Acting appropriately when there is not enough time to do all the computations one might like.</td>
+</tr>
+<tr>
+<td>Value alignment problem</td>
+<td>The problem of achieing agreement between our true preferences and the objective we put into the machine.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1.2-the-foundations-of-artificial-intelligence" tabindex="-1">1.2 The Foundations of Artificial Intelligence</h3>
+<h4 id="1.2.1-philosophy" tabindex="-1">1.2.1 Philosophy</h4>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dualism</td>
+<td>There is a part of the human mind (or soul or spirit) that is outside of nature, exempt from physical laws. However, animals may be treated as machines.</td>
+</tr>
+<tr>
+<td>Materialism / Physicalism / Naturalism</td>
+<td>The brain's operation according to the laws of physics constitutes the mind.</td>
+</tr>
+<tr>
+<td>Logical positivism</td>
+<td>All knowledge can be characterized by logical theories connected to observation sentences that correspond to sensory inputs. It combines rationalism and empiricism.</td>
+</tr>
+<tr>
+<td>Utilitarism</td>
+<td>Rational decision making based on maximizing utility should apply to all spheres of human activity.</td>
+</tr>
+<tr>
+<td>Deontological ethics</td>
+<td>"Doing the right thing" is determined not by outcomes but by universal social laws that govern allowable actions</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1.2.2-mathematics" tabindex="-1">1.2.2 Mathematics</h4>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Formal logic</td>
+<td>Gottlob Frege extended Boole's logic to include objects and relations (first-order logic).</td>
+</tr>
+<tr>
+<td>Probability</td>
+<td>Can be seen as generalizing logic to situations with uncertain information.</td>
+</tr>
+<tr>
+<td>Statistics</td>
+<td>The formalization of probability, combined with the availability of data.</td>
+</tr>
+<tr>
+<td>Gödel incompleteness theorem</td>
+<td>Showed that in any formal theory as strong as Peano arithmetic (the elementary theory of natural numbers), there are necessarily true statements that have no proof within the theory</td>
+</tr>
+<tr>
+<td>Intractability</td>
+<td>An intractable problem is a problem in which the only exact solution is one that takes too many resources (time, memory, etc.). In other words, a problem in which no efficient solution.</td>
+</tr>
+<tr>
+<td>NP-completeness</td>
+<td>Provides a NP-completeness basis for analyzing the tractability of problems</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1.2.3-economics" tabindex="-1">1.2.3 Economics</h4>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision theory</td>
+<td>Combines probability theory with utility theory, provides a formal and complete framework for individual decisions made under uncertainty.</td>
+</tr>
+<tr>
+<td>Game theory</td>
+<td>The actions of one player can significantly affect the utility of another</td>
+</tr>
+<tr>
+<td>Operations research</td>
+<td>Addresses how to make rational decisions when payoffs from actions are not immediate but instead result from several actions taken in sequence</td>
+</tr>
+<tr>
+<td>Satisficing</td>
+<td>Making decisions that are “good enough,” rather than laboriously calculating an optimal decision</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1.2.4-neuroscience" tabindex="-1">1.2.4 Neuroscience</h4>
+<p><img src="assets/2022-11-22-12-11-29.png" alt=""></p>
+<h4 id="1.2.5-psychology" tabindex="-1">1.2.5 Psychology</h4>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Behaviorism</td>
+<td>Insisted on studying only objective measures of the percepts (or stimulus) given to an animal and its resulting actions (or response).</td>
+</tr>
+<tr>
+<td>Cognitive psychology</td>
+<td>Views the brain as an information-processing device</td>
+</tr>
+</tbody>
+</table>
+<h5 id="a-knowledge-based-agent" tabindex="-1">A knowledge-based agent</h5>
+<p>According to Kenneth Craik, the steps of a knowledge-based agent are:</p>
+<ol>
+<li>the stimulus must be translated into an internal representation</li>
+<li>the representation is manipulated by cognitive processes to derive new internal representations</li>
+<li>these are in turn retranslated back into action</li>
+</ol>
+<h4 id="1.2.6-control-theory-and-cybernetics" tabindex="-1">1.2.6 Control theory and cybernetics</h4>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Modern control theory / stochastic optimal control</td>
+<td>The design of systems that minimize a cost function over time</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1.3-the-history-of-artififial-intelligence" tabindex="-1">1.3 The History of Artififial Intelligence</h3>
+<h4 id="1.3.1-the-inception-of-artificial-intelligence-(1943-1956)" tabindex="-1">1.3.1 The inception of artificial intelligence (1943-1956)</h4>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hebbian learning</td>
+<td>A simple updating rule for modifying the connection strengths between neurons.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1.4-the-state-of-the-art" tabindex="-1">1.4 The State of the Art</h3>
+<h3 id="1.5-risks-and-benefits-of-ai" tabindex="-1">1.5 Risks and Benefits of AI</h3>
 <h2 id="2-intelligent-agents" tabindex="-1">2 Intelligent Agents</h2>
+<blockquote>
+<p>In which we discuss the nature of agents, perfect or otherwise, the diversity of environments, and the resulting menagerie of agent types.</p>
+</blockquote>
 <h3 id="2.1-agents-and-environments" tabindex="-1">2.1 Agents and Environments</h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent</td>
+<td>Anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators.</td>
+</tr>
+<tr>
+<td>Percept</td>
+<td>The content an agent’s sensors are perceiving</td>
+</tr>
+<tr>
+<td>Percept sequence</td>
+<td>The complete history of everything the agent has ever perceived</td>
+</tr>
+<tr>
+<td>Agent function</td>
+<td>Maps any given percept sequence to an action</td>
+</tr>
+<tr>
+<td>Agent program</td>
+<td>The internal implementation of the agent function</td>
+</tr>
+</tbody>
+</table>
 <h3 id="2.2-good-behavior%3A-the-concept-of-rationality" tabindex="-1">2.2 Good Behavior: The Concept of Rationality</h3>
+<p>What is rational at any given time depends on four things:</p>
+<ul>
+<li>The performance measure that defines the criterion of success.</li>
+<li>The agent’s prior knowledge of the environment.</li>
+<li>The actions that the agent can perform.</li>
+<li>The agent’s percept sequence to date.</li>
+</ul>
+<p>This leads to a definition of a rational agent:</p>
+<blockquote>
+<p>For each possible percept sequence, a rational agent should select an action that is expected to maximize its performance measure, given the evidence provided by the percept sequence and whatever built-in knowledge the agent has.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Omniscient agent</td>
+<td>Knows the actual outcome of its actions and can act accordingly; but omniscience is impossible in reality.</td>
+</tr>
+<tr>
+<td>Perfection</td>
+<td>Rationality maximizes expected performance, while perfection maximizes actual performance.</td>
+</tr>
+<tr>
+<td>To lack autonomy</td>
+<td>To rely on the prior knowledge of its designer rather than on its own percepts and learning processes.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="2.3-the-nature-of-environments" tabindex="-1">2.3 The Nature of Environments</h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Task environment (PEAS)</td>
+<td>(Performance measure, Environment, Actuators, Sensors) description of a task environment.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2.3.2-properties-of-task-environments" tabindex="-1">2.3.2 Properties of task environments</h4>
+<p><strong>Fully observable vs. partially observable</strong>: If an agent’s sensors give it access to the complete state of the environment at each point in time, then we say that the task environment is fully observable. If the agent has no sensors at all then the environment is unobservable.</p>
+<p><strong>Single-agent vs. multiagent</strong>: The key distinction is whether there exists an agent B, where B’s behavior is best described as maximizing a performance measure whose value depends on agent A’s behavior.</p>
+<p><strong>Deterministic vs. nondeterministic</strong>: If the next state of the environment is completely determined by the current state and the action executed by the agent(s), then we say the environment is deterministic</p>
+<p><strong>Episodic vs. sequential</strong>: In an episodic task environment, the agent’s experience is divided into atomic episodes that do not depend on the actions taken in previous episodes. In sequential environments, on the other hand, the current decision could affect all future decisions.</p>
+<p><strong>Static vs. dynamic</strong>: If the environment can change while an agent is deliberating, then we say the environment is dynamic for that agent; otherwise, it is static. If the environment itself does not change with the passage of time but the agent’s performance score does, then we say the environment is semidynamic.</p>
+<p><strong>Discrete vs. continuous</strong>: The discrete/continuous distinction applies to the state of the environment and to the percepts and actions of the agent. For example, the chess environment has a finite number of distinct states.</p>
+<p><strong>Known vs. unknown</strong>: Refers to the agent's state of knowledge about the rules of the environment. In a known environment, the outcomes (or outcome probabilities) for all actions are known.</p>
+<p><img src="assets/2022-11-22-14-14-31.png" alt=""></p>
+<blockquote>
+<p>The hardest case is partially observable, multiagent, nondeterministic, sequential, dynamic, continuous, and unknown.</p>
+</blockquote>
 <h3 id="2.4-the-structure-of-agents" tabindex="-1">2.4 The Structure of Agents</h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent architecture</td>
+<td>Computing device with physical sensors and actuators, that the agent program will run on</td>
+</tr>
+<tr>
+<td>Condition–action rule</td>
+<td>A connection from a condition to an action. (if A then B)</td>
+</tr>
+<tr>
+<td>Transition model</td>
+<td>Knowledge about how the environment responds to actions and the passing of time</td>
+</tr>
+<tr>
+<td>Sensor model</td>
+<td>Knowledge about how the state of the world is reflected in the agent’s percepts</td>
+</tr>
+<tr>
+<td>Model-based agent</td>
+<td>An agent which uses a transistion and sensor model to maintain an internal representation of the environment. Reflex agents, goal-based agent and utility-based agents may or may not be model-based.</td>
+</tr>
+<tr>
+<td>Utility function</td>
+<td>An internalization of the performance measure</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>agent = architecture + program</p>
+</blockquote>
+<p>A <strong>simple reflex agent</strong> selects actions on the basis of the current percept, ignoring the rest of the percept history. Requires a fully observable environment.</p>
+<p>A <strong>model-based reflex agent</strong> handles partial observability by maintaining an internal representation of the environment that depends on the percept history. Requires a transition model and a sensor model.</p>
+<p>A <strong>goal-based agent</strong> keeps track of a set of goals it is trying to achieve, and chooses an action that will (eventually) lead to the achievement of its goals.</p>
+<p>A <strong>utility-based agent</strong> uses a utility function that measures its preferences among states of the world. Then it chooses the action that leads to the best expected utility, where expected utility is computed by averaging over all possible outcome states, weighted by the probability of the outcome.</p>
+<p>A <strong>learning agent</strong> can be divided into four conceptual components:</p>
+<ul>
+<li>Critic: tells the learning element how well the agent is doing with respect to a fixed performance standard.</li>
+<li>Learning element: uses feedback from the critic and determines how the performance element should be modified to do better in the future.</li>
+<li>Performance element: what we previously have considered to be the entire agent: it takes in percepts and decides on actions</li>
+<li>Problem generator: is responsible for suggesting actions that will lead to new and informative experiences.</li>
+</ul>
+<h4 id="how-the-components-of-agents-programs-work" tabindex="-1">How the components of agents programs work</h4>
+<p>In an <strong>atomic representation</strong> each state of the world is indivisible - it has no internal structure.</p>
+<p>A <strong>factored representation</strong> splits up each state into a fixed set of variables or attributes, representation each of which can have a value.</p>
+<p>In an <strong>structured representation</strong>, objects and their various relationships can be described exlicitly.</p>
 <h2 id="3-solving-problems-by-searching" tabindex="-1">3 Solving Problems by Searching</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="3.1-problem-solving-agents" tabindex="-1">3.1 Problem-Solving Agents</h3>
 <h3 id="3.2-example-problems" tabindex="-1">3.2 Example Problems</h3>
 <h3 id="3.3-search-algorithms" tabindex="-1">3.3 Search Algorithms</h3>
