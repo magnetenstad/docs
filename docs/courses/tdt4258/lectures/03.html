@@ -38,18 +38,379 @@
 <li>📄 <a href="11.html">11</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#processor-and-memory">Processor and Memory</a><ol><li><a href="#processor-architecture">Processor Architecture</a></li><li><a href="#processor-performance-analysis">Processor Performance Analysis</a></li><li><a href="#memory-technologies">Memory Technologies</a></li><li><a href="#memory-hierarchy">Memory Hierarchy</a></li><li><a href="#cache-terminology">Cache Terminology</a></li><li><a href="#direct-mapped-caches">Direct Mapped Caches</a></li><li><a href="#practice-proble-on-direct-mapped-caches">Practice Proble on Direct Mapped Caches</a></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#processor-and-memory">Processor and Memory</a><ol><li><a href="#processor-architecture">Processor Architecture</a><ol><li><a href="#main-processor-functions">Main processor functions</a></li><li><a href="#single-cycle-processor-design">Single cycle processor design</a><ol><li><a href="#analyzing-single-cycle-design">Analyzing single cycle design</a></li></ol></li><li><a href="#pipelined-processor-design">Pipelined processor design</a></li></ol></li><li><a href="#processor-performance-analysis">Processor Performance Analysis</a><ol><li><a href="#performance%3A-single-cycle-vs-pipeline">Performance: single cycle vs pipeline</a></li><li><a href="#what-limits-pipeline-performance%3F">What limits pipeline performance?</a></li><li><a href="#data-dependencies">Data dependencies</a></li><li><a href="#data-dependence-hazards-in-pipeline">Data dependence hazards in pipeline</a></li><li><a href="#control-dependence-hazards-in-pipeline">Control dependence hazards in pipeline</a></li><li><a href="#avoiding-control-hazards">Avoiding control hazards</a></li><li><a href="#performance-boosting-techniques">Performance boosting techniques</a></li></ol></li><li><a href="#memory-technologies">Memory Technologies</a><ol><li><a href="#memory-requirements">Memory requirements</a></li><li><a href="#example-memory-technologies">Example memory technologies</a></li><li><a href="#sram">SRAM</a></li><li><a href="#dram">DRAM</a></li><li><a href="#memory-bank-organization-and-operation">Memory bank organization and operation</a><ol><li><a href="#dram-read-access">DRAM read access</a></li></ol></li><li><a href="#dram-vs-sram">DRAM vs SRAM</a></li></ol></li><li><a href="#memory-hierarchy">Memory Hierarchy</a><ol><li><a href="#memory-hierarchy-idea">Memory hierarchy idea</a></li><li><a href="#why-is-memory-hierarchy-effective%3F">Why is memory hierarchy effective?</a></li><li><a href="#memory-hierarchy-in-modern-processors">Memory hierarchy in modern processors</a></li></ol></li><li><a href="#cache-terminology">Cache Terminology</a></li><li><a href="#direct-mapped-caches">Direct Mapped Caches</a><ol><li><a href="#accessing-cache">Accessing cache</a></li></ol></li><li><a href="#practice-proble-on-direct-mapped-caches">Practice Proble on Direct Mapped Caches</a></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
 <h1 id="processor-and-memory" tabindex="-1">Processor and Memory</h1>
+<ul>
+<li>Chapter 3 (3.5 - 3.6)</li>
+<li>Chapter 4 (4.4, 4.7)</li>
+</ul>
 <h2 id="processor-architecture" tabindex="-1">Processor Architecture</h2>
+<ul>
+<li>Organization of a processor core with different components and interconnection between them</li>
+<li>Two main architecture types based on memory organization
+<ul>
+<li>Von Neumann: Shared instruction and data memory</li>
+</ul>
+</li>
+<li>Typically used in general purpose computers
+<ul>
+<li>Harvard: Separate memories for instruction and data</li>
+</ul>
+</li>
+<li>Used mostly in embedded computers</li>
+</ul>
+<h3 id="main-processor-functions" tabindex="-1">Main processor functions</h3>
+<ul>
+<li>Fetch
+<ul>
+<li>Get instruction from (instruction) memory</li>
+</ul>
+</li>
+<li>Decode
+<ul>
+<li>What operation needs to be performed</li>
+<li>Where the operands are</li>
+</ul>
+</li>
+<li>Execute
+<ul>
+<li>Read operands</li>
+<li>Perform required operation</li>
+<li>Store result</li>
+</ul>
+</li>
+</ul>
+<h3 id="single-cycle-processor-design" tabindex="-1">Single cycle processor design</h3>
+<ul>
+<li>All functions (fetch, decode, execute …) are performed in one cycle</li>
+<li>Cycles needs to be long enough to cover all functions</li>
+</ul>
+<h4 id="analyzing-single-cycle-design" tabindex="-1">Analyzing single cycle design</h4>
+<ul>
+<li>Inefficient use of hardware resources
+<ul>
+<li>Only one stage is active at any time</li>
+</ul>
+</li>
+</ul>
+<h3 id="pipelined-processor-design" tabindex="-1">Pipelined processor design</h3>
+<ul>
+<li>Breaks instruction execution in different phases
+<ul>
+<li>Example phases: fetch, decode, execute</li>
+</ul>
+</li>
+<li>Executes only a phase (not whole instruction) in one cycle
+<ul>
+<li>Each phase does less work → Shorter clock cycle (higher frequency)</li>
+</ul>
+</li>
+<li>Key idea: Overlap execution of different phase of multiple instructions</li>
+<li>Overlapping improves hardware utilization and performance</li>
+</ul>
+<p><img src="assets/2022-11-21-10-06-37.png" alt=""></p>
 <h2 id="processor-performance-analysis" tabindex="-1">Processor Performance Analysis</h2>
+<h3 id="performance%3A-single-cycle-vs-pipeline" tabindex="-1">Performance: single cycle vs pipeline</h3>
+<ul>
+<li>Execution time = Instruction count * CPI * Cycle time</li>
+<li>Instruction count is same in both designs</li>
+<li>CPI is also same (1) in both designs
+<ul>
+<li>Overlapped execution leads to CPI of close to 1 in pipelined design (Slightly less in the beginning and at the end of execution)</li>
+</ul>
+</li>
+<li>Cycle time in pipelined design is 1/3 of single cycle design</li>
+</ul>
+<blockquote>
+<p>Pipeline design provides 3x performance (ideally) due to combination of overlapped execution and smaller cycle time</p>
+</blockquote>
+<h3 id="what-limits-pipeline-performance%3F" tabindex="-1">What limits pipeline performance?</h3>
+<ul>
+<li>Dependencies may cause empty stages (stalls) in pipeline
+<ul>
+<li>Data dependencies: an instructions reads the result of a previous
+instruction</li>
+<li>Control dependencies: instruction execution depends on the
+outcome of a branch instruction</li>
+<li>Properties of applications, not of pipeline</li>
+</ul>
+</li>
+<li>A hazard is a situation when a dependency leads to incorrect
+execution, if not handled properly.
+<ul>
+<li>Hazards are pipeline properties</li>
+</ul>
+</li>
+<li>Pipeline needs to be paused to avoid hazards, resulting in idle
+pipeline stages and lower CPI and performance</li>
+</ul>
+<h3 id="data-dependencies" tabindex="-1">Data dependencies</h3>
+<ul>
+<li>An instructions reads the result of a previous instruction</li>
+</ul>
+<p><img src="assets/2022-11-21-10-13-45.png" alt=""></p>
+<h3 id="data-dependence-hazards-in-pipeline" tabindex="-1">Data dependence hazards in pipeline</h3>
+<ul>
+<li>A dependence between two instruction can cause a bubble</li>
+</ul>
+<h3 id="control-dependence-hazards-in-pipeline" tabindex="-1">Control dependence hazards in pipeline</h3>
+<ul>
+<li>Pipeline needs to be flushed on wrong execution path detection (e.g. if-else)
+<ul>
+<li>Fetch starts from new PC provided by the branch instruction</li>
+<li>Loss of two cycles, called branch penalty</li>
+</ul>
+</li>
+</ul>
+<h3 id="avoiding-control-hazards" tabindex="-1">Avoiding control hazards</h3>
+<ul>
+<li>Branch delay slots: n instructions after the branch are always
+executed, regardless of branch outcome (2 instructions in our example)
+<ul>
+<li>Advantage: No hazard detection required, no flushing</li>
+<li>Disadvantages:</li>
+</ul>
+</li>
+<li>Difficult to find instruction that need to execute irrespective of branch
+outcome. Deeper pipelines might require up to 15 such instructions</li>
+<li>Needs to insert NOPs otherwise which is an intentional bubble</li>
+<li>Exposes the pipeline design to programmer/compiler 🡪 results in
+microarchitecture dependent code, not a good idea! Also leads to bugs</li>
+<li>Branch Prediction
+<ul>
+<li>Predict the direction of branches for fetching next instructions. Need
+to flush only if the prediction was wrong.</li>
+</ul>
+</li>
+</ul>
+<h3 id="performance-boosting-techniques" tabindex="-1">Performance boosting techniques</h3>
+<ul>
+<li>Out-of-order execution
+<ul>
+<li>Reorder instructions to minimize stalls</li>
+</ul>
+</li>
+<li>Superscalar processors
+<ul>
+<li>Fetch, decode and execute multiple instructions per cycle</li>
+</ul>
+</li>
+<li>Multithreaded processors
+<ul>
+<li>Execute multiple instructions streams in parallel</li>
+</ul>
+</li>
+<li>Other techniques: Caching, Prefetching, Vector execution,…</li>
+</ul>
 <h2 id="memory-technologies" tabindex="-1">Memory Technologies</h2>
+<h3 id="memory-requirements" tabindex="-1">Memory requirements</h3>
+<ul>
+<li>Programmers wish for memory to be
+<ul>
+<li>Large</li>
+<li>Fast</li>
+<li>High bandwidth</li>
+</ul>
+</li>
+<li>Unfortunately, wish not fulfillable by one kind of memory
+<ul>
+<li>Issues of cost and technical feasibility</li>
+</ul>
+</li>
+<li>Solution: Build a memory hierarchy to approximate the “ideal” large and fast memory through a combination of different types of memories</li>
+</ul>
+<h3 id="example-memory-technologies" tabindex="-1">Example memory technologies</h3>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Typical access time</th>
+<th>$ per GB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRAM</td>
+<td>1-10 ns</td>
+<td>$1000</td>
+</tr>
+<tr>
+<td>DRAM*</td>
+<td>~100 ns</td>
+<td>$10</td>
+</tr>
+<tr>
+<td>Flash SSD</td>
+<td>~100 μs</td>
+<td>$1</td>
+</tr>
+<tr>
+<td>Magnetic disk</td>
+<td>~10 ms</td>
+<td>$0.1</td>
+</tr>
+</tbody>
+</table>
+<p>*Used as "main memory"</p>
+<h3 id="sram" tabindex="-1">SRAM</h3>
+<ul>
+<li>Static Random Access Memory (SRAM)</li>
+<li>Two cross-coupled inverters store a single bit
+<ul>
+<li>Feedback path enables the stored value to persist in the cell</li>
+<li>4 transistors for storage</li>
+<li>2 transistors to access the cell</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/2022-11-21-10-26-57.png" alt=""></p>
+<h3 id="dram" tabindex="-1">DRAM</h3>
+<ul>
+<li>Dynamic Random Access Memory (DRAM)</li>
+<li>One capacitor stores a single bit
+<ul>
+<li>Whether the capacitor is charge or discharged indicates storage of 1 or 0 value</li>
+<li>1 capacitor for storage</li>
+<li>1 access transistor</li>
+</ul>
+</li>
+<li>Capacitor leaks through RC path
+<ul>
+<li>DRAM cell loses charge over time</li>
+<li>Needs to be refreshed periodically</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/2022-11-21-10-27-30.png" alt=""></p>
+<h3 id="memory-bank-organization-and-operation" tabindex="-1">Memory bank organization and operation</h3>
+<h4 id="dram-read-access" tabindex="-1">DRAM read access</h4>
+<ul>
+<li>Decode row address and enable “row select” signal</li>
+<li>Selected row drives bit lines. Entire row is read</li>
+<li>Amplify row data</li>
+<li>Decode column address and select subset of data. It is the output data</li>
+</ul>
+<h3 id="dram-vs-sram" tabindex="-1">DRAM vs SRAM</h3>
+<table>
+<thead>
+<tr>
+<th>DRAM</th>
+<th>SRAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>▪ Slower access (capacitor)</td>
+<td>▪ Faster access (no capacitor)</td>
+</tr>
+<tr>
+<td>▪ Higher density (1T-1C cell) – Stores more bits per units area</td>
+<td>▪ Lower density (6T cell) – Stores less bits per unit area</td>
+</tr>
+<tr>
+<td>▪ Lower cost – Enables bigger memory</td>
+<td>▪ Higher cost – Not suitable for big memory</td>
+</tr>
+<tr>
+<td>▪ Require refresh – Needs power and area – Reduces performance</td>
+<td>▪ No refresh required</td>
+</tr>
+</tbody>
+</table>
 <h2 id="memory-hierarchy" tabindex="-1">Memory Hierarchy</h2>
+<p><img src="assets/2022-11-21-10-32-50.png" alt=""></p>
+<h3 id="memory-hierarchy-idea" tabindex="-1">Memory hierarchy idea</h3>
+<ul>
+<li>Use a combination of memory kinds
+<ul>
+<li>Smaller amounts of expensive but fast memory closer to the processor</li>
+<li>Larger amounts of cheaper but slower memory farther from the processor</li>
+</ul>
+</li>
+<li>Not a new idea</li>
+</ul>
+<p><img src="assets/2022-11-21-10-35-25.png" alt=""></p>
+<h3 id="why-is-memory-hierarchy-effective%3F" tabindex="-1">Why is memory hierarchy effective?</h3>
+<ul>
+<li>Temporal Locality:
+<ul>
+<li>A recently accessed memory location (instruction or data) is likely to be accessed again in the near future</li>
+</ul>
+</li>
+<li>Spatial Locality:
+<ul>
+<li>Memory locations (instructions or data) close to a recently accessed location are likely to be accessed in the near future</li>
+</ul>
+</li>
+<li>Why does locality exist in programs?
+<ul>
+<li>Instruction reuse: loops, functions</li>
+<li>Data working sets: arrays, temporary variables, objects</li>
+</ul>
+</li>
+</ul>
+<h3 id="memory-hierarchy-in-modern-processors" tabindex="-1">Memory hierarchy in modern processors</h3>
+<ul>
+<li>Small, fast cache next to a processor backed up by larger &amp; slower cache(s) and main memory give the impression of a single, large, fast memory</li>
+<li>Take advantage of Temporal Locality:
+<ul>
+<li>If access data from slower memory, move it to faster memory</li>
+</ul>
+</li>
+<li>Take advantage of Spatial Locality:
+<ul>
+<li>If need to move a word from slower to faster memory, move adjacent words at same time</li>
+</ul>
+</li>
+</ul>
 <h2 id="cache-terminology" tabindex="-1">Cache Terminology</h2>
+<ul>
+<li>Block (or line): the unit of data stored in the cache
+<ul>
+<li>Typically in the ranges of 32-128 bytes</li>
+</ul>
+</li>
+<li>Hit: data is found in cache (this is what we want to happen)
+<ul>
+<li>Memory access completes quickly</li>
+</ul>
+</li>
+<li>Miss: data not found in cache
+<ul>
+<li>Must continue to search in the next level of hierarchy (could be next level cache or main memory)</li>
+<li>After data is eventually located, it is copied to the cache</li>
+</ul>
+</li>
+<li>Hit rate (hit ratio): fraction of accesses that are hits at a given level of hierarchy</li>
+<li>Hit time: time required to access a level of hierarchy</li>
+<li>Miss rate (miss ratio): fraction of accesses that are miss at a given level of hierarchy (= 1 - hit rate)</li>
+<li>Miss penalty: time required to fetch a block into some level from the next level down the hierarchy</li>
+<li>Cache size: refers only to the size of data portion, not tags and valid bits.</li>
+</ul>
 <h2 id="direct-mapped-caches" tabindex="-1">Direct Mapped Caches</h2>
+<h3 id="accessing-cache" tabindex="-1">Accessing cache</h3>
+<ul>
+<li>Data are identified in (main) memory by their full 32-bit address</li>
+<li>Problem: how to map a 32-bit address to a much smaller memory, such as a cache?</li>
+</ul>
+<blockquote>
+<p>How to know which of these memory locations is currently mapped to the selected cache line?</p>
+</blockquote>
+<p><img src="assets/2022-11-21-10-42-14.png" alt=""></p>
 <h2 id="practice-proble-on-direct-mapped-caches" tabindex="-1">Practice Proble on Direct Mapped Caches</h2>
+<p>Given a 4 KB direct-mapped cache with
+8-byte blocks and 32-bit addresses.
+Question: How many tag, index, and offset bits
+does the address decompose into?
+Answer:</p>
+<ul>
+<li>8-byte block: requires a 3-bit offset</li>
+<li>4 KB / 8 bytes per block = 512 blocks (Requires a 9-bit index)</li>
+<li>Tag: 32 – 9 – 3 = 20 bits</li>
+</ul>
 
       </article>
       </div>

@@ -38,20 +38,312 @@
 <li>📄 <a href="11.html">11</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#caches-and-virtual-memory">Caches and Virtual Memory</a><ol><li><a href="#fully-associative-caches">Fully Associative Caches</a></li><li><a href="#set-associative-caches">Set Associative Caches</a></li><li><a href="#cache-replacement">Cache Replacement</a></li><li><a href="#writing-to-caches">Writing to Caches</a></li><li><a href="#cache-performance">Cache Performance</a></li><li><a href="#introduction-to-virtual-memory">Introduction to Virtual Memory</a></li><li><a href="#paging">Paging</a></li><li><a href="#multi-level-page-tables">Multi Level Page Tables</a></li><li><a href="#tlb">TLB</a></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#caches-and-virtual-memory">Caches and Virtual Memory</a><ol><li><a href="#fully-associative-caches">Fully Associative Caches</a><ol><li><a href="#cache-organizations">Cache organizations</a></li><li><a href="#problems-with-direct-mapped-caches">Problems with Direct Mapped Caches</a></li><li><a href="#fully-associative-cache-characteristics">Fully Associative Cache Characteristics</a></li></ol></li><li><a href="#set-associative-caches">Set Associative Caches</a><ol><li><a href="#more-cache-terminology">More cache terminology</a></li></ol></li><li><a href="#cache-replacement">Cache Replacement</a></li><li><a href="#writing-to-caches">Writing to Caches</a><ol><li><a href="#write-through">Write-through</a></li><li><a href="#write-back">Write-back</a></li></ol></li><li><a href="#cache-performance">Cache Performance</a><ol><li><a href="#cache-hierarchy">Cache hierarchy</a></li></ol></li><li><a href="#introduction-to-virtual-memory">Introduction to Virtual Memory</a><ol><li><a href="#motivation">Motivation</a></li><li><a href="#virtual-memory-idea">Virtual Memory idea</a></li><li><a href="#address-translation">Address Translation</a></li></ol></li><li><a href="#paging">Paging</a><ol><li><a href="#page-address-translation">Page address translation</a></li><li><a href="#practice-problem">Practice problem</a></li></ol></li><li><a href="#multi-level-page-tables">Multi Level Page Tables</a><ol><li><a href="#problem-with-one-level-page-tables">Problem with one level page tables</a></li><li><a href="#multi-level-page-tables-characteristics">Multi-level page tables characteristics</a></li><li><a href="#storage-cost-for-two-level-page-table">Storage cost for two level page table</a></li><li><a href="#address-translation-with-2-level-page-table">Address translation with 2-level page table</a></li></ol></li><li><a href="#tlb">TLB</a><ol><li><a href="#fast-page-table-access">Fast page table access</a></li><li><a href="#tlb-status-bits">TLB status bits</a></li></ol></li><li><a href="#virtual-memory%3A-full-picture">Virtual memory: full picture</a></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
 <h1 id="caches-and-virtual-memory" tabindex="-1">Caches and Virtual Memory</h1>
+<ul>
+<li>Chapter 3 (3.5)</li>
+</ul>
 <h2 id="fully-associative-caches" tabindex="-1">Fully Associative Caches</h2>
+<h3 id="cache-organizations" tabindex="-1">Cache organizations</h3>
+<ul>
+<li>Direct mapped
+<ul>
+<li>A block can be placed only by one location in the cache</li>
+</ul>
+</li>
+<li>Fully associative
+<ul>
+<li>A block can be placed anywhere in the cache</li>
+</ul>
+</li>
+<li>n-way set associative
+<ul>
+<li>A block can be placed at one of the predetermined n locations in the cache</li>
+</ul>
+</li>
+</ul>
+<h3 id="problems-with-direct-mapped-caches" tabindex="-1">Problems with Direct Mapped Caches</h3>
+<ul>
+<li>An access evicts the data brought in by the previous access</li>
+<li>All accesses compete for the same cache location</li>
+<li>All other locations are empty</li>
+</ul>
+<h3 id="fully-associative-cache-characteristics" tabindex="-1">Fully Associative Cache Characteristics</h3>
+<ul>
+<li>Index bits in Direct Mapped cache become part of tag in Fully Associative cache.</li>
+</ul>
+<p><img src="assets/2022-11-21-11-40-40.png" alt=""></p>
 <h2 id="set-associative-caches" tabindex="-1">Set Associative Caches</h2>
+<ul>
+<li>Problems with other cache organizations:
+<ul>
+<li>In a direct-mapped cache, several addresses might compete
+for a few cache location while the other locations remain
+unused, thus lowering cache hit rate.</li>
+<li>In a fully-associative cache, search for matching tags is either
+very slow, or requires a very expensive memory type called
+Content Addressable Memory (CAM)</li>
+</ul>
+</li>
+<li>Set associative cache offer a compromise between
+direct mapped and fully associative caches.</li>
+</ul>
+<p><img src="assets/2022-11-21-11-42-32.png" alt=""></p>
+<h3 id="more-cache-terminology" tabindex="-1">More cache terminology</h3>
+<ul>
+<li>Block (or line): the unit of data stored in the cache
+<ul>
+<li>Typically in the ranges of 32-128 bytes</li>
+</ul>
+</li>
+<li>Set: A group of blocks</li>
+<li>Way: A block in a set
+<ul>
+<li>Number of ways defines number of blocks in a set</li>
+<li>E.g. a 4-way set associative cache has 4 blocks in each set</li>
+<li>2 to 32 ways are common</li>
+<li>Fully associative cache: #ways = #blocks</li>
+</ul>
+</li>
+<li>Caveat: “Index” bits in address do not select a cache block, rather a cache set.</li>
+</ul>
 <h2 id="cache-replacement" tabindex="-1">Cache Replacement</h2>
+<ul>
+<li>What to do when we run out of cache space
+<ul>
+<li>Need to evict a block to make space for the new one</li>
+</ul>
+</li>
+<li>Which block to evict?
+<ul>
+<li>The block which is not going to be used soon</li>
+</ul>
+</li>
+<li>Replacement policies
+<ul>
+<li>Random</li>
+<li>LRU (Least Recently Used)</li>
+<li>FIFO (First In First Out)</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
 <h2 id="writing-to-caches" tabindex="-1">Writing to Caches</h2>
+<ul>
+<li>When to write the modified data to memory?
+<ul>
+<li>Write-through: While writing to cache</li>
+<li>Write-back: When the block is evicted</li>
+</ul>
+</li>
+</ul>
+<h3 id="write-through" tabindex="-1">Write-through</h3>
+<ul>
+<li>Always write to memory</li>
+<li>Write is as slow as write to memory (not cache)
+<ul>
+<li>Pro: Simpler implementation and coherence.</li>
+<li>Con: Slow, bandwidth intensive</li>
+</ul>
+</li>
+</ul>
+<h3 id="write-back" tabindex="-1">Write-back</h3>
+<ul>
+<li>Pro: Consolidate multiple writes to the same block, Saves bandwidth and energy</li>
+<li>Con: Need to track dirty (modified) blocks</li>
+<li>Note: the cache and memory are now not the same!</li>
+<li>When we evict a line we need to know if it is different from the DRAM to write it back</li>
+<li>Dirty bit keeps track of whether the cache block has been written. If it is dirty, we need to write it back to DRAM when we evict it.</li>
+</ul>
 <h2 id="cache-performance" tabindex="-1">Cache Performance</h2>
+<p>AMAT = (hit rate * hit-time) + (miss rate * miss-latency)</p>
+<h3 id="cache-hierarchy" tabindex="-1">Cache hierarchy</h3>
+<blockquote>
+<p>Multiple level caches to balance capacity and access latency</p>
+</blockquote>
+<ul>
+<li>Typically caches at all levels are made of SRAM</li>
+<li>Cache closest to processor is small but fast</li>
+<li>Caches further away from processor are increasingly bigger but slower
+<ul>
+<li>As size of SRAM grows, its access latency also increases</li>
+</ul>
+</li>
+</ul>
 <h2 id="introduction-to-virtual-memory" tabindex="-1">Introduction to Virtual Memory</h2>
+<h3 id="motivation" tabindex="-1">Motivation</h3>
+<blockquote>
+<p>Virtual memory addresses two main issues: Capacity and safety</p>
+</blockquote>
+<ul>
+<li>Capacity: how to relieve programmers from dealing with limited main memory capacity?
+<ul>
+<li>To allow physical memory to be smaller than the program’s address space (e.g. 32bit 🡪 4GB)</li>
+<li>To allow multiple programs to share limited physical memory</li>
+</ul>
+</li>
+<li>Safety: how to enable safe and efficient sharing of memory among multiple programs
+<ul>
+<li>To prevent user programs to access memory used by OS</li>
+<li>To control the access by one user program to the memory of other user programs</li>
+</ul>
+</li>
+</ul>
+<h3 id="virtual-memory-idea" tabindex="-1">Virtual Memory idea</h3>
+<ul>
+<li>Idea: make each program think that it owns the entire memory.</li>
+<li>Virtual address space: addresses visible to the programmer
+<ul>
+<li>E.g. PC, load/store addresses</li>
+</ul>
+</li>
+<li>Physical address space: actual main memory addresses
+<ul>
+<li>Addresses used to access cache/ memory</li>
+</ul>
+</li>
+<li>Address translation
+<ul>
+<li>Virtual address are translated on-the-fly to physical addresses</li>
+<li>The translation is done jointly by hardware and OS</li>
+<li>Parts of virtual address space not used recently is store on disk, not in memory</li>
+</ul>
+</li>
+</ul>
+<h3 id="address-translation" tabindex="-1">Address Translation</h3>
+<ul>
+<li>Two styles of address translation
+<ul>
+<li>Paging: Basic translation units are fixed size memory regions, called pages.</li>
+<li>Segmentation: Basic translation units are variable size memory regions, called segments.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>We will focus on paging as it is used more commonly</p>
+</blockquote>
 <h2 id="paging" tabindex="-1">Paging</h2>
+<ul>
+<li>A cache line or block of virtual memory is called a page
+<ul>
+<li>“page” or “virtual page” for virtual memory</li>
+<li>“page frame” or “physical page” for physical memory</li>
+</ul>
+</li>
+<li>Typical page sizes are 4-8 KB (MB or GB in servers)
+<ul>
+<li>Large enough for efficient disk use and to keep translation tables (aka page tables) small</li>
+</ul>
+</li>
+<li>Translation is done through per program page tables
+<ul>
+<li>Different programs can use same virtual address</li>
+</ul>
+</li>
+</ul>
+<h3 id="page-address-translation" tabindex="-1">Page address translation</h3>
+<ul>
+<li>Page offsets not translated</li>
+<li>Page number is translated via page table</li>
+</ul>
+<p><img src="assets/2022-11-21-12-28-16.png" alt=""></p>
+<h3 id="practice-problem" tabindex="-1">Practice problem</h3>
+<p>▪What is the size of the page table given a 32-bit virtual address space, 4 KB physical pages, and 1 GB of main memory?
+Page offset: 12-bits
+Virtual page number: 32-12 = 20-bits → 1M page table entries
+Status bits: 6-bits
+Physical page number: 30-12 = 18-bits
+Page table entry size: 18+6 = 24-bits
+Page table size: 24Mbits = 3MB</p>
 <h2 id="multi-level-page-tables" tabindex="-1">Multi Level Page Tables</h2>
+<h3 id="problem-with-one-level-page-tables" tabindex="-1">Problem with one level page tables</h3>
+<p>▪Page table size: 3MB
+▪Each application requires its own page table</p>
+<ul>
+<li>100 concurrently executing applications would require 300MB for page tables</li>
+<li>1/3 of physical memory (300MB of 1GB) is used up for page tables only</li>
+<li>Waste of space if an application uses only a fraction of its virtual address space</li>
+</ul>
+<blockquote>
+<p>One level page table reserves space for all possible virtual pages</p>
+</blockquote>
+<h3 id="multi-level-page-tables-characteristics" tabindex="-1">Multi-level page tables characteristics</h3>
+<p>▪The last level tables hold the physical page number
+▪A table at any other level holds pointer to tables at the next level.
+▪Advantage: tables are inserted only if the corresponding part of the address space is in use</p>
+<h3 id="storage-cost-for-two-level-page-table" tabindex="-1">Storage cost for two level page table</h3>
+<ul>
+<li>Storage per table:
+<ul>
+<li>3KB (1K entries, 3B/entry)</li>
+</ul>
+</li>
+<li>Covering full address space
+<ul>
+<li>1025 table (1 at 1st level, 1024 at 2nd level)</li>
+<li>Storage: 3.003MB (1025*3KB)
+<ul>
+<li>Slightly higher than single level page table</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Covering smaller address space
+<ul>
+<li>0x00000000 to 0x003FFFFF (4MB)
+<ul>
+<li>Needs only 2 tables (1 at each level)</li>
+<li>Storage: 6KB</li>
+</ul>
+</li>
+<li>0x00000000 to 0x7FFFFFFF (2GB)
+<ul>
+<li>Needs 513 tables (512 at 2nd level)</li>
+<li>Storage: 513*3KB = 1.503MB</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Page table storage varies with virtual address space actually used</p>
+</blockquote>
+<h3 id="address-translation-with-2-level-page-table" tabindex="-1">Address translation with 2-level page table</h3>
+<p><img src="assets/2022-11-21-12-36-33.png" alt=""></p>
 <h2 id="tlb" tabindex="-1">TLB</h2>
+<h3 id="fast-page-table-access" tabindex="-1">Fast page table access</h3>
+<ul>
+<li>Problem: page table access adds to memory access latency
+<ul>
+<li>Two memory accesses per load/store (for single level page table)</li>
+</ul>
+</li>
+<li>one to get page table entry, one for actual load/store
+<ul>
+<li>Page table is in main memory, though data may be in cache</li>
+</ul>
+</li>
+<li>Solution: Translation Lookaside Buffer (TLB)
+<ul>
+<li>TLB is cache (typically fully associative) for page table</li>
+<li>Small fast table located close to processor</li>
+<li>Captures most translations due to principle of locality</li>
+<li>TLB miss: translation not in TLB. Access page table and save the translation in TLB</li>
+</ul>
+</li>
+</ul>
+<h3 id="tlb-status-bits" tabindex="-1">TLB status bits</h3>
+<ul>
+<li>V (valid) bit</li>
+<li>D (dirty) bit indicates whether page has been modified</li>
+<li>R, W, X permission bits. Checked on every memory access</li>
+</ul>
+<p><img src="assets/2022-11-21-12-37-42.png" alt=""></p>
+<h2 id="virtual-memory%3A-full-picture" tabindex="-1">Virtual memory: full picture</h2>
+<p><img src="assets/2022-11-21-12-38-06.png" alt=""></p>
 
       </article>
       </div>

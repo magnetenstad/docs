@@ -38,21 +38,306 @@
 <li>📄 <a href="11.html">11</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#introduction-to-c-programming">Introduction to C programming</a><ol><li><a href="#intro-to-c">Intro to C</a></li><li><a href="#intro-to-pointers">Intro to Pointers</a></li><li><a href="#memory-mapping">Memory Mapping</a></li><li><a href="#memory-manipulation-with-pointers">Memory Manipulation with Pointers</a></li><li><a href="#structures-in-c">Structures in C</a></li><li><a href="#arrays-in-c">Arrays in C</a></li><li><a href="#pointer-practice-problem">Pointer Practice Problem</a></li><li><a href="#swap-function">Swap Function</a></li><li><a href="#generic-swap-function">Generic Swap Function</a></li><li><a href="#memory-management">Memory Management</a></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#introduction-to-c-programming">Introduction to C programming</a><ol><li><a href="#intro-to-c">Intro to C</a><ol><li><a href="#procedural-vs-object-oriented">Procedural vs Object-oriented</a></li><li><a href="#c-is-less-%E2%80%9Csafe%E2%80%9D">C is less “safe”</a></li><li><a href="#built-in-data-types">Built-in data types</a></li></ol></li><li><a href="#intro-to-pointers">Intro to Pointers</a><ol><li><a href="#pointers-in-c">Pointers in C</a></li><li><a href="#pointers-as-function-arguments">Pointers as function arguments</a></li></ol></li><li><a href="#memory-mapping">Memory Mapping</a><ol><li><a href="#two%E2%80%99s-complement">Two’s complement</a><ol><li><a href="#sign-extension">Sign extension</a></li></ol></li></ol></li><li><a href="#memory-manipulation-with-pointers">Memory Manipulation with Pointers</a><ol><li><a href="#casting">Casting</a></li></ol></li><li><a href="#structures-in-c">Structures in C</a><ol><li><a href="#composite-data-types---struct">Composite data types - struct</a></li><li><a href="#what-does-p1.y-translate-to-in-assembly%3F">What does p1.y translate to in Assembly?</a></li></ol></li><li><a href="#arrays-in-c">Arrays in C</a><ol><li><a href="#more-pointer-arithmetic">More pointer arithmetic</a></li></ol></li><li><a href="#memory-management">Memory Management</a><ol><li><a href="#memory-management-is-different">Memory management is different</a></li><li><a href="#memory-regions-and-management">Memory regions and management</a></li><li><a href="#memory-regions-in-detail">Memory regions in detail</a></li><li><a href="#categories-of-variables-in-c">Categories of variables in C</a></li></ol></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
 <h1 id="introduction-to-c-programming" tabindex="-1">Introduction to C programming</h1>
+<ul>
+<li>Chapter 2 (2.9)</li>
+<li>Chapter 4</li>
+<li>Chapter 5</li>
+<li>Chapter 6</li>
+</ul>
 <h2 id="intro-to-c" tabindex="-1">Intro to C</h2>
+<h3 id="procedural-vs-object-oriented" tabindex="-1">Procedural vs Object-oriented</h3>
+<ul>
+<li>Different ways of thinking</li>
+<li>Procedural (or Imperative) languages
+<ul>
+<li>Example: C</li>
+<li>Programmers think in terms of operations to be done
+and supply data for the operation
+<ul>
+<li>add (a, b);</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Object-oriented languages
+<ul>
+<li>Example: C++, Java</li>
+<li>Programmers first think of the objects to be operated on
+and then what operation to perform.
+<ul>
+<li>rect.area();</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-is-less-%E2%80%9Csafe%E2%80%9D" tabindex="-1">C is less “safe”</h3>
+<ul>
+<li>Run-time errors are not ‘caught’ in C
+<ul>
+<li>The Java interpreter catches these errors before they are
+executed by the processor
+<ul>
+<li>Example: array out-of-bounds exception</li>
+</ul>
+</li>
+<li>C run-time errors happen for real and the program crashes</li>
+</ul>
+</li>
+<li>The C compiler trusts the programmer!
+<ul>
+<li>Many mistakes go un-noticed, causing run-time errors and
+leaving systems vulnerable to security exploits</li>
+</ul>
+</li>
+</ul>
+<h3 id="built-in-data-types" tabindex="-1">Built-in data types</h3>
+<ul>
+<li>The usual basic data types are there:
+char 8 bits
+short 16
+int 16, 32, 64 (same as machine word size)
+long 32, 64
+float 32
+double 64</li>
+<li>Data type sizes are machine dependent
+<ul>
+<li>Unlike Java where an int is always 32 bits</li>
+</ul>
+</li>
+<li>Normally signed, unsigned available too</li>
+<li>No boolean type exists
+<ul>
+<li>for any number (int, char,…): 0 false, other true</li>
+</ul>
+</li>
+</ul>
 <h2 id="intro-to-pointers" tabindex="-1">Intro to Pointers</h2>
+<h3 id="pointers-in-c" tabindex="-1">Pointers in C</h3>
+<ul>
+<li>Pointers are special variables that reference (or point to) another variable</li>
+<li>We have already seen pointers in assembly: <code><span class="hljs-keyword">ldr</span> <span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r2</span>]</code>
+<ul>
+<li>r2 is a pointer</li>
+<li>C pointers are the same thing!</li>
+</ul>
+</li>
+<li>r2 points to the location in
+memory where the “real” data
+is kept</li>
+<li>r2 is a register, but there’s
+nothing stopping us to have
+pointers stored in memory like
+“normal” variables</li>
+<li>A C pointer is a variable that holds the address of a
+piece of data</li>
+<li>Declaration:
+<code>int \*<span class="hljs-selector-tag">p</span>; // <span class="hljs-selector-tag">p</span> is <span class="hljs-selector-tag">a</span> pointer <span class="hljs-selector-tag">to</span> an int</code>
+<ul>
+<li>The compiler must know what data type the pointer
+points to</li>
+</ul>
+</li>
+<li>Basic pointer usage:</li>
+</ul>
+<pre><code class="hljs language-c">p = &amp;i; <span class="hljs-comment">// p points to i now</span>
+\*p = <span class="hljs-number">5</span>; <span class="hljs-comment">// \*p is another name for i</span>
+</code></pre>
+<ul>
+<li>&amp; - address of operator. * dereference operator</li>
+</ul>
+<h3 id="pointers-as-function-arguments" tabindex="-1">Pointers as function arguments</h3>
+<ul>
+<li>In Java
+<ul>
+<li>an argument with primitive type is passed by value (function gets copy of value)</li>
+<li>an argument with class type is passed by reference (function gets reference to value)</li>
+</ul>
+</li>
+<li>In C
+<ul>
+<li>Most arguments passed by value</li>
+<li>To get effect of `pass by reference’, use an argument with a pointer type</li>
+</ul>
+</li>
+</ul>
 <h2 id="memory-mapping" tabindex="-1">Memory Mapping</h2>
+<h3 id="two%E2%80%99s-complement" tabindex="-1">Two’s complement</h3>
+<ul>
+<li>Flip all the bits</li>
+<li>Add one</li>
+</ul>
+<h4 id="sign-extension" tabindex="-1">Sign extension</h4>
+<blockquote>
+<p>When extending a two's complement value, we don't append zeros to the left, we append the value of the left-most bit.</p>
+</blockquote>
 <h2 id="memory-manipulation-with-pointers" tabindex="-1">Memory Manipulation with Pointers</h2>
+<ul>
+<li>Q: If all pointers are 32-bit wide, why do we need to declare their datatype?</li>
+<li>A: The datatype provides the size (or type) of the variable the pointer points to.</li>
+</ul>
+<h3 id="casting" tabindex="-1">Casting</h3>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> i = <span class="hljs-number">4</span>;
+<span class="hljs-type">short</span> s;
+</code></pre>
+<ul>
+<li><code><span class="hljs-attribute">s</span> <span class="hljs-operator">=</span> i<span class="hljs-comment">;</span></code> copies the two right-most bytes, resulting in <code><span class="hljs-attribute">s</span> <span class="hljs-operator">=</span> <span class="hljs-number">4</span></code></li>
+<li><code><span class="hljs-attr">s</span> = *(short*)&amp;i<span class="hljs-comment">;</span></code> copies the two left-most bytes, resulting in <code><span class="hljs-attribute">s</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span></code></li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">short</span> s = <span class="hljs-number">4</span>;
+<span class="hljs-type">int</span> i;
+</code></pre>
+<ul>
+<li><code><span class="hljs-attribute">i</span> <span class="hljs-operator">=</span> s<span class="hljs-comment">;</span></code> places the two bytes from s into the right side of i, resulting in <code><span class="hljs-attribute">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">4</span></code></li>
+<li><code><span class="hljs-attr">i</span> = *(int*)&amp;s<span class="hljs-comment">;</span></code> copies the two bytes from s into the left side of i, resulting in <code><span class="hljs-attribute">i</span> = <span class="hljs-number">2</span>^<span class="hljs-number">20</span></code></li>
+</ul>
 <h2 id="structures-in-c" tabindex="-1">Structures in C</h2>
+<h3 id="composite-data-types---struct" tabindex="-1">Composite data types - struct</h3>
+<ul>
+<li>Structures are like objects, but their types have no
+methods, unlike classes:</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">point</span> {</span>
+ <span class="hljs-type">int</span> x, y;
+ <span class="hljs-comment">// can include other structs</span>
+} p1;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">point</span> <span class="hljs-title">p2</span>;</span>
+</code></pre>
+<ul>
+<li>Members accessed using “.” operator: <code><span class="hljs-attr">p1.x</span> = <span class="hljs-number">2</span><span class="hljs-comment">;</span></code></li>
+<li>Notice that pointers use a different operator to access members.</li>
+</ul>
+<pre><code class="hljs language-c">p1.x = <span class="hljs-number">10</span>;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">point</span> *<span class="hljs-title">p2</span> =</span> &amp;p1;
+p2-&gt;x = <span class="hljs-number">20</span>;
+(*p2).y = <span class="hljs-number">30</span>; <span class="hljs-comment">// equal to p2-&gt;y = 30</span>
+</code></pre>
+<h3 id="what-does-p1.y-translate-to-in-assembly%3F" tabindex="-1">What does p1.y translate to in Assembly?</h3>
+<pre><code class="hljs language-assembly">; r1 points to the starting addr of p1
+ldr r0, [r1] ; loads p1.x
+ldr r0, [r1, #4] ; loads p1.y
+</code></pre>
 <h2 id="arrays-in-c" tabindex="-1">Arrays in C</h2>
-<h2 id="pointer-practice-problem" tabindex="-1">Pointer Practice Problem</h2>
-<h2 id="swap-function" tabindex="-1">Swap Function</h2>
-<h2 id="generic-swap-function" tabindex="-1">Generic Swap Function</h2>
+<ul>
+<li>Syntax of C arrays similar to Java</li>
+<li>As in Java, C arrays have fixed size</li>
+<li>Example declarations of array:</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> m[] = {<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">10</span>}; <span class="hljs-comment">// size fixed to 3</span>
+<span class="hljs-type">int</span> n[<span class="hljs-number">2</span>][<span class="hljs-number">10</span>]; <span class="hljs-comment">// two-dimensional array</span>
+ <span class="hljs-comment">// with 2 rows and 10 cols</span>
+point p[<span class="hljs-number">4</span>]; <span class="hljs-comment">// array of 4 structs</span>
+</code></pre>
+<ul>
+<li>C arrays have no knowledge of their length
+<ul>
+<li>No checking that indexes are within bounds</li>
+</ul>
+</li>
+<li>In C, close relationship between arrays and pointers
+<ul>
+<li>Pointers commonly used to pass arrays between functions</li>
+</ul>
+</li>
+</ul>
+<h3 id="more-pointer-arithmetic" tabindex="-1">More pointer arithmetic</h3>
+<ul>
+<li>Common expressions:
+<ul>
+<li><code><span class="hljs-comment">*p</span><span class="hljs-literal">++</span></code> use value pointed by p, make p point to next element</li>
+<li><code><span class="hljs-comment">*</span><span class="hljs-literal">++</span><span class="hljs-comment">p</span></code> as above, but increment p first</li>
+<li><code><span class="hljs-comment">(*p)</span><span class="hljs-literal">++</span></code> increment value pointed by p, p is unchanged</li>
+</ul>
+</li>
+<li>Special value NULL used to show that a pointer is not pointing to anything
+<ul>
+<li>NULL is typically 0, so statements like if (!p) are common</li>
+</ul>
+</li>
+<li>Dereferencing a NULL pointer is a very common cause of C program crashes</li>
+</ul>
 <h2 id="memory-management" tabindex="-1">Memory Management</h2>
+<ul>
+<li>Pointers are not much use with statically allocated data</li>
+<li>Library function malloc allocates a chunk of memory at run time and returns the address</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> *p;
+<span class="hljs-keyword">if</span> ((p = <span class="hljs-built_in">malloc</span>(n*<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>))) == <span class="hljs-literal">NULL</span>)
+{
+ <span class="hljs-comment">// Error</span>
+}
+...
+<span class="hljs-built_in">free</span>(p); <span class="hljs-comment">// release the allocated memory</span>
+
+</code></pre>
+<h3 id="memory-management-is-different" tabindex="-1">Memory management is different</h3>
+<ul>
+<li>In Java
+<ul>
+<li>All objects dynamically allocated</li>
+<li>Unusable objects recycled automatically by garbage collection</li>
+</ul>
+</li>
+<li>In C
+<ul>
+<li>No objects, only data structures</li>
+<li>Some data structures statically allocated, others dynamically</li>
+<li>Dynamically-allocated storage must be reclaimed (or freed) once the data structures there are no longer needed.
+<ul>
+<li>Major source of error, particularly when the programmer forgets to free the memory, resulting in memory leaks.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="memory-regions-and-management" tabindex="-1">Memory regions and management</h3>
+<ul>
+<li>Memory areas
+<ul>
+<li>Heap: dynamically allocated storage</li>
+<li>Stack: for function/method local variables</li>
+<li>Static: for data living program lifetime</li>
+</ul>
+</li>
+<li>In Java
+<ul>
+<li>All objects on heap</li>
+<li>Unusable objects on heap recycled automatically by garbage collection</li>
+</ul>
+</li>
+<li>In C
+<ul>
+<li>Data structures in all 3 areas</li>
+<li>Programs must explicitly free-up heap storage that is no longer needed</li>
+</ul>
+</li>
+</ul>
+<h3 id="memory-regions-in-detail" tabindex="-1">Memory regions in detail</h3>
+<p><img src="assets/2022-11-21-15-09-30.png" alt=""></p>
+<h3 id="categories-of-variables-in-c" tabindex="-1">Categories of variables in C</h3>
+<ul>
+<li>Global variables (statically allocated)
+<ul>
+<li>Defined outside of functions</li>
+<li>Have lifetime of program and scope to file end</li>
+<li>extern declarations extend scope before definition and to other files</li>
+<li>Declare static to hide from other files</li>
+</ul>
+</li>
+<li>Local (automatic) variables (allocated on stack)
+<ul>
+<li>Defined inside a function</li>
+<li>Not available outside function</li>
+<li>Distinct storage for each function invocation</li>
+<li>Declare static for same storage for all invocations</li>
+</ul>
+</li>
+</ul>
 
       </article>
       </div>

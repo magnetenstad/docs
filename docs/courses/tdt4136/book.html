@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>book.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4136</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./lectures/index.html">lectures</a></li>
+<li>📄 <a href="analysis_of_prev_exams.html">analysis_of_prev_exams</a></li>
+<li>📄 <a href="book.html">book ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#artificial-intelligence---a-modern-approach-(4th-edition)">Artificial Intelligence - A Modern Approach (4th edition)</a><ol><li><a href="#1-introduction">1 Introduction</a><ol><li><a href="#2.1-what-is-ai%3F">2.1 What is AI?</a></li><li><a href="#2.2-the-foundations-of-artificial-intelligence">2.2 The Foundations of Artificial Intelligence</a></li><li><a href="#2.3-the-history-of-artififial-intelligence">2.3 The History of Artififial Intelligence</a></li><li><a href="#2.4-the-state-of-the-art">2.4 The State of the Art</a></li><li><a href="#2.5-risks-and-benefits-of-ai">2.5 Risks and Benefits of AI</a></li></ol></li><li><a href="#2-intelligent-agents">2 Intelligent Agents</a><ol><li><a href="#2.1-agents-and-environments">2.1 Agents and Environments</a></li><li><a href="#2.2-good-behavior%3A-the-concept-of-rationality">2.2 Good Behavior: The Concept of Rationality</a></li><li><a href="#2.3-the-nature-of-environments">2.3 The Nature of Environments</a></li><li><a href="#2.4-the-structure-of-agents">2.4 The Structure of Agents</a></li></ol></li><li><a href="#3-solving-problems-by-searching">3 Solving Problems by Searching</a><ol><li><a href="#3.1-problem-solving-agents">3.1 Problem-Solving Agents</a></li><li><a href="#3.2-example-problems">3.2 Example Problems</a></li><li><a href="#3.3-search-algorithms">3.3 Search Algorithms</a></li><li><a href="#3.4-uninformed-search-strategies">3.4 Uninformed Search Strategies</a></li><li><a href="#3.5-informed-(heuristic)-search-strategies">3.5 Informed (Heuristic) Search Strategies</a></li><li><a href="#3.6-heuristic-functions">3.6 Heuristic Functions</a></li></ol></li><li><a href="#4-search-in-complex-environments">4 Search in Complex Environments</a><ol><li><a href="#4.1-local-search-and-optimization-problems">4.1 Local Search and Optimization Problems</a></li><li><a href="#4.3-search-with-nondeterministic-actions">4.3 Search with Nondeterministic Actions</a></li><li><a href="#4.4-search-in-partially-observable-environments">4.4 Search in Partially Observable Environments</a></li></ol></li><li><a href="#5-constraint-satisfaction-problems">5 Constraint Satisfaction Problems</a><ol><li><a href="#5.1-defining-constraint-satisfaction-problems">5.1 Defining Constraint Satisfaction Problems</a></li><li><a href="#5.2-constraint-propagation%3A-inference-in-csps">5.2 Constraint Propagation: Inference in CSPs</a></li><li><a href="#5.3-backtracking-search-for-csps">5.3 Backtracking Search for CSPs</a></li><li><a href="#5.4-local-search-for-csps">5.4 Local Search for CSPs</a></li><li><a href="#5.5-the-structure-of-problems">5.5 The Structure of Problems</a></li></ol></li><li><a href="#6-adversarial-search-and-games">6 Adversarial Search and Games</a><ol><li><a href="#6.1-game-theory">6.1 Game Theory</a></li><li><a href="#6.2-optimal-decisions-in-games">6.2 Optimal Decisions in Games</a></li><li><a href="#6.3-heuristic-alpha-beta-tree-search">6.3 Heuristic Alpha-Beta Tree Search</a></li><li><a href="#6.4-monte-carlo-tree-search">6.4 Monte Carlo Tree search</a></li><li><a href="#6.5-stochastic-games">6.5 Stochastic Games</a></li><li><a href="#6.6-partially-observable-games">6.6 Partially Observable Games</a></li><li><a href="#6.7-limitations-of-game-search-algorithms">6.7 Limitations of Game Search Algorithms</a></li></ol></li><li><a href="#7-logical-agents">7 Logical Agents</a><ol><li><a href="#7.1-knowledge-based-agents">7.1 Knowledge-Based Agents</a></li><li><a href="#7.2-the-wumpus-world">7.2 The Wumpus World</a></li><li><a href="#7.3-logic">7.3 Logic</a></li><li><a href="#7.4-propositional-logic%3A-a-very-simple-logic">7.4 Propositional Logic: A Very Simple Logic</a></li><li><a href="#7.5-propositional-theorem-proving">7.5 Propositional Theorem Proving</a></li><li><a href="#7.6-effective-propositional-model-checking">7.6 Effective Propositional Model Checking</a></li><li><a href="#7.7-agents-based-on-propositional-logic">7.7 Agents Based on Propositional Logic</a></li></ol></li><li><a href="#8-first-order-logic">8 First-Order Logic</a><ol><li><a href="#8.1-representation-revisited">8.1 Representation Revisited</a></li><li><a href="#8.2-syntax-and-semantics-of-first-order-logic">8.2 Syntax and Semantics of First-Order Logic</a></li><li><a href="#8.3-using-first-order-logic">8.3 Using First-Order Logic</a></li><li><a href="#8.4-knowledge-engineering-in-first-order-logic">8.4 Knowledge Engineering in First-Order Logic</a></li></ol></li><li><a href="#9-inference-in-first-order-logic">9 Inference in First-Order Logic</a><ol><li><a href="#9.1-propositional-vs.-first-order-inference">9.1 Propositional vs. First-Order Inference</a></li><li><a href="#9.2-unification-and-first-order-inference">9.2 Unification and First-order Inference</a></li><li><a href="#9.3-forward-chaining">9.3 Forward Chaining</a></li><li><a href="#9.4-backward-chaining-(except-9.4.2-9.4.5)">9.4 Backward Chaining (Except 9.4.2-9.4.5)</a></li><li><a href="#9.5-resolution-(except-9.5.4-9.5.5)">9.5 Resolution (Except 9.5.4-9.5.5)</a></li></ol></li><li><a href="#10-knowledge-representation">10 Knowledge Representation</a><ol><li><a href="#10.1-ontological-engineering">10.1 Ontological Engineering</a></li><li><a href="#10.2-categories-and-objects">10.2 Categories and Objects</a></li><li><a href="#10.3-events">10.3 Events</a></li><li><a href="#10.4-mental-objects-and-modal-logic">10.4 Mental Objects and Modal Logic</a></li><li><a href="#10.5-reasoning-systems-for-categories">10.5 Reasoning Systems for Categories</a></li><li><a href="#10.6-reasoning-with-default-information">10.6 Reasoning with Default Information</a></li></ol></li><li><a href="#11-automated-planning">11 Automated Planning</a><ol><li><a href="#11.1-definition-of-classical-planning">11.1 Definition of Classical Planning</a></li><li><a href="#11.2-algorithms-for-classical-planning">11.2 Algorithms for Classical Planning</a></li><li><a href="#11.3-heuristics-for-planning">11.3 Heuristics for Planning</a></li><li><a href="#11.4-hierachical-planning">11.4 Hierachical Planning</a></li><li><a href="#11.5-planning-and-acting-in-nondeterminsitic-domains">11.5 Planning and Acting in Nondeterminsitic Domains</a></li><li><a href="#11.6-time%2C-schedules%2C-and-resources">11.6 Time, Schedules, and Resources</a></li><li><a href="#11.7-analysis-of-planning-approaches">11.7 Analysis of Planning Approaches</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="artificial-intelligence---a-modern-approach-(4th-edition)" tabindex="-1">Artificial Intelligence - A Modern Approach (4th edition)</h1>
+<h2 id="1-introduction" tabindex="-1">1 Introduction</h2>
+<h3 id="2.1-what-is-ai%3F" tabindex="-1">2.1 What is AI?</h3>
+<h3 id="2.2-the-foundations-of-artificial-intelligence" tabindex="-1">2.2 The Foundations of Artificial Intelligence</h3>
+<h3 id="2.3-the-history-of-artififial-intelligence" tabindex="-1">2.3 The History of Artififial Intelligence</h3>
+<h3 id="2.4-the-state-of-the-art" tabindex="-1">2.4 The State of the Art</h3>
+<h3 id="2.5-risks-and-benefits-of-ai" tabindex="-1">2.5 Risks and Benefits of AI</h3>
+<h2 id="2-intelligent-agents" tabindex="-1">2 Intelligent Agents</h2>
+<h3 id="2.1-agents-and-environments" tabindex="-1">2.1 Agents and Environments</h3>
+<h3 id="2.2-good-behavior%3A-the-concept-of-rationality" tabindex="-1">2.2 Good Behavior: The Concept of Rationality</h3>
+<h3 id="2.3-the-nature-of-environments" tabindex="-1">2.3 The Nature of Environments</h3>
+<h3 id="2.4-the-structure-of-agents" tabindex="-1">2.4 The Structure of Agents</h3>
+<h2 id="3-solving-problems-by-searching" tabindex="-1">3 Solving Problems by Searching</h2>
+<h3 id="3.1-problem-solving-agents" tabindex="-1">3.1 Problem-Solving Agents</h3>
+<h3 id="3.2-example-problems" tabindex="-1">3.2 Example Problems</h3>
+<h3 id="3.3-search-algorithms" tabindex="-1">3.3 Search Algorithms</h3>
+<h3 id="3.4-uninformed-search-strategies" tabindex="-1">3.4 Uninformed Search Strategies</h3>
+<h3 id="3.5-informed-(heuristic)-search-strategies" tabindex="-1">3.5 Informed (Heuristic) Search Strategies</h3>
+<h3 id="3.6-heuristic-functions" tabindex="-1">3.6 Heuristic Functions</h3>
+<h2 id="4-search-in-complex-environments" tabindex="-1">4 Search in Complex Environments</h2>
+<h3 id="4.1-local-search-and-optimization-problems" tabindex="-1">4.1 Local Search and Optimization Problems</h3>
+<h3 id="4.3-search-with-nondeterministic-actions" tabindex="-1">4.3 Search with Nondeterministic Actions</h3>
+<h3 id="4.4-search-in-partially-observable-environments" tabindex="-1">4.4 Search in Partially Observable Environments</h3>
+<h2 id="5-constraint-satisfaction-problems" tabindex="-1">5 Constraint Satisfaction Problems</h2>
+<h3 id="5.1-defining-constraint-satisfaction-problems" tabindex="-1">5.1 Defining Constraint Satisfaction Problems</h3>
+<h3 id="5.2-constraint-propagation%3A-inference-in-csps" tabindex="-1">5.2 Constraint Propagation: Inference in CSPs</h3>
+<h3 id="5.3-backtracking-search-for-csps" tabindex="-1">5.3 Backtracking Search for CSPs</h3>
+<h3 id="5.4-local-search-for-csps" tabindex="-1">5.4 Local Search for CSPs</h3>
+<h3 id="5.5-the-structure-of-problems" tabindex="-1">5.5 The Structure of Problems</h3>
+<h2 id="6-adversarial-search-and-games" tabindex="-1">6 Adversarial Search and Games</h2>
+<h3 id="6.1-game-theory" tabindex="-1">6.1 Game Theory</h3>
+<h3 id="6.2-optimal-decisions-in-games" tabindex="-1">6.2 Optimal Decisions in Games</h3>
+<h3 id="6.3-heuristic-alpha-beta-tree-search" tabindex="-1">6.3 Heuristic Alpha-Beta Tree Search</h3>
+<h3 id="6.4-monte-carlo-tree-search" tabindex="-1">6.4 Monte Carlo Tree search</h3>
+<h3 id="6.5-stochastic-games" tabindex="-1">6.5 Stochastic Games</h3>
+<h3 id="6.6-partially-observable-games" tabindex="-1">6.6 Partially Observable Games</h3>
+<h3 id="6.7-limitations-of-game-search-algorithms" tabindex="-1">6.7 Limitations of Game Search Algorithms</h3>
+<h2 id="7-logical-agents" tabindex="-1">7 Logical Agents</h2>
+<h3 id="7.1-knowledge-based-agents" tabindex="-1">7.1 Knowledge-Based Agents</h3>
+<h3 id="7.2-the-wumpus-world" tabindex="-1">7.2 The Wumpus World</h3>
+<h3 id="7.3-logic" tabindex="-1">7.3 Logic</h3>
+<h3 id="7.4-propositional-logic%3A-a-very-simple-logic" tabindex="-1">7.4 Propositional Logic: A Very Simple Logic</h3>
+<h3 id="7.5-propositional-theorem-proving" tabindex="-1">7.5 Propositional Theorem Proving</h3>
+<h3 id="7.6-effective-propositional-model-checking" tabindex="-1">7.6 Effective Propositional Model Checking</h3>
+<h3 id="7.7-agents-based-on-propositional-logic" tabindex="-1">7.7 Agents Based on Propositional Logic</h3>
+<h2 id="8-first-order-logic" tabindex="-1">8 First-Order Logic</h2>
+<h3 id="8.1-representation-revisited" tabindex="-1">8.1 Representation Revisited</h3>
+<h3 id="8.2-syntax-and-semantics-of-first-order-logic" tabindex="-1">8.2 Syntax and Semantics of First-Order Logic</h3>
+<h3 id="8.3-using-first-order-logic" tabindex="-1">8.3 Using First-Order Logic</h3>
+<h3 id="8.4-knowledge-engineering-in-first-order-logic" tabindex="-1">8.4 Knowledge Engineering in First-Order Logic</h3>
+<h2 id="9-inference-in-first-order-logic" tabindex="-1">9 Inference in First-Order Logic</h2>
+<h3 id="9.1-propositional-vs.-first-order-inference" tabindex="-1">9.1 Propositional vs. First-Order Inference</h3>
+<h3 id="9.2-unification-and-first-order-inference" tabindex="-1">9.2 Unification and First-order Inference</h3>
+<h3 id="9.3-forward-chaining" tabindex="-1">9.3 Forward Chaining</h3>
+<h3 id="9.4-backward-chaining-(except-9.4.2-9.4.5)" tabindex="-1">9.4 Backward Chaining (Except 9.4.2-9.4.5)</h3>
+<h3 id="9.5-resolution-(except-9.5.4-9.5.5)" tabindex="-1">9.5 Resolution (Except 9.5.4-9.5.5)</h3>
+<h2 id="10-knowledge-representation" tabindex="-1">10 Knowledge Representation</h2>
+<h3 id="10.1-ontological-engineering" tabindex="-1">10.1 Ontological Engineering</h3>
+<h3 id="10.2-categories-and-objects" tabindex="-1">10.2 Categories and Objects</h3>
+<h3 id="10.3-events" tabindex="-1">10.3 Events</h3>
+<h3 id="10.4-mental-objects-and-modal-logic" tabindex="-1">10.4 Mental Objects and Modal Logic</h3>
+<h3 id="10.5-reasoning-systems-for-categories" tabindex="-1">10.5 Reasoning Systems for Categories</h3>
+<h3 id="10.6-reasoning-with-default-information" tabindex="-1">10.6 Reasoning with Default Information</h3>
+<h2 id="11-automated-planning" tabindex="-1">11 Automated Planning</h2>
+<h3 id="11.1-definition-of-classical-planning" tabindex="-1">11.1 Definition of Classical Planning</h3>
+<h3 id="11.2-algorithms-for-classical-planning" tabindex="-1">11.2 Algorithms for Classical Planning</h3>
+<h3 id="11.3-heuristics-for-planning" tabindex="-1">11.3 Heuristics for Planning</h3>
+<h3 id="11.4-hierachical-planning" tabindex="-1">11.4 Hierachical Planning</h3>
+<h3 id="11.5-planning-and-acting-in-nondeterminsitic-domains" tabindex="-1">11.5 Planning and Acting in Nondeterminsitic Domains</h3>
+<h3 id="11.6-time%2C-schedules%2C-and-resources" tabindex="-1">11.6 Time, Schedules, and Resources</h3>
+<h3 id="11.7-analysis-of-planning-approaches" tabindex="-1">11.7 Analysis of Planning Approaches</h3>
+
+      </article>
+      </div>
+  </body>
+</html>

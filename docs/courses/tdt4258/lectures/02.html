@@ -38,23 +38,28 @@
 <li>📄 <a href="11.html">11</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#arm-assembly-and-input%2Foutput">ARM Assembly and Input/Output</a><ol><li><a href="#conditionals-in-assembly">Conditionals in Assembly</a><ol><li><a href="#moving-imediate-values-to-registers">Moving imediate values to registers</a></li><li><a href="#conditionals-in-assembly-1">Conditionals in assembly</a></li><li><a href="#loops-in-assembly">Loops in assembly</a><ol><li><a href="#basic-example">Basic example</a></li><li><a href="#another-example">Another example</a></li></ol></li></ol></li><li><a href="#function-calls-in-assembly">Function Calls in Assembly</a><ol><li><a href="#function%2Fprocedure%2Fmethod-calls">Function/procedure/method calls</a></li><li><a href="#arm-support-for-function-calls">ARM support for function calls</a></li><li><a href="#example-of-function-call-in-assembly">Example of function call in assembly</a></li><li><a href="#arm-register-convention-on-function-calls">ARM register convention on function calls</a></li></ol></li><li><a href="#nested-function-calls-in-assembly">Nested Function Calls in Assembly</a></li><li><a href="#risc-vs-cisc">RISC vs CISC</a></li><li><a href="#input%2Foutput-devices">Input/Output Devices</a></li><li><a href="#accessing-i%2Fo-device">Accessing I/O Device</a></li><li><a href="#exceptions-and-traps">Exceptions and Traps</a></li><li><a href="#cpu-buses">CPU Buses</a></li><li><a href="#direct-memory-access">Direct Memory Access</a></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#arm-assembly-and-input%2Foutput">ARM Assembly and Input/Output</a><ol><li><a href="#conditionals-in-assembly">Conditionals in Assembly</a><ol><li><a href="#moving-imediate-values-to-registers">Moving imediate values to registers</a></li><li><a href="#conditionals-in-assembly-1">Conditionals in assembly</a></li><li><a href="#loops-in-assembly">Loops in assembly</a><ol><li><a href="#basic-example">Basic example</a></li><li><a href="#another-example">Another example</a></li></ol></li></ol></li><li><a href="#function-calls-in-assembly">Function Calls in Assembly</a><ol><li><a href="#function%2Fprocedure%2Fmethod-calls">Function/procedure/method calls</a></li><li><a href="#arm-support-for-function-calls">ARM support for function calls</a></li><li><a href="#example-of-function-call-in-assembly">Example of function call in assembly</a></li><li><a href="#arm-register-convention-on-function-calls">ARM register convention on function calls</a></li></ol></li><li><a href="#nested-function-calls-in-assembly">Nested Function Calls in Assembly</a><ol><li><a href="#stack">Stack</a></li><li><a href="#nested-function-calls-using-stack">Nested function calls using stack</a></li><li><a href="#other-uses-of-stack">Other uses of stack</a></li></ol></li><li><a href="#risc-vs-cisc">RISC vs CISC</a><ol><li><a href="#should-an-isa-be-simple-or-complex%3F">Should an ISA be simple or complex?</a></li><li><a href="#cisc-vs-risc-isa">CISC vs RISC ISA</a></li></ol></li><li><a href="#input%2Foutput-devices">Input/Output Devices</a><ol><li><a href="#i%2Fo-devices">I/O Devices</a></li><li><a href="#connecting-i%2Fo-devices-to-cpu">Connecting I/O devices to CPU</a></li><li><a href="#connecting-multiple-i%2Fo-devices%3A-i%2Fo-controllers">Connecting multiple I/O devices: I/O Controllers</a></li><li><a href="#addressing-i%2Fo-devices">Addressing I/O devices</a></li><li><a href="#memory-mapped-i%2Fo-example-thumb">Memory mapped I/O example Thumb</a></li></ol></li><li><a href="#accessing-i%2Fo-device">Accessing I/O Device</a><ol><li><a href="#how-to-check-i%2Fo-status%3A-is-it-ready%3F">How to Check I/O status: Is it ready?</a></li><li><a href="#interrupt-interface">Interrupt Interface</a></li><li><a href="#what-happens-on-an-interrupt%3F">What happens on an interrupt?</a></li><li><a href="#connecting-multiple-i%2Fo-devices">Connecting multiple I/O devices</a><ol><li><a href="#cpu-needs-to-poll-to-check-which-device-triggered-the-interrupt">CPU needs to poll to check which device triggered the interrupt</a></li><li><a href="#interrupt-controller-arbitrates-cpu-access-among-devices">Interrupt Controller arbitrates CPU access among devices</a></li></ol></li><li><a href="#handling-multiple-devices">Handling multiple devices</a><ol><li><a href="#how-to-find-interrupt-handlers-of-a-device%3F">How to find interrupt handlers of a device?</a></li><li><a href="#what-happens-if-two-devices-request-interrupt-at-the-same-time%3F">What happens if two devices request interrupt at the same time?</a></li></ol></li><li><a href="#summary-of-interrupt-handling">Summary of interrupt handling</a></li></ol></li><li><a href="#exceptions-and-traps">Exceptions and Traps</a><ol><li><a href="#interrupts%2Fexceptions%2F-traps">Interrupts/Exceptions/ Traps</a></li></ol></li><li><a href="#cpu-buses">CPU Buses</a><ol><li><a href="#bus-signals">Bus Signals</a></li><li><a href="#how-to-communicate-over-bus">How to communicate over bus</a></li><li><a href="#asynchronous-bus-read%2Fwrite">Asynchronous bus read/write</a></li><li><a href="#synchronous-bus-read%2Fwrite">Synchronous bus read/write</a></li><li><a href="#wait-states">Wait States</a></li><li><a href="#burst-transfer">Burst Transfer</a></li></ol></li><li><a href="#direct-memory-access">Direct Memory Access</a><ol><li><a href="#parallel-computation-and-data-transfer">Parallel computation and data transfer</a></li><li><a href="#what-does-cpu-do-during-dma%3F">What does CPU do during DMA?</a></li><li><a href="#bus-hierarchy">Bus Hierarchy</a></li></ol></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
 <h1 id="arm-assembly-and-input%2Foutput" tabindex="-1">ARM Assembly and Input/Output</h1>
+<ul>
+<li>Chapter 2 (2.3.3)</li>
+<li>Chapter 3 (3.1 - 3.4)</li>
+<li>Chapter 4 (4.1 - 4.3)</li>
+</ul>
 <h2 id="conditionals-in-assembly" tabindex="-1">Conditionals in Assembly</h2>
 <h3 id="moving-imediate-values-to-registers" tabindex="-1">Moving imediate values to registers</h3>
 <ul>
 <li>For small immediate (8-bits):</li>
 </ul>
-<pre><code class="hljs language-asm">mov r3, #val ;val can be 0 to 255
+<pre><code class="hljs language-assembly">mov r3, #val ;val can be 0 to 255
 mvn r3, #val ;val can be -256 to -1
 </code></pre>
 <ul>
 <li>For larger values</li>
 </ul>
-<pre><code class="hljs language-asm">ldr r3, =val ;val can be any 32-bit value
+<pre><code class="hljs language-assembly">ldr r3, =val ;val can be any 32-bit value
 </code></pre>
 <blockquote>
 <p><code><span class="hljs-attribute">ldr</span></code> is a pseudo-op!</p>
@@ -70,7 +75,7 @@ mvn r3, #val ;val can be -256 to -1
   x = <span class="hljs-number">2</span>;
 }
 </code></pre>
-<pre><code class="hljs language-asm">.section .text
+<pre><code class="hljs language-assembly">.section .text
   ldr r0, =vars
   ldr r1, [r0]
   ldr r2, [r0, #4]
@@ -98,7 +103,7 @@ vars:
   <span class="hljs-comment">// loop body</span>
 }
 </code></pre>
-<pre><code class="hljs language-asm">.section .text
+<pre><code class="hljs language-assembly">.section .text
   ldr r0, =vars
   ldr r1, [r0]
   ldr r2, [r0, #4]
@@ -122,7 +127,7 @@ vars:
   <span class="hljs-comment">// loop body</span>
 }
 </code></pre>
-<pre><code class="hljs language-asm">.section .text
+<pre><code class="hljs language-assembly">.section .text
   ldr r0, =vars
   ldr r1, [r0]
   ldr r2, [r0, #4]
@@ -183,7 +188,7 @@ main() {
   add(x, y);
 }
 </code></pre>
-<pre><code class="hljs language-asm">add:
+<pre><code class="hljs language-assembly">add:
   add r0, r0, r1
   mov r15, r14
 
@@ -214,12 +219,457 @@ main:
 <li><code><span class="hljs-built_in">r9</span></code> and <code><span class="hljs-built_in">r12</span></code> are special purpose registers, where specifics depend on implementation</li>
 </ul>
 <h2 id="nested-function-calls-in-assembly" tabindex="-1">Nested Function Calls in Assembly</h2>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">addNum</span> <span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+  <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">add</span> <span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+  <span class="hljs-keyword">return</span> addNum(a, b);
+}
+
+main() {
+  <span class="hljs-type">int</span> x = <span class="hljs-number">5</span>, y = <span class="hljs-number">10</span>;
+  add(a, b);
+}
+</code></pre>
+<pre><code class="hljs language-assembly">addNum:
+  add r0, r0, r1
+  mov r15, r14
+
+add:
+  bl addNum
+  mov r15, r14 ;stuck in infinite loop!
+
+main:
+  mov r0, #5
+  mov r1, #10
+  bl add
+</code></pre>
+<ul>
+<li>Problem: Overwrites the link register (r14)</li>
+<li>Solution: Use stack to save the return address</li>
+</ul>
+<h3 id="stack" tabindex="-1">Stack</h3>
+<ul>
+<li>Stack is a region of memory that operates in last-in first-out manner.</li>
+<li>Stack Pointer (r13) points to the last occupied position in the stack.</li>
+<li>Stack grows downwards from higher address towards lower addresses</li>
+<li>Special instructions to access stack:
+<ul>
+<li>push to store data on stack. e.g. push {r4, r5}</li>
+<li>pop to load data from stack. e.g. pop {r2}</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/2022-11-21-08-44-29.png" alt=""></p>
+<h3 id="nested-function-calls-using-stack" tabindex="-1">Nested function calls using stack</h3>
+<pre><code class="hljs language-assembly">addNum:
+  add r0, r0, r1
+  mov r15, r14
+
+add:
+  push {r14}
+  bl addNum
+  pop {r15}
+
+main:
+  push {r14}
+  mov r0, #5
+  mov r1, #10
+  bl add
+  pop {r15}
+</code></pre>
+<h3 id="other-uses-of-stack" tabindex="-1">Other uses of stack</h3>
+<ul>
+<li>Stack is used to save callee-saved register (r4-r12) if they are needed in computations.</li>
+<li>Stack can used to pass parameters and return values
+<ul>
+<li>Registers are limited</li>
+</ul>
+</li>
+<li>Stack is also used for the local variables within the function</li>
+</ul>
+<p><img src="assets/2022-11-21-08-49-35.png" alt=""></p>
 <h2 id="risc-vs-cisc" tabindex="-1">RISC vs CISC</h2>
+<h3 id="should-an-isa-be-simple-or-complex%3F" tabindex="-1">Should an ISA be simple or complex?</h3>
+<ul>
+<li>
+<p>ISAs range in complexity</p>
+</li>
+<li>
+<p>ARM is relatively simple ISA</p>
+</li>
+<li>
+<p>Simple vs Complex ISA:</p>
+</li>
+<li>
+<p>High Level Language (HLL) Code: <code><span class="hljs-attribute">a</span>[<span class="hljs-number">0</span>] = b[<span class="hljs-number">0</span>] + <span class="hljs-number">5</span>;</code></p>
+</li>
+<li>
+<p>Assembly Code:</p>
+<ul>
+<li>
+<p>Simple (ARM):</p>
+<pre><code class="hljs language-assembly">ldr r3,[r1]
+add r4,r3,5
+str r4,[r2]
+</code></pre>
+</li>
+<li>
+<p>Complex: <code><span class="hljs-keyword">add</span> [<span class="hljs-built_in">r2</span>], [<span class="hljs-built_in">r1</span>], <span class="hljs-number">5</span></code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="cisc-vs-risc-isa" tabindex="-1">CISC vs RISC ISA</h3>
+<ul>
+<li>Complex Instruction Set Computer (CISC)
+<ul>
+<li>register-memory architecture: appeared in early computers, like x86</li>
+<li>Computers programmed in assembly → HLL features as instructions</li>
+<li>Very few registers → operands can be in memory</li>
+<li>Very little memory → variable length instructions to minimize code size</li>
+</ul>
+</li>
+<li>Reduced Instruction Set Computer (RISC)
+<ul>
+<li>Appeared in 80’s: Used in ARM, MIPS, SPARC, RISC-V ISAs</li>
+<li>High-level languages and compilers were already in fashion</li>
+<li>More register, more memory, faster clock 🡪 fixed length/format instructions for easy and fast decoding</li>
+<li>load-store architecture</li>
+</ul>
+</li>
+</ul>
 <h2 id="input%2Foutput-devices" tabindex="-1">Input/Output Devices</h2>
+<h3 id="i%2Fo-devices" tabindex="-1">I/O Devices</h3>
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Behaviour</th>
+<th>Partner</th>
+<th>Data Rate (Mbit/sec)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard</td>
+<td>Input</td>
+<td>Human</td>
+<td>0.001</td>
+</tr>
+<tr>
+<td>Mouse</td>
+<td>Input</td>
+<td>Human</td>
+<td>0.004</td>
+</tr>
+<tr>
+<td>Voice input</td>
+<td>Input</td>
+<td>Human</td>
+<td>0.26</td>
+</tr>
+<tr>
+<td>Laser printer</td>
+<td>Output</td>
+<td>Human</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td>Graphics</td>
+<td>Output</td>
+<td>Human</td>
+<td>800-8,000</td>
+</tr>
+<tr>
+<td>Magnetic disk</td>
+<td>Storage</td>
+<td>Machine</td>
+<td>800-3,000</td>
+</tr>
+<tr>
+<td>Network/LAN</td>
+<td>Input or output</td>
+<td>Machine</td>
+<td>100-40,000 (40Gbit/sec)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="connecting-i%2Fo-devices-to-cpu" tabindex="-1">Connecting I/O devices to CPU</h3>
+<ul>
+<li>Data register
+<ul>
+<li>For input device: holds data read from the device</li>
+<li>For output device: holds data that needs to be written to the device</li>
+</ul>
+</li>
+<li>Status register: status of read/write operation</li>
+</ul>
+<p><img src="assets/2022-11-21-08-57-22.png" alt=""></p>
+<h3 id="connecting-multiple-i%2Fo-devices%3A-i%2Fo-controllers" tabindex="-1">Connecting multiple I/O devices: I/O Controllers</h3>
+<p><img src="assets/2022-11-21-08-57-50.png" alt=""></p>
+<h3 id="addressing-i%2Fo-devices" tabindex="-1">Addressing I/O devices</h3>
+<ul>
+<li>Memory mapped I/O
+<ul>
+<li>I/O controller registers are mapped to a dedicated portion of memory</li>
+<li>Regular load/store instructions can be used to access I/O devices</li>
+<li>I/O devices eat up some memory space → lesser effective memory</li>
+</ul>
+</li>
+<li>Isolated I/O space
+<ul>
+<li>Other names: I/O mapped I/O, port-mapped I/O, …</li>
+<li>I/O devices are mapped in a separate memory space</li>
+<li>Special instructions to access I/O devices: in, out in x86</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>A processor <em>can</em> support both modes</p>
+</blockquote>
+<h3 id="memory-mapped-i%2Fo-example-thumb" tabindex="-1">Memory mapped I/O example Thumb</h3>
+<pre><code class="hljs language-assembly">DEVICE_BASE = 0x1000
+REG1 = 0;
+REG2 = 4;
+LDR r1, =DEVICE_BASE
+LDR r0, [r1, #REG1] // read from reg1
+MOV r0, #8
+STR r0, [r1, #REG2] // write to reg2
+</code></pre>
 <h2 id="accessing-i%2Fo-device" tabindex="-1">Accessing I/O Device</h2>
+<h3 id="how-to-check-i%2Fo-status%3A-is-it-ready%3F" tabindex="-1">How to Check I/O status: Is it ready?</h3>
+<ul>
+<li>Polling (busy-wait I/O)
+<ul>
+<li>CPU monitors I/O (continuously/regularly) to find if it is ready</li>
+<li>Waste of CPU time especially for event happening infrequently</li>
+<li>CPU reacts fast</li>
+</ul>
+</li>
+<li>Interrupt
+<ul>
+<li>I/O controller interrupts CPU to signal I/O event (device is ready)</li>
+<li>Slow response: CPU needs to finish what it was doing</li>
+<li>Better CPU utilization</li>
+</ul>
+</li>
+</ul>
+<h3 id="interrupt-interface" tabindex="-1">Interrupt Interface</h3>
+<p><img src="assets/2022-11-21-09-02-21.png" alt=""></p>
+<h3 id="what-happens-on-an-interrupt%3F" tabindex="-1">What happens on an interrupt?</h3>
+<ul>
+<li>CPU saves the address of the current instruction
+<ul>
+<li>needs to return to this PC after handling the interrupt</li>
+</ul>
+</li>
+<li>Jump to the interrupt handler</li>
+<li>Handle the interrupt
+<ul>
+<li>service the I/O device</li>
+<li>need to preserve registers, just like procedure call</li>
+</ul>
+</li>
+<li>Return to the foreground program
+<ul>
+<li>The one which was execution when the interrupt arrived</li>
+<li>Special instruction to return from interrupt handler</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Most of the functionality is similar to procedure call</p>
+</blockquote>
+<h3 id="connecting-multiple-i%2Fo-devices" tabindex="-1">Connecting multiple I/O devices</h3>
+<blockquote>
+<p>What if there are more devices than interrupt ports on CPU?</p>
+</blockquote>
+<h4 id="cpu-needs-to-poll-to-check-which-device-triggered-the-interrupt" tabindex="-1">CPU needs to poll to check which device triggered the interrupt</h4>
+<p><img src="assets/2022-11-21-09-04-01.png" alt=""></p>
+<h4 id="interrupt-controller-arbitrates-cpu-access-among-devices" tabindex="-1">Interrupt Controller arbitrates CPU access among devices</h4>
+<p><img src="assets/2022-11-21-09-07-36.png" alt=""></p>
+<h3 id="handling-multiple-devices" tabindex="-1">Handling multiple devices</h3>
+<h4 id="how-to-find-interrupt-handlers-of-a-device%3F" tabindex="-1">How to find interrupt handlers of a device?</h4>
+<ul>
+<li>Approach 1:
+<ul>
+<li>Jump to a predefined address</li>
+<li>Then use cause of interrupt (device id) to branch to a the right handler</li>
+</ul>
+</li>
+<li>Approach 2:
+<ul>
+<li>Directly branch to a specific handler based on interrupting device</li>
+<li>Called vectored interrupts</li>
+</ul>
+</li>
+</ul>
+<h4 id="what-happens-if-two-devices-request-interrupt-at-the-same-time%3F" tabindex="-1">What happens if two devices request interrupt at the same time?</h4>
+<blockquote>
+<p>Which interrupt to handle first?</p>
+</blockquote>
+<ul>
+<li>Interrupts are assigned priorities</li>
+<li>A high priority interrupt is handled before a low priority interrupt</li>
+<li>Interrupts can arrive while other interrupts are being handled
+<ul>
+<li>An interrupt with higher priority will interrupt the execution of the lower priority interrupt</li>
+<li>Lower priority interrupts will be ignored while a higher priority interrupt is being handled</li>
+<li>A “priority register” stores the priority of currently executing interrupt</li>
+</ul>
+</li>
+<li>CPU can mask interrupts while doing something important
+<ul>
+<li>E.g. lower priority interrupts are masked while handling higher priority interrupts</li>
+</ul>
+</li>
+<li>Some interrupts are non-maskable (NMI)</li>
+</ul>
+<h3 id="summary-of-interrupt-handling" tabindex="-1">Summary of interrupt handling</h3>
+<ul>
+<li>I/O device: Raises interrupt</li>
+<li>CPU: Checks pending interrupts every cycle. Acknowledges the highest priority interrupt (higher than of priority register)</li>
+<li>I/O device: Sends its interrupt vector number to the CPU on receiving acknowledgement</li>
+<li>CPU: Saves state (PC, other registers) and jumps the interrupt handler</li>
+<li>Software: Performs required I/O operation. Might need to save additional CPU state.</li>
+<li>CPU: Restores the state and PC and returns to execution where is was interrupted</li>
+</ul>
 <h2 id="exceptions-and-traps" tabindex="-1">Exceptions and Traps</h2>
+<ul>
+<li>Similar to interrupts in that they cause CPU to break out of its normal execution path.</li>
+<li>Exceptions
+<ul>
+<li>Internal error during program execution</li>
+<li>Caused by invalid conditions during instruction execution e.g. divide by zero, invalid opcode, illegal memory access, …</li>
+<li>Handled in the same way as interrupts</li>
+<li>Like interrupts, exceptions are vectored and prioritized</li>
+</ul>
+</li>
+<li>Traps
+<ul>
+<li>Explicitly generated by special instructions (not errors)</li>
+<li>Used to request operating system services</li>
+<li>SWI instruction generates traps in ARM ISA</li>
+</ul>
+</li>
+</ul>
+<h3 id="interrupts%2Fexceptions%2F-traps" tabindex="-1">Interrupts/Exceptions/ Traps</h3>
+<ul>
+<li>Word of caution: Terminology is not consistent</li>
+<li>TDT4258 uses the terminology that we have seen so far (the same is also defined in the text book)</li>
+<li>Alternate terminology:
+<ul>
+<li>Exception: Any event that interrupts normal program flow and causes CPU to break out of running program</li>
+</ul>
+</li>
+<li>This would include all Interrupts, Exception, and Traps of the text book terminology
+<ul>
+<li>Interrupt: External exception generated by I/O devices</li>
+</ul>
+</li>
+<li>Same as text book definition
+<ul>
+<li>Trap: Internal exception generated by program execution</li>
+</ul>
+</li>
+<li>Includes both Exception and Traps of text book definition</li>
+</ul>
 <h2 id="cpu-buses" tabindex="-1">CPU Buses</h2>
+<p>Double meaning</p>
+<ul>
+<li>#1: Collection of wires that run between components like CPU, I/O</li>
+<li>#2: The protocol that governs the communication between two devices</li>
+</ul>
+<h3 id="bus-signals" tabindex="-1">Bus Signals</h3>
+<ul>
+<li>Address bus: n wires that specify an address. Often unidirectional</li>
+<li>Data bus: n wires that carry data. Often bidirectional</li>
+<li>Control bus: wires to implement bus protocol e.g. read, write, interrupt request, etc. Often bidirectional but most individual wires are unidirectional</li>
+</ul>
+<p><img src="assets/2022-11-21-09-21-57.png" alt=""></p>
+<h3 id="how-to-communicate-over-bus" tabindex="-1">How to communicate over bus</h3>
+<blockquote>
+<p>Four stage handshake</p>
+</blockquote>
+<ol>
+<li>Device 1 raises enquiry signal</li>
+<li>Device 2 acknowledges, Data transfer happens</li>
+<li>One of the devices lowers its signal</li>
+<li>Other device terminates operation</li>
+</ol>
+<h3 id="asynchronous-bus-read%2Fwrite" tabindex="-1">Asynchronous bus read/write</h3>
+<blockquote>
+<p>Asynchronous bus: Events can happen at any time.</p>
+</blockquote>
+<p><img src="assets/2022-11-21-09-23-16.png" alt=""></p>
+<h3 id="synchronous-bus-read%2Fwrite" tabindex="-1">Synchronous bus read/write</h3>
+<blockquote>
+<p>Synchronous bus: Events are synchronized with a clock signal.</p>
+</blockquote>
+<p><img src="assets/2022-11-21-09-23-44.png" alt=""></p>
+<h3 id="wait-states" tabindex="-1">Wait States</h3>
+<blockquote>
+<p>Slow devices are not able to provide data at next clock cycle</p>
+</blockquote>
+<p><img src="assets/2022-11-21-09-26-35.png" alt=""></p>
+<h3 id="burst-transfer" tabindex="-1">Burst Transfer</h3>
+<blockquote>
+<p>Transfers multiple words in a single request</p>
+</blockquote>
+<p><img src="assets/2022-11-21-09-27-03.png" alt=""></p>
 <h2 id="direct-memory-access" tabindex="-1">Direct Memory Access</h2>
+<ul>
+<li>DMA Controller: A device that manages data transfer between memory and I/O devices without CPU intervention</li>
+<li>CPU setup the DMA for bulk data transfer by initializing its registers:
+<ul>
+<li>Address register: Starting address for the data transfer</li>
+<li>Length register: Number of words to be transferred</li>
+<li>Status register: status of the transfer, initiate transfer, etc</li>
+</ul>
+</li>
+<li>DMA controller interrupts CPU when the transfer is done</li>
+</ul>
+<h3 id="parallel-computation-and-data-transfer" tabindex="-1">Parallel computation and data transfer</h3>
+<p><img src="assets/2022-11-21-09-27-53.png" alt=""></p>
+<h3 id="what-does-cpu-do-during-dma%3F" tabindex="-1">What does CPU do during DMA?</h3>
+<ul>
+<li>CPU executes instructions using data from registers and caches
+<ul>
+<li>Caches are small and fast memories inside CPU.</li>
+<li>We will cover caches in next lecture.</li>
+</ul>
+</li>
+<li>CPU does not need buses during DMA if the data in caches is enough to keep it busy
+<ul>
+<li>Otherwise, it needs to wait for DMA to finish</li>
+</ul>
+</li>
+<li>Reducing CPU wait cycles:
+<ul>
+<li>DMA transfers only few words and returns the bus control to CPU</li>
+<li>DMA requests bus control by asserting “Bus request” signal</li>
+<li>CPU gives control to DMA by enabling “Bus grant” signal if it is not using the bus</li>
+</ul>
+</li>
+<li>Otherwise, DMA needs to wait until CPU finishes its transfer</li>
+</ul>
+<h3 id="bus-hierarchy" tabindex="-1">Bus Hierarchy</h3>
+<ul>
+<li>Separate buses for slow and fast devices
+<ul>
+<li>Cost optimization: slow buses are cheaper than fast buses</li>
+</ul>
+</li>
+<li>Slow and fast buses are connected via a bridge</li>
+<li>Allows simple and cheap interface for slow devices
+<ul>
+<li>Slow devices do not benefit from connecting to a fast bus</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/2022-11-21-09-29-02.png" alt=""></p>
 
       </article>
       </div>
