@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>Queryutføring.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">tdt4145/</a><a href="./index.html">lectures</a>
+</h4></p>
+<ul>
+<li>📄 <a href="Indekser.html">Indekser</a></li>
+<li>📄 <a href="Lagring.html">Lagring</a></li>
+<li>📄 <a href="Queryutf%C3%B8ring.html">Queryutføring ✨</a></li>
+<li>📄 <a href="Transaksjoner.html">Transaksjoner</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#queryutf%C3%B8ring">Queryutføring</a><ol><li><a href="#fra-query-til-resultat-(18.1)">Fra Query til resultat (18.1)</a></li><li><a href="#teknikker-for-%C3%A5-utf%C3%B8re-relasjonsalgebraoperasjoner-(18.3)">Teknikker for å utføre relasjonsalgebraoperasjoner (18.3)</a></li><li><a href="#statistikk-om-data">Statistikk om data</a></li><li><a href="#aksessvei-(18.3)">Aksessvei (18.3)</a></li><li><a href="#optimalisatortre">Optimalisatortre</a></li><li><a href="#bruk-explain-i-mysql">Bruk explain i MySQL</a></li><li><a href="#flettesortering-(18.2)">Flettesortering (18.2)</a></li><li><a href="#flettesortering-(2)">Flettesortering (2)</a></li><li><a href="#metoder-for-enkle-seleksjoner-(18.3.1)">Metoder for enkle seleksjoner (18.3.1)</a></li><li><a href="#metoder-for-utf%C3%B8ring-av-join-(18.4.1)">Metoder for utføring av join (18.4.1)</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="queryutf%C3%B8ring" tabindex="-1">Queryutføring</h1>
+<p>Algoritmer for queryprosessering og
+optimalisering, kap. 18 + notat</p>
+<h2 id="fra-query-til-resultat-(18.1)" tabindex="-1">Fra Query til resultat (18.1)</h2>
+<p><img src="../assets/Pasted image 20220414114355.png" alt=""></p>
+<h2 id="teknikker-for-%C3%A5-utf%C3%B8re-relasjonsalgebraoperasjoner-(18.3)" tabindex="-1">Teknikker for å utføre relasjonsalgebraoperasjoner (18.3)</h2>
+<ul>
+<li>Indeksering: Bruk WHERE-uttrykk til å trekke ut små mengder poster (seleksjon, join)</li>
+<li>Iterasjon: Ofte er det raskest å scanne hele tabeller</li>
+<li>Partisjonering: Sortering og hashing av input gir operasjoner på mindre datamengder</li>
+<li>NTNU er kjent som pionerer på hashbaserte metoder (partisjonering). Kjell Bratbergsengen, VLDB 1984.</li>
+</ul>
+<h2 id="statistikk-om-data" tabindex="-1">Statistikk om data</h2>
+<ul>
+<li>For hver tabell
+<ul>
+<li>antall rader</li>
+<li>antall blokker</li>
+</ul>
+</li>
+<li>For hver indeks
+<ul>
+<li>antall nøkkelverdier</li>
+<li>antall blokker</li>
+<li>Histogrammer</li>
+</ul>
+</li>
+<li>For hvert B+-tre
+<ul>
+<li>Trehøyde</li>
+<li>LowKey</li>
+<li>HighKey</li>
+<li>antall blokker</li>
+</ul>
+</li>
+</ul>
+<h2 id="aksessvei-(18.3)" tabindex="-1">Aksessvei (18.3)</h2>
+<ul>
+<li>Access path / search method (E &amp; N)</li>
+<li>Optimalisatoren velger den billigste aksessveien</li>
+<li>Måles i antall blokker som aksesseres (+ CPU-bruk)</li>
+<li>
+<ol>
+<li><strong>Filscan (tabellscan)</strong></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><strong>Indeks</strong>
+– Indeksscan
+– Rangescan
+– Indeks lookup</li>
+</ol>
+</li>
+</ul>
+<h2 id="optimalisatortre" tabindex="-1">Optimalisatortre</h2>
+<p><img src="../assets/Pasted image 20220414115026.png" alt=""></p>
+<h2 id="bruk-explain-i-mysql" tabindex="-1">Bruk explain i MySQL</h2>
+<ul>
+<li>MySQL leser tabellene i den gitte rekkefølgen</li>
+<li>ALL: Full table scan</li>
+</ul>
+<p><img src="../assets/Pasted image 20220414115352.png" alt=""></p>
+<h2 id="flettesortering-(18.2)" tabindex="-1">Flettesortering (18.2)</h2>
+<ul>
+<li>Merge-sort: Sortering av store datamengder</li>
+<li>2 faser</li>
+</ul>
+<p><img src="../assets/Pasted image 20220414115537.png" alt=""></p>
+<h2 id="flettesortering-(2)" tabindex="-1">Flettesortering (2)</h2>
+<ol>
+<li>Partisjonering
+– Sorterer deler (partisjoner) som får plass i RAM
+<ul>
+<li>Antall deler (partisjoner): nR</li>
+<li>Antall blokker av data: b</li>
+<li>Tilgjengelige buffer: nB</li>
+</ul>
+</li>
+<li>Fletting
+– Flett sammen sorterte delfiler i et antall pass
+– Flettegrad dM – antall delfiler som kan flettes i hvert pass
+– Flettepass – antall pass som filene må flettes i</li>
+</ol>
+<ul>
+<li>Regner ut total I/O – antall blokker som leses/skrives</li>
+</ul>
+<h2 id="metoder-for-enkle-seleksjoner-(18.3.1)" tabindex="-1">Metoder for enkle seleksjoner (18.3.1)</h2>
+<ul>
+<li>Lineært filscan (S1)</li>
+<li>Bruk B+-tre eller hashindeks (clustered index) (S5)</li>
+<li>Bruk sekundærindeks (unclustered index) (S6)</li>
+</ul>
+<h2 id="metoder-for-utf%C3%B8ring-av-join-(18.4.1)" tabindex="-1">Metoder for utføring av join (18.4.1)</h2>
+<ul>
+<li>J1: Nested-loop join
+– For hver blokk i den ene tabellen
+<ul>
+<li>Scan hele den andre tabellen og se etter match</li>
+</ul>
+</li>
+<li>J2: Single-loop join (index nested loop)
+<ul>
+<li>Loop gjennom den ene tabellen og bruk en indeks for å slå opp i den andre</li>
+</ul>
+</li>
+<li>J3: Sort-merge join:
+<ul>
+<li>Hvis begge tabellene er sorterte på joinattributtene, kan vi bare flette de</li>
+<li>Hvis ikke, kan de sorteres først, og så flettes</li>
+</ul>
+</li>
+<li>J4: Partition-hash join
+<ul>
+<li>Partisjoner tabellene ved hashing på joinattributtene</li>
+<li>Får mange små partisjoner som kan joines parvis i RA</li>
+</ul>
+</li>
+</ul>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

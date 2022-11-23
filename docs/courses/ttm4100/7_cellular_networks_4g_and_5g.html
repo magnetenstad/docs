@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>7_cellular_networks_4g_and_5g.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="1_computer_networks_and_the_internet.html">1_computer_networks_and_the_internet</a></li>
+<li>📄 <a href="2_application_layer.html">2_application_layer</a></li>
+<li>📄 <a href="3_transport_layer.html">3_transport_layer</a></li>
+<li>📄 <a href="4_the_network_layer_data_plane.html">4_the_network_layer_data_plane</a></li>
+<li>📄 <a href="5_the_network_layer_control_plane.html">5_the_network_layer_control_plane</a></li>
+<li>📄 <a href="6_the_link_layer_and_lans.html">6_the_link_layer_and_lans</a></li>
+<li>📄 <a href="7_cellular_networks_4g_and_5g.html">7_cellular_networks_4g_and_5g ✨</a></li>
+<li>📄 <a href="8_security_in_computer_networks.html">8_security_in_computer_networks</a></li>
+<li>📄 <a href="9_multimedia_networking.html">9_multimedia_networking</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#wireless-and-mobile-networks">Wireless and Mobile Networks</a><ol><li><a href="#introduction">Introduction</a></li><li><a href="#wireless-links-and-network-characteristics">Wireless Links and Network Characteristics</a></li><li><a href="#wifi%3A-802.11-wireless-lans">WiFi: 802.11 Wireless LANs</a><ol><li><a href="#the-802.11-wireless-lan-architecture">The 802.11 Wireless LAN Architecture</a><ol><li><a href="#channels-and-association">Channels and Association</a></li></ol></li><li><a href="#the-802.11-mac-protocol">The 802.11 MAC Protocol</a><ol><li><a href="#dealing-with-hidden-terminals%3A-rts-and-cts">Dealing with Hidden Terminals: RTS and CTS</a></li><li><a href="#using-802.11-as-a-point-to-point-link">Using 802.11 as a Point-to-Point Link</a></li></ol></li><li><a href="#the-ieee-802.11-frame">The IEEE 802.11 Frame</a><ol><li><a href="#payload-and-crc-fields">Payload and CRC Fields</a></li><li><a href="#address-fields">Address Fields</a></li><li><a href="#sequence-number%2C-duration%2C-and-frame-control-fields">Sequence Number, Duration, and Frame Control Fields</a></li></ol></li><li><a href="#mobility-in-the-same-ip-subnet">Mobility in the Same IP Subnet</a></li><li><a href="#advanced-features-in-802.11">Advanced Features in 802.11</a><ol><li><a href="#802.11-rate-adaptation">802.11 Rate Adaptation</a></li><li><a href="#power-management">Power Management</a></li></ol></li></ol></li><li><a href="#cellular-networks%3A-4g-and-5g">Cellular Networks: 4G and 5G</a><ol><li><a href="#4g-lte-cellular-networks%3A-architecture-and-elements">4G LTE Cellular Networks: Architecture and Elements</a></li><li><a href="#lte-protocols-stacks">LTE Protocols Stacks</a></li><li><a href="#lte-radio-access-network">LTE Radio Access Network</a></li><li><a href="#additional-lte-functions%3A-network-attachment-and-power-management">Additional LTE Functions: Network Attachment and Power Management</a><ol><li><a href="#network-attachment">Network Attachment</a></li><li><a href="#power-management%3A-sleep-modes">Power Management: Sleep Modes</a></li></ol></li><li><a href="#the-global-cellular-network%3A-a-network-of-networks">The Global Cellular Network: A Network of Networks</a></li><li><a href="#5g-cellular-networks">5G Cellular Networks</a><ol><li><a href="#5g-and-millimeter-wave-frequencies">5G and Millimeter Wave Frequencies</a></li><li><a href="#5g-core-network">5G Core Network</a></li></ol></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="wireless-and-mobile-networks" tabindex="-1">Wireless and Mobile Networks</h1>
+<p>This contents of this chapter is part of the curriculum for <a href="./index.html">TTM4100</a>, except for the sections 7.2.1, 7.3.6, 7.5, 7.6 and 7.7.</p>
+<h2 id="introduction" tabindex="-1">Introduction</h2>
+<p>Elements in a wireless network:</p>
+<ul>
+<li>Wireless hosts. hosts are the end-system devices that run applications.</li>
+<li>Wireless links. A host connects to a base station (defined below) or to another wireless host through a wireless communication link.</li>
+<li>Base station. Cell towers in cellular networks and access points in 802.11 wireless LANs are examples of base stations.</li>
+<li>Network infrastructure. This is the larger network with which a wireless host may wish to communicate.</li>
+</ul>
+<p>In ad hoc networks, wireless hosts have no such infrastructure with which to connect. In the absence of such infrastructure, the hosts themselves must provide for services such as routing, address assignment, DNS-like name translation, and more.</p>
+<p>When a mobile host moves beyond the range of one base station and into the range of another, it will change its point of attachment into the larger network —a process referred to as handoff or handover.</p>
+<p>we can classify wireless networks according to two criteria: (i) whether a packet in the wireless network crosses exactly one wireless hop or multiple wireless hops, and (ii) whether there is infrastructure such as a base station in the network:</p>
+<ul>
+<li>Single-hop, infrastructure-based. (vast majority)</li>
+<li>Single-hop, infrastructure-less. no base station is connected. However, one of the nodes in this single-hop network may coordinate the transmissions of the other nodes.</li>
+<li>Multi-hop, infrastructure-based. I.e. wireless mesh networks deployed in homes.</li>
+<li>Multi-hop, infrastructure-less. Nodes may also be mobile, with connectivity changing among nodes—a class of networks known as mobile ad hoc networks (MANETs).</li>
+</ul>
+<h2 id="wireless-links-and-network-characteristics" tabindex="-1">Wireless Links and Network Characteristics</h2>
+<p>Wireless links differ from their wired counterparts in a number important ways:</p>
+<ul>
+<li>Decreasing signal strength.</li>
+<li>Interference from other sources.</li>
+<li>Multipath propagation.</li>
+</ul>
+<p>Wireless link protocols (such as the 802.11 protocol) employ not only powerful CRC error detection codes, but also link-level reliable-data-transfer protocols that retransmit corrupted frames.</p>
+<p>The signal-to-noise ratio (SNR) is a relative measure of the strength of the received signal (i.e., the information being transmitted) and this noise. typically measured in units of decibels (dB). a larger SNR makes it easier for the receiver to extract the transmitted signal from the background noise.</p>
+<ul>
+<li>For a given modulation scheme (the process of converting data into radio waves), the higher the SNR, the lower the BER.</li>
+<li>For a given SNR, a modulation technique with a higher bit transmission rate (whether in error or not) will have a higher BER.</li>
+<li>Dynamic selection of the physical-layer modulation technique can be used to adapt the modulation technique to channel conditions.</li>
+</ul>
+<p><img src="./assets/2022-05-09-18-25-18.png" alt=""></p>
+<h2 id="wifi%3A-802.11-wireless-lans" tabindex="-1">WiFi: 802.11 Wireless LANs</h2>
+<p>Although many technologies and standards for wireless LANs were developed in the 1990s, one particular class of standards has clearly emerged as the winner: the IEEE 802.11 wireless LAN, also known as WiFi.</p>
+<p>The different 802.11 b, g, n, ac, ax standards all share some common characteristics, including the 802.11 frame format that we will study shortly, and are backward compatible,</p>
+<p>They also all use the same medium access protocol, CSMA/CA</p>
+<p><img src="./assets/2022-05-09-18-33-41.png" alt=""></p>
+<h3 id="the-802.11-wireless-lan-architecture" tabindex="-1">The 802.11 Wireless LAN Architecture</h3>
+<p>The fundamental building block of the 802.11 architecture is the basic service set (BSS). A BSS contains one or more wireless stations and a central base station, known as an access point (AP).</p>
+<p>In a typical home network, there is one AP and one router (typically integrated together as one unit) that connects the BSS to the Internet.</p>
+<p>As with Ethernet devices, each 802.11 wireless station has a 6-byte MAC address.</p>
+<p>IEEE 802.11 stations can also group themselves together to form an ad hoc network.</p>
+<h4 id="channels-and-association" tabindex="-1">Channels and Association</h4>
+<p>In 802.11, each wireless station needs to associate with an AP before it can send or receive network-layer data. the administrator assigns a one or two-word Service Set Identifier (SSID) to the access point.</p>
+<p>recall that 802.11 operates in the frequency range of 2.4 GHz to 2.4835 GHz. Within this 85 MHz band, 802.11 defines
+11 partially overlapping channels. Any two channels are non-overlapping if and only if they are separated by four or more channels.</p>
+<p>A WiFi jungle is any physical location where a wireless station receives a sufficiently strong signal from two or more APs. To gain Internet access, your wireless device needs to join exactly one of the subnets and hence needs to associate with exactly one of the APs.</p>
+<p>The 802.11 standard requires that an AP periodically send beacon frames, each of which includes the AP’s SSID and MAC address.</p>
+<p>The process of scanning channels and listening for beacon frames is known as passive scanning. A wireless device can also perform active scanning, by broadcasting a probe frame that will be received by all APs within the wireless device’s range</p>
+<p><img src="./assets/2022-05-09-18-44-56.png" alt=""></p>
+<p>After selecting the AP with which to associate, the wireless device sends an association request frame to the AP, and the AP responds with an association response frame.</p>
+<p>Once associated with an AP, the device will want to join the subnet. Thus, the device will typically send a DHCP discovery message into the subnet via the AP in order to obtain an IP address on the subnet.</p>
+<p>In order to create an association with a particular AP, the wireless device may be required to authenticate itself. One approach, used by many companies, is to permit access to a wireless network based on a device’s MAC address. A second approach, used by many Internet cafés, employs usernames and passwords.</p>
+<h3 id="the-802.11-mac-protocol" tabindex="-1">The 802.11 MAC Protocol</h3>
+<p>because multiple wireless devices, or the AP itself may want to transmit data frames at the same time over the same channel, a multiple access protocol is needed to coordinate the transmissions.</p>
+<p>Inspired by the huge success of Ethernet and its random access protocol, the designers of 802.11 chose a random access protocol for 802.11 wireless LANs. This random access protocol is referred to as CSMA with collision avoidance, or more succinctly as CSMA/CA. As with Ethernet’s CSMA/CD, the “CSMA” in CSMA/CA stands for “carrier sense multiple access,”</p>
+<p>First, instead of using collision detection, 802.11 uses collision-avoidance techniques. Second, because of the relatively high bit error rates of wireless channels, 802.11 (unlike Ethernet) uses a link-layer acknowledgment/retransmission (ARQ) scheme.</p>
+<p>the 802.11 MAC protocol does not implement collision detection. There are two important reasons for this:</p>
+<ul>
+<li>The ability to detect collisions requires the ability to send (the station’s own signal) and receive (to determine whether another station is also transmitting) at the same time.</li>
+<li>the hidden terminal problem and fading</li>
+</ul>
+<p>once a station begins to transmit a frame, it transmits the frame in its entirety;</p>
+<p>802.11 MAC protocol uses link-layer acknowledgments. when the destination station receives a frame that passes the CRC, it waits a short period of time known as the Short Inter-frame Spacing (SIFS) and then sends back an acknowledgment frame. If the transmitting station does not receive an acknowledgment within a given amount of time, it assumes that an error has occurred and retransmits the frame, using the CSMA/CA protocol to access the channel.</p>
+<p><img src="./assets/2022-05-09-18-49-06.png" alt=""></p>
+<p>The 802.11 CSMA/CA protocol:</p>
+<ol>
+<li>If initially the station senses the channel idle, it transmits its frame after a short period of time known as the Distributed Inter-frame Space (DIFS);</li>
+<li>Otherwise, the station chooses a random backoff value using binary exponential backoff. While the channel is sensed busy, the counter value remains frozen.</li>
+<li>When the counter reaches zero the station transmits the entire frame and then waits for an acknowledgment.</li>
+<li>If an acknowledgment is received, the transmitting station knows that its frame has been correctly received at the destination station. If the station has another frame to send, it begins the CSMA/CA protocol at step 2. If the acknowledgment isn’t received, the transmitting station reenters the backoff phase in step 2, with the random value chosen from a larger interval.</li>
+</ol>
+<p>Because 802.11 does not detect a collision and abort transmission, a frame suffering a collision will be transmitted in its entirety. The goal in 802.11 is thus to avoid collisions whenever possible. In 802.11, if the two stations sense the channel busy, they both immediately enter random backoff, hopefully choosing different backoff values.</p>
+<h4 id="dealing-with-hidden-terminals%3A-rts-and-cts" tabindex="-1">Dealing with Hidden Terminals: RTS and CTS</h4>
+<p>In order to avoid this problem, the IEEE 802.11 protocol allows a station to use a short Request to Send (RTS) control frame and a short Clear to Send (CTS) control frame to reserve access to the channel.</p>
+<p>CTS frame serves two purposes: It gives the sender explicit permission to send and also instructs the other stations not to send for the reserved duration.</p>
+<p>The use of the RTS and CTS frames can improve performance in two important ways:</p>
+<ul>
+<li>The hidden station problem is mitigated</li>
+<li>a collision involving an RTS or CTS frame will last only for the duration of the short RTS or CTS frame.</li>
+</ul>
+<p><img src="./assets/2022-05-09-18-51-50.png" alt=""></p>
+<p><img src="./assets/2022-05-09-18-52-26.png" alt=""></p>
+<p>Although the RTS/CTS exchange can help reduce collisions, it also introduces delay and consumes channel resources. For this reason, the RTS/CTS exchange is only used (if at all) to reserve the channel for the transmission of a long DATA frame. In practice, each wireless station can set an RTS threshold such that the RTS/ CTS sequence is used only when the frame is longer than the threshold.</p>
+<h4 id="using-802.11-as-a-point-to-point-link" tabindex="-1">Using 802.11 as a Point-to-Point Link</h4>
+<p>if two nodes each have a directional antenna, they can point their directional antennas at each other and run the 802.11 protocol over what is essentially a point-to-point link.</p>
+<h3 id="the-ieee-802.11-frame" tabindex="-1">The IEEE 802.11 Frame</h3>
+<h4 id="payload-and-crc-fields" tabindex="-1">Payload and CRC Fields</h4>
+<p>The payload is permitted to be as long as 2,312 bytes, it is typically fewer than 1,500 bytes, holding an IP datagram or an ARP packet.</p>
+<p><img src="./assets/2022-05-09-18-55-22.png" alt=""></p>
+<p>The type and subtype fields are used to distinguish the association, RTS, CTS, ACK, and data frames. The to and from fields are used to define the meanings of the different address fields.</p>
+<h4 id="address-fields" tabindex="-1">Address Fields</h4>
+<p>Perhaps the most striking difference in the 802.11 frame is that it has four address fields, each of which can hold a 6-byte MAC address. The fourth address field is used when APs forward frames to each other in ad hoc mode.</p>
+<ul>
+<li>Address 2 is the MAC address of the station that transmits the frame.</li>
+<li>Address 1 is the MAC address of the wireless station that is to receive the frame.</li>
+<li>the BSS is part of a subnet, and that this subnet connects to other subnets via some router interface. Address 3 contains the MAC address of this router interface.</li>
+</ul>
+<p><img src="./assets/2022-05-09-18-58-33.png" alt=""></p>
+<p>Note that the AP and Router may be separate devices.</p>
+<p>an AP is a link-layer device, and thus neither “speaks” IP nor understands IP addresses. The router is not aware that there is an AP between it and H1; from the router’s perspective, H1 is just a host in one of the subnets to which it (the router) is connected.</p>
+<h4 id="sequence-number%2C-duration%2C-and-frame-control-fields" tabindex="-1">Sequence Number, Duration, and Frame Control Fields</h4>
+<p>In 802.11, whenever a station correctly receives a frame from another station, it sends back an acknowledgment. the use of sequence numbers allows the receiver to distinguish between a newly transmitted frame and the retransmission of a previous frame. The sequence number field in the 802.11 frame thus serves exactly the same purpose here at the link layer as it did in the transport layer</p>
+<h3 id="mobility-in-the-same-ip-subnet" tabindex="-1">Mobility in the Same IP Subnet</h3>
+<p>In order to increase the physical range of a wireless LAN, companies and universities will often deploy multiple BSSs within the same IP subnet.</p>
+<p><img src="./assets/2022-05-09-19-14-35.png" alt=""></p>
+<p>Because in this example the interconnection device that connects the two BSSs is not a router, all of the stations in the two BSSs, including the APs, belong to the same IP subnet. Thus, when H1 moves from BSS1 to BSS2, it may keep its IP address and all of its ongoing TCP connections.</p>
+<p>switches are “self-learning” and automatically build their forwarding tables. This self-learning feature nicely handles occasional moves. however, switches were not designed to support highly mobile users who want to maintain TCP connections while moving between BSSs. One solution is for AP2 to send a broadcast Ethernet frame with H1’s source address to the switch just after the new association. When the switch receives the frame, it updates its forwarding table, allowing H1 to be reached via AP2.</p>
+<h3 id="advanced-features-in-802.11" tabindex="-1">Advanced Features in 802.11</h3>
+<h4 id="802.11-rate-adaptation" tabindex="-1">802.11 Rate Adaptation</h4>
+<p>some 802.11 implementations have a rate adaptation capability that adaptively selects the underlying physical-layer modulation technique to use based on current or recent channel characteristics. If a node sends two frames in a row without receiving an acknowledgment (an implicit indication of bit errors on the channel), the transmission rate falls back to the next lower rate.</p>
+<p>This rate adaptation mechanism shares the same “probing” philosophy as TCP’s congestion-control mechanism—when conditions are good (reflected by ACK receipts), the transmission rate is increased until something “bad” happens (the lack of ACK receipts); when something “bad” happens, the transmission rate is reduced.</p>
+<h4 id="power-management" tabindex="-1">Power Management</h4>
+<p>The 802.11 standard provides power-management capabilities that allow 802.11 nodes to minimize the amount of time that their sense, transmit, and receive functions and other circuitry need to be “on.”</p>
+<p>A node is able to explicitly alternate between sleep and wake states. A node indicates to the access point that it will be going to sleep by setting the power-management bit in the header of an 802.11 frame to 1. A node will wake up just before the AP sends a beacon frame, and quickly enter the fully active state.</p>
+<p>A node that has no frames to send or receive can be asleep 99% of the time, resulting in a significant energy savings.</p>
+<h2 id="cellular-networks%3A-4g-and-5g" tabindex="-1">Cellular Networks: 4G and 5G</h2>
+<p>The term cellular refers to the fact that the region covered by a cellular network is partitioned into a number of geographic coverage areas, known as cells. Each cell contains a base station that transmits signals to, and receives signals from, the mobile devices currently in its cell.</p>
+<h3 id="4g-lte-cellular-networks%3A-architecture-and-elements" tabindex="-1">4G LTE Cellular Networks: Architecture and Elements</h3>
+<p>All network elements communicate with each other using the IP protocol.</p>
+<p>How the various elements of a 4G LTE network interact with each other in both the data and the control planes:</p>
+<ul>
+<li>Mobile Device. implements the full 5-layer Internet protocol stack. is a network endpoint, with an IP address. also has a globally unique 64-bit identifier called the International Mobile Subscriber Identity (IMSI), which is stored on its SIM (Subscriber Identity Module) card.</li>
+<li>Base Station. The base station sits at the “edge” of the carrier’s network and is responsible for managing the wireless radio resources and the mobile devices with its coverage area. Nearby base stations also coordinate among themselves to manage the radio spectrum to minimize interference between cells.</li>
+<li>Home Subscriber Server (HSS). is a control-plane element. The HSS is a database, storing information about the mobile devices for which the HSS’s network is their home network.</li>
+<li>Serving Gateway (S-GW), Packet Data Network Gateway (P-GW), and other network routers. the Serving Gateway and the Packet Data Network Gateway are two routers that lie on the data path between the mobile device and the Internet. The PDN Gateway also provides NAT IP addresses to mobile devices and performs NAT functions. The PDN Gateway is the last LTE element that a datagram originating at a mobile device encounters before entering the larger Internet.</li>
+<li>Mobility Management Entity (MME). The MME is also a control-plane element, Along with the HSS, it plays an important role in authenticating a device wanting to connect into its network. It also sets up the tunnels on the data path from/to the device and the PDN Internet gateway router, and maintains information about an active mobile device’s cell location within the carrier’s cellular network.</li>
+<li>Cell location tracking. As the device moves between cells, the base stations will update the MME on the device’s location.</li>
+</ul>
+<h3 id="lte-protocols-stacks" tabindex="-1">LTE Protocols Stacks</h3>
+<p>The 4G LTE architecture is an all-IP architecture. the new LTE protocols that we’ll focus on here are primarily at the link and physical layers, and in mobility management.</p>
+<p>LTE divides the mobile device’s link layer into three sublayers:</p>
+<ul>
+<li>The Packet Data Convergence Protocol (PDCP) performs IP header/compression in order to decrease the number of bits sent over the wireless link, and encryption/decryption of the IP datagram using keys that were established via signaling messages between the LTE mobile device and the Mobility Management Entity (MME)</li>
+<li>The Radio Link Control (RLC) Protocol performs two important functions: (i) fragmenting (on the sending side) and reassembly (on the receiving) of IP datagrams that are too large to fit into the underlying link-layer frames, and (ii) link-layer reliable data transfer at the through the use of an ACK/NAK-based ARQ protocol.</li>
+<li>The Medium Access Control (MAC) layer performs transmission scheduling, that is, the requesting and use of the radio transmission slots. r also performs additional error detection/ correction functions, including the use of redundant bit transmission as a forward error-correction technique.</li>
+</ul>
+<p><img src="./assets/2022-05-09-20-11-19.png" alt=""></p>
+<h3 id="lte-radio-access-network" tabindex="-1">LTE Radio Access Network</h3>
+<p>LTE uses a combination of frequency division multiplexing and time division multiplexing on the downstream channel, known as orthogonal frequency division multiplexing (OFDM)</p>
+<h3 id="additional-lte-functions%3A-network-attachment-and-power-management" tabindex="-1">Additional LTE Functions: Network Attachment and Power Management</h3>
+<p>two additional important LTE functions: (i) the process with which a mobile device first attaches to the network and (ii) the techniques used by the mobile device, in conjunction with core network elements, to manage its power use.</p>
+<h4 id="network-attachment" tabindex="-1">Network Attachment</h4>
+<p>The process by which a mobile device attaches to the cellular carrier’s network divides broadly into three phases:</p>
+<ul>
+<li>Attachment to a Base Station.</li>
+<li>Mutual Authentication. the base station contacts the local MME to perform mutual authentication</li>
+<li>Mobile-device-to-PDN-gateway Data Path Configuration. The MME contacts the PDN gateway (which also provides a NAT address for the mobile device), the Serving gateway, and the base station to establish the two tunnels shown in Figure 7.21. Once this phase is complete, the mobile device is able to send/receive IP datagrams via the base station through these tunnels to and from the Internet!</li>
+</ul>
+<h4 id="power-management%3A-sleep-modes" tabindex="-1">Power Management: Sleep Modes</h4>
+<p>In 4G LTE, a sleeping mobile device can be in one of two different sleep states.</p>
+<p>In the discontinuous reception state, the mobile device and the base station will schedule periodic times in advance at which the mobile device will wake up and actively monitor the channel for downstream transmissions.</p>
+<p>the Idle state the mobile device’s radio wakes up and monitors the channel even less frequently. if the mobile device moves into a new cell in the carrier’s network while sleeping, it need not inform the base station with which it was previous associated. Thus, when waking up periodically from this deep sleep, the mobile device will need to re-establish an association with a (potentially new) base station in order to check for paging messages broadcast by the MME to base stations nearby the base station with which the mobile was last associated.</p>
+<h3 id="the-global-cellular-network%3A-a-network-of-networks" tabindex="-1">The Global Cellular Network: A Network of Networks</h3>
+<p>Figure 7.23 shows a user’s mobile smartphone connected via a 4G base station into its home network. The user’s home mobile network is operated by a cellular carrier such as Verizon, AT&amp;T, T-Mobile, or Sprint in the United States</p>
+<p><img src="./assets/2022-05-09-20-23-04.png" alt=""></p>
+<h3 id="5g-cellular-networks" tabindex="-1">5G Cellular Networks</h3>
+<p>The ultimate wide-area data service would be one with ubiquitous gigabit connection speeds, extremely low latency, and unrestricted limitations on the number of users and devices that could be supported in any region.</p>
+<p>It is predicted that 5G will provide roughly a
+10x increase in peak bitrate, a 10x decrease in latency, and a 100x increase in traffic capacity over 4G</p>
+<p>the physical layer (that is, wireless) aspects of 5G are not backward-compatible with 4G mobile communications systems such as LTE</p>
+<p>FR2 frequencies are also known as millimeter wave frequencies. While millimeter wave frequencies allow for much faster data speeds, they come with two major drawbacks:</p>
+<ul>
+<li>much shorter range from base station to receivers.</li>
+<li>is highly susceptible to atmospheric interference. Nearby foliage and rain can cause problems for outdoor use.</li>
+</ul>
+<p>5G is not one cohesive standard, but instead consists of three co-existing standards:</p>
+<ul>
+<li>eMBB (Enhanced Mobile Broadband). enables rich media applications</li>
+<li>URLLC (Ultra Reliable Low-Latency Communications). targeted towards applications that are highly latency-sensitive,</li>
+<li>mMTC (Massive Machine Type Communications). a narrowband access type for sensing, metering, and monitoring applications. reducing power requirements</li>
+</ul>
+<h4 id="5g-and-millimeter-wave-frequencies" tabindex="-1">5G and Millimeter Wave Frequencies</h4>
+<p>Many 5G innovations will be a direct result of working in the millimeter wave frequencies in the 24 GHz–52 GHz band. For example, these frequencies offer the potential of achieving 100x increase in capacity over 4G. To get some insight into this, capacity can be defined as the product of three terms</p>
+<p>capacity = cell density x available spectrum x spectral efficiency</p>
+<p>where cell density is in units of cells/km2, available spectrum is in units of Hertz, and spectral efficiency is a measure of how efficiently each base station can communicate with users and is in units of bps/Hz/cell.</p>
+<p>For each of these three terms, the values will be larger for 5G than for 4G:</p>
+<ul>
+<li>more base stations are required, which in turn increases the cell density.</li>
+<li>5G FR2 operates in a much larger frequency band, it has more available spectrum.</li>
+<li>Rather than broadcasting signals in all directions, each MIMO antenna employs beam forming and directs the signal at the user. MIMO technology allows a base station to send to 10–20 users at the same time in the same frequency band.</li>
+</ul>
+<p>By increasing all three terms in the capacity equation, 5G is expected to provide a 100x increase in capacity in urban areas.</p>
+<p>Small cell stations are needed to fill in coverage gaps between base stations and users. In a highly populous region, the distance between two small cells could vary from 10 to 100 meters.</p>
+<h4 id="5g-core-network" tabindex="-1">5G Core Network</h4>
+<p>The 5G Core network is the data network that manages all of the 5G mobile voice, data and Internet connections.</p>
+<p>5G core relays data traffic from end devices, authenticates devices, and manages device mobility. The 5G core also contains all of the network elements that we encountered - the mobile devices, the cells, the base stations, and the Mobility Management Entity (now divided into two sub-elements, as discussed below), the HSS, and the Serving and PDN gateways.</p>
+<p>Some of the new 5G core network functions include:</p>
+<ul>
+<li>User-Plane Function (UPF). Control and user-plane separation allows packet processing to be distributed and pushed to the network edge.</li>
+<li>Access and Mobility Management Function (AMF). The 5G Core essentially decomposes the 4G Mobility Management Entity (MME) into two functional elements: AMF and SMF. The AMF receives all the connection and session information from end-user equipment but only handles connection and mobility management tasks.</li>
+<li>Session Management Function (SMF). Session management is handled by the Session Management Function (SMF). The SMF is responsible for interacting with the decoupled data plane. The SMF also performs IP address management and plays the role of DHCP.</li>
+</ul>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

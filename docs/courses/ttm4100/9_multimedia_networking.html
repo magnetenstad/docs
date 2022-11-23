@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>9_multimedia_networking.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="1_computer_networks_and_the_internet.html">1_computer_networks_and_the_internet</a></li>
+<li>📄 <a href="2_application_layer.html">2_application_layer</a></li>
+<li>📄 <a href="3_transport_layer.html">3_transport_layer</a></li>
+<li>📄 <a href="4_the_network_layer_data_plane.html">4_the_network_layer_data_plane</a></li>
+<li>📄 <a href="5_the_network_layer_control_plane.html">5_the_network_layer_control_plane</a></li>
+<li>📄 <a href="6_the_link_layer_and_lans.html">6_the_link_layer_and_lans</a></li>
+<li>📄 <a href="7_cellular_networks_4g_and_5g.html">7_cellular_networks_4g_and_5g</a></li>
+<li>📄 <a href="8_security_in_computer_networks.html">8_security_in_computer_networks</a></li>
+<li>📄 <a href="9_multimedia_networking.html">9_multimedia_networking ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#multimedia-networking">Multimedia Networking</a><ol><li><a href="#multimedia-networking-applications">Multimedia Networking Applications</a><ol><li><a href="#properties-of-video">Properties of Video</a></li><li><a href="#properties-of-audio">Properties of Audio</a></li><li><a href="#types-of-multimedia-network-applications">Types of Multimedia Network Applications</a><ol><li><a href="#streaming-stored-audio-and-video">Streaming Stored Audio and Video</a></li><li><a href="#conversational-voice--and-video-over-ip">Conversational Voice- and Video-over-IP</a></li><li><a href="#streaming-live-audio-and-video">Streaming Live Audio and Video</a></li></ol></li></ol></li><li><a href="#streaming-stored-video">Streaming Stored Video</a><ol><li><a href="#udp-streaming">UDP Streaming</a></li><li><a href="#http-streaming">HTTP Streaming</a><ol><li><a href="#prefetching-video">Prefetching Video</a></li><li><a href="#client-application-buffer-and-tcp-buffers">Client Application Buffer and TCP Buffers</a></li><li><a href="#analysis-of-video-streaming">Analysis of Video Streaming</a></li><li><a href="#early-termination-and-repositioning-the-video">Early Termination and Repositioning the Video</a></li></ol></li></ol></li><li><a href="#voice-over-ip">Voice-over-IP</a><ol><li><a href="#limitations-of-the-best-effort-ip-service">Limitations of the Best-Effort IP Service</a><ol><li><a href="#packet-loss">Packet Loss</a></li><li><a href="#end-to-end-delay">End-to-End Delay</a></li><li><a href="#packet-jitter">Packet Jitter</a></li></ol></li><li><a href="#removing-jitter-at-the-receiver-for-audio">Removing Jitter at the Receiver for Audio</a><ol><li><a href="#fixed-playout-delay">Fixed Playout Delay</a></li><li><a href="#adaptive-playout-delay">Adaptive Playout Delay</a></li></ol></li><li><a href="#recovering-from-packet-loss">Recovering from Packet Loss</a><ol><li><a href="#forward-error-correction-(fec)">Forward Error Correction (FEC)</a></li><li><a href="#interleaving">Interleaving</a></li><li><a href="#error-concealment">Error Concealment</a></li></ol></li><li><a href="#case-study%3A-voip-with-skype">Case Study: VoIP with Skype</a></li></ol></li><li><a href="#protocols-for-real-time-conversational-applications">Protocols for Real-Time Conversational Applications</a><ol><li><a href="#rtp">RTP</a><ol><li><a href="#rtp-basics">RTP Basics</a></li></ol></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="multimedia-networking" tabindex="-1">Multimedia Networking</h1>
+<p>This contents of this chapter is part of the curriculum for <a href="./index.html">TTM4100</a>, except for the section 9.4.2.</p>
+<h2 id="multimedia-networking-applications" tabindex="-1">Multimedia Networking Applications</h2>
+<h3 id="properties-of-video" tabindex="-1">Properties of Video</h3>
+<p>Video compression. Spatial redundancy is the redundancy within a given image. Temporal redundancy reflects repetition from image to subsequent image.</p>
+<h3 id="properties-of-audio" tabindex="-1">Properties of Audio</h3>
+<h3 id="types-of-multimedia-network-applications" tabindex="-1">Types of Multimedia Network Applications</h3>
+<p>We classify multimedia applications into three breoad categories: (i) streaming stored audio/video, (ii) conversational voice/video-over-IP, (iii) streaming live audio/video.</p>
+<h4 id="streaming-stored-audio-and-video" tabindex="-1">Streaming Stored Audio and Video</h4>
+<p>Streaming stored video has three key distinguishing features:</p>
+<ul>
+<li>Streaming. Avoids having to download the entire video file before playout begins.</li>
+<li>Interactivity. The user may pause, and reposition through the video content.</li>
+<li>Continous playout. Once playout begins, it should proceed according to the original timing of the recording.</li>
+</ul>
+<p>By far, the most important performance measure for streaming video is average throughput.</p>
+<h4 id="conversational-voice--and-video-over-ip" tabindex="-1">Conversational Voice- and Video-over-IP</h4>
+<p>Real-time conversational voice over the Internet is often referred t as Voice-over-IP (VoIP).</p>
+<p>Audio and video conversational applications are highly delay-sensitive. However, they are loss-tolerant.</p>
+<h4 id="streaming-live-audio-and-video" tabindex="-1">Streaming Live Audio and Video</h4>
+<p>Because the event is live, delay can be an issue, although the timing constraints are much less stringent than those for conversational voice.</p>
+<h2 id="streaming-stored-video" tabindex="-1">Streaming Stored Video</h2>
+<p>Streaming video systems can be classified into three categores: UDP streaming, HTTP streaming and adaptive HTTP streaming.</p>
+<p>Common characteristic: extensive use of client-side application buffering to mitigate the effects of varying end-to-end delay.</p>
+<p><img src="./assets/2022-05-09-21-57-47.png" alt=""></p>
+<h3 id="udp-streaming" tabindex="-1">UDP Streaming</h3>
+<p>Because UDP does not employ a congestion-control mechanism, the server can push packets into the network at the consumption rate of the video without the rate-control restrictions of TCP.</p>
+<p>However, due to varying amount of bandwidth, constant-rate UDP streaming can fail to provide continous playout. It also requires a media control server, such as an RTSP server to process interactivity requests and to track client state.</p>
+<p>Many firewalls are configured to block UDP traffic.</p>
+<h3 id="http-streaming" tabindex="-1">HTTP Streaming</h3>
+<p>The client establishes a TCP connection and issues an HTTP GET request for the video url.</p>
+<p>Buffering and prefetching mitagate the delays of TCP's congestion control mechanisms.</p>
+<h4 id="prefetching-video" tabindex="-1">Prefetching Video</h4>
+<p>The client can attempt to download the video at a rate higher than the consumption rate, thereby prefetching video frames.</p>
+<h4 id="client-application-buffer-and-tcp-buffers" tabindex="-1">Client Application Buffer and TCP Buffers</h4>
+<p><img src="./assets/2022-05-10-09-18-55.png" alt=""></p>
+<p>When the user pauses the video, bits are not removed from the client application buffer, event though bits continue to enter the buffer from the server - and may become full. This causes the TCP buffers to become full, forcing the server to reduce its rate. A full client application buffer indireclty imposes a limit on the rate that video can be sent from server to client when streaming over HTTP.</p>
+<h4 id="analysis-of-video-streaming" tabindex="-1">Analysis of Video Streaming</h4>
+<p><img src="./assets/2022-05-10-09-22-30.png" alt=""></p>
+<p>The initial buffering delay <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>p</mi></msub><mo>=</mo><mi>Q</mi><mi mathvariant="normal">/</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">t_p = Q/x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">Q</span><span class="mord">/</span><span class="mord mathnormal">x</span></span></span></span>.</p>
+<p>When the available rate in the network is less than the video rate, playout will alternate between periods of continous playout and periods of freezing.</p>
+<h4 id="early-termination-and-repositioning-the-video" tabindex="-1">Early Termination and Repositioning the Video</h4>
+<p>The HTTP byte-range header in the HTTP GET request message specifies the range of bytes the client currently wants to retrieve from the desired video. This is useful for user repositioning.</p>
+<p>There is significant wasted bandwidth in the Internet due to early termination, which can be quite costly.</p>
+<h2 id="voice-over-ip" tabindex="-1">Voice-over-IP</h2>
+<p>Real-time conversational voice over the Internet is commonly called Voice-over-IP.</p>
+<h3 id="limitations-of-the-best-effort-ip-service" tabindex="-1">Limitations of the Best-Effort IP Service</h3>
+<p>The receiver must take more care in determining (1) when to play back a chuck, and (2) what to do with a missing chunk.</p>
+<h4 id="packet-loss" tabindex="-1">Packet Loss</h4>
+<p>Loss could be eliminated by sending the packets over TCP (which provides for reliable data transfer) rather than over UDP. However, retransmission mechanisms are often considered unacceptable for conversational real-time audio applications.</p>
+<p>Most existing VoIP applications run over UDP by default. Packet loss rates between 1 and 20 percent can be tolerated, depending on how voice is encoded and transmitted, and on how the loss is concealed at the receiver.</p>
+<p>Forward error correction (FEC) can help conceal packet loss. With FEC, redundant information is transmitted along with the original information so that some of the lost original data can be recovered from the redundant information.</p>
+<h4 id="end-to-end-delay" tabindex="-1">End-to-End Delay</h4>
+<p>End-to-End delay is the accumalation of transmission, processing and queuing delay in routers, propagation delay in links, and end-system processing delays.</p>
+<h4 id="packet-jitter" tabindex="-1">Packet Jitter</h4>
+<p>Because of varying queuing delays, the time from when a packet is generated at the sourcce until it is received at the receiver can fluctuate from packet to packet. This is called jitter.</p>
+<p>Jitter can often be removed by using sequence numbers, timestamps, and a playout delay.</p>
+<h3 id="removing-jitter-at-the-receiver-for-audio" tabindex="-1">Removing Jitter at the Receiver for Audio</h3>
+<p>The receiver should attempt to provide periodic playout of voice chunks in the presence of random network jitter. This is typically done by combining the following two mechanisms:</p>
+<ul>
+<li>Prepending each chunk with a timestamp.</li>
+<li>Delaying playout of chunks at the receiver. (Buffering)</li>
+</ul>
+<h4 id="fixed-playout-delay" tabindex="-1">Fixed Playout Delay</h4>
+<p><img src="./assets/2022-05-10-10-06-54.png" alt=""></p>
+<h4 id="adaptive-playout-delay" tabindex="-1">Adaptive Playout Delay</h4>
+<p>Uses a smoothed average of the observed network delays. The estimate places more weight on the recently observed delays.</p>
+<h3 id="recovering-from-packet-loss" tabindex="-1">Recovering from Packet Loss</h3>
+<p>Retransmitting lost packets may not be feasible in a real-time conversational application such as VoIP.</p>
+<p>VoIP applications often use some type of loss anticipation scheme. Two types are FEC and interleaving.</p>
+<h4 id="forward-error-correction-(fec)" tabindex="-1">Forward Error Correction (FEC)</h4>
+<p>For the cost of marginally increasing the transmission rate, the redundant information can be used to reconstruct approximations or exact versions of some of the lost packets.</p>
+<p><img src="./assets/2022-05-10-10-13-07.png" alt=""></p>
+<h4 id="interleaving" tabindex="-1">Interleaving</h4>
+<p>Interleaving can significantly improve the perceived quality of an audio stream, but it does increase latency.</p>
+<p><img src="./assets/2022-05-10-10-15-41.png" alt=""></p>
+<h4 id="error-concealment" tabindex="-1">Error Concealment</h4>
+<p>Perhaps the simplest form of receiver-based recovery is packet repetition. This replaces lost packets with copies of the packets that arrived immediately before the loss.</p>
+<p>Interpolation performs somewhat better then packet repetition but is significantly more computationally intensive.</p>
+<h3 id="case-study%3A-voip-with-skype" tabindex="-1">Case Study: VoIP with Skype</h3>
+<p>Each user sends its audio stream to the conference initiator. The initiator combines the audio streams into one stream (basically by adding all the audio signals together) and then sends a copy of each combined stream to each of the other N - 1 participants.</p>
+<p>VoIP systems such as Skype, WeChat, and Google Talk introduce new privacy concerns.</p>
+<h2 id="protocols-for-real-time-conversational-applications" tabindex="-1">Protocols for Real-Time Conversational Applications</h2>
+<h3 id="rtp" tabindex="-1">RTP</h3>
+<p>It is convenient to have a standardized packet structure that includes field for audio/video data, sequence number, and timestamp. RTP can be used for transporting common formats such as PCM, ACC and MP3 for sound and MPEG and H.263 for video. It can also be used for transporting proprietary sound and video formats.</p>
+<h4 id="rtp-basics" tabindex="-1">RTP Basics</h4>
+<p>RTP typically runs on top of UDP. RTP does not provide any quality-of-service (QoS) guarantees.</p>
+<p>RTP multicast streams belonging together, such as audio and video streams emanating from multiple senders in a video conference application, belong to an RTP session.</p>
+<p><img src="./assets/2022-05-10-10-24-19.png" alt=""></p>
+<p>SSRC identifies the source of the RTP stream.</p>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

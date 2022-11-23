@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>3_transport_layer.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="1_computer_networks_and_the_internet.html">1_computer_networks_and_the_internet</a></li>
+<li>📄 <a href="2_application_layer.html">2_application_layer</a></li>
+<li>📄 <a href="3_transport_layer.html">3_transport_layer ✨</a></li>
+<li>📄 <a href="4_the_network_layer_data_plane.html">4_the_network_layer_data_plane</a></li>
+<li>📄 <a href="5_the_network_layer_control_plane.html">5_the_network_layer_control_plane</a></li>
+<li>📄 <a href="6_the_link_layer_and_lans.html">6_the_link_layer_and_lans</a></li>
+<li>📄 <a href="7_cellular_networks_4g_and_5g.html">7_cellular_networks_4g_and_5g</a></li>
+<li>📄 <a href="8_security_in_computer_networks.html">8_security_in_computer_networks</a></li>
+<li>📄 <a href="9_multimedia_networking.html">9_multimedia_networking</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#transport-layer">Transport Layer</a><ol><li><a href="#introduction-to-the-transport-layer-and-transport-layer-services">Introduction to the Transport Layer and Transport Layer Services</a><ol><li><a href="#relationship-between-transport-and-network-layers">Relationship Between Transport and Network Layers</a></li><li><a href="#overview-of-the-transport-layer-in-the-internet">Overview of the Transport Layer in the Internet</a></li></ol></li><li><a href="#multiplexing-and-demultiplexing">Multiplexing and Demultiplexing</a><ol><li><a href="#connectionless-multiplexing-and-demultiplexing">Connectionless Multiplexing and Demultiplexing</a></li><li><a href="#connection-oriented-multiplexing-and-demultiplexing">Connection-Oriented Multiplexing and Demultiplexing</a></li><li><a href="#web-servers-and-tcp">Web Servers and TCP</a></li></ol></li><li><a href="#connectionless-transport%3A-udp">Connectionless Transport: UDP</a><ol><li><a href="#udp-segment-structure">UDP Segment Structure</a></li><li><a href="#udp-checksum">UDP Checksum</a></li></ol></li><li><a href="#principles-of-reliable-data-transfer">Principles of Reliable Data Transfer</a><ol><li><a href="#building-a-reliable-data-transfer-protocol">Building a Reliable Data Transfer Protocol</a><ol><li><a href="#reliable-data-transfer-over-a-perfectly-reliable-channel%3A-rdt1.0">Reliable Data Transfer over a Perfectly Reliable Channel: rdt1.0</a></li><li><a href="#reliable-data-transfer-over-a-channel-with-bit-errors%3A-rdt2.0">Reliable Data Transfer over a Channel with Bit Errors: rdt2.0</a></li><li><a href="#reliable-data-transfer-over-a-lossy-channel-with-bit-errors%3A-rdt3.0">Reliable Data Transfer over a Lossy Channel with Bit Errors: rdt3.0</a></li></ol></li><li><a href="#pipelined-reliable-data-transfer-protocols">Pipelined Reliable Data Transfer Protocols</a></li><li><a href="#go-back-n-(gbn)">Go-Back-N (GBN)</a></li><li><a href="#selective-repeat-(sr)">Selective Repeat (SR)</a></li></ol></li><li><a href="#connection-oriented-transport%3A-tcp">Connection-Oriented Transport: TCP</a><ol><li><a href="#the-tcp-connection">The TCP Connection</a></li><li><a href="#tcp-segment-structure">TCP Segment Structure</a><ol><li><a href="#sequence-numbers-and-acknowledgment-numbers">Sequence Numbers and Acknowledgment Numbers</a></li><li><a href="#telnet%3A-a-case-study-for-sequence-and-acknowledgment-numbers">Telnet: A Case Study for Sequence and Acknowledgment Numbers</a></li></ol></li><li><a href="#round-trip-time-estimation-and-timeout">Round-Trip Time Estimation and Timeout</a><ol><li><a href="#estimating-the-round-trip-time">Estimating the Round-Trip Time</a></li><li><a href="#setting-and-managing-the-retransmission-timeout-interval">Setting and Managing the Retransmission Timeout Interval</a></li></ol></li><li><a href="#reliable-data-transfer">Reliable Data Transfer</a></li><li><a href="#a-few-interesting-scenarios">A Few Interesting Scenarios</a></li><li><a href="#doubling-the-timeout-interval">Doubling the Timeout Interval</a><ol><li><a href="#fast-retransmit">Fast Retransmit</a></li><li><a href="#go-back-n-or-selective-repeat%3F">Go-Back-N or Selective Repeat?</a></li></ol></li><li><a href="#flow-control">Flow Control</a></li><li><a href="#tcp-connection-management">TCP Connection Management</a></li></ol></li><li><a href="#principles-of-congestion-control">Principles of Congestion Control</a><ol><li><a href="#the-causes-and-the-costs-of-congestion">The Causes and the Costs of Congestion</a></li><li><a href="#approaches-to-congestion-control">Approaches to Congestion Control</a></li></ol></li><li><a href="#tcp-congestion-control">TCP Congestion Control</a><ol><li><a href="#classic-tcp-congestion-control">Classic TCP Congestion Control</a><ol><li><a href="#slow-start">Slow Start</a></li><li><a href="#congestion-avoidance">Congestion Avoidance</a></li><li><a href="#fast-recovery">Fast Recovery</a></li><li><a href="#tcp-congestion-control%3A-retrospective">TCP Congestion Control: Retrospective</a></li><li><a href="#tcp-cubic">TCP Cubic</a></li><li><a href="#macroscopic-description-of-tcp-reno-throughput">Macroscopic Description of TCP Reno Throughput</a></li></ol></li><li><a href="#fairness">Fairness</a><ol><li><a href="#fairness-and-udp">Fairness and UDP</a></li><li><a href="#fairness-and-parallel-tcp-connections">Fairness and Parallel TCP Connections</a></li></ol></li></ol></li><li><a href="#evolution-of-transport-layer-functionality">Evolution of Transport-Layer Functionality</a><ol><li><a href="#quic%3A-quick-udp-internet-connections">QUIC: Quick UDP Internet Connections</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="transport-layer" tabindex="-1">Transport Layer</h1>
+<p>This contents of this chapter is part of the curriculum for <a href="./index.html">TTM4100</a>, except for the sections 3.6.1 and 3.7.2.</p>
+<h2 id="introduction-to-the-transport-layer-and-transport-layer-services" tabindex="-1">Introduction to the Transport Layer and Transport Layer Services</h2>
+<p>A transport-layer protocol provides for logical communication between application processes running on different hosts. By logical communication, we mean that from an application’s perspective, it is as if the hosts running the processes were directly connected.</p>
+<p>Terminology: Transport-layer segments</p>
+<h3 id="relationship-between-transport-and-network-layers" tabindex="-1">Relationship Between Transport and Network Layers</h3>
+<p><img src="./assets/2022-05-04-17-26-43.png" alt=""></p>
+<h3 id="overview-of-the-transport-layer-in-the-internet" tabindex="-1">Overview of the Transport Layer in the Internet</h3>
+<p>UDP (User Datagram Protocol), which provides an unreliable, connectionless service to the invoking application.</p>
+<p>TCP (Transmission Control Protocol), which provides a reliable, connection-oriented service to the invoking application.</p>
+<p>The IP service model is a best-effort delivery service. This means that IP makes its “best effort” to deliver segments between communicating hosts, but it makes no guarantees. In particular, it does not guarantee segment delivery, it does not guarantee orderly delivery of segments, and it does not guarantee the integrity of the data in the segments. For these reasons, IP is said to be an unreliable service.</p>
+<p>Extending host-to-host delivery to process-to-process delivery is called transport-layer multiplexing and demultiplexing.</p>
+<p>TCP also provides congestion control.</p>
+<h2 id="multiplexing-and-demultiplexing" tabindex="-1">Multiplexing and Demultiplexing</h2>
+<p>This job of delivering the data in a transport-layer segment to the correct socket is called demultiplexing. The job of gathering data chunks at the source host from different sockets, encapsulating each data chunk with header information (that will later be used in demultiplexing) to create segments, and passing the segments to the network layer is called multiplexing.</p>
+<p>Transport-layer multiplexing requires (1) that sockets have unique identifiers, and (2) that each segment have special fields that indicate the socket to which the segment is to be delivered. These special fields, illustrated in Figure 3.3, are the source port number field and the destination port number field.</p>
+<p>When we develop a new application, we must assign the application a port number.</p>
+<h3 id="connectionless-multiplexing-and-demultiplexing" tabindex="-1">Connectionless Multiplexing and Demultiplexing</h3>
+<p>It is important to note that a UDP socket is fully identified by a two-tuple consisting of a destination IP address and a destination port number. As a consequence, if two UDP segments have different source IP addresses and/or source port numbers, but have the same destination IP address and destination port number, then the two segments will be directed to the same destination process via the same destination socket.</p>
+<h3 id="connection-oriented-multiplexing-and-demultiplexing" tabindex="-1">Connection-Oriented Multiplexing and Demultiplexing</h3>
+<p>One subtle difference between a TCP socket and a UDP socket is that a TCP socket is identified by a four-tuple: (source IP address, source port number, destination IP address, destination port number).</p>
+<h3 id="web-servers-and-tcp" tabindex="-1">Web Servers and TCP</h3>
+<p><img src="./assets/2022-05-04-17-45-11.png" alt=""></p>
+<h2 id="connectionless-transport%3A-udp" tabindex="-1">Connectionless Transport: UDP</h2>
+<p>Some applications are better suited for UDP for the following reasons:</p>
+<ul>
+<li>Finer application-level control over what data is sent, and when. (No congestion-control mechanism)</li>
+<li>No connection establishment.</li>
+<li>No connection state. A server devoted to a particular application can typically support many more active clients when the application runs over UDP rather than TCP.</li>
+<li>Small packet header overhead.</li>
+</ul>
+<p>It it is possible for an application to have reliable data transfer when using UDP. This can be done if reliability is built into the application itself. QUIC protocol implements reliability in an application-layer protocol on top of UDP.</p>
+<h3 id="udp-segment-structure" tabindex="-1">UDP Segment Structure</h3>
+<p><img src="./assets/2022-05-04-17-51-30.png" alt=""></p>
+<h3 id="udp-checksum" tabindex="-1">UDP Checksum</h3>
+<p>The UDP checksum provides for error detection.</p>
+<h2 id="principles-of-reliable-data-transfer" tabindex="-1">Principles of Reliable Data Transfer</h2>
+<p>With a reliable channel, no transferred data bits are corrupted (flipped from 0 to 1, or vice versa) or lost, and all are delivered in the order in which they were sent.</p>
+<h3 id="building-a-reliable-data-transfer-protocol" tabindex="-1">Building a Reliable Data Transfer Protocol</h3>
+<h4 id="reliable-data-transfer-over-a-perfectly-reliable-channel%3A-rdt1.0" tabindex="-1">Reliable Data Transfer over a Perfectly Reliable Channel: rdt1.0</h4>
+<h4 id="reliable-data-transfer-over-a-channel-with-bit-errors%3A-rdt2.0" tabindex="-1">Reliable Data Transfer over a Channel with Bit Errors: rdt2.0</h4>
+<p>Fundamentally, three additional protocol capabilities are required in ARQ protocols to handle the presence of bit errors:</p>
+<ul>
+<li>Error detection</li>
+<li>Receiver feedback</li>
+<li>Retransmission</li>
+</ul>
+<p>To enable the receiver to determine whether the packet is a retransmission, we add a sequence number to the data packet.</p>
+<h4 id="reliable-data-transfer-over-a-lossy-channel-with-bit-errors%3A-rdt3.0" tabindex="-1">Reliable Data Transfer over a Lossy Channel with Bit Errors: rdt3.0</h4>
+<p>The sender does not know whether a data packet was lost, an ACK was lost, or if the packet or ACK was simply overly delayed. In all cases, the action is the same: retransmit. Implementing a time-based retransmission mechanism requires a countdown timer that can interrupt the sender after a given amount of time has expired. The sender will thus need to be able to (1) start the timer each time a packet (either a first-time packet or a retransmission) is sent, (2) respond to a timer interrupt (taking appropriate actions), and (3) stop the timer.</p>
+<p>We have now assembled the key elements of a data transfer protocol. Checksums, sequence numbers, timers, and positive and negative acknowledgment packets each play a crucial and necessary role in the operation of the protocol.</p>
+<h3 id="pipelined-reliable-data-transfer-protocols" tabindex="-1">Pipelined Reliable Data Transfer Protocols</h3>
+<p>If we define the utilization of the sender (or the channel) as the fraction of time the sender is actually busy sending bits into the channel, the stop-and-wait protocol has a rather dismal sender utilization,</p>
+<p>Pipelining has the following consequences for reliable data transfer protocols:</p>
+<ul>
+<li>The range of sequence numbers must be increased.</li>
+<li>The sender and receiver sides of the protocols may have to buffer more than one packet.</li>
+<li>The range of sequence numbers needed and the buffering requirements will depend on the manner in which a data transfer protocol responds to lost, corrupted, and overly delayed packets. Two basic approaches toward pipelined error recovery can be identified: Go-Back-N and selective repeat.</li>
+</ul>
+<h3 id="go-back-n-(gbn)" tabindex="-1">Go-Back-N (GBN)</h3>
+<p>In a Go-Back-N (GBN) protocol, the sender is allowed to transmit multiple packets (when available) without waiting for an acknowledgment, but is constrained to have no more than some maximum allowable number, N, of unacknowledged packets in the pipeline.</p>
+<p>As the protocol operates, this window slides forward over the sequence number space. For this reason, N is often referred to as the window size and the GBN protocol itself as a sliding-window protocol.</p>
+<p>The GBN sender must respond to three types of events:</p>
+<ul>
+<li><em>Invocation from above</em>. rdt_send(). If the window is not full, a packet is created and sent, and variables are appropriately updated. If the window is full, the sender simply returns the data back to the upper layer</li>
+<li><em>Receipt of an ACK</em>. An acknowledgment for a packet with sequence number n will be taken to be a cumulative acknowledgment, indicating that all packets with a sequence number up to and including n have been correctly received at the receiver.</li>
+<li><em>A timeout event</em>. If a timeout occurs, the sender resends all packets that have been previously sent but that have not yet been acknowledged.</li>
+</ul>
+<p>A single packet error can cause GBN to retransmit a large number of packets, many unnecessarily.</p>
+<h3 id="selective-repeat-(sr)" tabindex="-1">Selective Repeat (SR)</h3>
+<p>As the name suggests, selective-repeat protocols avoid unnecessary retransmissions by having the sender retransmit only those packets that it suspects were received in error (that is, were lost or corrupted) at the receiver.</p>
+<p>The SR receiver will acknowledge a correctly received packet whether or not it is in order. Out-of-order packets are buffered until any missing packets (that is, packets with lower sequence numbers) are received, at which point a batch of packets can be delivered in order to the upper layer.</p>
+<p><img src="./assets/2022-05-04-18-28-31.png" alt=""></p>
+<h2 id="connection-oriented-transport%3A-tcp" tabindex="-1">Connection-Oriented Transport: TCP</h2>
+<p>In order to provide reliable data transfer, TCP relies on many of the underlying principles discussed in the previous section, including error detection, retransmissions, cumulative acknowledgments, timers, and header fields for sequence and acknowledgment numbers</p>
+<h3 id="the-tcp-connection" tabindex="-1">The TCP Connection</h3>
+<p>TCP is said to be connection-oriented because before one application process can begin to send data to another, the two processes must first "handshake" with each other.</p>
+<p>TCP protocol runs only in the end systems and not in the intermediate network elements (routers and link-layer switches), the intermediate network elements do not maintain TCP connection state.</p>
+<p>A TCP connection provides a full-duplex service: If there is a TCP connection between Process A on one host and Process B on another host, then application-layer data can flow from Process A to Process B at the same time as application-layer data flows from Process B to Process A.</p>
+<p>A TCP connection is also always point-to-point, that is, between a single sender and a single receiver. So-called "multicasting" - the transfer of data from one sender to many receivers in a single send operation - is not possible with TCP.</p>
+<p>The process that is initiating the connection is called the client process, while the other process is called the server process.</p>
+<p>TCP directs this data to the connection’s send buffer, which is one of the buffers that is set aside during the initial three-way handshake. From time to time, TCP will grab chunks of data from the send buffer and pass the data to the network layer.</p>
+<p>The maximum amount of data that can be grabbed and placed in a segment is limited by the maximum segment size (MSS). The MSS is typically set by first determining the length of the largest link-layer frame that can be sent by the local sending host (the so-called maximum transmission unit, MTU), and then setting the MSS to ensure that a TCP segment (when encapsulated in an IP datagram) plus the TCP/IP header length (typically 40 bytes) will fit into a single link-layer frame.</p>
+<p><img src="./assets/2022-05-04-18-52-37.png" alt=""></p>
+<h3 id="tcp-segment-structure" tabindex="-1">TCP Segment Structure</h3>
+<p><img src="./assets/2022-05-04-18-53-23.png" alt=""></p>
+<h4 id="sequence-numbers-and-acknowledgment-numbers" tabindex="-1">Sequence Numbers and Acknowledgment Numbers</h4>
+<p>The sequence number for a segment is the byte-stream number of the first byte in the segment.</p>
+<p>The acknowledgment number that Host A puts in its segment is the sequence number of the next byte Host A is expecting from Host B.</p>
+<p>Because TCP only acknowledges bytes up to the first missing byte in the stream, TCP is said to provide cumulative acknowledgments.</p>
+<h4 id="telnet%3A-a-case-study-for-sequence-and-acknowledgment-numbers" tabindex="-1">Telnet: A Case Study for Sequence and Acknowledgment Numbers</h4>
+<p>Note that the acknowledgment for client-to-server data is carried in a segment carrying server-to-client data; this acknowledgment is said to be piggybacked on the server-to-client data segment</p>
+<h3 id="round-trip-time-estimation-and-timeout" tabindex="-1">Round-Trip Time Estimation and Timeout</h3>
+<h4 id="estimating-the-round-trip-time" tabindex="-1">Estimating the Round-Trip Time</h4>
+<p>SampleRTT, for a segment is the amount of time between when the segment is sent (that is, passed to IP) and when an acknowledgment for the segment is received. EstimatedRTT is a weighted average of the SampleRTT values:</p>
+<p>EstimatedRTT = (1 – α) * EstimatedRTT + α * SampleRTT</p>
+<p>The recommended value of α is α = 0.125. In addition to having an estimate of the RTT, it is also valuable to have a measure of the variability of the RTT. DevRTT is an estimate of how much SampleRTT typically deviates from EstimatedRTT:</p>
+<p>DevRTT = (1 – β) * DevRTT + β * | SampleRTT – EstimatedRTT |</p>
+<p>The recommended value of β is 0.25.</p>
+<h4 id="setting-and-managing-the-retransmission-timeout-interval" tabindex="-1">Setting and Managing the Retransmission Timeout Interval</h4>
+<p>TCP’s method for determining the retransmission timeout interval:</p>
+<p>TimeoutInterval = EstimatedRTT + 4 # DevRTT</p>
+<p>An initial TimeoutInterval value of 1 second is recommended.</p>
+<h3 id="reliable-data-transfer" tabindex="-1">Reliable Data Transfer</h3>
+<p>TCP creates a reliable data transfer service on top of IP’s unreliable best effort service.</p>
+<p>there are three major events related to data transmission and retransmission in the TCP sender: data received from application above; timer timeout; and ACK receipt.</p>
+<ol>
+<li>TCP receives data from the application, encapsulates the data in a segment, and passes the segment to IP.</li>
+<li>TCP responds to the timeout event by retransmitting the segment that caused the timeout. TCP then restarts the timer.</li>
+<li>TCP compares the ACK value y with its variable SendBase. SendBase–1 is the sequence number of the last byte that has been received correctly and in order at the receiver.</li>
+</ol>
+<h3 id="a-few-interesting-scenarios" tabindex="-1">A Few Interesting Scenarios</h3>
+<h3 id="doubling-the-timeout-interval" tabindex="-1">Doubling the Timeout Interval</h3>
+<p>Each time TCP retransmits, it sets the next timeout interval to twice the previous value, This modification provides a limited form of congestion control.</p>
+<h4 id="fast-retransmit" tabindex="-1">Fast Retransmit</h4>
+<p>When a segment is lost, this long timeout period forces the sender to delay resending the lost packet, thereby increasing the end-to-end delay. Fortunately, the sender can often detect packet loss well before the timeout event occurs by noting so-called duplicate ACKs.</p>
+<p>Since TCP does not use negative acknowledgments, the receiver cannot send an explicit negative acknowledgment back to the sender. Instead, it simply reacknowledges (that is, generates a duplicate ACK for) the last in-order byte of data it has received.</p>
+<p>If the TCP sender receives three duplicate ACKs for the same data, it takes this as an indication that the segment following the segment that has been ACKed three times has been lost. In the case that three duplicate ACKs are received, the TCP sender performs a fast retransmit, retransmitting the missing segment before that segment’s timer expires.</p>
+<p><img src="./assets/2022-05-05-19-39-55.png" alt=""></p>
+<h4 id="go-back-n-or-selective-repeat%3F" tabindex="-1">Go-Back-N or Selective Repeat?</h4>
+<p>TCP’s error-recovery mechanism is probably best categorized as a hybrid of GBN and SR protocols.</p>
+<h3 id="flow-control" tabindex="-1">Flow Control</h3>
+<p>TCP provides a flow-control service to its applications to eliminate the possibility of the sender overflowing the receiver’s buffer.</p>
+<p>TCP provides flow control by having the sender maintain a variable called the receive window. Informally, the receive window is used to give the sender an idea of how much free buffer space is available at the receiver.</p>
+<p>From time to time, the application process in Host B reads from the buffer. Host B tells Host A how much spare room it has in the connection buffer by placing its current value of rwnd in the receive window field of every segment it sends to A. Initially, Host B sets rwnd = RcvBuffer.</p>
+<p>The TCP specification requires Host A to continue to send segments with one data byte when B’s receive window is zero.</p>
+<h3 id="tcp-connection-management" tabindex="-1">TCP Connection Management</h3>
+<p><img src="./assets/2022-05-05-19-48-21.png" alt=""></p>
+<p><img src="./assets/2022-05-05-19-48-36.png" alt=""></p>
+<p><img src="./assets/2022-05-05-19-49-22.png" alt=""></p>
+<h2 id="principles-of-congestion-control" tabindex="-1">Principles of Congestion Control</h2>
+<h3 id="the-causes-and-the-costs-of-congestion" tabindex="-1">The Causes and the Costs of Congestion</h3>
+<ol>
+<li>Large queuing delays are experienced as the packet-arrival rate nears the link capacity.</li>
+<li>Another cost of a congested network— the sender must perform retransmissions in order to compensate for dropped (lost) packets due to buffer overflow.</li>
+<li>Unneeded retransmissions by the sender in the face of large delays may cause a router to use its link bandwidth to forward unneeded copies of a packet.</li>
+<li>When a packet is dropped along a path, the transmission capacity that was used at each of the upstream links to forward that packet to the point at which it is dropped ends up having been wasted.</li>
+</ol>
+<h3 id="approaches-to-congestion-control" tabindex="-1">Approaches to Congestion Control</h3>
+<p>At the highest level, we can distinguish among congestion-control approaches by whether the network layer provides explicit assistance to the transport layer for congestion-control purposes:</p>
+<ol>
+<li>End-to-end congestion control. (TCP takes this approach)</li>
+<li>Network-assisted congestion control.</li>
+</ol>
+<h2 id="tcp-congestion-control" tabindex="-1">TCP Congestion Control</h2>
+<h3 id="classic-tcp-congestion-control" tabindex="-1">Classic TCP Congestion Control</h3>
+<p>The approach taken by TCP is to have each sender limit the rate at which it sends traffic into its connection as a function of perceived network congestion.</p>
+<p>The TCP congestion-control mechanism operating at the sender keeps track of an additional variable, the congestion window. cwnd imposes a constraint on the rate at which a TCP sender can send traffic into the network. The amount of unacknowledged data at a sender may not exceed the minimum of cwnd and rwnd,</p>
+<p>Because TCP uses acknowledgments to trigger (or clock) its increase in congestion window size, TCP is said to be self-clocking.</p>
+<p>TCP answers uses the following guiding principles:</p>
+<ul>
+<li>A lost segment implies congestion, and hence, the TCP sender’s rate should be decreased when a segment is lost.</li>
+<li>An acknowledged segment indicates that the network is delivering the sender’s segments to the receiver, and hence, the sender’s rate can be increased when an ACK arrives for a previously unacknowledged segment.</li>
+<li>Bandwidth probing.</li>
+</ul>
+<p>The TCP congestion-control algorithm has three major components: (1) slow start, (2) congestion avoidance, and (3) fast recovery.</p>
+<p><img src="./assets/2022-05-06-08-18-49.png" alt=""></p>
+<h4 id="slow-start" tabindex="-1">Slow Start</h4>
+<p>In the slow-start state, the value of cwnd begins at 1 MSS and increases by 1 MSS every time a transmitted segment is first acknowledged.</p>
+<p>If there is a loss event (i.e., congestion) indicated by a timeout, the TCP sender sets the value of cwnd to 1 and begins the slow start process anew.</p>
+<p>When the value of cwnd equals ssthresh, slow start ends and TCP transitions into congestion avoidance mode.</p>
+<h4 id="congestion-avoidance" tabindex="-1">Congestion Avoidance</h4>
+<p>Rather than doubling the value of cwnd every RTT, TCP adopts a more conservative approach and increases the value of cwnd by just a single MSS every RTT.</p>
+<p>A loss event also can be triggered by a triple duplicate ACK event. TCP halves the value of cwnd (adding in 3 MSS for good measure to account for the triple duplicate ACKs received) and records the value of ssthresh to be half the value of cwnd when the triple duplicate ACKs were received. The fast-recovery state is then entered.</p>
+<h4 id="fast-recovery" tabindex="-1">Fast Recovery</h4>
+<p>In fast recovery, the value of cwnd is increased by 1 MSS for every duplicate ACK received for the missing segment that caused TCP to enter the fast-recovery state.</p>
+<p>When an ACK arrives for the missing segment, TCP enters the congestion-avoidance state after deflating cwnd. If a timeout event occurs, fast recovery transitions to the slow-start state</p>
+<h4 id="tcp-congestion-control%3A-retrospective" tabindex="-1">TCP Congestion Control: Retrospective</h4>
+<p>TCP’s congestion control consists of linear (additive) increase in cwnd of 1 MSS per RTT and then a halving (multiplicative decrease) of cwnd on a triple duplicate-ACK event. For this reason, TCP congestion control is often referred to as an additive-increase, multiplicative-decrease (AIMD) form of congestion control.</p>
+<h4 id="tcp-cubic" tabindex="-1">TCP Cubic</h4>
+<p><img src="./assets/2022-05-06-08-30-08.png" alt=""></p>
+<h4 id="macroscopic-description-of-tcp-reno-throughput" tabindex="-1">Macroscopic Description of TCP Reno Throughput</h4>
+<p>During a particular round-trip interval, the rate at which TCP sends data is a function of the congestion window and the current RTT. Average throughput of a connection = 0.75 * W / RTT</p>
+<h3 id="fairness" tabindex="-1">Fairness</h3>
+<p>A congestion control mechanism is said to be fair if the average transmission rate of each connection is approximately R/K; that is, each connection gets an equal share of the link bandwidth.</p>
+<p>TCP congestion control converges to provide an equal share of a bottleneck link’s bandwidth among competing TCP connections.</p>
+<h4 id="fairness-and-udp" tabindex="-1">Fairness and UDP</h4>
+<p>When running over UDP, applications can pump their audio and video into the network at a constant rate and occasionally lose packets, rather than reduce their rates to “fair” levels at times of congestion and not lose any packets. It is possible for UDP sources to crowd out TCP traffic.</p>
+<h4 id="fairness-and-parallel-tcp-connections" tabindex="-1">Fairness and Parallel TCP Connections</h4>
+<p>When an application uses multiple parallel connections, it gets a larger fraction of the bandwidth in a congested link.</p>
+<h2 id="evolution-of-transport-layer-functionality" tabindex="-1">Evolution of Transport-Layer Functionality</h2>
+<p>We’ve seen a rich evolution in the use of TCP over the past decade. In addition to “classic” versions of TCP such as TCP Tahoe and Reno, there are now several newer versions of TCP that have been developed, implemented, deployed, and are in significant use today. These include TCP CUBIC, DCTCP, CTCP, BBR, and more.</p>
+<p>Perhaps the only common features of these protocols is that they use the TCP segment format and that they should compete “fairly” amongst themselves in the face of network congestion!</p>
+<h3 id="quic%3A-quick-udp-internet-connections" tabindex="-1">QUIC: Quick UDP Internet Connections</h3>
+<p>QUIC is a new application-layer protocol designed from the ground up to improve the performance of transport-layer services for secure HTTP.</p>
+<p>QUIC is an application-layer protocol, using UDP as its underlying transport-layer protocol, and is designed to interface above specifically to a simplified but evolved version of HTTP/2.</p>
+<p>Some of QUIC’s major features include:</p>
+<ul>
+<li>Connection-Oriented and Secure.</li>
+<li>Streams. QUIC allows several different application-level “streams” to be multiplexed through a single QUIC connection.</li>
+<li>Reliable, TCP-friendly congestion-controlled data transfer.</li>
+</ul>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

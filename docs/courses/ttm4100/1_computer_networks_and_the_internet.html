@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>1_computer_networks_and_the_internet.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="1_computer_networks_and_the_internet.html">1_computer_networks_and_the_internet ✨</a></li>
+<li>📄 <a href="2_application_layer.html">2_application_layer</a></li>
+<li>📄 <a href="3_transport_layer.html">3_transport_layer</a></li>
+<li>📄 <a href="4_the_network_layer_data_plane.html">4_the_network_layer_data_plane</a></li>
+<li>📄 <a href="5_the_network_layer_control_plane.html">5_the_network_layer_control_plane</a></li>
+<li>📄 <a href="6_the_link_layer_and_lans.html">6_the_link_layer_and_lans</a></li>
+<li>📄 <a href="7_cellular_networks_4g_and_5g.html">7_cellular_networks_4g_and_5g</a></li>
+<li>📄 <a href="8_security_in_computer_networks.html">8_security_in_computer_networks</a></li>
+<li>📄 <a href="9_multimedia_networking.html">9_multimedia_networking</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#computer-networks-and-the-internet">Computer Networks and the Internet</a><ol><li><a href="#what-is-the-internet%3F">What is the Internet?</a><ol><li><a href="#a-nuts-and-bolts-description">A Nuts-and-Bolts Description</a></li><li><a href="#a-services-description">A Services Description</a></li></ol></li><li><a href="#the-network-edge">The Network Edge</a><ol><li><a href="#access-networks">Access Networks</a><ol><li><a href="#home-access%3A-dsl%2C-cable%2C-ftth-and-5g-fixed-wireless">Home Access: DSL, Cable, FTTH and 5G Fixed Wireless</a></li><li><a href="#access-in-the-enterprise-(and-the-home)%3A-ethernet-and-wifi">Access in the Enterprise (and the Home): Ethernet and Wifi</a></li><li><a href="#wide-area-wireless-access%3A-3g-and-lte-4g-and-5g">Wide-Area Wireless Access: 3G and LTE 4G and 5G</a></li></ol></li><li><a href="#physical-media">Physical Media</a><ol><li><a href="#twisted-pair-copper-wire">Twisted-Pair Copper Wire</a></li><li><a href="#coaxial-cable">Coaxial Cable</a></li><li><a href="#fiber-optics">Fiber Optics</a></li><li><a href="#terrestrial-radio-channels">Terrestrial Radio Channels</a></li><li><a href="#satellite-radio-channels">Satellite Radio Channels</a></li></ol></li></ol></li><li><a href="#1.3-the-network-core">1.3 The network core</a><ol><li><a href="#packet-switching">Packet switching</a><ol><li><a href="#store-and-forward-transmission">Store-and-forward Transmission</a></li><li><a href="#queuing-delays-and-packet-loss">Queuing Delays and Packet Loss</a></li><li><a href="#forwarding-tables-and-routing-protocols">Forwarding Tables and Routing Protocols</a></li></ol></li><li><a href="#circuit-switching">Circuit Switching</a><ol><li><a href="#multiplexing-in-circuit-switched-networks">Multiplexing in Circuit-Switched Networks</a></li></ol></li><li><a href="#a-network-of-networks">A Network of Networks</a></li></ol></li><li><a href="#delay%2C-loss%2C-and-throughput-in-packet-switched-networks">Delay, Loss, and Throughput in Packet-Switched Networks</a><ol><li><a href="#overview-of-delay-in-packet-switched-networks">Overview of Delay in Packet-Switched Networks</a><ol><li><a href="#processing-delay">Processing Delay</a></li><li><a href="#queuing-delay">Queuing Delay</a></li><li><a href="#transmission-delay">Transmission Delay</a></li><li><a href="#propagation-delay">Propagation Delay</a></li><li><a href="#nodal-delay">Nodal delay</a></li></ol></li><li><a href="#queuing-delay-and-packet-loss">Queuing Delay and Packet Loss</a><ol><li><a href="#packet-loss">Packet Loss</a></li></ol></li><li><a href="#end-to-end-delay">End-to-End Delay</a></li><li><a href="#throughput-in-computer-networks">Throughput in Computer Networks</a></li></ol></li><li><a href="#protocol-layers-and-their-service-models">Protocol Layers and Their Service Models</a><ol><li><a href="#layered-architecture">Layered Architecture</a><ol><li><a href="#protocol-layering">Protocol Layering</a></li><li><a href="#application-layer">Application Layer</a></li><li><a href="#transport-layer">Transport Layer</a></li><li><a href="#network-layer">Network Layer</a></li><li><a href="#link-layer">Link Layer</a></li><li><a href="#physical-layer">Physical Layer</a></li></ol></li><li><a href="#encapsulation">Encapsulation</a></li></ol></li><li><a href="#networks-under-attack">Networks Under Attack</a><ol><li><a href="#the-bad-guys-can-put-malware-into-your-host-via-the-internet">The Bad Guys Can Put Malware into Your Host Via the Internet</a></li><li><a href="#the-bad-guys-can-attack-servers-and-network-infrastructure">The Bad Guys Can Attack Servers and Network Infrastructure</a></li><li><a href="#the-bad-guys-can-sniff-packets">The Bad Guys Can Sniff Packets</a></li><li><a href="#the-bad-guys-can-masquerade-as-someone-you-trust">The Bad Guys Can Masquerade as Someone You Trust</a></li></ol></li><li><a href="#history-of-computer-networking-and-the-internet">History of Computer Networking and the Internet</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="computer-networks-and-the-internet" tabindex="-1">Computer Networks and the Internet</h1>
+<p>This whole chapter is part of the curriculum for <a href="./index.html">TTM4100</a>.</p>
+<h2 id="what-is-the-internet%3F" tabindex="-1">What is the Internet?</h2>
+<h3 id="a-nuts-and-bolts-description" tabindex="-1">A Nuts-and-Bolts Description</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>host / end system</td>
+<td>all deviced connected to a network</td>
+</tr>
+<tr>
+<td>communication link</td>
+<td>connects end systems</td>
+</tr>
+<tr>
+<td>packet switch</td>
+<td>forwards packets from an incoming comm. link to and outgoing comm. link.</td>
+</tr>
+<tr>
+<td>transmission rate</td>
+<td>number of bits transmitted per second</td>
+</tr>
+<tr>
+<td>packets</td>
+<td>a segment of data (with a given header)</td>
+</tr>
+<tr>
+<td>router</td>
+<td>type of packet switch, typically used in the network core</td>
+</tr>
+<tr>
+<td>link-layer switches</td>
+<td>type of packet switch, typically used in access networks</td>
+</tr>
+<tr>
+<td>route / path</td>
+<td>the sequence of comm. links and packet switches traversed bu a packet from the sending end system to the receiving end system</td>
+</tr>
+<tr>
+<td>ISP</td>
+<td>Internet Service Provider, end systems access the Internet through ISPs</td>
+</tr>
+<tr>
+<td>protocol</td>
+<td>control the sending and receiving of information within the Internet</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>Transmission Control Protocol</td>
+</tr>
+<tr>
+<td>IP</td>
+<td>Internet Protocol, specifies the format of the packets</td>
+</tr>
+<tr>
+<td>Internet standards</td>
+<td>developed by the Internet Engineering Task Force, documents are called RFCs</td>
+</tr>
+<tr>
+<td>RFC</td>
+<td>Request For Comments to resolve network and protocol design problems, define protocols such as TCP, IP, HTTP, SMTP</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a-services-description" tabindex="-1">A Services Description</h3>
+<p>We can describe the Internet as done in 1.1.1 (hardware and software components), or as <em>an infrastructure that provides services to distributed applications</em>.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>distributed application</td>
+<td>involves multiple end systems that exchange data with each other</td>
+</tr>
+<tr>
+<td>socket interface</td>
+<td>a set of rules that specify how a program running on one end system asks the Internet infrastucture to deliver data to a specific destination program running on another end system</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-network-edge" tabindex="-1">The Network Edge</h2>
+<h3 id="access-networks" tabindex="-1">Access Networks</h3>
+<h4 id="home-access%3A-dsl%2C-cable%2C-ftth-and-5g-fixed-wireless" tabindex="-1">Home Access: DSL, Cable, FTTH and 5G Fixed Wireless</h4>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DSL</td>
+<td>Digital Subscriber Line, makes use of the telco's existing local telephone infrastructure</td>
+</tr>
+<tr>
+<td>cable Internet access</td>
+<td>makes use of the cable television company's existing cable television infrastructure</td>
+</tr>
+<tr>
+<td>asymmetric access</td>
+<td>has different downstream and upstream transmission rates</td>
+</tr>
+<tr>
+<td>HFC</td>
+<td>Hybrid Fiber Coax, a system where both fiber and coaxial cable are employed</td>
+</tr>
+<tr>
+<td>FTTH</td>
+<td>Fiber To The Home, provides an optical fiber path from the CO directly to the home</td>
+</tr>
+<tr>
+<td>AON</td>
+<td>Active Optical Network, essentially switched Ethernet</td>
+</tr>
+<tr>
+<td>PON</td>
+<td>Passive Optical Network</td>
+</tr>
+<tr>
+<td>ONT</td>
+<td>Optical Network Terminator</td>
+</tr>
+<tr>
+<td>OLT</td>
+<td>Optical Line Terminator</td>
+</tr>
+</tbody>
+</table>
+<h4 id="access-in-the-enterprise-(and-the-home)%3A-ethernet-and-wifi" tabindex="-1">Access in the Enterprise (and the Home): Ethernet and Wifi</h4>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LAN</td>
+<td>Local Area Network</td>
+</tr>
+<tr>
+<td>Ethernet</td>
+<td>the most prevalent (wired) access technology for LANs in corporate, universities and homes</td>
+</tr>
+<tr>
+<td>WiFi</td>
+<td>Wireless LAN access based on IEEE 802.11 technology</td>
+</tr>
+</tbody>
+</table>
+<h4 id="wide-area-wireless-access%3A-3g-and-lte-4g-and-5g" tabindex="-1">Wide-Area Wireless Access: 3G and LTE 4G and 5G</h4>
+<p>Mobile devices such as iPhones and Android devices employ the same wireless infrastructure used for cellular telephony to send/receive packets through a base station that is operated by the cellular network provider. Unlike WiFi, a user need only be within a few  tens of kilometers (as opposed to a few tens of meters) of the base station.</p>
+<h3 id="physical-media" tabindex="-1">Physical Media</h3>
+<p>Examples of physical media include twisted-pair copper wire, coaxial cable, multimode fiber-optic cable, terrestrial radio spectrum, and satellite radio spectrum.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>guided media</td>
+<td>the waves are guided along a solid medium</td>
+</tr>
+<tr>
+<td>unguided media</td>
+<td>the waves propagate in the atmosphere and in outer space</td>
+</tr>
+</tbody>
+</table>
+<h4 id="twisted-pair-copper-wire" tabindex="-1">Twisted-Pair Copper Wire</h4>
+<p>The least expensive and most commonly used guided transmission medium. The wires are twisted together to reduce the electrical interference from similar pairs close by. Unshielded twisted pair (UTP) is commonly used for computer networks within a building, that is, for LANs.</p>
+<h4 id="coaxial-cable" tabindex="-1">Coaxial Cable</h4>
+<p>Like twisted pair, coaxial cable consists of two copper conductors, but the two conductors are concentric rather than parallel. With this construction and special insulation and shielding, coaxial cable can achieve high data transmission rates. Can be used as a guided <em>shared medium</em>.</p>
+<h4 id="fiber-optics" tabindex="-1">Fiber Optics</h4>
+<p>An optical fiber is a thin, flexible medium that conducts pulses of light, with each pulse representing a bit. Can support tremendous bit rates, are immune to electromagnetic interference, have very low signal attenuation up to 100 kilometers, and are very hard to tap. Expensive.</p>
+<h4 id="terrestrial-radio-channels" tabindex="-1">Terrestrial Radio Channels</h4>
+<p>Radio channels carry signals in the electromagnetic spectrum. They are an attractive medium because they require no physical wire to be installed, can penetrate walls, provide connectivity to a mobile user, and can potentially carry a signal for long distances. Prone to shadow fading (which decrease the signal strength as the signal travels over a distance and around/through obstructing objects), multipath fading (due to signal reflection off of interfering objects), and interference (due to other transmissions and electromagnetic signals).</p>
+<h4 id="satellite-radio-channels" tabindex="-1">Satellite Radio Channels</h4>
+<p>A communication satellite links two or more Earth-based microwave transmitter/receivers, known as ground stations. Two types of satellites are used</p>
+<p>in communications: geostationary satellites (remain above the same spot on Earth) and low-earth orbiting (LEO) satellites.</p>
+<h2 id="1.3-the-network-core" tabindex="-1">1.3 The network core</h2>
+<h3 id="packet-switching" tabindex="-1">Packet switching</h3>
+<h4 id="store-and-forward-transmission" tabindex="-1">Store-and-forward Transmission</h4>
+<p>Most packet switches use store-and-forward transmission at the inputs to the links. Store-and-forward transmission means that the packet switch must receive the entire packet before it can begin to transmit the first bit of the packet onto the outbound link.</p>
+<p>End-to-end delay</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>d</mi><mrow><mi>e</mi><mi>n</mi><mi>d</mi><mo>−</mo><mi>t</mi><mi>o</mi><mo>−</mo><mi>e</mi><mi>n</mi><mi>d</mi></mrow></msub><mo>=</mo><mi>N</mi><mfrac><mi>L</mi><mi>R</mi></mfrac></mrow><annotation encoding="application/x-tex">d_{end-to-end} = N \frac{L}{R}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.902771em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">d</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">o</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><img src="./assets/2022-05-02-07-56-15.png" alt=""></p>
+<h4 id="queuing-delays-and-packet-loss" tabindex="-1">Queuing Delays and Packet Loss</h4>
+<p>For each attached link, the packet switch has an output buffer. If an arriving packet needs to be transmitted onto a link but finds the link busy with the transmission of another packet, the arriving packet must wait in the output buffer.</p>
+<p>If the buffer is completely full, packet loss will occur - either the arriving packet or one of the already-queued packets will be dropped.</p>
+<h4 id="forwarding-tables-and-routing-protocols" tabindex="-1">Forwarding Tables and Routing Protocols</h4>
+<p>When a source end system wants to send a packet to a destination end system, the source includes the destination’s IP address in the packet’s header. Each router has a forwarding table that maps destination addresses (or portions of the destination addresses) to that router’s outbound links. Routing protocols that are used to automatically set the forwarding tables.</p>
+<h3 id="circuit-switching" tabindex="-1">Circuit Switching</h3>
+<p>In circuit-switched networks, the resources needed along a path (buffers, link transmission rate) to provide for communication between the end systems are reserved for the duration of the communication session between the end systems.</p>
+<h4 id="multiplexing-in-circuit-switched-networks" tabindex="-1">Multiplexing in Circuit-Switched Networks</h4>
+<p>A circuit in a link is implemented with either frequency-division multiplexing (FDM) or time-division multiplexing (TDM). With FDM, the frequency spectrum of a link is divided up among the connections established across the link. For a TDM link, time is divided into frames of fixed duration, and each frame is divided into a fixed number of time slots.</p>
+<p><img src="./assets/2022-05-02-07-52-54.png" alt=""></p>
+<h3 id="a-network-of-networks" tabindex="-1">A Network of Networks</h3>
+<p>Our first network structure, <em>Network Structure 1</em>, interconnects all of the access ISPs with a single global transit ISP. The access ISP is said to be a customer and the global transit ISP is said to be a provider.</p>
+<p>This leads to <em>Network Structure 2</em>, which consists of the hundreds of thousands of access ISPs and multiple global transit ISPs. A two-tier hierarchy with global transit providers residing at the top tier and access ISPs at the bottom tier.</p>
+<p>In any given region, there may be a regional ISP to which the access ISPs in the region connect. Each regional ISP then connects to tier-1 ISPs. There is customer-provider relationship at each level of the hierarchy. We refer to this multi-tier hierarchy, which is still only a crude approximation of today’s Internet, as <em>Network Structure 3</em>.</p>
+<p>To build a network that more closely resembles today’s Internet, we must add points of presence (PoPs), multi-homing, peering, and Internet exchange points (IXPs) to the hierarchical Network Structure 3. PoPs exist in all levels of the hierarchy, except for the bottom (access ISP) level. A PoP is simply a group of one or more routers (at the same location) in the provider’s network where customer ISPs can connect into the provider ISP. We refer to this ecosystem—consisting of access ISPs, regional ISPs, tier-1 ISPs, PoPs, multi-homing, peering, and IXPs—as <em>Network Structure 4</em>.</p>
+<p>We now finally arrive at <em>Network Structure 5</em>, which describes today’s Internet. Network Structure 5 builds on top of Network Structure 4 by adding content-provider networks. Google is currently one of the leading examples of such a content-provider network.</p>
+<h2 id="delay%2C-loss%2C-and-throughput-in-packet-switched-networks" tabindex="-1">Delay, Loss, and Throughput in Packet-Switched Networks</h2>
+<h3 id="overview-of-delay-in-packet-switched-networks" tabindex="-1">Overview of Delay in Packet-Switched Networks</h3>
+<p>The most important of these delays are the nodal processing delay, queuing delay, transmission delay, and propagation delay; together, these delays accumulate to give a total nodal delay.</p>
+<h4 id="processing-delay" tabindex="-1">Processing Delay</h4>
+<p>The time required to examine the packet’s header and determine where to direct the packet is part of the processing delay.</p>
+<h4 id="queuing-delay" tabindex="-1">Queuing Delay</h4>
+<p>At the queue, the packet experiences a queuing delay as it waits to be transmitted onto the link.</p>
+<h4 id="transmission-delay" tabindex="-1">Transmission Delay</h4>
+<p>Denote the length of the packet by L bits, and denote the transmission rate of the link from router A to router B by R bits/sec. The transmission delay is L/R. This is the amount of time required to push (that is, transmit) all of the packet’s bits into the link.</p>
+<h4 id="propagation-delay" tabindex="-1">Propagation Delay</h4>
+<p>The time required to propagate from the beginning of the link to router B is the propagation delay. That is, the propagation delay is d/s, where d is the distance between router A and router B and s is the propagation speed of the link.</p>
+<h4 id="nodal-delay" tabindex="-1">Nodal delay</h4>
+<p>The nodal delay is the sum of processing delay, queuing delay, transmission delay and propogation delay.</p>
+<h3 id="queuing-delay-and-packet-loss" tabindex="-1">Queuing Delay and Packet Loss</h3>
+<p>Let a denote the average rate at which packets arrive at the queue (a is in units of packets/sec). The ratio <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>a</mi><mi mathvariant="normal">/</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">La/R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">L</span><span class="mord mathnormal">a</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span>, called the traffic intensity, often plays an important role in estimating the extent of the queuing delay. If La/R &gt; 1, then the average rate at which bits arrive at the queue exceeds the rate at which the bits can be transmitted from the queue.</p>
+<h4 id="packet-loss" tabindex="-1">Packet Loss</h4>
+<p>A packet can arrive to find a full queue. With no place to store such a packet, a router will drop that packet.</p>
+<h3 id="end-to-end-delay" tabindex="-1">End-to-End Delay</h3>
+<p>Suppose there are N - 1 routers between the source host and the destination host. The nodal delays accumulate and give an end-to-end delay</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>d</mi><mrow><mi>e</mi><mi>n</mi><mi>d</mi><mo>−</mo><mi>e</mi><mi>n</mi><mi>d</mi></mrow></msub><mo>=</mo><mi>N</mi><mo stretchy="false">(</mo><msub><mi>d</mi><mi>p</mi></msub><mi>r</mi><mi>o</mi><mi>c</mi><mo>+</mo><msub><mi>d</mi><mi>t</mi></msub><mi>r</mi><mi>a</mi><mi>n</mi><mi>s</mi><mo>+</mo><msub><mi>d</mi><mi>p</mi></msub><mi>r</mi><mi>o</mi><mi>p</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">d_{end-end}=N(d_proc + d_trans + d_prop)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.902771em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">d</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span></span></p>
+<h3 id="throughput-in-computer-networks" tabindex="-1">Throughput in Computer Networks</h3>
+<p>The instantaneous throughput at any instant of time is the rate (in bits/sec) at which Host B is receiving the file. If the file consists of F bits and the transfer takes T seconds for Host B to receive all F bits, then the average throughput of the file transfer is F/T bits/sec.</p>
+<p>For this simple two-link network, the throughput is min{Rc, Rs}, that is, it is the transmission rate of the bottleneck link. The constraining factor for throughput in today’s Internet is typically the access network.</p>
+<h2 id="protocol-layers-and-their-service-models" tabindex="-1">Protocol Layers and Their Service Models</h2>
+<h3 id="layered-architecture" tabindex="-1">Layered Architecture</h3>
+<h4 id="protocol-layering" tabindex="-1">Protocol Layering</h4>
+<p>To provide structure to the design of network protocols, network designers organize protocols—and the network hardware and software that implement the protocols - in layers. Each protocol belongs to one of the layers. We are again interested in the services that a layer offers to the layer above the so-called service model of a layer. Each layer provides its service by (1) performing certain actions within that layer and by (2) using the services of the layer directly below it.</p>
+<p>When taken together, the protocols of the various layers are called the protocol stack. The Internet protocol stack consists of five layers: the physical, link, network, transport, and application layers.</p>
+<h4 id="application-layer" tabindex="-1">Application Layer</h4>
+<p>The Internet’s application layer includes many protocols, such as the HTTP protocol (which provides for Web document request and transfer), SMTP (which provides for the transfer of e-mail messages), and FTP (which provides for the transfer of files between two end systems). We’ll refer to this packet of information at the application layer as a message.</p>
+<h4 id="transport-layer" tabindex="-1">Transport Layer</h4>
+<p>The Internet’s transport layer transports application-layer messages between application endpoints. In the Internet, there are two transport protocols, TCP and UDP, either of which can transport application-layer messages. TCP provides a connection-oriented service to its applications. This service includes guaranteed delivery of application-layer messages to the destination and flow control (that is, sender/receiver speed matching). TCP also breaks long messages into shorter segments and provides a congestion-control mechanism, so that a source throttles its transmission rate when the network is congested. The UDP protocol provides a connectionless service to its applications. This is a no-frills service that provides no reliability, no flow control, and no congestion control. In this book, we’ll refer to a transport-layer packet as a segment.</p>
+<h4 id="network-layer" tabindex="-1">Network Layer</h4>
+<p>The Internet’s network layer is responsible for moving network-layer packets known as datagrams from one host to another. The Internet’s network layer includes the celebrated IP protocol, which defines the fields in the datagram as well as how the end systems and routers act on these fields. There is only one IP protocol, and all Internet components that have a network layer must run the IP protocol. The Internet’s network layer also contains routing protocols that determine the routes that datagrams take between sources and destination.</p>
+<h4 id="link-layer" tabindex="-1">Link Layer</h4>
+<p>To move a packet from one node (host or router) to the next node in the route, the network layer relies on the services of the link layer. some link-layer protocols provide reliable delivery. Examples of link-layer protocols include Ethernet, WiFi, and the cable access network’s DOCSIS protocol. We’ll refer to the link-layer packets as frames.</p>
+<h4 id="physical-layer" tabindex="-1">Physical Layer</h4>
+<p>The job of the physical layer is to move the individual bits within the frame from one node to the next. The protocols in this layer are again link dependent and further depend on the actual transmission medium of the link (for example, twisted-pair copper wire, single-mode fiber optics).</p>
+<h3 id="encapsulation" tabindex="-1">Encapsulation</h3>
+<p>Note that hosts implement all five layers; this is consistent with the view that the Internet architecture puts much of its complexity at the edges of the network.</p>
+<p>Thus, we see that at each layer, a packet has two types of fields: header fields and a payload field. The payload is typically a packet from the layer above.</p>
+<h2 id="networks-under-attack" tabindex="-1">Networks Under Attack</h2>
+<h3 id="the-bad-guys-can-put-malware-into-your-host-via-the-internet" tabindex="-1">The Bad Guys Can Put Malware into Your Host Via the Internet</h3>
+<p>Our compromised host may also be enrolled in a network of thousands of similarly compromised devices, collectively known as a botnet, which the bad guys control and leverage for spam e-mail distribution or distributed denial-of-service attacks against targeted hosts.</p>
+<p>Much of the malware out there today is self-replicating: once it infects one host, from that host it seeks entry into other hosts over the Internet.</p>
+<h3 id="the-bad-guys-can-attack-servers-and-network-infrastructure" tabindex="-1">The Bad Guys Can Attack Servers and Network Infrastructure</h3>
+<p>Another broad class of security threats are known as denial-of-service (DoS) attacks. As the name suggests, a DoS attack renders a network, host, or other piece of infrastructure unusable by legitimate users.</p>
+<p>Most Internet DoS attacks fall into one of three categories:</p>
+<ul>
+<li><em>Vulnerability attack</em>. This involves sending a few well-crafted messages to a vulnerable application or operating system running on a targeted host. If the right sequence of packets is sent to a vulnerable application or operating system, the service can stop or, worse, the host can crash.</li>
+<li><em>Bandwidth flooding</em>. The attacker sends a deluge of packets to the targeted host - so many packets that the target’s access link becomes clogged, preventing legitimate packets from reaching the server.</li>
+<li><em>Connection flooding</em>. The attacker establishes a large number of half-open or fully open TCP connections at the target host. The host can become so bogged down with these bogus connections that it stops accepting legitimate connections.</li>
+</ul>
+<p>In a distributed DoS (DDoS) attack, the attacker controls multiple sources and has each source blast traffic at the target.</p>
+<h3 id="the-bad-guys-can-sniff-packets" tabindex="-1">The Bad Guys Can Sniff Packets</h3>
+<p>A passive receiver that records a copy of every packet that flies by is called a packet sniffer. Some of the best defenses against packet sniffing involve cryptography.</p>
+<h3 id="the-bad-guys-can-masquerade-as-someone-you-trust" tabindex="-1">The Bad Guys Can Masquerade as Someone You Trust</h3>
+<p>The ability to inject packets into the Internet with a false source address is known as IP spoofing. To solve this problem, we will need end-point authentication, that is, a mechanism that will allow us to determine with certainty if a message originates from where we think it does.</p>
+<h2 id="history-of-computer-networking-and-the-internet" tabindex="-1">History of Computer Networking and the Internet</h2>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

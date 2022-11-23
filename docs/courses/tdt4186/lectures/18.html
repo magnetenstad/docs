@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>18.md</title>
+    <link rel="icon" type="image/x-icon" href="../../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">tdt4186/</a><a href="./index.html">lectures</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="01.html">01</a></li>
+<li>📄 <a href="02.html">02</a></li>
+<li>📄 <a href="03.html">03</a></li>
+<li>📄 <a href="04.html">04</a></li>
+<li>📄 <a href="05.html">05</a></li>
+<li>📄 <a href="06.html">06</a></li>
+<li>📄 <a href="07.html">07</a></li>
+<li>📄 <a href="08.html">08</a></li>
+<li>📄 <a href="09.html">09</a></li>
+<li>📄 <a href="10.html">10</a></li>
+<li>📄 <a href="11.html">11</a></li>
+<li>📄 <a href="12.html">12</a></li>
+<li>📄 <a href="13.html">13</a></li>
+<li>📄 <a href="14.html">14</a></li>
+<li>📄 <a href="15.html">15</a></li>
+<li>📄 <a href="16.html">16</a></li>
+<li>📄 <a href="17.html">17</a></li>
+<li>📄 <a href="18.html">18 ✨</a></li>
+<li>📄 <a href="19.html">19</a></li>
+<li>📄 <a href="20.html">20</a></li>
+<li>📄 <a href="21.html">21</a></li>
+<li>📄 <a href="22.html">22</a></li>
+<li>📄 <a href="questions.html">questions</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lecture-18%3A-cloud-operating-systems">Lecture 18: Cloud operating systems</a><ol><li><a href="#exam">Exam</a></li><li><a href="#cloud-computing">Cloud computing</a></li><li><a href="#hardware-virtualization">Hardware virtualization</a></li><li><a href="#cloud-service-models">Cloud service models</a></li><li><a href="#discussion%3A-cloud-disadvantages">Discussion: Cloud disadvantages</a></li><li><a href="#provisioning-models">Provisioning models</a></li><li><a href="#comparison-of-provisioning-models">Comparison of provisioning models</a></li><li><a href="#application-example-%2F-requirements">Application example / Requirements</a></li><li><a href="#general-architecture-of-a-cloud-os">General architecture of a cloud OS</a></li><li><a href="#strategic-decisions">Strategic decisions</a></li><li><a href="#example%3A-openstack">Example: OpenStack</a></li><li><a href="#relevance-and-use-of-virtualization">Relevance and use of virtualization</a></li><li><a href="#container-base-virtualization">Container base virtualization</a></li><li><a href="#example%3A-linux-container-support">Example: Linux container support</a></li><li><a href="#hardware-virtualization-1">Hardware virtualization</a></li><li><a href="#cpu-virtualization-(1)">CPU virtualization (1)</a></li><li><a href="#cpu-virtualization-(2)">CPU virtualization (2)</a></li><li><a href="#memory-virtualization-(1)">Memory virtualization (1)</a></li><li><a href="#memory-virtualization-(2)">Memory virtualization (2)</a></li><li><a href="#memory-virtualization-(3)">Memory virtualization (3)</a></li><li><a href="#memory-virtualization-(4)">Memory virtualization (4)</a></li><li><a href="#i%2Fo-virtualization-(1)">I/O virtualization (1)</a></li><li><a href="#i%2Fo-virtualization-(2)">I/O virtualization (2)</a></li><li><a href="#i%2Fo-virtualization-(3)">I/O virtualization (3)</a></li><li><a href="#conclusion">Conclusion</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="lecture-18%3A-cloud-operating-systems" tabindex="-1">Lecture 18: Cloud operating systems</h1>
+<p><a href="17.html">Previous lecture</a>
+<a href="19.html">Next lecture</a></p>
+<p><iframe
+width="560" height="315" src="https://www.youtube.com/embed/vbHQsWpK8OY"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe></p>
+<h2 id="exam" tabindex="-1">Exam</h2>
+<p>From virtualization to the Cloud and its OS approaches</p>
+<p><strong>Important questions:</strong></p>
+<ul>
+<li>Which service models exist for Cloud systems?
+<ul>
+<li>What are their properties, pros and cons?</li>
+<li>Which provisioning models exist?</li>
+</ul>
+</li>
+<li>What does the architecture for a Cloud OS look like?
+<ul>
+<li>What are differences to a "regular" OS?</li>
+<li>Which strategic decisions have to be taken by a Cloud OS?</li>
+</ul>
+</li>
+<li>What is a container and how are containers related to virtualization?
+<ul>
+<li>What is virtualized in containers?</li>
+</ul>
+</li>
+<li>How does virtual memory management interact with virtualization for the Cloud?
+<ul>
+<li>Which optimization approaches exist, can you describe them?</li>
+</ul>
+</li>
+<li>How can I/O be virtualized for the Cloud?
+<ul>
+<li>Which I/O virtualization approaches exist, can you name pros/cons?</li>
+</ul>
+</li>
+</ul>
+<h2 id="cloud-computing" tabindex="-1">Cloud computing</h2>
+<ul>
+<li>According to the US National Institute of Standards and Technology, a Cloud has five properties:</li>
+</ul>
+<p><img src="assets/Pasted image 20220318124346.png" alt=""></p>
+<h2 id="hardware-virtualization" tabindex="-1">Hardware virtualization</h2>
+<ul>
+<li>…enables the creation of multiple virtual machines on one physical computer. Each virtual machine can have its own OS.</li>
+<li>Important foundation technology for Cloud computing and server consolidation</li>
+<li>Technical basis: hypervisor / virtual machine monitor Application processes of the host OS Application processes of the guest OS’s</li>
+</ul>
+<p><img src="assets/Pasted image 20220318125453.png" alt=""></p>
+<h2 id="cloud-service-models" tabindex="-1">Cloud service models</h2>
+<ul>
+<li>SaaS – Software-as-a-Service
+<ul>
+<li>Cloud service provider offers a complete application</li>
+<li>e.g. Office365, Gmail, Zoom</li>
+</ul>
+</li>
+<li>PaaS – Platform-as-a-Service
+<ul>
+<li>Execution environment for applications including the OS and runtime environment (depending on the programming language)</li>
+<li>e.g. Engine Yard, Google App Engine</li>
+</ul>
+</li>
+<li>IaaS – Infrastructure-as-a-Service
+<ul>
+<li>(Virtual) hardware platform</li>
+<li>e.g. Amazon EC2, Microsoft Azure</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/Pasted image 20220318125754.png" alt=""></p>
+<h2 id="discussion%3A-cloud-disadvantages" tabindex="-1">Discussion: Cloud disadvantages</h2>
+<ul>
+<li>Cloud-Computing has a number of advantages, but can also cause problems that must not be ignored…
+<ul>
+<li><strong>Data protection and privacy</strong>
+<ul>
+<li>Where are the data of my users/customers located? Which data protection laws apply in the respective country? (➛ GDPR)</li>
+<li>Is the cloud service provider trustworthy?</li>
+</ul>
+</li>
+<li><strong>Vendor lock-in</strong>
+<ul>
+<li>Can I retrieve my data (for a reasonable amount of money) if I want to change the provider? If yes, in which format?</li>
+</ul>
+</li>
+<li><strong>Quality of service</strong>
+<ul>
+<li>Which guarantees are offered by the provider?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="provisioning-models" tabindex="-1">Provisioning models</h2>
+<ul>
+<li><strong>Public Cloud</strong>
+<ul>
+<li>Cloud Service Provider (CSP) has arbitrary customers</li>
+</ul>
+</li>
+<li><strong>Private Cloud</strong>
+<ul>
+<li>A cloud infrastructure for a (large) company, which can use the company’s own or rented resources. ➛ more control</li>
+</ul>
+</li>
+<li><strong>Community Cloud</strong>
+<ul>
+<li>Multiple customers with the same requirements share a cloud infrastructure</li>
+</ul>
+</li>
+<li><strong>Hybrid Cloud</strong>
+<ul>
+<li>Mixed approach</li>
+</ul>
+</li>
+</ul>
+<h2 id="comparison-of-provisioning-models" tabindex="-1">Comparison of provisioning models</h2>
+<ul>
+<li>Stallings: "Operating Systems: Internals and Design Principles"</li>
+</ul>
+<p><img src="assets/Pasted image 20220318130647.png" alt=""></p>
+<h2 id="application-example-%2F-requirements" tabindex="-1">Application example / Requirements</h2>
+<p><img src="assets/Pasted image 20220318130853.png" alt=""></p>
+<h2 id="general-architecture-of-a-cloud-os" tabindex="-1">General architecture of a cloud OS</h2>
+<ul>
+<li>All resources are virtualized → IaaS is basis of all services</li>
+</ul>
+<p><img src="assets/Pasted image 20220318131153.png" alt=""></p>
+<h2 id="strategic-decisions" tabindex="-1">Strategic decisions</h2>
+<ul>
+<li>Where to place the VMs? When should they be migrated?</li>
+<li>How to minimize SLA violations? How much overbooking?</li>
+<li>Does it make sense to release and switch off single computers? Different strategies are possible:</li>
+</ul>
+<p><img src="assets/Pasted image 20220318131408.png" alt=""></p>
+<h2 id="example%3A-openstack" tabindex="-1">Example: OpenStack</h2>
+<ul>
+<li>Open source cloud OS: <a href="http://www.openstack.org">www.openstack.org</a></li>
+</ul>
+<p><img src="assets/Pasted image 20220318131619.png" alt=""></p>
+<h2 id="relevance-and-use-of-virtualization" tabindex="-1">Relevance and use of virtualization</h2>
+<ul>
+<li>Enforces strict adherence to a layer structure through control and intervention possibilities for resource accesses by a VM</li>
+<li>Basis for...</li>
+</ul>
+<p><img src="assets/Pasted image 20220318131751.png" alt=""></p>
+<ul>
+<li>This construction principle can be replicated on different layers and for different resources</li>
+</ul>
+<h2 id="container-base-virtualization" tabindex="-1">Container base virtualization</h2>
+<p>or simply containers</p>
+<ul>
+<li>The OS kernel is virtualized</li>
+<li>Containers share a kernel</li>
+<li>Libraries and system processes can be different</li>
+<li>The virtualization component takes care of...</li>
+<li>Separate views, e.g. each container sees only its "own" processes</li>
+<li>Resource partitioning, e.g. CPU time</li>
+<li>Efficient sharing, e.g. avoid duplication of files</li>
+</ul>
+<p><img src="assets/Pasted image 20220318132008.png" alt=""></p>
+<h2 id="example%3A-linux-container-support" tabindex="-1">Example: Linux container support</h2>
+<ul>
+<li>Integrated in the Linux kernel
+<ul>
+<li>Container solutions only provide management tasks</li>
+</ul>
+</li>
+<li>Separate views: Name spaces per task
+<ul>
+<li>…for computer names ("UTS"), processes ("PID"), mount points ("mount"), network devices and configuration ("network"), IPC objects ("IPC"), control groups ("Cgroup") and system time ("Time")</li>
+</ul>
+</li>
+<li>Resource partitioning: Control groups (cgroups)
+<ul>
+<li>Container shares of CPU time, memory and I/O bandwidth</li>
+<li>Configuration interface: pseudo file system cgroupfs</li>
+</ul>
+</li>
+<li>Efficient sharing (of files): Overlay FS
+<ul>
+<li>Overlay of directory trees</li>
+</ul>
+</li>
+</ul>
+<h2 id="hardware-virtualization-1" tabindex="-1">Hardware virtualization</h2>
+<ul>
+<li>A complete computer (CPU, memory, I/O devices) is virtualized:</li>
+</ul>
+<p><img src="assets/Pasted image 20220318133228.png" alt=""></p>
+<h2 id="cpu-virtualization-(1)" tabindex="-1">CPU virtualization (1)</h2>
+<ul>
+<li>Most simple approach: CPU emulation (+ multiplexing)</li>
+<li>Interpretation or Just-in-time translation (JIT) of the instructions of the emulated processor</li>
+<li>Examples: Bochs, QEMU, MAME</li>
+<li>Imitates an arbitrary CPU Y with the help of a CPU X</li>
+<li>Problem: slow execution speed</li>
+</ul>
+<p><img src="assets/Pasted image 20220318133449.png" alt=""></p>
+<p>FAST/SLOW: with/without code optimization</p>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>{
+ <span class="hljs-keyword">return</span>(i+<span class="hljs-number">1</span>);
+} <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+ … &lt;start timer&gt;
+ <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100000000</span>; i++)
+ t += <span class="hljs-built_in">foo</span>(i);
+ … &lt;stop timer&gt;
+}
+</code></pre>
+<p>Conclusion: avoid CPU emulation where possible</p>
+<h2 id="cpu-virtualization-(2)" tabindex="-1">CPU virtualization (2)</h2>
+<ul>
+<li>Efficient approach: CPU multiplexing (CPU X1 , …, XN on X)</li>
+<li>Desired properties ("virtualization criteria")
+<ul>
+<li>Equivalence: a VM behaves identical to the real machine</li>
+<li>Security: a VM is isolated. The hypervisor has full control</li>
+<li>Performance: virtual CPUs are not significantly slower than the real one</li>
+</ul>
+</li>
+<li>Question: which architectures are "virtualizable" in this way?</li>
+<li>Answer (Popek and Goldberg, 1974 [3]):
+<ul>
+<li>CPUs have "sensitive" instructions which depend on the privileged mode of the CPU (user/supervisor mode, memory mapping, …) or switch its mode</li>
+<li>All sensitive instructions must generate a trap when executed in user mode. This allows the hypervisor to emulate the instruction</li>
+</ul>
+</li>
+<li>The "rest" works like a regular OS: VM scheduling</li>
+</ul>
+<h2 id="memory-virtualization-(1)" tabindex="-1">Memory virtualization (1)</h2>
+<ul>
+<li>Problem: additional memory mapping layer</li>
+</ul>
+<p><img src="assets/Pasted image 20220318134524.png" alt=""></p>
+<p>Guest operating systems assume that they have complete control over the hardware. They use arbitrary page frames. Without the additional mapping layer, conflicts with other guest OSes could occur!</p>
+<h2 id="memory-virtualization-(2)" tabindex="-1">Memory virtualization (2)</h2>
+<ul>
+<li>Solution 1: Shadow page tables
+<ul>
+<li>Require no special hardware virtualization support</li>
+</ul>
+</li>
+<li>Idea:
+<ol>
+<li>Do not use the guest OS page tables</li>
+<li>Hypervisor keeps a shadow page table for each guest page table</li>
+<li>Shadow table must be kept up to date!
+<ul>
+<li>Version 1: intercept and interpret all accesses to memory which stores part of a page table</li>
+<li>Version 2: ignore changes, update tables when a page fault occurs</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Both variants result in many traps to the hypervisor ➛ overhead</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/Pasted image 20220318134812.png" alt=""></p>
+<p>Shadow page tables are expensive. Lower costs are possible using paravirtualization or hardware support</p>
+<h2 id="memory-virtualization-(3)" tabindex="-1">Memory virtualization (3)</h2>
+<ul>
+<li>Solution 2: Nested page tables (AMD; Intel: "extended page tables"</li>
+<li>Idea:
+<ul>
+<li>Hardware is responsible for the complete memory mapping</li>
+<li>Guest OS can change "its" page table as required</li>
+<li>Page table walk is more expensive → greater relevance of the TLB
+<ul>
+<li>Page tables have tree structure</li>
+<li>Pointers to tables are physical guest addresses</li>
+<li>Translation to physical host addresses required (here: 4 translations!)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/Pasted image 20220318134948.png" alt="">
+<img src="assets/Pasted image 20220318135013.png" alt=""></p>
+<h2 id="memory-virtualization-(4)" tabindex="-1">Memory virtualization (4)</h2>
+<p>More approaches...</p>
+<ul>
+<li>Ballooning: "Trick" for dynamic allocation of memory to VMs
+<ul>
+<li>Small driver module communicates with the hypervisor</li>
+<li>Can reserve memory of the OS kernel on demand</li>
+<li>This memory can then be distributed to other VMs</li>
+</ul>
+</li>
+<li>Deduplication: Detection and avoidance of duplicate page contents between VMs. Saves main memory, e.g. between identical guest OSes</li>
+<li>VM migration
+<ul>
+<li>Complete memory contents of a VM moved to other host system</li>
+<li>Optimization: Transfer of pages while the VM is running</li>
+<li>Recent changes are monitored using the dirty bit in the page table</li>
+</ul>
+</li>
+<li>VM replication
+<ul>
+<li>Memory state changes are periodically transmitted to a backup host. Backup VM can replace one on a crashed/failed system quickly</li>
+</ul>
+</li>
+</ul>
+<h2 id="i%2Fo-virtualization-(1)" tabindex="-1">I/O virtualization (1)</h2>
+<ul>
+<li>Simple approach: I/O emulation (+ multiplexing)
+<ul>
+<li>Accesses to I/O device registers are privileged operations or can be intercepted by the hypervisor using the MMU ("trap and emulate")</li>
+</ul>
+</li>
+<li>Emulation of arbitrary I/O devices Y using I/O device X
+<ul>
+<li>e.g. in Oracle VirtualBox: PS/2 mouse/keyboard; IDE, SATA, SCSI, … hard disk; SVGA graphics card; different AMD and Intel network controllers; USB host controller; AC‘97, Intel HD or Soundblaster 16 sound cards</li>
+</ul>
+</li>
+<li>Problem: I/O throughput
+<ul>
+<li>Even simple I/O operations require hundreds or thousands of I/O register accesses!</li>
+</ul>
+</li>
+</ul>
+<p>I/O emulation is expensive. Lower costs are (again) possible using paravirtualization or hardware support</p>
+<h2 id="i%2Fo-virtualization-(2)" tabindex="-1">I/O virtualization (2)</h2>
+<ul>
+<li>Alternative: do not use multiplexing – device passthrough
+<ul>
+<li>A device is exclusively assigned to exactly one VM</li>
+<li>Arbitrary register accesses are permitted (without causing a trap)</li>
+</ul>
+</li>
+<li>Problems:
+<ul>
+<li>DMA addresses are physical host addresses not known to the VM</li>
+<li>This could be used to violate the VM isolation</li>
+<li>Interrupts could be triggered on the "wrong" CPU</li>
+</ul>
+</li>
+<li>Solution: I/O MMU
+<ul>
+<li>Hardware extension implemented in CPU or mainboard chip set</li>
+<li>DMA uses an address mapping using tables
+<ul>
+<li>Acceleration using separate TLBs</li>
+</ul>
+</li>
+<li>Interrupt remapping is able to change the interrupt number and destination CPU</li>
+</ul>
+</li>
+</ul>
+<h2 id="i%2Fo-virtualization-(3)" tabindex="-1">I/O virtualization (3)</h2>
+<ul>
+<li>Alternative 2: PCIe single root I/O virtualization (SR-IOV)</li>
+<li>Hardware mechanism: One device appears as multiple virtual ones
+<ul>
+<li>Multiple I/O register sets, multiple interrupt configurations, …</li>
+</ul>
+</li>
+<li>Hypervisor maps one of these devices to a VM and does not have to interfere further</li>
+<li>Possible problem:
+<ul>
+<li>Hardware takes care of the prioritization of VMs itself
+<ul>
+<li>e.g. round robin</li>
+</ul>
+</li>
+<li>Conflicts with priorities of the hypervisor are possible</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/Pasted image 20220318135722.png" alt=""></p>
+<h2 id="conclusion" tabindex="-1">Conclusion</h2>
+<ul>
+<li>Virtualization is an important architectural concept recurring in the system software stack
+<ul>
+<li>Transparent: Multiplexing, aggregation, emulation</li>
+</ul>
+</li>
+<li>Hardware virtualization (according to Popek/Goldberg)
+<ul>
+<li>Replaces inflexible connection of hardware and software
+<ul>
+<li>enables e.g. migration and replication of VMs at runtime</li>
+</ul>
+</li>
+<li>Technical basis for cloud computing</li>
+</ul>
+</li>
+<li>Operating systems for clouds
+<ul>
+<li>Well-known functionality: Resource management and abstractions</li>
+<li>…implemented on a higher layer</li>
+</ul>
+</li>
+</ul>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

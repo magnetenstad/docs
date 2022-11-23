@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>4_the_network_layer_data_plane.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">ttm4100</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="1_computer_networks_and_the_internet.html">1_computer_networks_and_the_internet</a></li>
+<li>📄 <a href="2_application_layer.html">2_application_layer</a></li>
+<li>📄 <a href="3_transport_layer.html">3_transport_layer</a></li>
+<li>📄 <a href="4_the_network_layer_data_plane.html">4_the_network_layer_data_plane ✨</a></li>
+<li>📄 <a href="5_the_network_layer_control_plane.html">5_the_network_layer_control_plane</a></li>
+<li>📄 <a href="6_the_link_layer_and_lans.html">6_the_link_layer_and_lans</a></li>
+<li>📄 <a href="7_cellular_networks_4g_and_5g.html">7_cellular_networks_4g_and_5g</a></li>
+<li>📄 <a href="8_security_in_computer_networks.html">8_security_in_computer_networks</a></li>
+<li>📄 <a href="9_multimedia_networking.html">9_multimedia_networking</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#the-network-layer%3A-date-plane">The Network Layer: Date Plane</a><ol><li><a href="#overview-of-network-layer">Overview of Network Layer</a><ol><li><a href="#forwarding-and-routing%3A-the-data-and-control-planes">Forwarding and Routing: The Data and Control Planes</a><ol><li><a href="#control-plane%3A-the-traditional-approach">Control Plane: The Traditional Approach</a></li><li><a href="#control-plane%3A-the-sdn-approach">Control Plane: The SDN Approach</a></li></ol></li><li><a href="#network-service-model">Network Service Model</a><ol><li><a href="#an-overview-of-chapter-4">An Overview of Chapter 4</a></li></ol></li></ol></li><li><a href="#what%E2%80%99s-inside-a-router%3F">What’s Inside a Router?</a><ol><li><a href="#input-port-processing-and-destination-based-forwarding">Input Port Processing and Destination-Based Forwarding</a></li><li><a href="#switching">Switching</a></li><li><a href="#output-port-processing">Output Port Processing</a></li><li><a href="#where-does-queuing-occur%3F">Where Does Queuing Occur?</a><ol><li><a href="#input-queueing">Input Queueing</a></li><li><a href="#output-queueing">Output Queueing</a></li><li><a href="#how-much-buffering-is-%E2%80%9Cenough%3F%E2%80%9D">How Much Buffering Is “Enough?”</a></li></ol></li><li><a href="#packet-scheduling">Packet Scheduling</a><ol><li><a href="#first-in-first-out-(fifo)">First-in-First-Out (FIFO)</a></li><li><a href="#priority-queuing">Priority Queuing</a></li><li><a href="#round-robin-and-weighted-fair-queuing-(wfq)">Round Robin and Weighted Fair Queuing (WFQ)</a></li></ol></li></ol></li><li><a href="#the-internet-protocol-(ip)%3A-ipv4%2C-addressing%2C-ipv6%2C-and-more">The Internet Protocol (IP): IPv4, Addressing, IPv6, and More</a><ol><li><a href="#ipv4-datagram-format">IPv4 Datagram Format</a></li><li><a href="#ipv4-addressing">IPv4 Addressing</a><ol><li><a href="#obtaining-a-block-of-addresses">Obtaining a Block of Addresses</a></li><li><a href="#obtaining-a-host-address%3A-the-dynamic-host-configuration-protocol">Obtaining a Host Address: The Dynamic Host Configuration Protocol</a></li></ol></li><li><a href="#network-address-translation-(nat)">Network Address Translation (NAT)</a></li><li><a href="#ipv6">IPv6</a><ol><li><a href="#ipv6-datagram-format">IPv6 Datagram Format</a></li><li><a href="#transitioning-from-ipv4-to-ipv6">Transitioning from IPv4 to IPv6</a></li></ol></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="the-network-layer%3A-date-plane" tabindex="-1">The Network Layer: Date Plane</h1>
+<p>This contents of this chapter is part of the curriculum for <a href="./index.html">TTM4100</a>, except for the sections 4.4 and 4.5.</p>
+<h2 id="overview-of-network-layer" tabindex="-1">Overview of Network Layer</h2>
+<h3 id="forwarding-and-routing%3A-the-data-and-control-planes" tabindex="-1">Forwarding and Routing: The Data and Control Planes</h3>
+<p>two important network-layer functions can be identified:</p>
+<ul>
+<li>Forwarding.</li>
+<li>Routing.</li>
+</ul>
+<p>Forwarding refers to the router-local action of transferring a packet from an input link interface to the appropriate output link interface. Routing refers to the network-wide process that determines the end-to-end paths that packets take from source to destination.</p>
+<p>We can think of forwarding as the process of getting through a single interchange. We can think of routing as the process of planning the trip from Pennsylvania to Florida.</p>
+<p>Forwarding table: A router forwards a packet by examining the value of one or more fields in the arriving packet’s header, and then using these header values to index into its forwarding table. The value stored in the forwarding table entry for those values indicates the outgoing link interface at that router to which that packet is to be forwarded.</p>
+<h4 id="control-plane%3A-the-traditional-approach" tabindex="-1">Control Plane: The Traditional Approach</h4>
+<p>In this example, a routing algorithm runs in each and every router and both forwarding and routing functions are contained within a router. the routing algorithm function in one router communicates with the routing algorithm function in other routers to compute the values for its forwarding table.</p>
+<h4 id="control-plane%3A-the-sdn-approach" tabindex="-1">Control Plane: The SDN Approach</h4>
+<p>an alternative approach in which a physically separate, remote controller computes and distributes the forwarding tables to be used by each and every router.</p>
+<p>Software-defined networking (SDN), where the network is “software-defined” because the controller that computes forwarding tables and interacts with routers is implemented in software.</p>
+<h3 id="network-service-model" tabindex="-1">Network Service Model</h3>
+<p>The network service model defines the characteristics of end-to-end delivery of packets between sending and receiving hosts. These services could include:</p>
+<ul>
+<li>Guaranteed delivery.</li>
+<li>Guaranteed delivery with bounded delay.</li>
+<li>In-order packet delivery</li>
+<li>Guaranteed minimal bandwidth.</li>
+<li>Security.</li>
+</ul>
+<p>The Internet’s network layer provides a single service, known as best-effort service.</p>
+<h4 id="an-overview-of-chapter-4" tabindex="-1">An Overview of Chapter 4</h4>
+<p>Some packet switches, called link-layer switches, base their forwarding decision on values in the fields of the link-layer frame; switches are thus referred to as link-layer (layer 2) devices. Other packet switches, called routers, base their forwarding decision on header field values in the network-layer datagram. Routers are thus network-layer (layer 3) devices.</p>
+<h2 id="what%E2%80%99s-inside-a-router%3F" tabindex="-1">What’s Inside a Router?</h2>
+<p>In a high-level view of a generic router architecture, four router components can be identified:</p>
+<ul>
+<li>Input ports.</li>
+<li>Switching fabric.</li>
+<li>Output ports.</li>
+<li>Routing processor. performs control-plane functions.</li>
+</ul>
+<p>We distinguish between</p>
+<ul>
+<li>Destination-based forwarding.</li>
+<li>Generalized forwarding.</li>
+</ul>
+<h3 id="input-port-processing-and-destination-based-forwarding" tabindex="-1">Input Port Processing and Destination-Based Forwarding</h3>
+<p>With this style of forwarding table, the router matches a prefix of the packet’s destination address with the entries in the table.</p>
+<p>When there are multiple matches, the router uses the longest prefix matching rule; that is, it finds the longest matching entry in the table and forwards the packet to the link interface associated with the longest prefix match.</p>
+<p><img src="./assets/2022-05-08-13-40-34.png" alt=""></p>
+<h3 id="switching" tabindex="-1">Switching</h3>
+<p>Switching can be accomplished in a number of ways:</p>
+<ul>
+<li>Switching via memory.</li>
+<li>Switching via a bus.</li>
+<li>Switching via an interconnection network. A crossbar switch is non-blocking.</li>
+</ul>
+<p><img src="./assets/2022-05-08-13-41-43.png" alt=""></p>
+<h3 id="output-port-processing" tabindex="-1">Output Port Processing</h3>
+<p>Output port processing takes packets that have been stored in the output port’s memory and transmits them over the output link. This includes selecting (i.e., scheduling) and de-queueing packets for transmission, and performing the needed link-layer and physical-layer transmission functions.</p>
+<h3 id="where-does-queuing-occur%3F" tabindex="-1">Where Does Queuing Occur?</h3>
+<p>The location and extent of queueing (either at the input port queues or the output port queues) will depend on the traffic load, the relative speed of the switching fabric, and the line speed.</p>
+<p>the router’s memory can eventually be exhausted and packet loss will occur when no memory is available to store arriving packets.</p>
+<h4 id="input-queueing" tabindex="-1">Input Queueing</h4>
+<p>If the switch fabric is not fast enough to transfer all arriving packets through the fabric, packet queuing can occur at the input ports, as packets must join input port queues to wait their turn to be transferred through the switching fabric to the output port.</p>
+<p>head-of-the-line (HOL) blocking in an input-queued switch—a queued packet in an input queue must wait for transfer through the fabric (even though its output port is free) because it is blocked by another packet at the head of the line.</p>
+<p><img src="./assets/2022-05-08-13-44-44.png" alt=""></p>
+<h4 id="output-queueing" tabindex="-1">Output Queueing</h4>
+<p>N more packets can possibly arrive at an output port in the time it takes to transmit just one of the N packets that had just previously been queued. Thus, packet queues can form at the output ports.</p>
+<p>When there is not enough memory to buffer an incoming packet, a decision must be made to either drop the arriving packet (a policy known as drop-tail) or remove one or more already-queued packets to make room for the newly arrived packet.</p>
+<p>a packet scheduler at the output port must choose one packet, among those queued, for transmission</p>
+<h4 id="how-much-buffering-is-%E2%80%9Cenough%3F%E2%80%9D" tabindex="-1">How Much Buffering Is “Enough?”</h4>
+<p>Larger buffers decrease the router’s packet loss rate, but also mean potentially longer queueing delays (bufferbloat).</p>
+<p><img src="./assets/2022-05-08-13-50-48.png" alt=""></p>
+<h3 id="packet-scheduling" tabindex="-1">Packet Scheduling</h3>
+<h4 id="first-in-first-out-(fifo)" tabindex="-1">First-in-First-Out (FIFO)</h4>
+<p>The FIFO (also known as first-come-first-served, or FCFS) scheduling discipline selects packets for link transmission in the same order in which they arrived at the output link queue.</p>
+<h4 id="priority-queuing" tabindex="-1">Priority Queuing</h4>
+<p>Under priority queuing, packets arriving at the output link are classified into priority classes upon arrival at the queue.</p>
+<p>Under a non-preemptive priority queuing discipline, the transmission of a packet is not interrupted once it has begun.</p>
+<h4 id="round-robin-and-weighted-fair-queuing-(wfq)" tabindex="-1">Round Robin and Weighted Fair Queuing (WFQ)</h4>
+<p>A generalized form of round robin queuing that has been widely implemented in routers is the so-called weighted fair queuing (WFQ) discipline.</p>
+<p>WFQ differs from round robin in that each class may receive a differential amount of service in any interval of time.</p>
+<h2 id="the-internet-protocol-(ip)%3A-ipv4%2C-addressing%2C-ipv6%2C-and-more" tabindex="-1">The Internet Protocol (IP): IPv4, Addressing, IPv6, and More</h2>
+<h3 id="ipv4-datagram-format" tabindex="-1">IPv4 Datagram Format</h3>
+<p>If the TTL field reaches 0, a router must drop that datagram.</p>
+<p>The protocol number is the glue that binds the network and transport layers together, whereas the port number is the glue that binds the transport and application layers together.</p>
+<p>Since some datagrams may require options processing and others may not, the amount of time needed to process an IP datagram at a router can vary greatly.</p>
+<p><img src="./assets/2022-05-08-14-01-35.png" alt=""></p>
+<h3 id="ipv4-addressing" tabindex="-1">IPv4 Addressing</h3>
+<p>A router thus has multiple interfaces, one for each of its links. Because every host and router is capable of sending and receiving IP datagrams, IP requires each host and router interface to have its own IP address. Thus, an IP address is technically associated with an interface, rather than with the host or router containing that interface.</p>
+<p>IP addressing assigns an address to this subnet:
+223.1.1.0/24, where the /24 (“slash-24”) notation, sometimes known as a subnet mask, indicates that the leftmost 24 bits of the 32-bit quantity define the subnet address.</p>
+<p>To determine the subnets, detach each interface from its host or router, creating islands of isolated networks, with interfaces terminating the end points of the isolated networks. Each of these isolated networks is called a subnet.</p>
+<p><img src="./assets/2022-05-08-14-09-16.png" alt=""></p>
+<p>The x most significant bits of an address of the form a.b.c.d/x constitute the network portion of the IP address, and are often referred to as the prefix (or network prefix) of the address.</p>
+<p>These lower-order bits may (or may not) have an additional subnetting structure, such as that discussed above.</p>
+<h4 id="obtaining-a-block-of-addresses" tabindex="-1">Obtaining a Block of Addresses</h4>
+<p>IP addresses are managed under the authority of the Internet Corporation for Assigned Names and Numbers (ICANN)</p>
+<h4 id="obtaining-a-host-address%3A-the-dynamic-host-configuration-protocol" tabindex="-1">Obtaining a Host Address: The Dynamic Host Configuration Protocol</h4>
+<p>DHCP allows a host to obtain (be allocated) an IP address automatically.</p>
+<p>DHCP is a client-server protocol. A client is typically a newly arriving host wanting to obtain network configuration information, including an IP address for itself. In the simplest case, each subnet will have a DHCP server. If no server is present on the subnet, a DHCP relay agent (typically a router) that knows the address of a DHCP server for that network is needed.</p>
+<p>For a newly arriving host, the DHCP protocol is a four-step process.</p>
+<ul>
+<li>DHCP server discovery. The client broadcasts a DHCPDISCOVER message on the network subnet.</li>
+<li>DHCP server offer(s). The DHCP server reserves an IP address for the client and makes a lease offer by sending a DHCPOFFER message to the client.</li>
+<li>DHCP request. In response to the DHCP offer, the client replies with a DHCPREQUEST message, broadcast to the server, requesting the offered address.</li>
+<li>DHCP ACK. This packet includes the lease duration and any other configuration information that the client might have requested.</li>
+</ul>
+<p>Since a new IP address is obtained from DHCP each time a node connects to a new subnet, a TCP connection to a remote application cannot be maintained as a mobile node moves between subnets.</p>
+<p><img src="./assets/2022-05-08-14-47-01.png" alt=""></p>
+<h3 id="network-address-translation-(nat)" tabindex="-1">Network Address Translation (NAT)</h3>
+<p>The NAT-enabled router does not look like a router to the outside world. Instead the NAT router behaves to the outside world as a single device with a single IP address.</p>
+<p><img src="./assets/2022-05-08-14-47-49.png" alt=""></p>
+<p>The trick is to use a NAT translation table at the NAT router, and to include port numbers as well as IP addresses in the table entries.</p>
+<h3 id="ipv6" tabindex="-1">IPv6</h3>
+<h4 id="ipv6-datagram-format" tabindex="-1">IPv6 Datagram Format</h4>
+<p>The most important changes introduced in IPv6 are evident in the datagram format:</p>
+<ul>
+<li>Expanded addressing capabilities.</li>
+<li>A streamlined 40-byte header.</li>
+<li>Flow labeling.</li>
+</ul>
+<p><img src="./assets/2022-05-08-14-49-40.png" alt=""></p>
+<p>several fields appearing in the IPv4 datagram are no longer present in the IPv6 datagram:</p>
+<ul>
+<li>Fragmentation/reassembly.</li>
+<li>Header checksum.</li>
+<li>Options.</li>
+</ul>
+<h4 id="transitioning-from-ipv4-to-ipv6" tabindex="-1">Transitioning from IPv4 to IPv6</h4>
+<p>With tunneling, the IPv6 node on the sending side of the tunnel takes the entire IPv6 datagram and puts it in the data (payload) field of an IPv4 datagram.</p>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>
