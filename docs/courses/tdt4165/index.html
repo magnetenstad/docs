@@ -28,7 +28,7 @@
 <li>📄 <a href="analysis_of_prev_exams.html">analysis_of_prev_exams</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#%F0%9F%92%AC-tdt4165---programming-languages">💬 TDT4165 - Programming Languages</a><ol><li><a href="#links">Links</a></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#%F0%9F%92%AC-tdt4165---programming-languages">💬 TDT4165 - Programming Languages</a><ol><li><a href="#links">Links</a></li><li><a href="#0-preface">0 Preface</a></li><li><a href="#1-introduction-to-programming-concepts">1 Introduction to Programming Concepts</a><ol><li><a href="#variables%2C-functions-and-lists">Variables, functions and lists</a></li><li><a href="#lazy-evalution-and-concurrency">Lazy evalution and concurrency</a></li><li><a href="#explicit-state%2C-objects%2C-classes-and-records">Explicit state, objects, classes and records</a></li><li><a href="#nondeterminism-and-atomicity">Nondeterminism and atomicity</a></li><li><a href="#computation-model-descriptions">Computation model descriptions</a></li></ol></li><li><a href="#2-declarative-computation-model">2 Declarative Computation Model</a></li><li><a href="#3-declarative-programming-techniques">3 Declarative Programming Techniques</a></li><li><a href="#4-declarative-concurrency-(4.1-4.5)">4 Declarative Concurrency (4.1-4.5)</a></li><li><a href="#9-relational-programming-(9.1-9.3%2C-9.7)">9 Relational Programming (9.1-9.3, 9.7)</a></li><li><a href="#12-constraint-programming">12 Constraint Programming</a></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
@@ -41,6 +41,174 @@
 <li><a href="https://strasheela.sourceforge.net/strasheela/doc/Basics-2.html">Oz Basics</a></li>
 <li><a href="http://rigaux.org/language-study/syntax-across-languages-per-language/Oz.html">Oz Syntax</a></li>
 </ul>
+<h2 id="0-preface" tabindex="-1">0 Preface</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Computation model</td>
+<td>A formal system that defines how computations are done. (Data types, operations, and a programming language)</td>
+</tr>
+<tr>
+<td>Programming model</td>
+<td>What the programmer needs: the programming techniques and design principles made possible by the computation model.</td>
+</tr>
+<tr>
+<td>Kernel language</td>
+<td>A simple core language of a computation model</td>
+</tr>
+<tr>
+<td>Creative extension principle</td>
+<td>A new concept is added when programs become complicated for technical reasons unrelated to the problem being solved</td>
+</tr>
+<tr>
+<td>Programming</td>
+<td>The act of extending or changing a system’s functionality</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Computation model</th>
+<th>Languages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object-oriented</td>
+<td>Java, Smalltalk</td>
+</tr>
+<tr>
+<td>Functional</td>
+<td>Haskell, Standard ML</td>
+</tr>
+<tr>
+<td>Logic</td>
+<td>Prolog, Mercury</td>
+</tr>
+<tr>
+<td>Concurrent</td>
+<td>Erlang</td>
+</tr>
+</tbody>
+</table>
+<p>In the <strong>kernel language approach</strong>, a practical language is translated into a kernel language that consists of a small number of programmer-significant elements. The rich set of abstractions and syntax is encoded in the kernel language, giving insight into what the language does. Simple formal semantics allow reasoning about program correctness and complexity. This is a language-independent way to study programming.</p>
+<h2 id="1-introduction-to-programming-concepts" tabindex="-1">1 Introduction to Programming Concepts</h2>
+<h3 id="variables%2C-functions-and-lists" tabindex="-1">Variables, functions and lists</h3>
+<p>The <strong>declare</strong> statement creates a new store variable and makes the variable identifier refer to it. There are two concepts hiding behind the word “variable”:</p>
+<ul>
+<li>The identifier.</li>
+<li>The store variable.</li>
+</ul>
+<p>The fun statement defines a <strong>function</strong>. The variable Fact is bound to the function. The function has one argument N, which is a local variable.</p>
+<pre><code class="hljs language-oz">declare
+fun {Fact N}
+  if N==0 then 1 else N*{Fact N-1} end
+end
+</code></pre>
+<p>A <strong>list</strong> <code><span class="hljs-string">[1 2 3]</span></code> is a chain of links <code>HEAD<span class="hljs-string">|TAIL</span></code>, where each link contains two things: one list element and a reference to the rest of the chain <code><span class="hljs-attribute">L</span> = <span class="hljs-number">1</span>|[<span class="hljs-number">2</span> <span class="hljs-number">3</span>]</code>. Here, <code><span class="hljs-attribute">L</span>.<span class="hljs-number">1</span></code> is <code>1</code> and <code><span class="hljs-attribute">L</span>.<span class="hljs-number">2</span></code> is <code><span class="hljs-string">[2 3]</span></code>. The empty list is <code><span class="hljs-literal">nil</span></code>. A list of one item is <code><span class="hljs-number">1</span><span class="hljs-string">|nil</span></code>.</p>
+<pre><code class="hljs language-oz">declare
+L = [5 6 7 8]
+case L of H|T then {Browse H} {Browse T} end
+</code></pre>
+<p>In the preceding code, the <code><span class="hljs-keyword">case</span></code> instruction does <strong>pattern matching</strong>.</p>
+<h3 id="lazy-evalution-and-concurrency" tabindex="-1">Lazy evalution and concurrency</h3>
+<p>In <strong>lazy evaluation</strong>, a calculation is done only when the result is needed (opposed to standard, eager evaluation). This enables calculation with seemingly infinite data structures without any loop boundary
+conditions.</p>
+<pre><code class="hljs language-oz">fun lazy {Ints N}
+  N|{Ints N+1}
+end
+</code></pre>
+<p>The ability to pass functions as arguments and return values is known as <strong>higher-order programming</strong>.</p>
+<p>A <strong>concurrent</strong> program has several independent activities, each of which executes at its own pace. We introduce concurrency by creating threads with the <code>thread</code> instruction. Thread execution is <strong>interleaved</strong>.That is, threads take turns each executing a little.</p>
+<p>With <strong>dataflow</strong> behavior, an operation that tries to use a variable that is not yet bound will wait for it to be bound. Two nice properties of dataflow are (1) calculations work correctly independent of how they are partitioned between threads. (2) calculations are
+patient: they do not signal errors, but simply wait.</p>
+<h3 id="explicit-state%2C-objects%2C-classes-and-records" tabindex="-1">Explicit state, objects, classes and records</h3>
+<p><strong>Explicit state</strong> may be achieved with <strong>memory cells</strong>:</p>
+<pre><code class="hljs language-oz">declare
+C = {NewCell 0}
+C := @C+1
+{Browse @C}
+</code></pre>
+<p>This further enables <strong>objects</strong>. In the following, the cell is referenced by a local variable, i.e. it is <strong>encapsulated</strong>.</p>
+<pre><code class="hljs language-oz">declare
+local C in
+  C = {NewCell 0}
+  fun {Bump}
+    C := @C+1
+    @C
+  end
+  fun {Read}
+    @C
+  end
+end
+</code></pre>
+<p>As long as the interface to the counter object is the same, the user program does not need to know the implementation. The separation of interface and implementation is the essence of <strong>data abstraction</strong>. A program that uses a counter will work correctly for any implementation as long as the interface is the same. This property is called <strong>polymorphism</strong>.</p>
+<p>To instantiate multiple objects, we may create an object factory, i.e. a <strong>class</strong>.</p>
+<pre><code class="hljs language-oz">declare
+fun {NewCounter} C Bump Read in
+  C = {NewCell 0}
+  fun {Bump}
+    C:=@C+1
+    @C
+  end
+    fun {Read}
+    @C
+  end
+  counter(bump:Bump read:Read)
+end
+</code></pre>
+<p>The Bump and Read functions are grouped together into a <strong>record</strong>, a compound data structure that allows easy access to its parts. The record <code>counter(<span class="hljs-name">bump</span><span class="hljs-symbol">:Bump</span> read<span class="hljs-symbol">:Read</span>)</code> is characterized by its label counter and by its two fields, called bump and read. These are accessible with the <code>.</code> (dot) operator.</p>
+<p>Programming with classes and objects is called <strong>object-based programming</strong>. Adding one new idea, <strong>inheritance</strong>, to object-based programming gives <strong>object-oriented programming</strong>.</p>
+<h3 id="nondeterminism-and-atomicity" tabindex="-1">Nondeterminism and atomicity</h3>
+<p>With <em>both</em> concurrency and state, we introduce <strong>nondeterminism</strong>. An observable nondeterminism is sometimes called a <strong>race condition</strong>. Programming with concurrency and state together is largely a question of mastering the interleavings.</p>
+<p>An operation is <strong>atomic</strong> if no intermediate states can be observed. A <strong>lock</strong> has the property that only one thread at a time can be executing inside.If a second thread tries to get in, then it will wait until the first gets out. Therefore what happens inside the lock is atomic.</p>
+<h3 id="computation-model-descriptions" tabindex="-1">Computation model descriptions</h3>
+<table>
+<thead>
+<tr>
+<th>Computation model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Declarative model</td>
+<td>Declarative programs define mathematical functions.They are the easiest to reason about and to test.</td>
+</tr>
+<tr>
+<td>Concurrent declarative model</td>
+<td>Adding dataflow concurrency gives a model that is still declarative but that allows a more flexible, incremental execution.</td>
+</tr>
+<tr>
+<td>Lazy declarative model</td>
+<td>Adding laziness allows calculating with potentially infinite data structures.This is good for resource management and program structure.</td>
+</tr>
+<tr>
+<td>Stateful model</td>
+<td>Adding explicit state allows writing programs whose behavior changes over time.This is good for program modularity.</td>
+</tr>
+<tr>
+<td>Object-oriented model</td>
+<td>Object-oriented programming is a programming style for stateful programming with data abstractions. Enables powerful techniques such as polymorphism and inheritance.</td>
+</tr>
+<tr>
+<td>Shared-state concurrent model</td>
+<td>Gives the advantages of both the stateful and concurrent models, but should be programmed carefully.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-declarative-computation-model" tabindex="-1">2 Declarative Computation Model</h2>
+<h2 id="3-declarative-programming-techniques" tabindex="-1">3 Declarative Programming Techniques</h2>
+<h2 id="4-declarative-concurrency-(4.1-4.5)" tabindex="-1">4 Declarative Concurrency (4.1-4.5)</h2>
+<h2 id="9-relational-programming-(9.1-9.3%2C-9.7)" tabindex="-1">9 Relational Programming (9.1-9.3, 9.7)</h2>
+<h2 id="12-constraint-programming" tabindex="-1">12 Constraint Programming</h2>
 
         <div style="height: 100vh;"></div>
       </article>
