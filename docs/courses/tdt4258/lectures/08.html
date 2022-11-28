@@ -38,7 +38,7 @@
 <li>📄 <a href="11.html">11</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#compilation-and-optimizations">Compilation and Optimizations</a><ol><li><a href="#intro-to-compilers">Intro to Compilers</a><ol><li><a href="#overview">Overview</a></li><li><a href="#declaration-vs-definition">Declaration vs Definition</a></li></ol></li><li><a href="#compilers-frontend">Compilers Frontend</a><ol><li><a href="#compilers">Compilers</a></li><li><a href="#detailed-compilation-flow">Detailed Compilation Flow</a></li><li><a href="#the-c-pre-processor">The C pre-processor</a></li><li><a href="#anatomy-of-a-modern-compiler">Anatomy of a Modern Compiler</a><ol><li><a href="#frontend-(analysis)">Frontend (analysis)</a></li><li><a href="#back-end-(synthesis)">Back-end (synthesis)</a></li></ol></li><li><a href="#frontend-stages">Frontend Stages</a></li></ol></li><li><a href="#intermediate-representation">Intermediate Representation</a><ol><li><a href="#data-flow-graph-(dfg)">Data flow graph (DFG)</a></li><li><a href="#static-single-assignment-(ssa)">Static Single Assignment (SSA)</a></li><li><a href="#dfg-and-partial-orders">DFG and Partial Orders</a></li></ol></li><li><a href="#optimizations">Optimizations</a><ol><li><a href="#control-data-flow-graph-(cdfg)">Control-Data Flow Graph (CDFG)</a></li><li><a href="#ir-optimization">IR Optimization</a></li></ol></li><li><a href="#code-generation">Code Generation</a></li><li><a href="#loop-transformations">Loop Transformations</a></li><li><a href="#register-allocation">Register Allocation</a></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#compilation-and-optimizations">Compilation and Optimizations</a><ol><li><a href="#intro-to-compilers">Intro to Compilers</a><ol><li><a href="#overview">Overview</a></li><li><a href="#declaration-vs-definition">Declaration vs Definition</a></li></ol></li><li><a href="#compilers-frontend">Compilers Frontend</a><ol><li><a href="#compilers">Compilers</a></li><li><a href="#detailed-compilation-flow">Detailed Compilation Flow</a></li><li><a href="#the-c-pre-processor">The C pre-processor</a></li><li><a href="#anatomy-of-a-modern-compiler">Anatomy of a Modern Compiler</a><ol><li><a href="#frontend-(analysis)">Frontend (analysis)</a></li><li><a href="#back-end-(synthesis)">Back-end (synthesis)</a></li></ol></li><li><a href="#frontend-stages">Frontend Stages</a></li></ol></li><li><a href="#intermediate-representation">Intermediate Representation</a><ol><li><a href="#data-flow-graph-(dfg)">Data flow graph (DFG)</a></li><li><a href="#static-single-assignment-(ssa)">Static Single Assignment (SSA)</a></li><li><a href="#dfg-and-partial-orders">DFG and Partial Orders</a></li></ol></li><li><a href="#optimizations">Optimizations</a><ol><li><a href="#control-data-flow-graph-(cdfg)">Control-Data Flow Graph (CDFG)</a></li><li><a href="#ir-optimization">IR Optimization</a></li></ol></li><li><a href="#code-generation">Code Generation</a></li><li><a href="#summary%3A-modern-compilers">Summary: Modern Compilers</a></li><li><a href="#loop-transformations">Loop Transformations</a><ol><li><a href="#%231%3A-loop-unrolling">#1: Loop Unrolling</a></li><li><a href="#%232%3A-loop-fusion">#2: Loop Fusion</a></li><li><a href="#%233%3A-loop-distribution%2Ffission">#3: Loop Distribution/Fission</a></li><li><a href="#%234%3A-loop-interchange">#4: Loop Interchange</a></li><li><a href="#%235%3A-loop-tiling">#5: Loop Tiling</a></li></ol></li><li><a href="#function-inlining-and-register-allocation">Function Inlining and Register Allocation</a><ol><li><a href="#procedure%2Ffunction-inlining">Procedure/Function Inlining</a></li><li><a href="#register-allocation">Register Allocation</a></li><li><a href="#register-allocation-with-graph-coloring">Register Allocation with Graph Coloring</a></li><li><a href="#instruction-selection">Instruction Selection</a></li></ol></li><li><a href="#assembler-and-linker">Assembler and linker</a><ol><li><a href="#symbol-table">Symbol Table</a></li><li><a href="#object-file">Object File</a></li><li><a href="#linker">Linker</a><ol><li><a href="#dynamic-linking">Dynamic Linking</a></li></ol></li></ol></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
@@ -176,8 +176,139 @@ o Produce fast, optimized code</p>
 ▪ Lay out basic blocks, remove superfluous branches
 ▪ ISA and CPU specific optimization
 – E.g. reorder instructions if possible</p>
+<h2 id="summary%3A-modern-compilers" tabindex="-1">Summary: Modern Compilers</h2>
+<p><img src="assets/2022-11-25-11-04-21.png" alt=""></p>
 <h2 id="loop-transformations" tabindex="-1">Loop Transformations</h2>
-<h2 id="register-allocation" tabindex="-1">Register Allocation</h2>
+<p>▪ Why is it important
+– Programs spends lots of time in loops
+▪ Goal
+– Reduce loop overhead
+– Increase opportunities for other optimizations
+– Improve pipeline and memory system performance</p>
+<h3 id="%231%3A-loop-unrolling" tabindex="-1">#1: Loop Unrolling</h3>
+<p>▪ Duplicates loop body ‘n’ times and adjust loop bounds
+– Reduces number of comparisons/branches to test loop exit
+• Branches are big performance bottleneck in hardware
+– Increases loop body size
+• Enables more optimizations
+• More register pressure</p>
+<p><img src="assets/2022-11-25-11-12-20.png" alt=""></p>
+<h3 id="%232%3A-loop-fusion" tabindex="-1">#2: Loop Fusion</h3>
+<p>▪ Combines two (or more) loops into one</p>
+<ul>
+<li>Pros:
+<ul>
+<li>May improve data locality</li>
+<li>Reduces loop overhead</li>
+<li>May enable better instruction scheduling</li>
+</ul>
+</li>
+<li>Cons:
+<ul>
+<li>May hurt data locality</li>
+<li>May hurt I-cache hit rate</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/2022-11-25-11-12-33.png" alt=""></p>
+<h3 id="%233%3A-loop-distribution%2Ffission" tabindex="-1">#3: Loop Distribution/Fission</h3>
+<p>▪ Divides a loop into two (or more) loops</p>
+<ul>
+<li>Pros:
+<ul>
+<li>Enables optimizations: 2nd loop is parallel loop</li>
+<li>Reduces register pressure</li>
+</ul>
+</li>
+<li>Cons:
+<ul>
+<li>Increases loop overhead</li>
+</ul>
+</li>
+</ul>
+<p><img src="assets/2022-11-25-11-12-42.png" alt=""></p>
+<h3 id="%234%3A-loop-interchange" tabindex="-1">#4: Loop Interchange</h3>
+<p>▪ Switches the order of loops in a loop nest
+▪ Can improve data locality and parallelism</p>
+<p><img src="assets/2022-11-25-11-12-50.png" alt=""></p>
+<h3 id="%235%3A-loop-tiling" tabindex="-1">#5: Loop Tiling</h3>
+<p>▪ Breaks a loop into a set of nested loops
+– Each inner loop operates on a subset of data
+▪ Changes memory access pattern: Can improve locality</p>
+<p><img src="assets/2022-11-25-11-13-47.png" alt=""></p>
+<h2 id="function-inlining-and-register-allocation" tabindex="-1">Function Inlining and Register Allocation</h2>
+<h3 id="procedure%2Ffunction-inlining" tabindex="-1">Procedure/Function Inlining</h3>
+<p>▪ Replaces call with the body of the callee (called function)
+▪ Programmer can ask compiler to inline a function
+– C provides inline keyword
+▪ Compiler itself can inline a function if deemed beneficial</p>
+<p><img src="assets/2022-11-25-11-17-33.png" alt=""></p>
+<p>▪ Function calls can be costly
+– Direct costs: arguments and results passing, call/return (branch) instructions, stack frame maintenance etc
+– Indirect costs: breaks intra-procedural analysis to inter-procedural analysis (which is more complex)
+▪ Inlining removes these costs
+▪ Downside
+– Can increases code size
+– Can reduce instruction cache hit rate</p>
+<h3 id="register-allocation" tabindex="-1">Register Allocation</h3>
+<p>▪ Registers temporarily hold variables
+▪ Aim: Allocate registers to variables such that memory accesses are minimized
+– Good register allocation is key to performance as memory accesses can be costly (imagine cache misses)
+▪ Compilers analyze lifetime of variables for register allocation
+▪ Programmers could hint which variables to keep in registers
+– C supports register keyword
+– Modern compilers just ignore it!
+▪ Some variables always need to be in memory
+– volatile keyword provides this functionality
+– Still brought to a register for using the value</p>
+<h3 id="register-allocation-with-graph-coloring" tabindex="-1">Register Allocation with Graph Coloring</h3>
+<p>▪ Edges between variable that are live at the same time
+▪ Represent each register with a color
+▪ Color the nodes with as few colors as possible
+– No edge must share a color
+▪ NP-complete
+– Compilers use heuristics to reach a good solution</p>
+<h3 id="instruction-selection" tabindex="-1">Instruction Selection</h3>
+<p>▪ IR code can be translated to a number instruction
+sequences depending types of instructions in ISA
+▪ IR expressions are represented as graphs (CDFG)
+– Find the best template for expression
+– The template should minimize the chosen cost metric</p>
+<h2 id="assembler-and-linker" tabindex="-1">Assembler and linker</h2>
+<p>▪ Generate machine instructions (binary) from assembly instructions (symbolic)
+– One to one translation (usually)
+▪ Translate labels into addresses
+▪ Handle pseudo-ops
+▪ Two pass approach
+– First pass: Generate symbol table
+– Second pass: resolve labels and generate machine instructions</p>
+<h3 id="symbol-table" tabindex="-1">Symbol Table</h3>
+<p>▪ Generating symbol table:
+– Scan the file to collect labels and their addresses
+▪ Addresses are generally relative to the first instructions in
+the file</p>
+<h3 id="object-file" tabindex="-1">Object File</h3>
+<p>▪ Output of assembler
+▪ Several standards
+– ELF (Unix), ECOFF (Windows), Mach-O (OS X)
+▪ Object file includes
+– Symbol table
+– Program code (.text segment)
+– Data (.data segment)
+– Information about relocatable parts
+– Debug data (references to source files)</p>
+<h3 id="linker" tabindex="-1">Linker</h3>
+<p>▪ Takes multiple object files and libraries and generates one executable file
+– Combines all object file segments (text, data)
+– Determines start address for all modules
+– Combines all symbol tables
+– Resolves all symbols
+▪ Transforms relative address to absolute addresses
+▪ Produces an error if cannot find a label/symbol in merged symbol table</p>
+<h4 id="dynamic-linking" tabindex="-1">Dynamic Linking</h4>
+<p>▪ Most operating systems can link modules at load time
+– e.g. shared libraries (.so on linux platforms)
+– Saves storage space</p>
 
         <div style="height: 100vh;"></div>
       </article>
