@@ -48,10 +48,16 @@
 </ul>
 <h2 id="power-basics" tabindex="-1">Power Basics</h2>
 <p>Power vs Energy</p>
-<p>▪ Power = Energy/Time
-▪ Watt = Joule/Sec</p>
 <ul>
-<li>Energy is the integral of power</li>
+<li>
+<p>Power = Energy/Time</p>
+</li>
+<li>
+<p>Watt = Joule/Sec</p>
+</li>
+<li>
+<p>Energy is the integral of power</p>
+</li>
 </ul>
 <h3 id="power-vs-energy%3A-what-to-optimize" tabindex="-1">Power vs Energy: What to optimize</h3>
 <ul>
@@ -60,12 +66,16 @@
 </ul>
 <h2 id="power-consumption" tabindex="-1">Power Consumption</h2>
 <h3 id="cmos-invertor%3A-power-analysis" tabindex="-1">CMOS Invertor: Power Analysis</h3>
-<p>▪ In steady state, there is no path between power supply (Vdd)
-and ground hence, there is no power consumption.
-▪ Power is consumed only during input/output transitions.</p>
+<ul>
+<li>In steady state, there is no path between power supply (Vdd)
+and ground hence, there is no power consumption.</li>
+<li>Power is consumed only during input/output transitions.</li>
+</ul>
 <h3 id="dynamic-power" tabindex="-1">Dynamic Power</h3>
-<p>▪ Power consumed by circuit while doing some (useful)
-activity. (This is what we have seen so far)</p>
+<ul>
+<li>Power consumed by circuit while doing some (useful)
+activity. (This is what we have seen so far)</li>
+</ul>
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mrow><mi>d</mi><mi>y</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>i</mi><mi>c</mi></mrow></msub><mo>=</mo><mi>α</mi><mi>f</mi><mi>C</mi><msubsup><mi>V</mi><mrow><mi>d</mi><mi>d</mi></mrow><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">P_{dynamic} = \alpha f C V_{dd}^2
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1111079999999998em;vertical-align:-0.247em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">d</span></span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 <ul>
@@ -75,8 +85,13 @@ activity. (This is what we have seen so far)</p>
 <li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>d</mi><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">V_{dd}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> : supply voltage</li>
 </ul>
 <h3 id="static-power" tabindex="-1">Static Power</h3>
-<p>▪ Power consumed by circuit while doing nothing.
-– Transistors leak even when they are in off state.</p>
+<ul>
+<li>Power consumed by circuit while doing nothing.
+<ul>
+<li>Transistors leak even when they are in off state.</li>
+</ul>
+</li>
+</ul>
 <ol>
 <li>Sub-threshold leakage</li>
 <li>Gate leakage</li>
@@ -85,60 +100,116 @@ activity. (This is what we have seen so far)</p>
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mrow><mi>s</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>c</mi></mrow></msub><mo>=</mo><msub><mi>V</mi><mrow><mi>d</mi><mi>d</mi></mrow></msub><mo>⋅</mo><msub><mi>I</mi><mrow><mi>s</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>c</mi></mrow></msub></mrow><annotation encoding="application/x-tex">P_{static} = V_{dd} \cdot I_{static}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 <h3 id="dynamic-vs-static-power-distribution" tabindex="-1">Dynamic vs Static Power Distribution</h3>
-<p>▪ Static power dominates overall power consumption in smaller technology nodes:
-– Leakage increase</p>
+<ul>
+<li>Static power dominates overall power consumption in smaller technology nodes:
+<ul>
+<li>Leakage increase</li>
+</ul>
+</li>
+</ul>
 <p><img src="assets/2022-11-25-12-16-19.png" alt=""></p>
 <h2 id="hardware-techniques-to-reduce-power" tabindex="-1">Hardware Techniques to Reduce Power</h2>
 <h3 id="reducing-energy-consumption" tabindex="-1">Reducing energy consumption</h3>
-<p>▪ Hardware techniques
-– Clock gating
-– Power gating
-– ...
-▪ Software techniques
-– Sleep modes
-– Dynamic voltage and frequency scaling (DVFS)
-– ...</p>
-<h3 id="clock-gating" tabindex="-1">Clock Gating</h3>
-<p>▪ Digital circuits typically change stage only on the rising/falling edge of clock
-▪ Idea: turn off clocks to the circuits not in use</p>
 <ul>
-<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mn>0</mn><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><msub><mi>P</mi><mrow><mi>d</mi><mi>y</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>i</mi><mi>c</mi></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f = 0 \implies P_{dynamic} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66844em;vertical-align:-0.024em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></li>
+<li>Hardware techniques
+<ul>
+<li>Clock gating</li>
+<li>Power gating</li>
+<li>...</li>
+</ul>
+</li>
+<li>Software techniques
+<ul>
+<li>Sleep modes</li>
+<li>Dynamic voltage and frequency scaling (DVFS)</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<h3 id="clock-gating" tabindex="-1">Clock Gating</h3>
+<ul>
+<li>
+<p>Digital circuits typically change stage only on the rising/falling edge of clock</p>
+</li>
+<li>
+<p>Idea: turn off clocks to the circuits not in use</p>
+</li>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mn>0</mn><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><msub><mi>P</mi><mrow><mi>d</mi><mi>y</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>i</mi><mi>c</mi></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f = 0 \implies P_{dynamic} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66844em;vertical-align:-0.024em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></p>
+</li>
 </ul>
 <h3 id="power-gating" tabindex="-1">Power Gating</h3>
-<p>▪ Digital circuits consume power even when frequency is 0 due
-to leakage
-▪ Idea: turn off power supply to the circuits not in use
-– No power no leakage</p>
 <ul>
-<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>d</mi><mi>d</mi></mrow></msub><mo>=</mo><mn>0</mn><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><msub><mi>P</mi><mrow><mi>s</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>c</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>d</mi><mi>y</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>i</mi><mi>c</mi></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">V_{dd} = 0 \implies P_{static} = P_{dynamic} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66844em;vertical-align:-0.024em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></li>
+<li>
+<p>Digital circuits consume power even when frequency is 0 due
+to leakage</p>
+</li>
+<li>
+<p>Idea: turn off power supply to the circuits not in use</p>
+<ul>
+<li>No power no leakage</li>
+</ul>
+</li>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>d</mi><mi>d</mi></mrow></msub><mo>=</mo><mn>0</mn><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><msub><mi>P</mi><mrow><mi>s</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>c</mi></mrow></msub><mo>=</mo><msub><mi>P</mi><mrow><mi>d</mi><mi>y</mi><mi>n</mi><mi>a</mi><mi>m</mi><mi>i</mi><mi>c</mi></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">V_{dd} = 0 \implies P_{static} = P_{dynamic} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66844em;vertical-align:-0.024em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">m</span><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></p>
+</li>
 </ul>
 <h4 id="power-gating-overhead" tabindex="-1">Power Gating Overhead</h4>
-<p>▪ Energy overhead: Energy required to power-down and then power-up a unit
-– Energy saved by power gating should be more than the overhead of power gating.
-▪ Performance overhead: Time required for a unit to be fully activated before it can be used
-▪ The overhead has to be paid every time a unit is power gated.</p>
+<ul>
+<li>Energy overhead: Energy required to power-down and then power-up a unit
+<ul>
+<li>Energy saved by power gating should be more than the overhead of power gating.</li>
+</ul>
+</li>
+<li>Performance overhead: Time required for a unit to be fully activated before it can be used</li>
+<li>The overhead has to be paid every time a unit is power gated.</li>
+</ul>
 <h3 id="clock%2Fpower-gating-summary" tabindex="-1">Clock/Power Gating Summary</h3>
-<p>▪ Turn off clock/power to the circuit not in use
-▪ A complex chip can have multiple clock domains
-– Each domain has it’s own clock distribution network
-– Each domain can be gated independent of others
-▪ A chip can also have multiple power domains
-– Each domain with it’s own power distribution network and gating circuit.</p>
+<ul>
+<li>Turn off clock/power to the circuit not in use</li>
+<li>A complex chip can have multiple clock domains
+<ul>
+<li>Each domain has it’s own clock distribution network</li>
+<li>Each domain can be gated independent of others</li>
+</ul>
+</li>
+<li>A chip can also have multiple power domains
+<ul>
+<li>Each domain with it’s own power distribution network and gating circuit.</li>
+</ul>
+</li>
+</ul>
 <h2 id="software-techniques-to-reduce-power" tabindex="-1">Software Techniques to Reduce Power</h2>
 <h3 id="operating-system-power-management" tabindex="-1">Operating System Power Management</h3>
-<p>▪ Hardware provides multiple power modes
-– OS can exploit them to reduce power consumption without missing deadlines.
-▪ Sleep modes provide maximum power saving
-– Similar to power gating, though controlled by OS, not by hardware
-– There is an overhead on entering and exiting the sleep modes
-– Multiple levels to trade-off the overhead and power savings</p>
+<ul>
+<li>Hardware provides multiple power modes
+<ul>
+<li>OS can exploit them to reduce power consumption without missing deadlines.</li>
+</ul>
+</li>
+<li>Sleep modes provide maximum power saving
+<ul>
+<li>Similar to power gating, though controlled by OS, not by hardware</li>
+<li>There is an overhead on entering and exiting the sleep modes</li>
+<li>Multiple levels to trade-off the overhead and power savings</li>
+</ul>
+</li>
+</ul>
 <h3 id="dvfs" tabindex="-1">DVFS</h3>
-<p>▪ Dynamic Voltage and Frequency Scaling
-– OS can choose among multiple voltages and frequencies
-▪ Reducing frequency reduces dynamic power consumption
-– How about energy?
-▪ Reducing voltage reduces both dynamic and static power consumption
-▪ OS needs to adjust voltage and frequency such that the CPU runs just fast enough</p>
+<ul>
+<li>Dynamic Voltage and Frequency Scaling
+<ul>
+<li>OS can choose among multiple voltages and frequencies</li>
+</ul>
+</li>
+<li>Reducing frequency reduces dynamic power consumption
+<ul>
+<li>How about energy?</li>
+</ul>
+</li>
+<li>Reducing voltage reduces both dynamic and static power consumption</li>
+<li>OS needs to adjust voltage and frequency such that the CPU runs just fast enough</li>
+</ul>
 
         <div style="height: 100vh;"></div>
       </article>

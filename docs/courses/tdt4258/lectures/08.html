@@ -48,21 +48,33 @@
 </ul>
 <h2 id="intro-to-compilers" tabindex="-1">Intro to Compilers</h2>
 <h3 id="overview" tabindex="-1">Overview</h3>
-<p>▪ Programs are divided into compilation units
-– Provide degree of modularity
-– Each commonly has main file (.c) for source code
-– Header files (.h) declare public interfaces of units
-▪ Each unit is compiled separately to relocatable object code
-– Allows creation of object-code libraries
-▪ A linker combines these into an executable, resolving references between units
-▪ A loader sets up the executable program in memory and initialises data areas, prior to the program being run</p>
+<ul>
+<li>Programs are divided into compilation units
+<ul>
+<li>Provide degree of modularity</li>
+<li>Each commonly has main file (.c) for source code</li>
+<li>Header files (.h) declare public interfaces of units</li>
+</ul>
+</li>
+<li>Each unit is compiled separately to relocatable object code
+<ul>
+<li>Allows creation of object-code libraries</li>
+</ul>
+</li>
+<li>A linker combines these into an executable, resolving references between units</li>
+<li>A loader sets up the executable program in memory and initialises data areas, prior to the program being run</li>
+</ul>
 <h3 id="declaration-vs-definition" tabindex="-1">Declaration vs Definition</h3>
-<p>▪ Declaration: inform the compiler of the existence of a
-variable or function</p>
+<ul>
+<li>Declaration: inform the compiler of the existence of a
+variable or function</li>
+</ul>
 <pre><code class="hljs language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> *b)</span>; <span class="hljs-comment">// in .h file</span>
 </code></pre>
-<p>▪ Definition: provide function body; allocate memory for
-local variables</p>
+<ul>
+<li>Definition: provide function body; allocate memory for
+local variables</li>
+</ul>
 <pre><code class="hljs language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> *b)</span> { <span class="hljs-comment">// in .c file</span>
  <span class="hljs-type">int</span> temp = *a;
  *a = *b;
@@ -79,32 +91,47 @@ o Produce fast, optimized code</p>
 <h3 id="detailed-compilation-flow" tabindex="-1">Detailed Compilation Flow</h3>
 <p><img src="assets/2022-11-21-15-37-03.png" alt=""></p>
 <h3 id="the-c-pre-processor" tabindex="-1">The C pre-processor</h3>
-<p>▪ Includes – imports header files</p>
+<ul>
+<li>Includes - imports header files</li>
+</ul>
 <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"A.h"</span></span>
 </code></pre>
-<p>▪ Text substitution, e.g. define constants</p>
+<ul>
+<li>Text substitution, e.g. define constants</li>
+</ul>
 <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> NAME value</span>
 </code></pre>
-<p>▪ Macros (inline functions)</p>
+<ul>
+<li>Macros (inline functions)</li>
+</ul>
 <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX(X,Y) (X&gt;Y ? X : Y) <span class="hljs-comment">// careful with macros!</span></span>
 </code></pre>
-<p>▪ Conditional compilation</p>
+<ul>
+<li>Conditional compilation</li>
+</ul>
 <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> DEBUG</span>
 <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Debugging message"</span>);
 <span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
 
 <span class="hljs-comment">// $ gcc -DDEBUG</span>
 </code></pre>
-<p>▪ Inserts header files to C source code file in response to</p>
+<ul>
+<li>Inserts header files to C source code file in response to</li>
+</ul>
 <pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"A.h"</span></span>
 </code></pre>
-<p>▪ Performs macro substitution
-– E.g. In response to <code><span class="hljs-meta">#<span class="hljs-keyword">define</span> <span class="hljs-keyword">CONST</span> <span class="hljs-number">5</span></span></code>
-– All references to CONST in source will be replaced by 5
-▪ No type checking or anything, just a direct textual replacement
-▪ To examine the output gcc pre-processor <code><span class="hljs-symbol">$</span> gcc –E <span class="hljs-keyword">file</span>.c –o output.c</code></p>
+<ul>
+<li>Performs macro substitution
+<ul>
+<li>E.g. In response to <code><span class="hljs-meta">#<span class="hljs-keyword">define</span> <span class="hljs-keyword">CONST</span> <span class="hljs-number">5</span></span></code></li>
+<li>All references to CONST in source will be replaced by 5</li>
+</ul>
+</li>
+<li>No type checking or anything, just a direct textual replacement</li>
+<li>To examine the output gcc pre-processor <code><span class="hljs-symbol">$</span> gcc –E <span class="hljs-keyword">file</span>.c –o output.c</code></li>
+</ul>
 <h3 id="anatomy-of-a-modern-compiler" tabindex="-1">Anatomy of a Modern Compiler</h3>
 <p><img src="assets/2022-11-21-15-45-08.png" alt=""></p>
 <h4 id="frontend-(analysis)" tabindex="-1">Frontend (analysis)</h4>
@@ -130,80 +157,137 @@ o Produce fast, optimized code</p>
 ○ Enables modularity and reuse</p>
 <p><img src="assets/2022-11-21-15-53-03.png" alt=""></p>
 <h3 id="data-flow-graph-(dfg)" tabindex="-1">Data flow graph (DFG)</h3>
-<p>▪ Represents flow of data inside “basic block”
-▪ Basic blocks
-– Code with one entry one exit
-– May have a branch at the end, not before
-▪ Does not represent control.
-▪ Describes the minimal ordering requirements on operations.
-▪ Static Single Assignment is employed to ease optimizations</p>
+<ul>
+<li>Represents flow of data inside “basic block”</li>
+<li>Basic blocks
+<ul>
+<li>Code with one entry one exit</li>
+<li>May have a branch at the end, not before</li>
+</ul>
+</li>
+<li>Does not represent control.</li>
+<li>Describes the minimal ordering requirements on operations.</li>
+<li>Static Single Assignment is employed to ease optimizations</li>
+</ul>
 <h3 id="static-single-assignment-(ssa)" tabindex="-1">Static Single Assignment (SSA)</h3>
-<p>▪ If a variable is assigned more that once in the source code:
-– SSA keeps only the first assignment
-– The rest of the assignments are renamed to temporary variables</p>
+<ul>
+<li>If a variable is assigned more that once in the source code:
+<ul>
+<li>SSA keeps only the first assignment</li>
+<li>The rest of the assignments are renamed to temporary variables</li>
+</ul>
+</li>
+</ul>
 <p><img src="assets/2022-11-21-15-57-42.png" alt=""></p>
 <h3 id="dfg-and-partial-orders" tabindex="-1">DFG and Partial Orders</h3>
 <p><img src="assets/2022-11-21-15-58-56.png" alt=""></p>
 <h2 id="optimizations" tabindex="-1">Optimizations</h2>
 <h3 id="control-data-flow-graph-(cdfg)" tabindex="-1">Control-Data Flow Graph (CDFG)</h3>
-<p>▪ Represents control and data flow
-– Nodes: basic blocks
-– Edges: branches between basic blocks</p>
+<ul>
+<li>Represents control and data flow
+<ul>
+<li>Nodes: basic blocks</li>
+<li>Edges: branches between basic blocks</li>
+</ul>
+</li>
+</ul>
 <p><img src="assets/2022-11-21-16-01-05.png" alt="">
 <img src="assets/2022-11-21-16-01-35.png" alt=""></p>
 <h3 id="ir-optimization" tabindex="-1">IR Optimization</h3>
-<p>▪ Machine independent optimizations
-– Code optimizations independent of the target architecture
-– e.g. dead code elimination, constant propagation, constant folding etc.
-▪ Machine dependent optimizations
-– Specifically aim at target architecture
-– May not be applicable directly across different architectures
-– e.g. Instruction selection, register allocation etc.
-▪ Perform a set of passes over the CFG
-– Each pass does a specific, simple task over the CFG
-– By repeating multiple simple passes on the CFG over and over, compilers achieve very complex optimizations
-▪ Example optimizations:
-– Dead code elimination: Eliminate assignments to variables that are never used, or basic blocks that are never reached
-– Constant propagation: Identify variables that are constant, substitute the constant elsewhere
-– Constant folding: Compute and substitute constant expressions</p>
+<ul>
+<li>Machine independent optimizations
+<ul>
+<li>Code optimizations independent of the target architecture</li>
+<li>e.g. dead code elimination, constant propagation, constant folding etc.</li>
+</ul>
+</li>
+<li>Machine dependent optimizations
+<ul>
+<li>Specifically aim at target architecture</li>
+<li>May not be applicable directly across different architectures</li>
+<li>e.g. Instruction selection, register allocation etc.</li>
+</ul>
+</li>
+<li>Perform a set of passes over the CFG
+<ul>
+<li>Each pass does a specific, simple task over the CFG</li>
+<li>By repeating multiple simple passes on the CFG over and over, compilers achieve very complex optimizations</li>
+</ul>
+</li>
+<li>Example optimizations:
+<ul>
+<li>Dead code elimination: Eliminate assignments to variables that are never used, or basic blocks that are never reached</li>
+<li>Constant propagation: Identify variables that are constant, substitute the constant elsewhere</li>
+<li>Constant folding: Compute and substitute constant expressions</li>
+</ul>
+</li>
+</ul>
 <h2 id="code-generation" tabindex="-1">Code Generation</h2>
-<p>▪ Translate optimized IR to assembly
-▪ Register allocation: Map variable to registers
-– If #variables &gt; #registers, map some to memory and load/store when needed
-▪ Translate each assignment to instruction
-– Some assignments may require more than one instruction if ISA does not have operations
-▪ Emit each basic block: labels, assignments and branches
-▪ Lay out basic blocks, remove superfluous branches
-▪ ISA and CPU specific optimization
-– E.g. reorder instructions if possible</p>
+<ul>
+<li>Translate optimized IR to assembly</li>
+<li>Register allocation: Map variable to registers
+<ul>
+<li>If #variables &gt; #registers, map some to memory and load/store when needed</li>
+</ul>
+</li>
+<li>Translate each assignment to instruction
+<ul>
+<li>Some assignments may require more than one instruction if ISA does not have operations</li>
+</ul>
+</li>
+<li>Emit each basic block: labels, assignments and branches</li>
+<li>Lay out basic blocks, remove superfluous branches</li>
+<li>ISA and CPU specific optimization
+<ul>
+<li>E.g. reorder instructions if possible</li>
+</ul>
+</li>
+</ul>
 <h2 id="summary%3A-modern-compilers" tabindex="-1">Summary: Modern Compilers</h2>
 <p><img src="assets/2022-11-25-11-04-21.png" alt=""></p>
 <h2 id="loop-transformations" tabindex="-1">Loop Transformations</h2>
-<p>▪ Why is it important
-– Programs spends lots of time in loops
-▪ Goal
-– Reduce loop overhead
-– Increase opportunities for other optimizations
-– Improve pipeline and memory system performance</p>
+<ul>
+<li>Why is it important
+<ul>
+<li>Programs spends lots of time in loops</li>
+</ul>
+</li>
+<li>Goal
+<ul>
+<li>Reduce loop overhead</li>
+<li>Increase opportunities for other optimizations</li>
+<li>Improve pipeline and memory system performance</li>
+</ul>
+</li>
+</ul>
 <h3 id="%231%3A-loop-unrolling" tabindex="-1">#1: Loop Unrolling</h3>
-<p>▪ Duplicates loop body ‘n’ times and adjust loop bounds
-– Reduces number of comparisons/branches to test loop exit
-• Branches are big performance bottleneck in hardware
-– Increases loop body size
+<ul>
+<li>Duplicates loop body ‘n’ times and adjust loop bounds
+<ul>
+<li>Reduces number of comparisons/branches to test loop exit
+• Branches are big performance bottleneck in hardware</li>
+<li>Increases loop body size
 • Enables more optimizations
-• More register pressure</p>
+• More register pressure</li>
+</ul>
+</li>
+</ul>
 <p><img src="assets/2022-11-25-11-12-20.png" alt=""></p>
 <h3 id="%232%3A-loop-fusion" tabindex="-1">#2: Loop Fusion</h3>
-<p>▪ Combines two (or more) loops into one</p>
 <ul>
-<li>Pros:
+<li>
+<p>Combines two (or more) loops into one</p>
+</li>
+<li>
+<p>Pros:</p>
 <ul>
 <li>May improve data locality</li>
 <li>Reduces loop overhead</li>
 <li>May enable better instruction scheduling</li>
 </ul>
 </li>
-<li>Cons:
+<li>
+<p>Cons:</p>
 <ul>
 <li>May hurt data locality</li>
 <li>May hurt I-cache hit rate</li>
@@ -212,15 +296,19 @@ o Produce fast, optimized code</p>
 </ul>
 <p><img src="assets/2022-11-25-11-12-33.png" alt=""></p>
 <h3 id="%233%3A-loop-distribution%2Ffission" tabindex="-1">#3: Loop Distribution/Fission</h3>
-<p>▪ Divides a loop into two (or more) loops</p>
 <ul>
-<li>Pros:
+<li>
+<p>Divides a loop into two (or more) loops</p>
+</li>
+<li>
+<p>Pros:</p>
 <ul>
 <li>Enables optimizations: 2nd loop is parallel loop</li>
 <li>Reduces register pressure</li>
 </ul>
 </li>
-<li>Cons:
+<li>
+<p>Cons:</p>
 <ul>
 <li>Increases loop overhead</li>
 </ul>
@@ -228,87 +316,162 @@ o Produce fast, optimized code</p>
 </ul>
 <p><img src="assets/2022-11-25-11-12-42.png" alt=""></p>
 <h3 id="%234%3A-loop-interchange" tabindex="-1">#4: Loop Interchange</h3>
-<p>▪ Switches the order of loops in a loop nest
-▪ Can improve data locality and parallelism</p>
+<ul>
+<li>Switches the order of loops in a loop nest</li>
+<li>Can improve data locality and parallelism</li>
+</ul>
 <p><img src="assets/2022-11-25-11-12-50.png" alt=""></p>
 <h3 id="%235%3A-loop-tiling" tabindex="-1">#5: Loop Tiling</h3>
-<p>▪ Breaks a loop into a set of nested loops
-– Each inner loop operates on a subset of data
-▪ Changes memory access pattern: Can improve locality</p>
+<ul>
+<li>Breaks a loop into a set of nested loops
+<ul>
+<li>Each inner loop operates on a subset of data</li>
+</ul>
+</li>
+<li>Changes memory access pattern: Can improve locality</li>
+</ul>
 <p><img src="assets/2022-11-25-11-13-47.png" alt=""></p>
 <h2 id="function-inlining-and-register-allocation" tabindex="-1">Function Inlining and Register Allocation</h2>
 <h3 id="procedure%2Ffunction-inlining" tabindex="-1">Procedure/Function Inlining</h3>
-<p>▪ Replaces call with the body of the callee (called function)
-▪ Programmer can ask compiler to inline a function
-– C provides inline keyword
-▪ Compiler itself can inline a function if deemed beneficial</p>
+<ul>
+<li>Replaces call with the body of the callee (called function)</li>
+<li>Programmer can ask compiler to inline a function
+<ul>
+<li>C provides inline keyword</li>
+</ul>
+</li>
+<li>Compiler itself can inline a function if deemed beneficial</li>
+</ul>
 <p><img src="assets/2022-11-25-11-17-33.png" alt=""></p>
-<p>▪ Function calls can be costly
-– Direct costs: arguments and results passing, call/return (branch) instructions, stack frame maintenance etc
-– Indirect costs: breaks intra-procedural analysis to inter-procedural analysis (which is more complex)
-▪ Inlining removes these costs
-▪ Downside
-– Can increases code size
-– Can reduce instruction cache hit rate</p>
+<ul>
+<li>Function calls can be costly
+<ul>
+<li>Direct costs: arguments and results passing, call/return (branch) instructions, stack frame maintenance etc</li>
+<li>Indirect costs: breaks intra-procedural analysis to inter-procedural analysis (which is more complex)</li>
+</ul>
+</li>
+<li>Inlining removes these costs</li>
+<li>Downside
+<ul>
+<li>Can increases code size</li>
+<li>Can reduce instruction cache hit rate</li>
+</ul>
+</li>
+</ul>
 <h3 id="register-allocation" tabindex="-1">Register Allocation</h3>
-<p>▪ Registers temporarily hold variables
-▪ Aim: Allocate registers to variables such that memory accesses are minimized
-– Good register allocation is key to performance as memory accesses can be costly (imagine cache misses)
-▪ Compilers analyze lifetime of variables for register allocation
-▪ Programmers could hint which variables to keep in registers
-– C supports register keyword
-– Modern compilers just ignore it!
-▪ Some variables always need to be in memory
-– volatile keyword provides this functionality
-– Still brought to a register for using the value</p>
+<ul>
+<li>Registers temporarily hold variables</li>
+<li>Aim: Allocate registers to variables such that memory accesses are minimized
+<ul>
+<li>Good register allocation is key to performance as memory accesses can be costly (imagine cache misses)</li>
+</ul>
+</li>
+<li>Compilers analyze lifetime of variables for register allocation</li>
+<li>Programmers could hint which variables to keep in registers
+<ul>
+<li>C supports register keyword</li>
+<li>Modern compilers just ignore it!</li>
+</ul>
+</li>
+<li>Some variables always need to be in memory
+<ul>
+<li>volatile keyword provides this functionality</li>
+<li>Still brought to a register for using the value</li>
+</ul>
+</li>
+</ul>
 <h3 id="register-allocation-with-graph-coloring" tabindex="-1">Register Allocation with Graph Coloring</h3>
-<p>▪ Edges between variable that are live at the same time
-▪ Represent each register with a color
-▪ Color the nodes with as few colors as possible
-– No edge must share a color
-▪ NP-complete
-– Compilers use heuristics to reach a good solution</p>
+<ul>
+<li>Edges between variable that are live at the same time</li>
+<li>Represent each register with a color</li>
+<li>Color the nodes with as few colors as possible
+<ul>
+<li>No edge must share a color</li>
+</ul>
+</li>
+<li>NP-complete
+<ul>
+<li>Compilers use heuristics to reach a good solution</li>
+</ul>
+</li>
+</ul>
 <h3 id="instruction-selection" tabindex="-1">Instruction Selection</h3>
-<p>▪ IR code can be translated to a number instruction
-sequences depending types of instructions in ISA
-▪ IR expressions are represented as graphs (CDFG)
-– Find the best template for expression
-– The template should minimize the chosen cost metric</p>
+<ul>
+<li>IR code can be translated to a number instruction
+sequences depending types of instructions in ISA</li>
+<li>IR expressions are represented as graphs (CDFG)
+<ul>
+<li>Find the best template for expression</li>
+<li>The template should minimize the chosen cost metric</li>
+</ul>
+</li>
+</ul>
 <h2 id="assembler-and-linker" tabindex="-1">Assembler and linker</h2>
-<p>▪ Generate machine instructions (binary) from assembly instructions (symbolic)
-– One to one translation (usually)
-▪ Translate labels into addresses
-▪ Handle pseudo-ops
-▪ Two pass approach
-– First pass: Generate symbol table
-– Second pass: resolve labels and generate machine instructions</p>
+<ul>
+<li>Generate machine instructions (binary) from assembly instructions (symbolic)
+<ul>
+<li>One to one translation (usually)</li>
+</ul>
+</li>
+<li>Translate labels into addresses</li>
+<li>Handle pseudo-ops</li>
+<li>Two pass approach
+<ul>
+<li>First pass: Generate symbol table</li>
+<li>Second pass: resolve labels and generate machine instructions</li>
+</ul>
+</li>
+</ul>
 <h3 id="symbol-table" tabindex="-1">Symbol Table</h3>
-<p>▪ Generating symbol table:
-– Scan the file to collect labels and their addresses
-▪ Addresses are generally relative to the first instructions in
-the file</p>
+<ul>
+<li>Generating symbol table:
+<ul>
+<li>Scan the file to collect labels and their addresses</li>
+</ul>
+</li>
+<li>Addresses are generally relative to the first instructions in
+the file</li>
+</ul>
 <h3 id="object-file" tabindex="-1">Object File</h3>
-<p>▪ Output of assembler
-▪ Several standards
-– ELF (Unix), ECOFF (Windows), Mach-O (OS X)
-▪ Object file includes
-– Symbol table
-– Program code (.text segment)
-– Data (.data segment)
-– Information about relocatable parts
-– Debug data (references to source files)</p>
+<ul>
+<li>Output of assembler</li>
+<li>Several standards
+<ul>
+<li>ELF (Unix), ECOFF (Windows), Mach-O (OS X)</li>
+</ul>
+</li>
+<li>Object file includes
+<ul>
+<li>Symbol table</li>
+<li>Program code (.text segment)</li>
+<li>Data (.data segment)</li>
+<li>Information about relocatable parts</li>
+<li>Debug data (references to source files)</li>
+</ul>
+</li>
+</ul>
 <h3 id="linker" tabindex="-1">Linker</h3>
-<p>▪ Takes multiple object files and libraries and generates one executable file
-– Combines all object file segments (text, data)
-– Determines start address for all modules
-– Combines all symbol tables
-– Resolves all symbols
-▪ Transforms relative address to absolute addresses
-▪ Produces an error if cannot find a label/symbol in merged symbol table</p>
+<ul>
+<li>Takes multiple object files and libraries and generates one executable file
+<ul>
+<li>Combines all object file segments (text, data)</li>
+<li>Determines start address for all modules</li>
+<li>Combines all symbol tables</li>
+<li>Resolves all symbols</li>
+</ul>
+</li>
+<li>Transforms relative address to absolute addresses</li>
+<li>Produces an error if cannot find a label/symbol in merged symbol table</li>
+</ul>
 <h4 id="dynamic-linking" tabindex="-1">Dynamic Linking</h4>
-<p>▪ Most operating systems can link modules at load time
-– e.g. shared libraries (.so on linux platforms)
-– Saves storage space</p>
+<ul>
+<li>Most operating systems can link modules at load time
+<ul>
+<li>e.g. shared libraries (.so on linux platforms)</li>
+<li>Saves storage space</li>
+</ul>
+</li>
+</ul>
 
         <div style="height: 100vh;"></div>
       </article>
