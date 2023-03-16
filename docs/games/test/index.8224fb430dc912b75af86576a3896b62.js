@@ -81,13 +81,13 @@
   // deno:file:///C:/Users/tenst/Documents/GitHub/deno-game-engine/src/engine/images.ts
   var ImageAsset = class {
     constructor(path) {
-      this.id = path;
+      this.path = path;
     }
   };
-  var loadImages = (imageAssets) => {
+  var loadImages = (imageAssets, baseUrl) => {
     Object.values(imageAssets).forEach((imageAsset) => {
       const image = new Image();
-      image.src = `/${imageAsset.id}`;
+      image.src = baseUrl + imageAsset.path;
       image.onload = () => {
         imageAsset.image = image;
       };
@@ -101,7 +101,8 @@
     height: 320,
     scale: 2,
     fps: 60,
-    zSort: true
+    zSort: true,
+    baseUrl: "./"
   };
   var Game = class {
     constructor() {
@@ -150,7 +151,7 @@
     }
     setImageAssets(imageAssets) {
       this.imageAssets = imageAssets;
-      loadImages(this.imageAssets);
+      loadImages(this.imageAssets, this.options.baseUrl);
     }
     play() {
       if (!this.imageAssets) {
