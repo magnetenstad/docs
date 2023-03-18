@@ -421,7 +421,7 @@
         const result = {};
         for (const key of Object.keys(data)) {
           const room = data[key];
-          let value = 0;
+          let value = 20;
           if ("noise" in room) {
             value -= room.noise;
           }
