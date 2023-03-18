@@ -434,7 +434,13 @@
       }
     ),
     user1: new TextObject("Bruker 1", 800, 300),
-    user2: new TextObject("Bruker 2", 800, 450)
+    user2: new TextObject("Bruker 2", 800, 450),
+    app: new TextObject("St\xF8yApp", 550, 500),
+    cantine: new TextObject("Kantine", 550, 100, (_, newData) => {
+      let result = 0;
+      Object.values(newData).forEach((v) => result += v.people ?? 0);
+      return { cinnamonBuns: result * 2 };
+    })
   };
   texts.apeople.arrowTo.push(texts.xpeople);
   texts.anoise.arrowTo.push(texts.xnoise);
@@ -444,6 +450,8 @@
   texts.xnoise.arrowTo.push(texts.room);
   texts.room.arrowTo.push(texts.user1);
   texts.room.arrowTo.push(texts.user2);
+  texts.xnoise.arrowTo.push(texts.app);
+  texts.xpeople.arrowTo.push(texts.cantine);
   var outlineA = new Outline([texts.anoise, texts.apeople], "Rom A");
   var outlineB = new Outline([texts.bnoise, texts.bpeople], "Rom B");
   game.addGameObject(outlineA);
