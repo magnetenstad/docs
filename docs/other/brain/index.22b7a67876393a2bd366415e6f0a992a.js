@@ -418,19 +418,23 @@
         return oldData;
       },
       (data) => {
-        const result = {};
+        let roomName = "";
+        let maxValue = -Infinity;
         for (const key of Object.keys(data)) {
-          const room = data[key];
+          const roomObj = data[key];
           let value = 20;
-          if ("noise" in room) {
-            value -= room.noise;
+          if ("noise" in roomObj) {
+            value -= roomObj.noise;
           }
-          if ("people" in room) {
-            value -= room.people;
+          if ("people" in roomObj) {
+            value -= roomObj.people;
           }
-          result[key] = value;
+          if (value > maxValue) {
+            maxValue = value;
+            roomName = key;
+          }
         }
-        return result;
+        return roomName ? { room: roomName } : {};
       }
     ),
     user1: new TextObject("Bruker 1", 800, 300),
