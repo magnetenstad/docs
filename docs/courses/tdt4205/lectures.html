@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>lectures.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4205</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="lectures.html">lectures ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#lectures">lectures</a><ol><li><a href="#overview">Overview</a></li><li><a href="#lexical-analysis-(scanning)">Lexical analysis (scanning)</a></li><li><a href="#syntactical-analysis-(parsing)">Syntactical analysis (parsing)</a><ol><li><a href="#grammars-and-production-rules-(ebnf)">Grammars and production rules (EBNF)</a></li><li><a href="#left-factoring-and-left-recursion">Left factoring and left recursion</a></li><li><a href="#top-down-parsing-and-ll(1)-parser-construction">Top-down parsing and LL(1) parser construction</a></li><li><a href="#bottom-up-parsing-and-lr(0)-parser-construction">Bottom-up parsing and LR(0) parser construction</a><ol><li><a href="#the-lr(0)-automaton">The LR(0) automaton</a></li></ol></li><li><a href="#animation-(%3F)">Animation (?)</a></li></ol></li><li><a href="#structure-of-a-compiler">Structure of a compiler</a><ol><li><a href="#semantics">Semantics</a></li></ol></li><li><a href="#type-judgments">Type judgments</a><ol><li><a href="#l-attribution">L-attribution</a></li><li><a href="#"></a></li></ol></li><li><a href="#type-checking">Type checking</a><ol><li><a href="#%3F">?</a></li></ol></li><li><a href="#three-address-code-(tac)-(slides-16)">Three-address code (TAC) (Slides 16)</a></li><li><a href="#simple-cpu-design-and-the-run-time-stack-(slides-17)">Simple CPU design and the run-time stack (Slides 17)</a></li><li><a href="#introduction-to-optimizations-(slides-22)">Introduction to optimizations (slides 22)</a></li><li><a href="#dataflow-analysis-framework-(slides-27%2C-28)">Dataflow Analysis Framework (slides 27, 28)</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="lectures" tabindex="-1">lectures</h1>
+<h2 id="overview" tabindex="-1">Overview</h2>
+<p>From source code to an executable program, there is</p>
+<ul>
+<li>Preprocessing</li>
+<li>Lexical analysis</li>
+<li>Syntactical analysis, creation of intermediate representation (IR)</li>
+<li>Semantic analysis</li>
+<li>Lowering of intermediate representation</li>
+<li>Optimization</li>
+<li>Code generation</li>
+<li>Assembly</li>
+<li>Linking</li>
+</ul>
+<h2 id="lexical-analysis-(scanning)" tabindex="-1">Lexical analysis (scanning)</h2>
+<ul>
+<li><strong>Lexemes</strong> are units of <em>lexical analysis</em>, words like <code><span class="hljs-attribute">x</span></code>, <code><span class="hljs-keyword">while</span></code>, or <code>42</code>.</li>
+<li><strong>Tokens</strong> are units of <em>syntactical analysis</em>, like <code><span class="hljs-attribute">identifier</span></code>, <code><span class="hljs-attribute">keyword</span></code> or <code><span class="hljs-built_in">number</span></code>.</li>
+<li><strong>Semantics</strong> assign computational meaning to valid strings in a programming language syntax.</li>
+<li>An <strong>alphabet</strong> is any finite set of symbols. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{0, 1\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mclose">}</span></span></span></span> is the alphabet of binary strings.</li>
+<li>A <strong>language</strong> is a set of valid strings over an alphabet. Languages may form unions <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>L</mi><mn>2</mn></msub><mo>=</mo><mo stretchy="false">{</mo><mi>s</mi><mtext>  </mtext><mi mathvariant="normal">∣</mi><mtext>  </mtext><mi>s</mi><mo>∈</mo><msub><mi>L</mi><mn>1</mn></msub><mo>∨</mo><mi>s</mi><mo>∈</mo><msub><mi>L</mi><mn>2</mn></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">L_1 \cup L_2 = \{s \;|\; s \in L_1 \lor s \in L_2 \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span>, and be concatinated <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub><msub><mi>L</mi><mn>2</mn></msub><mo>=</mo><mo stretchy="false">{</mo><msub><mi>s</mi><mn>1</mn></msub><msub><mi>s</mi><mn>2</mn></msub><mtext>  </mtext><mi mathvariant="normal">∣</mi><mtext>  </mtext><msub><mi>s</mi><mn>1</mn></msub><mo>∈</mo><msub><mi>L</mi><mn>1</mn></msub><mo>∧</mo><msub><mi>s</mi><mn>2</mn></msub><mo>∈</mo><msub><mi>L</mi><mn>2</mn></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">L_1L_2 = \{s_1s_2 \;|\; s_1 \in L_1 \land s_2 \in L_2 \}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>L</mi><mo>=</mo><msup><mi>L</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">LL = L^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">L</span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>. We also have the <em>Kleene closure</em> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi><mo>∗</mo></msup><mo>=</mo><msub><mo>∪</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mo>…</mo></mrow></msub><msup><mi>L</mi><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">L^* = \cup_{i=0,1,\dots}L^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.688696em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1107719999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mbin">∪</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="minner mtight">…</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span></span></span></span> and the <em>Positive closure</em> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi><mo>+</mo></msup><mo>=</mo><msub><mo>∪</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mo>…</mo></mrow></msub><msup><mi>L</mi><mi>i</mi></msup></mrow><annotation encoding="application/x-tex">L^+ = \cup_{i=1,2,\dots}L^i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1107719999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mbin">∪</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="minner mtight">…</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span></span></span></span></span></span></span>.</li>
+</ul>
+<p><strong>Regular languages</strong> can be recognized by <strong>finite automata</strong> (state machines) and <strong>reg.ex.</strong> (regular expressions). Thus, we have three representations:</p>
+<ol>
+<li>a <strong>graph</strong> representation of an automata where nodes are states and edges are transistions. We have a single starting state and one or more accepting states. Transitions are marked with sets of single characters that they apply to. Useful for visualizations and optimizations.</li>
+<li>a <strong>table</strong> representation of an automata. Useful for writing programs that do what the graph does.</li>
+<li>a <strong>regular expression</strong> representation. Useful for generating automaton programs automatically.</li>
+</ol>
+<p><strong>Regular expressions</strong> are defined by</p>
+<ul>
+<li>a character, stands for itself. (or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">ϵ</span></span></span></span>, the empty string)</li>
+<li>concatenation, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mn>1</mn></msub><msub><mi>R</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">R_1R_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>selection, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mn>1</mn></msub><mi mathvariant="normal">∣</mi><msub><mi>R</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">R_1|R_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>grouping, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>R</mi><mn>1</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(R_1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li>Kleene closure, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>R</mi><mn>1</mn><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">R_1^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.936804em;vertical-align:-0.24810799999999997em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-2.4518920000000004em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24810799999999997em;"><span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+<p>We can prove that an NFA (Nondeterministic Finite Automata) can be constructed from <em>any</em> regular expression by constructing NFA's for each of the five preceding cases. This is the McNaughton-Thompson-Yamada algorithm.</p>
+<p>NFA's admit multiple transitions on the same character, and transitions on the empty string <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">ϵ</span></span></span></span>. A deterministic FA does not.</p>
+<p><strong>Closures</strong> are the outcome of repeating a rule until the result stops changing (possibly never).</p>
+<p><strong>Subset construction</strong> is used to transform a NFA to a DFA. We want to group equivalent states (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">ϵ</span></span></span></span>-closures) together. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>move</mtext><mo stretchy="false">(</mo><mi>S</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{move}(S,c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">move</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span> is the set of states that you can reach from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> when the input character is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>.</p>
+<ol>
+<li>Number all states</li>
+<li>Write the transition table, with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>move</mtext><mo stretchy="false">(</mo><mi>S</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{move}(S,c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">move</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span> for each visited state <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> and possible input <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>, starting from the initial state</li>
+<li>Build the DFA according to the transition table. Any <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">ϵ</span></span></span></span>-closure that contains an original accepting state, is an accepting state in the DFA.</li>
+</ol>
+<p><strong>Systematic minimization</strong> is used to optimize a DFA.</p>
+<ol>
+<li>Start with two groups: all non-final states and all final states.</li>
+<li>Within a group, check pairs (or subsets?) for equivalence. If found, these are separated into their own group.</li>
+<li>In the end, the equivalence groups may be merged to create a minimized DFA</li>
+</ol>
+<p><code>Regex --<span class="hljs-function"><span class="hljs-params">(McNaughton-Thompson-Yamada)</span>-&gt;</span> NFA --<span class="hljs-function"><span class="hljs-params">(Subset Construction)</span>-&gt;</span> DFA --<span class="hljs-function"><span class="hljs-params">(Systematic minimization)</span>-&gt;</span> Optimized DFA</code></p>
+<p>This is performed in problem set 1 of the course.</p>
+<p><img src="assets/2023-01-16-12-55-41.png" alt=""></p>
+<h2 id="syntactical-analysis-(parsing)" tabindex="-1">Syntactical analysis (parsing)</h2>
+<ul>
+<li>Top-down
+<ul>
+<li>Easy to do by hand</li>
+<li>LL(1)</li>
+</ul>
+</li>
+<li>Bottom-up
+<ul>
+<li>More general, best done by generators</li>
+<li>LR(0) - Useless but interesting</li>
+<li>SLR - easy extension of LR(0)</li>
+<li>LR(1) - super general, very complicated</li>
+<li>LALR - compromise</li>
+</ul>
+</li>
+</ul>
+<h3 id="grammars-and-production-rules-(ebnf)" tabindex="-1">Grammars and production rules (EBNF)</h3>
+<p><img src="assets/2023-02-16-18-45-31.png" alt=""></p>
+<ul>
+<li>Non-terminals (capitalized)</li>
+<li>Terminals (lowercase)</li>
+<li>Start symbol</li>
+<li>Productions: head -&gt; body
+<ul>
+<li>head: nonterminal</li>
+<li>body: sequence of terminals and non-terminals</li>
+</ul>
+</li>
+</ul>
+<p>A grammer is <em>ambiguous</em> when it admits several syntax trees for the same statement. These are of no use to us, they must be fixed. This can be solved by altering the language or assign priorities to the productions.</p>
+<p>A syntax analyzer (parser) systematically derives a statement. There are two very intuitive ways to systematically select nonterminals for substitution:</p>
+<ul>
+<li>Take the leftmost one</li>
+<li>Take the rightmost one</li>
+</ul>
+<h3 id="left-factoring-and-left-recursion" tabindex="-1">Left factoring and left recursion</h3>
+<p><strong>Left factoring</strong> shortens the distance to the next nonterminal</p>
+<p>E.g. from</p>
+<ul>
+<li>A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> abcdef | abcxyz</li>
+</ul>
+<p>To</p>
+<ul>
+<li>A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> abcA'</li>
+<li>A' <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> def</li>
+<li>A' <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> xyz</li>
+</ul>
+<p><strong>Left recursion elimination</strong> shifts a nonterminal to the right</p>
+<p>E.g. from</p>
+<ul>
+<li>A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> A a | a</li>
+</ul>
+<p>To</p>
+<ul>
+<li>A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> a A'</li>
+<li>A' <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> a A' | <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">ϵ</span></span></span></span></li>
+</ul>
+<h3 id="top-down-parsing-and-ll(1)-parser-construction" tabindex="-1">Top-down parsing and LL(1) parser construction</h3>
+<p>The “LL” in LL(1) is</p>
+<ul>
+<li>Left-to-right scan</li>
+<li>Leftmost Derivation (always expand the leftmost nonterminal)</li>
+</ul>
+<p><strong>Recursive descent</strong> means we follow the children of a tree node through to the bottom, where there must be a terminal. Backtrack, and repeat. When there is choice, utilize the lookahead symbol.</p>
+<p>This requires that the grammar is suitable, but we can adapt them somewhat (left factoring, left recursion elimination)</p>
+<p>We find</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>FIRST</mtext><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{FIRST}(\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">FIRST</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span>, the set of terminals that can appear to the left in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>, where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> is any combination of terminals and nonterminals.</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>NULLABLE</mtext><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{NULLABLE}(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">NULLABLE</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>, <code><span class="hljs-literal">true</span></code> if the nonterminal <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> can produce the empty string, <code><span class="hljs-literal">false</span></code> otherwise.</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>FOLLOW</mtext><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{FOLLOW}(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">FOLLOW</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>, the set of terminals that can appear directly to the right of the nonterminal <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>.</li>
+</ul>
+<p><img src="assets/2023-02-16-18-50-51.png" alt=""></p>
+<p>S → u B D z
+B → B v | w
+B' → vB' | ϵ
+D → E F
+E → y | ε
+F → x | ε</p>
+<table>
+<thead>
+<tr>
+<th>Nonterminal</th>
+<th>First</th>
+<th>Follow</th>
+<th>Nullable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>u</td>
+<td>$</td>
+<td>no</td>
+</tr>
+<tr>
+<td>B</td>
+<td>w</td>
+<td>y, x, z</td>
+<td>no</td>
+</tr>
+<tr>
+<td>B'</td>
+<td>v</td>
+<td>y, x, z</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>D</td>
+<td>y, x</td>
+<td>z</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>E</td>
+<td>y</td>
+<td>x, z</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>F</td>
+<td>x</td>
+<td>z</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Rule #1: Enter the production X → α at (X,t) where t is in FIRST(α)</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>u</th>
+<th>w</th>
+<th>v</th>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>S → uBDz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td></td>
+<td>B → wB'</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B'</td>
+<td></td>
+<td></td>
+<td>B → vB'</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td>D → EF</td>
+<td>D → EF</td>
+<td></td>
+</tr>
+<tr>
+<td>E</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>E → y</td>
+<td></td>
+</tr>
+<tr>
+<td>F</td>
+<td></td>
+<td></td>
+<td></td>
+<td>F → x</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Rule #2: When α →* ε, enter the production X→α at (X,t) where t is in FOLLOW(X)</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>u</th>
+<th>w</th>
+<th>v</th>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>S → uBDz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td></td>
+<td>B → wB'</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B'</td>
+<td></td>
+<td></td>
+<td>B → vB'</td>
+<td>B' → ε</td>
+<td>B' → ε</td>
+<td>B' → ε</td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td></td>
+<td></td>
+<td>D → EF</td>
+<td>D → EF</td>
+<td>D → EF</td>
+</tr>
+<tr>
+<td>E</td>
+<td></td>
+<td></td>
+<td></td>
+<td>E → ε</td>
+<td>E → y</td>
+<td>E → ε</td>
+</tr>
+<tr>
+<td>F</td>
+<td></td>
+<td></td>
+<td></td>
+<td>F → x</td>
+<td></td>
+<td>F → ε</td>
+</tr>
+</tbody>
+</table>
+<p>The above is an LL(1) parsing table. One way to implement this is to write a function for each nonterminal, and make them mutually recursive according to the table. Recursive descent parsing uses the function call mechanism to implement its stack machine.</p>
+<h3 id="bottom-up-parsing-and-lr(0)-parser-construction" tabindex="-1">Bottom-up parsing and LR(0) parser construction</h3>
+<p>Bottom-up parsing buffers input until it can build productions on top of productions.</p>
+<p><img src="assets/2023-01-27-12-30-52.png" alt=""></p>
+<p><img src="assets/2023-01-27-12-31-15.png" alt=""></p>
+<p>Key ingredients:</p>
+<ul>
+<li>An internal stack to shift and reduce symbols on</li>
+<li>An automaton that can use stacked history to backtrack its footsteps</li>
+<li>A grammar with one and only one initial production</li>
+</ul>
+<h4 id="the-lr(0)-automaton" tabindex="-1">The LR(0) automaton</h4>
+<ul>
+<li>We’re tracking all the different things that can happen throughout a derivation (there will be closures of related things)</li>
+<li>The states represent all the different paths that may have led to them</li>
+<li>Some states are reducing, that means
+<ul>
+<li>Pop body, push head</li>
+<li>Revert to where we started recognizing the present production</li>
+</ul>
+</li>
+<li>Transitions shift symbols
+<ul>
+<li>They are what moves us ahead while working toward a reduction</li>
+</ul>
+</li>
+</ul>
+<p>To make the LR(0) automaton, start with the designated start item</p>
+<ol>
+<li>Find its closure, make a state</li>
+<li>Follow all the transitions</li>
+<li>Repeat from 1, until you reach the reduction X’ → X at the other end.</li>
+</ol>
+<p><img src="assets/2023-01-27-12-35-54.png" alt=""></p>
+<h3 id="animation-(%3F)" tabindex="-1">Animation (?)</h3>
+<p>Input: <code>(<span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span>(<span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: ``
+State: 1</p>
+<p>Input: <code><span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span>(<span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(</code>
+State: 3</p>
+<p>Input: <code><span class="hljs-punctuation">,</span>(<span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(<span class="hljs-keyword">x</span></code>
+State: 2</p>
+<p>Input: <code><span class="hljs-punctuation">,</span>(<span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(S</code>
+State: 3</p>
+<p>Input: <code><span class="hljs-punctuation">,</span>(<span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(L</code>
+State: 7</p>
+<p>Input: <code><span class="hljs-punctuation">,</span>(<span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(L</code>
+State: 3</p>
+<p>Input: <code>(<span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(L,</code>
+State: 8</p>
+<p>Input: <code><span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(L,(</code>
+State: 3</p>
+<p>Input: <code><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(L<span class="hljs-punctuation">,</span>(<span class="hljs-keyword">x</span></code>
+State: 2</p>
+<p>Input: <code><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(L,(S</code>
+State: 3</p>
+<p>Input: <code><span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(L,(L</code>
+State: 7</p>
+<p>Input: <code><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(L,(L,</code>
+State: 3</p>
+<p>Input: <code><span class="hljs-keyword">x</span>))</code>
+Stack: <code>(L<span class="hljs-punctuation">,</span>(L<span class="hljs-punctuation">,</span><span class="hljs-keyword">x</span></code>
+State: 3</p>
+<h2 id="structure-of-a-compiler" tabindex="-1">Structure of a compiler</h2>
+<ul>
+<li>Frontend
+<ul>
+<li>Source language</li>
+<li>Scanner</li>
+<li>Parser</li>
+</ul>
+</li>
+<li>Midend
+<ul>
+<li>Data structures</li>
+<li>Intermediate representation</li>
+</ul>
+</li>
+<li>Backend
+<ul>
+<li>Target architectures</li>
+<li>x86</li>
+<li>power</li>
+<li>ARM</li>
+</ul>
+</li>
+</ul>
+<p>// TODO: slides11.pdf</p>
+<ul>
+<li>LR(0): Restrictive</li>
+<li>SLR: LR(0) + FOLLOW sets</li>
+<li>LR(1): As general as we want</li>
+<li>LALR: LR(1), but merge identical states</li>
+</ul>
+<h3 id="semantics" tabindex="-1">Semantics</h3>
+<p>Painting with broad strokes, we have</p>
+<ul>
+<li>Operational semantics, which describe the meaning of a statement in terms of what you do to the environment in order to create its effect</li>
+<li>Denotational semantics, which describe how the environment is affected by a statement without specifying the steps taken to make it so</li>
+<li>Axiomatic semantics, which describe properties of the environment which are preserved throughout a statement</li>
+</ul>
+<h2 id="type-judgments" tabindex="-1">Type judgments</h2>
+<p>So, what’s a type judgment?</p>
+<ul>
+<li>It’s a claim about a statement, written <code><span class="hljs-string">|- E : T</span></code> which reads “E is a well-typed construct of type T”</li>
+<li>Type-checking a program P requires demonstrating that <code><span class="hljs-string">|- P : T</span></code> for a type T</li>
+<li>It can be done by traversal and attribution</li>
+<li>It can be done by some other logical inference engin</li>
+</ul>
+<h3 id="l-attribution" tabindex="-1">L-attribution</h3>
+<p><img src="assets/2023-02-13-13-01-49.png" alt=""></p>
+<h3 id="" tabindex="-1"></h3>
+<p><img src="assets/2023-02-13-12-56-29.png" alt=""></p>
+<p>The attribute grammar approach is a special case of
+inference rules anyway</p>
+<p>They’re the same when...</p>
+<ol>
+<li>There are no missing definitions
+Everything in the outputs is also found from an input somewhere</li>
+<li>There are no missing rules
+Each syntax construct must have an applicable rule</li>
+<li>It’s deterministic
+There is only one applicable rule for each syntax construct</li>
+<li>There are no constraints
+Inputs are just variables</li>
+<li>There are no links
+No variables appear in several input positions</li>
+<li>There is nothing dynamic
+Constructs in premises are strictly parts of the construct in the conclusion</li>
+</ol>
+<p>(Don't memorize this)</p>
+<h2 id="type-checking" tabindex="-1">Type checking</h2>
+<ul>
+<li>Axioms
+<ul>
+<li>don’t need any premises in order to determine their type</li>
+</ul>
+</li>
+<li>Declarations
+<ul>
+<li>Affect the environment</li>
+</ul>
+</li>
+<li>Assignments</li>
+<li>Expressions
+<ul>
+<li>Partial order, e.g. least upper bound</li>
+</ul>
+</li>
+</ul>
+<h3 id="%3F" tabindex="-1">?</h3>
+<p>L and S attributions</p>
+<h2 id="three-address-code-(tac)-(slides-16)" tabindex="-1">Three-address code (TAC) (Slides 16)</h2>
+<h2 id="simple-cpu-design-and-the-run-time-stack-(slides-17)" tabindex="-1">Simple CPU design and the run-time stack (Slides 17)</h2>
+<h2 id="introduction-to-optimizations-(slides-22)" tabindex="-1">Introduction to optimizations (slides 22)</h2>
+<ul>
+<li>Function inlining</li>
+<li>Function cloning</li>
+<li>Constant folding</li>
+<li>Constant propagation</li>
+<li>Unreachable/dead code elimination</li>
+<li>Loop-invariant code motion</li>
+<li>Common sub-expression elimination</li>
+<li>Strength reduction</li>
+<li>Loop unrolling</li>
+</ul>
+<h2 id="dataflow-analysis-framework-(slides-27%2C-28)" tabindex="-1">Dataflow Analysis Framework (slides 27, 28)</h2>
+<table>
+<thead>
+<tr>
+<th>Analysis</th>
+<th>Domain</th>
+<th>Direction</th>
+<th>Meet Op.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LV</td>
+<td>Variables</td>
+<td>backward</td>
+<td>union</td>
+</tr>
+<tr>
+<td>CP</td>
+<td>Pairs of vars</td>
+<td>forward</td>
+<td>intersection</td>
+</tr>
+<tr>
+<td>AE</td>
+<td>Expressions</td>
+<td>forward</td>
+<td>intersection</td>
+</tr>
+<tr>
+<td>RD</td>
+<td>Assignments</td>
+<td>forward</td>
+<td>unions</td>
+</tr>
+<tr>
+<td>CF</td>
+<td>Variable "constant-ness"</td>
+<td>forward</td>
+<td>meet CF</td>
+</tr>
+</tbody>
+</table>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>
