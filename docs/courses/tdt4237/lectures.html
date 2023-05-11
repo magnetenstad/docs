@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>lectures.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4237</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="lectures.html">lectures ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#tdt4237-lectures">TDT4237 Lectures</a><ol><li><a href="#lecture-1%3A-security-principles">Lecture 1: Security principles</a><ol><li><a href="#some-examples-of-threats-and-attacks">Some examples of threats and attacks</a></li><li><a href="#basic-security-goals">Basic security goals</a></li><li><a href="#security-recommendations">Security recommendations</a></li></ol></li><li><a href="#lecture-2%3A-owasp-testing-guide---part-one">Lecture 2: OWASP Testing Guide - part one</a><ol><li><a href="#information-gathering">Information gathering</a></li><li><a href="#injection-attacks">Injection attacks</a></li><li><a href="#session-management-attacks">Session management attacks</a></li></ol></li><li><a href="#lecture-3%3A-owasp-testing-guide---part-two">Lecture 3: OWASP Testing Guide - part two</a><ol><li><a href="#xss">XSS</a></li><li><a href="#cross-site-request-forgery-(csrf)">Cross-Site Request Forgery (CSRF)</a></li><li><a href="#server-side-request-forgery-(ssrf)">Server-Side Request Forgery (SSRF)</a></li><li><a href="#software-and-data-integrity-failure">Software and data integrity failure</a></li><li><a href="#identification-and-authentication-failure">Identification and authentication failure</a><ol><li><a href="#authentication">Authentication</a></li></ol></li><li><a href="#hashing">Hashing</a></li><li><a href="#other-password-security-techniques">Other password security techniques</a></li><li><a href="#security-logging-and-monitoring-failures">Security logging and monitoring failures</a></li><li><a href="#clickjacking">Clickjacking</a></li></ol></li><li><a href="#lecture-4%3A-cryptography">Lecture 4: Cryptography</a></li><li><a href="#lecture-5%3A-autorization-and-stuff">Lecture 5: Autorization and stuff</a><ol><li><a href="#access-control">Access control</a><ol><li><a href="#access-control-on-different-levels">Access control on different levels</a></li></ol></li><li><a href="#access-control-models">Access control models</a><ol><li><a href="#comparison">Comparison</a></li><li><a href="#discretionary-access-control-(dac)">Discretionary access control (DAC)</a></li><li><a href="#mandatory-access-control">Mandatory Access Control</a><ol><li><a href="#bell-lapadula-model">Bell-LaPadula model</a></li><li><a href="#biba-model">Biba model</a></li></ol></li><li><a href="#role-based-access-control">Role-Based Access Control</a></li><li><a href="#attribute-based-access-control">Attribute Based Access Control</a></li></ol></li><li><a href="#authentication-and-single-sign-on-(sso)">Authentication and Single Sign On (SSO)</a><ol><li><a href="#sso-trends">SSO Trends</a></li></ol></li><li><a href="#control-hijacking">Control hijacking</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="tdt4237-lectures" tabindex="-1">TDT4237 Lectures</h1>
+<h2 id="lecture-1%3A-security-principles" tabindex="-1">Lecture 1: Security principles</h2>
+<h3 id="some-examples-of-threats-and-attacks" tabindex="-1">Some examples of threats and attacks</h3>
+<ul>
+<li><strong>Web defacement</strong>: Replace legitimate pages with illegitimate ones
+<ul>
+<li>Propaganda, etc.</li>
+</ul>
+</li>
+<li><strong>Infiltration</strong>, or control hijacking
+<ul>
+<li>SMS app virus, Saudi Arabia power plant</li>
+</ul>
+</li>
+<li><strong>Phishing</strong>: Spoofed site that looks real
+<ul>
+<li>Fake emails, SMSs. Often used to steal personal information</li>
+</ul>
+</li>
+<li><strong>Data theft/loss</strong>:
+<ul>
+<li>LinkedIn/Twitter emails/passwords databases hacked</li>
+</ul>
+</li>
+<li><strong>Denial of Service (DoS)</strong>: flood servers with packets, causing it to drop legitimate packets and become unavailable to real users
+<ul>
+<li>TDT4237 course website</li>
+</ul>
+</li>
+<li><strong>Ransomware</strong>: Encrypt data, requiring the user to pay to unlock their data. Common today, after the introduction of cryptocurrencies.
+<ul>
+<li>Nordic Hotels doors, DNV ship software</li>
+</ul>
+</li>
+</ul>
+<h3 id="basic-security-goals" tabindex="-1">Basic security goals</h3>
+<ul>
+<li>Confidentiality: keep somthing secret
+<ul>
+<li>Accomplished with cryptography, authentication, authorization</li>
+</ul>
+</li>
+<li>Integrity: avoiding tampering of data. Data integrity = no corruption. Control integrity = no control hijacking.
+<ul>
+<li>Accomplised with hashing (sometimes)</li>
+</ul>
+</li>
+<li>Availability: system uptime, response time and storage</li>
+<li>Privacy: the right to be left alone
+<ul>
+<li>GDPR</li>
+</ul>
+</li>
+<li>Accountability:
+<ul>
+<li>Requires secure timestamping and data integrity of logs</li>
+</ul>
+</li>
+<li>Non-Repudatiation: two parties cannot deny that they have interacteed with each other. A trusted 3rd party can be used
+<ul>
+<li>Generate evidence, receipts</li>
+</ul>
+</li>
+</ul>
+<h3 id="security-recommendations" tabindex="-1">Security recommendations</h3>
+<ol>
+<li>Secure the weakest link</li>
+<li>Practise defense in depth, use layers of defence</li>
+<li>Fail securely, expect failure of security features</li>
+<li>Compartmenalize, separate systems*</li>
+<li>Be reluctant to trust, don't trust code libraries, don't trust users</li>
+<li>Follow the principle of least privilege, only provide minimal necessary access</li>
+<li>Keep it simple, complexity creates vulnerabilities</li>
+<li>Promote privacy, "nice to have" vs. necessary information</li>
+<li>To hide secrets is hard, a fault of security by obscurity</li>
+<li>Use your community resources, share known vulnerabilites</li>
+</ol>
+<h2 id="lecture-2%3A-owasp-testing-guide---part-one" tabindex="-1">Lecture 2: OWASP Testing Guide - part one</h2>
+<h3 id="information-gathering" tabindex="-1">Information gathering</h3>
+<p>Why information gathering?</p>
+<ul>
+<li>Attacker
+<ul>
+<li>A map to attack</li>
+<li>Look for low hanging fruit</li>
+<li>Improve efficiency</li>
+</ul>
+</li>
+<li>Developer/internal tester
+<ul>
+<li>Decide test scope, coverage, prioritization</li>
+<li>Improve test efficiency</li>
+</ul>
+</li>
+</ul>
+<p>What information to gather?</p>
+<ul>
+<li>Application structure
+<ul>
+<li>All pages you have found in the application</li>
+</ul>
+</li>
+<li>Including subdomains
+<ul>
+<li>Any external links</li>
+<li>Trust zones</li>
+</ul>
+</li>
+<li>Needs authentication vs. open</li>
+<li>Data flow within the application, e.g.,
+<ul>
+<li>Parameters and value</li>
+<li>Get and post</li>
+</ul>
+</li>
+<li>Infrastructure or platform, e.g.,
+<ul>
+<li>Web server (WSTG-INFO-02)</li>
+<li>Applications on the webserver (WSTG-INFO-04)</li>
+<li>Application entry points (WSTG-INFO-06)</li>
+<li>Execution path through application (WSTG-INFO-07)</li>
+<li>Web application framework (WSTG-INFO-08)</li>
+</ul>
+</li>
+</ul>
+<p>Tools for information gathering</p>
+<ul>
+<li>Website copier (e.g., HTTtrack, VisualWget)</li>
+<li>Web debugging proxy server (e.g., Firefox Developer Tools, Fiddler)</li>
+<li>Tool sets (e.g., Kali Linux, Burp Suite and OWASP Zap)</li>
+</ul>
+<h3 id="injection-attacks" tabindex="-1">Injection attacks</h3>
+<blockquote>
+<p>All input is evil. - Michael Howard, Microsoft</p>
+</blockquote>
+<ul>
+<li>SQL injection</li>
+<li>Blind SQL injection</li>
+<li>Xpath injection</li>
+<li>…</li>
+</ul>
+<p>SQL injection countermeasures</p>
+<ul>
+<li>Blacklisting</li>
+<li>Whitelisting</li>
+<li>Escaping</li>
+<li>Prepared statement &amp; bind variables</li>
+<li>Mitigating impact</li>
+</ul>
+<h3 id="session-management-attacks" tabindex="-1">Session management attacks</h3>
+<p>Why session management?</p>
+<ul>
+<li>HTTP is stateless</li>
+<li>Impossible to know if Req1 and
+Req2 are from the same client</li>
+<li>Users would have to constantly
+re-authenticate</li>
+<li>Session management
+<ul>
+<li>Authenticate user once</li>
+<li>All subsequent requests are tied to
+the user</li>
+</ul>
+</li>
+</ul>
+<p>Where to store session token</p>
+<ul>
+<li>Embed in all URL links (??) <code>https:<span class="hljs-regexp">//</span>site.com/checkout?sessionToken=<span class="hljs-number">1234</span></code></li>
+<li>In hidden form field (??) <code><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>= <span class="hljs-string">“hidden”</span> <span class="hljs-attr">name</span> = <span class="hljs-string">“sessionToken”</span> <span class="hljs-attr">value</span> =<span class="hljs-string">“1234”</span>&gt;</span></code></li>
+<li>Browser cookie <code><span class="hljs-attr">setcookie:</span> <span class="hljs-string">sessionToken</span> <span class="hljs-string">=</span> <span class="hljs-number">1234</span></code></li>
+</ul>
+<p>Session management attacks</p>
+<ul>
+<li>Session token theft</li>
+<li>Session token predication attack</li>
+<li>Session fixation attack</li>
+</ul>
+<h2 id="lecture-3%3A-owasp-testing-guide---part-two" tabindex="-1">Lecture 3: OWASP Testing Guide - part two</h2>
+<h3 id="xss" tabindex="-1">XSS</h3>
+<ul>
+<li>The attacker injects malicious script into your page</li>
+<li>The browser thinks it is your legitimate script</li>
+<li>Can be used for session token theft</li>
+</ul>
+<p>Reflected vs Stored</p>
+<ul>
+<li>Reflected XSS
+<ul>
+<li>JaveScript injected into a request</li>
+<li>Reflected immediately in response</li>
+</ul>
+</li>
+<li>Stored XSS
+<ul>
+<li>Script stored somewhere (i.e., DB) in server</li>
+<li>Script injected into a request</li>
+<li>Reflected repeatedly</li>
+<li>More easily spread</li>
+</ul>
+</li>
+</ul>
+<p>Mitigation</p>
+<ul>
+<li>Sanitize data</li>
+</ul>
+<h3 id="cross-site-request-forgery-(csrf)" tabindex="-1">Cross-Site Request Forgery (CSRF)</h3>
+<h3 id="server-side-request-forgery-(ssrf)" tabindex="-1">Server-Side Request Forgery (SSRF)</h3>
+<ul>
+<li>XML External Entities (XXE) Attack</li>
+</ul>
+<h3 id="software-and-data-integrity-failure" tabindex="-1">Software and data integrity failure</h3>
+<h3 id="identification-and-authentication-failure" tabindex="-1">Identification and authentication failure</h3>
+<h4 id="authentication" tabindex="-1">Authentication</h4>
+<ul>
+<li>The process of verifying who you are</li>
+<li>Three general ways
+<ul>
+<li>Something you know (password)</li>
+<li>Something you have (phone)</li>
+<li>Something you are (biometrics)</li>
+</ul>
+</li>
+</ul>
+<h3 id="hashing" tabindex="-1">Hashing</h3>
+<ul>
+<li>Salt</li>
+<li>Pepper</li>
+</ul>
+<h3 id="other-password-security-techniques" tabindex="-1">Other password security techniques</h3>
+<ul>
+<li>With hash, pepper, and salt, the dictionary attack is harder, but not impossible</li>
+<li>Other authentication countermeasures
+<ul>
+<li>Filtering</li>
+<li>Limiting logins</li>
+<li>Aging password</li>
+<li>Last login/ Protective monitoring</li>
+<li>One-time password</li>
+<li>Two-factor/two-channel authentication</li>
+</ul>
+</li>
+</ul>
+<h3 id="security-logging-and-monitoring-failures" tabindex="-1">Security logging and monitoring failures</h3>
+<ul>
+<li>Auditable events, such as logins, failed logins, and high-value transactions are not logged</li>
+<li>Warnings and errors generate no, inadequate, or unclear log messages</li>
+<li>Logs of applications and APIs are not monitored for suspicious activity</li>
+<li>Logs are only stored locally</li>
+<li>Appropriate alerting thresholds and response escalation processes are not in place or effective</li>
+<li>Unable to detect, escalate, or alert for active attacks in real time or near real time.</li>
+</ul>
+<h3 id="clickjacking" tabindex="-1">Clickjacking</h3>
+<ul>
+<li>Attacker overlays transparent frames to trick user into clicking on a button of another page</li>
+<li>Defend against Clickjacking
+<ul>
+<li>X-Frame-Options : deny completely disables the loading of the page in a frame,</li>
+</ul>
+</li>
+</ul>
+<h2 id="lecture-4%3A-cryptography" tabindex="-1">Lecture 4: Cryptography</h2>
+<p>You are expected to learn basic concepts of popular cryptography algorithms and how to use them</p>
+<ul>
+<li>Ciphers, e.g., AES, 3DES</li>
+<li>Cryptographic hash function, e.g., MD5, SHA-1, SHA-2</li>
+<li>Public key cryptography, e.g., RSA, ECDSA</li>
+</ul>
+<p>Secure communication has two steps</p>
+<ol>
+<li>Establish a shared secret key</li>
+<li>Transmit data using the shared secret key</li>
+</ol>
+<h2 id="lecture-5%3A-autorization-and-stuff" tabindex="-1">Lecture 5: Autorization and stuff</h2>
+<h3 id="access-control" tabindex="-1">Access control</h3>
+<ul>
+<li>Access control policy
+<ul>
+<li>Definition of what it means to be secure</li>
+<li>A statement of what is, and what is not, allowed</li>
+</ul>
+</li>
+<li>Access control model
+<ul>
+<li>A succinct and formalized representation of security policy and it working</li>
+</ul>
+</li>
+<li>Access control mechanism
+<ul>
+<li>Low-level functions that implement the controls imposed by the policy and the model</li>
+</ul>
+</li>
+<li>Awareness
+<ul>
+<li>Education</li>
+</ul>
+</li>
+<li>Management
+<ul>
+<li>Operation</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Privilege creep: People end up wih more access than necessary</p>
+</blockquote>
+<h4 id="access-control-on-different-levels" tabindex="-1">Access control on different levels</h4>
+<ul>
+<li>Application</li>
+<li>Middleware</li>
+<li>Operating system</li>
+<li>Hardware</li>
+</ul>
+<h3 id="access-control-models" tabindex="-1">Access control models</h3>
+<ul>
+<li>Discretionary access control (DAC)</li>
+<li>Mandatory access control (MAC)</li>
+<li>Role-based access control (RBAC)</li>
+<li>Attribute-based access control (ABAC)</li>
+<li>Context-based access control (CBAC)</li>
+<li>Graph-based access control (GBAC)</li>
+<li>Lattice-based access control (LBAC)</li>
+<li>Organization-based access control (OrBAC)</li>
+<li>Rule-set-based access control (RSBAC)</li>
+</ul>
+<h4 id="comparison" tabindex="-1">Comparison</h4>
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>Advantages</th>
+<th>Disadvantages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DAC</td>
+<td>Simple and efficient access right management. Scalability.</td>
+<td>Weak control over information flow.</td>
+</tr>
+<tr>
+<td>MAC</td>
+<td>Strict control over information flow. Strong exploit containment.</td>
+<td>Cumborsome administration.</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>Easy authorization management. Maps to real-world role hierarchy.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="discretionary-access-control-(dac)" tabindex="-1">Discretionary access control (DAC)</h4>
+<ul>
+<li>Owner of a resource decides how it can be shared</li>
+<li>The owner can choose to give read, write, or other access to other users</li>
+<li>Vulnerabilities of DAC
+<ul>
+<li>Does not distinguish between user and process</li>
+<li>Vulnerable to a process executing malicious programs (Trojan Horse) exploiting the authorization of the user</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Access control implementation</th>
+<th>Figure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Access control matrix</td>
+<td><img src="assets/2023-02-14-08-26-19.png" alt=""></td>
+</tr>
+<tr>
+<td>Authorization table</td>
+<td><img src="assets/2023-02-14-08-26-35.png" alt=""></td>
+</tr>
+<tr>
+<td>Access control list (ACL)</td>
+<td><img src="assets/2023-02-14-08-27-52.png" alt=""></td>
+</tr>
+<tr>
+<td>Capabilities</td>
+<td><img src="assets/2023-02-14-08-29-40.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<h4 id="mandatory-access-control" tabindex="-1">Mandatory Access Control</h4>
+<ul>
+<li>Unlike discretionary access control (DAC) where users can take their own access decisions about their files</li>
+<li>Mandatory access control (MAC) means that systems enforce a security policy independent of the user’s action</li>
+<li>Enforce access control on the basis of regulations mandated by a central authority</li>
+<li>Access class is assigned to each object and subject</li>
+</ul>
+<h5 id="bell-lapadula-model" tabindex="-1">Bell-LaPadula model</h5>
+<ul>
+<li>Ensures confidentiality</li>
+<li>Levels of confidentiality
+<ul>
+<li>No read up (NRU)</li>
+<li>No write down (NWD) (* property)
+<ul>
+<li>Don't write something that should be secret</li>
+</ul>
+</li>
+<li>Strong *: only allows operations on the same level</li>
+</ul>
+</li>
+</ul>
+<h5 id="biba-model" tabindex="-1">Biba model</h5>
+<ul>
+<li>Ensures integrity, source of truth</li>
+<li>Levels of integrity (/trustwortyness)
+<ul>
+<li>No write up (NWU)
+<ul>
+<li>No improper modification of high integrity objects from the low classified subject</li>
+</ul>
+</li>
+<li>No read down (NRD)
+<ul>
+<li>High integrity object is not contaminated due to reading and using unreliable data</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="role-based-access-control" tabindex="-1">Role-Based Access Control</h4>
+<h4 id="attribute-based-access-control" tabindex="-1">Attribute Based Access Control</h4>
+<ul>
+<li>RBAC is for coarse-grain access control</li>
+<li>ABAC is for fine-grain access controls (more difficult to use correctly )</li>
+<li>RBAC before ABAC (who can see what module BEFORE what can they see inside a module)</li>
+</ul>
+<h3 id="authentication-and-single-sign-on-(sso)" tabindex="-1">Authentication and Single Sign On (SSO)</h3>
+<h4 id="sso-trends" tabindex="-1">SSO Trends</h4>
+<ul>
+<li>From SOAP/XML to more lightweight HTTP/JSON</li>
+<li>Social Sign-in (Facebook, Google, etc. )</li>
+<li>OpenID Connect (Authentication) and OAuth 2.0 (Authorization)</li>
+<li>From authentication only to API authorization (and data access)</li>
+</ul>
+<h3 id="control-hijacking" tabindex="-1">Control hijacking</h3>
+<ul>
+<li>Take over target machine (e.g., webserver)</li>
+<li>Execute arbitrary code on target by hijacking application control flow
+<ul>
+<li>Compromise Confidentiality, Integrity, Availability</li>
+</ul>
+</li>
+<li>Targets mainly C/C++ code</li>
+<li>Buffer overflow attacks</li>
+</ul>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>
