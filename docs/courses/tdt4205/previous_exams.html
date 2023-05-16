@@ -110,12 +110,6 @@
 <li>Several basic blocks can have the same immediate dominator</li>
 <li>Compiled languages can not feature dynamic type checking</li>
 </ol>
-<pre><code class="hljs language-c"><span class="hljs-type">double</span> s[<span class="hljs-number">180</span>], pi = M_PI;
-
-<span class="hljs-keyword">for</span> ( <span class="hljs-type">int</span> d = <span class="hljs-number">0</span>; d &lt; <span class="hljs-number">180</span>; d++ ) {
-    s[d] = <span class="hljs-built_in">sin</span> ( d * pi / <span class="hljs-number">180.0</span> );
-}
-</code></pre>
 <h2 id="topics" tabindex="-1">Topics</h2>
 <h3 id="lexical-analysis-(lanuages-and-automata)" tabindex="-1">Lexical analysis (lanuages and automata)</h3>
 <h4 id="2016" tabindex="-1">2016</h4>
@@ -381,6 +375,12 @@ loop:
 <li>Explain the cause and effect of heap memory fragmentation</li>
 <li>Identify the loop-invariant code in the following program fragment, and explain the benefit of moving it</li>
 </ol>
+<pre><code class="hljs language-c"><span class="hljs-type">double</span> s[<span class="hljs-number">180</span>], pi = M_PI;
+
+<span class="hljs-keyword">for</span> ( <span class="hljs-type">int</span> d = <span class="hljs-number">0</span>; d &lt; <span class="hljs-number">180</span>; d++ ) {
+    s[d] = <span class="hljs-built_in">sin</span> ( d * pi / <span class="hljs-number">180.0</span> );
+}
+</code></pre>
 <h5 id="global-variables" tabindex="-1">Global variables</h5>
 <p>Briefly describe which changes you would make to your compiler from the TDT4205 problem sets, in order to extend VSL with global variables</p>
 <h4 id="2011-3" tabindex="-1">2011</h4>
