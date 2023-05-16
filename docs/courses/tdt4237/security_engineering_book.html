@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>security_engineering_book.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4237</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="foundations_of_security_book.html">foundations_of_security_book</a></li>
+<li>📄 <a href="lectures.html">lectures</a></li>
+<li>📄 <a href="security_engineering_book.html">security_engineering_book ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#security-engineering">Security Engineering</a><ol><li><a href="#2-who-is-the-opponent%3F">2 Who is the Opponent?</a><ol><li><a href="#2.2-the-spooks">2.2 The Spooks</a></li><li><a href="#2.3-crooks">2.3 Crooks</a></li><li><a href="#2.4-geeks">2.4 Geeks</a></li><li><a href="#2.5-the-swamp">2.5 The Swamp</a></li></ol></li><li><a href="#3-psychology-and-usability">3 Psychology and Usability</a><ol><li><a href="#3.2-insights-from-psychology-research">3.2 Insights from psychology research</a></li><li><a href="#3.3-deception-in-practice">3.3 Deception in practice</a></li><li><a href="#3.4-passwords">3.4 Passwords</a></li><li><a href="#3.5-captchas">3.5 CAPTCHAs</a></li></ol></li><li><a href="#5-cryptography">5 Cryptography</a><ol><li><a href="#5.2-historical-background">5.2 Historical Background</a></li><li><a href="#5.3-security-models">5.3 Security Models</a></li><li><a href="#5.4-symmetric-crypto-algorithms">5.4 Symmetric crypto algorithms</a></li><li><a href="#5.5-modes-of-operation">5.5 Modes of Operation</a></li><li><a href="#5.6-hash-functions">5.6 Hash Functions</a></li><li><a href="#5.7-asymmetric-crypto-primitives">5.7 Asymmetric crypto primitives</a></li></ol></li><li><a href="#6-access-control">6 Access Control</a><ol><li><a href="#6.2-operating-system-access-controls">6.2 Operating system access controls</a></li><li><a href="#6.3-hardware-protection">6.3 Hardware Protection</a></li><li><a href="#6.4-what-goes-wrong">6.4 What Goes Wrong</a></li></ol></li><li><a href="#8-economics">8 Economics</a><ol><li><a href="#8.6-the-economics-of-security-and-dependability">8.6 The economics of security and dependability</a></li></ol></li><li><a href="#9-multilevel-security">9 Multilevel security</a><ol><li><a href="#9.2-what-is-a-security-policy-model%3F">9.2 What is a Security Policy Model?</a></li><li><a href="#9.3-multilevel-security-policy">9.3 Multilevel Security Policy</a></li><li><a href="#9.4-historical-examples-of-mls-systems">9.4 Historical Examples of MLS Systems</a></li><li><a href="#9.5-mac%3A-from-mls-to-ifc-and-integrity">9.5 MAC: from MLS to IFC and integrity</a></li><li><a href="#9.6-what-goes-wrong">9.6 What Goes Wrong</a></li></ol></li><li><a href="#25-taking-stock">25 Taking Stock</a><ol><li><a href="#25.3-ai-%2F-ml">25.3 AI / ML</a></li></ol></li><li><a href="#26-surveillance-or-privacy%3F">26 Surveillance or Privacy?</a><ol><li><a href="#26.2-surveillance">26.2 Surveillance</a></li><li><a href="#26.3-terrorism">26.3 Terrorism</a></li><li><a href="#26.4-censorship">26.4 Censorship</a></li><li><a href="#26.5-forensics-and-rules-of-evidence">26.5 Forensics and Rules of Evidence</a></li><li><a href="#26.6-privacy-and-data-protection">26.6 Privacy and Data Protection</a></li><li><a href="#26.7-freedom-of-information">26.7 Freedom of Information</a></li></ol></li><li><a href="#27-secure-systems-development">27 Secure Systems Development</a><ol><li><a href="#27.2-risk-management">27.2 Risk Management</a></li><li><a href="#27.3-lessons-from-safety-critical-systems">27.3 Lessons from safety-critical systems</a></li><li><a href="#27.4-prioritising-protection-goals">27.4 Prioritising protection goals</a></li><li><a href="#27.5-methodology">27.5 Methodology</a></li><li><a href="#27.6-managing-the-team">27.6 Managing the Team</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="security-engineering" tabindex="-1">Security Engineering</h1>
+<h2 id="2-who-is-the-opponent%3F" tabindex="-1">2 Who is the Opponent?</h2>
+<h3 id="2.2-the-spooks" tabindex="-1">2.2 The Spooks</h3>
+<h3 id="2.3-crooks" tabindex="-1">2.3 Crooks</h3>
+<h3 id="2.4-geeks" tabindex="-1">2.4 Geeks</h3>
+<h3 id="2.5-the-swamp" tabindex="-1">2.5 The Swamp</h3>
+<h2 id="3-psychology-and-usability" tabindex="-1">3 Psychology and Usability</h2>
+<h3 id="3.2-insights-from-psychology-research" tabindex="-1">3.2 Insights from psychology research</h3>
+<h3 id="3.3-deception-in-practice" tabindex="-1">3.3 Deception in practice</h3>
+<h3 id="3.4-passwords" tabindex="-1">3.4 Passwords</h3>
+<h3 id="3.5-captchas" tabindex="-1">3.5 CAPTCHAs</h3>
+<h2 id="5-cryptography" tabindex="-1">5 Cryptography</h2>
+<h3 id="5.2-historical-background" tabindex="-1">5.2 Historical Background</h3>
+<h3 id="5.3-security-models" tabindex="-1">5.3 Security Models</h3>
+<h3 id="5.4-symmetric-crypto-algorithms" tabindex="-1">5.4 Symmetric crypto algorithms</h3>
+<h3 id="5.5-modes-of-operation" tabindex="-1">5.5 Modes of Operation</h3>
+<h3 id="5.6-hash-functions" tabindex="-1">5.6 Hash Functions</h3>
+<h3 id="5.7-asymmetric-crypto-primitives" tabindex="-1">5.7 Asymmetric crypto primitives</h3>
+<h2 id="6-access-control" tabindex="-1">6 Access Control</h2>
+<h3 id="6.2-operating-system-access-controls" tabindex="-1">6.2 Operating system access controls</h3>
+<h3 id="6.3-hardware-protection" tabindex="-1">6.3 Hardware Protection</h3>
+<h3 id="6.4-what-goes-wrong" tabindex="-1">6.4 What Goes Wrong</h3>
+<h2 id="8-economics" tabindex="-1">8 Economics</h2>
+<h3 id="8.6-the-economics-of-security-and-dependability" tabindex="-1">8.6 The economics of security and dependability</h3>
+<h2 id="9-multilevel-security" tabindex="-1">9 Multilevel security</h2>
+<h3 id="9.2-what-is-a-security-policy-model%3F" tabindex="-1">9.2 What is a Security Policy Model?</h3>
+<h3 id="9.3-multilevel-security-policy" tabindex="-1">9.3 Multilevel Security Policy</h3>
+<h3 id="9.4-historical-examples-of-mls-systems" tabindex="-1">9.4 Historical Examples of MLS Systems</h3>
+<h3 id="9.5-mac%3A-from-mls-to-ifc-and-integrity" tabindex="-1">9.5 MAC: from MLS to IFC and integrity</h3>
+<h3 id="9.6-what-goes-wrong" tabindex="-1">9.6 What Goes Wrong</h3>
+<h2 id="25-taking-stock" tabindex="-1">25 Taking Stock</h2>
+<h3 id="25.3-ai-%2F-ml" tabindex="-1">25.3 AI / ML</h3>
+<h2 id="26-surveillance-or-privacy%3F" tabindex="-1">26 Surveillance or Privacy?</h2>
+<h3 id="26.2-surveillance" tabindex="-1">26.2 Surveillance</h3>
+<h3 id="26.3-terrorism" tabindex="-1">26.3 Terrorism</h3>
+<h3 id="26.4-censorship" tabindex="-1">26.4 Censorship</h3>
+<h3 id="26.5-forensics-and-rules-of-evidence" tabindex="-1">26.5 Forensics and Rules of Evidence</h3>
+<h3 id="26.6-privacy-and-data-protection" tabindex="-1">26.6 Privacy and Data Protection</h3>
+<h3 id="26.7-freedom-of-information" tabindex="-1">26.7 Freedom of Information</h3>
+<h2 id="27-secure-systems-development" tabindex="-1">27 Secure Systems Development</h2>
+<h3 id="27.2-risk-management" tabindex="-1">27.2 Risk Management</h3>
+<h3 id="27.3-lessons-from-safety-critical-systems" tabindex="-1">27.3 Lessons from safety-critical systems</h3>
+<p><em>Critical computer systems</em> are those in which a certain class of failure is to be avoided if at all possible. Depending on the class of failure, they may be safety-critical, business-critical, security-critical, or critical to the environment.</p>
+<p>A common top-down way of identifying the things that can go wrong is <em>threat tree analysis</em> where a tree is constructed whose root is the undesired behavior and whose successive nodes are its possible causes.</p>
+<p><em>Failure modes and effects analysis</em> (FMEA) is a bottom-up method and involves tracing the consequences of a failure of each of the system’s components all the way up to the effect on the mission.</p>
+<h3 id="27.4-prioritising-protection-goals" tabindex="-1">27.4 Prioritising protection goals</h3>
+<h3 id="27.5-methodology" tabindex="-1">27.5 Methodology</h3>
+<h3 id="27.6-managing-the-team" tabindex="-1">27.6 Managing the Team</h3>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

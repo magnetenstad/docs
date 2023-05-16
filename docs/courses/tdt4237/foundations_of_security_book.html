@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>foundations_of_security_book.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4237</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="foundations_of_security_book.html">foundations_of_security_book ✨</a></li>
+<li>📄 <a href="lectures.html">lectures</a></li>
+<li>📄 <a href="security_engineering_book.html">security_engineering_book</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#foundations-of-security">Foundations of Security</a><ol><li><a href="#contents">Contents</a></li><li><a href="#1-security-goals">1 Security Goals</a><ol><li><a href="#1.1-security-is-holistic">1.1 Security is Holistic</a></li><li><a href="#1.2-authentication">1.2 Authentication</a></li><li><a href="#1.3-authorization">1.3 Authorization</a></li><li><a href="#1.4-confidentiality">1.4 Confidentiality</a></li><li><a href="#1.5-integrity">1.5 Integrity</a></li><li><a href="#1.6-accountability">1.6 Accountability</a></li><li><a href="#1.7-availability">1.7 Availability</a></li><li><a href="#1.8-non-repudiation">1.8 Non-repudiation</a></li></ol></li><li><a href="#2-secure-systems-design">2 Secure Systems Design</a><ol><li><a href="#2.1-understanding-threats">2.1 Understanding threats</a></li><li><a href="#2.2-designing-in-security">2.2 Designing-In Security</a></li><li><a href="#2.3-convenience-and-security">2.3 Convenience and Security</a></li><li><a href="#2.5-security-in-software-requirements">2.5 Security in Software Requirements</a></li><li><a href="#2.6-security-by-obscurity">2.6 Security by Obscurity</a></li><li><a href="#2.7-open-vs.-closed-source">2.7 Open vs. Closed Source</a></li><li><a href="#2.8-a-game-of-economics">2.8 A Game of Economics</a></li><li><a href="#2.9-%22good-enough%22-security">2.9 "Good Enough" Security</a></li></ol></li><li><a href="#3-secure-design-principles">3 Secure Design Principles</a><ol><li><a href="#3.1-the-principle-of-least-privilege">3.1 The Principle of Least Privilege</a></li><li><a href="#3.2-defense-in-depth">3.2 Defense-in-Depth</a></li><li><a href="#3.3-diversity-in-defense">3.3 Diversity-in-Defense</a></li><li><a href="#3.4-securing-the-weakest-link">3.4 Securing the Weakest Link</a></li><li><a href="#3.5-fail-safe-stance">3.5 Fail-Safe Stance</a></li><li><a href="#3.6-secure-by-default">3.6 Secure by Default</a></li><li><a href="#3.7-simplicity">3.7 Simplicity</a></li><li><a href="#3.8-usability">3.8 Usability</a></li><li><a href="#3.9-security-features-do-not-imply-security">3.9 Security Features Do Not Imply Security</a></li></ol></li><li><a href="#5-worms-and-other-malware">5 Worms and Other Malware</a><ol><li><a href="#5.1-what-is-a-worm%3F">5.1 What is a Worm?</a></li><li><a href="#5.2.-an-abridged-history-of-worms">5.2. An Abridged History of Worms</a></li><li><a href="#5.3-more-malware">5.3 More Malware</a></li></ol></li><li><a href="#6-buffer-overflows">6 Buffer Overflows</a><ol><li><a href="#6.1-anatomy-of-a-buffer-overflow">6.1 Anatomy of a Buffer Overflow</a></li><li><a href="#6.2-safe-string-libraries">6.2 Safe String Libraries</a></li><li><a href="#6.3-additional-approaches">6.3 Additional Approaches</a></li><li><a href="#6.4-performance">6.4 Performance</a></li><li><a href="#6.5-heap-based-overflows">6.5 Heap-Based Overflows</a></li><li><a href="#6.6-other-memory-corruption-vulnerabilities">6.6 Other Memory Corruption Vulnerabilities</a></li></ol></li><li><a href="#7-client-state-manipulation">7 Client-State Manipulation</a><ol><li><a href="#7.1-pizza-delivery-web-site-example">7.1 Pizza Delivery Web Site Example</a></li><li><a href="#7.2-using-http-post-instead-of-get">7.2 Using HTTP POST instead of GET</a></li><li><a href="#7.3-cookies">7.3 Cookies</a></li><li><a href="#7.4-javascript">7.4 JavaScript</a></li></ol></li><li><a href="#8-sql-injection">8 SQL Injection</a><ol><li><a href="#8.1-attack-scenario">8.1 Attack Scenario</a></li><li><a href="#8.2-solutions">8.2 Solutions</a></li><li><a href="#mitigating-the-impact-of-sql-injection-attacks">Mitigating the Impact of SQL Injection Attacks</a></li></ol></li><li><a href="#9-password-security">9 Password Security</a><ol><li><a href="#9.1-a-strawman-proposal">9.1 A Strawman Proposal</a></li><li><a href="#9.2-hashing">9.2 Hashing</a></li><li><a href="#9.3-offline-dictionary-attacks">9.3 Offline Dictionary Attacks</a></li><li><a href="#9.4-salting">9.4 Salting</a></li><li><a href="#9.5-online-dictionary-attacks">9.5 Online Dictionary Attacks</a></li><li><a href="#9.6-additional-password-security-techniques">9.6 Additional Password Security Techniques</a></li></ol></li><li><a href="#10-cross-domain-security-in-web-applications">10 Cross-Domain Security in Web Applications</a><ol><li><a href="#10.1-interaction-between-web-pages-from-different-domains">10.1 Interaction Between Web Pages from Different Domains</a></li><li><a href="#10.2-attack-patterns">10.2 Attack Patterns</a></li><li><a href="#10.3-preventing-xsrf">10.3 Preventing XSRF</a></li><li><a href="#10.4-preventing-xssi">10.4 Preventing XSSI</a></li><li><a href="#10.5-preventing-cross-site-scripting-(xss)">10.5 Preventing Cross-Site Scripting (XSS)</a></li></ol></li><li><a href="#12-symmetric-key-cryptography">12 Symmetric Key Cryptography</a><ol><li><a href="#12.1-introduction-to-encryption">12.1 Introduction to Encryption</a></li><li><a href="#12.2-stream-ciphers">12.2 Stream Ciphers</a></li><li><a href="#12.3-steganography">12.3 Steganography</a></li></ol></li><li><a href="#13-asymmetric-key-cryptography">13 Asymmetric Key Cryptography</a><ol><li><a href="#13.1-why-asymmetric-key-cryptography%3F">13.1 Why Asymmetric Key Cryptography?</a></li><li><a href="#13.2-rsa">13.2 RSA</a></li><li><a href="#13.3-elliptic-curve-cryptography-(ecc)">13.3 Elliptic Curve Cryptography (ECC)</a></li><li><a href="#13.4-symmetric-vs.-asymmetric-key-cryptography">13.4 Symmetric vs. Asymmetric Key Cryptography</a></li><li><a href="#13.5-certificate-authorities">13.5 Certificate Authorities</a></li><li><a href="#13.6-identity-based-encryption-(ibe)">13.6 Identity-Based Encryption (IBE)</a></li><li><a href="#13.7-authentication-with-encryption">13.7 Authentication with Encryption</a></li></ol></li><li><a href="#14-key-management-and-exchange-(skip-this%3F)">14 Key Management and Exchange (skip this?)</a><ol><li><a href="#14.1-types-of-keys">14.1 Types of Keys</a></li><li><a href="#14.2-key-generation">14.2 Key Generation</a></li><li><a href="#14.3-key-(secret)-storage">14.3 Key (Secret) Storage</a></li><li><a href="#14.4-key-agreement-and-exchange">14.4 Key Agreement and Exchange</a></li></ol></li><li><a href="#15-macs-and-signatures">15 MACs and Signatures</a><ol><li><a href="#15.1-secure-hash-functions">15.1 Secure Hash Functions</a></li><li><a href="#15.2-message-authentication-codes-(macs)">15.2 Message Authentication Codes (MACs)</a></li><li><a href="#15.3-signatures">15.3 Signatures</a></li><li><a href="#15.4-attacks-against-hash-functions-%2F%2F-todo%3A-outdated%3F">15.4 Attacks Against Hash Functions // TODO: Outdated?</a></li><li><a href="#15.5-ssl">15.5 SSL</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="foundations-of-security" tabindex="-1">Foundations of Security</h1>
+<blockquote>
+<p>What Every Programmer Needs to Know</p>
+</blockquote>
+<h2 id="contents" tabindex="-1">Contents</h2>
+<ul>
+<li>Part 1 Security Design Principles
+<ul>
+<li>1 Security Goals</li>
+<li>2 Secure Systems Design</li>
+<li>3 Secure Design Principles</li>
+</ul>
+</li>
+<li>Part 2 Secure Programming Techniques
+<ul>
+<li>5 Worms and Other Malware</li>
+<li>6 Buffer Overflows*</li>
+<li>7 Client-State Manipulation</li>
+<li>8 SQL Injection*</li>
+<li>9 Password Security*</li>
+<li>10 Cross-Domain Security in Web Applications*</li>
+</ul>
+</li>
+<li>Part 3 Introduction to Cryptography
+<ul>
+<li>12 Symmetric Key Cryptography</li>
+<li>13 Asymmetric Key Cryptography</li>
+<li>14 Key Management and Exchange</li>
+<li>15 MACs and Signatures</li>
+</ul>
+</li>
+</ul>
+<p>* Explicitly part of the TDT4237 curriculum.</p>
+<h2 id="1-security-goals" tabindex="-1">1 Security Goals</h2>
+<h3 id="1.1-security-is-holistic" tabindex="-1">1.1 Security is Holistic</h3>
+<h3 id="1.2-authentication" tabindex="-1">1.2 Authentication</h3>
+<p><em>Authentication</em> is the act of verifying someone’s identity. Three common types of methods:</p>
+<ol>
+<li>something you know (passwords),</li>
+<li>something you have (phone, cards, keys), and</li>
+<li>something you are (biometrics)</li>
+</ol>
+<h3 id="1.3-authorization" tabindex="-1">1.3 Authorization</h3>
+<p><em>Authorization</em> is the act of checking whether a user has permission to conduct some action. Common techniques:</p>
+<ul>
+<li>Access Control Lists (ACLs) (Simple or Role-Based)</li>
+<li>Access Control Models
+<ul>
+<li>Mandatory Access Control (MAC)</li>
+<li>Discretionary Access Control (DAC)</li>
+<li>Role-Based Access Control (RBAC)</li>
+</ul>
+</li>
+<li>The Bell-LaPadula Model</li>
+</ul>
+<h3 id="1.4-confidentiality" tabindex="-1">1.4 Confidentiality</h3>
+<p>The goal of <em>confidentiality</em> is to keep the contents of a transient communication or data on temporary or persistent storage secret. Usually, some kind of encryption technology is used to achieve confidentiality.</p>
+<h3 id="1.5-integrity" tabindex="-1">1.5 Integrity</h3>
+<p><em>Data integrity</em> ensures that data is identically maintained during any operation, such as transfer, storage, or retrieval.</p>
+<ul>
+<li>Cyclic Redundancy Checks (CRCs)</li>
+<li>Message Authentication Codes (MACs)</li>
+</ul>
+<h3 id="1.6-accountability" tabindex="-1">1.6 Accountability</h3>
+<p>The goal of <em>accountability</em> is to ensure that you are able to determine who the attacker or principal is in the case that something goes wrong or an erroneous transaction is identified.</p>
+<ul>
+<li>Logging, with timestamps</li>
+</ul>
+<h3 id="1.7-availability" tabindex="-1">1.7 Availability</h3>
+<p>An <em>available</em> system is one that can respond to its users' requests in a reasonable timeframe.</p>
+<ul>
+<li>Denial-of-service (DoS) attacks</li>
+<li>Add redundancy to eliminate any single point of failure.</li>
+<li>Impose limits on the amount of disk space that each user can use</li>
+</ul>
+<h3 id="1.8-non-repudiation" tabindex="-1">1.8 Non-repudiation</h3>
+<p>The goal of <em>non-repudiation</em> is to ensure undeniability of a transaction by any of the parties involved. Non-repudiation protocols end up being expensive to implement, and are not used often in practice.</p>
+<ul>
+<li>Trusted third parties</li>
+<li>Digitally signed statements (receipts) may be generated</li>
+</ul>
+<h2 id="2-secure-systems-design" tabindex="-1">2 Secure Systems Design</h2>
+<h3 id="2.1-understanding-threats" tabindex="-1">2.1 Understanding threats</h3>
+<p><em>Defacement</em> is a form of online vandalism in which attackers replace legitimate pages of an organization’s web site with illegitimate ones.</p>
+<p><em>Infiltration</em> is an attack in which an unauthorized party gains full access to the
+resources of a computer system (including, but not limited to, use of the CPUs, disks, and network bandwidth).</p>
+<p><em>Phishing</em> is an attack in which an attacker (in this case, a phisher) sets up a spoofed web site that looks similar to a legitimate web site.</p>
+<p><em>Pharming</em> (DNS cache poisoning) is similar to phishing, but is able to use the real URL. The attacker achieves this by interfering with the DNS address translation. This is however detectable by SSL in most cases.</p>
+<p><em>Insider Threats</em> are threats posed by employees with insider access to the system. This may be mitigated by a <em>separation of privilege</em>.</p>
+<p><em>Click fraud</em> abuses <em>pay-per-click advertising</em>. In one type, an advertiser will click a competitor's ad with the intention of "maxing out" their competitor's budget. In another, a web site publisher will click on ads shown on their own site in an attempt to receive the revenue share for those clicks.</p>
+<p>In one type of <em>DoS attack</em>, the attacker sends so many packets to a web site that it cannot service the legitimate users that are trying access it, making it <em>unavailable</em>.</p>
+<p><em>Data theft</em> and <em>data loss</em> are threats to confidentality and integrity. Data loss may be mitigated by data backups.</p>
+<h3 id="2.2-designing-in-security" tabindex="-1">2.2 Designing-In Security</h3>
+<p>Designing security into a software application means that one should keep security in mind while building it, starting with its requirements and design. Experience has shown that it is very hard to add on security later. Examples are authentication in Windows 98 and The Internet. When security is added as a response to a certain type of attack, the adversary often finds way to respond back by working around the added security measures.</p>
+<p>A <em>turtle shell architecture</em> is one in which an inherently insecure system is “protected” by another system that attempts to mediate accesses to the insecure system. Firewalls are such an example.</p>
+<h3 id="2.3-convenience-and-security" tabindex="-1">2.3 Convenience and Security</h3>
+<p>Security may come at a cose of convenience, an example is the requirement of complex passwords. A good security technology will provide a security benefit at only a slight inconvenience to users.</p>
+<h3 id="2.5-security-in-software-requirements" tabindex="-1">2.5 Security in Software Requirements</h3>
+<p>One way to start “baking” security into your software is to define concrete, measurable security goals in software requirements documents.</p>
+<p>Security vulnerabilities very often occur due to <em>bad error handling</em>. Requirements documents that do not specify how to handle errors properly usually result in software that handles errors in some arbitrary way.</p>
+<p>When test plans are generated, there should not only be test cases that test the functional correctness of the software, but there should also be <em>test cases generated for security</em>. S security test case tests that a software feature does not malfunction when provided improper or malicious input.</p>
+<h3 id="2.6-security-by-obscurity" tabindex="-1">2.6 Security by Obscurity</h3>
+<p><em>Security by obscurity</em> does increase the amount of effort an adversary has to go though in order to attack a system. However it is certainly not sufficient to prevent a determined attacker.</p>
+<p>Binary files are hard for average humans to understand and read. However, an attacker can use debugging and other types of tools to disassemble, decompile, and even reverse engineer the executable. The attacker’s process of systematically trying various input strings that may result in an exploit is called <em>fuzzing</em>.</p>
+<ul>
+<li>Don’t “Roll Your Own” Cryptography</li>
+<li>Don’t Hard-Code Keys</li>
+<li>Don’t Forget Code Reuse (use standard encryption algorithms)</li>
+</ul>
+<h3 id="2.7-open-vs.-closed-source" tabindex="-1">2.7 Open vs. Closed Source</h3>
+<p>One approach that some companies have attempted to use to increase the security of their software is to make it open source. However, you won't know the qualifications of the people looking at your code, or their intentions. Choosing to keep an application open or closed source should be a business decision - the actual security of the application is dependent upon other factors.</p>
+<h3 id="2.8-a-game-of-economics" tabindex="-1">2.8 A Game of Economics</h3>
+<blockquote>
+<p>For every dollar that the potential victim spends on security measures, how many dollars would the attacker have to spend to “break” into the system?</p>
+</blockquote>
+<p>Security is about risk management. You want to invest enough in security technologies to minimize the risk that the attacker is going to be successful. (Here, we are assuming that attackers are rational economic agents, which may not always be the case.)</p>
+<h3 id="2.9-%22good-enough%22-security" tabindex="-1">2.9 "Good Enough" Security</h3>
+<p>We do not think it makes sense to put security sufficient for version five of your software in the alpha version. Security can be treated similarly to extensibility.</p>
+<h2 id="3-secure-design-principles" tabindex="-1">3 Secure Design Principles</h2>
+<h3 id="3.1-the-principle-of-least-privilege" tabindex="-1">3.1 The Principle of Least Privilege</h3>
+<p><em>The principle of least privilege</em> states that a user or computer program should be given the least amount of privileges necessary to accomplish a task.</p>
+<h3 id="3.2-defense-in-depth" tabindex="-1">3.2 Defense-in-Depth</h3>
+<p>The point of <em>defense-in-depth</em>, also referred to as <em>redundancy</em> is to not rely on any one defense to achieve security. Avoid a <em>single point of failure</em> (SPOF). Some mechanisms may <em>prevent</em> attacks, others may <em>detect</em> when attacks are taking place, <em>manage</em> attacks while they are in progress, or help you <em>recover</em> from the attack.</p>
+<h3 id="3.3-diversity-in-defense" tabindex="-1">3.3 Diversity-in-Defense</h3>
+<p><em>Diversity-in-defense</em> is related to defense-in-depth, but is about using multiple heterogeneous systems that do the same thing. For example, one could back up data on machines that use different operating systems. If a virus attacks Microsoft Outlook, it will be able to corrupt all the computers in a corporation that are running Microsoft Windows. This does come at a cost: by using more than one OS, the IT staff may come under the burden of having to be experts with more than one technology, and will
+also have to monitor and apply software patches to multiple technologies.</p>
+<h3 id="3.4-securing-the-weakest-link" tabindex="-1">3.4 Securing the Weakest Link</h3>
+<p>A system is only as strong as its <em>weakest link</em>. The weakest link is the part of a system that is the most vulnerable, susceptible, or easiest to attack. Examples are</p>
+<ul>
+<li>weak passwords</li>
+<li>people</li>
+<li>implementation vulnerabilities</li>
+</ul>
+<h3 id="3.5-fail-safe-stance" tabindex="-1">3.5 Fail-Safe Stance</h3>
+<p><em>Fail-safe stance</em> involves designing a system in such a way that even if one or more components fail, you can still ensure some level of security. For example, if a firewall ever fails, it should deny access by default and not let any traffic in. Although inconvenient, the information system protected by the firewall will stay secure.</p>
+<h3 id="3.6-secure-by-default" tabindex="-1">3.6 Secure by Default</h3>
+<p>When you design a system, it should, by default, be optimized for security wherever possible. From a security standpoint, the more features that are built into a piece of software, the more susceptible it is going to be to an attack. Therefore, on should not enable non-vital services by default.Such <em>hardening</em> of the initial configuration has for example helped reduce the security threat posed by worms in Windows.</p>
+<p>Whitelists are generally more secure than blacklists.</p>
+<h3 id="3.7-simplicity" tabindex="-1">3.7 Simplicity</h3>
+<p>Complex software is likely to have many more bugs and security holes than simple software. Code should be written so that it is possible to test each function in isolation. A simpler design and fewer lines of code can mean less complexity, better understandability, and better auditability.</p>
+<h3 id="3.8-usability" tabindex="-1">3.8 Usability</h3>
+<p>For a software product to be usable, its users, with high probability, should be able to accomplish tasks that the software is meant to assist them in carrying out. Interaction designers and usability engineers should be brought in at the start of the project to architect the information and task flow to be intuitive to the user.</p>
+<p>Regarding the interaction between usability and security:</p>
+<ul>
+<li>Do not rely on documentation (most user won't read it)</li>
+<li>Secure by default (security features are rarely manually enabled)</li>
+<li>Remember that users will often ignore security if given the choice</li>
+</ul>
+<h3 id="3.9-security-features-do-not-imply-security" tabindex="-1">3.9 Security Features Do Not Imply Security</h3>
+<p>Based on how much testing you have done and what you have tested for, you may be able to provide your management with a <em>risk assessment</em>.</p>
+<p>However, in general, you don’t really know that any piece of code is actually secure. You either know that it is not secure because you found some security bugs that you have not fixed yet, or it is inconclusive as to whether it is secure.</p>
+<p>An attacker may often need to find only one flaw or vulnerability to breach security. The designers of a system have a much harder job—they need to design and build to protect against all possible flaws if security is to be achieved.</p>
+<h2 id="5-worms-and-other-malware" tabindex="-1">5 Worms and Other Malware</h2>
+<h3 id="5.1-what-is-a-worm%3F" tabindex="-1">5.1 What is a Worm?</h3>
+<p>A worm is a type of a virus. A <em>virus</em> is a computer program that is capable of making copies of itself and inserting those copies into other programs. A <em>worm</em> (write once, read many) is a virus that uses a network to copy itself onto other computers.</p>
+<h3 id="5.2.-an-abridged-history-of-worms" tabindex="-1">5.2. An Abridged History of Worms</h3>
+<p>Example: <em>The Morris Worm</em></p>
+<ul>
+<li>How it spread
+<ul>
+<li>It attempted to use a buffer overflow vulnerability in the finger daemon server,</li>
+<li>It took advantage of the debug mode in sendmail, and</li>
+<li>It tried to remotely log into hosts using common usernames and passwords.</li>
+</ul>
+</li>
+<li>What we learned
+<ul>
+<li>Diversity is good. The Morris worm took advantage of vulnerabilities in UNIX servers.</li>
+<li>Large programs are particularly vulnerable to attack. The sendmail program is very large and has lots of lines of code.</li>
+<li>The importance for users to choose good passwords</li>
+</ul>
+</li>
+</ul>
+<h3 id="5.3-more-malware" tabindex="-1">5.3 More Malware</h3>
+<p>Here are some other types of malware that you need to be aware of:</p>
+<p><em>Rootkits</em>: A set of impostor operating system tools that are meant to replace the
+standard version of those tools such that the activities of an attacker that has compromised the system can be hidden. Once a rootkit is successfully installed, the impostor
+version of the operating system tools becomes the default version.</p>
+<p><em>Botnets</em>: Once an attacker compromises a machine, it can be added to a network of software robots used to control large numbers of machines at once. For example, to launch a DDoS attack. If an attacker installs a rootkit on each machine in a botnet, the existence of the botnet could remain quite hidden.</p>
+<p><em>Spyware</em>: Spyware is software that monitors the activity of a system and some or all of its
+users without their consent. For example, spyware may collect information about what
+web pages a user visits, what search queries a user enters, and what electronic commerce
+transactions a user conducts.</p>
+<p><em>Keyloggers</em>: A keylogger is a type of spyware that monitors user keyboard or mouse input
+and reports some or all such activity to an adversary. Keyloggers are often used to steal
+usernames, passwords, credit card numbers, bank account numbers, and PINs.</p>
+<p><em>Adware</em>: Adware is software that shows advertisements to users. In some cases, adware provides the user with the option of paying for software in exchange for not having to see ads.</p>
+<p><em>Trojan horses</em>: A Trojan is software that claims to perform one function but performs an additional or different function than advertised once installed.</p>
+<p><em>Clickbots</em>: A clickbot is a software robot that clicks on ads to help an attacker conduct click fraud. Some clickbots can be purchased, while others are malware that spreads like worms and are part of larger botnets.</p>
+<h2 id="6-buffer-overflows" tabindex="-1">6 Buffer Overflows</h2>
+<p>A <em>buffer overflow</em> vulnerability allows an attacker to inject code into an already running program and then have the program start running the attacker’s code. While buffer overflow attacks are preventable, they continue to be a common vulnerability.</p>
+<h3 id="6.1-anatomy-of-a-buffer-overflow" tabindex="-1">6.1 Anatomy of a Buffer Overflow</h3>
+<p>When overflowing a buffer, the program might overwrite the return address of the current function. This may be exploited by an attacker, enabling them to call an arbitrary function, e.g. <code><span class="hljs-function"><span class="hljs-title">openVault</span><span class="hljs-params">()</span></span></code> (if they have had access to the source/binary and know what address to point to). The user input provided by the attacker is often called an <em>attack string</em>. It is also possible to include arbitrary executable code in the attack string.</p>
+<h3 id="6.2-safe-string-libraries" tabindex="-1">6.2 Safe String Libraries</h3>
+<h3 id="6.3-additional-approaches" tabindex="-1">6.3 Additional Approaches</h3>
+<ul>
+<li>StackGuard (compiler technique)</li>
+<li>Static Analysis Tools</li>
+</ul>
+<h3 id="6.4-performance" tabindex="-1">6.4 Performance</h3>
+<p>The performance impact of all of these approaches is usually a small
+price to pay to ensure that an attacker cannot take control of your software!</p>
+<h3 id="6.5-heap-based-overflows" tabindex="-1">6.5 Heap-Based Overflows</h3>
+<p>Heap-based buffer overflows can be prevented in the same way that stack-based buffer
+overflows can be - in both cases, it is critical that memory is not written to beyond the bounds
+of a buffer.</p>
+<h3 id="6.6-other-memory-corruption-vulnerabilities" tabindex="-1">6.6 Other Memory Corruption Vulnerabilities</h3>
+<p>In a <em>memory corruption</em> vulnerability, the attacker takes advantage of a programmer’s error in memory management.</p>
+<ul>
+<li>Format string vulnerabilities</li>
+<li>Integer overflows</li>
+</ul>
+<h2 id="7-client-state-manipulation" tabindex="-1">7 Client-State Manipulation</h2>
+<p><em>Client-state manipulation</em> is an attack that can occur due to unvalidated input. To be secure, web applications should not trust clients, and should validate all input received from clients.</p>
+<h3 id="7.1-pizza-delivery-web-site-example" tabindex="-1">7.1 Pizza Delivery Web Site Example</h3>
+<p>The process by which session-ids are provided to clients, associated with state, verified, and invalidated is often referred to as <em>session management</em>.</p>
+<p>Problem: User may change pizze price</p>
+<ul>
+<li>Solution 1: Authoritative State Stays at Server</li>
+<li>Solution 2: Signed State Sent to Client
+<ul>
+<li>One caveat to using a signature-based approach is that the entire transaction state must be signed</li>
+</ul>
+</li>
+</ul>
+<h3 id="7.2-using-http-post-instead-of-get" tabindex="-1">7.2 Using HTTP POST instead of GET</h3>
+<p>With <code><span class="hljs-attribute">GET</span></code>, query params are exposed in the URL - which is often shared. With a <code><span class="hljs-attribute">POST</span></code>, these values are not shared as easily.</p>
+<h3 id="7.3-cookies" tabindex="-1">7.3 Cookies</h3>
+<p>An alternative to using HTTP POST to maintain state across HTTP requests would be to use cookies. A <em>cookie</em> is a piece of state that is maintained by a client.</p>
+<p>You must be careful when using cookies since they are stored by the browser. If Alice uses your web site and does not explicitly log out (or you do not expire the session-id after some time period), there may be an additional security risk.</p>
+<h3 id="7.4-javascript" tabindex="-1">7.4 JavaScript</h3>
+<p>While JavaScript can be used to make the web page more interactive for the client, any data validation or computations done by the JavaScript cannot be trusted by the server. The computations must be redone on the server to ensure security.</p>
+<h2 id="8-sql-injection" tabindex="-1">8 SQL Injection</h2>
+<p>In general, <em>command injection</em> vulnerabilities can arise when untrusted data is inserted into a query or command. Specially crafted malicious input can cause the interpreter to misinterpret part of the supplied data as a command, or otherwise alter the intended semantics.</p>
+<p>In addition to SQL queries, this issue can occur if an application executes shell commands, makes queries to an LDAP server, uses XPath expressions to extract data from an XML document, interprets untrusted data as part of an XSLT style sheet, and so forth.</p>
+<h3 id="8.1-attack-scenario" tabindex="-1">8.1 Attack Scenario</h3>
+<p>SQL injections are performed by inserting malicious user input into an SQL query.</p>
+<p>In a <em>second order SQL injection</em>, data stored in the database is later used to conduct SQL injection. An attacker might for example choose the username <code>admin&#x27; <span class="hljs-comment">--</span></code>. Therefore, you should also escape input that have been stored in the database!</p>
+<h3 id="8.2-solutions" tabindex="-1">8.2 Solutions</h3>
+<ul>
+<li>Blacklisting Does Not Work</li>
+<li>Whitelisting-Based Input Validation</li>
+<li>Escaping
+<ul>
+<li>In general, you should not attempt to transform dangerous input characters to attempt to turn a potentially dangerous input string into a sanitized one.</li>
+</ul>
+</li>
+<li>Prepared Statements and Bind Variables</li>
+</ul>
+<h3 id="mitigating-the-impact-of-sql-injection-attacks" tabindex="-1">Mitigating the Impact of SQL Injection Attacks</h3>
+<ul>
+<li>Prevent Schema and Information Leakage</li>
+<li>Limiting Privileges</li>
+<li>Encrypting Sensitive Data Stored in the Database</li>
+<li>Hardening the Database Server and Host O/S</li>
+<li>Applying Input Validation</li>
+</ul>
+<h2 id="9-password-security" tabindex="-1">9 Password Security</h2>
+<h3 id="9.1-a-strawman-proposal" tabindex="-1">9.1 A Strawman Proposal</h3>
+<h3 id="9.2-hashing" tabindex="-1">9.2 Hashing</h3>
+<p>What you need a one-way encryption. If you store only one-way encrypted passwords in the password file, even if an attacker were to get hold of the password file, he would not be able to decrypt any of the users' passwords. This is accomplished by a <em>hash function</em>.</p>
+<p>Some commonly used hash functions are SHA-1 and MD5, however there have been recent attacks against them. It is advisable to use hash functions such as SHA-256 and SHA-512 instead.</p>
+<h3 id="9.3-offline-dictionary-attacks" tabindex="-1">9.3 Offline Dictionary Attacks</h3>
+<p>An attacker can easily build a dictionary of words, common street names, common names of companies, and so forth; and use such a dictionary to mount an attack.</p>
+<p>If the attacker knows that you are using the SHA-256 hash function to store one-way encrypted versions of passwords, the attacker can iterate through all the words in a dictionary, compute the SHA-256 hashes of them, and compare.</p>
+<p>The attack is called an <em>offline dictionary attack</em> because the attacker is not required to actually try username and password combinations online against a real system to conduct her attack, as she has possession of the password file.</p>
+<h3 id="9.4-salting" tabindex="-1">9.4 Salting</h3>
+<p>Salting is the practice of including additional information in the hash of the password.</p>
+<p>The attacker now needs to try combinations of dictionary words concatenated with salts to look for matches in the password file. Now, the task of cracking <em>any</em> user password is now about as difficult as cracking the password of a specific user.</p>
+<h3 id="9.5-online-dictionary-attacks" tabindex="-1">9.5 Online Dictionary Attacks</h3>
+<p>In <em>online dictionary attacks</em>, the attacker actively tries username and password combinations using a live, running system, instead of, say, computing hashes and comparing them against those in some acquired password file. This allows the host (you?) to monitor the attacker's password guessing. Subsequent login attempts from suspicious IPs can be denied, and additional steps can be taken to mitigate the online dictionary attack.</p>
+<h3 id="9.6-additional-password-security-techniques" tabindex="-1">9.6 Additional Password Security Techniques</h3>
+<ul>
+<li>Strong Passwords</li>
+<li>"Honeypot" Passwords</li>
+<li>Password Filtering</li>
+<li>Aging Passwords</li>
+<li>Pronounceable Passwords</li>
+<li>Limited Login Attempts</li>
+<li>Artificial Delays</li>
+<li>Last Login</li>
+<li>Image Authentication</li>
+<li>One-Time Passwords</li>
+</ul>
+<h2 id="10-cross-domain-security-in-web-applications" tabindex="-1">10 Cross-Domain Security in Web Applications</h2>
+<h3 id="10.1-interaction-between-web-pages-from-different-domains" tabindex="-1">10.1 Interaction Between Web Pages from Different Domains</h3>
+<p>With <code>same-origin-<span class="hljs-keyword">policy</span></code>, scripts can only access properties (including cookies, and DOM objects and their attributes) associated with documents from the same origin as the origin of the document with which the script is associated. The origin of a document is defined by the protocol (e.g. HTTP or FTP), hostname, and port of the document's URL.</p>
+<p>Cookies are divided into two classes with respect to how long they are cached by the browser: <em>non-persistent</em> are cached (in memory) until the browser is closed, while <em>persistent</em> cookies persist (on disk) until the indicated expiry time.</p>
+<p>With the HTTP authentication alternative, it is very difficult to implement a reliable session timeout mechanism.</p>
+<h3 id="10.2-attack-patterns" tabindex="-1">10.2 Attack Patterns</h3>
+<p>// TODO: Clean up</p>
+<p>XSRF: It is worth noting that due to the same-origin policy, the attacker’s malicious page cannot <em>read</em> any data related to Alice’s account; rather, it is possible for him to blindly cause Alice’s browser to make a <em>write</em> request to our application and cause a server-side state change related to Alice’s account.</p>
+<p>XSSI:</p>
+<p>Cross-Site Scripting (XSS): An attacker is able to inject a script tag into the application. If the data is not escaped, the script will run. This can be used to steal data such as cookies or perform actions in the user's place.</p>
+<p>The term <em>reflected XSS</em> is commonly used to describe situations such as the first example in this section, in which the victim is lured into making a request to the vulnerable web application, and script is injected via parameters of that request and returned (reflected) immediately as part of the resulting response. In contrast, situations in which injected script is delivered to victim users some time after it was injected into the system (and is stored somehow in the intervening period) are referred to as <em>stored XSS</em>.</p>
+<h3 id="10.3-preventing-xsrf" tabindex="-1">10.3 Preventing XSRF</h3>
+<ul>
+<li>Inspecting Referer Headers</li>
+<li>Validation via User-Provided Secret</li>
+<li>Validation via Action Token</li>
+</ul>
+<h3 id="10.4-preventing-xssi" tabindex="-1">10.4 Preventing XSSI</h3>
+<ul>
+<li>Authentication via Action Token</li>
+<li>Restriction to POST Requests</li>
+<li>Preventing Resource Access for Cost Reasons</li>
+</ul>
+<h3 id="10.5-preventing-cross-site-scripting-(xss)" tabindex="-1">10.5 Preventing Cross-Site Scripting (XSS)</h3>
+<ul>
+<li>Output sanitation</li>
+</ul>
+<p>many more pages..</p>
+<h2 id="12-symmetric-key-cryptography" tabindex="-1">12 Symmetric Key Cryptography</h2>
+<h3 id="12.1-introduction-to-encryption" tabindex="-1">12.1 Introduction to Encryption</h3>
+<p>Substitution ciphers are easy for attackers to break using basic frequency and statistical analysis.</p>
+<p>An n-bit block cipher encrypts n bits of plaintext at a time,
+and produces an n-bit result. Parity bits are extra bits that add redundancy to detect if the key has been corrupted.</p>
+<p><em>DES</em> is a 64-bit block cipher with a64 bit key with 8 parity bits. From a security standpoint, DES gives 56 bits of security, since the other bits
+are just for integrity checking.</p>
+<p><em>Triple DES</em> encryption consists of taking an input message, m, encrypting with the first key (k1), decrypting the resulting message with the second key (k2), and then encrypting that message with the third key (k3). Triple DES provides existing DES users with an easy upgrade path.</p>
+<p><em>AES</em> is a replacement for DES and Triple DES that provides security with larger keys and faster execution time. Fifteen different ciphers were proposed by cryptographers from all over the world, and conferences were held over the course of a three-year period, in which the strengths and weaknesses of the proposed ciphers were debated with regard to security, speed, memory requirements, and other hardware and software implementation considerations.</p>
+<p>To encrypt a 1-MB document, we could take each of these 64-bit blocks of plaintext input and independently run each of them through DES to produce 16,384 64-bit blocks of ciphertext. This technique is called <em>Electronic Code Book</em> (ECB) mode encryption. The problem with ECB is that it is likely that some of the 64-bit plaintext blocks are repeated many times in the 1-MB document. ECB leaks information about the structure of the document to the attacker.</p>
+<p>In <em>cipher block chaining</em> (CBC) mode encryption, we can avoid having patterns in ciphertext by XORing the previous block of ciphertext with the current plaintext block before encrypting to produce the next ciphertext block,</p>
+<h3 id="12.2-stream-ciphers" tabindex="-1">12.2 Stream Ciphers</h3>
+<p>In a stream cipher, one byte of plaintext is encrypted at a time, rather than 64, 128, or more bits at time. Stream ciphers are, in general,much faster than block ciphers. In a stream cipher, an infinite sequence of random bits is generated for use as the key, so the key bits are never reused. Stream ciphers attempts to approximate a theoretical encryption scheme called a one-time pad.</p>
+<p>A <em>one-time pad</em> is a cipher in which plaintext is XORed with a random stream of bits of the same length as the plaintext. The scheme has <em>perfect secrecy</em> meaning that under a brute-force attack, every possible decryption is equally likely. A one-time pad is named as such because the key should be used exactly once. If an attacker is able to get one bit of plaintext and one bit of corresponding ciphertext, the attacker could simply XOR the two together to recover the key bit!</p>
+<p><em>RC4</em> is a very popular stream cipher that approximates a one-time pad. Since it is impractical to have a key that is as long as the plaintext itself, RC4 uses a fixed-size key as a “seed” that is used to generate an infinite stream of key bits.</p>
+<p>While RC4 provides fast performance, you should remember the following if you decide to use it: RC4 keys should never be used more than once, a suitable number of initial bytes of the key stream should be discarded, and a MAC should be used to protect the integrity of the ciphertext transmitted.</p>
+<h3 id="12.3-steganography" tabindex="-1">12.3 Steganography</h3>
+<h2 id="13-asymmetric-key-cryptography" tabindex="-1">13 Asymmetric Key Cryptography</h2>
+<h3 id="13.1-why-asymmetric-key-cryptography%3F" tabindex="-1">13.1 Why Asymmetric Key Cryptography?</h3>
+<p><img src="assets/2023-05-13-17-07-58.png" alt=""></p>
+<h3 id="13.2-rsa" tabindex="-1">13.2 RSA</h3>
+<p><em>RSA</em> is the most widely known and used asymmetric cipher. It is used in a variety of different protocols in the world of computer security. The security of the algorithm depends on the difficulty of factoring large prime numbers. If it is difficult to factor large prime factors, it will be hard to break the mathematical properties of the algorithm. Common key sizes that are used with RSA are 1024, 2048, and 4096 bits. Since RSA is fundamentally different than any other encryption algorithm, these key sizes do not have a direct relation to the key sizes of other algorithms, such as AES or Triple DES.</p>
+<h3 id="13.3-elliptic-curve-cryptography-(ecc)" tabindex="-1">13.3 Elliptic Curve Cryptography (ECC)</h3>
+<p>The security of <em>Elliptic Curve Cryptography</em> is based upon the difficulty of the elliptic curve discrete logarithm problem. It allows you to do public key operations using much smaller keys than RSA.</p>
+<h3 id="13.4-symmetric-vs.-asymmetric-key-cryptography" tabindex="-1">13.4 Symmetric vs. Asymmetric Key Cryptography</h3>
+<p>Asymmetric key encryption solves the problem of agreeing on a shared private key. However, symmetric key encryption is more efficient. RSA ends up being about one thousand times slower than DES.</p>
+<h3 id="13.5-certificate-authorities" tabindex="-1">13.5 Certificate Authorities</h3>
+<p>A <em>certificate authority</em> (CA) is a trusted third party that verifies people identities and binds it to their public keys. A CA is also responsible for revoking keys and certificates, e.g. if a private key is lost or compromised.</p>
+<h3 id="13.6-identity-based-encryption-(ibe)" tabindex="-1">13.6 Identity-Based Encryption (IBE)</h3>
+<p>With <em>Identity-Based Encryption</em>, the public key <em>is</em> the identity (e.g. email address). This solves the problem of verifying public keys. To replace a compromised key, we simply add the current date to the email address.</p>
+<h3 id="13.7-authentication-with-encryption" tabindex="-1">13.7 Authentication with Encryption</h3>
+<p>Asymmetric key encryption can be used to authenticate. If Alice encrypts a nonce (some random number) with Bob's public key, Bob can prove his identity by decrypting it with his private key and sending the nonce back, as only he is able to decrypt the message.</p>
+<h2 id="14-key-management-and-exchange-(skip-this%3F)" tabindex="-1">14 Key Management and Exchange (skip this?)</h2>
+<h3 id="14.1-types-of-keys" tabindex="-1">14.1 Types of Keys</h3>
+<h3 id="14.2-key-generation" tabindex="-1">14.2 Key Generation</h3>
+<h3 id="14.3-key-(secret)-storage" tabindex="-1">14.3 Key (Secret) Storage</h3>
+<h3 id="14.4-key-agreement-and-exchange" tabindex="-1">14.4 Key Agreement and Exchange</h3>
+<h2 id="15-macs-and-signatures" tabindex="-1">15 MACs and Signatures</h2>
+<p>A <em>message authentication code</em> (MAC) is a sequence of bits that can be attached to a message to verify where it originated and that it has not been tampered with.</p>
+<h3 id="15.1-secure-hash-functions" tabindex="-1">15.1 Secure Hash Functions</h3>
+<p>A <em>secure cryptographic hash function</em> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span> takes as input some (potentially large) string <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span>. It produces a message digest, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>D</mi><mo>=</mo><mi>H</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">MD = H(M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span>, that has a few properties:</p>
+<ol>
+<li><em>Efficiency</em>: It should not take a lot of computational time or CPU cycles to compute <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span> even for a potentially large message.</li>
+<li><em>Pre-image resistance</em>: Given <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mo stretchy="false">(</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">H(M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span>, it should be computationally infeasible to determine <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span>.</li>
+<li><em>Collision resistance</em>: It is computationally infeasible to find two distinct input messages with the same hash.</li>
+</ol>
+<p>Two real-world examples of hash functions that are commonly used in building security protocols are MD5 and SHA-1.</p>
+<h3 id="15.2-message-authentication-codes-(macs)" tabindex="-1">15.2 Message Authentication Codes (MACs)</h3>
+<p>MACs can be used to determine if a message originated from a principal that has possession of a secret key. Don’t use the same keys for encryption and MACs!</p>
+<p>// TODO: Shorten the following</p>
+<p>In particular, Alice and Bob may share a key, k, and Alice may use that key to compute a MAC on a message, M, which we denote as t = MAC(M,k). Alice can then transmit M and t to Bob. The value t is often referred to as a tag. Let M' be the message that Bob receives and t' be the corresponding MAC that he receives. If Mallory attempts to modify either M or t, Bob can detect any potential tampering by checking whether t' = MAC(M',k). If the equality holds true, it means (with overwhelmingly high probability) that either the message and signature were not tampered with (M' = M and t' = t) or that Mallory knows k.</p>
+<p><em>CBC MACs</em>: One way to construct a MAC is to encrypt the message using a block cipher such as AES in CBC mode. However, it has been shown that MACs based on CBC are not secure in various cases.</p>
+<p><em>HMAC</em>: Instead of attempting to build a MAC based on a block cipher, HMAC uses a secure hash function to compute a MAC. The security of HMAC is dependent upon the strength of the underlying secure hash function that is used. // TODO ?</p>
+<h3 id="15.3-signatures" tabindex="-1">15.3 Signatures</h3>
+<p>A signature is a non-repudiable piece of evidence that a principal who has possession of key <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mi>s</mi></msub><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">k_s(P)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mclose">)</span></span></span></span> executed the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>i</mi><mi>g</mi><mi>n</mi><mo stretchy="false">(</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Sign()</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mclose">)</span></span></span></span> operation on message <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span>. Depending upon the specific context, the signature can have different semantics. Digital signatures are used in SSL and for signing binaries.</p>
+<p>We can sign a message by <em>decrypting</em> its hash with a secret key. We want anybody to be able to verify the signature with the public key.</p>
+<h3 id="15.4-attacks-against-hash-functions-%2F%2F-todo%3A-outdated%3F" tabindex="-1">15.4 Attacks Against Hash Functions // TODO: Outdated?</h3>
+<p>While the use of SHA-1 may continue to be secure for some applications (such as HMAC-SHA-1), it may be acceptable only in the very near future. The attacks against MD5 are more serious, and you should probably transition away from it immediately, if you have not done so already.</p>
+<p>An attacker that has access to lots of computational power may be able to use these attacks to construct two new documents that result in the same hash, obtain a digital signature on one of them, and claim that the other was signed.</p>
+<h3 id="15.5-ssl" tabindex="-1">15.5 SSL</h3>
+<p>SSL uses both symmetric and asymmetric cryptography, as well as signatures and MACs to provide authentication, confidentiality, and message integrity between a client and a server.</p>
+<p>In a full SSL handshake, two round trips are required before the client and server can start exchanging application data.</p>
+<p><img src="assets/2023-05-13-18-33-19.png" alt=""></p>
+<p><img src="assets/2023-05-13-18-34-10.png" alt=""></p>
+<p>If you require authentication, confidentiality, and/or message integrity between a client and server, you should strongly consider reusing SSL instead of attempting to build a protocol of your own.</p>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>
