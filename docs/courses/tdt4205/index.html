@@ -25,8 +25,10 @@
 </h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="exam_notes.html">exam_notes</a></li>
 <li>📄 <a href="lectures.html">lectures</a></li>
 <li>📄 <a href="previous_exams.html">previous_exams</a></li>
+<li>📄 <a href="previous_exams_solutions.html">previous_exams_solutions</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
 <nav class="table-of-contents"><ol><li><a href="#tdt4205---compiler-construction">TDT4205 - Compiler Construction</a><ol><li><a href="#links">Links</a></li><li><a href="#topics%2C-slides-and-chapters">Topics, slides and chapters</a></li><li><a href="#compilers-principles%2C-techniques%2C-%26-tools-(second-edition)">Compilers Principles, Techniques, &amp; Tools (Second Edition)</a><ol><li><a href="#toc">TOC</a></li></ol></li></ol></li></ol></nav>
@@ -91,13 +93,79 @@
 <ol>
 <li>Introduction*</li>
 <li>A Simple Syntax-Directed Translator*</li>
-<li><strong>Lexical Analysis</strong></li>
-<li><strong>Syntax Analysis</strong></li>
-<li><strong>Syntax-Directed Translation</strong></li>
-<li><strong>Intermediate-Code Generation</strong></li>
-<li><strong>Run-Time Environments</strong></li>
-<li><strong>Code Generation</strong></li>
-<li><strong>Machine-Independent Optimizations</strong></li>
+<li><strong>Lexical Analysis</strong>
+<ul>
+<li>3.1 The Role of the Lexical Analyzer</li>
+<li>3.2 Input Buffering</li>
+<li>3.3 Specification of Tokens</li>
+<li>3.4 Recognition of Tokens</li>
+<li>3.6 Finite Automata</li>
+<li>3.7 From Regular Expressions to Automata</li>
+<li>3.9.6 Minimizing the Number of States of a DFA</li>
+</ul>
+</li>
+<li><strong>Syntax Analysis</strong>
+<ul>
+<li>4.1 Introduction</li>
+<li>4.2 Context-Free Grammars</li>
+<li>4.3 Writing a Grammar</li>
+<li>4.4 Top-Down Parsing</li>
+<li>4.5 Bottom-Up Parsing</li>
+<li>4.6 Introduction to LR Parsing: Simple LR</li>
+<li>4.7 More Powerful LR Parsers</li>
+<li>4.8 Using Ambigous Grammars</li>
+</ul>
+</li>
+<li><strong>Syntax-Directed Translation</strong>
+<ul>
+<li>5.1 Syntax-Directed Definitions</li>
+<li>5.2 Evaluation Orders for SDD's</li>
+<li>5.3 Applications of Syntax-Directed Translation</li>
+<li>5.4 Syntax-Directed Translation Schemes</li>
+</ul>
+</li>
+<li><strong>Intermediate-Code Generation</strong>
+<ul>
+<li>6.2 Three-Address Code</li>
+<li>6.4 Translation of Expressions</li>
+<li>6.6 Control Flow</li>
+<li>6.8 Switch-Statements</li>
+<li>6.9 Intermediate Code for Procedures</li>
+</ul>
+</li>
+<li><strong>Run-Time Environments</strong>
+<ul>
+<li>7.1 Storage Organization</li>
+<li>7.2 Stack Allocation of Space</li>
+<li>7.3 Access to Nonlocal Data on the Stack</li>
+<li>7.4 Heap Management</li>
+</ul>
+</li>
+<li><strong>Code Generation</strong>
+<ul>
+<li>8.1 Issues in the Design of a Code Generator</li>
+<li>8.2 The Target Language</li>
+<li>8.3 Addresses in the Target Code</li>
+<li>8.4 Basic Blocks and Flow Graphs</li>
+<li>8.5 Optimizations of Basic Blocks</li>
+<li>8.6 A Simple Code Generator</li>
+<li>8.7 Peephole Optimization</li>
+<li>8.8 Register Allication and Assignment</li>
+<li>8.9 Instruction Selection by Tree Rewriting</li>
+<li>8.10 Optimal Code Generation for Expression</li>
+<li>8.11 Dynamic Programming Code-Generation</li>
+</ul>
+</li>
+<li><strong>Machine-Independent Optimizations</strong>
+<ul>
+<li>9.1 The Principal Sources of Optimization</li>
+<li>9.2 Introduction to Data-Flow Analysis</li>
+<li>9.3 Foundations of Data-Flow Analysis</li>
+<li>9.4 Constant Propagation</li>
+<li>9.5 Partial-Redundancy Elimination</li>
+<li>9.6 Loops in Flow Graphs</li>
+</ul>
+</li>
 <li>Instruction-Level Parallelism*</li>
 <li>Optimizing for Parallelism and Locality*</li>
 <li>Interprocedural Analysis*</li>

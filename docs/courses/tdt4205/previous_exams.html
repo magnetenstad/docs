@@ -25,8 +25,10 @@
 </h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="exam_notes.html">exam_notes</a></li>
 <li>📄 <a href="lectures.html">lectures</a></li>
 <li>📄 <a href="previous_exams.html">previous_exams ✨</a></li>
+<li>📄 <a href="previous_exams_solutions.html">previous_exams_solutions</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
 <nav class="table-of-contents"><ol><li><a href="#previous-exams-(2010%2C-2011%2C-2016%2C-2017%2C-2018)">Previous Exams (2010, 2011, 2016, 2017, 2018)</a><ol><li><a href="#true-%2F-false">True / False</a></li><li><a href="#topics">Topics</a><ol><li><a href="#lexical-analysis-(lanuages-and-automata)">Lexical analysis (lanuages and automata)</a><ol><li><a href="#2016">2016</a></li><li><a href="#2017">2017</a></li><li><a href="#2018">2018</a></li></ol></li><li><a href="#syntax-analysis">Syntax analysis</a><ol><li><a href="#2010">2010</a></li><li><a href="#2011">2011</a></li><li><a href="#2016-1">2016</a></li><li><a href="#2017-1">2017</a></li><li><a href="#2018-1">2018</a></li></ol></li><li><a href="#intermediate-representation">Intermediate representation</a><ol><li><a href="#2016-2">2016</a></li></ol></li><li><a href="#data-flow-analysis">Data flow analysis</a><ol><li><a href="#2011-1">2011</a></li><li><a href="#2016-3">2016</a></li><li><a href="#2017-2">2017</a></li><li><a href="#2018-2">2018</a></li></ol></li><li><a href="#run-time-environments">Run time environments</a><ol><li><a href="#2010-1">2010</a></li><li><a href="#2016-4">2016</a></li></ol></li><li><a href="#optimizations">Optimizations</a><ol><li><a href="#2011-2">2011</a></li><li><a href="#2018-3">2018</a></li></ol></li><li><a href="#miscellaneous">Miscellaneous</a><ol><li><a href="#2010-2">2010</a><ol><li><a href="#short-answers">Short Answers</a></li><li><a href="#global-variables">Global variables</a></li></ol></li><li><a href="#2011-3">2011</a><ol><li><a href="#relations-and-hasse-diagram">Relations and Hasse diagram</a></li><li><a href="#proof-tree">Proof tree</a></li></ol></li></ol></li></ol></li></ol></li></ol></nav>
@@ -113,7 +115,7 @@
 <h2 id="topics" tabindex="-1">Topics</h2>
 <h3 id="lexical-analysis-(lanuages-and-automata)" tabindex="-1">Lexical analysis (lanuages and automata)</h3>
 <h4 id="2016" tabindex="-1">2016</h4>
-<p>An image file in PPM format contains an ASCII text header, followed by a block of binary data. The header is specified to contain, in sequence: <code><span class="hljs-string">"P6"</span> (<span class="hljs-name">A</span> width*) <span class="hljs-string">"W"</span> <span class="hljs-string">"H"</span> (<span class="hljs-name">A</span> height*) <span class="hljs-string">"M"</span> (<span class="hljs-name">A</span> maximal color value*)</code> *formatted as a decimal number in plain text.</p>
+<p>An image file in PPM format contains an ASCII text header, followed by a block of binary data. The header is specified to contain, in sequence: <code><span class="hljs-string">"P6"</span> <span class="hljs-string">"W"</span> (<span class="hljs-name">A</span> width*) <span class="hljs-string">"H"</span> (<span class="hljs-name">A</span> height*) <span class="hljs-string">"M"</span> (<span class="hljs-name">A</span> maximal color value*)</code> *formatted as a decimal number in plain text.</p>
 <p>These 7 elements are all separated by arbitrary strings of whitespace, consisting of space, newline, and tabulator characters. The data block contains a sequence of (height * width) triplets of data elements, which are 8-bit values if the maximal color value is 255 or less, and 16-bit values otherwise.</p>
 <ol>
 <li>Draw a deterministic finite automaton which accepts the header format.</li>
@@ -124,9 +126,6 @@
 <li>Write a regular expression for the language consisting of the three words “lower”, “slower” and “shallow”</li>
 <li>Draw a corresponding DFA</li>
 <li>Can the number of states in your DFA be reduced? Justify your answer</li>
-<li>Write a context-free grammar for the specified header format:
-Files in the NIST matrix exchange format begin with a header of 3 words from 3 sets, which are (in order) {coordinate, array}, {real, integer, complex, pattern}, and {general, symmetric, skew-symmetric, Hermitian}. If the last word is 'Hermitian', the 2nd word must be 'complex'. If the 2nd word is 'pattern', the 1st word must be 'coordinate', and the 3rd must be either 'general' or 'symmetric'.</li>
-<li>Can this header be recognized by a regular expression? Why/why not?</li>
 </ol>
 <h4 id="2018" tabindex="-1">2018</h4>
 <p>The following lexical definition describes integer constants in the 1989 ANSI C standard:
@@ -162,6 +161,9 @@ B → B a | a
 <li>Rewrite this grammar for LL(1) parsing, by left factoring it and eliminating left recursion</li>
 <li>Tabulate the FIRST and FOLLOW sets of the nonterminals in the resulting grammar, and construct the predictive parsing table</li>
 <li>By default, yacc resolves shift/reduce conflicts by shifting. Briefly explain the consequence of resolving these by reducing instead, using the dangling-else ambiguity as an example</li>
+<li>Write a context-free grammar for the specified header format:
+Files in the NIST matrix exchange format begin with a header of 3 words from 3 sets, which are (in order) {coordinate, array}, {real, integer, complex, pattern}, and {general, symmetric, skew-symmetric, Hermitian}. If the last word is 'Hermitian', the 2nd word must be 'complex'. If the 2nd word is 'pattern', the 1st word must be 'coordinate', and the 3rd must be either 'general' or 'symmetric'.</li>
+<li>Can this header be recognized by a regular expression? Why/why not?</li>
 </ol>
 <h4 id="2016-1" tabindex="-1">2016</h4>
 <pre><code class="hljs language-txt">B → b D L e

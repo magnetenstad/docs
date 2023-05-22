@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>previous_exams_solutions.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4205</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="exam_notes.html">exam_notes</a></li>
+<li>📄 <a href="lectures.html">lectures</a></li>
+<li>📄 <a href="previous_exams.html">previous_exams</a></li>
+<li>📄 <a href="previous_exams_solutions.html">previous_exams_solutions ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#solutions-to-previous-exams">Solutions to previous exams</a><ol><li><a href="#todo-(questions)">TODO (Questions)</a></li><li><a href="#true-%2Ffalse">True /False</a><ol><li><a href="#2010">2010</a></li><li><a href="#2011">2011</a></li><li><a href="#2016">2016</a></li><li><a href="#2017">2017</a></li><li><a href="#2018">2018</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="solutions-to-previous-exams" tabindex="-1">Solutions to previous exams</h1>
+<h2 id="todo-(questions)" tabindex="-1">TODO (Questions)</h2>
+<ul>
+<li>What are dispatch vectors?</li>
+<li>What are right/left-sentinal?</li>
+<li>How do strongly typed and statically typed languages relate?</li>
+<li>In a CFG, what does it mean to dominate?</li>
+<li>What is a partial order?</li>
+<li>What is left factoring and left recursion elimination?</li>
+<li>What is a recursive descent parser?</li>
+<li>What is SLR and LALR(k) and how do they differ from LR(k)?</li>
+<li>What is the meet-over-paths solution of data flow equations?</li>
+<li>What is a interference graph?</li>
+<li>What is a live variable?</li>
+<li>What are L-attributed and S-attributed definitions?</li>
+</ul>
+<h2 id="true-%2Ffalse" tabindex="-1">True /False</h2>
+<h3 id="2010" tabindex="-1">2010</h3>
+<ol>
+<li>True. LR parsing produces a rightmost derivation, and LL parsing produces a leftmost derivation.</li>
+<li>TODO: Interfaces (as in Java) specify a dispatch vector layout.</li>
+<li>True. To be "x" grammar, it must be "x" (unambigously) parseable.</li>
+<li>False. The regex language in not regular, it needs to be able to count parenthesis.</li>
+<li>False. Caches.</li>
+<li>True. The type system may be too strict.</li>
+<li>False. TAC is an IR.</li>
+<li>False. Reaching definitions is a forward analysis.</li>
+<li>True. One must create a parsing table that includes all permutations of the lookahead symbols.</li>
+<li>TODO: The handle of a right-sentential form is also called a viable prefix.</li>
+<li>WRONG: Reduce/reduce conflicts can commonly be resolved by adding precedence rules to the parsing scheme.</li>
+<li>False. One may have run-time strong type checking.</li>
+<li>TODO: In a control flow graph, the condition of a loop dominates its body.</li>
+<li>True. The language of context free languages mainly need to support recursion, which is supported by a context free grammar.</li>
+<li>TODO: Every pair of elements in a partial order must be comparable by the ordering relation.</li>
+<li>False. There is no automatic cleanup of heap allocation. (But a garbage collector could do something like this.)</li>
+<li>TODO: Left factoring a grammar reduces the number of lookahead symbols required to parse it predictively.</li>
+<li>False. It knows what <em>token</em> to expect, not what <em>lexemes</em>.</li>
+<li>What?: With short-circuit evaluation, binary boolean operators can translate into jumps.</li>
+<li>True. LALR(k) makes some assumptions that that the general LR(k) does not.</li>
+</ol>
+<h3 id="2011" tabindex="-1">2011</h3>
+<ol>
+<li>False. The type checking may be too strict.</li>
+<li>False. Not all languages are context free.</li>
+<li>True. LALR(k) is a simplification of LR(k)</li>
+<li>TODO: The meet-over-paths solution to a set of dataflow equations is always at least as precise as the maximal fixed point solution</li>
+<li>False. A connection in an interference graph indicates that they <em>cannot</em> share a register.</li>
+<li>True. Deterministic finite automatons are a subset of the nondeterministic.</li>
+<li>True. A token, e.g. digit, may correspond to multiple lexemees, e.g. 0-9.</li>
+<li>False. Something that is <em>loop-invariant</em> can be moved out without altering the semantics because it does not depend on (is invariant to) the loop.</li>
+<li>WRONG. Given enough lookahead symbols k, a grammar with left-recursive productions may be LL(k) parsable.</li>
+<li>False.</li>
+</ol>
+<h3 id="2016" tabindex="-1">2016</h3>
+<ol>
+<li>True. Regular languages are a subset of context-free languages.</li>
+<li>False. There exists nonambigous grammars with left-recursive productions.</li>
+<li>WRONG. A top-down parser will always insert the last node of the syntax tree at the end of parsing.</li>
+<li>False. LALR(0) admits a <em>smaller</em> class of grammars than LR(1) parsing.</li>
+<li>False. A compiler usually does not ensure semantic correctness (as it is very difficult).</li>
+<li>False. E.g. C is statically typed but not type-safe.</li>
+<li>False. A function with side-effects will not necessarily be loop-invariant even if its arguments are.</li>
+<li>True.</li>
+<li>False. A live variable may be stored in other places than registers.</li>
+<li>True.</li>
+</ol>
+<h3 id="2017" tabindex="-1">2017</h3>
+<ol>
+<li>WRONG: All finite languages are regular languages. (Can you not for example construct a finite context-sensitive language?)</li>
+<li>False. The grammar must be left-factorable.</li>
+<li>False. A static type system does not ensure type safety (e.g. C)</li>
+<li>False. TAC assumes infinite registers.</li>
+<li>TODO: L-attributed definitions admit synthesized attributes (True)</li>
+<li>True. The LALR(1) parsing table is equal or smaller than the associated LR(1) table.</li>
+<li>False. A DAG representation of an expression may be tiled in multiple ways. (It is only a partial order?)</li>
+<li>False. Common subexpression elimination may speed up the run time.</li>
+<li>False. Two different regexes may match the same language.</li>
+<li>True. interference graph connects variables which are simultaneously live.</li>
+</ol>
+<h3 id="2018" tabindex="-1">2018</h3>
+<ol>
+<li>True. When the grammar is unambiguous, there only exists one syntax tree which both derivations will find.</li>
+<li>False. Left-recursiveness is mainly an issue when it comes to LL parsing.</li>
+<li>WRONG. LL(1) parsers need both a nonterminal and a terminal symbol to select a production</li>
+<li>True. Function inlining often increases program size.</li>
+<li>False. Construction of a DFA from NFA often results in redundant states.</li>
+<li>False?. S-attribution allows</li>
+<li>False. TAC may have less than 3 operands.</li>
+<li>TODO: The maximal fixed point (MFP) solution to a data flow equation is at least as precise as the Meet-Over-Paths (MOP) solution</li>
+<li>True. A-&gt;B and A-&gt;C. Then B and C have the same immediate dominator (A).</li>
+<li>False. Compiled languages may have dynamic type checking.</li>
+</ol>
+<p>In total: 5 WRONGs and 8 TODOs. (47/60 correct)</p>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

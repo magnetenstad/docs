@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>exam_notes.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4205</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="exam_notes.html">exam_notes ✨</a></li>
+<li>📄 <a href="lectures.html">lectures</a></li>
+<li>📄 <a href="previous_exams.html">previous_exams</a></li>
+<li>📄 <a href="previous_exams_solutions.html">previous_exams_solutions</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#exam-notes">Exam notes</a><ol><li><a href="#lexical-analysis">Lexical analysis</a></li><li><a href="#syntax-analysis">Syntax analysis</a></li><li><a href="#intermediate-representation">Intermediate representation</a></li><li><a href="#data-flow-analysis">Data flow analysis</a></li><li><a href="#optimization">Optimization</a></li><li><a href="#run-time-environment-and-code-generation">Run-time environment and Code generation</a></li><li><a href="#tools">Tools</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="exam-notes" tabindex="-1">Exam notes</h1>
+<h2 id="lexical-analysis" tabindex="-1">Lexical analysis</h2>
+<ul>
+<li>McNaughton-Thompson-Yamada algorithm: regex -&gt; NFA</li>
+<li>Subset Construction: group equivalent states (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">ϵ</span></span></span></span>-closures), transition table with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>move</mtext><mo stretchy="false">(</mo><mi>S</mi><mo separator="true">,</mo><mi>c</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{move}(S,c)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">move</span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">c</span><span class="mclose">)</span></span></span></span>, NFA -&gt; DFA</li>
+<li>Systematic minimization:
+<ol>
+<li>Start with two groups: all non-final states and all final states.</li>
+<li>Within a group, check pairs for equivalence. If found, these are separated into their own group.</li>
+<li>In the end, the equivalence groups may be merged to create a minimized DFA</li>
+</ol>
+</li>
+</ul>
+<h2 id="syntax-analysis" tabindex="-1">Syntax analysis</h2>
+<p>LL(1) tables. (x, y) = (term. + $, non-term.). Enter X -&gt; a at (X, s) if s is in FIRST(a). If nullable, also enter X -&gt; e at (X, t) where t is in FOLLOW(a).</p>
+<p>LR(0) automaton. Maybe add root. Add prods where dot is before non-term.</p>
+<p>LR(0) table. (x, y) = (Automaton state, term. + $ | non-term.) Items: shift(state), reduce(prod) or goto(state).</p>
+<p>SLR(0): Only reduce(prod) if column terminal is in FOLLOW.</p>
+<p>LALR: "Merge states that are similar except for the lookahead"</p>
+<p>Tabulate derivation: Cols: Stack, Input, Action. Either Output/Match or Shift/Reduce</p>
+<p><strong>Left factoring</strong> shortens the distance to the next nonterminal</p>
+<p>E.g. from</p>
+<ul>
+<li>A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> abcdef | abcxyz</li>
+</ul>
+<p>To</p>
+<ul>
+<li>A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> abcA'</li>
+<li>A' <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> def | xyz</li>
+</ul>
+<p><strong>Left recursion elimination</strong> shifts a nonterminal to the right</p>
+<p>E.g. from</p>
+<ul>
+<li>A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> A a | a</li>
+</ul>
+<p>To</p>
+<ul>
+<li>A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> a A'</li>
+<li>A' <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span> a A' | <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">ϵ</span></span></span></span></li>
+</ul>
+<p>A <em>symbol table</em> may store names, types and memory location (e.g. function address).</p>
+<p><em>L-attributed</em> (top-down) grammars allow synthesized attributes, and inheritance <em>from the left</em>. In S-attribution (bottom-up), all attributes are synthesized.</p>
+<p><img src="assets/2023-05-20-02-23-19.png" alt=""></p>
+<h2 id="intermediate-representation" tabindex="-1">Intermediate representation</h2>
+<pre><code class="hljs">x = &amp;y OP *z
+<span class="hljs-keyword">Label</span>:
+<span class="hljs-keyword">goto</span> <span class="hljs-keyword">Label</span>
+<span class="hljs-keyword">if</span> x OP y <span class="hljs-keyword">goto</span> <span class="hljs-keyword">Label</span>
+param x
+call <span class="hljs-keyword">Label</span>
+return a[i]
+</code></pre>
+<h2 id="data-flow-analysis" tabindex="-1">Data flow analysis</h2>
+<p>A node X dominates a node Y if every path to Y must go through X. Every node dominates itself.</p>
+<p>A partial order (P,⊑) contains a set of things P and a relation ⊑. The relation is reflexive, anti-symmetric and transitive. A partial order is a lattive if all subsets have a g.l.b. and l.u.b.</p>
+<p>MOP = MFP when the transfer function is distributive with regard to the meet operation. E.g. the they only depend on set union and intersection. (MFP) F(x U y) = F(x) U F(y) (MOP)</p>
+<p>A live variable is one which holds a value that may still be used at a later point</p>
+<table>
+<thead>
+<tr>
+<th>Analysis</th>
+<th>Direction</th>
+<th>Meet Op.</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Live variables</td>
+<td>backward</td>
+<td>union</td>
+<td>Kill defined, gen used</td>
+</tr>
+<tr>
+<td>Copy propagation</td>
+<td>forward</td>
+<td>intersection</td>
+<td>Kill non-copy, gen copy</td>
+</tr>
+<tr>
+<td>Available expr</td>
+<td>forward</td>
+<td>intersection</td>
+<td>Kill exprs with id, gen expr</td>
+</tr>
+<tr>
+<td>Reaching defs</td>
+<td>forward</td>
+<td>unions</td>
+<td>Kill defined, gen def</td>
+</tr>
+<tr>
+<td>Constant folding</td>
+<td>forward</td>
+<td>CF meet</td>
+<td>Kill defined, gen def*</td>
+</tr>
+</tbody>
+</table>
+<p>* either non-const, number or T (const)</p>
+<p>Forward: <code><span class="hljs-variable">out</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">I</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">=</span> <span class="hljs-punctuation">{</span> <span class="hljs-variable">in</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">I</span><span class="hljs-punctuation">]</span> – <span class="hljs-variable">kill</span><span class="hljs-punctuation">(</span><span class="hljs-built_in">I</span><span class="hljs-punctuation">)</span> <span class="hljs-punctuation">}</span> ⋃ <span class="hljs-variable">gen</span><span class="hljs-punctuation">(</span><span class="hljs-built_in">I</span><span class="hljs-punctuation">)</span></code>
+Backward: <code><span class="hljs-variable">in</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">I</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">=</span> <span class="hljs-punctuation">{</span> <span class="hljs-variable">out</span><span class="hljs-punctuation">[</span><span class="hljs-built_in">I</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">-</span> <span class="hljs-variable">kill</span><span class="hljs-punctuation">(</span><span class="hljs-built_in">I</span><span class="hljs-punctuation">)</span> <span class="hljs-punctuation">}</span> ⋃ <span class="hljs-variable">gen</span><span class="hljs-punctuation">(</span><span class="hljs-built_in">I</span><span class="hljs-punctuation">)</span></code></p>
+<h2 id="optimization" tabindex="-1">Optimization</h2>
+<ul>
+<li>Function inlining</li>
+<li>Function cloning (specialization)
+<ul>
+<li>Optimize for certain inputs or environments</li>
+</ul>
+</li>
+<li>Constant folding
+<ul>
+<li>Compile-time calculations of expressions with known values</li>
+</ul>
+</li>
+<li>Constant propagation
+<ul>
+<li>Constant variable replaced by value</li>
+</ul>
+</li>
+<li>Unreachable/dead code elimination
+<ul>
+<li>x = 1; x = 2; or if false:</li>
+</ul>
+</li>
+<li>Loop-invariant code motion</li>
+<li>Common sub-expression elimination</li>
+<li>Strength reduction
+<ul>
+<li>Replace expensive operations with cheaper ones, e.g. replace multiplication by addition</li>
+</ul>
+</li>
+<li>Loop unrolling</li>
+</ul>
+<h2 id="run-time-environment-and-code-generation" tabindex="-1">Run-time environment and Code generation</h2>
+<p>C is statically typed but not type safe. Javascript is dynamically typed, but type safe. (Crashes on type error)</p>
+<p><em>Dynamic dispatch</em>: to select implementation of a polymorphic operation to call at run time. Given a variable of known type, the <em>dispatch vector</em> provides the correct function address. Interfaces are constraints on the dispatch vector layout.</p>
+<pre><code class="hljs">return value: <span class="hljs-built_in">RAX</span>,
+<span class="hljs-symbol">parameters:</span> <span class="hljs-built_in">RDI</span>, <span class="hljs-built_in">RSI</span>, <span class="hljs-built_in">RDX</span>, <span class="hljs-built_in">RCX</span>, <span class="hljs-built_in">R8</span>, <span class="hljs-built_in">R9</span>, (stack)
+</code></pre>
+<p>x86 Example</p>
+<pre><code class="hljs"><span class="hljs-meta">.globl</span> main
+<span class="hljs-meta">.section</span> .data
+<span class="hljs-symbol">hello:</span>
+<span class="hljs-meta"> .string</span> <span class="hljs-string">"Hello, world! %ld\n"</span>
+<span class="hljs-meta">.section</span> .text
+<span class="hljs-symbol">main:</span>
+ pushq %rbp
+ <span class="hljs-keyword">movq</span> %rsp, %rbp
+ <span class="hljs-keyword">movq</span> <span class="hljs-number">$42</span>, %rsi
+ <span class="hljs-keyword">movq</span> $hello, %rdi
+ <span class="hljs-keyword">call</span> printf
+ <span class="hljs-keyword">leave</span>
+ <span class="hljs-keyword">ret</span>
+</code></pre>
+<p>An activation record</p>
+<pre><code class="hljs">..
+<span class="hljs-keyword">Next</span> call<span class="hljs-symbol">&#x27;s</span> local variables
+My frame ptr.
+<span class="hljs-comment">------------------- &lt;</span>
+<span class="hljs-keyword">Return</span> address
+Arguments
+(Intermediate data)
+Local variables
+Caller<span class="hljs-symbol">&#x27;s</span> frame ptr.
+<span class="hljs-comment">------------------- &lt;</span>
+<span class="hljs-keyword">Return</span> address
+Arguments
+..
+</code></pre>
+<h2 id="tools" tabindex="-1">Tools</h2>
+<pre><code class="hljs language-c"><span class="hljs-comment">// scanner.l (lex)</span>
+
+%{
+<span class="hljs-comment">// Define tokens</span>
+%}
+
+%option
+
+WHITESPACE [\ \t\v\r\n]
+COMMENT \/\/[^\n]+
+
+%%
+{WHITESPACE}+           { <span class="hljs-comment">/* Eliminate whitespace */</span> }
+{COMMENT}               { <span class="hljs-comment">/* Eliminate comments */</span> }
+func                    { <span class="hljs-keyword">return</span> FUNC; }
+[<span class="hljs-number">0</span><span class="hljs-number">-9</span>]+                  { <span class="hljs-keyword">return</span> NUMBER; }
+  <span class="hljs-comment">/* Unknown chars get returned as single char tokens */</span>
+.                       { <span class="hljs-keyword">return</span> yytext[<span class="hljs-number">0</span>]; }
+%%
+</code></pre>
+<pre><code class="hljs language-c"><span class="hljs-comment">// parser.y (yacc)</span>
+
+%{
+<span class="hljs-comment">/* State variables from the flex generated scanner */</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> yylineno; <span class="hljs-comment">// The line currently being read</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-type">char</span> yytext[]; <span class="hljs-comment">// The text of the last consumed lexeme</span>
+<span class="hljs-comment">/* The main flex driver function used by the parser */</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">yylex</span> <span class="hljs-params">( <span class="hljs-type">void</span> )</span>;
+
+%}
+
+%token FUNC PRINT RETURN BREAK IF THEN ELSE WHILE FOR IN DO OPENBLOCK CLOSEBLOCK
+%token VAR NUMBER IDENTIFIER STRING
+
+%left <span class="hljs-string">&#x27;+&#x27;</span> <span class="hljs-string">&#x27;-&#x27;</span>
+%left <span class="hljs-string">&#x27;*&#x27;</span> <span class="hljs-string">&#x27;/&#x27;</span>
+%right UMINUS
+
+%nonassoc IF THEN
+%nonassoc ELSE
+
+%%
+program :
+      global_list { root = node_init (PROGRAM, <span class="hljs-literal">NULL</span>, $<span class="hljs-number">1</span> ); }
+    ;
+identifier: IDENTIFIER { $ = node_init(IDENTIFIER_DATA, strdup(yytext) ); }
+%%
+
+</code></pre>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>
