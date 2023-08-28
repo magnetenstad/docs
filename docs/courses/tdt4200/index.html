@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>index.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4200 ✨</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#tdt4200---parallelle-beregninger">TDT4200 - Parallelle beregninger</a><ol><li><a href="#01-introduction">01 Introduction</a></li><li><a href="#02-the-von-neumann-computer">02 The von Neumann computer</a><ol><li><a href="#the-strength-of-neumann">The strength of Neumann</a></li><li><a href="#the-weakness(es)-of-neumann">The weakness(es) of Neumann</a></li><li><a href="#the-bridging-model-for-parallel-computing">The bridging model for parallel computing</a></li></ol></li><li><a href="#03-caches-and-virtual-memory">03 Caches and virtual memory</a><ol><li><a href="#temporal-locality-and-spatial-locality">Temporal locality and spatial locality</a></li><li><a href="#memory%3A-capacity-vs.-speed-vs.-cost">Memory: capacity vs. speed vs. cost</a></li><li><a href="#fully-associative-and-set-associative-caches">Fully associative and set-associative caches</a></li><li><a href="#virtual-memory-and-paging">Virtual memory and paging</a></li></ol></li><li><a href="#04-instruction-level-parallelism">04 Instruction-level parallelism</a><ol><li><a href="#pipelining">Pipelining</a></li><li><a href="#out-of-order-execution">Out-of-order execution</a></li><li><a href="#prefetching-%26-branch-prediction">Prefetching &amp; branch prediction</a></li><li><a href="#vectorization">Vectorization</a></li></ol></li><li><a href="#05-flynn's-taxonomy">05 Flynn&#39;s taxonomy</a></li><li><a href="#06-shared-and-distributed-memory%2C-interconnects">06 Shared and distributed memory, interconnects</a></li><li><a href="#07-speedup-and-efficiency">07 Speedup and efficiency</a></li><li><a href="#08-the-advection-equation">08 The advection equation</a></li><li><a href="#09-concepts-of-mpi">09 Concepts of MPI</a></li><li><a href="#10-six-function-mpi-with-point-to-point-and-collective-communication">10 Six-function MPI with point-to-point and collective communication</a></li><li><a href="#11-mpi%3A-communication-modes">11 MPI: Communication modes</a></li><li><a href="#12-mpi%3A-scattering-and-gathering-data">12 MPI: Scattering and gathering data</a></li><li><a href="#13-mpi%3A-derived-data-types">13 MPI: Derived data types</a></li><li><a href="#14-mpi%3A-parallel-i%2Fo">14 MPI: Parallel I/O</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="tdt4200---parallelle-beregninger" tabindex="-1">TDT4200 - Parallelle beregninger</h1>
+<h2 id="01-introduction" tabindex="-1">01 Introduction</h2>
+<p>The main focus is on programming models:</p>
+<ul>
+<li>Message Passing Interface (MPI)</li>
+<li>Posix threads (pthreads)</li>
+<li>Open Multi-Processing (OpenMP)</li>
+<li>Compute Unified Device Architecture (CUDA)</li>
+</ul>
+<p>Hardware went parallel around the turn of the century, and continues to pile on the resources. Software hasn’t really kept up, making code run better with extra processors is an “advanced topic”. Figuring out how to present parallel computing for the masses is very much a work-in-progress.</p>
+<h2 id="02-the-von-neumann-computer" tabindex="-1">02 The von Neumann computer</h2>
+<p><img src="assets/2023-08-28-12-26-51.png" alt=""></p>
+<h3 id="the-strength-of-neumann" tabindex="-1">The strength of Neumann</h3>
+<p>The von Neumann computer is a bridging model:</p>
+<ul>
+<li>Programmers can improve performance for every computer</li>
+<li>Hardware designers can improve performance for every program</li>
+</ul>
+<h3 id="the-weakness(es)-of-neumann" tabindex="-1">The weakness(es) of Neumann</h3>
+<ul>
+<li>Programs become strings of read-modify-write cycles
+<ul>
+<li>This means that the program will run at the speed of memory access whenever it needs to load new data</li>
+<li>This constraint is known as the von Neumann bottleneck</li>
+</ul>
+</li>
+<li>Sequential programs can only finish as quickly as the sum of their operations</li>
+<li>It gives all available memory to every program, and makes no distinction between frequently used and entirely idle addresses</li>
+</ul>
+<h3 id="the-bridging-model-for-parallel-computing" tabindex="-1">The bridging model for parallel computing</h3>
+<blockquote>
+<p>We don’t have one. It has been a work in progress for decades.</p>
+</blockquote>
+<p>We write programs in the von Neumann style, and try detect the parts that can be done in parallel. We will discuss explicit ways to run</p>
+<ul>
+<li>Multiple collaborating processes (distributed memory)</li>
+<li>Multiple instruction streams in one process (shared memory)</li>
+<li>Multiple operations in one instruction (vector operations)</li>
+<li>Multiple processor types in one program (hybrid programming)</li>
+</ul>
+<h2 id="03-caches-and-virtual-memory" tabindex="-1">03 Caches and virtual memory</h2>
+<h3 id="temporal-locality-and-spatial-locality" tabindex="-1">Temporal locality and spatial locality</h3>
+<h3 id="memory%3A-capacity-vs.-speed-vs.-cost" tabindex="-1">Memory: capacity vs. speed vs. cost</h3>
+<h3 id="fully-associative-and-set-associative-caches" tabindex="-1">Fully associative and set-associative caches</h3>
+<h3 id="virtual-memory-and-paging" tabindex="-1">Virtual memory and paging</h3>
+<h2 id="04-instruction-level-parallelism" tabindex="-1">04 Instruction-level parallelism</h2>
+<h3 id="pipelining" tabindex="-1">Pipelining</h3>
+<h3 id="out-of-order-execution" tabindex="-1">Out-of-order execution</h3>
+<p><em>Bernstein’s conditions</em> define that statements <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">S_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">S_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> are <em>independent</em> (i.e. will produce the same result when run in any order) if</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">(</mo><msub><mi>S</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>∩</mo><mi>W</mi><mo stretchy="false">(</mo><msub><mi>S</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">∅</mi></mrow><annotation encoding="application/x-tex">R(S_1) \cap W(S_2) = \emptyset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">∅</span></span></span></span> (S1 doesn’t read what S2 writes)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><msub><mi>S</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>∩</mo><mi>R</mi><mo stretchy="false">(</mo><msub><mi>S</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">∅</mi></mrow><annotation encoding="application/x-tex">W(S_1) \cap R(S_2) = \emptyset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">∅</span></span></span></span> (S1 doesn’t write what S2 reads)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo stretchy="false">(</mo><msub><mi>S</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>∩</mo><mi>W</mi><mo stretchy="false">(</mo><msub><mi>S</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">∅</mi></mrow><annotation encoding="application/x-tex">W(S_1) \cap W(S_2) = \emptyset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">∅</span></span></span></span> (S1 and S2 don’t write in the same place)</li>
+</ul>
+<p>We have three types of dependencies:</p>
+<ul>
+<li>Data dependence: when the result of one operation is an input to a following operation</li>
+<li>Name dependence: when a name is re-used for a different purpose</li>
+<li>Control dependence: branches in the program</li>
+</ul>
+<p>Superscalar processors: With automatic (in)dependence detection in place, we can replicate the ALU parts of the Neumann machine and make the control path dispatch several instructions at once. This is fondly known as multiple issue in computer architecture.</p>
+<h3 id="prefetching-%26-branch-prediction" tabindex="-1">Prefetching &amp; branch prediction</h3>
+<p>Many loops create regular access patterns in memory. By default, that kind of loop will regularly create cache misses at the end of every cache line. Upcoming misses can be avoided by detecting the pattern and starting the memory transfer early.</p>
+<p>When pre-loading instructions, if() statements, loop tails, etc. make it hard to decide which branch to pre-load. Wrong guesses require the pipeline to be flushed. It is possible to store branch statistics next to a table of the branch instructions’ addresses in the code.</p>
+<h3 id="vectorization" tabindex="-1">Vectorization</h3>
+<p>Vector registers are extra-wide registers that can store several consecutive values at once. With the vector registers loaded, there are instructions that do the same thing to all of their elements in parallel. Packing data into wide registers like this, we can do 4 times the work in one of the read-modify-write cycles of Neumann</p>
+<h2 id="05-flynn's-taxonomy" tabindex="-1">05 Flynn's taxonomy</h2>
+<h2 id="06-shared-and-distributed-memory%2C-interconnects" tabindex="-1">06 Shared and distributed memory, interconnects</h2>
+<h2 id="07-speedup-and-efficiency" tabindex="-1">07 Speedup and efficiency</h2>
+<h2 id="08-the-advection-equation" tabindex="-1">08 The advection equation</h2>
+<h2 id="09-concepts-of-mpi" tabindex="-1">09 Concepts of MPI</h2>
+<h2 id="10-six-function-mpi-with-point-to-point-and-collective-communication" tabindex="-1">10 Six-function MPI with point-to-point and collective communication</h2>
+<h2 id="11-mpi%3A-communication-modes" tabindex="-1">11 MPI: Communication modes</h2>
+<h2 id="12-mpi%3A-scattering-and-gathering-data" tabindex="-1">12 MPI: Scattering and gathering data</h2>
+<h2 id="13-mpi%3A-derived-data-types" tabindex="-1">13 MPI: Derived data types</h2>
+<h2 id="14-mpi%3A-parallel-i%2Fo" tabindex="-1">14 MPI: Parallel I/O</h2>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

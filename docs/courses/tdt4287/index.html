@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>index.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4287 ✨</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#tdt4287---algoritmer-for-bioinformatikk">TDT4287 - Algoritmer for bioinformatikk</a><ol><li><a href="#01-introduction">01 Introduction</a><ol><li><a href="#a-cell-as-seen-by-a-computer-scientist">A cell as seen by a computer scientist</a></li><li><a href="#list-of-biological-sequence-problems">List of biological sequence problems</a></li><li><a href="#how-do-genes-encode-proteins%3F">How do genes encode proteins?</a><ol><li><a href="#protein-structure">Protein structure</a></li><li><a href="#the-genetic-code">The genetic code</a></li></ol></li><li><a href="#what-is-the-function-of-a-protein%3F">What is the function of a protein?</a></li><li><a href="#longest-common-subsequence-(lcs)">Longest common subsequence (LCS)</a><ol><li><a href="#recursive-lcs">Recursive LCS</a></li><li><a href="#dynamic-programming-(dp)-lcs">Dynamic programming (DP) LCS</a></li></ol></li><li><a href="#homework">Homework</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="tdt4287---algoritmer-for-bioinformatikk" tabindex="-1">TDT4287 - Algoritmer for bioinformatikk</h1>
+<h2 id="01-introduction" tabindex="-1">01 Introduction</h2>
+<blockquote>
+<p><em>Bioinformatics</em> - the collection, classification, storage, and analysis of biochemical and biological information using computers especially as applied in molecular genetics and genomics.</p>
+</blockquote>
+<p>This course will focus on sequence (string) analysis</p>
+<ul>
+<li>Alignment -&gt; finding similar sequences</li>
+<li>Suffix trees -&gt; index-based searching</li>
+<li>Motif finding -&gt; similarities between sequences</li>
+<li>Assembly -&gt; reconstructing sequences from fragments</li>
+<li>RNA structures -&gt; similarities within a sequence</li>
+</ul>
+<h3 id="a-cell-as-seen-by-a-computer-scientist" tabindex="-1">A cell as seen by a computer scientist</h3>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>DNA</mtext><msub><mo>⟶</mo><msub><mi>f</mi><mrow><mi>T</mi><mi>R</mi></mrow></msub></msub><mtext>RNA</mtext><msub><mo>⟶</mo><msub><mi>f</mi><mrow><mi>T</mi><mi>L</mi></mrow></msub></msub><mtext>Protein</mtext></mrow><annotation encoding="application/x-tex">\text{DNA} \longrightarrow_{f_{TR}} \text{RNA} \longrightarrow_{f_{TL}} \text{Protein}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord text"><span class="mord">DNA</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">⟶</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.10764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord text"><span class="mord">RNA</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">⟶</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567071428571427em;margin-left:-0.10764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight">L</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.14329285714285717em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Protein</span></span></span></span></span></span></p>
+<ul>
+<li>DNA replicates itself</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>T</mi><mi>R</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{TR}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the transcription of DNA to RNA</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>T</mi><mi>L</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{TL}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight">L</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is the translation of RNA to Protein</li>
+</ul>
+<h3 id="list-of-biological-sequence-problems" tabindex="-1">List of biological sequence problems</h3>
+<ul>
+<li>How do genes encode proteins?</li>
+<li>What is the function of a protein?</li>
+<li>How do we recognize genes in DNA?</li>
+<li>How are genes controlled so that proteins are produced at the correct place and time?</li>
+</ul>
+<h3 id="how-do-genes-encode-proteins%3F" tabindex="-1">How do genes encode proteins?</h3>
+<h4 id="protein-structure" tabindex="-1">Protein structure</h4>
+<ul>
+<li>Sequence (string) of amino acids
+<ul>
+<li>20 different amino acids</li>
+</ul>
+</li>
+<li>Amino acid sequence folds into unique, reproducible 3D (tertiary) structure</li>
+<li>The structure determines the function</li>
+</ul>
+<h4 id="the-genetic-code" tabindex="-1">The genetic code</h4>
+<p><img src="assets/2023-08-28-14-18-12.png" alt=""></p>
+<p>The genetic code must use at least 3 nucleotides to encode all 20 amino acids, but will have some redundancy (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>4</mn><mn>3</mn></msup><mo>=</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">4^3 = 64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">4</span></span></span></span>).</p>
+<h3 id="what-is-the-function-of-a-protein%3F" tabindex="-1">What is the function of a protein?</h3>
+<p>Protein sequence determines function.</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Sequence</mtext><mo>⟶</mo><mtext>Structure</mtext><mo>⟶</mo><mtext>Function</mtext></mrow><annotation encoding="application/x-tex">\text{Sequence} \longrightarrow \text{Structure} \longrightarrow \text{Function}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">Sequence</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⟶</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69433em;vertical-align:-0.011em;"></span><span class="mord text"><span class="mord">Structure</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⟶</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">Function</span></span></span></span></span></span></p>
+<p>Genes evolved from common ancestor - homologs - often have similar functions. Thus, we can search for similar gene sequences to determine similar gene functions. We determine similar genes by finding <em>common gene subsequences</em>.</p>
+<h3 id="longest-common-subsequence-(lcs)" tabindex="-1">Longest common subsequence (LCS)</h3>
+<p>E.g. the LCS of <code><span class="hljs-attribute">AGCTAGCT</span></code> and <code><span class="hljs-attribute">ATGCATGC</span></code> is <code><span class="hljs-attribute">AGCAGC</span></code>.</p>
+<h4 id="recursive-lcs" tabindex="-1">Recursive LCS</h4>
+<p>Three possibilities:</p>
+<ol>
+<li>Last letter from both strings part of LCS if identical; none of them otherwise</li>
+<li>Last letter from left string is part of LCS</li>
+<li>Last letter from right string is part of LCS</li>
+</ol>
+<p>Thus we have</p>
+<p class='katex-block'><span class="katex-error" title="ParseError: KaTeX parse error: No such environment: align* at position 7: \begin{̲a̲l̲i̲g̲n̲*̲}̲
+\text{LCS}_{(x…" style="color: #cc0000">\begin{align*}
+\text{LCS}_{(x,y)} &amp;= \max\{ \\
+&amp; \text{LCS}_{(x,y-1)}, \\
+&amp; \text{LCS}_{(x-1,y)}, \\
+&amp; \text{LCS}_{(x-1,y-1)} + (\text{LCS}[x] == \text{LCS}[y] \; ? \; 1 : 0) \\
+&amp; \}
+\end{align*}
+</span></p>
+<p>Recursive LCS solves subproblems multiple times.</p>
+<h4 id="dynamic-programming-(dp)-lcs" tabindex="-1">Dynamic programming (DP) LCS</h4>
+<p>Dynamic programming can be applied to recursive LCS such that subproblems are only solved once. We solve the matrix bottom-up. To record the actual subsequence, we also build a backtrack matrix.</p>
+<pre><code class="hljs">// <span class="hljs-symbol">LCS</span>(<span class="hljs-symbol">S</span>, <span class="hljs-symbol">R</span>)
+
+a[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+for i in range(<span class="hljs-number">1</span>, |<span class="hljs-symbol">S</span>|):
+    a[i,<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+for j in range(<span class="hljs-number">1</span>, |<span class="hljs-symbol">R</span>|):
+    a[<span class="hljs-number">0</span>,j] = <span class="hljs-number">0</span>
+for i in range(<span class="hljs-number">1</span>, |<span class="hljs-symbol">S</span>|):
+    for j in range(<span class="hljs-number">1</span>, |<span class="hljs-symbol">R</span>|):
+        a[i,j] = max{
+            a[i<span class="hljs-number">-1</span>,j],
+            a[i,j<span class="hljs-number">-1</span>],
+            a[i<span class="hljs-number">-1</span>,j<span class="hljs-number">-1</span>] + (s[i] == r[j] ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>)
+        }
+        // <span class="hljs-symbol">The</span> following creates the backtrack matrix
+        b[i,j] = {
+            <span class="hljs-number">0</span> if a[i,j] == a[i<span class="hljs-number">-1</span>,j],        // <span class="hljs-string">"up"</span>
+            <span class="hljs-number">1</span> if a[i,j] == a[i,j<span class="hljs-number">-1</span>],        // <span class="hljs-string">"left"</span>
+            <span class="hljs-number">2</span> if a[i,j] == a[i<span class="hljs-number">-1</span>,j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>   // <span class="hljs-string">"up-left"</span>
+        }
+</code></pre>
+<pre><code class="hljs"><span class="hljs-comment">// PrintLCS(b, S, i, j):</span>
+
+<span class="hljs-keyword">if</span> <span class="hljs-selector-tag">i</span> == <span class="hljs-number">0</span> or j == <span class="hljs-number">0</span>:
+    return
+<span class="hljs-keyword">if</span> <span class="hljs-selector-tag">b</span><span class="hljs-selector-attr">[i,j]</span> == <span class="hljs-number">2</span>:
+    <span class="hljs-built_in">PrintLCS</span>(<span class="hljs-selector-tag">b</span>, S, i-<span class="hljs-number">1</span>, j-<span class="hljs-number">1</span>)
+    print s<span class="hljs-selector-attr">[i]</span>
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> <span class="hljs-selector-tag">b</span><span class="hljs-selector-attr">[i,j]</span> == <span class="hljs-number">0</span>:
+    <span class="hljs-built_in">PrintLCS</span>(<span class="hljs-selector-tag">b</span>, S, i-<span class="hljs-number">1</span>, j)
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">PrintLCS</span>(<span class="hljs-selector-tag">b</span>, S, <span class="hljs-selector-tag">i</span>, j-<span class="hljs-number">1</span>)
+</code></pre>
+<h3 id="homework" tabindex="-1">Homework</h3>
+<ol>
+<li>Compute the LCS DP matrix for LCS(ATTCGGTTA, TAGTGATG).</li>
+<li>Find the LCS without using a backtrack matrix.</li>
+<li>LCS(AGCTTAGCTG, TCGGATG) has multiple solutions (for example, TTG or ATG). Find an algorithm that returns all the LCSs. (Hint: a stack could be useful)</li>
+</ol>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>
