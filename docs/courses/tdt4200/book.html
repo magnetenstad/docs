@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>book.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4200</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📄 <a href="book.html">book ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#an-introduction-to-parallel-programming">An Introduction To Parallel Programming</a><ol><li><a href="#why-parallel-computing-(s.-1-14)">Why parallel computing (s. 1-14)</a></li><li><a href="#parallel-hardware-and-parallel-software-(s.-17-84)">Parallel hardware and parallel software (s. 17-84)</a><ol><li><a href="#the-von-neumann-architecture">The von Neumann architecture</a></li><li><a href="#caching">Caching</a></li><li><a href="#virtual-memory">Virtual Memory</a></li><li><a href="#instruction-level-parallelism">Instruction level parallelism</a><ol><li><a href="#pipelining">Pipelining</a></li><li><a href="#multiple-issue">Multiple issue</a></li></ol></li><li><a href="#hardware-multithreading">Hardware multithreading</a></li><li><a href="#classifications-of-parallel-computers">Classifications of parallel computers</a><ol><li><a href="#simd">SIMD</a></li><li><a href="#mimd">MIMD</a></li><li><a href="#shared-memory-systems">Shared memory systems</a></li><li><a href="#distributed-memory-systems">Distributed memory systems</a></li><li><a href="#interconnection-networks">Interconnection networks</a></li></ol></li><li><a href="#cache-coherence">Cache coherence</a></li><li><a href="#parallel-software">Parallel software</a><ol><li><a href="#gpu-programming">GPU Programming</a></li></ol></li><li><a href="#performance">Performance</a><ol><li><a href="#amdahl's-law">Amdahl&#39;s law</a></li><li><a href="#scalability-todo">Scalability TODO</a></li><li><a href="#gpu-performance">GPU Performance</a></li></ol></li><li><a href="#parallel-program-design">Parallel program design</a></li></ol></li><li><a href="#distributed-memory-programming-with-mpi-(s.-89-148)">Distributed memory programming with MPI (s. 89-148)</a><ol><li><a href="#structure-of-an-mpi-program">Structure of an MPI program</a></li><li><a href="#spmd-programs">SPMD Programs</a></li><li><a href="#mpi_send-and-mpi_recv">MPI_Send and MPI_Recv</a></li><li><a href="#mpi-characteristics">MPI characteristics</a></li><li><a href="#i%2Fo">I/O</a></li><li><a href="#collective-communications">Collective communications</a><ol><li><a href="#reduce">Reduce</a></li><li><a href="#broadcast">Broadcast</a></li><li><a href="#scatter-and-gather">Scatter and gather</a></li><li><a href="#barriers">Barriers</a></li></ol></li><li><a href="#mpi-derived-datatypes">MPI-derived datatypes</a></li><li><a href="#timing">Timing</a></li><li><a href="#speedup-and-efficiency">Speedup and efficiency</a></li><li><a href="#communication-modes-todo">Communication modes TODO</a></li><li><a href="#safety-in-mpi-programs">Safety in MPI programs</a></li></ol></li><li><a href="#shared-memory-programming-with-pthreads-(s.-159-212)-todo-(caches%2C-thread-safety)">Shared-memory programming with Pthreads (s. 159-212) TODO (Caches, Thread-Safety)</a><ol><li><a href="#structure-of-a-pthreads-program">Structure of a PThreads program</a></li><li><a href="#critical-sections">Critical sections</a></li><li><a href="#busy-waiting">Busy waiting</a></li><li><a href="#mutexes">Mutexes</a></li><li><a href="#semaphores">Semaphores</a></li><li><a href="#barrier">Barrier</a></li><li><a href="#read-write-locks">Read-Write Locks</a></li><li><a href="#caches">Caches</a></li></ol></li><li><a href="#shared-memory-programming-with-openmp-(s.-221-281)-todo-(252-281)">Shared-memory programming with OpenMP (s. 221-281) TODO (252-281)</a><ol><li><a href="#parallel-for-directive">Parallel for directive</a></li><li><a href="#private-clause">Private clause</a></li><li><a href="#schedule-clause">Schedule clause</a></li><li><a href="#list-of-functions-and-directives">List of functions and directives</a></li></ol></li><li><a href="#gpu-programming-with-cuda-(s.-291-355)-todo-(305-355)">GPU programming with CUDA (s. 291-355) TODO (305-355)</a><ol><li><a href="#structure-of-a-cuda-program">Structure of a CUDA program</a></li><li><a href="#nvidia-compute-capabilities-and-device-architectures">Nvidia compute capabilities and device architectures</a></li><li><a href="#qualifiers">Qualifiers</a></li><li><a href="#memory">Memory</a></li><li><a href="#atomic-functions">Atomic functions</a></li><li><a href="#local-variables%2C-registers%2C-shared-and-global-memory">Local variables, registers, shared and global memory</a></li><li><a href="#warps-and-warp-shuffles">Warps and warp shuffles</a></li><li><a href="#list-of-functions">List of functions</a></li></ol></li><li><a href="#parallel-program-development-(s.-361-444)">Parallel program development (s. 361-444)</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="an-introduction-to-parallel-programming" tabindex="-1">An Introduction To Parallel Programming</h1>
+<p>TODO</p>
+<ul>
+<li>Foster’s parallel program design methodology (see Section 3.2.2)</li>
+</ul>
+<h2 id="why-parallel-computing-(s.-1-14)" tabindex="-1">Why parallel computing (s. 1-14)</h2>
+<h2 id="parallel-hardware-and-parallel-software-(s.-17-84)" tabindex="-1">Parallel hardware and parallel software (s. 17-84)</h2>
+<h3 id="the-von-neumann-architecture" tabindex="-1">The von Neumann architecture</h3>
+<p>The classical <strong>von Neumann architecture</strong> consists of main memory, a central processing unit (CPU) interconnection between the memory and the CPU. Main memory consists of a collection of locations, each of which is capable of storing both instructions and data.</p>
+<p>The separation of memory and CPU is often called the <strong>von Neumann bottleneck</strong>, since the interconnect determines the rate at which instructions and data can be accessed.</p>
+<p>When a user runs a program, the operating system creates a <strong>process</strong> - an instance of a computer program that is being executed. A process consists of several entities:</p>
+<ul>
+<li>The executable machine language program</li>
+<li>A block of memory, which will include
+<ul>
+<li>the executable code,</li>
+<li>a call stack,</li>
+<li>a heap.</li>
+</ul>
+</li>
+<li>Resource descriptors</li>
+<li>Security information</li>
+<li>Process state information</li>
+</ul>
+<p>Most modern operating systems are multitasking, where multiple processes are scheduled.</p>
+<p><strong>Threads</strong> are "lighter weight" than processes and provides a mechanism for programmers to divide their programs into more or less independent tasks. They usually share the same memory, but they’ll need a record of their own program counters call stacks. When a thread is started, it <em>forks</em> off the process; when a thread terminates, it <em>joins</em> the process.</p>
+<h3 id="caching" tabindex="-1">Caching</h3>
+<p>A <strong>cache</strong> is a collection of memory locations that can be accessed in less time than some other memory locations. After accessing one memory location, a program will typically access a nearby location (<strong>spatial locality</strong>) in the near future (<strong>temporal locality</strong>). To exploit the principle of locality, a memory access will fetch a <strong>cache block</strong> that is typically a chunk of 16 consecutive addresses. When the CPU needs to access an instruction or data, it works its way down the cache hierarchy: First it checks the level 1 cache, then the level 2, and so on.</p>
+<p>After writing to a cache, the cache and main memory are <em>inconsistent</em>. There are two basic approaches to dealing with the inconsistency. In <strong>write-through caches</strong>, the line is written to main memory when it is written to the cache. In <strong>write-back caches</strong>, the updated data in the cache is marked <em>dirty</em>, and when the cache line is replaced by a new cache line from memory, the dirty line is written to memory.</p>
+<p>At one extreme is a <strong>fully associative cache</strong>, in which a new line can be placed at any location in the cache. At the other extreme is a <strong>direct mapped cache</strong>, in which each cache line has a unique location in the cache to which it will be assigned. Intermediate schemes are called <strong>n-way set associative</strong>. When more than one line in memory can be mapped to several different locations (fully associative and n-way set associative), we also need to be able to decide which line should be replaced. A common approach is called least recently used (LRU).</p>
+<p>C stores two-dimensional arrays in "row-major" order. When iterating through one, the inner-most loop should iterate through each row, because of cache-performance.</p>
+<h3 id="virtual-memory" tabindex="-1">Virtual Memory</h3>
+<p><strong>Virtual memory</strong> was developed so that main memory can function as a cache for secondary storage. Parts that are idle can be kept in a block of secondary storage, called <em>swap space</em>. Blocks are called <strong>pages</strong> and commonly range from 4 to 16 kilobytes. When the program is run and it refers to a virtual address, the <strong>page table</strong> is used to translate the virtual address into a physical address. Processors also have a special address translation cache, called a <strong>translation-lookaside buffer</strong> (TLB). It caches a small number of entries (typically 16–512) from the page table in very fast memory. Virtual memory always uses a write-back scheme. Virtual memory is usually controlled by a combination of system hardware and operating system software.</p>
+<h3 id="instruction-level-parallelism" tabindex="-1">Instruction level parallelism</h3>
+<p>Instruction-level parallelism, or ILP, attempts to improve processor performance by having multiple processor components or functional units simultaneously executing instructions. There are two main approaches to ILP: <strong>pipelining</strong>, in which functional units are arranged in stages; and <strong>multiple issue</strong>, in which multiple instructions can be simultaneously initiated. Both approaches are used in virtually all modern CPUs.</p>
+<h4 id="pipelining" tabindex="-1">Pipelining</h4>
+<h4 id="multiple-issue" tabindex="-1">Multiple issue</h4>
+<p>If the functional units are scheduled at compile time, the multiple issue system is said to use <strong>static multiple issue</strong>. If they’re scheduled at run-time, the system is said to use <strong>dynamic multiple issue</strong>. A processor that supports dynamic multiple issue is sometimes said to be <strong>superscalar</strong>. In <strong>speculation</strong>, the compiler or the processor makes a guess about an instruction, and then executes the instruction on the basis of the guess. This is used to find instructions that can
+be executed simultaneously.</p>
+<h3 id="hardware-multithreading" tabindex="-1">Hardware multithreading</h3>
+<p><strong>Thread-level parallelism</strong>, or TLP, attempts to provide parallelism through the simultaneous execution of different threads. <strong>Hardware multithreading</strong> provides a means for systems to continue doing useful work when the task being currently executed has stalled. For this to be useful, the system must support very rapid switching between threads. In <strong>fine-grained multithreading</strong>, the processor switches between threads after each instruction, skipping threads that are stalled. <strong>Coarse-grained multithreading</strong> only switches threads that are stalled waiting for a time-consuming operation to complete (e.g., a load from main memory). <strong>Simultaneous multithreading</strong>, or SMT, is a variation on fine-grained multithreading. It attempts to exploit superscalar processors by allowing multiple threads to make use of the multiple functional units.</p>
+<h3 id="classifications-of-parallel-computers" tabindex="-1">Classifications of parallel computers</h3>
+<p><strong>Flynn’s taxonomy</strong> classifies a parallel computer according to the number of instruction streams and the number of data streams it can simultaneously manage. A classical von Neumann system is therefore a single instruction stream, single data stream, or SISD system.</p>
+<p>Another classification is shared vs. distributed memory. In <strong>shared memory systems</strong>, the cores can share access to memory locations, and the cores coordinate their work by modifying shared memory locations. In <strong>distributed memory systems</strong>, each core has its own, private memory, and the cores coordinate their work by communicating across a network.</p>
+<h4 id="simd" tabindex="-1">SIMD</h4>
+<p>Single instruction stream, multiple data. These systems often execute their instructions in lockstep: the first instruction is applied to all of the data elements simultaneously, then the second is applied, and so on. Branching in SIMD systems is handled by idling those processors that might operate on a data item to which the instruction doesn’t apply. This behavior often makes SIMD systems poorly suited for task parallelism, in which each processor executes a different task, or even data-parallelism, with many conditional branches.</p>
+<ul>
+<li>Vector processors</li>
+<li>Graphics processing units (GPU)</li>
+</ul>
+<p>Current generation GPUs are not pure SIMD, they can run more than one instruction stream on a single core.</p>
+<h4 id="mimd" tabindex="-1">MIMD</h4>
+<p>Multiple instruction, multiple data.</p>
+<p>In a shared-memory system a collection of autonomous processors is connected to a memory system via an interconnection network, and each processor can access each memory location. In a shared-memory system, the processors usually communicate implicitly by accessing shared data structures. In a distributed-memory system, each processor is paired with its own private memory, and the processor-memory pairs communicate over an interconnection network. So in distributed-memory systems, the processors usually communicate explicitly by sending messages or by using special functions that provide access to the memory of another processor.</p>
+<h4 id="shared-memory-systems" tabindex="-1">Shared memory systems</h4>
+<p>The most widely available shared-memory systems use one or more multicore processors.</p>
+<p><img src="assets/2023-12-04-11-10-07.png" alt=""></p>
+<p>With multiple multicore processors, the interconnect can either connect all the processors directly to main memory (<strong>uniform memory access</strong>, UMA), or each processor can have a direct connection to a block of main memory, and the processors can access each other’s blocks of main memory through special hardware built into the processors (<strong>nonuniform memory access</strong>, NUMA). With UMA, the time to access all the memory locations will be the same for all the cores, while with NUMA, a memory location to which a core is directly connected, can be accessed more quickly than a memory location that must be accessed through another chip.</p>
+<h4 id="distributed-memory-systems" tabindex="-1">Distributed memory systems</h4>
+<p>The most widely available distributed-memory systems are called <strong>clusters</strong>. They are composed of a collection of commodity systems - for example, PCs - connected by a commodity interconnection network - for example, Ethernet.</p>
+<h4 id="interconnection-networks" tabindex="-1">Interconnection networks</h4>
+<p>The interconnect plays a decisive role in the performance of both distributed- and shared-memory systems: even if the processors and memory have virtually unlimited performance, a slow interconnect will seriously degrade the overall performance of all but the simplest parallel program.</p>
+<p>For <strong>shared-memory interconnects</strong>, it was common for shared memory systems to use a <strong>bus</strong> to connect processors and memory. As the size of shared-memory systems has increased, buses are being replaced by <strong>switched interconnects</strong>. For example, a <em>crossbar</em>.</p>
+<p><strong>Distributed-memory interconnects</strong> are often divided into two groups: <em>direct interconnects</em> and <em>indirect interconnects</em>. In a <strong>direct interconnect</strong> each switch is directly connected to a processor-memory pair, and the switches are connected to each other. One of the simplest measures of the power of a direct interconnect is the number of links. When counting links in a direct interconnect, it’s customary to count only switch-to-switch links.</p>
+<p>One measure of “number of simultaneous communications” or “connectivity” is <strong>bisection width</strong>. To understand this measure, imagine that the parallel system is divided into two halves, and each half contains half of the processors or nodes. How many simultaneous communications can take place “across the divide” between the halves? The bisection width is supposed to give a “worst-case” estimate. <strong>Bisection bandwidth</strong> is often used as a measure of network quality.</p>
+<p>The ideal direct interconnect is a <strong>fully connected network</strong>, in which each switch is directly connected to every other switch.</p>
+<p>In an <strong>indirect interconnect</strong>, the switches may not be directly connected to a processor. They’re often shown with unidirectional links and a collection of processors, each of which has an outgoing and an incoming link, and a switching network. For example, a (unidirectional) crossbar.</p>
+<p>The <strong>latency</strong> is the time that elapses between the source’s beginning to transmit the data and the destination’s starting to receive the first byte. The <strong>bandwidth</strong> is the rate at which the destination receives data after it has started to receive the first byte. The bandwidth of a link is the rate at which it can transmit data.</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>message transmission time</mtext><mo>=</mo><mtext>latency</mtext><mo>+</mo><mfrac><mtext>message size</mtext><mtext>bandwidth</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{message transmission time} = \text{latency} + \frac{\text{message size}}{\text{bandwidth}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8623000000000001em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">message transmission time</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">latency</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.03086em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3448600000000002em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">bandwidth</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">message size</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h3 id="cache-coherence" tabindex="-1">Cache coherence</h3>
+<p>There are two main approaches to ensuring cache coherence: <strong>snooping cache coherence</strong> and <strong>directory-based cache coherence</strong>.</p>
+<p>When the cores share a bus, any signal transmitted on the bus can be “seen” by all the cores connected to the bus. If another core is “snooping” the bus, it will see that a cache line has been updated, and it can mark its copy as invalid. Snooping works with both write-through and write-back caches, but for write-back caches, an extra communication is necessary since updates are not immediately sent to memory. Snooping cache coherence requires a broadcast every time a variable is updated, this is expensive in large networks.</p>
+<p><strong>Directory-based cache coherence</strong> protocols attempt to solve the problem of expensive broadcasts through the use of a data structure called a <em>directory</em>, which stores the status of each cache line. Clearly, there will be substantial additional storage required for the directory, but when a cache variable is updated, only the cores storing that variable need to be contacted.</p>
+<p>When one core updates a variable in one cache line, and another core wants to access another variable in the same cache line, it will have to access main memory, since the unit of cache coherence is the cache line. That is, the second core only “knows” that the line it wants to access has been updated. It doesn’t know that the variable it wants to access hasn’t been changed. This is called <strong>false sharing</strong>.</p>
+<h3 id="parallel-software" tabindex="-1">Parallel software</h3>
+<p>Unless our problem is <em>embarrassingly parallel</em>, the development of a parallel program needs at a minimum to address the issues of <strong>load balance</strong>, <strong>communication</strong>, and <strong>synchronization</strong> among the processes or threads.</p>
+<p>SPMD (single program, multiple data) programs consist of a single executable that can behave as if it were multiple different programs through the use of conditional branches.</p>
+<p>They can easily implement data-parallelism</p>
+<pre><code class="hljs language-c"><span class="hljs-keyword">if</span> (I’m thread/process <span class="hljs-number">0</span>)
+    <span class="hljs-comment">// operate on the first half of the array;</span>
+<span class="hljs-keyword">else</span>
+    <span class="hljs-comment">// operate on the second half of the array ;</span>
+</code></pre>
+<p>As well as task-parallelism</p>
+<pre><code class="hljs language-c"><span class="hljs-keyword">if</span> (I’m thread/process <span class="hljs-number">0</span>)
+    <span class="hljs-comment">// do this;</span>
+<span class="hljs-keyword">else</span>
+    <span class="hljs-comment">// do that;</span>
+</code></pre>
+<p>In the <strong>dynamic thread</strong> paradigm, there is often a master thread and at any given instant a (possibly empty)
+collection of worker threads. In the <strong>static thread</strong> paradigm, all of the threads are forked after any needed setup by the master thread and the threads run until all the work is completed.</p>
+<p>When threads or processes attempt to simultaneously access a shared resource, and the accesses can result in an error, we often say the program has a <strong>race condition</strong>, because the threads or processes are in a “race” to carry out an operation. An
+operation that writes to a memory location is <strong>atomic</strong> if, after a thread has completed the operation, it appears that no other thread has modified the memory location. A block of code that can only be executed by one thread at a time is called a <strong>critical section</strong>, and it’s usually our job as programmers to ensure <strong>mutually exclusive access</strong> to a critical section.</p>
+<p>If a function is not <strong>thread safe</strong>, it means that if it is used in a multithreaded program, there may be errors or unexpected results. An example is the the C string library function <code><span class="hljs-attribute">strtok</span></code>, for its use of static variables.</p>
+<h4 id="gpu-programming" tabindex="-1">GPU Programming</h4>
+<p>GPU programming is really heterogeneous programming, since it involves programming two different types of processors (the CPU host and the GPU device).</p>
+<p>The processors share a large block of memory, but each individual processor has a small block of much faster memory that can only be accessed by threads running on that processor. These blocks of faster memory can be thought of as a programmer-managed cache.</p>
+<p>The threads running on a processor are typically divided into groups: the threads within a group use the SIMD model, and two threads in different groups can run independently. The threads in a SIMD group may not run in <em>lockstep</em>. That is, they may not all execute the same instruction at the same time. However, no thread in the group will execute the next instruction until all the threads in the group have completed executing the current instruction. For conditional statements, some threads may idle.</p>
+<h3 id="performance" tabindex="-1">Performance</h3>
+<p>The <strong>speedup</strong> of a parallel program is</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mo>=</mo><mfrac><msub><mi>T</mi><mtext>serial</mtext></msub><msub><mi>T</mi><mtext>parallel</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">S = \frac{T_{\text{serial}}}{T_{\text{parallel}}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.332438em;vertical-align:-0.972108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">parallel</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">serial</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.972108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><strong>Linear speedup</strong> is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">S = p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span> is the number of processes.</p>
+<p>The <strong>efficiency</strong> of a parallel program is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mi>S</mi><mi mathvariant="normal">/</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">E = S / p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord">/</span><span class="mord mathnormal">p</span></span></span></span>, and is a measure of how well the processes are utilized.</p>
+<p>It's often the case that</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>T</mi><mtext>parallel</mtext></msub><mo>=</mo><mfrac><msub><mi>T</mi><mtext>serial</mtext></msub><mi>p</mi></mfrac><mo>+</mo><msub><mi>T</mi><mtext>overhead</mtext></msub></mrow><annotation encoding="application/x-tex">T_{\text{parallel}} = \frac{T_{\text{serial}}}{p} + T_{\text{overhead}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">parallel</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.2407700000000004em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">serial</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">overhead</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>In many parallel programs, as the problem size is increased but the number of processes/threads is fixed, the parallel overhead grows much more slowly than the time spent in solving the original problem. Thus, speedup and efficiency often increase with the problem size.</p>
+<h4 id="amdahl's-law" tabindex="-1">Amdahl's law</h4>
+<p><strong>Amdahl's law</strong> states that the speedup of a program is limited by the ratio of the program that is parallelizable. Let <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> be the ratio that is inherently serial and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span> be the number of processes. Then the speedup <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span> is given by</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>r</mi><mo>+</mo><mfrac><mrow><mn>1</mn><mo>−</mo><mi>r</mi></mrow><mi>p</mi></mfrac></mrow></mfrac></mrow><annotation encoding="application/x-tex">S = \frac{1}{r + \frac{1-r}{p}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.537656em;vertical-align:-1.216216em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.264892em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.216216em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munder><mo><mi>lim</mi><mo>⁡</mo></mo><mrow><mi>p</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow></munder><mi>S</mi><mo>=</mo><mfrac><mn>1</mn><mi>r</mi></mfrac></mrow><annotation encoding="application/x-tex">\lim_{p \rightarrow \infty} S = \frac{1}{r}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.530548em;vertical-align:-0.836108em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-2.4000000000000004em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mrel mtight">→</span><span class="mord mtight">∞</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">lim</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836108em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>Amdahl’s law doesn’t take into consideration the fact that the unparallelized part often decreases in size relative to the parallelized part as the problem size increases.</p>
+<p><strong>Gustafson’s law</strong>. TODO</p>
+<h4 id="scalability-todo" tabindex="-1">Scalability TODO</h4>
+<p>Suppose we run a parallel program with a fixed number of processes/threads and a fixed input size, and we obtain an efficiency E. Suppose we now increase the number of processes/threads that are used by the program. If we can find a corresponding rate of increase in the problem size so that the program always has efficiency E, then the program is scalable.</p>
+<p>If, when we increase the number of processes/threads, we can keep the efficiency fixed without increasing the problem size, the program is said to be <strong>strongly scalable</strong>. If we can keep the efficiency fixed by increasing the problem size at the same rate as we increase the number of processes/threads, then the program is said to be <strong>weakly scalable</strong>.</p>
+<h4 id="gpu-performance" tabindex="-1">GPU Performance</h4>
+<p>We can, of course, compare the performance of a GPU program to the performance of a serial program, and it’s quite common to see reported speedups of GPU programs over serial programs or parallel MIMD programs.</p>
+<p>However, efficiency is ordinarily not used in discussions of the performance of GPUs. The informal usage of scalability is routinely applied to GPUs: a GPU program is scalable if we can increase the size of the GPU and obtain speedups over the performance of the program on a smaller GPU.</p>
+<h3 id="parallel-program-design" tabindex="-1">Parallel program design</h3>
+<p>Ian Foster provides an outline of steps to prallelize a serial program, called <strong>Foster's methodology</strong>:</p>
+<ol>
+<li>Partitioning: Divide the computation to be performed and the data operated on by the computation into small tasks that can be executed in parallel.</li>
+<li>Communication: Determine what communication needs to be carried out among the tasks.</li>
+<li>Aggregation: Combine tasks and communications identified in the first step into larger tasks.</li>
+<li>Mapping: Assign the composite tasks identified in the previous step to processes/threads.</li>
+</ol>
+<h2 id="distributed-memory-programming-with-mpi-(s.-89-148)" tabindex="-1">Distributed memory programming with MPI (s. 89-148)</h2>
+<p>Message-Passing Interface (MPI) defines a library of functions.</p>
+<p>It's common for processes to be identified by nonnegative integer ranks. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span> processes will have ranks <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mi>p</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0, 1, 2, ..., p - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>.</p>
+<pre><code class="hljs language-sh">mpiexec -n NUM_PROCESSES ./mpi_hello
+</code></pre>
+<h3 id="structure-of-an-mpi-program" tabindex="-1">Structure of an MPI program</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">"mpi.h"</span></span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>* argv[])</span> {
+    <span class="hljs-type">int</span> comm_size;
+    <span class="hljs-type">int</span> rank;
+
+    MPI_Init(&amp;argc, &amp;argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;comm_size);
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank)
+
+    <span class="hljs-comment">/*
+        Program
+    */</span>
+
+    MPI_Finalize();
+}
+</code></pre>
+<p>In MPI a communicator is a collection of processes that can send messages to each
+other.</p>
+<h3 id="spmd-programs" tabindex="-1">SPMD Programs</h3>
+<p>The if−else statement makes our program SPMD - single program, multiple data.</p>
+<pre><code class="hljs language-c"><span class="hljs-keyword">if</span> (rank == <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">/* Do something */</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">/* Do something else */</span>
+}
+</code></pre>
+<h3 id="mpi_send-and-mpi_recv" tabindex="-1">MPI_Send and MPI_Recv</h3>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">MPI_Send</span> <span class="hljs-params">(
+    <span class="hljs-comment">/* Message content */</span>
+    <span class="hljs-type">void</span>* msg_buf_p,
+    <span class="hljs-type">int</span> msg_size,
+    MPI_Datatype msg_type,
+
+    <span class="hljs-comment">/* Message destination */</span>
+    <span class="hljs-type">int</span> recv_rank,
+    <span class="hljs-type">int</span> send_tag,
+    MPI_Comm send_comm
+)</span>;
+</code></pre>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">MPI_Recv</span> <span class="hljs-params">(
+    <span class="hljs-comment">/* Message content */</span>
+    <span class="hljs-type">void</span>* msg_buf_p,
+    <span class="hljs-type">int</span> buf_size,
+    MPI_Datatype buf_type,
+
+    <span class="hljs-comment">/* Message source */</span>
+    <span class="hljs-type">int</span> send_rank,
+    <span class="hljs-type">int</span> recv_tag,
+    MPI_Comm recv_comm,
+    MPI_Status* status_p
+)</span>;
+</code></pre>
+<p>The message is generally sent from rank <code><span class="hljs-selector-tag">q</span></code> to rank <code><span class="hljs-selector-tag">p</span></code> if</p>
+<ul>
+<li><code><span class="hljs-attr">send_rank</span> = q</code></li>
+<li><code><span class="hljs-attr">recv_rank</span> = p</code></li>
+<li><code><span class="hljs-attr">send_comm</span> = recv_comm</code></li>
+<li><code><span class="hljs-attr">send_tag</span> = recv_tag</code></li>
+<li><code><span class="hljs-title">send_type</span> = recv_<span class="hljs-keyword">type</span></code></li>
+<li><code>buf_size &gt;<span class="hljs-operator">=</span> msg_size</code></li>
+</ul>
+<p>If one doesn't know (the order of) the ranks that one receives from, the <em>wildcard argument</em> <code><span class="hljs-attribute">MPI_ANY_SOURCE</span></code> may be used as the <code><span class="hljs-attribute">source_rank</span></code> parameter. Similarily, also have <code><span class="hljs-attribute">MPI_ANY_TAG</span></code>. When using the <code><span class="hljs-built_in">MPI_ANY_</span>*</code> arguments, one may receive messages without knowing their size, sender and tag. However, source and tag can be determined from <code><span class="hljs-built_in">MPI_Status</span>* status_p</code>, and size from</p>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">MPI_Get_count</span> <span class="hljs-params">(
+    MPI_Status * status_p,
+    MPI_Datatype type,
+    <span class="hljs-type">int</span>* count_p
+)</span>;
+</code></pre>
+<h3 id="mpi-characteristics" tabindex="-1">MPI characteristics</h3>
+<p>We say that MPI uses a <em>push</em> communication mechanism rather than a <em>pull</em> mechanism, because only a receiver can use a wildcard argument.</p>
+<p>MPI requires that messages be <em>non-overtaking</em>. This means that if process q sends two messages to process r, then the first message sent by q must be available to r before the second message. However, there is no restriction on the arrival of messages sent from different processes.</p>
+<h3 id="i%2Fo" tabindex="-1">I/O</h3>
+<p>Most MPI implementations allow all processes access to <code><span class="hljs-attribute">stdout</span></code>. Note that this may result in <em>nondeterminism</em>. Unlike output, most MPI implementations only allow process 0 in <code><span class="hljs-attribute">MPI_COMM_WORLD</span></code> access to <code><span class="hljs-attribute">stdin</span></code>.</p>
+<h3 id="collective-communications" tabindex="-1">Collective communications</h3>
+<p>In MPI parlance, communication functions that involve all the processes in a communicator are called <em>collective communications</em>.</p>
+<p>Collective communications differ in several ways from point-to-point communications:</p>
+<ul>
+<li>All the processes in the communicator must call the same collective function.</li>
+<li>The arguments passed by each process to an MPI collective communication must be compatible.</li>
+<li>The <code>output_dat<span class="hljs-built_in">a_p</span></code> argument is (usually) only used on <code><span class="hljs-attribute">dest_process</span></code>.</li>
+<li>Collective communications don’t use tags.</li>
+</ul>
+<h4 id="reduce" tabindex="-1">Reduce</h4>
+<p><img src="assets/2023-12-03-02-27-04.png" alt=""></p>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">MPI_Reduce</span> <span class="hljs-params">(
+    <span class="hljs-type">void</span>* input_data_p,
+    <span class="hljs-type">void</span>* output_data_p,
+    <span class="hljs-type">int</span> count,
+    MPI_Datatype datatype,
+    MPI_Op operator,
+    <span class="hljs-type">int</span> dest_process,
+    MPI_Comm comm
+)</span>;
+</code></pre>
+<p>By using a count argument greater than 1, <code><span class="hljs-attribute">MPI_Reduce</span></code> can operate on arrays instead of scalars.</p>
+<p><code><span class="hljs-attribute">MPI_Allreduce</span></code> is similar to <code><span class="hljs-attribute">MPI_Reduce</span></code>, except that there is no dest_process since all the processes should get the result.</p>
+<h4 id="broadcast" tabindex="-1">Broadcast</h4>
+<p>A collective communication in which data belonging to a single process is sent to all of the processes in the communicator is called a <em>broadcast</em>.</p>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">MPI_Bcast</span> <span class="hljs-params">(
+    <span class="hljs-type">void</span>* data_p,
+    <span class="hljs-type">int</span> count,
+    MPI_Datatype datatype,
+    <span class="hljs-type">int</span> source_proc,
+    MPI_Comm comm
+)</span>;
+</code></pre>
+<p>The <code>dat<span class="hljs-built_in">a_p</span></code> argument is an input argument on the process with rank <code><span class="hljs-attribute">source_proc</span></code> and an output argument on the other processes.</p>
+<p><img src="assets/2023-12-03-02-44-13.png" alt=""></p>
+<h4 id="scatter-and-gather" tabindex="-1">Scatter and gather</h4>
+<p><code><span class="hljs-attribute">MPI_Scatter</span></code> divides the data referenced by <code><span class="hljs-attribute">send_buf_p</span></code> into <code><span class="hljs-attribute">comm_sz</span></code> pieces - the first piece goes to process 0, the second to process 1, the third to process 2, and so on.</p>
+<p><code><span class="hljs-attribute">MPI_Gather</span></code> collects data from all processes into a single process. The data stored in the memory referred to by <code><span class="hljs-attribute">send_buf_p</span></code> on process 0 is stored in the first block in <code><span class="hljs-attribute">recv_buf_p</span></code>, the data stored in the memory referred to by <code><span class="hljs-attribute">send_buf_p</span></code> on process 1 is stored in the second block, and so on.</p>
+<h4 id="barriers" tabindex="-1">Barriers</h4>
+<p><code><span class="hljs-attribute">MPI_Barrier</span></code> ensures that no process will return from calling it until every process in the communicator has started calling it.</p>
+<h3 id="mpi-derived-datatypes" tabindex="-1">MPI-derived datatypes</h3>
+<p>In virtually all distributed-memory systems, communication can be much more expensive than local computation. Thus if we can reduce the total number of messages we send, we’re likely to improve the performance of our programs. MPI provides three basic approaches to consolidating data that might otherwise require multiple messages: the count argument to the various communication functions, derived datatypes, and MPI_Pack/Unpack.</p>
+<p>In MPI, a <em>derived datatype</em> can be used to represent any collection of data items in memory by storing both the types of the items and their relative locations in memory. We can use <code><span class="hljs-attribute">MPI_Type_create_struct</span></code> to build a derived datatype that consists of individual elements that have different basic types:</p>
+<pre><code class="hljs language-c">MPI_Datatype <span class="hljs-type">input_mpi_t</span> = ...;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">MPI_Type_create_struct</span> <span class="hljs-params">(
+    <span class="hljs-type">int</span> count,
+    <span class="hljs-type">int</span> array_of_blocklengths[],
+    MPI_Aint array_of_displacements[],
+    MPI_Datatype array_of_types[],
+    MPI_Datatype* new_type_p
+)</span>;
+
+MPI_Type_commit(<span class="hljs-type">input_mpi_t</span>);
+...
+MPI_Type_free(<span class="hljs-type">input_mpi_t</span>);
+</code></pre>
+<p>Before we can use <code><span class="hljs-type">input_mpi_t</span></code> in a communication function, we must first commit it with a call to <code><span class="hljs-attribute">MPI_Type_commit</span></code>. After use, we should free it.</p>
+<h3 id="timing" tabindex="-1">Timing</h3>
+<p><code><span class="hljs-attribute">MPI_Wtime</span></code> returns <em>wall clock</em> time. Use with <code><span class="hljs-attribute">MPI_Barrier</span></code> to time all processes.</p>
+<h3 id="speedup-and-efficiency" tabindex="-1">Speedup and efficiency</h3>
+<h3 id="communication-modes-todo" tabindex="-1">Communication modes TODO</h3>
+<ul>
+<li>Standard</li>
+<li>Synchronized</li>
+<li>Buffered</li>
+<li>Ready</li>
+</ul>
+<h3 id="safety-in-mpi-programs" tabindex="-1">Safety in MPI programs</h3>
+<p>We might try to implement some communication with a call to MPI_Send and a call to MPI_Recv:</p>
+<pre><code class="hljs language-c">MPI_Send(...);
+MPI_Recv(...);
+</code></pre>
+<p>This, however, might result in the program’s hanging or crashing. Messages that are relatively small will be buffered by <code><span class="hljs-attribute">MPI_Send</span></code>, but for larger messages, it will block. If the <code><span class="hljs-attribute">MPI_Send</span></code> executed by each process blocks, no process will be able to start executing a call to MPI_Recv, and the program will <strong>deadlock</strong>. A program that relies on MPI-provided buffering is said to be <strong>unsafe</strong>.</p>
+<p><code><span class="hljs-attribute">MPI_Ssend</span></code> (synchronous send) is guaranteed to block until the matching receive starts. So, we can check whether
+a program is safe by replacing the calls to <code><span class="hljs-attribute">MPI_Send</span></code> with calls to <code><span class="hljs-attribute">MPI_Ssend</span></code>.</p>
+<p>MPI provides an alternative to scheduling the communications ourselves—we can call the function <code><span class="hljs-attribute">MPI_Sendrecv</span></code>. This function carries out a blocking send and a receive in a single call, scheduled such that it will not deadlock.</p>
+<h2 id="shared-memory-programming-with-pthreads-(s.-159-212)-todo-(caches%2C-thread-safety)" tabindex="-1">Shared-memory programming with Pthreads (s. 159-212) TODO (Caches, Thread-Safety)</h2>
+<p>In shared-memory programming, an instance of a program running on a processor is usually called a <em>thread</em> (unlike MPI, where it’s called a <em>process</em>).</p>
+<p>Like MPI, Pthreads specifies a library that can be linked with C programs. Unlike MPI, the Pthreads API is only available on POSIX systems. Other thread specifications (Java threads, Windows threads, Solaris threads) support the same basic ideas, so once you’ve learned how to program in Pthreads, it won’t be difficult to learn how to program with another thread API.</p>
+<h3 id="structure-of-a-pthreads-program" tabindex="-1">Structure of a PThreads program</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string"><pthread .h&gt;</span></span>
+
+<span class="hljs-type">int</span> thread_count;
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">hello</span><span class="hljs-params">(<span class="hljs-type">void</span>* rank_p)</span> {
+    <span class="hljs-type">long</span> rank = (<span class="hljs-type">long</span>) rank;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Hello from thread %ld of %d\n"</span>, rank, thread_count);
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc , <span class="hljs-type">char</span> * argv [])</span> {
+    thread_count = strtol(argv[<span class="hljs-number">1</span>], <span class="hljs-literal">NULL</span> , <span class="hljs-number">10</span>);
+    thread_handles = <span class="hljs-built_in">malloc</span>(thread_count * <span class="hljs-keyword">sizeof</span> (<span class="hljs-type">pthread_t</span>));
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">long</span> thread = <span class="hljs-number">0</span>; thread &lt; thread_count; thread++)
+        pthread_create(&amp;thread_handles[thread], <span class="hljs-literal">NULL</span>, hello, (<span class="hljs-type">void</span>*) thread);
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Hello from the main thread\n"</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">long</span> thread = <span class="hljs-number">0</span>; thread &lt; thread_count; thread++)
+        pthread_join(thread_handles[thread], <span class="hljs-literal">NULL</span>);
+
+    <span class="hljs-built_in">free</span>(thread_handles);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>An alternative to <code><span class="hljs-attribute">pthread_join</span></code> is <code><span class="hljs-attribute">pthread_detach</span></code>, which indicates that the thread's resources should be freed automatically upon termination.</p>
+<p>The approach above is very similar to our approach to MPI programming. There is, however, a very different approach to the design of multithreaded programs where subsidiary threads are only started as the need arises. Example: Web server. If we don't want the overhead of starting new threads, we may use a <em>thread pool</em> where threads are idle instead of being terminated.</p>
+<h3 id="critical-sections" tabindex="-1">Critical sections</h3>
+<p>When multiple threads attempt to access a shared resource, such as a shared variable or a shared file, at least one of the accesses is an update, and the accesses can result in an error, we have a <em>race condition</em>.</p>
+<p>A <em>critical section</em> is a block of code that updates a shared resource that can only be updated by one thread at a time.</p>
+<h3 id="busy-waiting" tabindex="-1">Busy waiting</h3>
+<p>The following while loop is an example of <em>busy-waiting</em>.</p>
+<pre><code class="hljs language-c">y = Compute(my_rank);
+<span class="hljs-keyword">while</span> (flag != my_rank);
+x = x + y;
+flag ++;
+</code></pre>
+<p>If compiler optimization is turned on, it is possible that the compiler will make changes that will affect the correctness of busy-waiting. An optimizing compiler might determine that the program would make better use of registers if the order of the statements were switched.</p>
+<h3 id="mutexes" tabindex="-1">Mutexes</h3>
+<p>Mutex is an abbreviation of mutual exclusion, and is a special type of variable that can be used to restrict access to a critical section to a single thread at a time.</p>
+<pre><code class="hljs language-c"><span class="hljs-type">pthread_mutex_t</span> mutex;
+pthread_mutex_init(&amp;mutex);
+
+pthread_mutex_lock(&amp;mutex);
+<span class="hljs-comment">/* Critical section */</span>
+pthread_mutex_unlock(&amp;mutex);
+
+pthread_mutex_destroy(&amp;mutex):
+</code></pre>
+<p>Note that with mutexes, the order in which the threads execute the code in the critical section is more or less random.</p>
+<h3 id="semaphores" tabindex="-1">Semaphores</h3>
+<p>With semaphores, a process does not <em>acquire</em> the lock.</p>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">sem_init</span><span class="hljs-params">(<span class="hljs-type">sem_t</span>* semaphore_p, <span class="hljs-type">int</span> shared, <span class="hljs-type">unsigned</span> initial_val)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">sem_destroy</span><span class="hljs-params">(<span class="hljs-type">sem_t</span>* semaphore_p)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">sem_post</span><span class="hljs-params">(<span class="hljs-type">sem_t</span>* semaphore_p)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">sem_wait</span><span class="hljs-params">(<span class="hljs-type">sem_t</span>* semaphore_p)</span>;
+</code></pre>
+<pre><code class="hljs language-c"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&lt; semaphore . h&gt;</span></span>
+<span class="hljs-comment">/* messages: [NULL, NULL, ...] */</span>
+<span class="hljs-comment">/* semaphores: [semaphore(0), semaphore(0), ...] */</span>
+
+<span class="hljs-comment">/* Send msg */</span>
+<span class="hljs-built_in">sprintf</span>(my_msg, <span class="hljs-string">"Hello to %ld from %ld"</span>, dest, my_rank);
+messages[dest] = my_msg;
+sem_post(&amp;semaphores[dest]); <span class="hljs-comment">// Unlocks the semaphore of dest (+1)</span>
+
+<span class="hljs-comment">/* Receive msg */</span>
+sem_wait(&amp;semaphores[my_rank]); <span class="hljs-comment">// Waits for another process to unlock our semaphore, then (-1)</span>
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">"Thread %ld &gt; %s\n"</span>, my_rank, messages[my_rank]);
+</code></pre>
+<p>This type of synchronization, when a thread can’t proceed until another thread has taken some action, is sometimes called <em>producer–consumer synchronization</em>.</p>
+<p>Binary semaphores (like above) are failry typical. However, counting semaphores can be useful in scenarios where we wish to restrict access to a finite resource. We can initialize the semaphore to the number of threads that may use the resource at a time. To access the resource, call <code><span class="hljs-attribute">sem_wait</span></code>. When finished, call <code><span class="hljs-attribute">sem_post</span></code>.</p>
+<h3 id="barrier" tabindex="-1">Barrier</h3>
+<p>A barrier can be created with</p>
+<ul>
+<li>A mutex and busy waiting</li>
+<li>A semaphore</li>
+<li>Condition variables</li>
+</ul>
+<p>A condition variable is a data object that allows a thread to suspend execution until a certain event or condition occurs. A condition variable is always associated with a mutex.</p>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_cond_init</span><span class="hljs-params">(<span class="hljs-type">pthread_cond_t</span>* cond_p, <span class="hljs-type">const</span> <span class="hljs-type">pthread_condattr_t</span>* cond_attr_p)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">pthread_cond_destroy</span><span class="hljs-params">(<span class="hljs-type">pthread_cond_t</span>* cond_p)</span>;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">pthread_cond_signal</span><span class="hljs-params">(<span class="hljs-type">pthread_cond_t</span>* cond_var_p)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">pthread_cond_broadcast</span><span class="hljs-params">(<span class="hljs-type">pthread_cond_t</span>* cond_var_p)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">pthread_cond_wait</span><span class="hljs-params">(<span class="hljs-type">pthread_cond_t</span>* cond_var_p, <span class="hljs-type">pthread_mutex_t</span>* mutex_p)</span>;
+</code></pre>
+<p>When protected application state cannot be represented by an unsigned integer counter, condition variables may be preferable to semaphores.</p>
+<h3 id="read-write-locks" tabindex="-1">Read-Write Locks</h3>
+<p>Multiple threads can simultaneously obtain the lock by calling the read-lock function, while only one thread can obtain the lock by calling the write-lock function.</p>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> <span class="hljs-title function_">pthread_rwlock_init</span><span class="hljs-params">(<span class="hljs-type">pthread_rwlock_t</span>* rwlock_p, <span class="hljs-type">const</span> <span class="hljs-type">pthread_rwlockattr_t</span>* attr_p)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">pthread_rwlock_destroy</span><span class="hljs-params">(<span class="hljs-type">pthread_rwlock_t</span>* rwlock_p)</span>;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">pthread_rwlock_rdlock</span><span class="hljs-params">(<span class="hljs-type">pthread_rwlock_t</span>* rwlock_p)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">pthread_rwlock_wrlock</span><span class="hljs-params">(<span class="hljs-type">pthread_rwlock_t</span>* rwlock_p)</span>;
+<span class="hljs-type">int</span> <span class="hljs-title function_">pthread_rwlock_unlock</span><span class="hljs-params">(<span class="hljs-type">pthread_rwlock_t</span>* rwlock_p)</span>;
+</code></pre>
+<h3 id="caches" tabindex="-1">Caches</h3>
+<h2 id="shared-memory-programming-with-openmp-(s.-221-281)-todo-(252-281)" tabindex="-1">Shared-memory programming with OpenMP (s. 221-281) TODO (252-281)</h2>
+<p>Like Pthreads, OpenMP is an API for shared-memory MIMD programming. The “MP” in OpenMP stands for “multiprocessing,” a term that is synonymous with shared-memory MIMD computing.</p>
+<p>OpenMP allows the programmer to simply state that a block of code should be executed in parallel, and the precise determination of the tasks and which thread should execute them is left to the compiler and the run-time system. This requires compiler support for some operations.</p>
+<p>OpenMP compilers don’t check for dependences among iterations in a loop that’s being parallelized with a parallel for directive. A loop in which the results of one or more iterations depend on other iterations cannot, in general, be correctly parallelized by OpenMP without using features such as the Tasking API.</p>
+<h3 id="parallel-for-directive" tabindex="-1">Parallel for directive</h3>
+<p>OpenMP will only parallelize for loops for which the number of iterations can be determined from the for statement itself and prior to execution of the loop.</p>
+<p>The for directive, unlike the parallel for directive, doesn’t fork any threads. It
+uses whatever threads have already been forked in the enclosing parallel block.
+There is an implicit barrier at the end of the loop.</p>
+<h3 id="private-clause" tabindex="-1">Private clause</h3>
+<p>It’s important to remember that the value of a variable with private scope is unspecified at the beginning of a parallel block. Its value is also unspecified after completion of a parallel block.</p>
+<h3 id="schedule-clause" tabindex="-1">Schedule clause</h3>
+<p><code>schedule ( &lt; <span class="hljs-keyword">type</span> <span class="hljs-type">&gt; </span>[, &lt;chunksize &gt;])</code></p>
+<p>The type can be any one of the following:</p>
+<ul>
+<li>static. The iterations can be assigned to the threads before the loop is executed.</li>
+<li>dynamic or guided. The iterations are assigned to the threads while the loop is executing, so after a thread completes its current set of iterations, it can request more from the run-time system.</li>
+<li>auto. The compiler and/or the run-time system determine the schedule.</li>
+<li>runtime. The schedule is determined at run-time based on an environment variable</li>
+</ul>
+<p><img src="assets/2023-12-03-12-46-43.png" alt=""></p>
+<h3 id="list-of-functions-and-directives" tabindex="-1">List of functions and directives</h3>
+<ul>
+<li>atomic</li>
+<li>critical</li>
+</ul>
+<h2 id="gpu-programming-with-cuda-(s.-291-355)-todo-(305-355)" tabindex="-1">GPU programming with CUDA (s. 291-355) TODO (305-355)</h2>
+<h3 id="structure-of-a-cuda-program" tabindex="-1">Structure of a CUDA program</h3>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio .h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cuda .h&gt;</span></span>
+
+<span class="hljs-comment">/* Device : runs on GPU */</span>
+__global__ <span class="hljs-type">void</span> <span class="hljs-title function_">Hello</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> {
+    <span class="hljs-type">int</span> rank = blockDim.x ∗ blockIdx.x + threadIdx.x;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Hello from rank %d!\n"</span>, rank);
+}
+
+<span class="hljs-comment">/* Host : Runs on CPU */</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>* argv[])</span> {
+    <span class="hljs-type">int</span> grid_size; <span class="hljs-comment">// number of blocks in grid</span>
+    <span class="hljs-type">int</span> block_size; <span class="hljs-comment">// number of threads in block</span>
+
+    Hello&lt;&lt;&lt;grid_size, block_size&gt;&gt;&gt;();
+    cudaDeviceSynchronize();
+}
+</code></pre>
+<h3 id="nvidia-compute-capabilities-and-device-architectures" tabindex="-1">Nvidia compute capabilities and device architectures</h3>
+<p>There are limits on the number of threads and the number of blocks. The limits depend on what Nvidia calls the compute capability of the GPU.</p>
+<h3 id="qualifiers" tabindex="-1">Qualifiers</h3>
+<pre><code class="hljs language-c">__global__ <span class="hljs-comment">// indicates global scope. Used for kernels.</span>
+__host__ <span class="hljs-comment">// indicates host scope.</span>
+__device__ <span class="hljs-comment">// indicates device scope.</span>
+__managed__  <span class="hljs-comment">// similar to cudaMallocManaged.</span>
+</code></pre>
+<h3 id="memory" tabindex="-1">Memory</h3>
+<pre><code class="hljs language-c">__host__ cudaError_t <span class="hljs-title function_">cudaMallocManaged</span><span class="hljs-params">(<span class="hljs-type">void</span> ∗∗ d_ptr, <span class="hljs-type">size_t</span> size, <span class="hljs-type">unsigned</span> flags)</span>;
+__host__ __device__ cudaError_t <span class="hljs-title function_">cudaFree</span><span class="hljs-params">(<span class="hljs-type">void</span> ∗ ptr)</span>;
+</code></pre>
+<p>The function <code><span class="hljs-attribute">cudaMallocManaged</span></code> is one of several CUDA memory allocation functions. It allocates memory that will be automatically managed by the “unified memory system.” This is a relatively recent addition to CUDA and it allows a programmer to write CUDA programs as if the host and device shared a single memory: pointers referring to memory allocated with cudaMallocManaged can be used on both the device and the host, even when the host and the device have separate physical memories.</p>
+<pre><code class="hljs language-c">__host__ __device__ cudaError_t <span class="hljs-title function_">cudaMalloc</span><span class="hljs-params">(<span class="hljs-type">void</span>∗∗ d_ptr, <span class="hljs-type">size_t</span> size)</span>;
+__host__ __device__ cudaError_t <span class="hljs-title function_">cudaFree</span><span class="hljs-params">(<span class="hljs-type">void</span> ∗ ptr)</span>;
+
+__host__ cudaError_t <span class="hljs-title function_">cudaMemcpy</span><span class="hljs-params">(<span class="hljs-type">void</span>∗ dest, <span class="hljs-type">const</span> <span class="hljs-type">void</span>∗ source, <span class="hljs-type">size_t</span> count, cudaMemcpyKind kind)</span>;
+<span class="hljs-comment">/* cudaMemcpyKind can be cudaMemcpyHostToDevice or cudaMemcpyDeviceToHost */</span>
+</code></pre>
+<p>Without <em>unified memory</em>, pointers on the host aren’t valid on the device, and vice versa. We use the C library function <code><span class="hljs-attribute">malloc</span></code> for the host arrays, and the CUDA function <code><span class="hljs-attribute">cudaMalloc</span></code> for the device arrays. After we’ve initialized on the host, we copy the contents over to the device using <code><span class="hljs-attribute">cudaMemcpy</span></code>. We usually perform a copy back to the host after the computation has completed.</p>
+<h3 id="atomic-functions" tabindex="-1">Atomic functions</h3>
+<p>The CUDA library defines several atomic addition functions. Note that these may decrease performance by making the program more serial.</p>
+<pre><code class="hljs language-c">__device__ <span class="hljs-type">float</span> <span class="hljs-title function_">atomicAdd</span><span class="hljs-params">(<span class="hljs-type">float</span>* float_p, <span class="hljs-type">float</span> val)</span>;
+</code></pre>
+<h3 id="local-variables%2C-registers%2C-shared-and-global-memory" tabindex="-1">Local variables, registers, shared and global memory</h3>
+<p>SMs in an Nvidia processor have access to two collections of memory locations: each SM has access to its own “shared” memory, which is accessible only to the SPs belonging to the SM. More precisely, the shared memory allocated for a thread block is only accessible to the threads in that block. On the other hand, all of the SPs and all of the threads have access to “global” memory. The number of shared memory locations is relatively small, but they are quite fast, while the number of global memory locations is relatively large, but they are relatively slow. So we can think of the GPU memory as a hierarchy with three “levels.” At the bottom, is the slowest, largest level: global memory. In the middle is a faster, smaller level: shared memory. At the top is the fastest, smallest level: the registers.</p>
+<h3 id="warps-and-warp-shuffles" tabindex="-1">Warps and warp shuffles</h3>
+<p>In CUDA a <strong>warp</strong> is a set of threads with consecutive ranks belonging to a thread block. The threads in a warp operate in SIMD fashion. So threads in different warps can execute different statements with no penalty, while threads within the same warp must execute the same statement.</p>
+<h3 id="list-of-functions" tabindex="-1">List of functions</h3>
+<ul>
+<li>__syncthreads</li>
+<li>warpSize</li>
+</ul>
+<h2 id="parallel-program-development-(s.-361-444)" tabindex="-1">Parallel program development (s. 361-444)</h2>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

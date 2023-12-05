@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>previous_exams.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4287</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📂 <a href="./exercises/index.html">exercises</a></li>
+<li>📄 <a href="previous_exams.html">previous_exams ✨</a></li>
+<li>📄 <a href="summary.html">summary</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#previous-exams">Previous Exams</a><ol><li><a href="#alignment">Alignment</a><ol><li><a href="#20">20</a></li><li><a href="#19">19</a></li><li><a href="#18">18</a></li><li><a href="#17">17</a></li><li><a href="#16">16</a></li><li><a href="#15">15</a></li><li><a href="#14">14</a></li></ol></li><li><a href="#heuristic-alignment">Heuristic alignment</a><ol><li><a href="#18-1">18</a></li></ol></li><li><a href="#string-indexes">String indexes</a><ol><li><a href="#20-1">20</a></li><li><a href="#19-1">19</a></li><li><a href="#18-2">18</a></li><li><a href="#17-1">17</a></li><li><a href="#16-1">16</a></li><li><a href="#15-1">15</a></li><li><a href="#14-1">14</a></li></ol></li><li><a href="#hidden-markov-model">Hidden Markov model</a><ol><li><a href="#20-2">20</a></li><li><a href="#19-2">19</a></li><li><a href="#18-3">18</a></li><li><a href="#17-2">17</a></li><li><a href="#16-2">16</a></li><li><a href="#15-2">15</a></li><li><a href="#14-2">14</a></li></ol></li><li><a href="#motifs">Motifs</a><ol><li><a href="#20-3">20</a></li><li><a href="#17-3">17</a></li></ol></li><li><a href="#sequencing-by-hybridization-(sbh)">Sequencing by Hybridization (SBH)</a><ol><li><a href="#19-3">19</a></li><li><a href="#18-4">18</a></li><li><a href="#15-3">15</a></li></ol></li><li><a href="#euler-path">Euler path</a><ol><li><a href="#16-3">16</a></li></ol></li><li><a href="#palindromes">Palindromes</a><ol><li><a href="#14-3">14</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="previous-exams" tabindex="-1">Previous Exams</h1>
+<h2 id="alignment" tabindex="-1">Alignment</h2>
+<h3 id="20" tabindex="-1">20</h3>
+<p>a. Complete the table and find the optimal alignment and its score from the table.
+b. Find the optimal multiple global alignment between v, w, and x, under the sum-of-pairs scoring scheme
+c. In what order would the Progressive multiple alignment algorithm merge the three strings?
+d. Create an efficient algorithm that finds the best alignment between a suffix of v and a suffix of w.</p>
+<h3 id="19" tabindex="-1">19</h3>
+<p>a. Fill in the global alignment dynamic programming matrix between v and w. What is the optimal alignment?
+b. Would the k-difference global alignment with k = 2 find the optimal solution?
+c. Create an efficient algorithm that finds the best alignment between a prefix of v and a prefix of w.
+d. Create an efficient algorithm that counts the number of additional comparison operations needed for a recursive global alignment solution compared with a dynamic programming solution.</p>
+<h3 id="18" tabindex="-1">18</h3>
+<p>a. Complete the table and find the optimal alignment. Is the alignment local or global?
+b. What is the edit distance between v and w?
+c. Create an efficient algorithm for computing the palindromic score of v.
+d. Create an efficient algorithm for finding the longest palindromic substring within an input string v.</p>
+<h3 id="17" tabindex="-1">17</h3>
+<p>a. Complete the table and find the optimal alignment and its score.
+b. Make minimal changes to the pseudocode so that it instead takes a local alignment table and prints the resulting local alignment.
+c. Modify the pseudocode so that it prints all optimal local alignments.</p>
+<h3 id="16" tabindex="-1">16</h3>
+<p>a. Fill in the dynamic programming table for a global alignment of v and w. Find the optimal alignment and its score from the table.
+b. Define what we mean by a local alignment of two sequences v and w. Describe the changes we need to do.
+c. Describe how you can modify the dynamic programming algorithm to find the highest scoring alignment for searching for an unknown common adapter fragment.</p>
+<h3 id="15" tabindex="-1">15</h3>
+<p>a. Complete the table and find the optimal alignment and its score from the table.
+b. Show how this instance of the ED problem can be solved by the space-efficient ED algorithm
+c. Give an O(nm) algorithm which computes the matrix whose (i, j)th entry is the score of the optimal global alignment in which the character vi is aligned with the character wj.</p>
+<h3 id="14" tabindex="-1">14</h3>
+<p>a. Complete the table and find the optimal alignment and its score from the table.
+b. Find the optimal multiple global alignment under the sum-of-pairs scoring scheme.
+c. Create an efficient algorithm for finding the best alignment between a suffix of v and a suffix of w.</p>
+<h2 id="heuristic-alignment" tabindex="-1">Heuristic alignment</h2>
+<h3 id="18-1" tabindex="-1">18</h3>
+<p>a. What is the length of the shortest string query that your index is guaranteed to find if you allow 3 mismatches between queries and hits in T?
+b. How would changing your index into a 12mer index affect the index’s speed, sensitivity, and specificity for finding query occurrences with up to 3 mismatches in T?</p>
+<h2 id="string-indexes" tabindex="-1">String indexes</h2>
+<h3 id="20-1" tabindex="-1">20</h3>
+<p>a. Draw the suffix tree. Add suffix links and show the edge label compression.
+b. Ukkonen’s algorithm.
+c. Show how to compute the matching statistics for the first three positions in the string</p>
+<h3 id="19-1" tabindex="-1">19</h3>
+<p>a. Draw the suffix tree. Add suffix links and show the edge label compression.
+b. Ukkonen’s algorithm: At which phases of the algorithm is the algorithm applying suffix extension rule 3?
+c. ?
+d. Describe an efficient algorithm to find the length of the longest proper substring of P that ends at i and matches a prefix of P.
+e. Describe an efficient algorithm to find the smallest substring of p that occurs in p exactly k times.</p>
+<h3 id="18-2" tabindex="-1">18</h3>
+<p>a. Draw the keyword tree. Add the tree’s non-trivial failure links.
+b. Draw the generalized suffix tree and add the suffix links.
+c. Given the generalized suffix tree for a set of strings, create an efficient algorithm for converting it into a keyword tree.
+d. Describe an efficient algorithm for solving the DNA contamination problem.
+e. Can the DNA contamination problem can be solved in linear time and in space proportional to min(|S1|, |S2|)?</p>
+<h3 id="17-1" tabindex="-1">17</h3>
+<p>a. Draw the suffix tree for the string "agagaa". Add suffix links and show the edge label compression.
+b. Is this algorithm correct?
+c. Create a fast algorithm for computing the minimum length of all the pairwise longest common prefixes over all the pairs of strings.
+d. Describe an efficient algorithm that for each prefix si of s returns the longest repeated substring within si.</p>
+<h3 id="16-1" tabindex="-1">16</h3>
+<p>a. Draw the suffix tree. Add suffix links and show the edge label compression.
+b. Describe an efficient algorithm for finding every repeated substring of S.
+c. Describe an O(n) algorithm for finding all maximal repeated substrings.</p>
+<h3 id="15-1" tabindex="-1">15</h3>
+<p>a. Draw the suffix tree. Add suffix links and show the edge label compression.
+b. Ukkonen’s algorithm: At which phases of the algorithm is the current implicit suffix tree also a true suffix
+tree?
+c. Give a family of strings S of possible infinite length such that its implicit suffix tree only has one root and two leaves.
+d. Describe an algorithm that for any length l finds the most frequently repeated substring
+e. Show how to find all possible contaminants in S by using a suffix tree of S.</p>
+<h3 id="14-1" tabindex="-1">14</h3>
+<p>a. Draw the suffix tree. Add suffix links and show the edge label compression.
+b. With regard to a string s over an alphabet Σ, what is the degree of the root of the suffix tree (T ) of s (T (s))?
+c. Give an infinite family of strings over a finite alfabet such that the total length of the edge-labels on their suffix trees is Ω(s2), where s is the length of the string.
+d. Create an algorithm that finds set of all substrings of s1 that are not contained in s2 in O(n) time.</p>
+<h2 id="hidden-markov-model" tabindex="-1">Hidden Markov model</h2>
+<h3 id="20-2" tabindex="-1">20</h3>
+<p>a. Draw the state diagram for this Markov Chain.
+b. What is the most likely state for the chain at t = 100?
+c. We extend the Markov Chain into an HMM. Explain what this HMM models.
+d. List all possible state paths Q that can generate O. Calculate the joint probability Pr(Q &amp; O) for two of the paths.
+e. What is the probability of the observed sequence?
+f. What is the most probable path from the HMM?</p>
+<h3 id="19-2" tabindex="-1">19</h3>
+<p>a. Draw the state diagram for this Markov Chain.
+b. Is the Markov Chain aperiodic? If no, describe its periodicity.
+c. We extend this Markov Chain into an HMM. Explain what this HMM models.
+d. List all possible state paths Q that can generate O. Calculate the joint probability Pr(Q &amp; O) for two of the paths.
+e. Apply the Viterbi algorithm to find Pr(Q &amp; O) for the most probable path.</p>
+<h3 id="18-3" tabindex="-1">18</h3>
+<p>a. Write down the transition probability matrix for this Markov Chain.
+b. We extend the Markov Chain into an HMM. List all possible state paths Q that can generate O. Calculate the joint probability Pr(Q &amp; O) for two of the paths.
+c. What is the probability of observing the following symbol sequence?
+d. Observed O = CCC_N_AC. Describe an efficient algorithm that determines the most likely value of N.</p>
+<h3 id="17-2" tabindex="-1">17</h3>
+<p>a. Draw the state diagram for this Markov Chain.
+b. We extend the Markov Chain into an HMM. List all possible state paths Q that can generate O. Calculate the joint probability Pr(Q &amp; O) for two of the paths.
+c. Apply the Viterbi algorithm to find Pr(Q &amp; O) for the most probable path.
+d. Explain how the HMM can be modified to reflect that AT substrings are more frequent than TA substrings in the strings recognized by the HMM.</p>
+<h3 id="16-2" tabindex="-1">16</h3>
+<p>a. Write down the transition probability matrix P for this HMM. Describe the motifs that this HMM can generate.
+b. List all possible state paths Q that can generate O. Calculate the joint probability Pr(Q &amp; O) for two of the paths.
+c. Apply the Viterbi algorithm to find Pr(Q &amp; O) for the most probable path. What is the general computational complexity in time and space?
+d. What is the expected fraction of the sequence containing motifs? What is the expected number of such motif occurrences?</p>
+<h3 id="15-2" tabindex="-1">15</h3>
+<p>a. Draw the state diagram for this Markov Chain. What is the probability of being in state 2 at times t − 1, t, and t + 1?
+b. In which states are you most likely to find each of the two chains after 10 transitions?
+c. We extend the Markov Chain into an HMM. List all possible state paths Q that can generate O. Calculate the joint probability Pr(Q &amp; O) for two of the paths.
+d. Apply the Viterbi algorithm to find Pr(Q &amp; O) for the most probable path.</p>
+<h3 id="14-2" tabindex="-1">14</h3>
+<p>a. Draw the state diagram for this Markov Chain. What is the probability of being in state 0 at time t?
+b. We extend the Markov Chain into an HMM. Explain what this HMM models.
+c. List all possible state paths Q that can generate O. Calculate the joint probability Pr(Q &amp; O) for two of the paths.
+d. Apply the Viterbi algorithm to find Pr(Q &amp; O) for the most probable path.</p>
+<h2 id="motifs" tabindex="-1">Motifs</h2>
+<h3 id="20-3" tabindex="-1">20</h3>
+<p>a. Find the Position Weight Matrix (PWM) for the multiple alignment. What is the consensus motif and its consensus score?
+b. Show how the PWM can be represented as an HMM
+c. Given the PWM, create a ROC-graph that shows the performance of the PWM at correctly classifying P and N</p>
+<h3 id="17-3" tabindex="-1">17</h3>
+<p>a. Construct a PWM (profile) from the following multiple alignment. What is the PWM’s consensus sequence and consensus score?
+b. Describe an effective algorithm that uses d to measure the distance between two PWMs.</p>
+<h2 id="sequencing-by-hybridization-(sbh)" tabindex="-1">Sequencing by Hybridization (SBH)</h2>
+<h3 id="19-3" tabindex="-1">19</h3>
+<p>a. Permissable graph for the SBH Euler-path–based assembly algorithm.
+b. Complete the vertex labels so that G is permissable for the SBH Euler-path–based assembly algorithm. Determine the measured Spectrum.</p>
+<h3 id="18-4" tabindex="-1">18</h3>
+<p>a. Create an efficient algorithm that finds all such sequence pairs.
+b. Modify your algorithm so that it can handle the expected number of sequencing errors and still identify sequence pairs with at least 50% overlap.</p>
+<h3 id="15-3" tabindex="-1">15</h3>
+<p>a. Change the multiplicities of edges in E so that the resulting multigraph is a permissable graph for the SBH Euler-path–based assembly algorithm.
+b. Complete the vertex labels so that G is permissable for the SBH Euler-path–based assembly algorithm. Determine the measured Spectrum.
+c. Specify the next steps of the SBH Euler-path–based assembly algorithm after G has been constructed.
+d. Determine all strings that can be output by the algorithm</p>
+<h2 id="euler-path" tabindex="-1">Euler path</h2>
+<h3 id="16-3" tabindex="-1">16</h3>
+<p>a. What is an Euler path? Give an effcient algorithm to determine whether a directed connected graph has a unique Euler path.</p>
+<h2 id="palindromes" tabindex="-1">Palindromes</h2>
+<h3 id="14-3" tabindex="-1">14</h3>
+<p>a. Describe an efficient algorithm that determines if a given string s is a palindrome.
+b. Describe an efficient algorithm that computes the minimum number of edit operations needed to turn an arbitrary string s into a palindrome.</p>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

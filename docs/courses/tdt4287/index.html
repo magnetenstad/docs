@@ -25,13 +25,36 @@
 </h4></p>
 <ul>
 <li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📂 <a href="./exercises/index.html">exercises</a></li>
+<li>📄 <a href="previous_exams.html">previous_exams</a></li>
+<li>📄 <a href="summary.html">summary</a></li>
 </ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#tdt4287---algoritmer-for-bioinformatikk">TDT4287 - Algoritmer for bioinformatikk</a><ol><li><a href="#01-introduction">01 Introduction</a><ol><li><a href="#a-cell-as-seen-by-a-computer-scientist">A cell as seen by a computer scientist</a></li><li><a href="#list-of-biological-sequence-problems">List of biological sequence problems</a></li><li><a href="#how-do-genes-encode-proteins%3F">How do genes encode proteins?</a><ol><li><a href="#protein-structure">Protein structure</a></li><li><a href="#the-genetic-code">The genetic code</a></li></ol></li><li><a href="#what-is-the-function-of-a-protein%3F">What is the function of a protein?</a></li><li><a href="#longest-common-subsequence-(lcs)">Longest common subsequence (LCS)</a><ol><li><a href="#recursive-lcs">Recursive LCS</a></li><li><a href="#dynamic-programming-(dp)-lcs">Dynamic programming (DP) LCS</a></li></ol></li><li><a href="#homework">Homework</a></li></ol></li></ol></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#tdt4287---algoritmer-for-bioinformatikk">TDT4287 - Algoritmer for bioinformatikk</a><ol><li><a href="#sources-and-syllabus">Sources and syllabus</a></li><li><a href="#01-introduction">01 Introduction</a><ol><li><a href="#a-cell-as-seen-by-a-computer-scientist">A cell as seen by a computer scientist</a></li><li><a href="#list-of-biological-sequence-problems">List of biological sequence problems</a></li><li><a href="#how-do-genes-encode-proteins%3F">How do genes encode proteins?</a><ol><li><a href="#protein-structure">Protein structure</a></li><li><a href="#the-genetic-code">The genetic code</a></li></ol></li><li><a href="#what-is-the-function-of-a-protein%3F">What is the function of a protein?</a></li><li><a href="#longest-common-subsequence-(lcs)">Longest common subsequence (LCS)</a><ol><li><a href="#recursive-lcs">Recursive LCS</a></li><li><a href="#dynamic-programming-(dp)-lcs">Dynamic programming (DP) LCS</a></li></ol></li><li><a href="#homework">Homework</a></li></ol></li><li><a href="#02-alignment">02 Alignment</a><ol><li><a href="#subsequences">Subsequences</a></li><li><a href="#edit-distance-(ed)">Edit distance (ED)</a></li><li><a href="#global-alignment-(ga)">Global alignment (GA)</a></li><li><a href="#local-alignment-(la)">Local alignment (LA)</a></li><li><a href="#local%2Fglobal-alignment-variants">Local/Global alignment variants</a></li></ol></li><li><a href="#03-heuristic-alignment">03 Heuristic alignment</a></li><li><a href="#04-substring-indexes">04 Substring indexes</a><ol><li><a href="#exact-pattern-matching">Exact pattern matching</a></li></ol></li><li><a href="#05-suffix-tree-applications">05 Suffix tree applications</a></li><li><a href="#06-sequencing">06 Sequencing</a></li><li><a href="#07-alignment-revisited">07 Alignment revisited</a></li><li><a href="#08-motif-discovery">08 Motif Discovery</a></li><li><a href="#09-markov-chains">09 Markov Chains</a></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
 <h1 id="tdt4287---algoritmer-for-bioinformatikk" tabindex="-1">TDT4287 - Algoritmer for bioinformatikk</h1>
+<h2 id="sources-and-syllabus" tabindex="-1">Sources and syllabus</h2>
+<ul>
+<li>An Introduction to Bioinformatics Algoritms
+<ul>
+<li>Chapters ?</li>
+</ul>
+</li>
+<li>Algorithms on Strings, Trees, and Sequences (Gusfield)
+<ul>
+<li>Chapters 3, 4, 5-6.1 and 7.1-7.10</li>
+</ul>
+</li>
+<li>Statistical Methods in Bioinformatics. (Ewens &amp; Grant)
+<ul>
+<li>Chapters 4, 10 and 11</li>
+</ul>
+</li>
+<li>How do RNA folding algorithms work? (Eddy)</li>
+<li>Complete Suboptimal Folding of RNA and the Stability of Secondary Structures. (Wuchty et al.)</li>
+</ul>
 <h2 id="01-introduction" tabindex="-1">01 Introduction</h2>
 <blockquote>
 <p><em>Bioinformatics</em> - the collection, classification, storage, and analysis of biochemical and biological information using computers especially as applied in molecular genetics and genomics.</p>
@@ -139,6 +162,51 @@ for i in range(<span class="hljs-number">1</span>, |<span class="hljs-symbol">S<
 <li>Find the LCS without using a backtrack matrix.</li>
 <li>LCS(AGCTTAGCTG, TCGGATG) has multiple solutions (for example, TTG or ATG). Find an algorithm that returns all the LCSs. (Hint: a stack could be useful)</li>
 </ol>
+<h2 id="02-alignment" tabindex="-1">02 Alignment</h2>
+<h3 id="subsequences" tabindex="-1">Subsequences</h3>
+<p>A <strong>subsequence</strong> is an ordered sequence of characters from a string. They characters do not have to be consecutive in the original string. We may represent a subsequence as an ordered set of indexes.</p>
+<p>A <strong>common subsequence</strong> of two strings is a subsequence of both strings.</p>
+<p>Algorithms have already been discussed in chaper 01 Introduction. // TODO: Move and join</p>
+<h3 id="edit-distance-(ed)" tabindex="-1">Edit distance (ED)</h3>
+<p>The <strong>Levenshtein edit distance</strong> between two strings S and R is the minimum number of edit operations (insertions, deletions, substitutions) for transforming S to R.</p>
+<p>Recursive ED may be optimized by dynamic programming.</p>
+<p>Edit operations model evolutionary events. Edit distance-based comparisons measure evolutionary distance. Alignments visualize evolutionary changes.</p>
+<h3 id="global-alignment-(ga)" tabindex="-1">Global alignment (GA)</h3>
+<p>Find the best alignment between S and R given a scoring function.</p>
+<h3 id="local-alignment-(la)" tabindex="-1">Local alignment (LA)</h3>
+<p>Find the best local alignment between S and R given a scoring function. Output: Substrings of S and R with maximal global alignment of all substrings of S and R</p>
+<p>Local alignment is useful when changes are not uniform across sequence</p>
+<h3 id="local%2Fglobal-alignment-variants" tabindex="-1">Local/Global alignment variants</h3>
+<ul>
+<li>Best complete match within a longer string (e.g. |S| &gt;&gt; |R|)</li>
+<li>Best alignment between prefix of S and suffix of R</li>
+<li>Repeated matches above T within a longer string</li>
+<li>Regions with different scoring functions
+<ul>
+<li>Regions without gaps vs. Regions with gaps</li>
+<li>Protein regions with different physical characteristics</li>
+</ul>
+</li>
+</ul>
+<h2 id="03-heuristic-alignment" tabindex="-1">03 Heuristic alignment</h2>
+<h2 id="04-substring-indexes" tabindex="-1">04 Substring indexes</h2>
+<h3 id="exact-pattern-matching" tabindex="-1">Exact pattern matching</h3>
+<pre><code class="hljs language-txt">Text T
+|T| = m
+Ex: “I like bananas and potatoes”
+Pattern P
+|P| = n
+Ex: “banana”
+
+Find all occurrences of P in T
+- Naive: O(mn)
+- Possible: O(m + n)
+</code></pre>
+<h2 id="05-suffix-tree-applications" tabindex="-1">05 Suffix tree applications</h2>
+<h2 id="06-sequencing" tabindex="-1">06 Sequencing</h2>
+<h2 id="07-alignment-revisited" tabindex="-1">07 Alignment revisited</h2>
+<h2 id="08-motif-discovery" tabindex="-1">08 Motif Discovery</h2>
+<h2 id="09-markov-chains" tabindex="-1">09 Markov Chains</h2>
 
         <div style="height: 100vh;"></div>
       </article>

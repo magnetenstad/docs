@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>summary.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4287</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📂 <a href="./exercises/index.html">exercises</a></li>
+<li>📄 <a href="previous_exams.html">previous_exams</a></li>
+<li>📄 <a href="summary.html">summary ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#summary">Summary</a><ol><li><a href="#alignment">Alignment</a><ol><li><a href="#longest-common-subsequence">Longest common subsequence</a></li><li><a href="#edit-distance">Edit Distance</a></li><li><a href="#global-alignment">Global Alignment</a></li><li><a href="#local-alignment">Local Alignment</a></li><li><a href="#heuristic-alignment">Heuristic Alignment</a></li><li><a href="#multiple-alignment">Multiple Alignment</a><ol><li><a href="#progressive-multiple-alignment">Progressive Multiple Alignment</a></li></ol></li><li><a href="#space-efficient-alignment">Space efficient alignment</a></li><li><a href="#sub-quadratic-alignment">Sub-quadratic alignment</a></li></ol></li><li><a href="#substring-indexes">Substring Indexes</a><ol><li><a href="#keyword-trees">Keyword Trees</a></li><li><a href="#suffix-trees">Suffix Trees</a></li><li><a href="#suffix-tree-applications">Suffix Tree Applications</a><ol><li><a href="#common-substrings">Common substrings</a></li><li><a href="#matching-patterns-against-text">Matching patterns against text</a></li><li><a href="#matching-suffixes-and-prefixes">Matching suffixes and prefixes</a></li></ol></li></ol></li><li><a href="#sequencing-and-assembly">Sequencing and assembly</a><ol><li><a href="#sequencing-by-hybridization-(sbh)">Sequencing by hybridization (SBH)</a></li></ol></li><li><a href="#motif-discovery">Motif Discovery</a><ol><li><a href="#position-weight-matrix-(pwm)">Position Weight Matrix (PWM)</a></li><li><a href="#motif-discovery-%E2%80%93-exact-methods">Motif-discovery – exact methods</a></li><li><a href="#motif-discovery-%E2%80%93-randomized-methods">Motif-discovery – randomized methods</a></li></ol></li><li><a href="#hidden-markov-models-(hmm)">Hidden Markov Models (HMM)</a><ol><li><a href="#viterbi-algorithm%3A-find-the-most-probable-state-path-given-the-observed-sequence">Viterbi Algorithm: Find the most probable state path given the observed sequence</a></li><li><a href="#find-the-probability-of-a-symbol-sequence">Find the probability of a symbol sequence</a></li><li><a href="#estimate%2Flearn-parameters">Estimate/learn parameters</a></li></ol></li><li><a href="#rna-secondary-structure-prediction">RNA Secondary Structure Prediction</a></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="summary" tabindex="-1">Summary</h1>
+<h2 id="alignment" tabindex="-1">Alignment</h2>
+<h3 id="longest-common-subsequence" tabindex="-1">Longest common subsequence</h3>
+<h3 id="edit-distance" tabindex="-1">Edit Distance</h3>
+<h3 id="global-alignment" tabindex="-1">Global Alignment</h3>
+<h3 id="local-alignment" tabindex="-1">Local Alignment</h3>
+<h3 id="heuristic-alignment" tabindex="-1">Heuristic Alignment</h3>
+<p>// TODO: ROC graph!</p>
+<h3 id="multiple-alignment" tabindex="-1">Multiple Alignment</h3>
+<p>// TODO!</p>
+<h4 id="progressive-multiple-alignment" tabindex="-1">Progressive Multiple Alignment</h4>
+<p>// TODO!</p>
+<h3 id="space-efficient-alignment" tabindex="-1">Space efficient alignment</h3>
+<h3 id="sub-quadratic-alignment" tabindex="-1">Sub-quadratic alignment</h3>
+<h2 id="substring-indexes" tabindex="-1">Substring Indexes</h2>
+<h3 id="keyword-trees" tabindex="-1">Keyword Trees</h3>
+<h3 id="suffix-trees" tabindex="-1">Suffix Trees</h3>
+<p>// TODO: Optimizations in Ukkonen's algorithm</p>
+<h3 id="suffix-tree-applications" tabindex="-1">Suffix Tree Applications</h3>
+<p>// TODO: Matching Statistics.</p>
+<h4 id="common-substrings" tabindex="-1">Common substrings</h4>
+<h4 id="matching-patterns-against-text" tabindex="-1">Matching patterns against text</h4>
+<h4 id="matching-suffixes-and-prefixes" tabindex="-1">Matching suffixes and prefixes</h4>
+<h2 id="sequencing-and-assembly" tabindex="-1">Sequencing and assembly</h2>
+<h3 id="sequencing-by-hybridization-(sbh)" tabindex="-1">Sequencing by hybridization (SBH)</h3>
+<h2 id="motif-discovery" tabindex="-1">Motif Discovery</h2>
+<h3 id="position-weight-matrix-(pwm)" tabindex="-1">Position Weight Matrix (PWM)</h3>
+<h3 id="motif-discovery-%E2%80%93-exact-methods" tabindex="-1">Motif-discovery – exact methods</h3>
+<h3 id="motif-discovery-%E2%80%93-randomized-methods" tabindex="-1">Motif-discovery – randomized methods</h3>
+<h2 id="hidden-markov-models-(hmm)" tabindex="-1">Hidden Markov Models (HMM)</h2>
+<p>Calculate the joint probability <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>Q</mi><mi mathvariant="normal">&amp;</mi><mi>O</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P ( Q \&amp; O )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mord">&amp;</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mclose">)</span></span></span></span> for a path <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">Q</span></span></span></span> and a sequence <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span></span></span></span>.</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>Q</mi><mi mathvariant="normal">&amp;</mi><mi>O</mi><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mi>Q</mi><mi mathvariant="normal">∣</mi><mi>O</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>P</mi><mo stretchy="false">(</mo><mi>O</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P( Q \&amp; O ) = P ( Q | O ) \cdot P( O )
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mord">&amp;</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">Q</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mclose">)</span></span></span></span></span></p>
+<h3 id="viterbi-algorithm%3A-find-the-most-probable-state-path-given-the-observed-sequence" tabindex="-1">Viterbi Algorithm: Find the most probable state path given the observed sequence</h3>
+<p>Total time: O(TN^2)
+Space: O(TN)</p>
+<h3 id="find-the-probability-of-a-symbol-sequence" tabindex="-1">Find the probability of a symbol sequence</h3>
+<h3 id="estimate%2Flearn-parameters" tabindex="-1">Estimate/learn parameters</h3>
+<p>Baum-Welch estimation</p>
+<h2 id="rna-secondary-structure-prediction" tabindex="-1">RNA Secondary Structure Prediction</h2>
+<p>// TODO!</p>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>
