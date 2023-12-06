@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>mock_exam.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt4200</a>
+</h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+<li>📂 <a href="./programs/index.html">programs</a></li>
+<li>📄 <a href="book.html">book</a></li>
+<li>📄 <a href="mock_exam.html">mock_exam ✨</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#tdt4200-mock-exam">TDT4200 Mock Exam</a><ol><li><a href="#true%2Ffalse-(10%25)">True/False (10%)</a><ol><li><a href="#the-cuda-syncthreads()-operation-synchronizes-all-active-threads-on-the-gpu">The CUDA syncthreads() operation synchronizes all active threads on the GPU</a></li><li><a href="#an-mpi-allreduce-call-will-use-more-total-bandwidth-than-the-corresponding-mpi-reduce-call">An MPI Allreduce call will use more total bandwidth than the corresponding MPI Reduce call</a></li><li><a href="#cuda-context-switches-can-increase-occupancy">CUDA context switches can increase occupancy</a></li><li><a href="#simultaneous-multithreading-allows-any-pair-of-independent-threads-to-run-simultaneously">Simultaneous Multithreading allows any pair of independent threads to run simultaneously</a></li><li><a href="#any-collective-mpi-operation-be-replaced-with-a-collection-of-point-to-point-operations">Any collective MPI operation be replaced with a collection of point-to point operations</a></li><li><a href="#the-operational-intensity-of-a-program-increases-when-it-is-run-on-a-faster-processor">The operational intensity of a program increases when it is run on a faster processor</a></li><li><a href="#worksharing-directives-in-openmp-end-with-an-implicit-barrier-by-default">Worksharing directives in OpenMP end with an implicit barrier by default</a></li><li><a href="#a-mutual-exchange-with-standard-mode-send-and-recv-operations-can-not-deadlock">A mutual exchange with standard mode Send and Recv operations can not deadlock</a></li><li><a href="#strong-scaling-results-suggest-that-an-algorithm-is-suitable-for-use-on-higher-processor-counts-than-weak-scaling-results">Strong scaling results suggest that an algorithm is suitable for use on higher processor counts than weak scaling results</a></li><li><a href="#pthreads-operations-on-a-cond-variable-associate-it-with-a-mutex-variable">Pthreads operations on a cond variable associate it with a mutex variable</a></li></ol></li><li><a href="#2-message-passing-and-mpi-(15%25)">2 Message passing and MPI (15%)</a><ol><li><a href="#2.1-in-mpi-terminology%2C-what-distinguishes-the-ready-and-synchronized-communication-modes-from-each-other%3F">2.1 In MPI terminology, what distinguishes the Ready and Synchronized communication modes from each other?</a></li><li><a href="#2.2">2.2</a></li></ol></li><li><a href="#3-gpgpu-programming-(10%25)">3 GPGPU programming (10%)</a><ol><li><a href="#3.1-briefly-describe-two-differences-between-posix-threads-and-cuda-threads">3.1 Briefly describe two differences between POSIX threads and CUDA threads</a></li><li><a href="#3.2-what-differentiates-shared-and-global-memory-spaces-in-cuda-programming%3F">3.2 What differentiates shared and global memory spaces in CUDA programming?</a></li></ol></li><li><a href="#4-performance-analysis-(5%25)">4 Performance analysis (5%)</a><ol><li><a href="#in-a-strong-scaling-study%2C-what-is-theoretically-the-maximal-speedup-attainable-by-a-program-with-8%25-inherently-sequential-run-time%3F">In a strong scaling study, what is theoretically the maximal speedup attainable by a program with 8% inherently sequential run time?</a></li></ol></li><li><a href="#5-threads-(10%25)">5 Threads (10%)</a><ol><li><a href="#5.1-give-an-example-of-a-race-condition">5.1 Give an example of a race condition</a></li><li><a href="#5.2-describe-two-ways-to-prevent-race-conditions-using-openmp">5.2 Describe two ways to prevent race conditions using OpenMP</a><ol><li><a href="#mpi">MPI</a></li><li><a href="#pthreads">Pthreads</a></li><li><a href="#openmp">OpenMP</a></li><li><a href="#cuda">CUDA</a></li></ol></li></ol></li><li><a href="#6-15%25">6 15%</a></li><li><a href="#7-15%25">7 15%</a><ol><li><a href="#7.1-create-a-version-of-the-write-map-function-in-the-form-of-a-cuda-kernel-which-can-be-called-with-thread-blocks-of-size-4-%C3%97-4">7.1 Create a version of the write map function in the form of a CUDA kernel which can be called with thread blocks of size 4 × 4</a></li><li><a href="#7.2-create-a-version-of-the-main()-function-which">7.2 Create a version of the main() function which</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="tdt4200-mock-exam" tabindex="-1">TDT4200 Mock Exam</h1>
+<h2 id="true%2Ffalse-(10%25)" tabindex="-1">True/False (10%)</h2>
+<h3 id="the-cuda-syncthreads()-operation-synchronizes-all-active-threads-on-the-gpu" tabindex="-1">The CUDA syncthreads() operation synchronizes all active threads on the GPU</h3>
+<p>False. syncthreads() only synchronizes threads within a single thread block.</p>
+<h3 id="an-mpi-allreduce-call-will-use-more-total-bandwidth-than-the-corresponding-mpi-reduce-call" tabindex="-1">An MPI Allreduce call will use more total bandwidth than the corresponding MPI Reduce call</h3>
+<p>True. Allreduce will distribute the result to all active processes, thus use more bandwidth.</p>
+<h3 id="cuda-context-switches-can-increase-occupancy" tabindex="-1">CUDA context switches can increase occupancy</h3>
+<p>True. Some threads must idle if they wait for a memory operation. By performing a context switch and running other threads, the hardware is better utilized.</p>
+<h3 id="simultaneous-multithreading-allows-any-pair-of-independent-threads-to-run-simultaneously" tabindex="-1">Simultaneous Multithreading allows any pair of independent threads to run simultaneously</h3>
+<p>False. SMT only runs threads simultaneously when they require distinct parts of available ALUs</p>
+<h3 id="any-collective-mpi-operation-be-replaced-with-a-collection-of-point-to-point-operations" tabindex="-1">Any collective MPI operation be replaced with a collection of point-to point operations</h3>
+<p>True. The collective MPI operations are helper functions, built from point-to-point operations.</p>
+<h3 id="the-operational-intensity-of-a-program-increases-when-it-is-run-on-a-faster-processor" tabindex="-1">The operational intensity of a program increases when it is run on a faster processor</h3>
+<p>Operational intensity is defined as</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>operational intensity</mtext><mo>=</mo><mfrac><mrow><mi>c</mi><mi>o</mi><mi>m</mi><mi>p</mi><mi>u</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi>a</mi><mi>l</mi><mi>w</mi><mi>o</mi><mi>r</mi><mi>k</mi></mrow><mrow><mi>d</mi><mi>a</mi><mi>t</mi><mi>a</mi><mi>m</mi><mi>o</mi><mi>v</mi><mi>e</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\text{operational intensity} = \frac{computational work}{data movement}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">operational intensity</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mord mathnormal">m</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">e</span><span class="mord mathnormal">m</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="mord mathnormal">o</span><span class="mord mathnormal">m</span><span class="mord mathnormal">p</span><span class="mord mathnormal">u</span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>A higher operational intensity indicates that a larger proportion of the algorithm's work involves computation rather than data movement. This will <em>not</em> increase by a faster processor.</p>
+<p>False.</p>
+<h3 id="worksharing-directives-in-openmp-end-with-an-implicit-barrier-by-default" tabindex="-1">Worksharing directives in OpenMP end with an implicit barrier by default</h3>
+<p>True. Directives such as <code><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> omp parellel</span></code> end with an implicit barrier at the end of the following structured block.</p>
+<h3 id="a-mutual-exchange-with-standard-mode-send-and-recv-operations-can-not-deadlock" tabindex="-1">A mutual exchange with standard mode Send and Recv operations can not deadlock</h3>
+<p>False. If all processes perform <code><span class="hljs-built_in">Send</span></code> before any perform <code><span class="hljs-attribute">Recv</span></code>, the program will deadlock. Thus, we should use <code><span class="hljs-attribute">Sendrecv</span></code> which will schedule the processes such that they do not deadlock.</p>
+<h3 id="strong-scaling-results-suggest-that-an-algorithm-is-suitable-for-use-on-higher-processor-counts-than-weak-scaling-results" tabindex="-1">Strong scaling results suggest that an algorithm is suitable for use on higher processor counts than weak scaling results</h3>
+<p>False. Both may benefit from higher processer counts. However, for weak scaling we must also increase the problem size.</p>
+<h3 id="pthreads-operations-on-a-cond-variable-associate-it-with-a-mutex-variable" tabindex="-1">Pthreads operations on a cond variable associate it with a mutex variable</h3>
+<p>True. All pthread condition variables are associtated with a mutex variable.</p>
+<h2 id="2-message-passing-and-mpi-(15%25)" tabindex="-1">2 Message passing and MPI (15%)</h2>
+<h3 id="2.1-in-mpi-terminology%2C-what-distinguishes-the-ready-and-synchronized-communication-modes-from-each-other%3F" tabindex="-1">2.1 In MPI terminology, what distinguishes the Ready and Synchronized communication modes from each other?</h3>
+<p>TODO communication modes</p>
+<h3 id="2.2" tabindex="-1">2.2</h3>
+<p>Using pseudo-code, write a barrier implementation for a message-passing program.</p>
+<pre><code class="hljs">if (rank <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <span class="hljs-number">0</span>) {
+    for (int i <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">; i &lt; number_of_threads; i++) {</span>
+        MPI_Recv(source_rank <span class="hljs-operator">=</span> i)<span class="hljs-comment">;</span>
+    }
+    MPI_Broadcast(root <span class="hljs-operator">=</span> <span class="hljs-number">0</span>)<span class="hljs-comment">;</span>
+} else {
+    MPI_Send(dest_rank <span class="hljs-operator">=</span> <span class="hljs-number">0</span>)<span class="hljs-comment">;</span>
+    MPI_Broadcast(root <span class="hljs-operator">=</span> <span class="hljs-number">0</span>)<span class="hljs-comment">;</span>
+}
+</code></pre>
+<h2 id="3-gpgpu-programming-(10%25)" tabindex="-1">3 GPGPU programming (10%)</h2>
+<h3 id="3.1-briefly-describe-two-differences-between-posix-threads-and-cuda-threads" tabindex="-1">3.1 Briefly describe two differences between POSIX threads and CUDA threads</h3>
+<ul>
+<li>POSIX threads run on the CPU, while CUDA threads run on the GPU.</li>
+<li>With POSIX threads, you can have dynamic threads. CUDA threads are only static.</li>
+</ul>
+<p>POSIX threads run with entirely separate instruction counters, and can directly make calls that access the operating system. CUDA threads run in SIMT mode where threads in a thread block share the same instruction, and can only directly access memory on the graphics device that executes them.</p>
+<h3 id="3.2-what-differentiates-shared-and-global-memory-spaces-in-cuda-programming%3F" tabindex="-1">3.2 What differentiates shared and global memory spaces in CUDA programming?</h3>
+<h2 id="4-performance-analysis-(5%25)" tabindex="-1">4 Performance analysis (5%)</h2>
+<h3 id="in-a-strong-scaling-study%2C-what-is-theoretically-the-maximal-speedup-attainable-by-a-program-with-8%25-inherently-sequential-run-time%3F" tabindex="-1">In a strong scaling study, what is theoretically the maximal speedup attainable by a program with 8% inherently sequential run time?</h3>
+<p>The maximal speedup in a strong scaling study is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">S = 1/p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord mathnormal">p</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span> is the inherently sequential ratio. With <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>0.08</mn></mrow><annotation encoding="application/x-tex">p = 0.08</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">8</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>0.08</mn><mo>=</mo><mn>12.5</mn></mrow><annotation encoding="application/x-tex">S = 1/0.08 = 12.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span></span></span></span></p>
+<h2 id="5-threads-(10%25)" tabindex="-1">5 Threads (10%)</h2>
+<h3 id="5.1-give-an-example-of-a-race-condition" tabindex="-1">5.1 Give an example of a race condition</h3>
+<p>If multiple processes can access a shared resource at the same time, and at least one of them is an update, we have a <strong>race condition</strong>. (Because the result will depend on what process "wins the race").</p>
+<pre><code class="hljs"><span class="hljs-attribute">Process</span> <span class="hljs-number">1</span>   | Process <span class="hljs-number">2</span>
+<span class="hljs-attribute">a</span> = a + <span class="hljs-number">1</span>   | a = a + <span class="hljs-number">1</span>
+</code></pre>
+<p>This is a race condition because both processes may read <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> before incrementing, such that the result is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> instead of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">a = 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>.</p>
+<h3 id="5.2-describe-two-ways-to-prevent-race-conditions-using-openmp" tabindex="-1">5.2 Describe two ways to prevent race conditions using OpenMP</h3>
+<h4 id="mpi" tabindex="-1">MPI</h4>
+<ul>
+<li><code><span class="hljs-attribute">MPI_Barrier</span></code></li>
+<li><code><span class="hljs-attribute">MPI_Sendrecv</span></code> (instead of <code><span class="hljs-attribute">MPI_Send</span></code>, then <code><span class="hljs-attribute">MPI_Recv</span></code>)</li>
+</ul>
+<h4 id="pthreads" tabindex="-1">Pthreads</h4>
+<ul>
+<li>Mutexes</li>
+<li>Semaphores</li>
+<li>Condition variables</li>
+<li>Read-Write Locks</li>
+</ul>
+<h4 id="openmp" tabindex="-1">OpenMP</h4>
+<ul>
+<li><code><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> omp critical(name)</span></code></li>
+<li><code><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> omp atomic</span></code></li>
+<li><code><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> omp barrier</span></code></li>
+<li><code><span class="hljs-attribute">omp_init_lock</span></code></li>
+</ul>
+<h4 id="cuda" tabindex="-1">CUDA</h4>
+<ul>
+<li><code><span class="hljs-variable">__syncthreads</span></code></li>
+<li>Cooperative groups</li>
+<li><code><span class="hljs-attribute">atomicAdd</span></code> and similar atomic functions</li>
+</ul>
+<h2 id="6-15%25" tabindex="-1">6 15%</h2>
+<p>The C program on the following page calculates whether each point in a 640×480 array lies inside a unit circle scaled to the array, and saves the array in a file where values are scaled to their point’s distance from the origin. The program partitions its domain along the vertical axis, and assumes that the number of ranks evenly divides the domain’s height. Modify the program so that it will also work with rank counts that are not divisors of the height.</p>
+<h2 id="7-15%25" tabindex="-1">7 15%</h2>
+<p>The C program on the following page calculates whether each point in a 640×480
+array lies inside a unit circle scaled to the array, and writes an image file where
+points inside are shaded according to their distance from the origin.</p>
+<h3 id="7.1-create-a-version-of-the-write-map-function-in-the-form-of-a-cuda-kernel-which-can-be-called-with-thread-blocks-of-size-4-%C3%97-4" tabindex="-1">7.1 Create a version of the write map function in the form of a CUDA kernel which can be called with thread blocks of size 4 × 4</h3>
+<pre><code class="hljs language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">write_map</span> <span class="hljs-params">( <span class="hljs-type">float</span> *<span class="hljs-built_in">map</span> )</span> {
+    <span class="hljs-type">int</span> i = blockDim.x * blockIdx.x + threadIdx.x:
+    <span class="hljs-type">int</span> j = blockDim.y * blockIdx.y + threadIdx.y:
+
+    <span class="hljs-type">float</span> y = (<span class="hljs-number">2</span>*i-height) / (<span class="hljs-type">float</span>)height;
+    <span class="hljs-type">float</span> x = (<span class="hljs-number">2</span>*j-width) / (<span class="hljs-type">float</span>)width;
+    <span class="hljs-type">float</span> rad = <span class="hljs-built_in">sqrt</span>(y*y+x*x);
+    <span class="hljs-keyword">if</span> ( rad &lt; <span class="hljs-number">1.0</span> )
+        MAP(i,j) = rad;
+    <span class="hljs-keyword">else</span>
+        MAP(i,j) = <span class="hljs-number">1.0</span>;
+}
+</code></pre>
+<h3 id="7.2-create-a-version-of-the-main()-function-which" tabindex="-1">7.2 Create a version of the main() function which</h3>
+<ul>
+<li>llocates the floating-point array in GPU device memory instead</li>
+<li>alls your write map kernel using 4 × 4 thread blocks, and</li>
+<li>opies the result into a host memory buffer, before passing it to save image</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> BLOCK 4</span>
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">int</span> width = <span class="hljs-number">640</span>;
+    <span class="hljs-type">int</span> height = <span class="hljs-number">480</span>;
+
+    <span class="hljs-type">float</span> map_h[heigth*width];
+    <span class="hljs-type">float</span>* map_d;
+    cudaMalloc((<span class="hljs-type">void</span> **) &amp;map_d, width*height*<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">float</span>));
+
+    dim3 <span class="hljs-title function_">gridBlock</span><span class="hljs-params">(width/BLOCK,height/BLOCK)</span>;
+    dim3 <span class="hljs-title function_">threadBlock</span><span class="hljs-params">(BLOCK,BLOCK)</span>;
+    write_map&lt;&lt;&lt;gridBlock, threadBlock&gt;&gt;&gt;();
+
+    cudaMemcpy(&amp;map_h, map_d, width*height*<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">float</span>), cudaMemcpyDeviceToHost);
+
+    cudaDeviceSynchronize();
+
+    save_image(host_map);
+    cudaFree(map_d);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>
