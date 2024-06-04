@@ -23,8 +23,11 @@
         
 <p><h4><a href="../index.html">courses/</a><a href="./index.html">INP.33660UF ✨</a>
 </h4></p>
+<ul>
+<li>📂 <a href="./assets/index.html">assets</a></li>
+</ul>
 <p><h4>Table of Contents</h4></p>
-<nav class="table-of-contents"><ol><li><a href="#machine-learning-1-vo">Machine Learning 1 VO</a></li></ol></nav>
+<nav class="table-of-contents"><ol><li><a href="#machine-learning-1-vo">Machine Learning 1 VO</a><ol><li><a href="#1-introduction">1 Introduction</a><ol><li><a href="#learning">Learning</a></li><li><a href="#classification-vs.-regression">Classification vs. Regression</a></li><li><a href="#unsupervised-vs.-supervised-learning">Unsupervised vs. Supervised Learning</a></li></ol></li><li><a href="#2-mathematical-basics-i">2 Mathematical Basics I</a></li><li><a href="#3-mathematical-basics-ii">3 Mathematical Basics II</a><ol><li><a href="#gradient-descent">Gradient Descent</a></li><li><a href="#stochastic-gradient-descent-(sgd)">Stochastic Gradient Descent (SGD)</a></li><li><a href="#multivariate-gaussian-density">Multivariate Gaussian Density</a></li></ol></li><li><a href="#4-linear-regression">4 Linear Regression</a><ol><li><a href="#loss">Loss</a></li><li><a href="#least-squares-loss-function">Least Squares Loss Function</a></li></ol></li><li><a href="#5-non-linear-regression%2C-logistic-regression">5 Non-Linear Regression, Logistic Regression</a><ol><li><a href="#non-linear-features">Non-Linear Features</a></li><li><a href="#radial-basis-functions">Radial Basis Functions</a></li><li><a href="#classification%2C-logistic-regression">Classification, Logistic Regression</a></li><li><a href="#minimizing-cross-entropy">Minimizing Cross-Entropy</a></li></ol></li><li><a href="#6-principal-component-analysis">6 Principal Component Analysis</a><ol><li><a href="#targets-and-applications-of-dimensionality-reduction">Targets and Applications of Dimensionality Reduction</a></li><li><a href="#principal-directions">Principal Directions</a></li><li><a href="#computing-principal-components">Computing Principal Components</a></li><li><a href="#linear-discriminant-analysis">Linear Discriminant Analysis</a></li></ol></li><li><a href="#7-neural-networks-i">7 Neural Networks I</a></li><li><a href="#8-model-selection%2C-evaluation">8 Model selection, Evaluation</a></li><li><a href="#9-neural-networks-ii">9 Neural Networks II</a></li><li><a href="#10-k-nearest-neighbors%2C-decision-trees-and-random-forests">10 K-Nearest Neighbors, Decision Trees and Random Forests</a><ol><li><a href="#bayes-optimal-classifier">Bayes Optimal Classifier</a></li><li><a href="#k-nearest-neighbors-(knn)">K-Nearest Neighbors (KNN)</a></li><li><a href="#decision-trees">Decision Trees</a><ol><li><a href="#cart-algorithm">CART Algorithm</a><ol><li><a href="#stopping-criterion">Stopping Criterion</a></li><li><a href="#costs---impurity-measures">Costs - Impurity Measures</a></li></ol></li></ol></li><li><a href="#random-forests">Random Forests</a><ol><li><a href="#bagging-%3D-bootstrapping-and-aggregating">Bagging = Bootstrapping and Aggregating</a></li></ol></li></ol></li><li><a href="#11-support-vector-machines%2C-kernel-trick">11 Support Vector Machines, Kernel Trick</a></li><li><a href="#12-k-means-clustering">12 K-Means Clustering</a></li><li><a href="#13-gaussian-mixture-models">13 Gaussian Mixture Models</a></li><li><a href="#14-graphical-models">14 Graphical Models</a></li></ol></li></ol></nav>
       </div>
       <article class="col content">
         
@@ -38,6 +41,158 @@ Tuesday, 2nd July, 11:00, HS i13</li>
 <li>Duration: 120 minutes</li>
 <li>60% multiple choice questions, 40% open questions</li>
 </ul>
+<h2 id="1-introduction" tabindex="-1">1 Introduction</h2>
+<h3 id="learning" tabindex="-1">Learning</h3>
+<blockquote>
+<p>Learning is any <strong>process</strong> by which a <strong>system</strong> improves <strong>performance</strong> from <strong>experience</strong>. - Herbert Simon</p>
+</blockquote>
+<ul>
+<li><strong>system</strong>: (internal state of) animal/human/learning machine</li>
+<li><strong>process</strong>: adaptation, change, optimization, algorithm</li>
+<li><strong>experience</strong>: input, data, observations</li>
+<li><strong>performance</strong>: loss, fitness, score, utility, objective</li>
+</ul>
+<h3 id="classification-vs.-regression" tabindex="-1">Classification vs. Regression</h3>
+<ul>
+<li><strong>Classification</strong>: discrete, unordered targets</li>
+<li><strong>Regression</strong>: continuous, ordered targets</li>
+</ul>
+<h3 id="unsupervised-vs.-supervised-learning" tabindex="-1">Unsupervised vs. Supervised Learning</h3>
+<ul>
+<li><strong>Unsupervised</strong>: Find interesting patterns in data. No known mapping of inputs to outputs.</li>
+<li><strong>Supervised</strong>: Use labeled dataset (training data) to predict labels for other data points (test input). See image below.</li>
+</ul>
+<p><img src="assets/2024-06-02-15-50-25.png" alt=""></p>
+<h2 id="2-mathematical-basics-i" tabindex="-1">2 Mathematical Basics I</h2>
+<h2 id="3-mathematical-basics-ii" tabindex="-1">3 Mathematical Basics II</h2>
+<h3 id="gradient-descent" tabindex="-1">Gradient Descent</h3>
+<ul>
+<li>start at some point x</li>
+<li>take a small step downhill, i.e. in the direction of the negative gradient (steepest descend)</li>
+<li>repeat, until you are in a valley (local minimum)</li>
+</ul>
+<p>If step-size is sufficiently small, convergence to a <strong>local minimum</strong>. For <strong>convex functions</strong>, any local minimum is also a <strong>global minimum</strong>.</p>
+<h3 id="stochastic-gradient-descent-(sgd)" tabindex="-1">Stochastic Gradient Descent (SGD)</h3>
+<p>Sometimes one might not be able to evaluate f exactly, but
+just a "noisy version".</p>
+<p>For theoretical convergence, the step-size needs to be
+reduced over number of iterations t.</p>
+<h3 id="multivariate-gaussian-density" tabindex="-1">Multivariate Gaussian Density</h3>
+<p><img src="assets/2024-06-02-15-45-03.png" alt=""></p>
+<p>As this is a probability density, integrating over an area gives the corresponding probability.</p>
+<h2 id="4-linear-regression" tabindex="-1">4 Linear Regression</h2>
+<p>Regression: Predict a continuous target variable from one or more input variables. Hence, a form of supervised learning.</p>
+<p>When the hypothesis space is restricted to all <strong>affine functions</strong> (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mo stretchy="false">(</mo><msubsup><mo>∑</mo><mrow><mi>d</mi><mo>=</mo><mn>1</mn></mrow><mi>D</mi></msubsup><msub><mi>w</mi><mi>d</mi></msub><msub><mi>x</mi><mi>d</mi></msub><mo stretchy="false">)</mo><mo>+</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y = (\sum_{d=1}^D w_d x_d) + b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2809409999999999em;vertical-align:-0.29971000000000003em;"></span><span class="mopen">(</span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">b</span></span></span></span>), we speak of linear regression.</p>
+<h3 id="loss" tabindex="-1">Loss</h3>
+<p>A loss function (objective, cost function) is a notion of fitness. The lower loss, the better.</p>
+<h3 id="least-squares-loss-function" tabindex="-1">Least Squares Loss Function</h3>
+<p>Average the squared error over the whole data set.</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo stretchy="false">(</mo><msub><mover accent="true"><mi>y</mi><mo>^</mo></mover><mi>i</mi></msub><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">L(\theta) = \frac{1}{N} \sum_{i=1}^N ( \hat{y}_i - y_i )^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">L</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p><img src="assets/2024-06-02-16-01-19.png" alt=""></p>
+<p><img src="assets/2024-06-02-16-03-23.png" alt=""></p>
+<blockquote>
+<p>Least-squares has an interesting connection to <strong>Gaussian density estimation</strong> and the <strong>maximum likelihood principle</strong>.</p>
+</blockquote>
+<h2 id="5-non-linear-regression%2C-logistic-regression" tabindex="-1">5 Non-Linear Regression, Logistic Regression</h2>
+<h3 id="non-linear-features" tabindex="-1">Non-Linear Features</h3>
+<p>Idea: We can apply any pre-processing (non-linear function) to the input features and add them to the design matrix! Regression with non-linear features works exactly the same as before.</p>
+<h3 id="radial-basis-functions" tabindex="-1">Radial Basis Functions</h3>
+<p><img src="assets/2024-06-02-16-08-42.png" alt=""></p>
+<p><img src="assets/2024-06-02-16-09-02.png" alt=""></p>
+<h3 id="classification%2C-logistic-regression" tabindex="-1">Classification, Logistic Regression</h3>
+<blockquote>
+<p>Confusing name: It’s called logistic <em>regression</em>, even though it is a <em>classification</em> model</p>
+</blockquote>
+<p><img src="assets/2024-06-02-16-20-20.png" alt=""></p>
+<h3 id="minimizing-cross-entropy" tabindex="-1">Minimizing Cross-Entropy</h3>
+<p><img src="assets/2024-06-02-16-23-31.png" alt=""></p>
+<p><img src="assets/2024-06-02-16-23-53.png" alt=""></p>
+<p><strong>Cross-Entropy Loss</strong> is <em>differentiable</em> and <em>convex</em>, thus we can use <strong>gradient descent</strong> to find a <strong>global minimum</strong>.</p>
+<p><img src="assets/2024-06-02-16-24-57.png" alt=""></p>
+<h2 id="6-principal-component-analysis" tabindex="-1">6 Principal Component Analysis</h2>
+<p>PCA is a <em>unsupervised</em> learning technique for <strong>dimensionality reduction</strong>. Idea of PCA: Learn an "interesting" subspace V.</p>
+<h3 id="targets-and-applications-of-dimensionality-reduction" tabindex="-1">Targets and Applications of Dimensionality Reduction</h3>
+<p>Potential target characteristics (qualitative):</p>
+<ul>
+<li>locality preserving</li>
+<li>allow for a good reconstruction (decoder function)</li>
+<li>captures as much variance or information as possible</li>
+</ul>
+<p>Applications of dimensionality reduction:</p>
+<ul>
+<li>lossy compression</li>
+<li>feature extraction (as input for other ML models)</li>
+<li>data visualization</li>
+</ul>
+<p><img src="assets/2024-06-02-16-28-14.png" alt=""></p>
+<h3 id="principal-directions" tabindex="-1">Principal Directions</h3>
+<p><img src="assets/2024-06-02-16-29-24.png" alt=""></p>
+<p>Which of the three directions b', b'', b''' is the most "interesting" one? Answer: b' is the direction where</p>
+<ol>
+<li>the variance of the projected data is maximal</li>
+<li>or, equivalently, the sum of squared projection errors is minimal</li>
+</ol>
+<p>The vector b' is called the <em>first principal direction</em> of dataset.</p>
+<h3 id="computing-principal-components" tabindex="-1">Computing Principal Components</h3>
+<p><img src="assets/2024-06-02-16-33-55.png" alt="">
+<img src="assets/2024-06-02-16-34-03.png" alt=""></p>
+<h3 id="linear-discriminant-analysis" tabindex="-1">Linear Discriminant Analysis</h3>
+<ul>
+<li>PCA is unsupervised, i.e. there are no targets</li>
+<li>If one additionally has target values, one might use them to guide dimensionality reduction</li>
+<li>A classical method is Fisher’s linear discriminant analysis (LDA), using class information</li>
+</ul>
+<p><img src="assets/2024-06-02-16-36-59.png" alt=""></p>
+<h2 id="7-neural-networks-i" tabindex="-1">7 Neural Networks I</h2>
+<h2 id="8-model-selection%2C-evaluation" tabindex="-1">8 Model selection, Evaluation</h2>
+<h2 id="9-neural-networks-ii" tabindex="-1">9 Neural Networks II</h2>
+<h2 id="10-k-nearest-neighbors%2C-decision-trees-and-random-forests" tabindex="-1">10 K-Nearest Neighbors, Decision Trees and Random Forests</h2>
+<h3 id="bayes-optimal-classifier" tabindex="-1">Bayes Optimal Classifier</h3>
+<p>Assume a classification setting and that we know the true data-generating distribution. Then, we can use Bayes law to calculate</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>y</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><mrow><munder><mo>∑</mo><mi>y</mi></munder><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">p(y|x) = \frac{p(x, y)}{\sum_y p(x, y)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord">∣</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.5488180000000003em;vertical-align:-1.1218180000000002em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.0016819999999999613em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.43581800000000004em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1218180000000002em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>giving us the <strong>Bayes optimal classifier</strong> which suffers the least true classification error.</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>y</mi><mo>^</mo></mover><mo>=</mo><munder><mo><mi mathvariant="normal">arg max</mi><mo>⁡</mo></mo><mi>y</mi></munder><mi>p</mi><mo stretchy="false">(</mo><mi>y</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat{y} = \argmax_y p(y|x)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.780548em;vertical-align:-1.030548em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.43055999999999994em;"><span style="top:-2.20556em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop"><span class="mord mathrm">a</span><span class="mord mathrm">r</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathrm">m</span><span class="mord mathrm">a</span><span class="mord mathrm">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.030548em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord">∣</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span></span></span></p>
+<h3 id="k-nearest-neighbors-(knn)" tabindex="-1">K-Nearest Neighbors (KNN)</h3>
+<ul>
+<li>Classification: Label test sample according to majority vote of K nearest neighbours. Break ties randomly.</li>
+<li>Regression: Average targets of K nearest neighbours</li>
+</ul>
+<p>KNN converges towards the Bayes optimal classifier given <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">N \rightarrow \infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">K \rightarrow \infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord">∞</span></span></span></span>, and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>K</mi><mi>N</mi></mfrac><mo>→</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\frac{K}{N} \rightarrow 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>. A classifier with this property is called <strong>consistent</strong>.</p>
+<h3 id="decision-trees" tabindex="-1">Decision Trees</h3>
+<p>Decision trees represent a partition of the input space. Decision nodes (internal nodes) are associated with one or more features and a boolean function. Prediction nodes (leaves) are associated with either a fixed label y, or a distribution over labels p(Y).</p>
+<p><img src="assets/2024-06-02-17-07-27.png" alt=""></p>
+<h4 id="cart-algorithm" tabindex="-1">CART Algorithm</h4>
+<p><img src="assets/2024-06-02-17-10-52.png" alt=""></p>
+<h5 id="stopping-criterion" tabindex="-1">Stopping Criterion</h5>
+<ul>
+<li>Threshold determining when improvement of cost is too small</li>
+<li>Another threshold for determining when there are too few
+data points</li>
+<li>Furthermore, one introduce a maximal tree depth</li>
+</ul>
+<h5 id="costs---impurity-measures" tabindex="-1">Costs - Impurity Measures</h5>
+<p><img src="assets/2024-06-02-17-16-49.png" alt=""></p>
+<h3 id="random-forests" tabindex="-1">Random Forests</h3>
+<p>Individual models (like decision trees) easily overfit, i.e. they have low bias but high variance. Idea: instead of training one model, train K models and aggregate them</p>
+<ul>
+<li>Majority vote for classification</li>
+<li>Averaging for regression</li>
+</ul>
+<h4 id="bagging-%3D-bootstrapping-and-aggregating" tabindex="-1">Bagging = Bootstrapping and Aggregating</h4>
+<ul>
+<li>We have only one dataset—use bootstrapping to generate synthetic copies of the training data</li>
+<li>In statistics, bootstrapping is a resampling method to produces uncertainty estimates</li>
+<li>Given N samples, generate K new datasets of size N by sampling with replacement</li>
+<li>These new datasets are called bootstraps</li>
+</ul>
+<p><img src="assets/2024-06-02-17-22-17.png" alt=""></p>
+<h2 id="11-support-vector-machines%2C-kernel-trick" tabindex="-1">11 Support Vector Machines, Kernel Trick</h2>
+<h2 id="12-k-means-clustering" tabindex="-1">12 K-Means Clustering</h2>
+<h2 id="13-gaussian-mixture-models" tabindex="-1">13 Gaussian Mixture Models</h2>
+<h2 id="14-graphical-models" tabindex="-1">14 Graphical Models</h2>
 
         <div style="height: 100vh;"></div>
       </article>
