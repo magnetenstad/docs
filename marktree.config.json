@@ -1,6 +1,6 @@
 {
   "source": "vault/public",
   "dest": "docs",
-  "exclude": [".pynb", ".ipynb", "__private__"],
+  "exclude": [".pynb", ".ipynb", "__private__", ".zip", ".mp4"],
   "icon": "favicon.png"
 }
