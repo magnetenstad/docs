@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>index.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">MAT.464UF ✨</a>
+</h4></p>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#advanced-and-algorithmic-graph-theory-vo">Advanced and algorithmic graph theory VO</a><ol><li><a href="#exam">Exam</a></li><li><a href="#advanced-and-algorithmic-graph-theory-(contents)">Advanced and algorithmic graph theory (contents)</a></li><li><a href="#1-connectivity">1 Connectivity</a><ol><li><a href="#graphs-and-subgraphs">Graphs and subgraphs</a></li><li><a href="#paths%2C-cycles%2C-walks">Paths, cycles, walks</a></li><li><a href="#girth-and-circumference">Girth and circumference</a></li><li><a href="#degree">Degree</a></li><li><a href="#distance-and-diameter">Distance and diameter</a></li><li><a href="#connected-component">Connected component</a></li><li><a href="#separation-and-connectivity">Separation and connectivity</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="advanced-and-algorithmic-graph-theory-vo" tabindex="-1">Advanced and algorithmic graph theory VO</h1>
+<h2 id="exam" tabindex="-1">Exam</h2>
+<p>The <strong>lecture</strong> will be assessed by an oral examination.
+The dates for the oral exams will be specified in agreements with the students.</p>
+<h2 id="advanced-and-algorithmic-graph-theory-(contents)" tabindex="-1">Advanced and algorithmic graph theory (contents)</h2>
+<ol>
+<li>Connectivity: concepts, parameters and computation</li>
+<li>Hamiltonicity: necessary conditions, sufficient conditions, special cases</li>
+<li>Planarity and crossing number: concepts and algorithms</li>
+<li>Coloring (vertex coloring, edge coloring, list coloring, choosability): concepts and algorithms</li>
+<li>Perfect graphs (chordal graphs, comparability graphs, intervall graphs)</li>
+<li>Random graphs: expectations, the probabilistic method, threshold functions</li>
+<li>Decompositions in graphs (treewidth, pathwidth): concepts and algorithms</li>
+</ol>
+<h2 id="1-connectivity" tabindex="-1">1 Connectivity</h2>
+<h3 id="graphs-and-subgraphs" tabindex="-1">Graphs and subgraphs</h3>
+<ul>
+<li>Definition of a graph G</li>
+<li>Definition of a subgraph H</li>
+<li>Definition of an induced subgraph H
+<ul>
+<li>If two vertices are included, edges between them must also be</li>
+<li>Notation: <code>H = G[U] <span class="hljs-keyword">is</span> the subgraph <span class="hljs-keyword">of</span> G induced <span class="hljs-keyword">by</span> U <span class="hljs-string">\subset</span> V(G)</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="paths%2C-cycles%2C-walks" tabindex="-1">Paths, cycles, walks</h3>
+<ul>
+<li>Definition of a path P
+<ul>
+<li>Length: number of edges</li>
+</ul>
+</li>
+<li>Definition of a cycled (closed path)</li>
+<li>Definition of a walk
+<ul>
+<li>A path with a repetition of vertices</li>
+<li>A closed walk is not a cycle</li>
+</ul>
+</li>
+</ul>
+<h3 id="girth-and-circumference" tabindex="-1">Girth and circumference</h3>
+<ul>
+<li>Definition of girth of G, g(G): the length of the shortest cycle of G
+<ul>
+<li>If cycle-free, g(G) = infinity</li>
+</ul>
+</li>
+<li>Definition of circumference, circ(G): the length of the longest cycle of G
+<ul>
+<li>If cycle-free, circ(G) = 0</li>
+</ul>
+</li>
+<li>Definition of a hamiltonian cycle</li>
+</ul>
+<h3 id="degree" tabindex="-1">Degree</h3>
+<ul>
+<li>Definition of the degree of a vertex, deg(v)
+<ul>
+<li>The number of edges that are incident to the vertex</li>
+<li>Also: minimal degree delta(G) and maximal degree Delta(G)</li>
+</ul>
+</li>
+</ul>
+<p>Prop 1.1 Every graph G contains a path of length delta(G) and a cycle of length delta(G)+1, provided that delta(G) &gt;= 2.</p>
+<p>Remark: There is no clear relationship between the girth g(G) and the minimal degree delta(G).</p>
+<h3 id="distance-and-diameter" tabindex="-1">Distance and diameter</h3>
+<ul>
+<li>Definition of the distance d(v,w): the length of the shortest path from v to w</li>
+<li>Definition of the diameter diam(v,w): the maximal distance between v and w
+<ul>
+<li>G is connected if d(v,w) &lt; infinity for all v, w in V(G)</li>
+</ul>
+</li>
+</ul>
+<p>Prop 1.2 The vertices of a connected graph can always be enumerated if ... (check this)</p>
+<h3 id="connected-component" tabindex="-1">Connected component</h3>
+<p><a href="https://en.wikipedia.org/wiki/Component_(graph_theory)">https://en.wikipedia.org/wiki/Component_(graph_theory)</a></p>
+<h3 id="separation-and-connectivity" tabindex="-1">Separation and connectivity</h3>
+<p>Let A, B in V, A intersection B = Ø, and X subset of V union E</p>
+<ul>
+<li>If every A-B-path contains some element of X, then vi say "X separates A and B".</li>
+<li>"X separates G" if G - X is not connected.</li>
+<li>"X is a separator" if X is a subset of V(G)</li>
+<li>A cut-vertex is a vertex which separates 2 other vertices of the same connected component</li>
+<li>A bridge is an edge which separates its end-vertices.</li>
+</ul>
+<p>A graph is k-connected if |G| &gt; k and G-X is connected for all X in V with |X| &lt; k.</p>
+<p>The connectivity number kappa(G) is the largest integer k such that G is k-connected.</p>
+<pre><code class="hljs">Definition <span class="hljs-number">9.2</span>: The connectivity <span class="hljs-built_in">number</span> κ(G) is defined <span class="hljs-keyword">as</span> <span class="hljs-keyword">the</span> minimum <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> vertices whose removal <span class="hljs-built_in">from</span> G results <span class="hljs-keyword">in</span> <span class="hljs-keyword">a</span> disconnected graph <span class="hljs-keyword">or</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">the</span> trivial graph (=<span class="hljs-keyword">a</span> single vertex). A graph G is said <span class="hljs-built_in">to</span> be k-connected <span class="hljs-keyword">if</span> κ(G) ≥ k.
+<span class="hljs-built_in">from</span> <span class="hljs-keyword">https</span>://win.uantwerpen.be/~vanhoudt/graph/connectivity.pdf
+</code></pre>
+<p>Remark: This also applies to edge-connectivity.</p>
+<p>Special cases:</p>
+<ul>
+<li>kappa(G) = 0 -&gt; G is disconnected or G=K_1</li>
+<li>kappa(K_n) = n - 1</li>
+</ul>
+<p>If |G| &gt; 1 and G - F is connected for all F in E(G) with |F| &lt; L, we say G is L-edge-connected.</p>
+<p>The edge-connectivity number is the largest integer L &lt; Z_F such that G is L-edge-connected. (denoted lambda(G) i think)</p>
+<p>Prop 1.3. If |G| &gt; 1 (e.i. non-trivial), then kappa(G) &lt;= lambda(G) &lt;= delta(G).</p>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

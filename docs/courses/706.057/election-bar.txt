@@ -1,0 +1,8 @@
+Party,Seats
+Conservative,365
+Labour,202 
+SNP,48
+Liberal Democrats,11
+DUP,8
+Sinn Féin,7
+Plaid Cymru,4

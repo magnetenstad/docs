@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>index.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tdt01 ✨</a>
+</h4></p>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#tdt01">TDT01</a><ol><li><a href="#server-cpu-microarchitecture">Server CPU Microarchitecture</a></li><li><a href="#sustainability-and-performance-analysis">Sustainability and Performance Analysis</a></li><li><a href="#hardware-generation-and-compilers">Hardware generation and compilers</a></li><li><a href="#1-profiling-a-warehouse-scale-computer">1 Profiling a warehouse-scale computer</a><ol><li><a href="#motivation">Motivation</a></li><li><a href="#findings">Findings</a></li><li><a href="#keywords">Keywords</a></li><li><a href="#alternative-approaches">Alternative Approaches</a></li></ol></li><li><a href="#2-weeding-out-front-end-stalls-with-uneven-block-size-instruction-cache">2 Weeding out Front-End Stalls with Uneven Block Size Instruction Cache</a><ol><li><a href="#motivation-1">Motivation</a></li><li><a href="#findings-1">Findings</a></li><li><a href="#keywords-1">Keywords</a></li><li><a href="#alternative-approaches-1">Alternative Approaches</a></li></ol></li><li><a href="#3-acic%3A-admission-controlled-instruction-cache">3 ACIC: Admission-Controlled Instruction Cache</a><ol><li><a href="#motivation-2">Motivation</a></li><li><a href="#findings-2">Findings</a></li><li><a href="#keywords-2">Keywords</a></li><li><a href="#alternative-approaches-2">Alternative Approaches</a></li></ol></li><li><a href="#4-focal%3A-a-first-order-carbon-model-to-assess-processor-sustainability">4 FOCAL: A First-Order Carbon Model to Assess Processor Sustainability</a><ol><li><a href="#motivation-3">Motivation</a></li><li><a href="#findings-3">Findings</a></li><li><a href="#keywords-3">Keywords</a></li><li><a href="#alternative-approaches-3">Alternative Approaches</a></li></ol></li><li><a href="#5-per-instruction-cycle-stacks-through-time-proportional-event-analysis">5 Per-Instruction Cycle Stacks Through Time-Proportional Event Analysis</a><ol><li><a href="#motivation-4">Motivation</a></li><li><a href="#findings-4">Findings</a></li><li><a href="#keywords-4">Keywords</a></li><li><a href="#alternative-approaches-4">Alternative Approaches</a></li></ol></li><li><a href="#6-aio%3A-an-abstraction-for-performance-analysis-across-diverse-accelerator-architectures">6 AIO: An Abstraction for Performance Analysis Across Diverse Accelerator Architectures</a><ol><li><a href="#motivation-5">Motivation</a></li><li><a href="#findings-5">Findings</a></li><li><a href="#keywords-5">Keywords</a></li><li><a href="#alternative-approaches-5">Alternative Approaches</a></li></ol></li><li><a href="#7-riptide%3A-a-programmable%2C-energy-minimal-dataflow-compiler-and-architecture">7 RipTide: A Programmable, Energy-Minimal Dataflow Compiler and Architecture</a><ol><li><a href="#motivation-6">Motivation</a></li><li><a href="#findings-6">Findings</a></li><li><a href="#keywords-6">Keywords</a></li><li><a href="#alternative-approaches-6">Alternative Approaches</a></li></ol></li><li><a href="#8-r-hls%3A-an-ir-for-dynamic-high-level-synthesis-and-memory-disambiguation-based-on-regions-and-state-edges">8 R-HLS: An IR for Dynamic High-Level Synthesis and Memory Disambiguation based on Regions and State Edges</a><ol><li><a href="#motivation-7">Motivation</a></li><li><a href="#findings-7">Findings</a></li><li><a href="#keywords-7">Keywords</a></li><li><a href="#alternative-approaches-7">Alternative Approaches</a></li></ol></li><li><a href="#9-reusability-is-firrtl-ground%3A-hardware-construction-languages%2C-compiler-frameworks%2C-and-transformations">9 Reusability is FIRRTL ground: Hardware construction languages, compiler frameworks, and transformations</a><ol><li><a href="#motivation-8">Motivation</a></li><li><a href="#findings-8">Findings</a></li><li><a href="#keywords-8">Keywords</a></li><li><a href="#alternative-approaches-8">Alternative Approaches</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="tdt01" tabindex="-1">TDT01</h1>
+<h2 id="server-cpu-microarchitecture" tabindex="-1">Server CPU Microarchitecture</h2>
+<ul>
+<li>1 Profiling a warehouse-scale computer</li>
+<li>2 Weeding out Front-End Stalls with Uneven Block Size Instruction Cache</li>
+<li>3 ACIC: Admission-Controlled Instruction Cache</li>
+</ul>
+<h2 id="sustainability-and-performance-analysis" tabindex="-1">Sustainability and Performance Analysis</h2>
+<ul>
+<li>4 FOCAL: A First-Order Carbon Model to Assess Processor Sustainability</li>
+<li>5 Per-Instruction Cycle Stacks Through Time-Proportional Event Analysis</li>
+<li>6 AIO: An Abstraction for Performance Analysis Across Diverse Accelerator Architectures</li>
+</ul>
+<h2 id="hardware-generation-and-compilers" tabindex="-1">Hardware generation and compilers</h2>
+<ul>
+<li>7 RipTide: A Programmable, Energy-Minimal Dataflow Compiler and Architecture</li>
+<li>8 R-HLS: An IR for Dynamic High-Level Synthesis and Memory Disambiguation based on Regions and State Edges</li>
+<li>9 Reusability is FIRRTL ground: Hardware construction languages, compiler frameworks, and transformations</li>
+</ul>
+<h2 id="1-profiling-a-warehouse-scale-computer" tabindex="-1">1 Profiling a warehouse-scale computer</h2>
+<h3 id="motivation" tabindex="-1">Motivation</h3>
+<ul>
+<li>Increasing prevalence of warehouse-scale (WSC) and cloud computing</li>
+</ul>
+<h3 id="findings" tabindex="-1">Findings</h3>
+<ul>
+<li>WSC workloads are extremely diverse (there is no "killer application" to optimize for.)</li>
+<li>"Datacenter tax" can comprise nearly 30% of cycles</li>
+<li>Common for WSC applications – low IPC, large instruction footprints, bimodal ILP and a preference for latency over bandwidth</li>
+</ul>
+<h3 id="keywords" tabindex="-1">Keywords</h3>
+<ul>
+<li>Microarchitecture analysis</li>
+<li>Datacenter tax: common low-level functions which show potential for specialized hardware</li>
+<li>"wimpy" cores</li>
+<li>Top-Down performance analysis</li>
+<li>CPI stacks</li>
+<li>SMT</li>
+<li>Datacenter specific SoCs</li>
+<li>I-prefetchers, i/d-cache partitioning</li>
+</ul>
+<h3 id="alternative-approaches" tabindex="-1">Alternative Approaches</h3>
+<ul>
+<li>CloudSuite</li>
+<li>DCBench</li>
+<li>Kozyrakis et al. present data on internet-scale workloads from Microsoft, but their study focuses more on system-level Amdahl ratios rather than microarchitectural implications</li>
+</ul>
+<h2 id="2-weeding-out-front-end-stalls-with-uneven-block-size-instruction-cache" tabindex="-1">2 Weeding out Front-End Stalls with Uneven Block Size Instruction Cache</h2>
+<h3 id="motivation-1" tabindex="-1">Motivation</h3>
+<ul>
+<li>The core front-end remains a critical bottleneck in modern server workloads owing to their multi-MB instruction footprints stemming from deep software stacks.</li>
+</ul>
+<h3 id="findings-1" tabindex="-1">Findings</h3>
+<ul>
+<li>About 60% of the bytes in a cache block are never accessed before the block is evicted</li>
+<li>Large spatial locality variability in the instruction stream, demands cache block sizing variability</li>
+<li>Present Uneven Block Size (UBS) cache
+<ul>
+<li>simple and highly storage efficient cache organization with unevenly sized ways that gracefully accommodate the varying spatial locality.</li>
+<li>improves the storage efficiency by 32 percentage points over the baseline instruction cache.</li>
+<li>accommodates more than twice the number of blocks than a conventional cache within a given storage budget.</li>
+<li>approaches the performance of a conventional 64KB cache with a footprint of 32KB.</li>
+</ul>
+</li>
+<li>Present a useful byte predictor that weeds out the cold code and places only the hot code</li>
+</ul>
+<h3 id="keywords-1" tabindex="-1">Keywords</h3>
+<ul>
+<li>Core front-end bottleneck</li>
+<li>Instruction cache</li>
+<li>Stalling</li>
+<li>Cache ways</li>
+<li>Spatial locality &amp; cache block sizing</li>
+<li>Predictor</li>
+<li>Cache hit, cache partial miss</li>
+<li>MPKI (misses per kilo instructions)</li>
+</ul>
+<h3 id="alternative-approaches-1" tabindex="-1">Alternative Approaches</h3>
+<ul>
+<li>Prior work has mainly investigated instruction prefetching and cache replacement policies to mitigate this bottleneck.</li>
+<li>ACIC (3)</li>
+<li>GHRP</li>
+<li>Line Distillation</li>
+<li>UBS can work in congruence with ACIC and GHRP since insertion policy, replacement policy, and block size are complementary aspects of a cache design.</li>
+</ul>
+<h2 id="3-acic%3A-admission-controlled-instruction-cache" tabindex="-1">3 ACIC: Admission-Controlled Instruction Cache</h2>
+<h3 id="motivation-2" tabindex="-1">Motivation</h3>
+<ul>
+<li>Similar to UBS (2)</li>
+</ul>
+<h3 id="findings-2" tabindex="-1">Findings</h3>
+<ul>
+<li>Burstiness in accesses to instruction blocks</li>
+<li>Admission-Controlled Instruction Cache: i-Filter + temporal locality predictor</li>
+<li>ACIC provides 1.0223 speedup over LRU i-cache</li>
+</ul>
+<h3 id="keywords-2" tabindex="-1">Keywords</h3>
+<ul>
+<li>ACIC: Admission-Controlled Instruction Cache
+<ul>
+<li>Uses cache burst history rather than cache access history to predict whether to keep a block or not (temporal locality).</li>
+</ul>
+</li>
+<li>i-Filter: separate spatial from temporal accesses
+<ul>
+<li>victim blocks</li>
+</ul>
+</li>
+<li>Predictor
+<ul>
+<li>History register table (HRT)</li>
+<li>Pattern table (PT)</li>
+</ul>
+</li>
+<li>Admission control</li>
+<li>CSHR (Comparison Status Holding Register)</li>
+</ul>
+<h3 id="alternative-approaches-2" tabindex="-1">Alternative Approaches</h3>
+<ul>
+<li>LRU (default)</li>
+<li>Replacement algorithms</li>
+<li>Bypassing mechanisms</li>
+<li>Victim caches</li>
+<li>UBS (2)</li>
+</ul>
+<h2 id="4-focal%3A-a-first-order-carbon-model-to-assess-processor-sustainability" tabindex="-1">4 FOCAL: A First-Order Carbon Model to Assess Processor Sustainability</h2>
+<h3 id="motivation-3" tabindex="-1">Motivation</h3>
+<ul>
+<li>Sustainability and global warming</li>
+<li>Environmental impact of computing</li>
+</ul>
+<h3 id="findings-3" tabindex="-1">Findings</h3>
+<ul>
+<li>Findings (#1-#15)</li>
+<li>A case study illustrated how FOCAL can guide the design of future processors that deliver both higher performance and incur a smaller environmental impact by leveraging technology innovation in a sober way.</li>
+</ul>
+<h3 id="keywords-3" tabindex="-1">Keywords</h3>
+<ul>
+<li>Normalized carbon footprint (NCF) metric</li>
+<li>Strongly, weakly or less sustainable design choices</li>
+<li>Embodied carbon footprint: emissions from hardware manufacturing and infrastructure</li>
+<li>Operational footprint: emissions from the energy usage during a device's lifetime</li>
+<li>E2O: embodied / operational footprint, a weight parameter</li>
+<li>Jevons' paradox: improvement in efficiency will lead to increase in demand (embodied) and/or usage (operational)</li>
+<li>Fixed-work vs. fixed-time
+<ul>
+<li>Both better: strongly sustainable</li>
+<li>Only fixed work: weakly sustainable</li>
+<li>Both worse: less sustainable</li>
+</ul>
+</li>
+<li>Amdahl's law</li>
+<li>Inherent data uncertainty</li>
+</ul>
+<h3 id="alternative-approaches-3" tabindex="-1">Alternative Approaches</h3>
+<ul>
+<li>ACT model: the key difference is that FOCAL is a top-down, parameterized model in contrast to ACT which is a bottom-up, data-driven approach.</li>
+</ul>
+<h2 id="5-per-instruction-cycle-stacks-through-time-proportional-event-analysis" tabindex="-1">5 Per-Instruction Cycle Stacks Through Time-Proportional Event Analysis</h2>
+<h3 id="motivation-4" tabindex="-1">Motivation</h3>
+<ul>
+<li>Understanding what applications spend time on and why is critical for effective performance optimization. State-of-the-art performance analysis tools are generally unable to provide this information.</li>
+</ul>
+<h3 id="findings-4" tabindex="-1">Findings</h3>
+<ul>
+<li>State-of-the-art attribute execution time to the instructions and performance events that the architecture is exposing the latency of.</li>
+<li>TEA makes manual performance optimization more effective</li>
+<li>TEA provides the foundation for a new class of automatic performance optimization approaches</li>
+</ul>
+<h3 id="keywords-4" tabindex="-1">Keywords</h3>
+<ul>
+<li>TIP: Time-Proportional Instruction Profiling</li>
+<li>TEA: Time-Proportional Event Analysis</li>
+<li>TP vs. NTP profiling</li>
+<li>Moore's law</li>
+<li>Amdahl's law</li>
+<li>PICS: per-instruction cycle stacks</li>
+<li>Performance profiling vs. performance event analysis</li>
+<li>Profile-guided optimization (PGO)</li>
+<li>Commit stage</li>
+</ul>
+<h3 id="alternative-approaches-4" tabindex="-1">Alternative Approaches</h3>
+<ul>
+<li>Current NTP profilers, e.g., Intel PEBS, AMD IBS, Arm SPE, and IBM RIS, all have situations in which they attribute samples correctly and other situations where they misattribute samples.</li>
+<li>Performance profiling (e.g., Arm, Intel, Drongowski, Anderson et al., Dean et al., Gottschall et al., and IBM) and performance event analysis (e.g., Intel, Anderson et al., Yasin,9 and Eyerman et al.).</li>
+</ul>
+<h2 id="6-aio%3A-an-abstraction-for-performance-analysis-across-diverse-accelerator-architectures" tabindex="-1">6 AIO: An Abstraction for Performance Analysis Across Diverse Accelerator Architectures</h2>
+<h3 id="motivation-5" tabindex="-1">Motivation</h3>
+<ul>
+<li>Specialization is the key approach for continued performance growth beyond the end of Dennard scaling.</li>
+<li>We are fast approaching an era in which early-stage accelerator analysis is critical for maintaining the productivity of software developers, system software designers, and computer architects</li>
+<li>We are missing an abstraction level that compares the same work on different accelerators.</li>
+</ul>
+<h3 id="findings-5" tabindex="-1">Findings</h3>
+<ul>
+<li>Existing approaches fall short because they either adopt a level of abstraction that is too low or too high.</li>
+<li>AccMe yields an average error of 5.6% which is a significant improvement compared to the 20.6% average error of curve-fitted Roofline</li>
+<li>Three possible ares of usage, is for early-stage accelerator selection, scheduling compute jobs and using it for architectural exploration.</li>
+</ul>
+<h3 id="keywords-5" tabindex="-1">Keywords</h3>
+<ul>
+<li>Architecture-Independent Operation (AIO)
+<ul>
+<li>the key algorithmic operations that is used to exploit data-level parallelism.</li>
+</ul>
+</li>
+<li>AccMe: a performance model that takes the AIO as the input and combines it with kernel and accelerator parameters to predict performance</li>
+<li>Dennard scaling</li>
+<li>Domain-Specific Accelerators (DSAs)</li>
+<li>Processing in Memory (PIM) accelerators</li>
+<li>Accelerator design space
+<ul>
+<li>DSA: Conventional NPM.</li>
+<li>SCM: Logic-side PUM.</li>
+<li>Ambit: Memory-side PUM.</li>
+<li>UPMEM: Memory-side NDP.</li>
+</ul>
+</li>
+</ul>
+<h3 id="alternative-approaches-5" tabindex="-1">Alternative Approaches</h3>
+<ul>
+<li>Performance modeling of accelerators</li>
+<li>Accelerator offloading</li>
+<li>Accelerator architecture</li>
+</ul>
+<h2 id="7-riptide%3A-a-programmable%2C-energy-minimal-dataflow-compiler-and-architecture" tabindex="-1">7 RipTide: A Programmable, Energy-Minimal Dataflow Compiler and Architecture</h2>
+<h3 id="motivation-6" tabindex="-1">Motivation</h3>
+<ul>
+<li>Emerging sensing applications create an unprecedented need for energy efficiency in programmable processors.</li>
+<li>To achieve useful multi-year deployments on a small battery or energy harvester, these applications must avoid off-device communication and instead process most data locally.</li>
+</ul>
+<h3 id="findings-6" tabindex="-1">Findings</h3>
+<ul>
+<li>RipTide compiles applications written in C
+<ul>
+<li>saves 25% energy v. the state-of-the-art energy-minimal CGRA and 6.6× energy v. a von Neumann core.</li>
+<li>runs C programs with near-ASIC efficiency</li>
+<li>is faster than prior energy-minimal CGRAs</li>
+</ul>
+</li>
+</ul>
+<h3 id="keywords-6" tabindex="-1">Keywords</h3>
+<ul>
+<li>RipTide is a co-designed compiler and CGRA architecture</li>
+<li>Coarse-grained reconfigurable arrays (CGRAs). Both programmable and efficient</li>
+<li>PE and NoC</li>
+<li>Amdahl efficiency bottleneck</li>
+<li>ILP v. SAT: map the optimized DFG to hardware</li>
+<li>ACIC</li>
+</ul>
+<h3 id="alternative-approaches-6" tabindex="-1">Alternative Approaches</h3>
+<ul>
+<li>Alternatives to RipTide
+<ul>
+<li>SNAFU circumnavigates forces the programmer to program in vector assembly.</li>
+</ul>
+</li>
+<li>Alternatives to CGRA
+<ul>
+<li>ASIC (Application-specific integrated circuit)</li>
+<li>FPGA</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-r-hls%3A-an-ir-for-dynamic-high-level-synthesis-and-memory-disambiguation-based-on-regions-and-state-edges" tabindex="-1">8 R-HLS: An IR for Dynamic High-Level Synthesis and Memory Disambiguation based on Regions and State Edges</h2>
+<h3 id="motivation-7" tabindex="-1">Motivation</h3>
+<ul>
+<li>Static HLS struggles with irregular application code.</li>
+<li>Since dynamically scheduled hardware is inherently data flow based, it is beneficial to have an IR that captures the global data flow to enable easier transformations.</li>
+</ul>
+<h3 id="findings-7" tabindex="-1">Findings</h3>
+<ul>
+<li>R-HLS enables fine-grained analyses, optimization, and creation of distributed and resource efficient memory disambiguation.</li>
+<li>R-HLS consistently produce circuits with a reduction in cycle counts and with significantly reduced resource usage.</li>
+</ul>
+<h3 id="keywords-7" tabindex="-1">Keywords</h3>
+<ul>
+<li>High-level synthesis (HLS)</li>
+<li>Dynamically scheduled hardware</li>
+<li>Intermediate representation (IR)</li>
+<li>Regionalized Value State Dependence Graph (RVSDG)</li>
+<li>R-HLS: IR for HLS, and a dialect of RVSDG</li>
+<li>Intra block vs. inter block dependencies</li>
+<li>Out-of-order (OoO) scheduled core vs. in-order (InO)</li>
+<li>Very long input word cores (VLIW)</li>
+<li>Distributed memory disambiguation with ADDR-Q</li>
+<li>Load-store queue (LSQ)</li>
+<li>FF and DSP utilization</li>
+</ul>
+<h3 id="alternative-approaches-7" tabindex="-1">Alternative Approaches</h3>
+<ul>
+<li>State-of-the-art dynamic HLS utilize control flow based IRs, which model data flow only at the basic block level, requiring the rediscovery of inter-block parallelism.</li>
+<li>Straight to the Queue (StoQ)</li>
+<li>Dynamatic</li>
+</ul>
+<h2 id="9-reusability-is-firrtl-ground%3A-hardware-construction-languages%2C-compiler-frameworks%2C-and-transformations" tabindex="-1">9 Reusability is FIRRTL ground: Hardware construction languages, compiler frameworks, and transformations</h2>
+<h3 id="motivation-8" tabindex="-1">Motivation</h3>
+<ul>
+<li>Hardware development practices lag far behind software development practices</li>
+<li>Why don’t hardware engineers write reusable libraries?</li>
+<li>HCLs and HCFs can enable new hardware libraries to be independent of underlying process technologies</li>
+</ul>
+<h3 id="findings-8" tabindex="-1">Findings</h3>
+<ul>
+<li>FIRRTL (Flexible Intermediate Representation for RTL), transforms target-independent RTL into technology-specific RTL.</li>
+<li>To enable hardware libraries, this paper contributes the following:
+<ul>
+<li>(1) a reemphasis on how HCLs provide language expressivity to enable reusability</li>
+<li>(2) how our hardware compiler framework, FIRRTL, allows for generating target-specific RTL</li>
+<li>(3) the wide-ranging applications of a hardware compiler framework</li>
+</ul>
+</li>
+<li>Case study: 94% of this design was reused</li>
+</ul>
+<p>Chisel or Verilog frontends translate designs into FIRRTL (IR), transformation passes do optimizing, and the resulting FIRRTL can be tailored to different simulators, FPGAs or ASICs.</p>
+<h3 id="keywords-8" tabindex="-1">Keywords</h3>
+<ul>
+<li>Hardware description languages (HDL)</li>
+<li>Register-transfer level (RTL): a way of describing a circuit (less generic than HDL)</li>
+<li>Hardware construction languages (HCL)</li>
+<li>Hardware compiler frameworks (HCF)</li>
+<li>FIRRTL (Flexible Intermediate Representation for RTL)</li>
+</ul>
+<h3 id="alternative-approaches-8" tabindex="-1">Alternative Approaches</h3>
+<ul>
+<li>Chisel</li>
+</ul>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

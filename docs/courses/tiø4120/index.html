@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Katex -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/>
+
+    <!-- GitHub Markdown Styles -->
+    <link rel="stylesheet" href=
+        "https://cdn.jsdelivr.net/github-markdown-css/2.2.1/github-markdown.css"/>
+
+    <title>index.md</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png"/>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../../styles.css">
+  
+  </head>
+
+  <body class="markdown-body">
+    <div class="page flex-row">
+      <div class="col links">
+        
+<p><h4><a href="../index.html">courses/</a><a href="./index.html">tiø4120 ✨</a>
+</h4></p>
+<ul>
+<li>📄 <a href=".gitignore"></a></li>
+<li>📄 <a href="previous_exams.html">previous_exams</a></li>
+<li>📄 <a href="previous_exams.pdf">previous_exams</a></li>
+</ul>
+<p><h4>Table of Contents</h4></p>
+<nav class="table-of-contents"><ol><li><a href="#ti%C3%B84120---operations-research%2C-introduction">TIØ4120 - Operations Research, Introduction</a><ol><li><a href="#links">Links</a></li><li><a href="#overview-of-the-operations-research-modeling-approach-(11-pages)">Overview of the Operations Research Modeling Approach (11 pages)</a></li><li><a href="#introduction-to-linear-programming-(52-pages)">Introduction to Linear Programming (52 pages)</a><ol><li><a href="#lp-modell">LP-modell</a></li><li><a href="#antagelser-i-lp">Antagelser i LP</a></li><li><a href="#lp-modell-p%C3%A5-utvidet-form">LP-modell på utvidet form</a></li></ol></li><li><a href="#solving-linear-programming-problems%3A-the-simplex-method-(60-pages)">Solving Linear Programming Problems: The Simplex Method (60 pages)</a><ol><li><a href="#simplex">Simplex</a></li><li><a href="#simplex-tabl%C3%A5">Simplex-tablå</a></li><li><a href="#to-fase-simplex-(todo)">To-fase-Simplex (TODO)</a></li></ol></li><li><a href="#duality-theory-and-sensitivity-analysis-(65-pages)">Duality Theory and Sensitivity Analysis (65 pages)</a><ol><li><a href="#sensitivitetsanalyse">Sensitivitetsanalyse</a></li><li><a href="#dualitet">Dualitet</a><ol><li><a href="#sob-reglene-(todo)">SOB-reglene (TODO)</a></li></ol></li></ol></li><li><a href="#network-optimization-models-(53-pages)">Network Optimization Models (53 pages)</a><ol><li><a href="#minimalt-spenntre-problem-(mst)-(prim's-algoritme)">Minimalt spenntre problem (MST) (Prim&#39;s algoritme)</a></li><li><a href="#korteste-vei-problem-(dijkstra)">Korteste vei-problem (Dijkstra)</a></li><li><a href="#maks-flyt-problem">Maks flyt-problem</a><ol><li><a href="#min-kost-flyt-problemet">Min-kost-flyt-problemet</a></li></ol></li></ol></li><li><a href="#integer-programming-(57-pages)">Integer Programming (57 pages)</a><ol><li><a href="#bruk-av-bin%C3%A6rvariable">Bruk av binærvariable</a></li><li><a href="#branch-and-bound">Branch and bound</a></li></ol></li><li><a href="#non-linear-programming-(56-pages)">Non-Linear Programming (56 pages)</a><ol><li><a href="#lagrange-multiplikator-metoden">Lagrange multiplikator metoden</a></li><li><a href="#kkt-betingelser-(karush-kuhn-tucker)-(todo)">KKT-betingelser (Karush-Kuhn-Tucker) (TODO)</a></li></ol></li><li><a href="#decision-analysis-(37-pages)">Decision Analysis (37 pages)</a><ol><li><a href="#beslutningskriterier">Beslutningskriterier</a></li><li><a href="#sensitivitetsanalyse-(todo-%3F)">Sensitivitetsanalyse (TODO ?)</a></li><li><a href="#beslutningstr%C3%A6r">Beslutningstrær</a></li><li><a href="#verdi-av-informasjon-(todo)">Verdi av informasjon (TODO)</a></li><li><a href="#risiko-og-nyttefunksjoner-(todo)">Risiko og nyttefunksjoner (TODO)</a></li></ol></li><li><a href="#queueing-theory-(53-pages)">Queueing Theory (53 pages)</a><ol><li><a href="#kendall's-notation">Kendall&#39;s notation</a></li><li><a href="#k%C3%B8system">Køsystem</a></li><li><a href="#f%C3%B8dsels--og-d%C3%B8dsprosesser-(markov-kjeder)%2C-overgangsdiagram">Fødsels- og dødsprosesser (Markov-kjeder), overgangsdiagram</a></li><li><a href="#balking-(todo)">Balking (TODO)</a></li></ol></li><li><a href="#inventory-theory-(62-pages)-(todo)">Inventory Theory (62 pages) (TODO)</a></li><li><a href="#simulation-(47-pages)">Simulation (47 pages)</a><ol><li><a href="#tilfeldige-tall">Tilfeldige tall</a><ol><li><a href="#kongruensmetoder%3A-heltall-og-uniform-fordeling-(todo)">Kongruensmetoder: Heltall og uniform fordeling (TODO)</a></li><li><a href="#andre-sannsynlighetsfordelinger">Andre sannsynlighetsfordelinger</a></li></ol></li><li><a href="#simuleringsklokka-(tidsinkrement)">Simuleringsklokka (tidsinkrement)</a></li></ol></li></ol></li></ol></nav>
+      </div>
+      <article class="col content">
+        
+<h1 id="ti%C3%B84120---operations-research%2C-introduction" tabindex="-1">TIØ4120 - Operations Research, Introduction</h1>
+<h2 id="links" tabindex="-1">Links</h2>
+<ul>
+<li><a href="https://www.ntnu.edu/studies/courses/TI%C3%984120">NTNU</a></li>
+<li>553 pages of Introduction to Operations Research</li>
+</ul>
+<h2 id="overview-of-the-operations-research-modeling-approach-(11-pages)" tabindex="-1">Overview of the Operations Research Modeling Approach (11 pages)</h2>
+<ol>
+<li>Define the problem of interest and gather relevant data.
+(data mining)</li>
+<li>Formulate a mathematical model to represent the problem.
+(decision variables, objective function, constraints, parameters, sensitivity analysis, linear programming model, overall measure of performance)</li>
+<li>Develop a computer-based procedure for deriving solutions to the problem from the model.
+(algorithms, optimal, solution, satisficing, heuristic procedures, suboptimal solution, metaheuristics, postoptimality analysis, what-if analysis, sensitivity analysis)</li>
+<li>Test the model and refine it as needed.
+(model validation)</li>
+<li>Prepare for the ongoing application of the model as prescribed by management.
+(decision support system)</li>
+<li>Implement.</li>
+</ol>
+<h2 id="introduction-to-linear-programming-(52-pages)" tabindex="-1">Introduction to Linear Programming (52 pages)</h2>
+<h3 id="lp-modell" tabindex="-1">LP-modell</h3>
+<ul>
+<li>Indekser, Mengder</li>
+<li>Parametre</li>
+<li>Variable</li>
+<li>Modell
+<ul>
+<li>Objektivfunksjon / målfunksjon</li>
+<li>Restriksjoner / begrensninger</li>
+</ul>
+</li>
+</ul>
+<h3 id="antagelser-i-lp" tabindex="-1">Antagelser i LP</h3>
+<ul>
+<li>Proporsjonalitet</li>
+<li>Additive ledd</li>
+<li>Delbarhet (kontinuerlige variabler)</li>
+<li>Parametre kjent og konstant</li>
+</ul>
+<h3 id="lp-modell-p%C3%A5-utvidet-form" tabindex="-1">LP-modell på utvidet form</h3>
+<ul>
+<li>Først, standardform
+<ul>
+<li>Max z</li>
+<li>Alle restriksjoner på <code>&lt;<span class="hljs-operator">=</span></code>-form</li>
+<li>Alle variabler <code>&gt;<span class="hljs-operator">=</span></code> 0</li>
+</ul>
+</li>
+<li>Så, utvidet form
+<ul>
+<li>Alle restriksjoner på <code><span class="hljs-operator">=</span></code>-form</li>
+<li>Slackvariable, én per restriksjon
+<ul>
+<li><code><span class="hljs-attribute">s</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span></code> medfører bindende restriksjon</li>
+<li><code><span class="hljs-attribute">s</span> &gt; <span class="hljs-number">0</span></code> medfører ressurser til overs</li>
+<li><code><span class="hljs-attribute">s</span> &lt; <span class="hljs-number">0</span></code> medfører ulovlig løsning</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="solving-linear-programming-problems%3A-the-simplex-method-(60-pages)" tabindex="-1">Solving Linear Programming Problems: The Simplex Method (60 pages)</h2>
+<h3 id="simplex" tabindex="-1">Simplex</h3>
+<ul>
+<li>Krever utvidet form</li>
+<li>Fokuserer kun på mulige hjørnepunkter</li>
+<li>Iterativ metode</li>
+<li>Velger origio som startløsning</li>
+<li>Vei til optimum følger kantene av mulighetsrommet</li>
+<li>Beregner naboløsningen som gir størst forbedringsrate i målfunksjonen</li>
+<li>Hvis ingen naboløsning er bedre har vi funnet den optimale</li>
+</ul>
+<h3 id="simplex-tabl%C3%A5" tabindex="-1">Simplex-tablå</h3>
+<table>
+<thead>
+<tr>
+<th>Basis</th>
+<th>z</th>
+<th>x1</th>
+<th>x2</th>
+<th>...</th>
+<th>s1</th>
+<th>s2</th>
+<th>...</th>
+<th>RHS</th>
+<th>Forholdstest</th>
+</tr>
+</thead>
+</table>
+<p>Optimalitet dersom alle koeffisienter i øverste rekke (målfunksjon) er større eller lik 0.</p>
+<p>Iterasjon:</p>
+<ul>
+<li>Pivotkolonne: den med mest negativ koeffisient i målfunksjonen
+<ul>
+<li>Dersom uavgjort kolonnetest: like gode søkeretninger, velg én.</li>
+</ul>
+</li>
+<li>Pivotrad, ved forholdstalltest: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo><mi mathvariant="normal">arg min</mi><mo>⁡</mo></mo><mi>i</mi></msub><mrow><mo fence="true">(</mo><mfrac><msub><mtext>RHS</mtext><mi>i</mi></msub><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mfrac><mo>∣</mo><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>&gt;</mo><mn>0</mn><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\argmin_i{\left( \frac{\text{RHS}_i}{A_{ij}} \mid A_{ij} &gt; 0 \right)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.80002em;vertical-align:-0.65002em;"></span><span class="mop"><span class="mop"><span class="mord mathrm">a</span><span class="mord mathrm">r</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathrm">m</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.21752399999999997em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884309999999999em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2818857142857143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">RHS</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5423199999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">0</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span></span></span></span></span>
+<ul>
+<li>Dersom uavgjort forholdstalltest: degenerert løsning (to restriksjoner blir bindende samtidig), velg én.</li>
+<li>Dersom alle <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">A_{ij} &lt; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>: ubegrenset mulighetsrom</li>
+</ul>
+</li>
+</ul>
+<h3 id="to-fase-simplex-(todo)" tabindex="-1">To-fase-Simplex (TODO)</h3>
+<p>Dersom vi har et min-problem, eller vi har <code><span class="hljs-operator">=</span></code>-begrensning</p>
+<ul>
+<li>Kan introdusere Big-M og kunstvariabler</li>
+<li>Løses i to separate steg:
+<ol>
+<li>Finn startløsning (få kunstvariable ut av basis)</li>
+<li>Finn optimal løsning (kunstvariable lik 0)</li>
+</ol>
+</li>
+</ul>
+<h2 id="duality-theory-and-sensitivity-analysis-(65-pages)" tabindex="-1">Duality Theory and Sensitivity Analysis (65 pages)</h2>
+<p>Parametere i en LP-modell:</p>
+<ul>
+<li>Målfunksjonskoeffisienter <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">C_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>Restriksjonenes høyresider <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">B_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>Restriksjonskoeffisienter <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{ij}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+<h3 id="sensitivitetsanalyse" tabindex="-1">Sensitivitetsanalyse</h3>
+<p>Hva skjer med den optimale løsningen når en endrer parameterverdiene?</p>
+<ul>
+<li>Sensitivitetsområde for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">C_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>: Verdiområdet for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">C_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> hvor den optimale løsningen forblir optimal.
+<ul>
+<li>Legge til delta (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>C</mi><mi>j</mi><mo>∗</mo></msubsup><mo>=</mo><msub><mi>C</mi><mi>j</mi></msub><mo>+</mo><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">C_j^* = C_j + \Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0834679999999999em;vertical-align:-0.394772em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-2.441336em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.394772em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span>) i starten av Simplex, bli kvitt den i siste steg ved å gange den inn i innkommende rad.</li>
+</ul>
+</li>
+<li>Sensitivitetsområde for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">B_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: Verdiområdet for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">B_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> hvor variabelverdiene kan skifte verdi, men variablene i basis forblir de samme. Samme hjørnepunkt forblir optimalt, men verdiene av variablene i basis kan endre seg.
+<ul>
+<li>Legge til delta i RHS i starten av Simplex, se hvordan den propegerer, finn intervall tilslutt ved basisvariables <code>&gt;<span class="hljs-operator">=</span></code> 0.</li>
+</ul>
+</li>
+<li>Endre <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{ij}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>: Løs på nytt</li>
+<li>Legge til restriksjon: Løs på nytt dersom optimal løsning bryter den</li>
+<li>Legge til en variabel: Her kan vi gjøre noe smart</li>
+<li>Skyggepris: marginalverdien for ressursen, også kalt dualverdi.
+<ul>
+<li>Endring i z per endring i <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">B_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</li>
+<li>Sensitivitetsområdet for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">B_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> gir også info om området hvor skyggeprisen forblir gyldig.</li>
+<li>Leses fra koeffisienten til tilhørende slackvariabel i målfunksjonen i optimalt tablå</li>
+</ul>
+</li>
+</ul>
+<h3 id="dualitet" tabindex="-1">Dualitet</h3>
+<table>
+<thead>
+<tr>
+<th>Primal</th>
+<th>Dual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max</td>
+<td>min</td>
+</tr>
+<tr>
+<td>min</td>
+<td>max</td>
+</tr>
+<tr>
+<td>restriksjoner</td>
+<td>variabler</td>
+</tr>
+<tr>
+<td>variabler</td>
+<td>restriksjoner</td>
+</tr>
+<tr>
+<td>målfunksjonerskoeffisienter</td>
+<td>RHS</td>
+</tr>
+<tr>
+<td>RHS</td>
+<td>målfunksjonskoeffisienter</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Optimal løsning på dualen gir skyggeprisen til restriksjonene i primalen.</li>
+<li>Optimal løsning er eneste som er feasible for både primalen og dualen.</li>
+<li>Ny variabel i primal = Ny restriksjon i dual.</li>
+</ul>
+<h4 id="sob-reglene-(todo)" tabindex="-1">SOB-reglene (TODO)</h4>
+<h2 id="network-optimization-models-(53-pages)" tabindex="-1">Network Optimization Models (53 pages)</h2>
+<h3 id="minimalt-spenntre-problem-(mst)-(prim's-algoritme)" tabindex="-1">Minimalt spenntre problem (MST) (Prim's algoritme)</h3>
+<h3 id="korteste-vei-problem-(dijkstra)" tabindex="-1">Korteste vei-problem (Dijkstra)</h3>
+<p>Dijkstras algoritme forutsetter at alle buekostnader er ikkenegative.</p>
+<h3 id="maks-flyt-problem" tabindex="-1">Maks flyt-problem</h3>
+<p>Max-flow min-cut teoremet: For et nettverk med én kilde og ett sluk, er maks flyt mellom disse lik verdien av det minste kuttet over nettverket</p>
+<h4 id="min-kost-flyt-problemet" tabindex="-1">Min-kost-flyt-problemet</h4>
+<h2 id="integer-programming-(57-pages)" tabindex="-1">Integer Programming (57 pages)</h2>
+<p>Hvorfor heltallsprogrammering?</p>
+<ol>
+<li>Beslutningsvariable må representere et helt antall</li>
+<li>Modellering av logiske restriksjoner</li>
+</ol>
+<h3 id="bruk-av-bin%C3%A6rvariable" tabindex="-1">Bruk av binærvariable</h3>
+<ul>
+<li>Enten-eller restriksjoner: + My og + M(1-y)</li>
+<li>K av N restriksjoner: én y per restriksjon</li>
+<li>Fast og variabel kostnad: min z = Cx + Fy; x - My &lt;= 0</li>
+</ul>
+<h3 id="branch-and-bound" tabindex="-1">Branch and bound</h3>
+<p>Tre kriterier for å ikke forgrene fra node i B&amp;B-treet:</p>
+<ol>
+<li>Finner heltallig løsning (hmm? TODO)</li>
+<li>Finner ingen lovlig løsning</li>
+<li>LP-løsning dårligere enn kjent IP-løsning</li>
+</ol>
+<h2 id="non-linear-programming-(56-pages)" tabindex="-1">Non-Linear Programming (56 pages)</h2>
+<p>Vi deler problemer inn i problemklassene konvekse problem og ikke-konvekse problem. Vi kaller et problem uten restriksjoner på variablene for konvekst dersom:</p>
+<ul>
+<li>Vi maksimerer en konkav funksjon, eller</li>
+<li>Vi minimerer en konveks funksjon</li>
+</ul>
+<h3 id="lagrange-multiplikator-metoden" tabindex="-1">Lagrange multiplikator metoden</h3>
+<ul>
+<li>Har en funksjon å minimere, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mtext> </mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">z = f(x_1, \dots)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mclose">)</span></span></span></span>, samt ekstra begrensninger, feks. en kapasitet.</li>
+<li>Omformuler begrensninger til <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mn>1</mn></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mtext> </mtext><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b_1(x_1, \dots) = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>.</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>λ</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>λ</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mtext> </mtext><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mtext> </mtext><mo stretchy="false">)</mo><mo>+</mo><msub><mi>λ</mi><mn>1</mn></msub><mo stretchy="false">(</mo><msub><mi>b</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>+</mo><msub><mi>λ</mi><mn>2</mn></msub><mo stretchy="false">(</mo><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>+</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">L(x_1, x_2, \dots, \lambda_1, \lambda_2, \dots) = f(x_1, \dots) + \lambda_1(b_1) + \lambda_2(b_2) + \dots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">L</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.12em;vertical-align:0em;"></span><span class="minner">…</span></span></span></span></li>
+<li>Løs likningssettet <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>L</mi></mrow><mrow><mi mathvariant="normal">∂</mi><mi>z</mi></mrow></mfrac><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\frac{\partial L}{\partial z} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251079999999999em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight" style="margin-right:0.05556em;">∂</span><span class="mord mathnormal mtight">L</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>λ</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>λ</mi><mn>2</mn></msub><mo separator="true">,</mo><mo>…</mo></mrow><annotation encoding="application/x-tex">z = x_1, x_2, \dots, \lambda_1, \lambda_2, \dots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span></span></span></span></li>
+</ul>
+<p>I likhet med skyggepris, er <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\lambda_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> kostnadsbesparelsen (virkning på <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi></mrow><annotation encoding="application/x-tex">z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span>) dersom RHS i begrensning <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> økes med <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>.</p>
+<h3 id="kkt-betingelser-(karush-kuhn-tucker)-(todo)" tabindex="-1">KKT-betingelser (Karush-Kuhn-Tucker) (TODO)</h3>
+<h2 id="decision-analysis-(37-pages)" tabindex="-1">Decision Analysis (37 pages)</h2>
+<h3 id="beslutningskriterier" tabindex="-1">Beslutningskriterier</h3>
+<ul>
+<li>Maximin-kriteriet (pessimistisk)</li>
+<li>Maximum likelihood-kriteriet</li>
+<li>Bayes' regel</li>
+</ul>
+<h3 id="sensitivitetsanalyse-(todo-%3F)" tabindex="-1">Sensitivitetsanalyse (TODO ?)</h3>
+<h3 id="beslutningstr%C3%A6r" tabindex="-1">Beslutningstrær</h3>
+<ul>
+<li>Beslutningsnoder (kvadrater)</li>
+<li>Hendelsesnoder (sirkler)</li>
+<li>Kanter som binder disse sammen</li>
+<li>(og løvnoder som representerer pay-off)</li>
+</ul>
+<h3 id="verdi-av-informasjon-(todo)" tabindex="-1">Verdi av informasjon (TODO)</h3>
+<p>Differanse på forventet verdi og forventet verdi ved informasjon.</p>
+<ul>
+<li>Expected Value of Perfect Information (EVPI)</li>
+<li>Expected Value of Experiment (EVE)</li>
+</ul>
+<h3 id="risiko-og-nyttefunksjoner-(todo)" tabindex="-1">Risiko og nyttefunksjoner (TODO)</h3>
+<p>Ved å substituere nytte for resultat i beslutningstre er det lett å regne seg frem til optimale beslutninger gitt at vi maksimerer forventet nytte.</p>
+<ul>
+<li>Nyttefunksjoner, under y = x: risikoavers</li>
+<li>Nyttefunksjon, y = x: risikonøytral</li>
+<li>Nyttefunksjoner, over y = x: risikosøkende</li>
+</ul>
+<h2 id="queueing-theory-(53-pages)" tabindex="-1">Queueing Theory (53 pages)</h2>
+<h3 id="kendall's-notation" tabindex="-1">Kendall's notation</h3>
+<ol>
+<li>Fordeling av ankomsttider</li>
+<li>Fordeling av betjeningstider</li>
+<li>Antall betjeningsstasjoner (s)</li>
+<li>Kapasitet i systemet (ventende og betjente)</li>
+<li>Størrelse på kundegrunnlag</li>
+</ol>
+<p>Fordelinger kan være</p>
+<ul>
+<li>M: eksponentialfordeling</li>
+<li>D: degenerert (konstant, deterministisk)</li>
+<li>E_k: Erlang-k fordeling</li>
+<li>G: generell fordeling</li>
+</ul>
+<h3 id="k%C3%B8system" tabindex="-1">Køsystem</h3>
+<p>Notasjon for køsystem i stabil tilstand</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">P_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, sannsynlighet for nøyaktig n kunder i systemet</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">L</span></span></span></span>, forventet antall kunder i systemet</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">L_q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>, forventet kølengde (ekskl. kunder som betjenes)</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">W</mi></mrow><annotation encoding="application/x-tex">\mathcal{W}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.08222em;">W</span></span></span></span></span>, tid i systemet (inkl. betjeningstid) for hver enkelt kunde</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mi>E</mi><mo stretchy="false">(</mo><mi mathvariant="script">W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W = E(\mathcal{W})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord"><span class="mord mathcal" style="margin-right:0.08222em;">W</span></span><span class="mclose">)</span></span></span></span>, forventet tid i systemet</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="script">W</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{W}_q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord"><span class="mord mathcal" style="margin-right:0.08222em;">W</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>, ventetid i køen (ekskl. betjeningstid) for hver enkelt kunde</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>W</mi><mi>q</mi></msub><mo>=</mo><mi>E</mi><mo stretchy="false">(</mo><msub><mi mathvariant="script">W</mi><mi>q</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">W_q = E(\mathcal{W}_q)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathcal" style="margin-right:0.08222em;">W</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">q</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, forventet ventetid</li>
+</ul>
+<h3 id="f%C3%B8dsels--og-d%C3%B8dsprosesser-(markov-kjeder)%2C-overgangsdiagram" tabindex="-1">Fødsels- og dødsprosesser (Markov-kjeder), overgangsdiagram</h3>
+<h3 id="balking-(todo)" tabindex="-1">Balking (TODO)</h3>
+<h2 id="inventory-theory-(62-pages)-(todo)" tabindex="-1">Inventory Theory (62 pages) (TODO)</h2>
+<ul>
+<li>Hva er riktig lagernivå?</li>
+<li>Hvor mye skal bestilles (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Q</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">Q^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8831359999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span>) og når/hvor ofte?</li>
+</ul>
+<p>Lagermodeller kan klassifiseres som:</p>
+<ul>
+<li>deterministiske eller stokastiske,</li>
+<li>kontinuerlige eller periodiske</li>
+</ul>
+<p>Modellkomponenter</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span></span></span></span>, kostnad per bestilling</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">c</span></span></span></span>, kostnad per enhet</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">h</span></span></span></span>, lagerkostnad per enhet per tidsenhet (holding cost):</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">d</span></span></span></span>, etterspørselrate per tidsenhet (demand):</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span>, shortage kostnad per enhet per tidsenhet</li>
+<li>rentesats (TODO ?)</li>
+<li>ledetid (TODO ?)</li>
+</ul>
+<p>Beregne</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Q</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">Q^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8831359999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span>, optimalt ordrekvantum</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span>, bestillingspunkt, lagerkvantum ved ny bestilling</li>
+</ul>
+<h2 id="simulation-(47-pages)" tabindex="-1">Simulation (47 pages)</h2>
+<p>Simuleringsmodeller kan klassifiseres som:</p>
+<ul>
+<li>analoge eller digitale,</li>
+<li>statiske eller dynamiske,</li>
+<li>diskrete eller kontinuerlige og</li>
+<li>deterministiske eller stokastiske.</li>
+</ul>
+<p>Elementene i en simuleringsmodell</p>
+<ul>
+<li>En definisjon av systemets tilstand</li>
+<li>Identifikasjon av mulige tilstander</li>
+<li>Identifikasjon av mulige hendelser</li>
+<li>Simuleringsklokke som holder rede på tiden</li>
+<li>Metode for å generere tilfeldige hendelser</li>
+<li>Beskrivelse av hvilken effekt hendelsene har på tilstanden til systemet (overgangsfunksjoner)</li>
+</ul>
+<h3 id="tilfeldige-tall" tabindex="-1">Tilfeldige tall</h3>
+<p>Krav til en generator av tilfeldige tall:</p>
+<ul>
+<li>Tallene må være uavhengige</li>
+<li>Tallene som genereres må være uniformt fordelt</li>
+<li>Sekvensen av tall bør være reproduserbar</li>
+<li>Tallene må kunne genereres raskt</li>
+</ul>
+<h4 id="kongruensmetoder%3A-heltall-og-uniform-fordeling-(todo)" tabindex="-1">Kongruensmetoder: Heltall og uniform fordeling (TODO)</h4>
+<ul>
+<li>Mixed congruential method</li>
+<li>Multiplicative congruential method</li>
+<li>Additive congruential method</li>
+</ul>
+<h4 id="andre-sannsynlighetsfordelinger" tabindex="-1">Andre sannsynlighetsfordelinger</h4>
+<ul>
+<li>Direkte oppslag</li>
+<li>Inverstransformasjonsmetoden (TODO)</li>
+<li>Akseptanse/avslag-metoden</li>
+</ul>
+<h3 id="simuleringsklokka-(tidsinkrement)" tabindex="-1">Simuleringsklokka (tidsinkrement)</h3>
+<ul>
+<li>Hendelsesbaserte tidsinkrement: Oppdaterer klokka med tidspunktet hvor neste hendelse inntreffer.</li>
+<li>Faste tidsinkrement: Inkrementerer klokka men en liten fast tidsenhet ved hver iterasjon.</li>
+</ul>
+
+        <div style="height: 100vh;"></div>
+      </article>
+      </div>
+  </body>
+</html>

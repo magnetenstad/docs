@@ -1,0 +1,93 @@
+<!DOCTYPE svg>
+<svg viewBox="0 0 1300 850"
+  aria-labelledby="title desc"
+  role="img"
+  version="1.1"
+  baseProfile="full"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  font-family="arial"
+>
+
+  <title id="title">UK General Election 2019</title>
+  <desc id="desc">Number of seats for top seven parties</desc>
+
+  <!--
+    Copyright © 2024 by Magne Tenstad.
+    This work is placed under a Creative Commons Attribution 4.0
+    International (CC BY 4.0) licence.
+    https://creativecommons.org/licenses/by/4.0/
+  -->
+
+  <!-- Background for margin testing -->
+  <!-- <rect x="0" y="0" width="1300" height="850" fill="blue"></rect> -->
+
+  <!-- X and Y axis -->
+  <g stroke="black">
+    <line x1="150" y1="200" x2="150" y2="650"></line>
+    <line x1="100" y1="650" x2="1250" y2="650"></line>
+  </g>
+
+  <!-- Horizontal lines (y ticks) -->
+  <g stroke="gray">
+    <line x1="150" y1="250" x2="1250" y2="250"></line>
+    <line x1="150" y1="350" x2="1250" y2="350"></line>
+    <line x1="150" y1="450" x2="1250" y2="450"></line>
+    <line x1="150" y1="550" x2="1250" y2="550"></line>
+  </g>
+
+  <!-- Y tick numbers -->
+  <g font-size="20" text-anchor="end" transform="translate(-10 5)">
+    <text x="150" y="250">400</text>
+    <text x="150" y="350">300</text>
+    <text x="150" y="450">200</text>
+    <text x="150" y="550">100</text>
+  </g>
+
+  <!-- Bars -->
+  <g>
+    <rect x="200" y="285" width="100" height="365"></rect>
+    <rect x="350" y="448" width="100" height="202"></rect>
+    <rect x="500" y="602" width="100" height="48"></rect>
+    <rect x="650" y="639" width="100" height="11"></rect>
+    <rect x="800" y="642" width="100" height="8"></rect>
+    <rect x="950" y="643" width="100" height="7"></rect>
+    <rect x="1100" y="646" width="100" height="4"></rect>
+  </g>
+
+  <!-- Value for each bar -->
+  <g font-size="20" text-anchor="end" transform="translate(90 -10)">
+    <text x="200" y="285">365</text>
+    <text x="350" y="448">202</text>
+    <text x="500" y="602">48</text>
+    <text x="650" y="639">11</text>
+    <text x="800" y="642">8</text>
+    <text x="950" y="643">7</text>
+    <text x="1100" y="646">4</text>
+  </g>
+
+  <!-- Name for each bar -->
+  <g font-size="22" text-anchor="end" transform="translate(80 30)">
+    <text x="200" y="650" transform="rotate(-30 200 650)">Conservative</text>
+    <text x="350" y="650" transform="rotate(-30 350 650)">Labour</text>
+    <text x="500" y="650" transform="rotate(-30 500 650)">SNP</text>
+    <text x="650" y="650" transform="rotate(-30 650 650)">Liberal Democrats</text>
+    <text x="800" y="650" transform="rotate(-30 800 650)">DUP</text>
+    <text x="950" y="650" transform="rotate(-30 950 650)">Sinn Féin</text>
+    <text x="1100" y="650" transform="rotate(-30 1100 650)">Plaid Cymru</text>
+  </g>
+
+  <!-- Axis titles -->
+  <g font-size="28" font-weight="600">
+    <text x="75" y="475" transform="rotate(-90 75 475)">Seats</text>
+    <text x="675" y="800" text-anchor="middle">Party</text>
+  </g>
+
+  <!-- Main title -->
+  <text x="675" y="100" text-anchor="middle" font-size="30" font-weight="600">
+    UK General Election 2019
+  </text>
+  <text x="675" y="150" text-anchor="middle" font-size="26">
+    Number of seats for top seven parties
+  </text>
+</svg>
